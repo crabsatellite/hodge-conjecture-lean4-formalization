@@ -95,7 +95,8 @@ theorem nonHermitian_min3_isotropic (σ : OrthSignature)
     we check the residual independently: its rank stays ≥ 5 and it
     remains indefinite, so Meyer applies afresh at every stage.
 
-    We state this as an axiom combining Meyer + iterated Witt theory. -/
+    Ref: Meyer (1884); Witt, J. reine angew. Math. 176 (1937);
+    Serre, A Course in Arithmetic (1973), Ch. IV §3. -/
 axiom witt_reduction_to_hermitian (σ : OrthSignature)
     (hpq : σ.p ≥ σ.q) (hq : σ.q ≥ 3) :
   ∃ Q' : RatQuadForm,

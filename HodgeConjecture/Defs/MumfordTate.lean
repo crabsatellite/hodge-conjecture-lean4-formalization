@@ -71,6 +71,12 @@ def OrthSignature.isNonHermitian_min3 (σ : OrthSignature) : Prop :=
 /-- A variety is rigid if h¹(T_X) = 0 (no non-trivial deformations). -/
 axiom isRigid : SmoothProjVar → Prop
 
+/-- A variety is a Shimura fibre if it arises as a fibre of the universal
+    family over a Shimura variety S_G (or its toroidal compactification).
+    For such varieties, Hodge classes can be related to tautological classes
+    on S_G via the period map, enabling Chern-Weil algebraicity. -/
+axiom isShimuraFibre : SmoothProjVar → Prop
+
 /-- A variety has CM type if its MT group is toral. -/
 def hasCMType (X : SmoothProjVar) : Prop := MT_isToral X
 

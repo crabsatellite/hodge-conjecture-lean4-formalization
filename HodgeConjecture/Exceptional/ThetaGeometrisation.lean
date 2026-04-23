@@ -48,8 +48,8 @@ axiom kudla_millson_schwartz_form : Prop
 
 /-- **Karasiewicz-Savin (2025)**: (PGL₂, F₄) ⊂ E₇ exceptional theta
     correspondence; theta lift at weight 27/2 generates Π_min^{(-25)}.
-    Ref: Karasiewicz-Savin, "Minimal representations via the exceptional
-    theta correspondence", arXiv:2501.xxxxx (2025), Theorem 1.2. -/
+    Ref: Karasiewicz-Savin, "Exceptional theta correspondence F₄ × PGL₂
+    for level one", arXiv:2501.19101 (2025), Theorem 1.2. -/
 axiom karasiewicz_savin_theta : Prop
 
 /-- **Gross-Wallach (1996)**: Pimin^{(-25)} of E_{7(-25)} has (g,K)-cohomology
@@ -299,10 +299,12 @@ theorem bbt_step2_degree_bound
     (hHilb : hilbert_scheme_proper) (hACC : noetherian_ACC) :
     UniformDegreeBound := ⟨hSeeds, hHilb, hACC⟩
 
-/-- **BBT Step 3**: definable GAGA spreading.
-    Construct incidence locus J; BKT definability + BBT GAGA → J algebraic;
-    projection surjective (closed image contains dense subset of irred S).
-    Ref: Li (2026), Thm 6.4 Step 3; BKT 2020; BBT 2023. -/
+/-- **BBT Step 3 (definable GAGA spreading)**: construct incidence locus J;
+    BKT definability + BBT GAGA → J algebraic; projection surjective
+    (closed image contains dense subset of irreducible S).
+    Ref: Bakker-Klingler-Tsimerman, Publ. IHES (2020), Thm 1.1;
+    Bakker-Brunebarbe-Tsimerman, Ann. Math. (2023), Thm 1.2;
+    Grothendieck, FGA (representability of Hilbert functors). -/
 axiom bbt_step3_spreading
     (hBound : UniformDegreeBound)
     (hBKT : BKT_definability) (hBBT : BBT_GAGA) (hCoherence : BBT_coherence)

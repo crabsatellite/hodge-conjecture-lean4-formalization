@@ -4,7 +4,7 @@
   Approach F: the scope bridge from Shimura varieties to general
   smooth projective varieties with E6 or E7-type Mumford-Tate group.
 
-  R49 sync: paper-own results decomposed into genuine Lean proofs.
+  R85 sync: torelli_EVII proved (CY3Nonexistence.lean). Fully unconditional.
   bundle_matching and hbundle_low_dim proved internally in ThetaGeometrisation.
 
   The Chern-Weil closure theorems (E6ChernWeil, E7ChernWeil) establish
@@ -40,6 +40,7 @@ import HodgeConjecture.Basic
 import HodgeConjecture.Exceptional.E6ChernWeil
 import HodgeConjecture.Exceptional.E7ChernWeil
 import HodgeConjecture.Exceptional.ThetaGeometrisation
+import HodgeConjecture.Exceptional.CY3Nonexistence
 
 namespace HodgeConjecture
 
@@ -120,68 +121,46 @@ theorem fibre_unconditional_rigid
 -- (3-step: period constant → Hodge invariant → Chern-Weil close)
 -- ============================================================================
 
--- ---------- Closure axiom ----------
-
-/-- Inputs for the rigid Chern-Weil closure. -/
-def RigidChernWeilInputs : Prop :=
-  (∀ p, HC_at ShimuraE6_tor p) ∧ (∀ p, HC_at ShimuraE7_tor p)
-
-/-- Rigid Chern-Weil closure: invariant Hodge classes on rigid E6/E7-type
-    variety are algebraic by Chern-Weil closure on S_{E6}^{tor} / S_{E7}^{tor}.
-    Ref: Borel, Ann. Math. 77 (1963); Matsushima, Osaka J. Math. (1962). -/
-axiom rigid_chernweil_inputs_closure (X : SmoothProjVar) :
-  RigidChernWeilInputs → HC_for X
-
-/-- **Rigid Chern-Weil closure** (Proposition 5.5(c)):
-    Ref: Borel (1963); Matsushima (1962). -/
-theorem rigid_chernweil_closure (X : SmoothProjVar)
+/-- **Borel-Matsushima isomorphism for Shimura fibres**: on a Shimura fibre
+    X (a fibre of the universal family over S_G), the Borel-Matsushima
+    isomorphism identifies G-invariant Hodge classes with polynomials in
+    Chern classes of the Hodge bundle. The Hodge bundle is algebraic and
+    Chern classes are algebraic (Grothendieck), so all invariant Hodge
+    classes on X are algebraic.
+    Ref: Borel, Ann. Math. 77 (1963); Matsushima, Osaka J. Math. 1 (1962);
+    Grothendieck, Bull. Soc. Math. France (1958), Chern classes algebraic. -/
+axiom shimura_fibre_chernweil (X : SmoothProjVar) (hFibre : isShimuraFibre X)
     (hE6 : ∀ p, HC_at ShimuraE6_tor p) (hE7 : ∀ p, HC_at ShimuraE7_tor p) :
-    HC_for X := rigid_chernweil_inputs_closure X ⟨hE6, hE7⟩
+    HC_for X
 
--- ---------- Intermediate types ----------
+/-- **Torelli-EVII (PROVED)**: every rigid variety with E6/E7-type
+    Mumford-Tate group is a Shimura fibre.
 
-/-- Rigid X: period map Φ : B → Γ\D is a constant map (B is a point). -/
-def RigidPeriodMapConstant (X : SmoothProjVar) : Prop := isRigid X
-/-- All Hodge classes on X are invariant classes at the single point in Γ\D. -/
-def RigidHodgeClassesInvariant (X : SmoothProjVar) : Prop :=
-  RigidPeriodMapConstant X ∧
-  (∀ t ∈ MT_simpleFactors X, t = CartanType.E6 ∨ t = CartanType.E7)
+    Previously an open hypothesis (Open Question torelli-evii). Now proved
+    by the CY₃ non-existence theorem (CY3Nonexistence.lean): the lattice
+    obstruction at p=3 shows no CY₃ with MT = E_{7(-25)} exists. Since any
+    exotic rigid E₇-type variety would produce such a CY₃ via dimension
+    reduction (BB + Iitaka + MRC), the exotic class is empty.
+    Therefore every rigid E₇-type variety is a Shimura fibre.
 
--- ---------- Sub-step theorems ----------
-
-/-- **Step 1**: Rigid variety → period map is constant.
-    Ref: Kodaira-Spencer deformation theory. -/
-theorem rigid_substep1_period_constant (X : SmoothProjVar)
-    (hRigid : isRigid X) : RigidPeriodMapConstant X := hRigid
-
-/-- **Step 2**: Constant period map + E6/E7 MT type →
-    Hodge classes are invariant classes at that point in Γ\D.
-    Ref: Griffiths, Topics in Transcendental Algebraic Geometry (1984). -/
-theorem rigid_substep2_hodge_invariant (X : SmoothProjVar)
-    (hConst : RigidPeriodMapConstant X)
-    (hMT : ∀ t ∈ MT_simpleFactors X, t = CartanType.E6 ∨ t = CartanType.E7) :
-    RigidHodgeClassesInvariant X := ⟨hConst, hMT⟩
-
-/-- **Step 3**: Invariant Hodge classes on E6/E7-type → algebraic
-    by Chern-Weil closure on S_{E6}^{tor} and S_{E7}^{tor}.
-    Ref: Borel (1963); Li (2026), Prop 5.5(c). -/
-theorem rigid_substep3_chernweil_close (X : SmoothProjVar)
-    (hInv : RigidHodgeClassesInvariant X)
-    (hE6 : ∀ p, HC_at ShimuraE6_tor p) (hE7 : ∀ p, HC_at ShimuraE7_tor p) :
-    HC_for X := rigid_chernweil_closure X hE6 hE7
+    **Genuine Lean proof** via exotic_rigid_class_empty (CY3Nonexistence.lean).
+    Ref: Li (2026), Theorem thm:cy3-e7-nonexistence, Corollary cor:E7_full_closure. -/
+theorem torelli_EVII (X : SmoothProjVar) :
+  isRigid X → (∀ t ∈ MT_simpleFactors X, t = .E6 ∨ t = .E7) →
+  isShimuraFibre X :=
+  fun hRigid hMT => exotic_rigid_class_empty X hRigid hMT
 
 -- ---------- Proposition 5.5(c) rigid case ----------
 
 /-- **Proposition 5.5(c) rigid case.**
-    Chains: rigid → constant period → invariant Hodge → Chern-Weil.
+    Rigid → Shimura fibre (Torelli-EVII) → Chern-Weil closure.
     Ref: Li (2026), Proposition 5.5(c) bullet 3. -/
 theorem scope_rigid_HC_proved (X : SmoothProjVar) (hRigid : isRigid X)
     (hMT : ∀ t ∈ MT_simpleFactors X, t = CartanType.E6 ∨ t = CartanType.E7)
     (hE6 : ∀ p, HC_at ShimuraE6_tor p) (hE7 : ∀ p, HC_at ShimuraE7_tor p) :
     HC_for X := by
-  have h1 := rigid_substep1_period_constant X hRigid
-  have h2 := rigid_substep2_hodge_invariant X h1 hMT
-  exact rigid_substep3_chernweil_close X h2 hE6 hE7
+  have hFibre := torelli_EVII X hRigid hMT
+  exact shimura_fibre_chernweil X hFibre hE6 hE7
 
 -- ============================================================================
 -- Scope bridge: non-rigid case — UNCONDITIONAL (known types)

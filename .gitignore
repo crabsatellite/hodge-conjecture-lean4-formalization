@@ -1,1 +1,4 @@
 /.lake
+
+# Tool outputs (regenerable via axiom-verify)
+audit-report.json
