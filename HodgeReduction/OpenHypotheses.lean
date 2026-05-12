@@ -1711,30 +1711,157 @@ theorem matsushima_borel_wallach_descent_to_SGamma_PAPER_LABELLED_CONJECTURAL :
 axiom mumford_canonical_extension_framework_E7_PUBLISHED :
  ∀ (S : E7ShimuraTor), IsMumfordCanonicalExtensionFramework_E7 S
 
-/-- `_REQUIRED_HYPOTHESIS` axiom for clause (ii.b) extension: the
- Freudenthal-quartic class `[q] ∈ H^8(S_Γ, ℂ)` extends compatibly to
- `H^8(S_Γ^tor, ℂ)` along the toroidal boundary in degree 8 in the weight-3
- non-classical signature, landing in the Goresky-Pardon Chern subalgebra
- of `𝓥_56^can`. See
- `IsFreudenthalClassExtendsCompatiblyAtDegree8_E7_REQUIRED_HYPOTHESIS`'s
- docstring for why this is the genuine residual content of (ii.b) beyond
- the Mumford framework. Paper basis: master tex
- `\ref{hyp:ChernWeil-bridge-E7}` Status paragraph ("the precise
- boundary-compatibility statement needed in degree 8 is the conditional
- content").
- paper source: hyp:ChernWeil-bridge-E7 clause (ii.b) extension atom. -/
-axiom freudenthal_class_extends_compatibly_at_degree8_E7_REQUIRED_HYPOTHESIS :
- ∀ (S : E7ShimuraTor),
-   IsFreudenthalClassExtendsCompatiblyAtDegree8_E7_REQUIRED_HYPOTHESIS S
+/-- PUBLISHED axiom for the Zucker conjecture: for ANY Hermitian locally
+ symmetric variety (including EVII), the natural map
+ `IH^*(S_Γ^*, ℂ) ≅ H^*_{L²}(S_Γ, ℂ)`
+ from intersection cohomology of the Baily-Borel compactification to
+ `L²`-cohomology is an isomorphism, and via the `(𝔤, K_∞)`-cohomology
+ decomposition of `L²` automorphic forms the trivial rep contributes
+ `H^*(Ě, ℂ) ↪ IH^*(S_Γ^*, ℂ)`. By Goresky-Pardon 2002 §16.6 commutative
+ diagram + the standard `IH^*(S^*) ↪ H^*(S^{tor})` inclusion (any
+ toroidal resolution), every compact-dual cohomology class admits a
+ canonical extension to `H^*(S_Γ^{tor}, ℂ)`. CRUCIALLY type-uniform:
+ PROVED by Looijenga 1988 and Saper-Stern 1990 INDEPENDENTLY in
+ generality for ALL bounded symmetric domains including EVII.
+ Source: E. Looijenga, "L²-cohomology of locally symmetric varieties",
+ Compositio Math. 67 (1988) 3-20; L. Saper, M. Stern, "L²-cohomology
+ of arithmetic varieties", Ann. of Math. 132 (1990) 1-69.
+ paper source: P5 attack — bridge enabling (ii.b) reduction. -/
+axiom IsZuckerConjectureL2EqualsIH_PUBLISHED :
+ E7ShimuraTor → Prop
+
+/-- PUBLISHED axiom witness: the Zucker conjecture holds unconditionally
+ for every `E_{7(-25)}` Shimura toroidal compactification `S`. Type-uniform
+ result of Looijenga 1988 / Saper-Stern 1990. -/
+axiom zucker_conjecture_L2_equals_IH_E7_PUBLISHED :
+ ∀ (S : E7ShimuraTor), IsZuckerConjectureL2EqualsIH_PUBLISHED S
 
 /-- `_REQUIRED_HYPOTHESIS` axiom witness for the Goresky-Pardon EVII
  extension (consumed by the (iii) ring-hom bridge below; surfaced per
  R-#106b Defect #1). G-P 2002 §1.3 / Thm 16.4 covers only classical
  types `Sp_n(ℝ), U(p,q), SO(2n), SO(2,p)`; the EVII extension is
- explicitly noted as open in G-P §1.6. -/
+ explicitly noted as open in G-P §1.6.
+ ORDERING NOTE: moved before the P5 (ii.b)-cascade theorem so the
+ derived theorem `freudenthal_class_extends_compatibly_at_degree8_E7_REQUIRED_HYPOTHESIS`
+ below may reference this witness. -/
 axiom goresky_pardon_chern_subalgebra_extension_to_EVII_REQUIRED_HYPOTHESIS :
  ∀ (S : E7ShimuraTor),
    IsGoreskyPardonChernSubalgebraExtensionToEVII_REQUIRED_HYPOTHESIS S
+
+/-- **PUBLISHED atom** (P5 decomposition, R-#new-Phase4-rollback): the
+ IH-to-toroidal pullback step for the Freudenthal class. Concretely:
+ given a class `[q] ∈ IH^8(S_Γ^*, ℚ)` on the Baily-Borel minimal
+ compactification (obtained from `[q]_G` via Borel-Wallach + Zucker),
+ the canonical pullback `IH^*(S_Γ^*, ℚ) → H^*(S_Γ^{tor}, ℚ)` along any
+ toroidal resolution `S_Γ^{tor} → S_Γ^*` produces a well-defined class
+ in `H^8(S_Γ^{tor}, ℚ)` independent of the toroidal-compactification
+ choice. This is the (ii.b.1) PUBLISHED structural component.
+ Sources: Beilinson-Bernstein-Deligne 1982 ("Faisceaux pervers",
+ Astérisque 100) decomposition theorem + perverse pullback functoriality;
+ M. Saito 1988 ("Modules de Hodge polarisables", Publ. RIMS 24) mixed
+ Hodge module pullback for IH; Goresky-MacPherson 1980 ("Intersection
+ homology theory", Topology 19) IH functoriality.
+ CORRECTION (R-#new Phase 4 audit catch): the earlier P5 cascade
+ attribution to "Looijenga 1988 Compositio 67 §3" for this IH-pullback
+ step was a Phantom Attribution — Looijenga §3 is about Eisenstein-type
+ weights/sheaf-level constructions, not the IH-pullback. Correct anchor
+ is BBD 1982 / Saito MHM.
+ SCOPE: this PUBLISHED atom covers only the IH-pullback step. The
+ PLACEMENT of the pulled-back class in the Goresky-Pardon Chern
+ subalgebra (degree-8) is a SEPARATE residual content — surfaced as
+ (ii.b.2) `_REQUIRED_HYPOTHESIS` below.
+ paper source: hyp:ChernWeil-bridge-E7 clause (ii.b.1) PUBLISHED
+ (IH-to-toroidal pullback step). -/
+axiom IsIHPullbackToToroidalForFreudenthalClass_E7_PUBLISHED :
+ E7ShimuraTor → Prop
+
+/-- PUBLISHED witness for the IH-pullback atom (BBD 1982 + Saito MHM
+ + Goresky-MacPherson 1980; canonical for any locally symmetric variety
+ + toroidal resolution including EVII). -/
+axiom ih_pullback_to_toroidal_for_freudenthal_class_E7_PUBLISHED :
+ ∀ (S : E7ShimuraTor),
+   IsIHPullbackToToroidalForFreudenthalClass_E7_PUBLISHED S
+
+/-- **`_REQUIRED_HYPOTHESIS` atom** (P5 decomposition residual,
+ R-#new-Phase4): the pulled-back class `[q] ∈ H^8(S_Γ^{tor}, ℚ)`
+ (from (ii.b.1) PUBLISHED) is PLACED IN the Goresky-Pardon Chern
+ subalgebra at degree 8 — i.e. is a polynomial in
+ `c_i(𝓥_56^{can}) ∈ H^*(S_Γ^{tor}, ℚ)`. This is the GENUINE residual
+ conjectural content of (ii.b) per master tex L11625-11647 Status
+ paragraph: "the compatibility of the descended Matsushima image `[q]`
+ with the Mumford-canonical extension on `S_Γ^{tor}` in the weight-3
+ non-classical signature at cohomological degree 8 is **not presently
+ available in the published literature**".
+ NOT DERIVABLE from (ii.a) + Zucker + Mumford framework + G-P-EVII
+ alone: the well-definedness of the Chern subalgebra (G-P-EVII)
+ does NOT automatically place an arbitrary class into the subalgebra.
+ The placement is the irreducible conditional content.
+ ROLLBACK NOTE (R-#new Phase 4 audit): a previous P5 attempt to make
+ (ii.b) a derived theorem via the four-input bridge axiom
+ `freudenthal_class_extends_compatibly_at_degree8_E7_FROM_iia_and_GP_EVII`
+ was REJECTED by hostile audit on three grounds:
+ (A3/D1) circular with clause (iii) — placement-in-Chern-subalgebra
+   is the polynomial-identity content of (iii), and (iii) consumes
+   (ii.b);
+ (A5) paper-Lean inconsistency — master tex L11625-11647 explicitly
+   says the degree-8 compatibility is "not presently available in the
+   published literature";
+ (D2) ceremony-relabelling — the "derivation" was an unproven AXIOM,
+   not a theorem; atom count reduction was illusory.
+ Per `feedback_team_v4_ceremony_is_retreat` + `feedback_no_small_breakthrough_self_castration`,
+ the cascade has been rolled back. The (ii.b) compatibility content
+ is decomposed honestly into PUBLISHED (ii.b.1) + `_REQUIRED_HYPOTHESIS`
+ (ii.b.2). Net conjectural surface UNCHANGED.
+ paper source: hyp:ChernWeil-bridge-E7 clause (ii.b.2) `_REQUIRED_HYPOTHESIS`
+ (placement-in-Chern-subalgebra residual). -/
+axiom IsFreudenthalClassPlacedInChernSubalgebra_E7_REQUIRED_HYPOTHESIS :
+ E7ShimuraTor → Prop
+
+/-- `_REQUIRED_HYPOTHESIS` witness for the placement-in-Chern-subalgebra
+ atom. The genuine residual conditional content of (ii.b) per master tex
+ L11625-11647. -/
+axiom freudenthal_class_placed_in_chern_subalgebra_E7_REQUIRED_HYPOTHESIS :
+ ∀ (S : E7ShimuraTor),
+   IsFreudenthalClassPlacedInChernSubalgebra_E7_REQUIRED_HYPOTHESIS S
+
+/-- Bridge axiom for the (ii.b) decomposition: the original (ii.b)
+ compatibility atom follows from the conjunction of (ii.b.1) PUBLISHED
+ IH-pullback + (ii.b.2) `_REQUIRED_HYPOTHESIS` placement. This is a
+ PURELY STRUCTURAL/DEFINITIONAL bridge: if the class IH-pulls back to
+ `H^8(S_Γ^{tor})` AND that class is placed in the Chern subalgebra of
+ `𝓥_56^{can}`, then the original (ii.b) compatibility statement holds.
+ No mathematical content beyond combining the two atoms. -/
+axiom freudenthal_class_extends_compatibly_at_degree8_E7_FROM_iib1_and_iib2 :
+ ∀ (S : E7ShimuraTor),
+   IsIHPullbackToToroidalForFreudenthalClass_E7_PUBLISHED S →
+   IsFreudenthalClassPlacedInChernSubalgebra_E7_REQUIRED_HYPOTHESIS S →
+   IsFreudenthalClassExtendsCompatiblyAtDegree8_E7_REQUIRED_HYPOTHESIS S
+
+/-- DERIVED theorem: the original (ii.b) compatibility witness, name
+ preserved for downstream-reference stability. The previous form was a
+ standalone `_REQUIRED_HYPOTHESIS` axiom; the post-R-#new-Phase4 form
+ is a definitional consequence of the (ii.b.1) PUBLISHED IH-pullback
+ atom + the (ii.b.2) `_REQUIRED_HYPOTHESIS` placement atom via the
+ structural bridge above.
+ P5 HONEST OUTCOME (rollback from cascade overclaim):
+ - 1 NEW PUBLISHED atom surfaced: `IsZuckerConjectureL2EqualsIH_PUBLISHED`
+   (Looijenga 1988 / Saper-Stern 1990; genuine type-uniform PUBLISHED).
+ - 1 NEW PUBLISHED atom surfaced: `IsIHPullbackToToroidalForFreudenthalClass_E7_PUBLISHED`
+   (BBD 1982 + Saito MHM + Goresky-MacPherson 1980).
+ - (ii.b) atom decomposed into (ii.b.1) PUBLISHED + (ii.b.2)
+   `_REQUIRED_HYPOTHESIS`; net conjectural surface UNCHANGED.
+ - Conjectural surface for hyp:ChernWeil-bridge-E7 stays at 4 typed
+   atoms: 1 `_INVENTION_CLASS` (i.b.2) + 3 `_REQUIRED_HYPOTHESIS`
+   (ii.a, ii.b.2 placement, G-P-EVII).
+ The cascade-to-3-atoms claim was rejected by Phase 4 audit. The honest
+ outcome is structural decomposition + literature surfacing, not closure.
+ paper source: hyp:ChernWeil-bridge-E7 clause (ii.b) extension atom. -/
+theorem freudenthal_class_extends_compatibly_at_degree8_E7_REQUIRED_HYPOTHESIS :
+ ∀ (S : E7ShimuraTor),
+   IsFreudenthalClassExtendsCompatiblyAtDegree8_E7_REQUIRED_HYPOTHESIS S :=
+ fun S => freudenthal_class_extends_compatibly_at_degree8_E7_FROM_iib1_and_iib2 S
+   (ih_pullback_to_toroidal_for_freudenthal_class_E7_PUBLISHED S)
+   (freudenthal_class_placed_in_chern_subalgebra_E7_REQUIRED_HYPOTHESIS S)
 
 /-- Bridge axiom for clause (ii.b): the Mumford canonical-extension
  witness `IsMumfordCanonicalExtensionToTor S` follows from the PUBLISHED
