@@ -6931,6 +6931,103 @@ axiom IsConifoldTransitionBypassInapplicable_d5_E7_Exotic_BROKEN_LINK :
 axiom friedman_collins_conifold_threefold_only :
  IsConifoldTransitionBypassInapplicable_d5_E7_Exotic_BROKEN_LINK
 
+/-- **PUBLISHED-tier INERT atom (P3 attack byproduct)**: the structural
+ Hodge/monodromy attack via period map of any **ample-divisor family**
+ on the d=5 EVII phantom is INERT — cannot produce a numerical
+ contradiction — via two compounding mechanisms:
+
+ (1) **MT-orbit Hermitian symmetric**: the Mumford-Tate sub-period-
+   domain `D_{MT} = E_{7(-25)} / (E_6 × U(1)) = EVII` is the
+   fourth exceptional irreducible Hermitian symmetric space of
+   complex dimension 27 (Helgason 1978 Ch. X §6 + Table V; one of
+   four exceptional HS spaces, alongside EIII = E_{6(-14)}/Spin(10)·SO(2)).
+   For Hermitian symmetric MT-orbits: the tangent decomposition
+   `𝔤_ℂ = 𝔤^{-1,1} ⊕ 𝔤^{0,0} ⊕ 𝔤^{1,-1}` has no higher Hodge
+   components, so the **horizontal subdomain D_h equals D_{MT} itself**;
+   Griffiths transversality imposes no proper-subdomain constraint
+   on period maps landing in D_{MT}.
+   (CAVEAT: the FULL period domain D classifying ALL polarised
+   weight-3 HS of type (1, 27, 27, 1) is NOT Hermitian symmetric —
+   only the MT-sub-domain D_{MT} = EVII is. The phantom's
+   MT(H³)^der = E_{7(-25)} forces the period map to land in
+   D_{MT}, where the trivial-horizontal phenomenon applies.)
+
+ (2) **Lefschetz hyperplane iso in degree 3 < dim Y = 4**: for any
+   smooth ample 4-fold divisor `Y_t ⊂ X` (e.g. `Y_t ∈ |mK_X|` for
+   m ≥ 2, the m=1 case is empty under (χ-b) as `h^{5,0}(X) = 0`),
+   the Lefschetz hyperplane theorem gives `H^k(X, ℚ) → H^k(Y_t, ℚ)`
+   is an **iso of Hodge structures** for `k < dim Y_t = 4`, in
+   particular for k = 3 (Voisin "Hodge Theory and Complex Algebraic
+   Geometry" **Vol. II Ch. 1 Thm 1.23**, Cambridge 2003; corrected
+   from Vol. I per R-#new Phase 4 audit catch — Lefschetz hyperplane
+   chapter is in Vol. II not Vol. I). The iso varies CANONICALLY
+   with t (induced by inclusion `i_t : Y_t ↪ X`), hence the local
+   system `R³π_*ℚ` over the open base is canonically trivialised
+   = constant local system `H³(X) ⊗ ℚ`. **VHS on H³ is trivial;
+   monodromy on V_56 is trivial; period map φ : (base) → D_{MT}
+   is constant.**
+
+ **Numerical confirmation** (P3 experiment script `r_p3_phantom_vhs_main.py`):
+ Chern-class adjunction `c(T_{Y_t}) = c(T_X)|_{Y_t} / (1 + mH)`
+ + Hirzebruch χ_y via splitting-principle log-exp method for
+ m ∈ {2, 3, 4, 5}; Serre duality cross-checks
+ `χ(Ω³) − χ(Ω¹) = 0` and `χ(Ω⁴) − χ(O_Y) = 0` PASS exactly;
+ `h^{2,1}(Y_t) = 27` exactly via Lefschetz iso, matching the
+ V_56 MT constraint with **zero slack** — no Hodge-numerical
+ contradiction at any m.
+
+ **Generality (P3 Phase 4 strengthening)**: the Lefschetz argument
+ in (2) is FAMILY-INDEPENDENT for ample-divisor families. So the
+ inertness applies to ANY ample-divisor family on the phantom (1-param
+ ℙ¹-pencil, ℙ²-net, P^M-net, higher) — productive attacks MUST
+ either (a) leave the ample-divisor framework (codim ≥ 2 cycles,
+ non-ample sub-loci, log-pairs), or (b) work on `H^k(Y_t)` for
+ `k ≥ dim Y_t` (variable cohomology where Lefschetz does not give
+ an iso).
+
+ **Remaining (non-pencil-VHS) productive attack vectors** (these
+ are NOT closed by this atom; they are flagged for future rounds):
+ (a) non-Lefschetz codim ≥ 2 sub-loci (intersection of two ample
+   pencils in `|mH| × |m'H|`); (b) higher Abel-Jacobi / Bloch-
+   Beilinson filtration on `CH³(X)`; (c) `H⁴(Y_t)`-level MT analysis
+   with potentially larger MT group; (d) cycle-class map on `CH²(X)`
+   (54 Hodge classes in H⁴); (e) Klingler-Otwinowska-Ullmo 2022+
+   Hodge-locus / atypical-intersection for CY-type VHS; (f) higher-
+   genus base of family (g ≥ 1; existing attackVector record).
+
+ **Citations** (cf. `feedback_gap_ledger_in_lean4` 8-pattern check
+ per R-#new Phase 4 audit):
+ - Helgason 1978 "Differential Geometry, Lie Groups, and Symmetric
+   Spaces" Ch. X §6 Thm 6.1 + Table V (Hermitian-symmetric
+   classification; EVII).
+ - Voisin "Hodge Theory and Complex Algebraic Geometry" **Vol. II
+   Ch. 1 Thm 1.23**, Cambridge 2003 (Lefschetz hyperplane for
+   Hodge structures; corrected from prior Vol. I attribution).
+ - Friedman-Laza 2013 Duke 162 #12 (arXiv:1109.5632) Thm 1.1
+   (semialgebraic horizontal subvarieties of CY type — confirms
+   EVII as one of the Hermitian-symmetric CY-type cases).
+ - Han-Robles 2020 arXiv:2003.00137 (the EVII Hodge representation
+   `(e_7, A⁷, ω_7, 0)`; specific Appendix A.2.6 p. 32 reference
+   marked PHASE-0-PENDING per Phase 4 audit — PDF page-number
+   verification deferred; statement-level claim plausible and
+   consistent with Gross 1994 / Sheng-Zuo).
+
+ paper source: P3 frontal-attack INERT byproduct on d=5 EVII
+ phantom; codifies that the (b) "structural Hodge/monodromy"
+ attack vector mentioned in the
+ `IsMilnorObstructionExtendsToNonP1PencilBase_BROKEN_LINK`
+ docstring is structurally closed via Lefschetz + HS-MT-orbit. -/
+axiom IsAmpleDivisorFamilyVHSInert_d5_EVII_Phantom_PUBLISHED :
+ Prop
+
+/-- PUBLISHED witness for the ample-divisor family VHS inertness atom
+ on the d=5 EVII phantom. Anchors: Helgason 1978 Ch. X §6 Thm 6.1
+ (Hermitian-symmetric classification) + Voisin Hodge II Ch. 1
+ Thm 1.23 (Lefschetz hyperplane) + Friedman-Laza 2013 Thm 1.1
+ (horizontal subvariety classification). -/
+axiom ample_divisor_family_vhs_inert_d5_EVII_phantom_PUBLISHED :
+ IsAmpleDivisorFamilyVHSInert_d5_EVII_Phantom_PUBLISHED
+
 /-- Predicate: the Milnor sign obstruction blocks d=5 exotic-
  residual closure conditional on all three scope-restriction
  hypotheses above. Post R-#74: 2 of 3 scope restrictions are
