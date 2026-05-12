@@ -5772,6 +5772,54 @@ axiom IsLefschetzDecompH4PrimDim53_sg5 : Prop
  paper source: SG-5 Hodge-diamond extension Step (d). -/
 axiom IsDimCountingPrim53lt56_sg5 : Prop
 
+/-- Predicate atom (P1 frontal-attack byproduct, R-#new): V_56
+ SPECIFICALLY (Hodge type (1, 27, 27, 1), Hodge weight w = 3, dim 56)
+ cannot embed as a sub-Hodge-structure of `H^{2k}(X)` for any integer
+ k ≥ 0, by Tate-twist parity obstruction.
+
+ Proof: a sub-HS isomorphic to V_56 in `H^{2k}` would have to be a
+ Tate twist `V_56(n)` of Hodge weight `3 − 2n = 2k`, requiring
+ `n = (3 − 2k)/2 ∉ ℤ` (parity obstruction: 3 is odd, 2k is even, so
+ their difference is odd; cannot be divisible by 2).
+
+ SCOPE: kills `V_56` SPECIFICALLY in `H^even` ONLY. Does NOT eliminate
+ other E_7-irreps (e.g. 133 adjoint, 1463, 1539 ⊂ `V_56^⊗2` at
+ natural weight 6) which CAN appear in `H^{2k}` via Tate twists with
+ appropriate parity (`a − b ≡ k mod 2`; for k=1 from `V_56^⊗2`
+ take n=2 etc.). Constructor's stronger claim "E_7 trivially acts
+ on H², H⁴ under minimal-MT" is overclaim — it ignores Tate twists
+ and is tautologically equivalent to the (χ-b)(i) "no extra Hodge
+ classes" clause (TAUTOLOGICAL-PREMISE pattern from the 8-pattern
+ hostile-audit checklist).
+
+ RELATIONSHIP TO R-#42 `IsDimCountingPrim53lt56_sg5`: this V_56-
+ parity atom is COMPLEMENTARY (NOT a replacement). R-#42's argument
+ forces TRIVIAL E_7-action on `H^4_{prim}` after first knowing
+ `dim H^4_{prim} = 53 < 56` (the smallest non-trivial complex E_7-
+ irrep). This atom forces V_56 absent from `H^even` by parity ALONE
+ (before knowing `dim H^4_{prim}`). Both atoms together pin V_56
+ absent from `H^even` more sharply, but R-#42 remains the operative
+ argument for "all non-trivial E_7-irreps absent" given pinned b_4.
+
+ PUBLISHED-derivable:
+ - Hodge weight w(V_56) = 3: Han 2021 (arXiv:2012.02412)
+   Proposition 3.7 item 8, p. 15 — "(𝔢_7, A^7, ω_7, 0) with
+   `h_φ = (1, 27, 27, 1)`"; Han-Robles 2020 (arXiv:2003.00137)
+   Example 5.4 (xiv), p. 30 + Appendix A.2.6, p. 32 — confirms
+   `ω_7(A^7) = 3/2` cocharacter eigenvalue ⇒ Hodge weight = 3.
+ - Tate-twist arithmetic: Moonen 2004 "Introduction to Mumford-Tate
+   Groups", §1.4 (Hodge weight of `ℚ(n)` is `−2n`) + §4.4
+   (sub-HS in tensor space ⟺ MT-invariant) + §4.7-4.9 (for V of
+   weight m ≠ 0, MT(V) automatically contains `𝔾_m · id`, so Tate
+   twists are part of standard MT-invariant tensor analysis).
+ - Sub-HS of `T^ν(n)` framework: Deligne 1979 "Variétés de Shimura"
+   §1.1; Voisin Hodge II Ch. 11.
+
+ paper source: SG-5 P1 frontal attack byproduct (R-#new); strengthens
+ R-#42 IsDimCountingPrim53lt56 with independent Tate-twist parity
+ argument. -/
+axiom IsV56OddWeightForcesHevenAbsence_sg5 : Prop
+
 /-- Predicate atom: weight-cocharacter pin — on the trivial-E_7
  summand `H^4_{prim} ≅ ℂ^53` (Step (d)), the cocharacter
  `h_0: 𝕊 → MT(X)` factors through the connected component of
@@ -5824,6 +5872,26 @@ axiom lefschetz_decomp_h4_prim_dim_53_sg5 :
  paper source: SG-5 Hodge-diamond extension Step (d). -/
 axiom dim_counting_prim_53_lt_56_sg5 :
  IsDimCountingPrim53lt56_sg5
+
+/-- Witness (P1 frontal-attack byproduct, R-#new): V_56 specifically
+ has odd Hodge weight 3 ⇒ Tate-twist parity blocks V_56 from
+ appearing as sub-HS of `H^{2k}(X)`. See
+ `IsV56OddWeightForcesHevenAbsence_sg5` docstring for the proof
+ (Tate-twist parity: `3 − 2n = 2k` ⟹ `n = (3 − 2k)/2 ∉ ℤ`) and
+ the SCOPE-CAVEAT (kills V_56 SPECIFICALLY in H^even; does NOT
+ kill other E_7-irreps which can land via higher tensor + Tate
+ twist). Anchors: Han 2021 Prop 3.7(8) p. 15 + Han-Robles 2020
+ Ex 5.4(xiv) p. 30 + App A.2.6 p. 32 (V_56 Hodge weight = 3);
+ Moonen 2004 §1.4 + §4.4 + §4.7-4.9 (Tate-twist arithmetic +
+ MT contains 𝔾_m·id for weight m ≠ 0). Complementary to (NOT
+ replacement of) the R-#42 `dim_counting_prim_53_lt_56_sg5`
+ atom above: this parity argument kills V_56 alone before
+ knowing `b_4 = 54`; R-#42 then kills ALL non-trivial E_7-irreps
+ in `H^4_{prim}` given `b_4 = 54`.
+ paper source: SG-5 P1 frontal-attack byproduct; supplements the
+ R-#42 Hodge-diamond extension Step (d). -/
+axiom v56_odd_weight_forces_hodd_only_sg5 :
+ IsV56OddWeightForcesHevenAbsence_sg5
 
 /-- Witness: weight-cocharacter pin on the trivial-E_7 summand
  of H^4_{prim} (Deligne Variétés de Shimura §1.1; Bourbaki Lie
