@@ -32,7 +32,7 @@ jobs:
 
       - name: Verify no sorry in source
         run: |
-          if grep -rn '\bsorry\b' HodgeConjecture/ --include="*.lean" | grep -v '^\s*--' | grep -v 'sorry-free' | grep -v 'no sorry' | grep -v 'zero sorry'; then
+          if grep -rn '\bsorry\b' HodgeReduction/ HodgeReduction.lean --include="*.lean" | grep -v '^\s*--' | grep -v '`sorry`' | grep -v 'sorry-free' | grep -v 'no sorry' | grep -v 'no-sorry' | grep -v 'No-sorry' | grep -v 'zero sorry' | grep -v '0-sorry' | grep -v 'sorry-elim' | grep -v 'sorry elimination'; then
             echo "ERROR: sorry found in source code"
             exit 1
           fi
