@@ -4748,6 +4748,58 @@ axiom li_2026_omega_pi3_cohomology_identity_sg18 :
 axiom murre_1990_pi3_chow_lift_sg18_NAMED_OPEN :
  IsMurre1990Pi3ChowLift_sg18_NAMED_OPEN
 
+/-- **P4 frontal-attack byproduct (R-#new, OPEN/INERT verdict)**:
+ the V_56-isotypic Mackey-projection of the diagonal `Δ_X` onto the
+ trivial summand `1 ⊂ V_56 ⊗ V_56` (= the symplectic line
+ `ω ∈ Λ²V_56^{E_7}`) is EQUIVALENT to Murre B(i=3) for X, which is
+ EQUIVALENT to algebraicity of `[ω] ∈ H^{3,3}(X)` at Chow level —
+ i.e. equivalent to the Main Theorem's target itself.
+
+ **Pattern (vi) self-reduction** (8-pattern checklist failure mode):
+ the Mackey-isotypic Chow-Künneth attack on SG-18 cannot factor
+ through any algebraicity input weaker than `[ω]` itself, hence
+ yields no productive cascade. The paper's own master tex L9911-9912
+ explicitly records: "the i=3 component of Murre B for X ... is
+ EQUIVALENT to algebraicity of `[ω]` at Chow level" (in the
+ `prop:omega-diagonal` table of attack methods that reduce to the
+ Main Theorem). The Constructor's 3-reading P4 attack (A = Mackey-
+ isotypic; B = Kuga-Sato motive via AGHMP-style E_7 modularity;
+ C = Vinberg θ-group (E_7, V_56 ⊗ V_2) genus-2 hyperelliptic Jacobian
+ moduli) confirmed:
+ (A) circular per master tex's own equivalence;
+ (B) literature-absent — Milne 2011 (arXiv:1105.0887 §10) explicitly
+   EXCLUDES E_6/E_7 from abelian-motive-type Shimura; AGHMP 2017
+   Compositio 153(3) + Howard-Madapusi 2022 (arXiv:2211.05108) cover
+   orthogonal signature (n,2) only; Madapusi 2024-26 preprints
+   (arXiv:2405.12392 integral canonical models; Madapusi-Youcis 2026
+   canonicity) are FOUNDATIONAL only, no Chow-Künneth / Murre B
+   content; Greer-Tayou 2026 (arXiv:2603.01251) survey keeps
+   exceptional Shimura modularity in the "conjectural" section;
+ (C) scope mismatch — Bhargava-Gross 2014 + Thorne 2013 + Romano-
+   Thorne 2018 Vinberg `(E_7, V_56 ⊗ V_2)` quotient parametrises
+   genus-2 hyperelliptic Jacobians (dim-2 abelian), NOT the rigid
+   5-dim EVII phantom carrying V_56 as H³.
+
+ **Cascade implications**: SG-18 stays gapPartial `_NAMED_OPEN` (no
+ promotion, no downgrade). Net cascade: 0 promotions, 0 downgrades,
+ 1 epistemic sharpening — the circularity is now ledger-documented
+ alongside the paper's own self-record.
+
+ paper source: SG-18 P4 attack 2026-05-13; Pattern vi self-reduction
+ with the Main Theorem target itself. -/
+axiom IsV56MackeyDeltaXEquivToOmegaAlgebraicity_sg18_NAMED_OPEN_CIRCULAR :
+ Prop
+
+/-- Witness for the SG-18 P4 attack Pattern-vi self-reduction finding.
+ Tier: `_NAMED_OPEN_CIRCULAR` — same NAMED-OPEN tier as the existing
+ `murre_1990_pi3_chow_lift_sg18_NAMED_OPEN` but with explicit
+ circularity disclosure per master tex L9911-9912's own equivalence
+ statement. Does NOT close SG-18; records the structural obstruction
+ for future-round reference per `feedback_gap_ledger_in_lean4`
+ "failures equally informative" + "no_self_castration" disciplines. -/
+axiom sg18_p4_pattern_vi_self_reduction_obstruction :
+ IsV56MackeyDeltaXEquivToOmegaAlgebraicity_sg18_NAMED_OPEN_CIRCULAR
+
 /-- Typed bridge axiom: 3 framework atoms (Deligne 1980 HL rational
  + cohomological π_3 Künneth + master tex `\ref{prop:omega-diagonal}`
  cohomology-level identity) + 1 NAMED-OPEN extension (Murre B i=3)
