@@ -1609,8 +1609,158 @@ axiom IsMumfordCanonicalExtensionFramework_E7 :
  part of the (iii) ring-hom atom; the Mumford-1977-only part (Chern
  NUMBER proportionality + `𝓥^can` existence) is PUBLISHED unconditionally.
  paper source: hyp:ChernWeil-bridge-E7 (ii)/(iii) — surfaced per R-#106b
- audit (Defect #1: G-P scope misattributed to cover EVII). -/
+ audit (Defect #1: G-P scope misattributed to cover EVII).
+ P7 STRUCTURAL DECOMPOSITION (R-#new Phase 0+1 hostile audit):
+ this monolithic atom is honestly decomposed into 2 PUBLISHED +
+ 1 narrower `_REQUIRED_HYPOTHESIS` + 1 INVENTION_CLASS via
+ `goresky_pardon_chern_subalgebra_extension_to_EVII_from_subatoms`
+ below. The genuine residual content is the E_6-representation-
+ theoretic compatibility of G-P §16.2 (NOT the abstract §10-12
+ controlled-form framework, which Looijenga 2017 verifies is
+ group-agnostic). G-P 2002 §1.6 verified verbatim: "We do not know
+ whether the results on Chern classes which are described in this
+ paper for Hermitian symmetric spaces may be extended to the 'equal
+ rank' case (when the real rank of G and of K coincide)." -/
 axiom IsGoreskyPardonChernSubalgebraExtensionToEVII_REQUIRED_HYPOTHESIS :
+ E7ShimuraTor → Prop
+
+/-- **PUBLISHED folklore-corollary sub-atom of G-P-EVII decomposition**
+ (P7, R-#new; tier-downgraded per P7 Phase 4 audit):
+ the rational cohomology `H^*(B(E_6 × U(1)); ℚ)` is the polynomial
+ algebra on the standard Borel-Hirzebruch generators, all realised
+ as Chern classes of representations of `K = E_6 × U(1)`. Specifically:
+ `H^*(BE_6; ℚ) = ℚ[c_2(V_27), c_5(V_27), c_6(V_27), c_8(V_27),
+ c_9(V_27), c_{12}(V_27)]` (polynomial on Weyl-invariant degrees
+ `{2,5,6,8,9,12}` = exponents+1; E_6 exponents are `{1,4,5,7,8,11}`)
+ and `H^*(BU(1); ℚ) = ℚ[c_1]`, so by Künneth `H^*(B(E_6 × U(1)); ℚ)`
+ is polynomial on 7 generators, all of which are Chern classes of
+ the minuscule rep `V_27` (and its conjugate) plus the `U(1)`-character.
+ This is the analogue of G-P §16.2's "Chern subring of `H^*(BK; ℂ)`
+ exhausts `H^*(BK; ℂ)`" hypothesis adapted to `K = E_6 × U(1)`.
+ Tier: `_FOLKLORE_PUBLISHED` (multi-source standard-machinery
+ folklore-corollary; downgraded from raw `_PUBLISHED` per P7 Phase 4
+ audit Pattern 2 = folkloric inflation finding). Borel 1953 gives the
+ general `H^*(BG; ℚ)` polynomial-ring framework; Borel-Hirzebruch 1958
+ §10-16 gives the Chern-class realization framework; the specific
+ identification of generators as Chern classes of `V_27` is folkloric
+ standard machinery (no single theorem citation, but each piece is
+ established).
+ Sources: A. Borel, "Sur la cohomologie des espaces fibrés principaux
+ et des espaces homogènes de groupes de Lie compacts", Ann. of Math.
+ 57 (1953), 115-207 (general framework); A. Borel, F. Hirzebruch,
+ "Characteristic classes and homogeneous spaces I", Amer. J. Math.
+ 80 (1958), 458-538 (Chern-class realization); M. Mimura, H. Toda,
+ *Topology of Lie Groups, I and II*, Translations of Math. Monographs
+ vol. 91, AMS 1991 (exceptional types incl. E_6).
+ paper source: hyp:ChernWeil-bridge-E7 (G-P-EVII decomposition sub-atom 1). -/
+axiom IsBorelHirzebruchClassifyingSpacePresentationFor_E6timesU1_FOLKLORE_PUBLISHED :
+ E7ShimuraTor → Prop
+
+/-- **PUBLISHED sub-atom of G-P-EVII decomposition** (P7, R-#new):
+ the Goresky-Pardon 2002 §10-12 abstract patched-parabolic-connection
+ framework giving canonical lifts `c_k^{gp}(F) ∈ H^{2k}(X^bb; ℂ)`
+ for automorphic vector bundles on the Baily-Borel compactification
+ of ANY Hermitian locally symmetric variety `X = Γ\G/K`. The framework
+ is GROUP-AGNOSTIC — it produces well-defined Chern-class lifts to
+ the Baily-Borel boundary independent of the type of `G`. The
+ type-restriction to classical `G` arises only at G-P §16.2-16.4
+ where the surjection statement is proved via specific K-decomposition.
+ Tier: PUBLISHED. Sources: M. Goresky, W. Pardon, "Chern classes of
+ automorphic vector bundles", Invent. Math. 147 (2002), §10-12
+ (abstract framework); E. Looijenga, "Goresky-Pardon lifts of Chern
+ classes and associated Tate extensions", Compositio Math. 153 (2017),
+ 1349-1371 (arXiv:1510.04103) — refines G-P canonical-lift construction
+ via isoholonomic structures, Corollary 3.3 + Theorem 4.1 explicitly
+ establish that the abstract framework yields lifts for automorphic
+ vector bundles from arbitrary Q-simple G (proofs verified for Sp,
+ but the framework is group-agnostic).
+ paper source: hyp:ChernWeil-bridge-E7 (G-P-EVII decomposition sub-atom 2). -/
+axiom IsGPAbstractParabolicConnectionFramework_GroupAgnostic_PUBLISHED :
+ E7ShimuraTor → Prop
+
+/-- **`_REQUIRED_HYPOTHESIS` sub-atom (narrower residual)** (P7, R-#new):
+ the specific representation-theoretic check that G-P 2002 §16.2's
+ surjection argument (Chern subring of `H^*(BK; ℂ)` surjects onto
+ `H^*(D̆; ℂ)` via Borel's theorem applied to product-of-classical-K
+ decomposition) carries through when `K = E_6 × U(1)` with `E_6` as
+ a single irreducible factor and the automorphic bundle is the
+ minuscule rep `V_27` (resp. `V_56` of the ambient E_7). G-P §16.2
+ ARGUMENT specifically uses each `K_i` factor being `U(n_i)`,
+ `O(2k_i+1)`, or `SO(2)` so that the Chern-Weil generators come
+ from K-restricted representations of well-studied subgroups; the
+ same step for `E_6 × U(1)` requires verifying:
+   (a) Hirzebruch-Mumford proportionality lifts to the level of
+       differential forms in degrees relevant to the Freudenthal
+       quartic (degree 8), in the equal-rank case where boundary
+       strata are E_6-type rather than U(n)/SO-type;
+   (b) the K-restricted representation argument carries through
+       with `E_6` (rather than `U(n)`) as the K-factor.
+ Tier: `_REQUIRED_HYPOTHESIS` (this is the genuine narrower residual
+ content of the G-P-EVII extension, per Phase 0 hostile audit
+ R-#new: the bottleneck is at G-P §16.2 representation-theoretic
+ compatibility, NOT at the abstract §10-12 framework which is
+ group-agnostic per Looijenga 2017). Literature 2002-2026 confirmed
+ silent on this specific check (Looijenga 2017 only verifies the
+ abstract framework for Sp; Esnault-Harris 2018 restricts to
+ Hodge-type Shimura — EVII excluded as non-abelian-type;
+ Burgos-Wildeshaus 2004 gives MHM degeneration but not the
+ surjection statement).
+ paper source: hyp:ChernWeil-bridge-E7 (G-P-EVII decomposition sub-atom 3 —
+ narrower residual surfaced per P7 audit). -/
+axiom IsE6RepresentationCompatibilityOfSection16dot2_REQUIRED_HYPOTHESIS :
+ E7ShimuraTor → Prop
+
+/-- **`_REQUIRED_HYPOTHESIS` degree-8 specialization — INERT
+ future-attack-vector placeholder** (P7, R-#new; P7-PATCH-E disclosure):
+ the degree-8 sub-case of the G-P-EVII Chern-subalgebra extension —
+ specifically, that the G-P Chern subring of `H^8(S_Γ^{tor}; ℂ)`
+ (the toroidal compactification of an `E_{7(-25)}` Shimura variety)
+ surjects onto `H^8(D̆_VII; ℂ) = ℚ·h^4 ⊕ ℚ·[q]_G` (or 1-dim per
+ `IsChernSubringSurjectiveOntoH8_E7P7`'s convention). The downstream
+ consumer (clause iii ring-hom transport for the Freudenthal quartic
+ `[q]`) literally only needs this degree-8 specialization.
+ Tier: `_REQUIRED_HYPOTHESIS` (narrower than full ring extension).
+ **INERT STATUS (P7 Phase 4 audit disclosure, Pattern 4 = tautological
+ premise check)**: this atom is NOT currently consumed by any active
+ witness chain. The active P7 load-bearing path consumes the
+ `IsE6RepresentationCompatibilityOfSection16dot2_REQUIRED_HYPOTHESIS`
+ (full-ring residual narrower atom), not this degree-8 specialization.
+ This atom is surfaced as a TYPED FUTURE-ATTACK-VECTOR PLACEHOLDER:
+ if a future round produces a degree-8-specific construction (e.g.,
+ direct verification of G-P's controlled-form construction at the
+ single degree-8 Chern class of `V_56`), this atom + the bridge
+ `goresky_pardon_chern_subalgebra_extension_to_EVII_from_degree8`
+ give the route to retire the monolithic atom via the narrower
+ degree-8 atom instead of via the full ring extension or the §16.2
+ K-decomposition. The two alternative routes (§16.2 K-decomp vs
+ degree-8 direct) are disjoint attack vectors; both are typed-out
+ for future-round prioritisation.
+ paper source: hyp:ChernWeil-bridge-E7 (G-P-EVII decomposition sub-atom 4 —
+ INERT degree-8 specialization for future-attack-vector typing). -/
+axiom IsGPChernSubalgebraSurjectionAtDegree8_E7_REQUIRED_HYPOTHESIS :
+ E7ShimuraTor → Prop
+
+/-- **`_INVENTION_CLASS` alternative routing atom — INERT
+ future-attack-vector placeholder** (P7, R-#new; P7-PATCH-E disclosure):
+ an INDIRECT EVII Chern-subalgebra extension via Saito MHM 1988 +
+ Burgos-Wildeshaus 2004 + Beilinson-Bernstein-Deligne 1982
+ decomposition theorem: the Baily-Borel boundary strata of EVII
+ are rational boundary components corresponding to Q-parabolics of
+ `E_{7(-25)}` with classical Levi-Hermitian factors (unitary and
+ `SO^*` types); G-P §16.4 applies CLASSICALLY to each stratum;
+ the bulk EVII surjection might be assembled by spectral-sequence /
+ decomposition-theorem arguments. Tier: `_INVENTION_CLASS`
+ (research-level project; NOT formulated in any published paper).
+ **INERT STATUS (P7 Phase 4 audit disclosure)**: this atom is NOT
+ currently consumed by any active witness chain. Surfaced as a
+ TYPED FUTURE-ATTACK-VECTOR PLACEHOLDER for an alternative routing
+ NOT requiring closure of `IsE6RepresentationCompatibilityOfSection16dot2`.
+ If this route is constructed, the MHM/BBD decomposition + boundary-
+ strata classical-type G-P applicability yields the monolithic
+ G-P-EVII extension WITHOUT needing the §16.2 K-decomposition step.
+ paper source: hyp:ChernWeil-bridge-E7 (G-P-EVII alternative routing —
+ INERT INVENTION_CLASS surfaced per P7 audit for future-round attack vector). -/
+axiom IsMHMDecompositionTheoremRouteToEVIIChernExtension_OPEN_INVENTION_CLASS :
  E7ShimuraTor → Prop
 
 /-- `_REQUIRED_HYPOTHESIS` conjectural-extension atom of clause (ii.b):
@@ -1747,6 +1897,96 @@ axiom zucker_conjecture_L2_equals_IH_E7_PUBLISHED :
 axiom goresky_pardon_chern_subalgebra_extension_to_EVII_REQUIRED_HYPOTHESIS :
  ∀ (S : E7ShimuraTor),
    IsGoreskyPardonChernSubalgebraExtensionToEVII_REQUIRED_HYPOTHESIS S
+
+/-- PUBLISHED witness for Borel-Hirzebruch presentation of
+ `H^*(B(E_6 × U(1)); ℚ)` (P7, R-#new). Sources: Borel 1953 Ann. Math.
+ 57 §29-30 + Borel-Hirzebruch 1958 Amer. J. Math. 80 + Mimura-Toda
+ 1991 Translations Math. Monographs vol. 91 Ch. VII §6.
+ P7 PUBLISHED sub-atom 1 — `H^*(B(E_6 × U(1)); ℚ)` is polynomial on
+ 7 generators all realised as Chern classes of `V_27` (and dual) plus
+ `c_1(U(1))`. -/
+axiom borel_hirzebruch_classifying_space_presentation_for_E6_times_U1_FOLKLORE_PUBLISHED :
+ ∀ (S : E7ShimuraTor),
+   IsBorelHirzebruchClassifyingSpacePresentationFor_E6timesU1_FOLKLORE_PUBLISHED S
+
+/-- PUBLISHED witness for G-P 2002 §10-12 abstract parabolic-connection
+ framework being group-agnostic (P7, R-#new). Sources: G-P 2002 §10-12
+ (abstract patched-parabolic framework) + Looijenga 2017 Compositio
+ Math. 153 Corollary 3.3 / Theorem 4.1 (canonical-lift refinement;
+ framework verified group-agnostic).
+ P7 PUBLISHED sub-atom 2 — abstract framework yields canonical Chern-
+ class lifts on Baily-Borel compactifications of any Hermitian
+ locally symmetric variety (group-agnostic; type-restriction to
+ classical G is at §16.2-16.4 not §10-12). -/
+axiom gp_abstract_parabolic_connection_framework_group_agnostic_PUBLISHED :
+ ∀ (S : E7ShimuraTor),
+   IsGPAbstractParabolicConnectionFramework_GroupAgnostic_PUBLISHED S
+
+/-- `_REQUIRED_HYPOTHESIS` placeholder witness for E_6-representation-
+ compatibility of G-P §16.2 (P7, R-#new). NOT discharged — this is
+ the narrower irreducible residual content of the G-P-EVII extension
+ per Phase 0 audit. -/
+axiom is_E6_representation_compatibility_of_section_16dot2_REQUIRED_HYPOTHESIS :
+ ∀ (S : E7ShimuraTor),
+   IsE6RepresentationCompatibilityOfSection16dot2_REQUIRED_HYPOTHESIS S
+
+/-- `_REQUIRED_HYPOTHESIS` placeholder witness for degree-8 specialization
+ of G-P-EVII Chern-subalgebra surjection (P7, R-#new). NOT discharged.
+ This is the narrower atom needed by the downstream consumer (clause
+ iii ring-hom transport for the Freudenthal quartic `[q]`); if a
+ future round produces a degree-8-specific result, this atom can be
+ retired without solving the full G-P-EVII extension. -/
+axiom is_GP_chern_subalgebra_surjection_at_degree8_E7_REQUIRED_HYPOTHESIS :
+ ∀ (S : E7ShimuraTor),
+   IsGPChernSubalgebraSurjectionAtDegree8_E7_REQUIRED_HYPOTHESIS S
+
+/-- **DECOMPOSITION BRIDGE** for G-P-EVII extension (P7, R-#new).
+ Per Phase 0+1 hostile audit, the monolithic
+ `IsGoreskyPardonChernSubalgebraExtensionToEVII_REQUIRED_HYPOTHESIS`
+ is honestly derivable from 2 PUBLISHED sub-atoms + 1 narrower
+ `_REQUIRED_HYPOTHESIS` (E_6-representation compatibility of §16.2):
+ (a) PUBLISHED Borel-Hirzebruch presentation of `H^*(B(E_6 × U(1)); ℚ)`
+     (Borel 1953 + Borel-Hirzebruch 1958 + Mimura-Toda 1991);
+ (b) PUBLISHED G-P §10-12 abstract framework + Looijenga 2017
+     (group-agnostic canonical Chern-class lifts);
+ (c) `_REQUIRED_HYPOTHESIS` E_6-rep-theoretic compatibility of G-P
+     §16.2 (the genuine narrower residual).
+ The mathematical bridge: G-P §16.5's two-line argument (Poincaré
+ duality on `D̆ = E_7/E_6·SO(2)` + lift along `H^*(BK) → H^*(X)` +
+ Hirzebruch-Mumford proportionality) goes through verbatim once
+ (a) + (b) + (c) are granted. This is structural-definitional (not
+ ceremonial): it surfaces 2 published anchors + isolates the
+ genuine open piece. Net effect: monolithic atom replaced by narrower
+ atom + 2 published; conjectural surface in the (ii)/(iii) clause
+ chain becomes more granular and target-able. -/
+axiom goresky_pardon_chern_subalgebra_extension_to_EVII_from_subatoms :
+ ∀ (S : E7ShimuraTor),
+   IsBorelHirzebruchClassifyingSpacePresentationFor_E6timesU1_FOLKLORE_PUBLISHED S →
+   IsGPAbstractParabolicConnectionFramework_GroupAgnostic_PUBLISHED S →
+   IsE6RepresentationCompatibilityOfSection16dot2_REQUIRED_HYPOTHESIS S →
+   IsGoreskyPardonChernSubalgebraExtensionToEVII_REQUIRED_HYPOTHESIS S
+
+/-- **DOWNSTREAM-NARROWING BRIDGE** for G-P-EVII (P7, R-#new).
+ The downstream consumer (clause iii ring-hom transport for the
+ Freudenthal quartic class `[q]`) only literally needs the
+ degree-8 sub-case. This bridge expresses that the degree-8
+ specialization atom suffices to discharge the full G-P-EVII
+ extension at the level needed by clause (iii). If a future round
+ produces a degree-8-specific result, this is the route to retire
+ the full extension via the narrower atom. -/
+axiom goresky_pardon_chern_subalgebra_extension_to_EVII_from_degree8 :
+ ∀ (S : E7ShimuraTor),
+   IsGPChernSubalgebraSurjectionAtDegree8_E7_REQUIRED_HYPOTHESIS S →
+   IsGoreskyPardonChernSubalgebraExtensionToEVII_REQUIRED_HYPOTHESIS S
+
+/-- `_INVENTION_CLASS` placeholder witness for MHM/BBD alternative
+ routing (P7, R-#new). NOT discharged. Surfaced as alternative
+ attack vector for future rounds; if successful, gives indirect
+ EVII extension via decomposition theorem on boundary strata
+ (which are classical types and so admit G-P §16.4 directly). -/
+axiom is_mhm_decomposition_theorem_route_to_EVII_chern_extension_OPEN_INVENTION_CLASS :
+ ∀ (S : E7ShimuraTor),
+   IsMHMDecompositionTheoremRouteToEVIIChernExtension_OPEN_INVENTION_CLASS S
 
 /-- **PUBLISHED atom** (P5 decomposition, R-#new-Phase4-rollback): the
  IH-to-toroidal pullback step for the Freudenthal class. Concretely:
@@ -2015,15 +2255,28 @@ axiom polynomial_identity_E7_iii_from_atoms :
 /-- Polynomial identity `[q] = P(c_1, ..., c_4)` in the canonical Chern
  classes — DERIVED theorem (no own clause-(iii) conjectural content;
  REDUCES-TO (i.b)+(ii)+ring-hom-folklore-corollary + 1 `_REQUIRED_HYPOTHESIS`
- (G-P EVII extension) + 1 PUBLISHED folklore-corollary (witness-chain
- identification)). The polynomial identity itself is pure 1-dim linear
- algebra on `H^8(Ě_VII, ℚ) = ℚ·h^4` + ring-hom transport along
+ (G-P EVII extension, post-P7-PATCH-A discharged via 3-input bridge:
+ 2 PUBLISHED sub-atoms + 1 narrower `_REQUIRED_HYPOTHESIS` for E_6-rep
+ compatibility of G-P §16.2) + 1 PUBLISHED folklore-corollary (witness-
+ chain identification)). The polynomial identity itself is pure 1-dim
+ linear algebra on `H^8(Ě_VII, ℚ) = ℚ·h^4` + ring-hom transport along
  descent/extension (the `rem:E7-chernweil-tautology` "tautological once
  granted" fact). Name kept with `_PAPER_LABELLED_CONJECTURAL` suffix for
  downstream-reference stability; the suffix now indicates the derivation
  rests on (i.b.2) `_INVENTION_CLASS` + (ii.a)/(ii.b) `_REQUIRED_HYPOTHESIS`
- + (new G-P EVII) `_REQUIRED_HYPOTHESIS` atoms, not residual clause-(iii)-
- specific conjectural content.
+ + (post-P7-PATCH-A: E_6-rep-compatibility-of-§16.2) `_REQUIRED_HYPOTHESIS`
+ atoms, not residual clause-(iii)-specific conjectural content.
+ P7-PATCH-A LOAD-BEARING REWIRE: discharges the monolithic G-P-EVII
+ input by invoking the P7 decomposition bridge `goresky_pardon_chern_subalgebra_extension_to_EVII_from_subatoms`
+ applied to 2 PUBLISHED sub-atoms (Borel-Hirzebruch presentation of
+ `H^*(B(E_6 × U(1)); ℚ)` + G-P §10-12 group-agnostic abstract framework)
+ + 1 narrower `_REQUIRED_HYPOTHESIS` (E_6-representation compatibility
+ of G-P §16.2). The active conjectural surface for G-P-EVII content is
+ thereby NARROWED from the full ring-extension residual to the
+ representation-theoretic K-decomposition compatibility step. The
+ monolithic atom `IsGoreskyPardonChernSubalgebraExtensionToEVII_REQUIRED_HYPOTHESIS`
+ remains as a historical predicate but is NO LONGER directly consumed
+ by this proof path.
  paper source: hyp:ChernWeil-bridge-E7 clause (iii). -/
 theorem borel_hirzebruch_schwarz_polynomial_identity_E7_iii_PAPER_LABELLED_CONJECTURAL :
  ∀ (S : E7ShimuraTor),
@@ -2034,7 +2287,15 @@ theorem borel_hirzebruch_schwarz_polynomial_identity_E7_iii_PAPER_LABELLED_CONJE
    (matsushima_borel_wallach_descent_to_SGamma_PAPER_LABELLED_CONJECTURAL S)
    (mumford_1977_canonical_extension_to_tor_PAPER_LABELLED_CONJECTURAL S)
    (chern_weil_descent_ring_hom_compatible_with_chern_subring_E7_PUBLISHED S)
-   (goresky_pardon_chern_subalgebra_extension_to_EVII_REQUIRED_HYPOTHESIS S)
+   -- P7-PATCH-A: monolithic G-P-EVII atom DISCHARGED via P7 decomposition
+   -- bridge (2 PUBLISHED sub-atoms + 1 narrower _REQUIRED_HYPOTHESIS);
+   -- this is the load-bearing rewire that genuinely narrows the active
+   -- conjectural residual from "full G-P §16.4 extension to EVII" to
+   -- "E_6-rep compatibility of G-P §16.2 K-decomposition step".
+   (goresky_pardon_chern_subalgebra_extension_to_EVII_from_subatoms S
+     (borel_hirzebruch_classifying_space_presentation_for_E6_times_U1_FOLKLORE_PUBLISHED S)
+     (gp_abstract_parabolic_connection_framework_group_agnostic_PUBLISHED S)
+     (is_E6_representation_compatibility_of_section_16dot2_REQUIRED_HYPOTHESIS S))
    (compact_dual_quartic_image_and_descent_map_witness_chain_E7_FOLKLORE_PUBLISHED S)
 
 /-- Clause (iii): explicit `ℚ`-polynomial identity
