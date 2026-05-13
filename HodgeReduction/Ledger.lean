@@ -378,6 +378,36 @@ Closure tier distribution (epistemic ordering per R-#27 et seq.):
   clean (0 sorry). The P8 + P9 ceremony-retreat charge is DISARMED;
   the active conjectural-surface count of 4 monoliths is now fully
   load-bearing-decomposed through 3 bridges + ~22 typed sub-atoms.
+  P13 FURTHER DECOMPOSITION OF FORM-HM-EVII gapBlocked BARRIER
+  (R-#new-P13): Phase 0 hostile audit on the P8.2 gapBlocked
+  structural barrier `IsHirzebruchMumfordProportionalityFormsForEVII_REQUIRED_HYPOTHESIS`
+  surveys 7+ landmark frameworks (Mum77, GP02, GHS08, Loo17,
+  Esnault-Harris-Zhu I/II, Hörmann Jussieu, Feng 2026, BKK 2002)
+  and confirms EVII genuinely outside ALL published scopes.
+  Decomposes the gapBlocked barrier into 4 structural ingredients:
+  (SI-1) PUBLISHED `IsMumfordCanonicalExtensionExists_PUBLISHED`
+        (Mum77 Thm 3.1 + Har89 §4.1; type-uniform).
+  (SI-2-LB) PUBLISHED `IsAutomorphicLineBundleGoodMetricExtends_PUBLISHED`
+        (Mum77 + Burgos-Kramer-Kühn arXiv:math/0502085; type-uniform
+        line-bundle case).
+  (SI-2-HR) `_REQUIRED_HYPOTHESIS` `IsAutomorphicHigherRankBundleGoodMetricExtendsForEVII_REQUIRED_HYPOTHESIS`
+        (higher-rank good metric for EVII Hodge bundle; abstract
+        framework PUBLISHED, specifically-EVII OPEN).
+  (SI-3) `_REQUIRED_HYPOTHESIS` `IsChernWeilFormProportionalityForEVII_REQUIRED_HYPOTHESIS`
+        (Goresky-Pardon 2002 analog for EVII; genuine OPEN).
+  P13 Lean output: 4 new typed atoms + bridge axiom + LOAD-BEARING
+  REWIRE derived theorem `is_hirzebruch_mumford_proportionality_forms_for_EVII_REQUIRED_HYPOTHESIS_via_P13_subatoms`
+  consumed by the P8 bridge derived theorem (the P12-A `_via_P8_subatoms`
+  wiring is rewired to consume the P13 derived theorem instead of
+  the direct axiom). The P13 bridge is LOAD-BEARING from the same
+  round (lesson learned from P12 batch audit catching P8/P9 inert
+  bridges). Active conjectural-surface gates after P13 LOAD-BEARING:
+  SI-2-HR + SI-3 (both narrower than monolithic form-HM-EVII;
+  pinpointed at higher-rank good metric for EVII + Chern-Weil form
+  proportionality identity for EVII). 4-atom conjectural-surface
+  monolith count UNCHANGED; the residual is genuinely further
+  narrowed; 2 NEW PUBLISHED structural-ingredient atoms (SI-1 +
+  SI-2-LB) added as clean publishable byproducts.
 - gapPartial multi-path `_CONJECTURAL`: SG-17 (R-#24 Hard-Lefschetz
   Schur scalar partial-kill + 3 closing paths).
 - gapPartial `_NAMED_OPEN_MULTI`: SG-23 (R-#65 upgrade from

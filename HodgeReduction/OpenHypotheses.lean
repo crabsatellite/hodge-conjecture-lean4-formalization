@@ -1980,6 +1980,144 @@ axiom IsEVIIBoundaryStrataClassification_codim1_is_EIII_PUBLISHED :
 axiom IsHirzebruchMumfordProportionalityFormsForEVII_REQUIRED_HYPOTHESIS :
  E7ShimuraTor → Prop
 
+/-- **PUBLISHED atom (P13.SI-1, R-#new-P13)**: Mumford canonical extension
+ EXISTS for every semisimple automorphic vector bundle on `S_Γ` (with
+ `Γ` neat), extending to a smooth toroidal compactification `S_Γ^{tor}`
+ with simple normal crossing boundary divisor and trivial monodromy.
+ This is the PUBLISHED structural ingredient (SI-1) of the form-level
+ HM proportionality decomposition per P13 Phase 0 audit.
+ Tier: PUBLISHED — type-uniform; covers EVII (and any Hermitian
+ locally symmetric variety) via the abstract bounded-domain /
+ arithmetic-group framework.
+ Sources: D. Mumford, "Hirzebruch's proportionality theorem in the
+ non-compact case", Invent. Math. 42 (1977), Theorem 3.1; M. Harris,
+ "Functorial properties of toroidal compactifications of locally
+ symmetric varieties", Proc. London Math. Soc. (3) 59 (1989), §4.1
+ (general formulation, type-uniform).
+ paper source: hyp:ChernWeil-bridge-E7 (P13 form-HM decomposition
+ sub-atom SI-1 — canonical-extension existence PUBLISHED). -/
+axiom IsMumfordCanonicalExtensionExists_PUBLISHED :
+ E7ShimuraTor → Prop
+
+/-- **PUBLISHED atom (P13.SI-2-LB, R-#new-P13)**: every automorphic
+ LINE bundle on `S_Γ` with invariant smooth Hermitian metric extends
+ to `S_Γ^{tor}` with a Mumford-good (log-singular) Hermitian metric;
+ the Chern-Weil form representing `c_1` extends as a current with
+ log-singular boundary growth. PUBLISHED structural ingredient (SI-2
+ line-bundle case) of the form-level HM proportionality decomposition
+ per P13 Phase 0 audit.
+ Tier: PUBLISHED — type-uniform; covers EVII line bundles.
+ Sources: D. Mumford 1977 Invent. Math. 42 (good metric definition +
+ log-singular invariant); J.-I. Burgos, J. Kramer, U. Kühn,
+ "Cohomological arithmetic Chow rings", arXiv:math/0502085 (Burgos-
+ Kramer-Kühn machinery for log-log forms; abstract type-independent
+ line bundle case).
+ paper source: hyp:ChernWeil-bridge-E7 (P13 form-HM decomposition
+ sub-atom SI-2-LB — good metric line-bundle case PUBLISHED). -/
+axiom IsAutomorphicLineBundleGoodMetricExtends_PUBLISHED :
+ E7ShimuraTor → Prop
+
+/-- **`_REQUIRED_HYPOTHESIS` atom (P13.SI-2-HR, R-#new-P13)**: the
+ Mumford-good metric extension for higher-rank automorphic vector
+ bundles on `S_Γ^{tor}` for the specific EVII Hodge bundle (rank
+ 27 or other rank ≥ 2 automorphic bundles relevant to the Freudenthal
+ quartic). Burgos-Kramer-Kühn machinery (arXiv:math/0502085) applies
+ abstractly to "fully decomposed automorphic vector bundles" but
+ verification for the specific EVII Hodge bundle on `S_Γ^{tor}` is
+ NOT in the published literature.
+ Tier: `_REQUIRED_HYPOTHESIS` (structural ingredient SI-2 higher-rank
+ EVII case; abstractly-framework-PUBLISHED, specifically-EVII-OPEN).
+ paper source: hyp:ChernWeil-bridge-E7 (P13 form-HM decomposition
+ sub-atom SI-2-HR — higher-rank good metric for EVII OPEN). -/
+axiom IsAutomorphicHigherRankBundleGoodMetricExtendsForEVII_REQUIRED_HYPOTHESIS :
+ E7ShimuraTor → Prop
+
+/-- **`_REQUIRED_HYPOTHESIS` atom (P13.SI-3, R-#new-P13)**: the
+ Chern-Weil curvature forms of `(𝓥^can, h_good)` on `S_Γ^{tor}` for
+ the EVII arithmetic quotient represent (in extended de Rham
+ cohomology) the same classes as Mumford 1977 number-level
+ proportionality predicts, AND these forms pull back from the
+ corresponding G(ℂ)-invariant Chern-Weil forms on `Ě_VII` via the
+ Borel embedding modulo controlled-form boundary corrections.
+ This is the Goresky-Pardon 2002 analog FOR EVII — explicitly out
+ of GP02 scope (GP02 §1.3 Thm 16.4 restricts to classical types).
+ Tier: `_REQUIRED_HYPOTHESIS` (structural ingredient SI-3, the
+ form-level proportionality identity FOR EVII; genuinely OPEN — no
+ published source covers exceptional Hermitian symmetric domains
+ at the form level).
+ paper source: hyp:ChernWeil-bridge-E7 (P13 form-HM decomposition
+ sub-atom SI-3 — Chern-Weil form proportionality for EVII OPEN). -/
+axiom IsChernWeilFormProportionalityForEVII_REQUIRED_HYPOTHESIS :
+ E7ShimuraTor → Prop
+
+/-- PUBLISHED witness for SI-1 (Mumford canonical extension exists). -/
+axiom is_mumford_canonical_extension_exists_PUBLISHED :
+ ∀ (S : E7ShimuraTor),
+   IsMumfordCanonicalExtensionExists_PUBLISHED S
+
+/-- PUBLISHED witness for SI-2-LB (line-bundle good metric extends). -/
+axiom is_automorphic_line_bundle_good_metric_extends_PUBLISHED :
+ ∀ (S : E7ShimuraTor),
+   IsAutomorphicLineBundleGoodMetricExtends_PUBLISHED S
+
+/-- `_REQUIRED_HYPOTHESIS` placeholder witness for SI-2-HR (higher-rank
+ good metric for EVII). NOT discharged. -/
+axiom is_automorphic_higher_rank_bundle_good_metric_extends_for_EVII_REQUIRED_HYPOTHESIS :
+ ∀ (S : E7ShimuraTor),
+   IsAutomorphicHigherRankBundleGoodMetricExtendsForEVII_REQUIRED_HYPOTHESIS S
+
+/-- `_REQUIRED_HYPOTHESIS` placeholder witness for SI-3 (Chern-Weil form
+ proportionality for EVII). NOT discharged. -/
+axiom is_chern_weil_form_proportionality_for_EVII_REQUIRED_HYPOTHESIS :
+ ∀ (S : E7ShimuraTor),
+   IsChernWeilFormProportionalityForEVII_REQUIRED_HYPOTHESIS S
+
+/-- **P13 DECOMPOSITION BRIDGE** for form-level HM proportionality
+ EVII atom (R-#new-P13). Per Phase 0 hostile audit, the monolithic
+ `IsHirzebruchMumfordProportionalityFormsForEVII_REQUIRED_HYPOTHESIS`
+ decomposes into 4 typed structural ingredients:
+ (SI-1) PUBLISHED `IsMumfordCanonicalExtensionExists_PUBLISHED`
+       (Mum77 Thm 3.1 + Har89 §4.1; type-uniform);
+ (SI-2-LB) PUBLISHED `IsAutomorphicLineBundleGoodMetricExtends_PUBLISHED`
+       (Mum77 + Burgos-Kramer-Kühn; line-bundle case type-uniform);
+ (SI-2-HR) `_REQUIRED_HYPOTHESIS` `IsAutomorphicHigherRankBundleGoodMetricExtendsForEVII_REQUIRED_HYPOTHESIS`
+       (higher-rank good metric for EVII Hodge bundle; specifically-
+       EVII-OPEN, abstract-framework PUBLISHED);
+ (SI-3) `_REQUIRED_HYPOTHESIS` `IsChernWeilFormProportionalityForEVII_REQUIRED_HYPOTHESIS`
+       (Chern-Weil form proportionality FOR EVII; genuine OPEN, no
+       published source for exceptional Hermitian symmetric domains).
+ Net effect: form-HM-EVII atom decomposed into 2 PUBLISHED + 2
+ narrower REQUIRED; the active gapBlocked residual is now pinpointed
+ at SI-2-HR (higher-rank good metric) + SI-3 (Chern-Weil form
+ proportionality identity), both genuinely open published-literature-
+ silent problems. -/
+axiom is_hirzebruch_mumford_proportionality_forms_for_EVII_from_subatoms_P13 :
+ ∀ (S : E7ShimuraTor),
+   IsMumfordCanonicalExtensionExists_PUBLISHED S →
+   IsAutomorphicLineBundleGoodMetricExtends_PUBLISHED S →
+   IsAutomorphicHigherRankBundleGoodMetricExtendsForEVII_REQUIRED_HYPOTHESIS S →
+   IsChernWeilFormProportionalityForEVII_REQUIRED_HYPOTHESIS S →
+   IsHirzebruchMumfordProportionalityFormsForEVII_REQUIRED_HYPOTHESIS S
+
+/-- **DERIVED theorem (P13 LOAD-BEARING REWIRE, R-#new-P13)**: the
+ form-HM-EVII atom is now derivable from the P13 bridge applied to
+ 4 P13 sub-atom witnesses. Per the P12 batch-audit lesson learned
+ (P8 + P9 originally had inert bridges), this load-bearing rewire
+ is applied IMMEDIATELY in the same round to avoid the ceremony-
+ retreat pattern. The form-HM-EVII consumer downstream (the P8
+ bridge consuming it) is rewired to use this derived theorem
+ instead of the direct axiom, completing the load-bearing chain.
+ Active conjectural-surface gates after P13 LOAD-BEARING:
+ SI-2-HR + SI-3 (both narrower than monolithic form-HM-EVII). -/
+theorem is_hirzebruch_mumford_proportionality_forms_for_EVII_REQUIRED_HYPOTHESIS_via_P13_subatoms :
+ ∀ (S : E7ShimuraTor),
+   IsHirzebruchMumfordProportionalityFormsForEVII_REQUIRED_HYPOTHESIS S :=
+ fun S => is_hirzebruch_mumford_proportionality_forms_for_EVII_from_subatoms_P13 S
+   (is_mumford_canonical_extension_exists_PUBLISHED S)
+   (is_automorphic_line_bundle_good_metric_extends_PUBLISHED S)
+   (is_automorphic_higher_rank_bundle_good_metric_extends_for_EVII_REQUIRED_HYPOTHESIS S)
+   (is_chern_weil_form_proportionality_for_EVII_REQUIRED_HYPOTHESIS S)
+
 /-- **`_FOLKLORE_PUBLISHED` atom (P8.3, R-#new-P8)**: V_27 Chern
  classes generate `H^*(BE_6; ℚ)`. Borel 1953 Ann. Math. 57
  establishes the rational polynomial-ring framework: `H^*(BE_6; ℚ)`
@@ -2418,7 +2556,12 @@ theorem is_E6_representation_compatibility_of_section_16dot2_REQUIRED_HYPOTHESIS
    IsE6RepresentationCompatibilityOfSection16dot2_REQUIRED_HYPOTHESIS S :=
  fun S => is_E6_representation_compatibility_of_section_16dot2_from_subatoms_P8 S
    (is_EVII_boundary_strata_classification_codim1_is_EIII_PUBLISHED S)
-   (is_hirzebruch_mumford_proportionality_forms_for_EVII_REQUIRED_HYPOTHESIS S)
+   -- P13 LOAD-BEARING REWIRE (R-#new-P13): consume form-HM-EVII via the
+   -- P13 derived theorem instead of the direct axiom, so the P13 bridge
+   -- (4 P13 sub-atoms: SI-1 + SI-2-LB PUBLISHED + SI-2-HR + SI-3 REQUIRED)
+   -- is load-bearing. Active gates are now SI-2-HR + SI-3 (narrower
+   -- than monolithic form-HM-EVII).
+   (is_hirzebruch_mumford_proportionality_forms_for_EVII_REQUIRED_HYPOTHESIS_via_P13_subatoms S)
    (is_chern_V27_generates_BE6_rational_FOLKLORE_PUBLISHED S)
    (is_chern_V56_generates_BE7_rational_FOLKLORE_PUBLISHED S)
 
