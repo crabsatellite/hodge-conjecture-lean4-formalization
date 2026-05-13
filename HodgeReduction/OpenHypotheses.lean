@@ -1678,7 +1678,10 @@ axiom IsBorelHirzebruchClassifyingSpacePresentationFor_E6timesU1_FOLKLORE_PUBLIS
 axiom IsGPAbstractParabolicConnectionFramework_GroupAgnostic_PUBLISHED :
  E7ShimuraTor → Prop
 
-/-- **`_REQUIRED_HYPOTHESIS` sub-atom (narrower residual)** (P7, R-#new):
+/-- **`_REQUIRED_HYPOTHESIS` sub-atom (narrower residual)** (P7, R-#new;
+ P8-AUDIT-DISCLOSED: this atom is itself a COMPOSITE; P8 decomposes
+ it further into 4 typed sub-atoms via `is_E6_representation_compatibility_of_section_16dot2_from_subatoms_P8`
+ below):
  the specific representation-theoretic check that G-P 2002 §16.2's
  surjection argument (Chern subring of `H^*(BK; ℂ)` surjects onto
  `H^*(D̆; ℂ)` via Borel's theorem applied to product-of-classical-K
@@ -1705,9 +1708,128 @@ axiom IsGPAbstractParabolicConnectionFramework_GroupAgnostic_PUBLISHED :
  Hodge-type Shimura — EVII excluded as non-abelian-type;
  Burgos-Wildeshaus 2004 gives MHM degeneration but not the
  surjection statement).
+ P8 STRUCTURAL DECOMPOSITION (R-#new-P8): per the P8 Phase 0 audit,
+ this atom decomposes into:
+   (P8.1) PUBLISHED `IsEVIIBoundaryStrataClassification_codim1_is_EIII_PUBLISHED`
+          (codim-1 boundary stratum = EIII = E_6/Spin(10)·U(1), itself
+          EXCEPTIONAL not classical — Wolf 1972 / Satake 1980).
+   (P8.2) gapBlocked `IsHirzebruchMumfordProportionalityFormsForEVII_REQUIRED_HYPOTHESIS`
+          (form-level HM proportionality for EVII; Mumford 1977 = numbers
+          only; Faltings 1984 + Looijenga 2017 = PEL/Sp only; GHS 2007 =
+          orthogonal only; EVII form-level is GENUINELY OPEN — new
+          theorem required).
+   (P8.3) gapPartial folklore `IsChernV27GeneratesBE6Rational_FOLKLORE`
+          (V_27 Chern classes generate `H^*(BE_6; ℚ)` — Borel 1953
+          establishes polynomial-ring framework, Toda / Kono-Mimura
+          mid-1970s identify mod-p Chern-class generators of V_27;
+          assembly of rational generation is folklore-grade).
+   (P8.4) gapPartial folklore `IsChernV56GeneratesBE7Rational_FOLKLORE`
+          (V_56 Chern classes generate `H^*(BE_7; ℚ)` — analogous;
+          Kono-Mimura mod-p only published).
+ The bridge `is_E6_representation_compatibility_of_section_16dot2_from_subatoms_P8`
+ routes this atom through the 4-input decomposition. Net effect: the
+ monolithic narrower atom is preserved as the active gate (consumed
+ by P7-PATCH-A's bridge to G-P-EVII), but its content is further
+ decomposed, surfacing the FORM-LEVEL HM PROPORTIONALITY FOR EVII
+ as the genuine gapBlocked structural barrier.
  paper source: hyp:ChernWeil-bridge-E7 (G-P-EVII decomposition sub-atom 3 —
- narrower residual surfaced per P7 audit). -/
+ narrower residual surfaced per P7 audit; P8 further decomposes). -/
 axiom IsE6RepresentationCompatibilityOfSection16dot2_REQUIRED_HYPOTHESIS :
+ E7ShimuraTor → Prop
+
+/-- **PUBLISHED atom (P8.1, R-#new-P8)**: classification of EVII
+ Baily-Borel boundary strata. The codim-1 boundary stratum of the
+ EVII Hermitian symmetric domain `EVII = E_{7(-25)}/(E_6·U(1))` is
+ `EIII = E_6/Spin(10)·U(1)`, itself the EXCEPTIONAL Hermitian
+ symmetric domain of E_6 type (NOT a classical Hermitian symmetric
+ space). The codim-2 boundary is the 5-dim bounded symmetric domain
+ of tube type (classical, Sp/SO type), and the codim-3 stratum is
+ a point. P8 AUDIT KEY FINDING: this PUBLISHED structural fact
+ INVALIDATES the "reduce-to-classical-boundary-strata" routing
+ assumption used by P7's `IsMHMDecompositionTheoremRouteToEVIIChernExtension_OPEN_INVENTION_CLASS`
+ atom — the MHM/BBD route would need to first solve G-P-EIII
+ inductively (since codim-1 boundary EIII is exceptional E_6 type),
+ i.e. it does NOT avoid the exceptional-type difficulty.
+ Tier: PUBLISHED.
+ Sources: J. Wolf, *Spaces of Constant Curvature*, McGraw-Hill 1972
+ + later editions (boundary classification of E_{7(-25)}); I. Satake,
+ *Algebraic Structures of Symmetric Domains*, Iwanami Shoten 1980
+ (Q-rational boundary structure); A. Borel, L. Ji, *Compactifications
+ of Symmetric and Locally Symmetric Spaces*, Birkhäuser 2006 §III.4-5
+ (general boundary classification for Hermitian symmetric domains).
+ paper source: hyp:ChernWeil-bridge-E7 (P8 decomposition sub-atom 1 —
+ boundary strata classification PUBLISHED). -/
+axiom IsEVIIBoundaryStrataClassification_codim1_is_EIII_PUBLISHED :
+ E7ShimuraTor → Prop
+
+/-- **`_REQUIRED_HYPOTHESIS` gapBlocked atom (P8.2, R-#new-P8)**:
+ form-level Hirzebruch-Mumford proportionality for EVII.
+ G-P §16.2's surjection argument uses Hirzebruch-Mumford
+ proportionality at the level of DIFFERENTIAL FORMS (not just
+ Chern numbers) to identify Chern subring generators of
+ `H^*(S_Γ^{tor}; ℚ)` with their compact-dual analogues. Published
+ literature:
+   - Mumford 1977 Invent. Math. 42 (239-272): NUMBER-LEVEL
+     proportionality for ALL bounded symmetric domains incl. EVII;
+     does NOT lift to form level.
+   - Faltings 1984 Math. Ann. 269: form-level proportionality for
+     PEL types (incl. Siegel A_g).
+   - Looijenga 2017 Compositio Math. 153 (1349-1371): canonical-
+     lift refinement for Sp / symplectic case only.
+   - Gritsenko-Hulek-Sankaran 2007 Doc. Math.: form-level for
+     ORTHOGONAL type bounded symmetric domains.
+ None of these cover EVII (non-PEL, non-Sp, non-orthogonal,
+ non-abelian-type Shimura). The EVII form-level statement would
+ constitute a NEW THEOREM.
+ Tier: `_REQUIRED_HYPOTHESIS` at gapBlocked semantic level
+ (genuine OPEN published-literature-silent content; would be a new
+ theorem). Surfaced as TYPED LEAN ATOM per failure-as-asset
+ discipline: this is the irreducible barrier that the §16.2
+ K-decomposition routing reduces to.
+ paper source: hyp:ChernWeil-bridge-E7 (P8 decomposition sub-atom 2 —
+ form-level HM proportionality for EVII gapBlocked residual). -/
+axiom IsHirzebruchMumfordProportionalityFormsForEVII_REQUIRED_HYPOTHESIS :
+ E7ShimuraTor → Prop
+
+/-- **`_FOLKLORE_PUBLISHED` atom (P8.3, R-#new-P8)**: V_27 Chern
+ classes generate `H^*(BE_6; ℚ)`. Borel 1953 Ann. Math. 57
+ establishes the rational polynomial-ring framework: `H^*(BE_6; ℚ)`
+ is the polynomial algebra on 6 Weyl-invariant generators in degrees
+ 4, 10, 12, 16, 18, 24 (corresponding to E_6 exponents
+ `{1,4,5,7,8,11}`). Toda 1976 + Kono-Mimura mid-1970s prove
+ (for mod-p / Steenrod-algebra coefficients) that certain generators
+ of `H^*(BE_6; F_p)` are realised as Chern classes of the minuscule
+ representation `V_27`. The assembly of rational generation by
+ Chern polynomials of V_27 alone is FOLKLORE-grade: V_27 is faithful
+ with finite kernel (Z/3 acting trivially on Lie algebra), so Chern
+ classes c_i(V_27) suffice rationally — but no single citation
+ establishes this directly.
+ Tier: `_FOLKLORE_PUBLISHED` (multi-source standard-machinery
+ folklore-corollary; each piece established but assembly is
+ folkloric).
+ Sources: A. Borel 1953 Ann. Math. 57 (115-207); H. Toda, "Cohomology
+ of classifying spaces"; A. Kono, M. Mimura, "Cohomology mod p of
+ the classifying space of compact exceptional Lie groups"
+ mid-1970s J. Pure Appl. Algebra; Mimura-Toda 1991 AMS Transl. 91
+ Ch. VII §6.
+ paper source: hyp:ChernWeil-bridge-E7 (P8 decomposition sub-atom 3 —
+ V_27 Chern generation folklore-published). -/
+axiom IsChernV27GeneratesBE6Rational_FOLKLORE_PUBLISHED :
+ E7ShimuraTor → Prop
+
+/-- **`_FOLKLORE_PUBLISHED` atom (P8.4, R-#new-P8)**: V_56 Chern
+ classes generate `H^*(BE_7; ℚ)`. Analogous to P8.3 for `E_7`:
+ `H^*(BE_7; ℚ)` is polynomial on 7 generators in degrees
+ 4, 12, 16, 20, 24, 28, 36 (E_7 exponents `{1,5,7,9,11,13,17}`).
+ V_56 is the minuscule rep of E_7, faithful with kernel Z/2.
+ Kono-Mimura mid-1970s cover mod-p case; rational generation by
+ Chern polynomials of V_56 alone is folklore-grade.
+ Tier: `_FOLKLORE_PUBLISHED` (multi-source).
+ Sources: Kono-Mimura J. Pure Appl. Algebra mid-1970s; Mimura-Toda
+ 1991 AMS Transl. 91 Ch. VII §6; Borel 1953 framework.
+ paper source: hyp:ChernWeil-bridge-E7 (P8 decomposition sub-atom 4 —
+ V_56 Chern generation folklore-published). -/
+axiom IsChernV56GeneratesBE7Rational_FOLKLORE_PUBLISHED :
  E7ShimuraTor → Prop
 
 /-- **`_REQUIRED_HYPOTHESIS` degree-8 specialization — INERT
@@ -1740,26 +1862,35 @@ axiom IsE6RepresentationCompatibilityOfSection16dot2_REQUIRED_HYPOTHESIS :
 axiom IsGPChernSubalgebraSurjectionAtDegree8_E7_REQUIRED_HYPOTHESIS :
  E7ShimuraTor → Prop
 
-/-- **`_INVENTION_CLASS` alternative routing atom — INERT
- future-attack-vector placeholder** (P7, R-#new; P7-PATCH-E disclosure):
+/-- **`_INVENTION_CLASS` alternative routing atom — INERT,
+ PREMISE FALSE per P8 audit, BLOCKED future-attack-vector** (P7,
+ R-#new; P7-PATCH-E + P8-AUDIT-CORRECTION):
  an INDIRECT EVII Chern-subalgebra extension via Saito MHM 1988 +
  Burgos-Wildeshaus 2004 + Beilinson-Bernstein-Deligne 1982
- decomposition theorem: the Baily-Borel boundary strata of EVII
- are rational boundary components corresponding to Q-parabolics of
+ decomposition theorem.
+ **P8 AUDIT CRITICAL FINDING (premise FALSE)**: the original P7
+ routing premise was "the Baily-Borel boundary strata of EVII are
+ rational boundary components corresponding to Q-parabolics of
  `E_{7(-25)}` with classical Levi-Hermitian factors (unitary and
- `SO^*` types); G-P §16.4 applies CLASSICALLY to each stratum;
- the bulk EVII surjection might be assembled by spectral-sequence /
- decomposition-theorem arguments. Tier: `_INVENTION_CLASS`
- (research-level project; NOT formulated in any published paper).
- **INERT STATUS (P7 Phase 4 audit disclosure)**: this atom is NOT
- currently consumed by any active witness chain. Surfaced as a
- TYPED FUTURE-ATTACK-VECTOR PLACEHOLDER for an alternative routing
- NOT requiring closure of `IsE6RepresentationCompatibilityOfSection16dot2`.
- If this route is constructed, the MHM/BBD decomposition + boundary-
- strata classical-type G-P applicability yields the monolithic
- G-P-EVII extension WITHOUT needing the §16.2 K-decomposition step.
+ `SO^*` types); G-P §16.4 applies CLASSICALLY to each stratum".
+ This premise is FALSE. Per the P8 PUBLISHED atom
+ `IsEVIIBoundaryStrataClassification_codim1_is_EIII_PUBLISHED`
+ (Wolf 1972 / Satake 1980 / Borel-Ji 2006), the codim-1 boundary
+ stratum of EVII is `EIII = E_6/Spin(10)·U(1)` — itself the
+ EXCEPTIONAL Hermitian symmetric domain of E_6 type, NOT a
+ classical Hermitian symmetric space. Therefore the MHM/BBD route
+ does NOT avoid the exceptional-type difficulty: it would require
+ first solving G-P-EIII inductively (since codim-1 boundary EIII
+ is exceptional E_6 type). The route is effectively a recursion-
+ down to an only-marginally-easier exceptional case.
+ Tier: `_INVENTION_CLASS` BLOCKED — the original alternative-route
+ motivation is invalidated; if future rounds revisit this route,
+ they must explicitly attack G-P-EIII first.
  paper source: hyp:ChernWeil-bridge-E7 (G-P-EVII alternative routing —
- INERT INVENTION_CLASS surfaced per P7 audit for future-round attack vector). -/
+ INERT INVENTION_CLASS with PREMISE-FALSE annotation per P8 audit;
+ retained as typed failure-asset per `feedback_gap_ledger_in_lean4`
+ discipline rather than deleted, so the structural-barrier surfacing
+ is preserved). -/
 axiom IsMHMDecompositionTheoremRouteToEVIIChernExtension_OPEN_INVENTION_CLASS :
  E7ShimuraTor → Prop
 
@@ -1923,11 +2054,81 @@ axiom gp_abstract_parabolic_connection_framework_group_agnostic_PUBLISHED :
    IsGPAbstractParabolicConnectionFramework_GroupAgnostic_PUBLISHED S
 
 /-- `_REQUIRED_HYPOTHESIS` placeholder witness for E_6-representation-
- compatibility of G-P §16.2 (P7, R-#new). NOT discharged — this is
- the narrower irreducible residual content of the G-P-EVII extension
- per Phase 0 audit. -/
+ compatibility of G-P §16.2 (P7, R-#new). Post-P8: this atom is
+ further decomposed via the P8 bridge `is_E6_representation_compatibility_of_section_16dot2_from_subatoms_P8`
+ — the active witness chain consumes this monolithic atom but the
+ monolithic atom can be FURTHER derived from P8 sub-atoms (1 PUBLISHED
+ + 1 gapBlocked + 2 FOLKLORE_PUBLISHED). The genuine residual
+ conjectural content surfaced by P8 is `IsHirzebruchMumfordProportionalityFormsForEVII_REQUIRED_HYPOTHESIS`
+ (form-level HM proportionality for EVII; gapBlocked semantic). -/
 axiom is_E6_representation_compatibility_of_section_16dot2_REQUIRED_HYPOTHESIS :
  ∀ (S : E7ShimuraTor),
+   IsE6RepresentationCompatibilityOfSection16dot2_REQUIRED_HYPOTHESIS S
+
+/-- PUBLISHED witness for EVII Baily-Borel boundary strata classification
+ (P8.1, R-#new-P8). Sources: Wolf 1972 *Spaces of Constant Curvature*
+ + Satake 1980 *Algebraic Structures of Symmetric Domains* + Borel-Ji
+ 2006 *Compactifications of Symmetric and Locally Symmetric Spaces*. -/
+axiom is_EVII_boundary_strata_classification_codim1_is_EIII_PUBLISHED :
+ ∀ (S : E7ShimuraTor),
+   IsEVIIBoundaryStrataClassification_codim1_is_EIII_PUBLISHED S
+
+/-- `_REQUIRED_HYPOTHESIS` placeholder witness for form-level
+ Hirzebruch-Mumford proportionality for EVII (P8.2, R-#new-P8).
+ NOT discharged — gapBlocked semantic; new theorem required.
+ Sources for existing form-level results (which do NOT cover EVII):
+ Mumford 1977 (numbers only); Faltings 1984 (PEL/Sp form-level);
+ Looijenga 2017 (Sp canonical-lift); Gritsenko-Hulek-Sankaran 2007
+ (orthogonal form-level). -/
+axiom is_hirzebruch_mumford_proportionality_forms_for_EVII_REQUIRED_HYPOTHESIS :
+ ∀ (S : E7ShimuraTor),
+   IsHirzebruchMumfordProportionalityFormsForEVII_REQUIRED_HYPOTHESIS S
+
+/-- `_FOLKLORE_PUBLISHED` witness for V_27 Chern generation of
+ `H^*(BE_6; ℚ)` (P8.3, R-#new-P8). Sources: Borel 1953 + Toda 1976
+ + Kono-Mimura mid-1970s + Mimura-Toda 1991. -/
+axiom is_chern_V27_generates_BE6_rational_FOLKLORE_PUBLISHED :
+ ∀ (S : E7ShimuraTor),
+   IsChernV27GeneratesBE6Rational_FOLKLORE_PUBLISHED S
+
+/-- `_FOLKLORE_PUBLISHED` witness for V_56 Chern generation of
+ `H^*(BE_7; ℚ)` (P8.4, R-#new-P8). Sources: Kono-Mimura mid-1970s
+ + Mimura-Toda 1991 + Borel 1953 framework. -/
+axiom is_chern_V56_generates_BE7_rational_FOLKLORE_PUBLISHED :
+ ∀ (S : E7ShimuraTor),
+   IsChernV56GeneratesBE7Rational_FOLKLORE_PUBLISHED S
+
+/-- **P8 DECOMPOSITION BRIDGE** for the §16.2 E_6-rep-compat atom
+ (R-#new-P8). Per Phase 0 hostile audit, the monolithic
+ `IsE6RepresentationCompatibilityOfSection16dot2_REQUIRED_HYPOTHESIS`
+ is structurally derivable from 4 typed sub-atoms:
+ (P8.1) PUBLISHED `IsEVIIBoundaryStrataClassification_codim1_is_EIII_PUBLISHED`
+       (codim-1 boundary = EIII = E_6/Spin(10)·U(1), exceptional);
+ (P8.2) `_REQUIRED_HYPOTHESIS` gapBlocked
+       `IsHirzebruchMumfordProportionalityFormsForEVII_REQUIRED_HYPOTHESIS`
+       (form-level HM proportionality for EVII; genuinely OPEN);
+ (P8.3) `_FOLKLORE_PUBLISHED`
+       `IsChernV27GeneratesBE6Rational_FOLKLORE_PUBLISHED`
+       (V_27 Chern generation, Borel + Toda chain);
+ (P8.4) `_FOLKLORE_PUBLISHED`
+       `IsChernV56GeneratesBE7Rational_FOLKLORE_PUBLISHED`
+       (V_56 Chern generation, analogous).
+ The bridge encodes the analog of G-P §16.5's argument:
+ (P8.1) gives the boundary stratification + classical-type recursion
+ needed for spectral-sequence assembly; (P8.2) gives the form-level
+ proportionality needed for the Chern-Weil-form transport; (P8.3)+
+ (P8.4) give the Chern-class generation of the relevant classifying
+ spaces. Net effect: the active gapBlocked residual content of the
+ §16.2 E_6-rep-compat atom is now PINPOINTED at the form-level HM
+ proportionality for EVII (P8.2) — a genuine open published-
+ literature-silent problem, surfaced as a typed Lean atom per
+ failure-as-asset discipline. -/
+axiom is_E6_representation_compatibility_of_section_16dot2_from_subatoms_P8 :
+ ∀ (S : E7ShimuraTor),
+   IsEVIIBoundaryStrataClassification_codim1_is_EIII_PUBLISHED S →
+   IsHirzebruchMumfordProportionalityFormsForEVII_REQUIRED_HYPOTHESIS S →
+   IsChernV27GeneratesBE6Rational_FOLKLORE_PUBLISHED S →
+   IsChernV56GeneratesBE7Rational_FOLKLORE_PUBLISHED S →
    IsE6RepresentationCompatibilityOfSection16dot2_REQUIRED_HYPOTHESIS S
 
 /-- `_REQUIRED_HYPOTHESIS` placeholder witness for degree-8 specialization
