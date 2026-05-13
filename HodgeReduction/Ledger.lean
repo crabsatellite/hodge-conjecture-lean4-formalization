@@ -277,6 +277,42 @@ Closure tier distribution (epistemic ordering per R-#27 et seq.):
   conjectural-surface count UNCHANGED but residual now distributed
   across (i.b.2) + (ii.a) decomposed sub-atoms + (ii.b.2) + form-
   level HM-EVII gapBlocked structural barrier from P8.
+  P10 FAILURE-THEOREMIZATION OF clause (ii.b.2) ATOM (R-#new-P10):
+  Phase 0 audit on `IsFreudenthalClassPlacedInChernSubalgebra_E7_REQUIRED_HYPOTHESIS`
+  returns gapPartial verdict (status unchanged) but surfaces 6 NEW
+  TYPED PREDICATES as failure-asset per `feedback_gap_ledger_in_lean4`
+  discipline. Findings:
+  (P10.a) PUBLISHED `IsLooijenga2017PlacementCoversSymplecticOnly_PUBLISHED`
+         (Looijenga 2017 Compositio Math. 153 explicitly only works
+         out Sp_{2g}/A_g; exceptional types out of scope).
+  (P10.b) PUBLISHED `IsEsnaultHarris2018DescentNotPlacement_PUBLISHED`
+         (Esnault-Harris 2018 arXiv:1801.08219 Thm 0.1 proves descent
+         of c_i(ℰ^can) for Hodge-type Shimura; does NOT prove placement
+         of an arbitrary class).
+  (P10.c) PUBLISHED `IsE7ShimuraNotAbelianMotiveModuli_PUBLISHED`
+         (Milne arXiv:1105.0887: E_{7(-25)} connected Shimura is NOT
+         a moduli variety for abelian motives; blocks Deligne
+         absolute-Hodge route to algebraicity).
+  (P10.d) gapBlocked `IsHodgeClassQAtDegree8CircularReduction_REQUIRED_HYPOTHESIS`
+         (alternative placement via "(4,4) Hodge class ⟹ HC ⟹ Chern
+         subalgebra" is CIRCULAR for the HC reduction).
+  (P10.e) PUBLISHED `IsSalvagePathGammaConsistentWithClauseIII_PUBLISHED`
+         (salvage path γ: `[q]_G := c_4(𝓥_56^can)` is internally
+         consistent with clause (iii) since `c_4 = 594 h^4 ≠ 0` and
+         `c_2² = 1296 h^4 ≠ 0` both span H^8(Ě_VII;ℚ) = ℚ·h^4).
+  (P10.f) gapBlocked `IsSalvagePathGammaDissolvesInventionClassContent_REQUIRED_HYPOTHESIS`
+         (salvage path γ DISSOLVES (i.b.2) INVENTION_CLASS content
+         into definitional fiat; B-H characteristic map domain
+         `Sym(𝔱*)^W ≠ Sym^4(V_56*)^{E_7}` so γ trades the (i.b.2)
+         atom for a master-tex coordination decision; net atom-count
+         NOT reduced — ceremony-retreat-style cost flagged).
+  P10 Lean output: 6 new typed atoms + 6 witnesses. NO new bridge
+  axiom (the failure-asset atoms encode structural facts that BLOCK
+  alternative placement routes; they do not decompose the (ii.b.2)
+  atom further but rather typed-out the audit findings). 4-atom
+  conjectural-surface count UNCHANGED; (ii.b.2) atom tier remains
+  `_REQUIRED_HYPOTHESIS`; structural literature absences explicitly
+  encoded.
 - gapPartial multi-path `_CONJECTURAL`: SG-17 (R-#24 Hard-Lefschetz
   Schur scalar partial-kill + 3 closing paths).
 - gapPartial `_NAMED_OPEN_MULTI`: SG-23 (R-#65 upgrade from

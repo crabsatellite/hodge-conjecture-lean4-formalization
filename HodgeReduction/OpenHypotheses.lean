@@ -2432,10 +2432,141 @@ axiom IsFreudenthalClassPlacedInChernSubalgebra_E7_REQUIRED_HYPOTHESIS :
 
 /-- `_REQUIRED_HYPOTHESIS` witness for the placement-in-Chern-subalgebra
  atom. The genuine residual conditional content of (ii.b) per master tex
- L11625-11647. -/
+ L11625-11647. Post-P10 audit: this atom stays gapPartial; the P10
+ Phase 0 audit confirms no published placement result exists for EVII;
+ surfaces 6 new typed structural-fact atoms per failure-asset
+ discipline (encoded below as `IsLooijenga2017PlacementCoversSymplecticOnly_PUBLISHED`,
+ `IsEsnaultHarris2018DescentNotPlacement_PUBLISHED`, etc.). -/
 axiom freudenthal_class_placed_in_chern_subalgebra_E7_REQUIRED_HYPOTHESIS :
  ∀ (S : E7ShimuraTor),
    IsFreudenthalClassPlacedInChernSubalgebra_E7_REQUIRED_HYPOTHESIS S
+
+/-- **PUBLISHED structural-fact atom (P10.a, R-#new-P10)**: Looijenga
+ 2017 Compositio Math. 153 (1349-1371) "Goresky-Pardon lifts of Chern
+ classes and associated Tate extensions" §3-4 explicitly only works
+ out the SYMPLECTIC case `A_g = Sp_{2g}/U_g` with the Hodge bundle.
+ Exceptional types (including EVII) are explicitly out of scope per
+ the paper's §1 introduction "We work this out in the case of the
+ symplectic group". Tier: PUBLISHED structural fact (Looijenga 2017
+ scope explicit). Surfaced per P10 Phase 0 audit as TYPED failure-
+ asset encoding the literature absence for placement-in-Chern-
+ subalgebra results beyond Sp.
+ Source: E. Looijenga, "Goresky-Pardon lifts of Chern classes and
+ associated Tate extensions", Compositio Math. 153 (2017), 1349-1371
+ (arXiv:1510.04103).
+ paper source: hyp:ChernWeil-bridge-E7 clause (ii.b.2) — P10
+ failure-asset structural fact. -/
+axiom IsLooijenga2017PlacementCoversSymplecticOnly_PUBLISHED :
+ E7ShimuraTor → Prop
+
+/-- **PUBLISHED structural-fact atom (P10.b, R-#new-P10)**: Esnault-
+ Harris 2018 (arXiv:1801.08219) "Chern classes of automorphic vector
+ bundles, II" Theorem 0.1 proves DESCENT of `c_i(ℰ^can)` themselves
+ (the Chern classes of canonical extensions) from toroidal to minimal
+ compactifications, under Galois action — for Hodge-type Shimura
+ varieties (with stated "easily extended to abelian type" caveat).
+ Does NOT prove PLACEMENT of an arbitrary class in the Chern subring.
+ EVII Shimura is explicitly NOT of Hodge type or abelian type — Milne
+ SV literature places E_7 as one of the cases NOT a moduli variety
+ for abelian motives. Tier: PUBLISHED structural fact.
+ Source: H. Esnault, M. Harris, "Chern classes of automorphic vector
+ bundles, II", arXiv:1801.08219.
+ paper source: hyp:ChernWeil-bridge-E7 clause (ii.b.2) — P10
+ failure-asset structural fact (descent ≠ placement). -/
+axiom IsEsnaultHarris2018DescentNotPlacement_PUBLISHED :
+ E7ShimuraTor → Prop
+
+/-- **PUBLISHED structural-fact atom (P10.c, R-#new-P10)**: per Milne
+ "Shimura Varieties and Moduli" (arXiv:1105.0887), the connected
+ Shimura variety associated to `E_{7(-25)}` is NOT a moduli variety
+ for abelian motives. This BLOCKS the Deligne absolute-Hodge route
+ to algebraicity that works for Hodge-type / abelian-type Shimura
+ varieties (PEL, Kuga families, etc.). Tier: PUBLISHED structural
+ fact. The downstream implication is that no Tate-style argument
+ via abelian-motive realization is available for EVII; placement of
+ [q] in Chern subalgebra cannot be obtained via this route.
+ Source: J. Milne, "Shimura Varieties and Moduli", arXiv:1105.0887;
+ also Esnault-Harris 2018 §0 and Borovoi 1984.
+ paper source: hyp:ChernWeil-bridge-E7 clause (ii.b.2) — P10
+ failure-asset structural fact (E_7 not abelian-motive moduli). -/
+axiom IsE7ShimuraNotAbelianMotiveModuli_PUBLISHED :
+ E7ShimuraTor → Prop
+
+/-- **gapBlocked-tier structural-barrier atom (P10.d, R-#new-P10)**:
+ the alternative placement route "[q] is a Hodge class of type (4,4)
+ hence by HC algebraic hence in the Chern subalgebra" is CIRCULAR
+ for the Hodge Conjecture reduction: assuming HC is precisely what
+ we are reducing to. Surfaced as typed BLOCKED structural barrier
+ per failure-asset discipline. Tier: `_REQUIRED_HYPOTHESIS` at
+ gapBlocked semantic level. This atom encodes the formal observation
+ that Pattern-A3 circularity blocks the Hodge-class route.
+ paper source: hyp:ChernWeil-bridge-E7 clause (ii.b.2) — P10
+ failure-asset structural fact (Hodge-class route circular). -/
+axiom IsHodgeClassQAtDegree8CircularReduction_REQUIRED_HYPOTHESIS :
+ E7ShimuraTor → Prop
+
+/-- **PUBLISHED structural-fact atom (P10.e, R-#new-P10)**: the
+ "salvage path γ" definitional adoption `[q]_G := c_4(𝓥_56^{can})`
+ (or `c_2(𝓥_56)² = 1296 h^4`) is INTERNALLY CONSISTENT with clause
+ (iii)'s Chern-polynomial form `[q] = P(c_1, …, c_4)` — both
+ `c_4 = 594 h^4 ≠ 0` and `c_2² = 1296 h^4 ≠ 0` span
+ `H^8(Ě_VII; ℚ) = ℚ·h^4` per (i.b.1) PUBLISHED `IsChernSubringSurjectiveOntoH8_E7P7`.
+ Tier: PUBLISHED structural fact. Source: Borel-Hirzebruch 1958 §16
+ + Mimura-Toda 1991 AMS Transl. 91 Ch. VII §6 (H*(BE_7;ℚ) generators)
+ + (i.b.1) PUBLISHED `IsChernSubringSurjectiveOntoH8_E7P7` atom.
+ paper source: hyp:ChernWeil-bridge-E7 (ii.b.2) — P10 failure-asset
+ structural fact (salvage path γ consistency). -/
+axiom IsSalvagePathGammaConsistentWithClauseIII_PUBLISHED :
+ E7ShimuraTor → Prop
+
+/-- **gapBlocked-tier structural-barrier atom (P10.f, R-#new-P10)**:
+ the salvage path γ (`[q]_G := c_4(𝓥_56^{can})`) DISSOLVES the
+ (i.b.2) `_INVENTION_CLASS` content into definitional fiat rather
+ than constructing a canonical cross-ring bridge `Φ : Sym⁴(V_56^*)^{E_7}
+ → H^8(E_7^ℂ/P_7, ℚ)` with `Φ(q) ≠ 0`. The Borel-Hirzebruch
+ characteristic map has domain `Sym(𝔱*)^W ≠ Sym^4(V_56^*)^{E_7}`
+ (per master tex reading (a) "not a corollary of B-H"), so adopting
+ γ trades the (i.b.2) atom for a master-tex coordination decision
+ (changing the cross-ring definition). Net atom-count NOT reduced —
+ ceremony-retreat-style cost flagged per `feedback_team_v4_ceremony_is_retreat`.
+ Tier: `_REQUIRED_HYPOTHESIS` at gapBlocked semantic level. Surfaced
+ per failure-asset discipline.
+ paper source: hyp:ChernWeil-bridge-E7 (ii.b.2) — P10 failure-asset
+ structural fact (γ-cost). -/
+axiom IsSalvagePathGammaDissolvesInventionClassContent_REQUIRED_HYPOTHESIS :
+ E7ShimuraTor → Prop
+
+/-- PUBLISHED witness for P10.a (Looijenga 2017 scope). -/
+axiom is_looijenga_2017_placement_covers_symplectic_only_PUBLISHED :
+ ∀ (S : E7ShimuraTor),
+   IsLooijenga2017PlacementCoversSymplecticOnly_PUBLISHED S
+
+/-- PUBLISHED witness for P10.b (Esnault-Harris 2018 descent ≠ placement). -/
+axiom is_esnault_harris_2018_descent_not_placement_PUBLISHED :
+ ∀ (S : E7ShimuraTor),
+   IsEsnaultHarris2018DescentNotPlacement_PUBLISHED S
+
+/-- PUBLISHED witness for P10.c (Milne: E_7 not abelian-motive moduli). -/
+axiom is_E7_shimura_not_abelian_motive_moduli_PUBLISHED :
+ ∀ (S : E7ShimuraTor),
+   IsE7ShimuraNotAbelianMotiveModuli_PUBLISHED S
+
+/-- gapBlocked-tier `_REQUIRED_HYPOTHESIS` placeholder witness for
+ P10.d (Hodge-class route circularity). NOT discharged. -/
+axiom is_hodge_class_q_at_degree8_circular_reduction_REQUIRED_HYPOTHESIS :
+ ∀ (S : E7ShimuraTor),
+   IsHodgeClassQAtDegree8CircularReduction_REQUIRED_HYPOTHESIS S
+
+/-- PUBLISHED witness for P10.e (γ internally consistent with clause iii). -/
+axiom is_salvage_path_gamma_consistent_with_clause_iii_PUBLISHED :
+ ∀ (S : E7ShimuraTor),
+   IsSalvagePathGammaConsistentWithClauseIII_PUBLISHED S
+
+/-- gapBlocked-tier `_REQUIRED_HYPOTHESIS` placeholder witness for
+ P10.f (γ-cost dissolving INVENTION_CLASS content). NOT discharged. -/
+axiom is_salvage_path_gamma_dissolves_invention_class_content_REQUIRED_HYPOTHESIS :
+ ∀ (S : E7ShimuraTor),
+   IsSalvagePathGammaDissolvesInventionClassContent_REQUIRED_HYPOTHESIS S
 
 /-- Bridge axiom for the (ii.b) decomposition: the original (ii.b)
  compatibility atom follows from the conjunction of (ii.b.1) PUBLISHED
