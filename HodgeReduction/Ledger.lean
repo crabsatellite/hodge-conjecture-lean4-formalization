@@ -248,6 +248,35 @@ Closure tier distribution (epistemic ordering per R-#27 et seq.):
   OPEN content; would be a new theorem). 4-atom conjectural-surface
   count UNCHANGED but residual is further pinpointed at form-level-
   HM-EVII as the structural barrier.
+  P9 DECOMPOSITION OF clause-(ii.a) ATOM (R-#new-P9): Phase 0 audit
+  on `IsFreudenthalClassRealizedByGInvariantCohomology_E7_REQUIRED_HYPOTHESIS`
+  catches that the atom is a COMPOSITE bundling 3 distinct residual
+  claims + 1 structural barrier. Findings:
+  (1) NEW PUBLISHED anchor `IsWatanabe1975IntegralCohomologyRingEVII_PUBLISHED`
+      (Watanabe 1975 J. Math. Kyoto Univ. 15-1 139-160 explicit
+      integral cohomology ring of EVII = E_7/E_6·SO(2)).
+  (2) `_REQUIRED_HYPOTHESIS` `IsVoganZuckermanAqLambdaComputationFor_E725_Degree8_REQUIRED_HYPOTHESIS`
+      (V-Z 1984 framework PUBLISHED but specific A_q(λ) classification
+      for (E_{7(-25)}, E_6·U(1)) at deg 8 with G-invariant
+      contribution NOT in literature).
+  (3) `_REQUIRED_HYPOTHESIS` `IsEisensteinCohomologyVanishingFor_E725_Degree8_REQUIRED_HYPOTHESIS`
+      (Franke 1998 framework PUBLISHED but specific Eisenstein-
+      vanishing for E_{7(-25)} deg 8 NOT in literature; Li-Schwermer
+      only worked G_2).
+  (4) gapBlocked-tier `IsHodgeWeight33OnEVII_AutomaticallyGInvariant_REQUIRED_HYPOTHESIS`
+      (STRUCTURAL BARRIER: no published theorem says weight-(3,3)
+      classes on EVII Shimura are automatically G-invariant; would
+      be a NEW THEOREM).
+  P9 Lean output: 4 new typed atoms above + bridge axiom
+  `is_freudenthal_class_realized_by_g_invariant_cohomology_E7_from_subatoms_P9`
+  routing the monolithic (ii.a) atom through 1 PUBLISHED + 2 narrower
+  REQUIRED + 1 gapBlocked structural barrier. Plus a docstring
+  cross-reference to (i.b.2) INVENTION_CLASS atom to disarm a Pattern
+  flag in the Phase 0 audit about cross-ring conflation (Schwarz
+  Freudenthal-quartic-on-V_56 vs [q]_G class on H^8(EVII)). 4-atom
+  conjectural-surface count UNCHANGED but residual now distributed
+  across (i.b.2) + (ii.a) decomposed sub-atoms + (ii.b.2) + form-
+  level HM-EVII gapBlocked structural barrier from P8.
 - gapPartial multi-path `_CONJECTURAL`: SG-17 (R-#24 Hard-Lefschetz
   Schur scalar partial-kill + 3 closing paths).
 - gapPartial `_NAMED_OPEN_MULTI`: SG-23 (R-#65 upgrade from

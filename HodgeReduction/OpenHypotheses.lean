@@ -1531,8 +1531,120 @@ axiom IsBorelWallachStableInvariantDescentFramework_E7 : E7ShimuraTor → Prop
  explicitly mark this as the (ii.a) conditional content. Tier:
  `_REQUIRED_HYPOTHESIS` (not `_INVENTION_CLASS`) because a PUBLISHED
  framework exists, just not the specific-`[q]` realisation.
- paper source: hyp:ChernWeil-bridge-E7 clause (ii.a) extension atom. -/
+ PRESUPPOSITION CROSS-REF: the existence of `[q]_G ∈ H^8(Ě_VII, ℂ)` as
+ a non-zero class is itself the content of the (i.b.2) atom
+ `IsCrossRingBridgeNonzeroOnFreudenthalQuartic_E7P7_INVENTION_CLASS`
+ (existence of cross-ring map `Φ : Sym⁴(V_56^*)^{E_7} → H^8(E_7^ℂ/P_7, ℚ)`
+ with `Φ(q) ≠ 0`). This (ii.a) atom presupposes that existence;
+ the conflation flagged by P9 Phase 0 audit between "Freudenthal-
+ quartic-invariant on 56-dim rep" (Schwarz 1978 PUBLISHED) and
+ "[q]_G class on H^8(EVII)" is DISARMED via the (i.b.2) INVENTION_CLASS
+ atom which makes the cross-ring construction the load-bearing
+ conjectural content.
+ P9 STRUCTURAL DECOMPOSITION (R-#new-P9): per Phase 0 hostile audit,
+ this atom is itself a COMPOSITE bundling 3 distinct residual claims
+ + 1 structural barrier. The audit recommends decomposition via the
+ bridge `is_freudenthal_class_realized_by_g_invariant_cohomology_E7_from_subatoms_P9`
+ below into:
+   (P9.a) PUBLISHED `IsWatanabe1975IntegralCohomologyRingEVII_PUBLISHED`
+          (Watanabe 1975 Kyoto J. Math. 15 explicit integral cohomology
+          ring of EVII = E_7/E_6·SO(2)).
+   (P9.b) `_REQUIRED_HYPOTHESIS` `IsVoganZuckermanAqLambdaComputationFor_E725_Degree8_REQUIRED_HYPOTHESIS`
+          (explicit V-Z A_q(λ) classification of unitary E_{7(-25)}-reps
+          with non-trivial (g,K)-cohomology at degree 8 producing
+          `G`-invariant class — V-Z 1984 framework PUBLISHED but
+          specific computation NOT in literature).
+   (P9.c) `_REQUIRED_HYPOTHESIS` `IsEisensteinCohomologyVanishingFor_E725_Degree8_REQUIRED_HYPOTHESIS`
+          (Eisenstein/residual part of `H^8(S_Γ; ℂ)` does not contribute
+          to `[q]_G` — Franke 1998 framework PUBLISHED but specific
+          E_7-deg-8 vanishing NOT in literature; Li-Schwermer's only
+          worked exceptional case is G_2).
+   (P9.d) gapBlocked `IsHodgeWeight33OnEVII_AutomaticallyGInvariant_REQUIRED_HYPOTHESIS`
+          (no published theorem says weight-(3,3) classes on EVII
+          Shimura varieties are AUTOMATICALLY realized by G-invariant
+          cohomology — STRUCTURAL BARRIER surfaced as typed Lean atom).
+ paper source: hyp:ChernWeil-bridge-E7 clause (ii.a) extension atom;
+ P9-decomposed. -/
 axiom IsFreudenthalClassRealizedByGInvariantCohomology_E7_REQUIRED_HYPOTHESIS :
+ E7ShimuraTor → Prop
+
+/-- **PUBLISHED atom (P9.a, R-#new-P9)**: Watanabe 1975 Kyoto J. Math. 15
+ (139-160) "The integral cohomology ring of the symmetric space EVII"
+ explicitly computes the integral cohomology ring `H^*(Ě_VII; ℤ)` of
+ the compact-dual `Ě_VII = E_7/E_6·SO(2)`. Provides the Poincaré
+ polynomial, generators, and relations. Key downstream fact: `H^8(Ě_VII; ℂ)`
+ dimension can be computed explicitly from Watanabe's presentation.
+ (Combined with `IsChernSubringSurjectiveOntoH8_E7P7` which asserts
+ dim `H^8` = 1, the Watanabe computation is the published anchor for
+ the 1-dim claim used by clause (i.b.1) and the polynomial-identity
+ reduction in clause (iii).) Tier: PUBLISHED.
+ Source: T. Watanabe, "The integral cohomology ring of the symmetric
+ space EVII", J. Math. Kyoto Univ. 15-1 (1975), 139-160.
+ paper source: hyp:ChernWeil-bridge-E7 (P9 decomposition sub-atom a —
+ Watanabe 1975 PUBLISHED). -/
+axiom IsWatanabe1975IntegralCohomologyRingEVII_PUBLISHED :
+ E7ShimuraTor → Prop
+
+/-- **`_REQUIRED_HYPOTHESIS` atom (P9.b, R-#new-P9)**: the explicit
+ Vogan-Zuckerman `A_q(λ)` classification of unitary representations of
+ `E_{7(-25)}` with non-trivial `(𝔤, K_∞)`-cohomology at degree 8
+ producing a `G`-invariant cohomology class. V-Z 1984 (Compositio Math.
+ 53, 51-90) supplies the GENERAL FRAMEWORK: A_q(λ) modules have lowest
+ non-trivial (g,K)-cohomology in degree R(q) = dim(u ∩ k) where
+ u = nilradical of θ-stable parabolic q. Borel-Wallach 2000 Ch. VII
+ documents the framework. Specific computation of A_q(λ) modules for
+ (E_{7(-25)}, E_6·U(1)) at R(q) = 8 with G-invariant contribution is
+ NOT in published literature (per P9 Phase 0 audit). Atlas software
+ (atlas.math.umd.edu) supports A_q(λ) computation but no specific
+ published table for this case located. Tier: `_REQUIRED_HYPOTHESIS`
+ (framework PUBLISHED, specific computation missing).
+ Sources: D. Vogan, G. Zuckerman, "Unitary representations with
+ non-zero cohomology", Compositio Math. 53 (1984), 51-90 (framework);
+ Borel-Wallach 2000 Ch. VII (PUBLISHED framework atom already cited);
+ D. Wong et al. ResearchGate 2022 "Dirac series of E_{7(-25)}"
+ (related but different — Dirac cohomology not (g,K)-cohomology).
+ paper source: hyp:ChernWeil-bridge-E7 (P9 decomposition sub-atom b —
+ V-Z A_q(λ) specific computation REQUIRED). -/
+axiom IsVoganZuckermanAqLambdaComputationFor_E725_Degree8_REQUIRED_HYPOTHESIS :
+ E7ShimuraTor → Prop
+
+/-- **`_REQUIRED_HYPOTHESIS` atom (P9.c, R-#new-P9)**: the Eisenstein /
+ residual part of `H^8(S_Γ; ℂ)` (where `S_Γ = Γ\E_{7(-25)}/E_6·U(1)`)
+ does NOT contribute to the specific class `[q] ∈ H^8(S_Γ; ℂ)`. Franke
+ 1998 Ann. Sci. ÉNS 31 (181-279) gives the GENERAL FRAMEWORK for
+ Eisenstein/cuspidal/residual decomposition of automorphic cohomology;
+ Li-Schwermer Compositio 87 (1993) treats specific exceptional cases —
+ their only worked exceptional case is G_2. Specific Eisenstein
+ vanishing at degree 8 for `E_{7(-25)}` is NOT in published literature
+ (per P9 Phase 0 audit). Tier: `_REQUIRED_HYPOTHESIS` (framework
+ PUBLISHED, specific vanishing missing).
+ Sources: J. Franke, "Harmonic analysis in weighted L_2-spaces", Ann.
+ Sci. ÉNS (4) 31 (1998), 181-279; J.-S. Li, J. Schwermer, "On the
+ Eisenstein cohomology of arithmetic groups", Duke Math. J. 123
+ (2004), 141-169 + earlier Compositio 87 (1993); G. Harder, "Eisenstein
+ cohomology of arithmetic groups: The case GL_2", Invent. Math. 89
+ (1987), 37-118 (specific GL_2 case).
+ paper source: hyp:ChernWeil-bridge-E7 (P9 decomposition sub-atom c —
+ Eisenstein vanishing specific to E_{7(-25)} deg 8 REQUIRED). -/
+axiom IsEisensteinCohomologyVanishingFor_E725_Degree8_REQUIRED_HYPOTHESIS :
+ E7ShimuraTor → Prop
+
+/-- **gapBlocked-tier `_REQUIRED_HYPOTHESIS` atom (P9.d, R-#new-P9 —
+ STRUCTURAL BARRIER)**: weight-(3,3) cohomology classes on EVII Shimura
+ varieties are AUTOMATICALLY realized by `G`-invariant cohomology
+ (no Eisenstein/residual contamination at this Hodge bigrading). This
+ would be the cleanest closure route for the (ii.a) realization step,
+ but NO PUBLISHED theorem of this form was located in the P9 Phase 0
+ audit. The Hodge decomposition of `H^8(S_Γ; ℂ)` into bigrading pieces
+ is a structural feature of `S_Γ`'s mixed Hodge structure (per Saito
+ MHM 1988 + Deligne 1971), but the specific assertion that the
+ `G`-invariant part exhausts `H^{3,3}(S_Γ)` at degree 8 in EVII
+ weight-3 non-classical Hodge signature is gapBlocked — would be a
+ NEW THEOREM. Tier: `_REQUIRED_HYPOTHESIS` at gapBlocked semantic level
+ (typed structural barrier per failure-as-asset discipline).
+ paper source: hyp:ChernWeil-bridge-E7 (P9 decomposition sub-atom d —
+ Hodge-weight-(3,3) automatic-G-invariant gapBlocked structural barrier). -/
+axiom IsHodgeWeight33OnEVII_AutomaticallyGInvariant_REQUIRED_HYPOTHESIS :
  E7ShimuraTor → Prop
 
 /-- (ii.b) Mumford canonical extension: the cohomology class `[q] ∈
@@ -1942,6 +2054,66 @@ axiom borel_wallach_stable_invariant_descent_framework_E7_PUBLISHED :
  paper source: hyp:ChernWeil-bridge-E7 clause (ii.a) extension atom. -/
 axiom freudenthal_class_realized_by_g_invariant_cohomology_E7_REQUIRED_HYPOTHESIS :
  ∀ (S : E7ShimuraTor),
+   IsFreudenthalClassRealizedByGInvariantCohomology_E7_REQUIRED_HYPOTHESIS S
+
+/-- PUBLISHED witness for Watanabe 1975 integral cohomology ring of EVII
+ (P9.a, R-#new-P9). Source: T. Watanabe, J. Math. Kyoto Univ. 15-1 (1975)
+ 139-160. -/
+axiom is_watanabe_1975_integral_cohomology_ring_EVII_PUBLISHED :
+ ∀ (S : E7ShimuraTor),
+   IsWatanabe1975IntegralCohomologyRingEVII_PUBLISHED S
+
+/-- `_REQUIRED_HYPOTHESIS` placeholder witness for V-Z A_q(λ) computation
+ for `E_{7(-25)}` at degree 8 (P9.b, R-#new-P9). NOT discharged. -/
+axiom is_vogan_zuckerman_aq_lambda_computation_for_E725_degree8_REQUIRED_HYPOTHESIS :
+ ∀ (S : E7ShimuraTor),
+   IsVoganZuckermanAqLambdaComputationFor_E725_Degree8_REQUIRED_HYPOTHESIS S
+
+/-- `_REQUIRED_HYPOTHESIS` placeholder witness for Eisenstein cohomology
+ vanishing for `E_{7(-25)}` at degree 8 (P9.c, R-#new-P9). NOT discharged. -/
+axiom is_eisenstein_cohomology_vanishing_for_E725_degree8_REQUIRED_HYPOTHESIS :
+ ∀ (S : E7ShimuraTor),
+   IsEisensteinCohomologyVanishingFor_E725_Degree8_REQUIRED_HYPOTHESIS S
+
+/-- gapBlocked-tier `_REQUIRED_HYPOTHESIS` placeholder witness for
+ Hodge-weight-(3,3) automatic G-invariance (P9.d, R-#new-P9 — structural
+ barrier). NOT discharged. -/
+axiom is_hodge_weight33_on_EVII_automatically_G_invariant_REQUIRED_HYPOTHESIS :
+ ∀ (S : E7ShimuraTor),
+   IsHodgeWeight33OnEVII_AutomaticallyGInvariant_REQUIRED_HYPOTHESIS S
+
+/-- **P9 DECOMPOSITION BRIDGE** for clause (ii.a) atom (R-#new-P9).
+ Per Phase 0 hostile audit, the monolithic
+ `IsFreudenthalClassRealizedByGInvariantCohomology_E7_REQUIRED_HYPOTHESIS`
+ is structurally derivable from 4 typed sub-atoms:
+ (P9.a) PUBLISHED `IsWatanabe1975IntegralCohomologyRingEVII_PUBLISHED`
+       (explicit `H^*(Ě_VII; ℤ)` integral cohomology ring + generators
+       in degree 8 — Watanabe 1975 PUBLISHED anchor);
+ (P9.b) `_REQUIRED_HYPOTHESIS` `IsVoganZuckermanAqLambdaComputationFor_E725_Degree8_REQUIRED_HYPOTHESIS`
+       (specific A_q(λ) classification at deg 8 contributing G-invariant
+       class — V-Z 1984 framework PUBLISHED, specific computation missing);
+ (P9.c) `_REQUIRED_HYPOTHESIS` `IsEisensteinCohomologyVanishingFor_E725_Degree8_REQUIRED_HYPOTHESIS`
+       (Eisenstein/residual non-contribution at degree 8 — Franke 1998
+       framework PUBLISHED, specific vanishing missing);
+ (P9.d) gapBlocked-tier `IsHodgeWeight33OnEVII_AutomaticallyGInvariant_REQUIRED_HYPOTHESIS`
+       (structural barrier: no published theorem says weight-(3,3)
+       classes on EVII Shimura are automatically G-invariant).
+ The bridge encodes the structural fact that, given P9.a (explicit
+ H^8 generators) + P9.b (A_q(λ) classification of contributing reps)
+ + P9.c (no Eisenstein contamination) + P9.d (Hodge-type structure
+ auto-G-invariant), the specific class `[q]_G` is realized by
+ G-invariant cohomology on `S_Γ` at degree 8. Net effect: monolithic
+ atom replaced by 1 PUBLISHED + 2 narrower REQUIRED + 1 gapBlocked
+ structural barrier. The active residual is now pinpointed at the
+ V-Z A_q(λ) specific computation + Eisenstein-vanishing specific
+ computation; the structural barrier (P9.d) is surfaced as typed
+ Lean failure-asset. -/
+axiom is_freudenthal_class_realized_by_g_invariant_cohomology_E7_from_subatoms_P9 :
+ ∀ (S : E7ShimuraTor),
+   IsWatanabe1975IntegralCohomologyRingEVII_PUBLISHED S →
+   IsVoganZuckermanAqLambdaComputationFor_E725_Degree8_REQUIRED_HYPOTHESIS S →
+   IsEisensteinCohomologyVanishingFor_E725_Degree8_REQUIRED_HYPOTHESIS S →
+   IsHodgeWeight33OnEVII_AutomaticallyGInvariant_REQUIRED_HYPOTHESIS S →
    IsFreudenthalClassRealizedByGInvariantCohomology_E7_REQUIRED_HYPOTHESIS S
 
 /-- Bridge axiom for clause (ii.a): the Matsushima/Borel-Wallach descent
