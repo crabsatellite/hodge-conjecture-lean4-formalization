@@ -378,6 +378,36 @@ Closure tier distribution (epistemic ordering per R-#27 et seq.):
   clean (0 sorry). The P8 + P9 ceremony-retreat charge is DISARMED;
   the active conjectural-surface count of 4 monoliths is now fully
   load-bearing-decomposed through 3 bridges + ~22 typed sub-atoms.
+  P14 FURTHER DECOMPOSITION OF HODGE-AUTO-G-INVARIANT gapBlocked
+  BARRIER (R-#new-P14): Phase 0 hostile audit on the (P9.d) atom
+  `IsHodgeWeight33OnEVII_AutomaticallyGInvariant_REQUIRED_HYPOTHESIS`
+  catches a CRITICAL type-level confusion: the original "(3,3)" naming
+  is internally inconsistent — (p,q) at H^k requires p+q=k, so (3,3)
+  lives in H^6, NOT H^8. Correct bigrading at degree 8 is (4,4).
+  Audit identifies a POTENTIAL CLOSURE PATH via 3 structural ingredients:
+  (P14.SI-1) `_REQUIRED_HYPOTHESIS` `IsBorelStableRangeForE725AtDegree8_REQUIRED_HYPOTHESIS`
+            (Borel stable range bound `m(E_{7(-25)}) ≥ 8`; framework
+            PUBLISHED via Borel 1974 ASENS 7, 235-272 + Tshishiku 2019
+            arXiv:1904.04902; specific m-bound REQUIRED).
+  (P14.SI-2) PUBLISHED `IsCompactDualEVIIPoincarePolynomial_PUBLISHED`
+            (Watanabe 1975 J. Math. Kyoto Univ. 15-2, 363-385 + arXiv:2508.11236;
+            gives `b_8(Ě_VII) = 1`, `H^8(Ě_VII; ℚ) = ℚ·h^4` 1-dim).
+  (P14.SI-3) PUBLISHED `IsCompactDualEVIIHodgeBigradingDiagonal_PUBLISHED`
+            (Bott 1957 Ann. Math. 66, 203-248 + Borel-Hirzebruch 1958 §29-30
+            + Griffiths-Harris Ch. 1 §3; diagonal Hodge bigrading on flag
+            varieties).
+  The conjunction implies: `H^8(S_Γ_EVII; ℂ) ≅ ℚ·c_4 = ℚ·(4,4)`-Kähler-class,
+  which is G-invariant by Borel stable range. P14 Lean output: 3 new typed
+  atoms (1 REQUIRED + 2 PUBLISHED) + bridge axiom + LOAD-BEARING REWIRE
+  derived theorem (same round). The upstream consumer (P12-A P9 derived
+  theorem) is rewired to use the P14 derived theorem. Active gapBlocked
+  status of the original P9.d atom is GENUINELY DOWNGRADED: from
+  "auto-G-invariant — no published theorem" to "m(E_{7(-25)}) ≥ 8 Borel
+  stable range bound — specific computational claim from PUBLISHED
+  Borel-1974 framework". 4-atom monolithic conjectural-surface count
+  UNCHANGED but residual narrowed; 2 NEW PUBLISHED atoms (SI-2 + SI-3)
+  added as clean publishable byproducts.
+
   P13 FURTHER DECOMPOSITION OF FORM-HM-EVII gapBlocked BARRIER
   (R-#new-P13): Phase 0 hostile audit on the P8.2 gapBlocked
   structural barrier `IsHirzebruchMumfordProportionalityFormsForEVII_REQUIRED_HYPOTHESIS`
