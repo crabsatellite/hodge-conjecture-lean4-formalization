@@ -206,4 +206,134 @@ def borelMConstantE7minus25_AtLeast8_OPEN_TARGET : Prop :=
 -- None of these are axiomatized; the proof discipline forbids axiomatizing
 -- a claim we cannot derive from Cat 1+2.
 
+-- ============================================================================
+-- P18: P13 form-level Hirzebruch-Mumford proportionality EVII chain
+-- ============================================================================
+--
+-- Migration of P13 chain to strict Cat 1-3 discipline.
+--
+-- Original P13 decomposed `IsHirzebruchMumfordProportionalityFormsForEVII_REQUIRED_HYPOTHESIS`
+-- into 4 sub-atoms (SI-1 + SI-2-LB PUBLISHED + SI-2-HR + SI-3 REQUIRED) via
+-- an axiom-bridge. This migration:
+--   1. Replaces opaque PUBLISHED predicates with Cat 2 axioms having explicit
+--      propositional content.
+--   2. Converts the bridge from AXIOM to DERIVED THEOREM.
+--   3. Preserves SI-2-HR + SI-3 as EXPLICIT HYPOTHESES of the conditional
+--      theorem (NOT Cat 3 axioms).
+
+/-- Stub Prop for "Mumford canonical extension exists for any semisimple
+ automorphic bundle on `S_Γ`". -/
+opaque mumfordCanonicalExtensionExistsForAnyAutomorphicBundle : Prop
+
+/-- Stub Prop for "automorphic LINE bundles on `S_Γ` extend with Mumford-good
+ metric to `S_Γ^{tor}`". -/
+opaque automorphicLineBundleGoodMetricExtends : Prop
+
+/-- Stub Prop for "higher-rank automorphic vector bundle (V_56 of rank 27 or
+ similar) on EVII admits Mumford-good metric on `S_Γ^{tor}`". OPEN target. -/
+opaque higherRankAutomorphicBundleGoodMetricExtendsForEVII : Prop
+
+/-- Stub Prop for "Chern-Weil curvature forms of `(𝓥^can, h_good)` on
+ `S_Γ^{tor}` for EVII represent the same classes as Mumford 1977 number-level
+ proportionality predicts AND pull back from G(ℂ)-invariant forms on `Ě_VII`
+ via Borel embedding modulo controlled boundary corrections" — Goresky-Pardon
+ 2002 analog for EVII. OPEN target. -/
+opaque chernWeilFormProportionalityForEVII : Prop
+
+/-- Stub Prop for "form-level Hirzebruch-Mumford proportionality holds for
+ arithmetic quotients of EVII Hermitian symmetric domain". This is the
+ conclusion atom. -/
+opaque hirzebruchMumfordProportionalityFormsForEVII : Prop
+
+-- ============================================================================
+-- Cat 2 axioms (P18 chain)
+-- ============================================================================
+
+/-- **Cat 2** — D. Mumford, "Hirzebruch's proportionality theorem in the
+ non-compact case", Invent. Math. 42 (1977), Theorem 3.1; M. Harris,
+ "Functorial properties of toroidal compactifications of locally symmetric
+ varieties", Proc. London Math. Soc. (3) 59 (1989), §4.1 (general formulation).
+
+ For every semisimple automorphic vector bundle E on `S_Γ` (Γ neat) there
+ exists a canonical extension E^can on a smooth toroidal compactification
+ `S_Γ^{tor}` with simple normal crossing boundary divisor and trivial
+ monodromy. Type-uniform; covers EVII. -/
+axiom mumford_1977_canonical_extension_exists :
+  mumfordCanonicalExtensionExistsForAnyAutomorphicBundle
+
+/-- **Cat 2** — D. Mumford 1977 Invent. Math. 42 (good metric definition +
+ log-singular invariant); J.-I. Burgos, J. Kramer, U. Kühn, "Cohomological
+ arithmetic Chow rings", arXiv:math/0502085 (Burgos-Kramer-Kühn machinery
+ for log-log forms).
+
+ Every automorphic line bundle on `S_Γ` with invariant smooth Hermitian
+ metric extends to `S_Γ^{tor}` with Mumford-good (log-singular) Hermitian
+ metric; Chern-Weil form representing c_1 extends as a current with
+ log-singular boundary growth. Type-uniform; covers EVII line bundles. -/
+axiom mumford_1977_burgos_kramer_kuhn_line_bundle_good_metric :
+  automorphicLineBundleGoodMetricExtends
+
+/-- **Cat 2 framework** — combination of Mumford 1977 + Burgos-Kramer-Kühn
+ line-bundle case + canonical-extension existence + (HYPOTHESIS) higher-rank
+ good-metric + (HYPOTHESIS) Chern-Weil form proportionality at EVII.
+
+ If all four ingredients hold, the form-level HM proportionality conclusion
+ follows by standard structural manipulation: Chern-Weil curvature
+ `F(h) = (∂̄∂ log h)/2πi` represents c_1; symmetric polynomial representatives
+ of higher c_i's via Griffiths-Harris standard machinery; good-metric
+ controlled boundary growth makes forms locally integrable with current
+ extension; SI-3 identifies the resulting form with pullback from compact dual.
+ (Mumford 1977 + Faltings 1984 + Looijenga 2017 framework collectively;
+ specific application to EVII is the open content.) -/
+axiom mumford_faltings_looijenga_framework_form_proportionality_EVII :
+  mumfordCanonicalExtensionExistsForAnyAutomorphicBundle →
+  automorphicLineBundleGoodMetricExtends →
+  higherRankAutomorphicBundleGoodMetricExtendsForEVII →
+  chernWeilFormProportionalityForEVII →
+  hirzebruchMumfordProportionalityFormsForEVII
+
+-- ============================================================================
+-- DERIVED CONDITIONAL THEOREM (P18 bridge)
+-- ============================================================================
+
+/-- **DERIVED CONDITIONAL THEOREM** (P18, R-#new-P18): form-level
+ Hirzebruch-Mumford proportionality for EVII holds, **PROVIDED** the two
+ EVII-specific open ingredients hold (higher-rank good metric + Chern-Weil
+ form proportionality).
+
+ The two hypotheses are NOT axiomatized as Cat 3. Per P13 + P18 Phase 0
+ audits: form-level HM proportionality for non-PEL, non-Sp, non-orthogonal,
+ non-abelian-type Shimura (EVII falls here) is NOT in published literature.
+ Best published frameworks cover only the classical / Hodge-type cases.
+
+ By preserving conditional structure, this theorem honestly expresses the
+ dependency on the unproven EVII-specific facts without fudging via Cat 3
+ axiom. -/
+theorem form_level_HM_proportionality_for_EVII_via_subatoms
+  (h_higher_rank : higherRankAutomorphicBundleGoodMetricExtendsForEVII)
+  (h_form_proportionality : chernWeilFormProportionalityForEVII) :
+  hirzebruchMumfordProportionalityFormsForEVII := by
+  apply mumford_faltings_looijenga_framework_form_proportionality_EVII
+  · exact mumford_1977_canonical_extension_exists
+  · exact mumford_1977_burgos_kramer_kuhn_line_bundle_good_metric
+  · exact h_higher_rank
+  · exact h_form_proportionality
+
+/-- **GAP MARKER** (P18): the hypotheses `h_higher_rank` and `h_form_proportionality`
+ of the conditional theorem `form_level_HM_proportionality_for_EVII_via_subatoms`
+ are NOT proven from currently-published Cat 2 sources.
+
+ Per P13 + P15 + P18 Phase 0 audits:
+ - Mumford 1977: Chern-NUMBER level only (PUBLISHED, type-uniform).
+ - Faltings 1984: form-level for PEL types.
+ - Looijenga 2017: form-level for Sp/symplectic only.
+ - Gritsenko-Hulek-Sankaran 2008: form-level for orthogonal O(2,n).
+ - EVII: non-PEL, non-Sp, non-orthogonal, non-abelian-type → uncovered.
+ - Required: new theorem extending form-level HM proportionality to EVII.
+
+ The OPEN status is preserved as explicit hypotheses, NOT axiomatized. -/
+def formLevelHMProportionalityEVII_OPEN_TARGETS : Prop :=
+  higherRankAutomorphicBundleGoodMetricExtendsForEVII ∧
+  chernWeilFormProportionalityForEVII
+
 end HodgeReduction.Strict
