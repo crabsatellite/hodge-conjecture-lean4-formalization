@@ -15,13 +15,22 @@ Re-exports:
   * `HodgeReduction.Types`            — opaque types.
   * `HodgeReduction.ClassicalResults` — classical results (axiomatised
                                         pending Mathlib port).
-  * `HodgeReduction.OpenHypotheses`   — nine labelled paper hypotheses.
+  * `HodgeReduction.OpenHypotheses`   — nine labelled paper hypotheses
+                                        (exploratory reduction-stage ledger
+                                        with broken-link Phase 0 audit trail).
   * `HodgeReduction.MainTheorem`      — the Main Theorem and unconditional
                                         theorems, each with `sorry`.
   * `HodgeReduction.Ledger`           — gap ledger (status + metadata for
                                         every OPEN / PARTIAL / BLOCKED /
                                         DEAD-END / CLOSED entry; cross-
                                         session attack-history record).
+  * `HodgeReduction.Strict`           — Cat 1-3 strict-discipline restructure
+                                        (P17+). Each chain migrates from
+                                        opaque-axiom reduction-stage to
+                                        Cat 1+2-only derivation-stage via
+                                        explicit-content Cat 2 axioms +
+                                        derived theorems + honest conditional
+                                        structure for open targets.
 -/
 
 import HodgeReduction.Types
@@ -29,3 +38,4 @@ import HodgeReduction.ClassicalResults
 import HodgeReduction.OpenHypotheses
 import HodgeReduction.MainTheorem
 import HodgeReduction.Ledger
+import HodgeReduction.Strict
