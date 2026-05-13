@@ -253,7 +253,7 @@ Closure tier distribution (epistemic ordering per R-#27 et seq.):
   catches that the atom is a COMPOSITE bundling 3 distinct residual
   claims + 1 structural barrier. Findings:
   (1) NEW PUBLISHED anchor `IsWatanabe1975IntegralCohomologyRingEVII_PUBLISHED`
-      (Watanabe 1975 J. Math. Kyoto Univ. 15-1 139-160 explicit
+      (Watanabe 1975 J. Math. Kyoto Univ. 15-2 363-385 explicit
       integral cohomology ring of EVII = E_7/E_6·SO(2)).
   (2) `_REQUIRED_HYPOTHESIS` `IsVoganZuckermanAqLambdaComputationFor_E725_Degree8_REQUIRED_HYPOTHESIS`
       (V-Z 1984 framework PUBLISHED but specific A_q(λ) classification
@@ -358,6 +358,26 @@ Closure tier distribution (epistemic ordering per R-#27 et seq.):
   mathematical breakthrough (constructing twisted Φ for i.b.2, or
   proving form-level HM proportionality for EVII, etc.) or further
   decomposition surfacing additional structural barriers.
+  P12 PHASE-4 BATCH AUDIT + PATCH BATCH (R-#new-P12): hostile audit
+  on P7-P11 returned 3 CRITICAL (P8 + P9 bridge inert ceremony retreat
+  + P9.a Watanabe page wrong) + 2 MAJOR (P11.a/b tier inflation) +
+  4 MINOR defects. PATCH-A LOAD-BEARING REWIRE: P8 + P9 bridges
+  rewired (analog P7-PATCH-A) — derived theorems
+  `is_E6_representation_compatibility_of_section_16dot2_REQUIRED_HYPOTHESIS_via_P8_subatoms`
+  and `freudenthal_class_realized_by_g_invariant_cohomology_E7_REQUIRED_HYPOTHESIS_via_P9_subatoms`
+  added AFTER the bridges (forward-reference fix); downstream consumers
+  rewired to use them. Both P8 + P9 bridges now LOAD-BEARING; active
+  conjectural-surface gates are now (P8) form-level HM proportionality
+  for EVII (gapBlocked structural barrier) and (P9) Hodge-weight-(3,3)
+  auto-G-invariant (gapBlocked structural barrier). PATCH-B Watanabe
+  page corrected J. Math. Kyoto Univ. 15-1 (1975), 139-160 → 15-2
+  (1975), 363-385. PATCH-C P11.a + P11.b tier downgraded PUBLISHED →
+  FOLKLORE_PUBLISHED (rank stratification + canonical-Φ-vanishing
+  multi-source folklore; primary single-citation unavailable). PATCH-D
+  Gritsenko-Hulek-Sankaran year 2007 → 2008 (Doc. Math. 13). Build
+  clean (0 sorry). The P8 + P9 ceremony-retreat charge is DISARMED;
+  the active conjectural-surface count of 4 monoliths is now fully
+  load-bearing-decomposed through 3 bridges + ~22 typed sub-atoms.
 - gapPartial multi-path `_CONJECTURAL`: SG-17 (R-#24 Hard-Lefschetz
   Schur scalar partial-kill + 3 closing paths).
 - gapPartial `_NAMED_OPEN_MULTI`: SG-23 (R-#65 upgrade from

@@ -1320,7 +1320,7 @@ axiom IsCrossRingBridgeNonzeroOnFreudenthalQuartic_E7P7_INVENTION_CLASS :
  Freudenthal magic square".
  paper source: hyp:ChernWeil-bridge-E7 (i.b.2) — P11 failure-asset
  PUBLISHED structural fact (canonical Φ vanishes). -/
-axiom IsCanonicalFreudenthalPhiVanishesOnClosedOrbit_E7P7_PUBLISHED :
+axiom IsCanonicalFreudenthalPhiVanishesOnClosedOrbit_E7P7_FOLKLORE_PUBLISHED :
  E7ShimuraTor → Prop
 
 /-- **PUBLISHED gapClosed atom (P11.b, R-#new-P11)**: the Freudenthal
@@ -1338,7 +1338,7 @@ axiom IsCanonicalFreudenthalPhiVanishesOnClosedOrbit_E7P7_PUBLISHED :
  paper source: hyp:ChernWeil-bridge-E7 (i.b.2) — P11 failure-asset
  PUBLISHED structural fact (Freudenthal quartic vanishes on rank-1
  closed orbit). -/
-axiom IsFreudenthalQuarticIdenticallyZeroOnClosedOrbit_E7P7_PUBLISHED :
+axiom IsFreudenthalQuarticIdenticallyZeroOnClosedOrbit_E7P7_FOLKLORE_PUBLISHED :
  E7ShimuraTor → Prop
 
 /-- **`_INVENTION_CLASS` atom (P11.c, R-#new-P11 — Pattern 5
@@ -1364,14 +1364,14 @@ axiom IsTwistedCrossRingBridge_E7P7_INVENTION_CLASS :
  E7ShimuraTor → Prop
 
 /-- PUBLISHED witness for P11.a (canonical Φ vanishes on closed orbit). -/
-axiom is_canonical_freudenthal_phi_vanishes_on_closed_orbit_E7P7_PUBLISHED :
+axiom is_canonical_freudenthal_phi_vanishes_on_closed_orbit_E7P7_FOLKLORE_PUBLISHED :
  ∀ (S : E7ShimuraTor),
-   IsCanonicalFreudenthalPhiVanishesOnClosedOrbit_E7P7_PUBLISHED S
+   IsCanonicalFreudenthalPhiVanishesOnClosedOrbit_E7P7_FOLKLORE_PUBLISHED S
 
 /-- PUBLISHED witness for P11.b (Freudenthal quartic vanishes on E_7/P_7). -/
-axiom is_freudenthal_quartic_identically_zero_on_closed_orbit_E7P7_PUBLISHED :
+axiom is_freudenthal_quartic_identically_zero_on_closed_orbit_E7P7_FOLKLORE_PUBLISHED :
  ∀ (S : E7ShimuraTor),
-   IsFreudenthalQuarticIdenticallyZeroOnClosedOrbit_E7P7_PUBLISHED S
+   IsFreudenthalQuarticIdenticallyZeroOnClosedOrbit_E7P7_FOLKLORE_PUBLISHED S
 
 /-- `_INVENTION_CLASS` placeholder witness for twisted cross-ring bridge
  (P11.c). NOT discharged. -/
@@ -1644,8 +1644,9 @@ axiom IsBorelWallachStableInvariantDescentFramework_E7 : E7ShimuraTor → Prop
 axiom IsFreudenthalClassRealizedByGInvariantCohomology_E7_REQUIRED_HYPOTHESIS :
  E7ShimuraTor → Prop
 
-/-- **PUBLISHED atom (P9.a, R-#new-P9)**: Watanabe 1975 Kyoto J. Math. 15
- (139-160) "The integral cohomology ring of the symmetric space EVII"
+/-- **PUBLISHED atom (P9.a, R-#new-P9; P12-B citation patch)**: Watanabe
+ 1975 J. Math. Kyoto Univ. 15-2 (363-385) "The integral cohomology
+ ring of the symmetric space EVII"
  explicitly computes the integral cohomology ring `H^*(Ě_VII; ℤ)` of
  the compact-dual `Ě_VII = E_7/E_6·SO(2)`. Provides the Poincaré
  polynomial, generators, and relations. Key downstream fact: `H^8(Ě_VII; ℂ)`
@@ -1655,7 +1656,7 @@ axiom IsFreudenthalClassRealizedByGInvariantCohomology_E7_REQUIRED_HYPOTHESIS :
  the 1-dim claim used by clause (i.b.1) and the polynomial-identity
  reduction in clause (iii).) Tier: PUBLISHED.
  Source: T. Watanabe, "The integral cohomology ring of the symmetric
- space EVII", J. Math. Kyoto Univ. 15-1 (1975), 139-160.
+ space EVII", J. Math. Kyoto Univ. 15-2 (1975), 363-385.
  paper source: hyp:ChernWeil-bridge-E7 (P9 decomposition sub-atom a —
  Watanabe 1975 PUBLISHED). -/
 axiom IsWatanabe1975IntegralCohomologyRingEVII_PUBLISHED :
@@ -1903,7 +1904,7 @@ axiom IsGPAbstractParabolicConnectionFramework_GroupAgnostic_PUBLISHED :
           EXCEPTIONAL not classical — Wolf 1972 / Satake 1980).
    (P8.2) gapBlocked `IsHirzebruchMumfordProportionalityFormsForEVII_REQUIRED_HYPOTHESIS`
           (form-level HM proportionality for EVII; Mumford 1977 = numbers
-          only; Faltings 1984 + Looijenga 2017 = PEL/Sp only; GHS 2007 =
+          only; Faltings 1984 + Looijenga 2017 = PEL/Sp only; GHS 2008 =
           orthogonal only; EVII form-level is GENUINELY OPEN — new
           theorem required).
    (P8.3) gapPartial folklore `IsChernV27GeneratesBE6Rational_FOLKLORE`
@@ -1964,7 +1965,7 @@ axiom IsEVIIBoundaryStrataClassification_codim1_is_EIII_PUBLISHED :
      PEL types (incl. Siegel A_g).
    - Looijenga 2017 Compositio Math. 153 (1349-1371): canonical-
      lift refinement for Sp / symplectic case only.
-   - Gritsenko-Hulek-Sankaran 2007 Doc. Math.: form-level for
+   - Gritsenko-Hulek-Sankaran 2008 Doc. Math. 13: form-level for
      ORTHOGONAL type bounded symmetric domains.
  None of these cover EVII (non-PEL, non-Sp, non-orthogonal,
  non-abelian-type Shimura). The EVII form-level statement would
@@ -2133,8 +2134,8 @@ axiom freudenthal_class_realized_by_g_invariant_cohomology_E7_REQUIRED_HYPOTHESI
    IsFreudenthalClassRealizedByGInvariantCohomology_E7_REQUIRED_HYPOTHESIS S
 
 /-- PUBLISHED witness for Watanabe 1975 integral cohomology ring of EVII
- (P9.a, R-#new-P9). Source: T. Watanabe, J. Math. Kyoto Univ. 15-1 (1975)
- 139-160. -/
+ (P9.a, R-#new-P9; P12-B citation patch). Source: T. Watanabe, J. Math.
+ Kyoto Univ. 15-2 (1975) 363-385. -/
 axiom is_watanabe_1975_integral_cohomology_ring_EVII_PUBLISHED :
  ∀ (S : E7ShimuraTor),
    IsWatanabe1975IntegralCohomologyRingEVII_PUBLISHED S
@@ -2192,6 +2193,29 @@ axiom is_freudenthal_class_realized_by_g_invariant_cohomology_E7_from_subatoms_P
    IsHodgeWeight33OnEVII_AutomaticallyGInvariant_REQUIRED_HYPOTHESIS S →
    IsFreudenthalClassRealizedByGInvariantCohomology_E7_REQUIRED_HYPOTHESIS S
 
+/-- **DERIVED theorem (P12-A LOAD-BEARING REWIRE, R-#new-P12)**: the
+ (ii.a) realization atom is now derivable from the P9 bridge applied
+ to 4 P9 sub-atom witnesses (1 PUBLISHED + 2 REQUIRED + 1 gapBlocked
+ structural barrier). Per Phase 4 batch audit Pattern-7 ceremony-retreat
+ finding, the previous P9 bridge was inert (declared but never consumed).
+ This load-bearing rewire makes the bridge ACTIVE: the (ii.a) realization
+ atom is now genuinely derived from the P9 sub-atom decomposition;
+ the active gapBlocked residual is now pinpointed at the Hodge-weight-
+ (3,3) auto-G-invariant structural barrier (P9.d). Patch parallels
+ P7-PATCH-A and P12-A-via-P8 which did the same load-bearing rewire
+ for G-P-EVII and §16.2-E_6-rep-compat bridges.
+ The downstream consumer `matsushima_borel_wallach_descent_to_SGamma_PAPER_LABELLED_CONJECTURAL`
+ is rewired below to use this derived theorem instead of the direct
+ axiom, completing the load-bearing chain. -/
+theorem freudenthal_class_realized_by_g_invariant_cohomology_E7_REQUIRED_HYPOTHESIS_via_P9_subatoms :
+ ∀ (S : E7ShimuraTor),
+   IsFreudenthalClassRealizedByGInvariantCohomology_E7_REQUIRED_HYPOTHESIS S :=
+ fun S => is_freudenthal_class_realized_by_g_invariant_cohomology_E7_from_subatoms_P9 S
+   (is_watanabe_1975_integral_cohomology_ring_EVII_PUBLISHED S)
+   (is_vogan_zuckerman_aq_lambda_computation_for_E725_degree8_REQUIRED_HYPOTHESIS S)
+   (is_eisenstein_cohomology_vanishing_for_E725_degree8_REQUIRED_HYPOTHESIS S)
+   (is_hodge_weight33_on_EVII_automatically_G_invariant_REQUIRED_HYPOTHESIS S)
+
 /-- Bridge axiom for clause (ii.a): the Matsushima/Borel-Wallach descent
  witness `IsMatsushimaDescentToSGamma S` follows from the PUBLISHED
  framework atom + the `_REQUIRED_HYPOTHESIS` extension atom. Per the
@@ -2219,7 +2243,10 @@ theorem matsushima_borel_wallach_descent_to_SGamma_PAPER_LABELLED_CONJECTURAL :
  ∀ (S : E7ShimuraTor), IsMatsushimaDescentToSGamma S :=
  fun S => matsushima_descent_to_SGamma_from_framework_and_realization S
    (borel_wallach_stable_invariant_descent_framework_E7_PUBLISHED S)
-   (freudenthal_class_realized_by_g_invariant_cohomology_E7_REQUIRED_HYPOTHESIS S)
+   -- P12-A LOAD-BEARING REWIRE: replace direct axiom with P9-derived
+   -- theorem so the P9 bridge (4 sub-atoms: Watanabe PUBLISHED + V-Z
+   -- + Eisenstein REQUIRED + Hodge-(3,3) gapBlocked) is active.
+   (freudenthal_class_realized_by_g_invariant_cohomology_E7_REQUIRED_HYPOTHESIS_via_P9_subatoms S)
 
 /-- PUBLISHED axiom for clause (ii.b) framework: the Mumford
  canonical extension framework holds for every `E_{7(-25)}` Shimura
@@ -2301,14 +2328,8 @@ axiom gp_abstract_parabolic_connection_framework_group_agnostic_PUBLISHED :
  ∀ (S : E7ShimuraTor),
    IsGPAbstractParabolicConnectionFramework_GroupAgnostic_PUBLISHED S
 
-/-- `_REQUIRED_HYPOTHESIS` placeholder witness for E_6-representation-
- compatibility of G-P §16.2 (P7, R-#new). Post-P8: this atom is
- further decomposed via the P8 bridge `is_E6_representation_compatibility_of_section_16dot2_from_subatoms_P8`
- — the active witness chain consumes this monolithic atom but the
- monolithic atom can be FURTHER derived from P8 sub-atoms (1 PUBLISHED
- + 1 gapBlocked + 2 FOLKLORE_PUBLISHED). The genuine residual
- conjectural content surfaced by P8 is `IsHirzebruchMumfordProportionalityFormsForEVII_REQUIRED_HYPOTHESIS`
- (form-level HM proportionality for EVII; gapBlocked semantic). -/
+/-- `_REQUIRED_HYPOTHESIS` placeholder witness (kept; load-bearing
+ rewire is via derived theorem `_via_P8_subatoms` after the bridge). -/
 axiom is_E6_representation_compatibility_of_section_16dot2_REQUIRED_HYPOTHESIS :
  ∀ (S : E7ShimuraTor),
    IsE6RepresentationCompatibilityOfSection16dot2_REQUIRED_HYPOTHESIS S
@@ -2326,7 +2347,7 @@ axiom is_EVII_boundary_strata_classification_codim1_is_EIII_PUBLISHED :
  NOT discharged — gapBlocked semantic; new theorem required.
  Sources for existing form-level results (which do NOT cover EVII):
  Mumford 1977 (numbers only); Faltings 1984 (PEL/Sp form-level);
- Looijenga 2017 (Sp canonical-lift); Gritsenko-Hulek-Sankaran 2007
+ Looijenga 2017 (Sp canonical-lift); Gritsenko-Hulek-Sankaran 2008
  (orthogonal form-level). -/
 axiom is_hirzebruch_mumford_proportionality_forms_for_EVII_REQUIRED_HYPOTHESIS :
  ∀ (S : E7ShimuraTor),
@@ -2378,6 +2399,28 @@ axiom is_E6_representation_compatibility_of_section_16dot2_from_subatoms_P8 :
    IsChernV27GeneratesBE6Rational_FOLKLORE_PUBLISHED S →
    IsChernV56GeneratesBE7Rational_FOLKLORE_PUBLISHED S →
    IsE6RepresentationCompatibilityOfSection16dot2_REQUIRED_HYPOTHESIS S
+
+/-- **DERIVED theorem (P12-A LOAD-BEARING REWIRE, R-#new-P12)**: the
+ §16.2 E_6-rep-compat atom is now derivable from the P8 bridge applied
+ to 4 P8 sub-atom witnesses (1 PUBLISHED + 1 gapBlocked + 2 FOLKLORE_PUBLISHED).
+ Per Phase 4 batch audit Pattern-7 ceremony-retreat finding, the
+ previous P8 bridge was inert (declared but never consumed). This
+ load-bearing rewire makes the bridge ACTIVE: the §16.2 atom is now
+ genuinely derived from the P8 sub-atom decomposition via the bridge;
+ the active gapBlocked residual is now pinpointed at form-level HM
+ proportionality for EVII. Patch parallels P7-PATCH-A which did the
+ same load-bearing rewire for the G-P-EVII bridge.
+ The downstream consumer in P7-PATCH-A is rewired (later in this file)
+ to use this derived theorem instead of the direct axiom, completing
+ the load-bearing chain. -/
+theorem is_E6_representation_compatibility_of_section_16dot2_REQUIRED_HYPOTHESIS_via_P8_subatoms :
+ ∀ (S : E7ShimuraTor),
+   IsE6RepresentationCompatibilityOfSection16dot2_REQUIRED_HYPOTHESIS S :=
+ fun S => is_E6_representation_compatibility_of_section_16dot2_from_subatoms_P8 S
+   (is_EVII_boundary_strata_classification_codim1_is_EIII_PUBLISHED S)
+   (is_hirzebruch_mumford_proportionality_forms_for_EVII_REQUIRED_HYPOTHESIS S)
+   (is_chern_V27_generates_BE6_rational_FOLKLORE_PUBLISHED S)
+   (is_chern_V56_generates_BE7_rational_FOLKLORE_PUBLISHED S)
 
 /-- `_REQUIRED_HYPOTHESIS` placeholder witness for degree-8 specialization
  of G-P-EVII Chern-subalgebra surjection (P7, R-#new). NOT discharged.
@@ -2867,15 +2910,16 @@ theorem borel_hirzebruch_schwarz_polynomial_identity_E7_iii_PAPER_LABELLED_CONJE
    (matsushima_borel_wallach_descent_to_SGamma_PAPER_LABELLED_CONJECTURAL S)
    (mumford_1977_canonical_extension_to_tor_PAPER_LABELLED_CONJECTURAL S)
    (chern_weil_descent_ring_hom_compatible_with_chern_subring_E7_PUBLISHED S)
-   -- P7-PATCH-A: monolithic G-P-EVII atom DISCHARGED via P7 decomposition
-   -- bridge (2 PUBLISHED sub-atoms + 1 narrower _REQUIRED_HYPOTHESIS);
-   -- this is the load-bearing rewire that genuinely narrows the active
-   -- conjectural residual from "full G-P §16.4 extension to EVII" to
-   -- "E_6-rep compatibility of G-P §16.2 K-decomposition step".
+   -- P7-PATCH-A + P12-A: monolithic G-P-EVII atom DISCHARGED via P7
+   -- decomposition bridge applied to 2 PUBLISHED sub-atoms + 1 narrower
+   -- _REQUIRED_HYPOTHESIS. The narrower atom is itself now LOAD-BEARING-
+   -- derived via P12-A through the P8 bridge (4 P8 sub-atoms). The full
+   -- active conjectural-surface gate is now form-level HM proportionality
+   -- for EVII (P8.2 gapBlocked structural barrier).
    (goresky_pardon_chern_subalgebra_extension_to_EVII_from_subatoms S
      (borel_hirzebruch_classifying_space_presentation_for_E6_times_U1_FOLKLORE_PUBLISHED S)
      (gp_abstract_parabolic_connection_framework_group_agnostic_PUBLISHED S)
-     (is_E6_representation_compatibility_of_section_16dot2_REQUIRED_HYPOTHESIS S))
+     (is_E6_representation_compatibility_of_section_16dot2_REQUIRED_HYPOTHESIS_via_P8_subatoms S))
    (compact_dual_quartic_image_and_descent_map_witness_chain_E7_FOLKLORE_PUBLISHED S)
 
 /-- Clause (iii): explicit `ℚ`-polynomial identity
