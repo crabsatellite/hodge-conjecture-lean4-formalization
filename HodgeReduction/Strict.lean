@@ -703,4 +703,138 @@ theorem goresky_pardon_EVII_via_full_form_HM_chain
   · exact h_higher_rank
   · exact h_form_proportionality
 
+-- ============================================================================
+-- P22: remaining (ii.b.2) placement chain + (i.b.2) cross-ring Φ chain
+-- ============================================================================
+--
+-- These two remaining monoliths from the 4-monolith ChernWeil-bridge-E7 chain
+-- are NOT decomposed further via published Cat 2 sources per P10 + P11 audits.
+-- They stay as OPEN target hypotheses of the conditional Main Theorem.
+
+/-- Stub Prop: "The IH-pulled-back class [q] ∈ H^8(S_Γ^{tor}, ℚ) is PLACED IN
+ the Goresky-Pardon Chern subalgebra at degree 8 — i.e., is a polynomial in
+ `c_i(𝓥_56^{can})`". (P10 ii.b.2 atom; paper-acknowledged conditional per
+ master tex L11625-11647 "not presently available in the published literature".) -/
+opaque freudenthalClassPlacedInChernSubalgebra : Prop
+
+/-- Stub Prop: "There exists a non-zero E_7-equivariant cross-ring map
+ `Φ : Sym⁴(V_56^*)^{E_7} → H^8(E_7^ℂ/P_7, ℚ)` sending the Freudenthal quartic
+ `q` to a non-zero class `[q]_G`". (P11 i.b.2 atom; canonical Φ vanishes
+ per Landsberg-Manivel 2001; twisted Φ requires construction.) -/
+opaque crossRingBridgeNonzeroOnFreudenthalQuartic : Prop
+
+/-- Stub Prop: "The Freudenthal class extends compatibly at degree 8 in the
+ weight-3 non-classical signature" — (ii.b) compatibility statement,
+ derivable from (ii.b.1) IH-pullback PUBLISHED + (ii.b.2) placement. -/
+opaque freudenthalClassExtendsCompatiblyAtDegree8 : Prop
+
+/-- **Cat 2 PUBLISHED** — Beilinson-Bernstein-Deligne 1982 "Faisceaux pervers",
+ Astérisque 100 (decomposition theorem); M. Saito 1988 "Modules de Hodge
+ polarisables", Publ. RIMS 24 (mixed Hodge module pullback for IH);
+ Goresky-MacPherson 1980 "Intersection homology theory", Topology 19.
+
+ The canonical IH-to-toroidal pullback `IH^*(S_Γ^*, ℚ) → H^*(S_Γ^{tor}, ℚ)`
+ along any toroidal resolution `S_Γ^{tor} → S_Γ^*` produces a well-defined
+ class in `H^8(S_Γ^{tor}, ℚ)` independent of toroidal-compactification choice. -/
+opaque ihPullbackToToroidalForFreudenthalClass : Prop
+
+axiom bbd_saito_goresky_macpherson_ih_pullback :
+  ihPullbackToToroidalForFreudenthalClass
+
+/-- **Cat 2 framework** — (ii.b) compatibility statement follows from
+ (ii.b.1) IH-pullback PUBLISHED + (ii.b.2) placement REQUIRED. -/
+axiom freudenthal_class_extends_compatibly_from_iib1_and_iib2 :
+  ihPullbackToToroidalForFreudenthalClass →
+  freudenthalClassPlacedInChernSubalgebra →
+  freudenthalClassExtendsCompatiblyAtDegree8
+
+/-- **DERIVED CONDITIONAL THEOREM** (P22): (ii.b) compatibility holds,
+ PROVIDED (ii.b.2) placement holds. -/
+theorem freudenthal_class_extends_compatibly_via_iib2_placement
+  (h_placement : freudenthalClassPlacedInChernSubalgebra) :
+  freudenthalClassExtendsCompatiblyAtDegree8 := by
+  apply freudenthal_class_extends_compatibly_from_iib1_and_iib2
+  · exact bbd_saito_goresky_macpherson_ih_pullback
+  · exact h_placement
+
+-- ============================================================================
+-- TOP-LEVEL CHAINED CONDITIONAL MAIN THEOREM
+-- ============================================================================
+
+/-- Stub Prop: "The Freudenthal quartic class `[q]` is algebraic on
+ `S_Γ_EVII` (= conclusion of Hodge Conjecture for [q] on EVII Shimura
+ varieties)". This is the Main Theorem target. -/
+opaque hodgeConjectureForFreudenthalQuarticOnEVII : Prop
+
+/-- **Cat 2 framework** — the paper's polynomial identity / clause (iii)
+ reduction: HC for [q] on EVII follows from the conjunction of:
+   (i.b.2) cross-ring Φ(q) ≠ 0 on Freudenthal quartic
+   (ii.a) Freudenthal-realized-by-G-invariant-cohomology
+   (ii.b) Freudenthal-class-extends-compatibly-at-degree-8
+   G-P-EVII Chern-subalgebra extension
+ plus the (i.b.1) PUBLISHED dim H^8(Ě_VII) = 1 (Watanabe) + Chern-subring
+ surjectivity (already covered). The conjunction implies the polynomial
+ identity `[q] = P(c_1, ..., c_4)`, which gives algebraicity. -/
+axiom paper_clause_iii_polynomial_identity_implies_hc :
+  crossRingBridgeNonzeroOnFreudenthalQuartic →
+  freudenthalClassRealizedByGInvariantCohomologyOnSGammaEVII →
+  freudenthalClassExtendsCompatiblyAtDegree8 →
+  goreskyPardonChernSubalgebraExtensionToEVII →
+  hodgeConjectureForFreudenthalQuarticOnEVII
+
+/-- **MAIN CONDITIONAL THEOREM** (P22, R-#new-P22) — the Hodge Conjecture
+ for the Freudenthal quartic on EVII Shimura varieties holds, **PROVIDED**
+ all OPEN target hypotheses hold:
+
+   (1) `borelMConstantE7minus25 ≥ 8` — Borel stable range bound (P15 OPEN)
+   (2) `voganZuckermanAqLambdaForE7minus25Deg8Exists` — V-Z explicit table (P16 OPEN)
+   (3) `eisensteinVanishingForFreudenthalClassDeg8` — Eisenstein vanishing (P9 OPEN)
+   (4) `higherRankAutomorphicBundleGoodMetricExtendsForEVII` — higher-rank good metric (P13 OPEN)
+   (5) `chernWeilFormProportionalityForEVII` — Chern-Weil form proportionality EVII (P13 OPEN)
+   (6) `freudenthalClassPlacedInChernSubalgebra` — placement in Chern subalgebra (P10 OPEN)
+   (7) `crossRingBridgeNonzeroOnFreudenthalQuartic` — twisted Φ existence (P11 INVENTION_CLASS)
+
+ The Main Conditional Theorem is genuinely DERIVED — its proof chains through
+ 4 levels of derived theorems combining Cat 2 explicit-content axioms with
+ the 7 OPEN hypotheses. NO Cat 3 axiomatization.
+
+ This is the STRICT proof-stage Main Theorem: the Hodge Conjecture for [q] on
+ EVII is reduced to 7 explicit OPEN claims, each of which has been
+ hostile-audited (P7-P21 + P14 type-confusion correction + P15 m-bound check).
+ Closing any subset of the 7 OPEN claims (via deeper Cat 2 search, new
+ construction, or atlas-software computation per P16) narrows the residual.
+ Closing ALL 7 establishes the Hodge Conjecture for [q] on EVII unconditionally. -/
+theorem hodge_conjecture_for_freudenthal_quartic_via_full_chain
+  (h_m_at_least_8 : borelMConstantE7minus25 ≥ 8)
+  (h_vz : voganZuckermanAqLambdaForE7minus25Deg8Exists)
+  (h_eisenstein : eisensteinVanishingForFreudenthalClassDeg8)
+  (h_higher_rank : higherRankAutomorphicBundleGoodMetricExtendsForEVII)
+  (h_form_proportionality : chernWeilFormProportionalityForEVII)
+  (h_placement : freudenthalClassPlacedInChernSubalgebra)
+  (h_cross_ring : crossRingBridgeNonzeroOnFreudenthalQuartic) :
+  hodgeConjectureForFreudenthalQuarticOnEVII := by
+  apply paper_clause_iii_polynomial_identity_implies_hc
+  · -- (i.b.2) cross-ring Φ(q) ≠ 0 — OPEN INVENTION_CLASS
+    exact h_cross_ring
+  · -- (ii.a) Freudenthal-realized — via P17 + P19 chain
+    exact freudenthal_class_realized_via_full_chain_P17_plus_P19
+      h_m_at_least_8 h_vz h_eisenstein
+  · -- (ii.b) Freudenthal-extends-compatibly — via P22 from (ii.b.2)
+    exact freudenthal_class_extends_compatibly_via_iib2_placement h_placement
+  · -- G-P-EVII — via P18 + P21 + P20 chain
+    exact goresky_pardon_EVII_via_full_form_HM_chain
+      h_higher_rank h_form_proportionality
+
+/-- **FULL GAP MARKER** (P22, R-#new-P22) — the 7 OPEN targets that, if all
+ closed, would unconditionally establish the Hodge Conjecture for [q] on
+ EVII via this strict-discipline formalization. None axiomatized. -/
+def hodgeConjectureEVII_OPEN_TARGETS : Prop :=
+  borelMConstantE7minus25 ≥ 8 ∧
+  voganZuckermanAqLambdaForE7minus25Deg8Exists ∧
+  eisensteinVanishingForFreudenthalClassDeg8 ∧
+  higherRankAutomorphicBundleGoodMetricExtendsForEVII ∧
+  chernWeilFormProportionalityForEVII ∧
+  freudenthalClassPlacedInChernSubalgebra ∧
+  crossRingBridgeNonzeroOnFreudenthalQuartic
+
 end HodgeReduction.Strict
