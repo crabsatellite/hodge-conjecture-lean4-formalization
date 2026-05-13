@@ -378,6 +378,39 @@ Closure tier distribution (epistemic ordering per R-#27 et seq.):
   clean (0 sorry). The P8 + P9 ceremony-retreat charge is DISARMED;
   the active conjectural-surface count of 4 monoliths is now fully
   load-bearing-decomposed through 3 bridges + ~22 typed sub-atoms.
+  P15 PHASE-0 AUDIT CATCH ON P14.SI-1 OVERCLAIM (R-#new-P15):
+  hostile audit on the P14.SI-1 atom `IsBorelStableRangeForE725AtDegree8_REQUIRED_HYPOTHESIS`
+  catches CRITICAL: published literature does NOT support
+  `m(E_{7(-25)}) ≥ 8`. Best published lower bound is `m ≥ rk_ℝ - 1 = 2`
+  (Borel 1981 §4 universal almost-simple bound; rk_ℝ(E_{7(-25)}) = 3).
+  Gap from published bound 2 to required bound 8 is SIX FULL DEGREES
+  of cohomological depth NOT covered by Borel's machinery. P14
+  docstring INCORRECTLY cited Tshishiku 2019 arXiv:1904.04902 —
+  Tshishiku only sharpens bounds for Sp_{2n} and SO_{n,n}, NOT
+  exceptional groups. Citation removed.
+  P15 Lean output: patched P14.SI-1 atom docstring with failure-asset
+  6-degree-gap disclosure + 2 new typed atoms:
+  (P15.a) PUBLISHED failure-asset `IsBorelStandardLowerBoundForE725_PUBLISHED`
+         (Borel 1981 §4 universal bound m ≥ rk_ℝ - 1 = 2 for E_{7(-25)};
+         encodes the published structural fact + 6-degree gap).
+  (P15.b) `_INVENTION_CLASS` alternative routing
+         `IsLefschetzDeligneWeightRouteForE725Degree8_INVENTION_CLASS`
+         (Lefschetz primitive decomposition on compact dual Ě_VII
+         (complex dim 27 ≫ 8) + Deligne weight argument via proper
+         smooth compactification; framework PUBLISHED Deligne 1971
+         + Saito MHM 1988 + Griffiths-Harris 1978 + BBD 1982 but
+         specific application to EVII unverified).
+  Net effect: P14.SI-1 atom remains `_REQUIRED_HYPOTHESIS` but with
+  explicit failure-asset disclosure that the Borel-stable-range
+  closure route is BLOCKED (6-degree gap, not just unverified
+  computation). Alternative routing (Lefschetz + Deligne) typed as
+  INVENTION_CLASS for future-round attack. The 4-monolith
+  conjectural-surface count UNCHANGED; P15 catches and disarms a
+  P14 closure-path overclaim. This is exactly the failure-asset
+  pattern: P15's negative finding becomes typed Lean predicates
+  rather than rolled back. 1 NEW PUBLISHED atom + 1 INVENTION_CLASS
+  alternative-route atom surfaced.
+
   P14 FURTHER DECOMPOSITION OF HODGE-AUTO-G-INVARIANT gapBlocked
   BARRIER (R-#new-P14): Phase 0 hostile audit on the (P9.d) atom
   `IsHodgeWeight33OnEVII_AutomaticallyGInvariant_REQUIRED_HYPOTHESIS`

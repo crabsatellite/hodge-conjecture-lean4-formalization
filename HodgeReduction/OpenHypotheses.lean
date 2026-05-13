@@ -1744,26 +1744,100 @@ axiom IsEisensteinCohomologyVanishingFor_E725_Degree8_REQUIRED_HYPOTHESIS :
 axiom IsHodgeWeight33OnEVII_AutomaticallyGInvariant_REQUIRED_HYPOTHESIS :
  E7ShimuraTor → Prop
 
-/-- **`_REQUIRED_HYPOTHESIS` atom (P14.SI-1, R-#new-P14)**: the Borel
- stable range theorem applies at degree 8 for the EVII Shimura variety —
- i.e., `m(E_{7(-25)}) ≥ 8` where `m(G)` is the Borel stable range
- constant (smallest k such that `H^k(S_Γ; ℂ) ≅ H^k(X_compact; ℂ)`
- via the canonical map). Borel 1974 establishes the stable range
- theorem in general; the specific bound for `E_{7(-25)}` requires
- explicit computation from Borel's m(G) formula (involves smallest
- non-trivial K-type weights, real rank, and Lie-algebraic invariants).
- Tier: `_REQUIRED_HYPOTHESIS` (Borel framework PUBLISHED; specific
- E_{7(-25)} m-bound = 8 not extracted from any single source).
- Sources: A. Borel, "Stable real cohomology of arithmetic groups",
- Ann. Sci. ÉNS 7 (1974), 235-272; A. Borel, "Stable real cohomology
- of arithmetic groups II", in Manifolds and Lie groups (Birkhäuser
- 1981); B. Tshishiku, "Borel's stable range for the cohomology of
- arithmetic groups", arXiv:1904.04902 (sharper bounds for some
- exceptional cases).
+/-- **`_REQUIRED_HYPOTHESIS` atom (P14.SI-1, R-#new-P14; P15-PATCHED)**:
+ the Borel stable range theorem applies at degree 8 for the EVII
+ Shimura variety — i.e., `m(E_{7(-25)}) ≥ 8` where `m(G)` is the
+ Borel stable range constant. P15 PHASE-0 AUDIT CRITICAL CATCH:
+ published literature does NOT support `m(E_{7(-25)}) ≥ 8`. Best
+ published lower bound is `m(G(ℝ)) ≥ rk_ℝ(G) - 1 = 2` (Borel 1981
+ §4; for E_{7(-25)} real rank 3). The gap from published bound 2
+ to required bound 8 is SIX FULL DEGREES of cohomological depth
+ NOT covered by Borel's machinery. P14 docstring INCORRECTLY cited
+ Tshishiku 2019 arXiv:1904.04902 — Tshishiku only sharpens bounds
+ for Sp_{2n} and SO_{n,n}, NOT exceptional groups. Citation removed.
+ The atom retains `_REQUIRED_HYPOTHESIS` tier with explicit failure-
+ asset disclosure: the Borel-stable-range closure route DOES NOT
+ reach degree 8 for E_{7(-25)} via known machinery. Alternative
+ closure-route candidate per P15 audit recommendation: Lefschetz
+ hyperplane theorem on EVII compact dual (complex dim 27 ≫ 8, so
+ Lefschetz primitive decomposition applies through middle dimension)
+ + Deligne weight argument via proper smooth compactification.
+ This sidesteps `m(G) ≥ 8` entirely and uses only PUBLISHED machinery
+ (Deligne 1971 Hodge II, Saito MHM 1988); surfaced as alternative
+ INVENTION_CLASS routing atom below per P15 audit recommendation.
+ Tier: `_REQUIRED_HYPOTHESIS` (gapBlocked semantic at the Borel-
+ stable-range route; alternative Lefschetz+Hodge route surfaced
+ as INVENTION_CLASS routing).
+ Source: A. Borel, "Stable real cohomology of arithmetic groups",
+ Ann. Sci. ÉNS 7 (1974), 235-272 (framework + §11 stable-range
+ formula); A. Borel, "Stable real cohomology of arithmetic groups
+ II", in *Manifolds and Lie Groups* (Hano-Morimoto-Murakami-Okamoto-
+ Ozeki eds., Progress in Math. 14, Birkhäuser 1981), §4 (lower
+ bound `m ≥ rk_ℝ - 1`).
  paper source: hyp:ChernWeil-bridge-E7 (P14 Hodge-(4,4) decomposition
- SI-1 — Borel stable range bound for E_{7(-25)} at degree 8). -/
+ SI-1 — Borel stable range bound; P15-PATCHED with failure-asset
+ 6-degree-gap disclosure). -/
 axiom IsBorelStableRangeForE725AtDegree8_REQUIRED_HYPOTHESIS :
  E7ShimuraTor → Prop
+
+/-- **PUBLISHED failure-asset atom (P15.a, R-#new-P15)**: the BEST
+ known lower bound for the Borel stable range constant `m(E_{7(-25)})`
+ is `m ≥ rk_ℝ - 1 = 2` (real rank of E_{7(-25)} = 3). This is the
+ universal almost-simple bound from Borel 1981 §4. Published
+ literature does NOT extend this to degree 8 for E_{7(-25)}. The
+ P14.SI-1 atom `IsBorelStableRangeForE725AtDegree8_REQUIRED_HYPOTHESIS`
+ requires m ≥ 8 — a SIX-DEGREE GAP from the published bound 2.
+ Tier: PUBLISHED failure-asset (Borel 1981 §4 specifically establishes
+ m ≥ rk_ℝ - 1; nothing stronger is published for exceptional groups).
+ Surfaced per P15 audit to encode the structural barrier as typed
+ Lean predicate.
+ Sources: A. Borel 1981 *Manifolds and Lie Groups* Progress in Math.
+ 14, Birkhäuser, §4 (lower bound m ≥ rk_ℝ - 1); confirmed by
+ Tshishiku 2019 arXiv:1904.04902 §1 line 83 (cites Borel 1981 §4 as
+ the universal bound, sharpens only for Sp/SO).
+ paper source: hyp:ChernWeil-bridge-E7 (P15 failure-asset structural
+ fact — Borel-stable-range universal lower bound m ≥ 2 for E_{7(-25)};
+ 6-degree gap from required m ≥ 8). -/
+axiom IsBorelStandardLowerBoundForE725_PUBLISHED :
+ E7ShimuraTor → Prop
+
+/-- **`_INVENTION_CLASS` alternative routing atom (P15.b, R-#new-P15)**:
+ Lefschetz hyperplane theorem + Deligne weight argument as ALTERNATIVE
+ closure route for the (P14.SI-1) Borel-stable-range gap.
+ The compact dual `Ě_VII = E_7/E_6·SO(2)` has complex dimension 27,
+ so Lefschetz primitive decomposition applies through middle dimension
+ (= 27); degree 8 is well within range. The strategy: pull back
+ `H^8(Ě_VII; ℂ) = ℚ·h^4` to `H^8(S_Γ^{tor}; ℂ)` via proper smooth
+ compactification + Deligne weight argument (Deligne 1971 Hodge II
+ + Saito MHM 1988), bypassing the Borel stable range entirely.
+ Tier: `_INVENTION_CLASS` — research-level project; the specific
+ chain (Lefschetz on compact dual + Deligne pullback to arithmetic
+ quotient via S_Γ^{tor}) is NOT explicitly executed in published
+ literature for EVII; framework PUBLISHED but specific application
+ unverified.
+ Sources (framework only): P. Deligne, "Théorie de Hodge II",
+ Publ. Math. IHES 40 (1971), 5-58 (weight filtration); M. Saito 1988
+ (MHM weight argument); P. Griffiths, J. Harris, *Principles of
+ Algebraic Geometry* (Wiley 1978) Ch. 1 §2 (Lefschetz hyperplane on
+ smooth projective varieties); A. Beilinson, J. Bernstein, P. Deligne,
+ "Faisceaux pervers", Astérisque 100 (1982) (decomposition theorem
+ framework).
+ paper source: hyp:ChernWeil-bridge-E7 (P15 alternative routing —
+ Lefschetz + Deligne weight INVENTION_CLASS surfaced per P15 audit
+ recommendation as alternative to failed Borel-stable-range route). -/
+axiom IsLefschetzDeligneWeightRouteForE725Degree8_INVENTION_CLASS :
+ E7ShimuraTor → Prop
+
+/-- PUBLISHED witness for P15.a (Borel m ≥ 2 universal bound). -/
+axiom is_borel_standard_lower_bound_for_E725_PUBLISHED :
+ ∀ (S : E7ShimuraTor),
+   IsBorelStandardLowerBoundForE725_PUBLISHED S
+
+/-- `_INVENTION_CLASS` placeholder witness for P15.b (Lefschetz + Deligne
+ alternative routing). NOT discharged. -/
+axiom is_lefschetz_deligne_weight_route_for_E725_degree8_INVENTION_CLASS :
+ ∀ (S : E7ShimuraTor),
+   IsLefschetzDeligneWeightRouteForE725Degree8_INVENTION_CLASS S
 
 /-- **PUBLISHED atom (P14.SI-2, R-#new-P14)**: the integral cohomology
  ring `H^*(Ě_VII; ℤ)` of the compact-dual EVII = `E_7/E_6·SO(2)` has
