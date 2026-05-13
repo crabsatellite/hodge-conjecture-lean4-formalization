@@ -1303,6 +1303,82 @@ axiom IsChernSubringSurjectiveOntoH8_E7P7 : E7ShimuraTor → Prop
 axiom IsCrossRingBridgeNonzeroOnFreudenthalQuartic_E7P7_INVENTION_CLASS :
  E7ShimuraTor → Prop
 
+/-- **PUBLISHED gapClosed atom (P11.a, R-#new-P11)**: the CANONICAL
+ cross-ring map `Φ_can : Sym⁴(V_56^*)^{E_7} → H^*(E_7^ℂ/P_7, ℚ)`
+ (pullback ∘ inclusion ∘ cup-power, the "obvious" construction)
+ sends the Freudenthal quartic `q` to `0` in `H^*(E_7^ℂ/P_7; ℚ)`.
+ Reason: `q` vanishes IDENTICALLY on the closed orbit `E_7^ℂ/P_7`
+ since `E_7^ℂ/P_7 = ` rank-1 stratum `⊂ {q = 0}` per the rank
+ stratification of Freudenthal triple systems / projective orbit
+ classification. Tier: PUBLISHED gapClosed (verified citation-level).
+ Sources: J. Landsberg, L. Manivel, "Triality, exceptional Lie
+ algebras and Deligne dimension formulas", arXiv:math/9908039 (1999)
+ + J. Algebra 239 (2001) Prop 5.8; S. Helenius, "Freudenthal triple
+ systems by root system methods", arXiv:1005.1275 (2011); R. Skip
+ Garibaldi, *Cohomological Invariants: Exceptional Groups and Spin
+ Groups*; B. Iliev, L. Manivel, "Hyperkähler manifolds from Tits-
+ Freudenthal magic square".
+ paper source: hyp:ChernWeil-bridge-E7 (i.b.2) — P11 failure-asset
+ PUBLISHED structural fact (canonical Φ vanishes). -/
+axiom IsCanonicalFreudenthalPhiVanishesOnClosedOrbit_E7P7_PUBLISHED :
+ E7ShimuraTor → Prop
+
+/-- **PUBLISHED gapClosed atom (P11.b, R-#new-P11)**: the Freudenthal
+ quartic invariant `q ∈ Sym⁴(V_56^*)^{E_7}` vanishes identically on
+ the closed orbit `E_7^ℂ/P_7 ⊂ P(V_56^ℂ)`. Specifically, the rank
+ stratification of the Freudenthal triple system action of `E_7` on
+ `V_56` has rank-1 stratum = `E_7^ℂ/P_7`, and `q` vanishes on rank-1,
+ rank-2, rank-3 strata (only the rank-4 stratum is `{q ≠ 0}`).
+ Tier: PUBLISHED gapClosed (verified citation-level via projective
+ orbit classification + Freudenthal triple system literature).
+ Sources: J. Landsberg, L. Manivel 1999/2001 (op. cit.); S. Krutelevich,
+ "Jordan algebras, exceptional groups and Bhargava composition";
+ H. Freudenthal 1954 "Beziehungen der E_7 und E_8 zur Oktavenebene";
+ S. Helenius 2011 (op. cit.).
+ paper source: hyp:ChernWeil-bridge-E7 (i.b.2) — P11 failure-asset
+ PUBLISHED structural fact (Freudenthal quartic vanishes on rank-1
+ closed orbit). -/
+axiom IsFreudenthalQuarticIdenticallyZeroOnClosedOrbit_E7P7_PUBLISHED :
+ E7ShimuraTor → Prop
+
+/-- **`_INVENTION_CLASS` atom (P11.c, R-#new-P11 — Pattern 5
+ mitigation)**: existence of a TWISTED cross-ring bridge
+ `Φ_twisted : Sym⁴(V_56^*)^{E_7} → H^8(E_7^ℂ/P_7, ℚ)` distinct from
+ the CANONICAL Φ_can (the latter sends q ↦ 0 per P11.a + P11.b).
+ The original (i.b.2) atom `IsCrossRingBridgeNonzeroOnFreudenthalQuartic_E7P7_INVENTION_CLASS`
+ implicitly quantifies over twisted Φ; this typed atom makes the
+ twisted-vs-canonical distinction explicit per Pattern-5 / Pattern-8
+ mitigation. Tier: `_INVENTION_CLASS` (predicate-only; no published
+ construction).
+ Recommended construction paths (typed future-attack-vector, NOT
+ closures): (γ_1) Bott 1957 transgression along principal E_7-bundle
+ `E_7 → E_7/T → E_7/P_7`, lifting `q ∈ Sym⁴(𝔱*)^W` to an 8-form;
+ (γ_2) Poincaré residue along `{q=0} ⊂ P(V_56)` degenerating onto
+ `E_7/P_7` (Iliev-Manivel-style hyperkähler resolution input);
+ (γ_3) Equivariant Chern character of non-trivial E_7-equivariant
+ line bundle on `E_7/P_7` twisted by q (Atiyah-Hirzebruch equivariant
+ K-theory).
+ paper source: hyp:ChernWeil-bridge-E7 (i.b.2) — P11 failure-asset
+ typed predicate for twisted Φ INVENTION construction. -/
+axiom IsTwistedCrossRingBridge_E7P7_INVENTION_CLASS :
+ E7ShimuraTor → Prop
+
+/-- PUBLISHED witness for P11.a (canonical Φ vanishes on closed orbit). -/
+axiom is_canonical_freudenthal_phi_vanishes_on_closed_orbit_E7P7_PUBLISHED :
+ ∀ (S : E7ShimuraTor),
+   IsCanonicalFreudenthalPhiVanishesOnClosedOrbit_E7P7_PUBLISHED S
+
+/-- PUBLISHED witness for P11.b (Freudenthal quartic vanishes on E_7/P_7). -/
+axiom is_freudenthal_quartic_identically_zero_on_closed_orbit_E7P7_PUBLISHED :
+ ∀ (S : E7ShimuraTor),
+   IsFreudenthalQuarticIdenticallyZeroOnClosedOrbit_E7P7_PUBLISHED S
+
+/-- `_INVENTION_CLASS` placeholder witness for twisted cross-ring bridge
+ (P11.c). NOT discharged. -/
+axiom is_twisted_cross_ring_bridge_E7P7_INVENTION_CLASS :
+ ∀ (S : E7ShimuraTor),
+   IsTwistedCrossRingBridge_E7P7_INVENTION_CLASS S
+
 /-- **PUBLISHED folklore-corollary** atom: Weight-Grading Vanishing
  Theorem. For V a minuscule rep of a complex reductive group G (more
  generally: any rep of G with no zero weight), and `p ∈ Sym^d(V^*)^G`

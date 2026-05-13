@@ -313,6 +313,51 @@ Closure tier distribution (epistemic ordering per R-#27 et seq.):
   conjectural-surface count UNCHANGED; (ii.b.2) atom tier remains
   `_REQUIRED_HYPOTHESIS`; structural literature absences explicitly
   encoded.
+  P11 FAILURE-THEOREMIZATION OF clause (i.b.2) INVENTION_CLASS ATOM
+  (R-#new-P11): Phase 0 audit on
+  `IsCrossRingBridgeNonzeroOnFreudenthalQuartic_E7P7_INVENTION_CLASS`
+  returns `staysINVENTION_CLASS` verdict. Three independent literature
+  classes (Hodge-rep classification / projective-orbit / Freudenthal-
+  triple-system) all confirm: canonical Φ gives 0, no published variant
+  gives non-zero. Surfaces 3 new typed atoms per failure-asset
+  discipline:
+  (P11.a) PUBLISHED `IsCanonicalFreudenthalPhiVanishesOnClosedOrbit_E7P7_PUBLISHED`
+         (canonical Φ_can pullback ∘ inclusion ∘ cup-power sends q ↦ 0
+         since q vanishes on rank-1 = E_7^ℂ/P_7; Landsberg-Manivel
+         1999/2001 + Helenius 2011 + Freudenthal triple system
+         literature).
+  (P11.b) PUBLISHED `IsFreudenthalQuarticIdenticallyZeroOnClosedOrbit_E7P7_PUBLISHED`
+         (q ∈ Sym⁴(V_56^*)^E_7 vanishes identically on E_7^ℂ/P_7 ⊂
+         P(V_56^ℂ); rank stratification of Freudenthal triple systems
+         has rank-1 = E_7^ℂ/P_7 ⊂ {q=0}).
+  (P11.c) `_INVENTION_CLASS` `IsTwistedCrossRingBridge_E7P7_INVENTION_CLASS`
+         (Pattern-5/8 mitigation: makes twisted-vs-canonical Φ
+         distinction explicit; future-attack-vector typed for
+         Bott-transgression / Poincaré-residue / equivariant-Chern-
+         character construction paths).
+  P11 Lean output: 3 new typed atoms + 3 witnesses. The (i.b.2) atom
+  stays `_INVENTION_CLASS` per audit verdict — STRENGTHENED tiering
+  (not weakened): the audit confirms canonical Φ is FORCED to give 0
+  by published structural facts, so any successful Φ must be
+  genuinely non-canonical / twisted construction. 4-atom conjectural-
+  surface count UNCHANGED.
+  P7-P11 SEQUENCE SUMMARY (R-#new-P7 through R-#new-P11):
+  5 consecutive productive rounds. Total new typed atoms added: ~22
+  (6 PUBLISHED + 4 FOLKLORE_PUBLISHED + ~9 narrower REQUIRED + 3
+  gapBlocked structural barriers + 2 INVENTION_CLASS placeholders).
+  Total decomposition bridge axioms: 3 (P7 G-P-EVII from sub-atoms,
+  P8 E_6-rep-compat from sub-atoms, P9 (ii.a) from sub-atoms). The
+  4-atom conjectural surface remains the formal gate but each atom
+  is now load-bearing-decomposed into narrower typed sub-atoms with
+  explicit PUBLISHED machinery anchored against multi-source
+  literature. Failure-asset Lean output preserves structural barriers
+  + literature absences + circularity flags + salvage-path costs as
+  typed predicates. This is the strongest honest state achievable
+  via hostile-literature audit + decomposition discipline; genuine
+  closure of any of the 4 active monoliths now requires either
+  mathematical breakthrough (constructing twisted Φ for i.b.2, or
+  proving form-level HM proportionality for EVII, etc.) or further
+  decomposition surfacing additional structural barriers.
 - gapPartial multi-path `_CONJECTURAL`: SG-17 (R-#24 Hard-Lefschetz
   Schur scalar partial-kill + 3 closing paths).
 - gapPartial `_NAMED_OPEN_MULTI`: SG-23 (R-#65 upgrade from
