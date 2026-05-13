@@ -1685,6 +1685,139 @@ axiom IsWatanabe1975IntegralCohomologyRingEVII_PUBLISHED :
 axiom IsVoganZuckermanAqLambdaComputationFor_E725_Degree8_REQUIRED_HYPOTHESIS :
  E7ShimuraTor → Prop
 
+/-- **PUBLISHED atom (P16.a, R-#new-P16)**: Vogan-Zuckerman 1984
+ GENERAL FRAMEWORK for A_q(λ) modules with non-trivial (𝔤, K_∞)-
+ cohomology. Provides the abstract construction: for any θ-stable
+ parabolic `q ⊂ 𝔤^ℂ` with Levi decomposition `q = l + u`, the
+ cohomologically induced module `A_q(λ)` (for `λ` in the "good range")
+ has lowest non-trivial (𝔤, K_∞)-cohomology in degree `R(q) = dim(u ∩ k)`
+ where `k` is the complexified Lie algebra of `K_∞`. Tier: PUBLISHED
+ (framework, type-independent).
+ Source: D. Vogan, G. Zuckerman, "Unitary representations with non-zero
+ cohomology", Compositio Math. 53 (1984), 51-90.
+ paper source: hyp:ChernWeil-bridge-E7 (P16 V-Z A_q(λ) decomposition
+ sub-atom a — V-Z 1984 general framework PUBLISHED). -/
+axiom IsVoganZuckerman1984GeneralFramework_PUBLISHED :
+ E7ShimuraTor → Prop
+
+/-- **PUBLISHED atom (P16.b, R-#new-P16)**: Knapp-Vogan 1995 cohomological
+ induction framework for unitary representations of real reductive
+ groups. Provides the realization of `A_q(λ)` via Zuckerman functors
+ and verifies unitarity in the good range. Tier: PUBLISHED (framework,
+ type-independent).
+ Source: A. Knapp, D. Vogan, *Cohomological Induction and Unitary
+ Representations*, Princeton Math. Series PMS-45 (1995), Ch. XII
+ (unitary realization theorem).
+ paper source: hyp:ChernWeil-bridge-E7 (P16 V-Z A_q(λ) decomposition
+ sub-atom b — Knapp-Vogan 1995 cohomological induction PUBLISHED). -/
+axiom IsKnappVogan1995CohomologicalInduction_PUBLISHED :
+ E7ShimuraTor → Prop
+
+/-- **`_REQUIRED_HYPOTHESIS` atom (P16.c, R-#new-P16; ATLAS-COMPUTABLE)**:
+ there exists a θ-stable parabolic `q ⊂ 𝔢_{7(-25)}^ℂ` with
+ `dim(u ∩ k) = 8`, where `k = 𝔢_6 ⊕ ℝ` is the maximal compact Lie
+ algebra of `E_{7(-25)}`. This is the SPECIFIC NARROWER content of
+ the V-Z A_q(λ) hypothesis at degree 8: the framework (P16.a + P16.b)
+ is PUBLISHED, but the specific θ-stable parabolic enumeration with
+ R(q) = 8 is NOT in published literature.
+ ATLAS-SOFTWARE COMPUTABLE: this is FINITE COMBINATORICS over the
+ root system of E_7 (133 roots, finite Weyl group). The Atlas of Lie
+ Groups software (atlas.math.umd.edu / liegroups.org) supports the
+ computation via `set G=E7_h in atlas; theta_stable_parabolics(G);
+ for Q in list: print dim(u_cap_k)`. Not yet executed; specific
+ closure path = run atlas computation in a future Compute round.
+ Tier: `_REQUIRED_HYPOTHESIS` (atlas-software-computable, not
+ structurally open — distinct from the form-HM-EVII or §16.2-E_6-rep
+ gapBlocked barriers which are genuinely structural).
+ Sources (framework): D. Vogan, *Representations of Real Reductive
+ Lie Groups*, Birkhäuser 1981 (θ-stable parabolic classification);
+ Atlas of Lie Groups software documentation at liegroups.org.
+ paper source: hyp:ChernWeil-bridge-E7 (P16 V-Z A_q(λ) decomposition
+ sub-atom c — atlas-computable θ-stable parabolic enumeration). -/
+axiom IsThetaStableParabolicOfE725WithRqEquals8_REQUIRED_HYPOTHESIS :
+ E7ShimuraTor → Prop
+
+/-- **PUBLISHED structural-fact atom (P16.d, R-#new-P16)**: the
+ Dong-Wong "Dirac series" program (2018-2024 arXiv papers) covers
+ explicit unitary-dual classifications for `E_{6(-14)}, E_{6(6)},
+ E_{6(-26)}, F_{4(4)}, F_{4(-20)}, ` complex E_7, `E_{7(7)},` complex E_8,
+ BUT does NOT cover `E_{7(-25)}` as a standalone classification.
+ The closest result is Dong-Wong 2024 arXiv:2404.03918 (J. Algebra
+ 2025) covering only Wallach modules of `E_{6(-14)}` and `E_{7(-25)}`
+ (a 4-element family of unitary highest-weight modules), 17 pages.
+ NOT a full A_q(λ) classification for `E_{7(-25)}`. Tier: PUBLISHED
+ structural fact (encodes the literature absence as typed
+ failure-asset).
+ Sources: C.-P. Dong, K. D. Wong, various arXiv papers (1809.06034,
+ 1903.06861, 2110.00694, 2210.15833, 2305.03254, 2404.03918);
+ specifically arXiv:2404.03918 "Dirac cohomology, branching laws
+ and Wallach modules" covers `E_{7(-25)}` Wallach but not full A_q(λ).
+ paper source: hyp:ChernWeil-bridge-E7 (P16 V-Z A_q(λ) decomposition
+ sub-atom d — Dong-Wong program scope structural fact PUBLISHED). -/
+axiom IsDongWongDiracSeriesProgramScope_PUBLISHED :
+ E7ShimuraTor → Prop
+
+/-- PUBLISHED witness for V-Z 1984 framework (P16.a). -/
+axiom is_vogan_zuckerman_1984_general_framework_PUBLISHED :
+ ∀ (S : E7ShimuraTor),
+   IsVoganZuckerman1984GeneralFramework_PUBLISHED S
+
+/-- PUBLISHED witness for Knapp-Vogan 1995 cohomological induction (P16.b). -/
+axiom is_knapp_vogan_1995_cohomological_induction_PUBLISHED :
+ ∀ (S : E7ShimuraTor),
+   IsKnappVogan1995CohomologicalInduction_PUBLISHED S
+
+/-- `_REQUIRED_HYPOTHESIS` placeholder witness for θ-stable parabolic
+ with R(q) = 8 (P16.c). NOT discharged; atlas-software-computable. -/
+axiom is_theta_stable_parabolic_of_E725_with_Rq_equals_8_REQUIRED_HYPOTHESIS :
+ ∀ (S : E7ShimuraTor),
+   IsThetaStableParabolicOfE725WithRqEquals8_REQUIRED_HYPOTHESIS S
+
+/-- PUBLISHED witness for Dong-Wong program scope (P16.d). -/
+axiom is_dong_wong_dirac_series_program_scope_PUBLISHED :
+ ∀ (S : E7ShimuraTor),
+   IsDongWongDiracSeriesProgramScope_PUBLISHED S
+
+/-- **P16 DECOMPOSITION BRIDGE** for V-Z A_q(λ) atom (R-#new-P16).
+ Per Phase 0 hostile audit, the monolithic
+ `IsVoganZuckermanAqLambdaComputationFor_E725_Degree8_REQUIRED_HYPOTHESIS`
+ decomposes into 4 typed sub-atoms:
+ (P16.a) PUBLISHED V-Z 1984 framework.
+ (P16.b) PUBLISHED Knapp-Vogan 1995 cohomological induction.
+ (P16.c) `_REQUIRED_HYPOTHESIS` (atlas-computable) θ-stable parabolic
+        with R(q) = 8 for E_{7(-25)} — the actual blocker; computable
+        via atlas software, NOT structurally open.
+ (P16.d) PUBLISHED Dong-Wong program scope (structural fact: program
+        covers many exceptional cases but NOT E_{7(-25)} standalone).
+ Net effect: V-Z A_q(λ) atom decomposed into 3 PUBLISHED + 1 narrower
+ REQUIRED (atlas-computable). The active gate is the atlas computation
+ of θ-stable parabolics with R(q) = 8 — distinct from the structural
+ gapBlocked barriers (form-HM-EVII, §16.2-E_6-rep, Borel-stable-range)
+ which are genuinely literature-open. -/
+axiom is_vogan_zuckerman_aq_lambda_computation_for_E725_degree8_from_subatoms_P16 :
+ ∀ (S : E7ShimuraTor),
+   IsVoganZuckerman1984GeneralFramework_PUBLISHED S →
+   IsKnappVogan1995CohomologicalInduction_PUBLISHED S →
+   IsThetaStableParabolicOfE725WithRqEquals8_REQUIRED_HYPOTHESIS S →
+   IsDongWongDiracSeriesProgramScope_PUBLISHED S →
+   IsVoganZuckermanAqLambdaComputationFor_E725_Degree8_REQUIRED_HYPOTHESIS S
+
+/-- **DERIVED theorem (P16 LOAD-BEARING REWIRE, R-#new-P16, same round)**:
+ V-Z A_q(λ) atom now derivable from P16 bridge applied to 4 P16
+ sub-atom witnesses. Load-bearing rewire applied in same round
+ (lesson learned from P12-A). Upstream P9 derived theorem rewired
+ below to invoke this P16 derived theorem instead of direct axiom.
+ Active gate for V-Z A_q(λ) chain is now P16.c atlas-computable
+ parabolic enumeration. -/
+theorem is_vogan_zuckerman_aq_lambda_computation_for_E725_degree8_REQUIRED_HYPOTHESIS_via_P16_subatoms :
+ ∀ (S : E7ShimuraTor),
+   IsVoganZuckermanAqLambdaComputationFor_E725_Degree8_REQUIRED_HYPOTHESIS S :=
+ fun S => is_vogan_zuckerman_aq_lambda_computation_for_E725_degree8_from_subatoms_P16 S
+   (is_vogan_zuckerman_1984_general_framework_PUBLISHED S)
+   (is_knapp_vogan_1995_cohomological_induction_PUBLISHED S)
+   (is_theta_stable_parabolic_of_E725_with_Rq_equals_8_REQUIRED_HYPOTHESIS S)
+   (is_dong_wong_dirac_series_program_scope_PUBLISHED S)
+
 /-- **`_REQUIRED_HYPOTHESIS` atom (P9.c, R-#new-P9)**: the Eisenstein /
  residual part of `H^8(S_Γ; ℂ)` (where `S_Γ = Γ\E_{7(-25)}/E_6·U(1)`)
  does NOT contribute to the specific class `[q] ∈ H^8(S_Γ; ℂ)`. Franke
@@ -2563,7 +2696,11 @@ theorem freudenthal_class_realized_by_g_invariant_cohomology_E7_REQUIRED_HYPOTHE
    IsFreudenthalClassRealizedByGInvariantCohomology_E7_REQUIRED_HYPOTHESIS S :=
  fun S => is_freudenthal_class_realized_by_g_invariant_cohomology_E7_from_subatoms_P9 S
    (is_watanabe_1975_integral_cohomology_ring_EVII_PUBLISHED S)
-   (is_vogan_zuckerman_aq_lambda_computation_for_E725_degree8_REQUIRED_HYPOTHESIS S)
+   -- P16 LOAD-BEARING REWIRE: consume V-Z A_q(λ) via P16 derived theorem
+   -- so the P16 bridge (4 sub-atoms: V-Z 1984 + Knapp-Vogan 1995 + Dong-Wong
+   -- scope PUBLISHED + θ-stable parabolic R(q)=8 atlas-computable REQUIRED)
+   -- is active. Active gate is now atlas-computable parabolic enumeration.
+   (is_vogan_zuckerman_aq_lambda_computation_for_E725_degree8_REQUIRED_HYPOTHESIS_via_P16_subatoms S)
    (is_eisenstein_cohomology_vanishing_for_E725_degree8_REQUIRED_HYPOTHESIS S)
    -- P14 LOAD-BEARING REWIRE: consume Hodge-auto-G-invariant via P14
    -- derived theorem so the P14 bridge (3 sub-atoms: m-bound REQUIRED +

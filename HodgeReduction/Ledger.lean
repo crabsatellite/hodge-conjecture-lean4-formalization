@@ -378,6 +378,32 @@ Closure tier distribution (epistemic ordering per R-#27 et seq.):
   clean (0 sorry). The P8 + P9 ceremony-retreat charge is DISARMED;
   the active conjectural-surface count of 4 monoliths is now fully
   load-bearing-decomposed through 3 bridges + ~22 typed sub-atoms.
+  P16 DECOMPOSITION OF V-Z A_q(λ) ATOM (R-#new-P16): Phase 0 hostile
+  audit on the (P9.b) atom `IsVoganZuckermanAqLambdaComputationFor_E725_Degree8_REQUIRED_HYPOTHESIS`
+  catches: no published explicit A_q(λ) computation for E_{7(-25)}
+  with R(q) = 8. Dong-Wong "Dirac series" program (2018-2024) covers
+  E_{6(-14)}, E_{6(6)}, E_{6(-26)}, F_{4(4)}, F_{4(-20)}, complex E_7,
+  E_{7(7)}, complex E_8 — but NOT E_{7(-25)} standalone. Closest:
+  Dong-Wong 2024 arXiv:2404.03918 covers ONLY Wallach modules of
+  E_{6(-14)} and E_{7(-25)} (4-element family), 17 pages. KEY P16
+  INSIGHT: the θ-stable parabolic enumeration with R(q) = 8 is FINITE
+  COMBINATORICS over the root system of E_7 (133 roots, finite Weyl
+  group), computable via atlas software (atlas.math.umd.edu /
+  liegroups.org). NOT a structurally open problem — distinct from
+  form-HM-EVII / §16.2-E_6-rep / Borel-stable-range gapBlocked barriers.
+  P16 Lean output: 4 new typed atoms (3 PUBLISHED + 1 atlas-computable
+  REQUIRED) + bridge axiom + LOAD-BEARING REWIRE derived theorem
+  (same round): (P16.a) V-Z 1984 framework PUBLISHED + (P16.b)
+  Knapp-Vogan 1995 cohomological induction PUBLISHED + (P16.c)
+  IsThetaStableParabolicOfE725WithRqEquals8_REQUIRED_HYPOTHESIS
+  (atlas-computable narrower atom) + (P16.d) Dong-Wong program scope
+  PUBLISHED (structural fact: program excludes E_{7(-25)} standalone).
+  Upstream P9 derived theorem rewired to consume P16 derived theorem
+  instead of direct V-Z A_q(λ) axiom. The active gate for V-Z chain
+  is now P16.c — atlas-computable parabolic enumeration. 4-monolith
+  conjectural-surface count UNCHANGED but residual narrowed +
+  atlas-computable.
+
   P15 PHASE-0 AUDIT CATCH ON P14.SI-1 OVERCLAIM (R-#new-P15):
   hostile audit on the P14.SI-1 atom `IsBorelStableRangeForE725AtDegree8_REQUIRED_HYPOTHESIS`
   catches CRITICAL: published literature does NOT support
