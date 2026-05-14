@@ -1181,3 +1181,13 @@ end HodgeReduction.Strict
 #eval s!"openHypNames: {repr HodgeReduction.Strict.openHypNames}"
 #eval s!"gapClosedConditionalBacklog: {repr HodgeReduction.Strict.gapClosedConditionalBacklog}"
 #eval s!"conditionalInvariantHolds: {repr HodgeReduction.Strict.conditionalInvariantHolds}"
+
+-- ============================================================================
+-- P27: kernel-purity verification via `#print axioms` (discipline §1.5)
+-- ============================================================================
+--
+-- The discipline §1.5 designates `#print axioms` as the "primary verification
+-- tool". This block surfaces the exact axiom dependency of the Main Theorem
+-- in the build log, allowing audit to verify which atoms are load-bearing.
+
+#print axioms HodgeReduction.Strict.HC_for_freudenthal_quartic_on_EVII_CONDITIONAL
