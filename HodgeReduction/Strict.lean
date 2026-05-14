@@ -927,66 +927,78 @@ def gap_paper_hodge44 : StrictGapEntry :=
   { name := "paper_hodge44_step_OPEN"
     status := .gapOpen, inputCategory := .cat3PaperNovel
     cat3SubType := .workingAssumption
-    paperSource := "paper Hodge-(4,4) reduction step"
-    attackHistory := ["P25: 2-input atomic; must close by decomposition with master tex"]
-    scope := "paper Hodge-(4,4) reduction (2-input)" }
+    paperSource := "Master tex \\ref{rem:borel-matsushima} (L3453) Borel-Matsushima descent + \\ref{rem:E7-chernweil-tautology} (L3422)"
+    attackHistory := ["P25: 2-input atomic — already at discipline-allowed limit",
+                      "P26: \\label anchored; no further decomposition needed"]
+    scope := "paper Hodge-(4,4) reduction (2-input atomic; iso + bigrading → auto-G-invariant)" }
 
 def gap_paper_iia : StrictGapEntry :=
   { name := "paper_iia_realization_OPEN"
     status := .gapOpen, inputCategory := .cat3PaperNovel
     cat3SubType := .workingAssumption
-    paperSource := "paper (ii.a) Borel-Wallach descent reduction, 6-input"
-    attackHistory := ["P25: 6-input workingAssumption; must close by decomposition",
-                      "P25: ALL 6 inputs load-bearing (3 Cat 2 frameworks + Hodge-(4,4) conclusion + 2 Hyp_*)"]
-    scope := "paper (ii.a) reduction (6-input working assumption)" }
+    paperSource := "Master tex \\ref{hyp:ChernWeil-bridge-E7} clause (ii.a) (L11450+) + \\ref{rem:borel-matsushima} (L3453) Borel-Matsushima"
+    attackHistory := ["P25: 6-input workingAssumption (3 Cat 2 frameworks + Hodge-(4,4) + 2 Hyp_*)",
+                      "P26: \\label anchored to master tex (ii.a) clause",
+                      "P32 close target: decompose via Borel-Wallach Ch. VII step-by-step"]
+    scope := "paper (ii.a) reduction; close target P32" }
 
 def gap_paper_iib : StrictGapEntry :=
   { name := "paper_iib_compatibility_OPEN"
     status := .gapOpen, inputCategory := .cat3PaperNovel
     cat3SubType := .structuralEquation
-    paperSource := "Master tex §11.5: (ii.b) = (ii.b.1) ∧ (ii.b.2)"
-    attackHistory := ["P25: paper-stated structural decomposition; §3.4.3 equation"]
+    paperSource := "Master tex \\ref{hyp:ChernWeil-bridge-E7} clause (ii.b) (L11625-11647): paper-stated decomposition (ii.b) = (ii.b.1) IH-pullback PUBLISHED + (ii.b.2) placement REQUIRED"
+    attackHistory := ["P25: paper-stated structural decomposition; §3.4.3 equation",
+                      "P26: \\label anchored; structural equation = paper-stated definition"]
     scope := "paper (ii.b) compatibility = (ii.b.1) IH-pullback + (ii.b.2) placement" }
 
 def gap_paper_formHM : StrictGapEntry :=
   { name := "paper_formHM_EVII_OPEN"
     status := .gapOpen, inputCategory := .cat3PaperNovel
     cat3SubType := .workingAssumption
-    paperSource := "paper form-HM-EVII reduction, 3-input"
-    attackHistory := ["P25: 3-input workingAssumption; must close"]
-    scope := "paper form-HM-EVII reduction" }
+    paperSource := "Master tex \\ref{hyp:ChernWeil-bridge-E7} clause (ii.b) framework (L11580-11625) — form-level HM proportionality for EVII"
+    attackHistory := ["P25: 3-input workingAssumption",
+                      "P26: \\label anchored",
+                      "P28 close target: decompose via Mumford 1977 + BKK 2002 + EVII-specific extensions"]
+    scope := "paper form-HM-EVII reduction; close target P28" }
 
 def gap_paper_section16_2 : StrictGapEntry :=
   { name := "paper_section16_2_OPEN"
     status := .gapOpen, inputCategory := .cat3PaperNovel
     cat3SubType := .workingAssumption
-    paperSource := "paper §16.2 E_6-rep-compat reduction, 4-input"
-    attackHistory := ["P25: 4-input workingAssumption; must close"]
-    scope := "paper §16.2 E_6-rep-compat reduction" }
+    paperSource := "Master tex §16.2 E_6-rep-compat residual + \\ref{rem:E6-V27-vacuity} (L3063) V_27 vacuity discussion"
+    attackHistory := ["P25: 4-input workingAssumption",
+                      "P26: \\label anchored to §16.2 + V_27 vacuity remark",
+                      "P30 close target: decompose via boundary stratification + Chern generation"]
+    scope := "paper §16.2 E_6-rep-compat reduction; close target P30" }
 
 def gap_paper_GP_EVII : StrictGapEntry :=
   { name := "paper_GP_EVII_OPEN"
     status := .gapOpen, inputCategory := .cat3PaperNovel
     cat3SubType := .workingAssumption
-    paperSource := "paper G-P-EVII reduction, 3-input"
-    attackHistory := ["P25: 3-input workingAssumption; must close"]
-    scope := "paper G-P-EVII reduction" }
+    paperSource := "Master tex \\ref{hyp:ChernWeil-bridge-E7} (ii.b) G-P-EVII extension + Goresky-Pardon 2002 Invent. Math. 147 §1.6 explicit open"
+    attackHistory := ["P25: 3-input workingAssumption",
+                      "P26: \\label anchored",
+                      "P29 close target: decompose via Borel-Hirzebruch + GP-abstract + §16.2-rep-compat chain"]
+    scope := "paper G-P-EVII Chern-subalgebra extension; close target P29" }
 
 def gap_paper_clause_iii : StrictGapEntry :=
   { name := "paper_clause_iii_polynomial_identity_OPEN"
     status := .gapOpen, inputCategory := .cat3PaperNovel
     cat3SubType := .workingAssumption
-    paperSource := "paper clause-iii reduction, 4-input"
-    attackHistory := ["P25: 4-input workingAssumption; must close"]
-    scope := "paper clause-iii polynomial identity reduction" }
+    paperSource := "Master tex \\ref{thm:E7_chernweil} (L3237) clause (iii) polynomial identity theorem"
+    attackHistory := ["P25: 4-input workingAssumption — paper's clause (iii) reduction",
+                      "P26: \\label anchored to thm:E7_chernweil + cor:E7_shimura_closed",
+                      "P31 close target: decompose via (i.b) + (ii.a) + (ii.b) + G-P-EVII chain per master tex L3237-3414"]
+    scope := "paper clause-iii polynomial identity [q] = P(c_1,...,c_4); close target P31" }
 
 def gap_paper_HC_equals_algebraicity : StrictGapEntry :=
   { name := "paper_HC_equals_algebraicity_OPEN"
     status := .gapOpen, inputCategory := .cat3PaperNovel
     cat3SubType := .structuralEquation
-    paperSource := "paper definitional equation: HC = algebraicity of class"
-    attackHistory := ["P25: §3.4.3 structural defining equation; HC = algebraicity (paper def)"]
-    scope := "paper HC = algebraicity definitional equation" }
+    paperSource := "Master tex \\ref{thm:main} (L410) Main Theorem definitional setup: HC for class = algebraicity"
+    attackHistory := ["P25: §3.4.3 structural defining equation; HC = algebraicity (paper def)",
+                      "P26: \\label anchored to thm:main"]
+    scope := "paper HC = algebraicity definitional equation (§3.4.3 paper-stated)" }
 
 /-! ### Derived gapClosedConditional theorems -/
 
@@ -1062,20 +1074,31 @@ def gap_HC_Main : StrictGapEntry :=
   { name := "HC_for_freudenthal_quartic_on_EVII_CONDITIONAL"
     status := .gapClosedConditional, inputCategory := .cat3PaperNovel
     cat3SubType := .notApplicable
-    paperSource := "MAIN THEOREM: paper's HC for [q] on EVII via Mumford-Tate reduction"
+    paperSource := "Master tex \\ref{thm:main} (L410) Main Theorem: HC for [q] on EVII via Mumford-Tate reduction"
     attackHistory := [
       "P7-P22 exploratory reduction-stage ledger",
       "P23 strict refactor (had vacuous Hyp_* + composite axioms)",
       "P24 audit-driven fix (introduced invented intermediates)",
-      "P25 audit-driven consolidation: deleted intermediates, multi-input workingAssumption tagged honestly, all Cat 2 frameworks load-bearing in single proof chain"
+      "P25 audit-driven consolidation: deleted intermediates, multi-input workingAssumption tagged honestly, all Cat 2 frameworks load-bearing",
+      "P26 minor: \\label anchors + folkloric Cat 2 dependencies acknowledged + round close-targets in workingAssumption attackHistory"
     ]
     scope := "HC for Freudenthal quartic [q] on EVII Shimura varieties"
     conditionalOn := [
+      -- 7 Hyp_* broken-link predicates (explicit in theorem signature)
       "Hyp_BorelMAtLeast8_OPEN", "Hyp_VZ_AqLambda_OPEN",
       "Hyp_Eisenstein_Vanishing_OPEN", "Hyp_HigherRank_GoodMetric_OPEN",
       "Hyp_ChernWeilForm_Proportionality_OPEN",
       "Hyp_FreudenthalClassPlacement_OPEN",
-      "Hyp_CrossRingPhiNonzero_OPEN"
+      "Hyp_CrossRingPhiNonzero_OPEN",
+      -- 3 folkloric Cat 2 BLOCKED dependencies (also in proof chain per P26 audit suggestion)
+      "borel_hirzebruch_mimura_toda_E6_U1_BLOCKED",
+      "borel_toda_kono_mimura_V27_BLOCKED",
+      "kono_mimura_mimura_toda_V56_BLOCKED",
+      -- 7 paper workingAssumption axioms (must close pending derivation)
+      "paper_iia_realization_OPEN", "paper_formHM_EVII_OPEN",
+      "paper_section16_2_OPEN", "paper_GP_EVII_OPEN",
+      "paper_clause_iii_polynomial_identity_OPEN",
+      "paper_hodge44_step_OPEN", "paper_iib_compatibility_OPEN"
     ] }
 
 /-! ### All-entries roll-up -/
