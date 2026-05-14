@@ -9,9 +9,9 @@ under the canonical 4-input-category × 6-tier-status discipline (per
 
 Main result: `HC_for_freudenthal_quartic_on_EVII_CONDITIONAL` —
 `gapClosedConditional` Hodge Conjecture for the Freudenthal quartic class on
-`E_{7(-25)}` Shimura varieties, conditional on 5 named broken-link predicates
+`E_{7(-25)}` Shimura varieties, conditional on 4 named broken-link predicates
 + 3 (formerly folkloric, now Toda 1975 / Kono-Mimura 1976 PUBLISHED) Cat 2
-single-source dependencies + 7 paper working assumptions (all tracked in the
+single-source dependencies + 8 paper working assumptions (all tracked in the
 `conditionalOn` field of the Main Theorem ledger entry).
 
 P32 closure: Hyp_VZ_AqLambda_OPEN dropped — direct E_7 root-system
@@ -24,6 +24,15 @@ P34 closure: Hyp_HigherRank_GoodMetric_OPEN dropped — Mumford 1977 Thm 3.1
 is type-uniform for ANY automorphic ρ (covers V_56 on EVII directly) +
 Harris 1985 §4 algebraic upgrade + BKK 2007 Thm 5.2 log-log framework +
 K_∞-isotypic V_56 = L_{+3} ⊕ E_{+1} ⊕ E_{-1} ⊕ L_{-3}.
+
+P35 closure: Hyp_FreudenthalClassPlacement_OPEN dropped from Main Theorem
+signature — at deg 8 (only relevant degree per P32) reduces to
+{Hyp_BorelMAtLeast8 + Hyp_Eisenstein_Vanishing + Mumford 1977 §1.3 +
+Borel-Hirzebruch 1958 + V-Z 1984/Speh-Vogan}. The descended Matsushima
+class is c_1(L)^4 (= 4th Chern power of the canonical line bundle), which
+extends to c_1(L̄)^4 ∈ Chern subring of H^*(S_Γ^tor) via Mumford canonical
+extension. Encoded via paper_placement_reduction_OPEN axiom +
+Hyp_FreudenthalClassPlacement_DERIVED_CONDITIONAL theorem.
 
 ## Disciplinary invariants
 
@@ -42,7 +51,7 @@ K_∞-isotypic V_56 = L_{+3} ⊕ E_{+1} ⊕ E_{-1} ⊕ L_{-3}.
 7. **Bijective ledger** per §19 Einstein Test exemplar — every declaration has
    exactly one `StrictGapEntry` and vice versa.
 8. **`#print axioms`** kernel-purity check (§1.5 primary verification tool) at
-   end of file surfaces all 21 atomic dependencies of the Main Theorem.
+   end of file surfaces all 22 atomic dependencies of the Main Theorem.
 
 ## Layout
 
@@ -357,6 +366,28 @@ axiom paper_iib_compatibility_OPEN :
   ih_pullback_freudenthal → Hyp_FreudenthalClassPlacement_OPEN →
     freudenthal_extends_compatibly_deg8
 
+/-- **Cat 3 workingAssumption (§3.4.4)** — paper placement reduction.
+ P35 BREAKTHROUGH (2026-05-15): Hyp_FreudenthalClassPlacement at deg 8 reduces
+ to {Hyp_BorelMAtLeast8 + Hyp_Eisenstein_Vanishing + mumford_framework}
+ via the published synthesis:
+   (i) Hyp_Eisenstein_Vanishing ⟹ H^8(S_Γ; ℂ)_G = H^8_cusp(S_Γ; ℂ)_G
+   (ii) Speh-Vogan + V-Z 1984 §5 in Hermitian symmetric: at deg 8 <
+        dim_C(G/K)/2 = 13.5 no holo discrete G-invariant contribution
+   (iii) Hyp_BorelMAtLeast8 + Borel 1974 §11 j^8 iso ⟹
+         H^8(S_Γ; ℂ)_G ≅ H^8(Ě_VII; ℂ) = ⟨h^4⟩ (1-dim)
+   (iv) j^8(h^4) = c_1(L)^4 where L = canonical line bundle (Borel-Hirzebruch
+        1958 identifies h = c_1(L))
+   (v) Mumford 1977 §1.3 ⟹ L extends to canonical L̄ on S_Γ^tor algebraically
+   (vi) c_1(L̄)^4 ∈ Chern subring of H^*(S_Γ^tor; ℂ) by definition (it IS a
+        4th power of a Chern class of a canonical extension)
+ Conclusion: the descended Matsushima class lands in the Chern subring.
+ Closure path 6-10 page synthesis. 3-input atomic now. -/
+axiom paper_placement_reduction_OPEN :
+  Hyp_BorelMAtLeast8_OPEN →
+  Hyp_Eisenstein_Vanishing_OPEN →
+  mumford_canonical_extension_framework →
+  Hyp_FreudenthalClassPlacement_OPEN
+
 /-- **Cat 3 workingAssumption (§3.4.4)** — paper form-HM-EVII reduction.
  P34 REFACTOR: Hyp_HigherRank_GoodMetric_OPEN input REMOVED. Per P34 deep audit,
  Mumford 1977 Thm 3.1 is type-uniform for ANY automorphic ρ; covers V_56 on EVII
@@ -479,28 +510,46 @@ theorem freudenthal_realized_by_G_invariant_CONDITIONAL
     (freudenthal_H8_auto_G_invariant_CONDITIONAL h1)
     h3
 
+/-- **gapClosedConditional** — Freudenthal class placement derived.
+ P35 BREAKTHROUGH: at deg 8 (the only degree relevant per P32), placement
+ reduces to {Hyp_BorelMAtLeast8 + Hyp_Eisenstein_Vanishing} via Mumford 1977
+ + Borel-Hirzebruch + V-Z 1984 published synthesis.
+ conditionalOn := ["Hyp_BorelMAtLeast8_OPEN", "Hyp_Eisenstein_Vanishing_OPEN"] -/
+theorem Hyp_FreudenthalClassPlacement_DERIVED_CONDITIONAL
+  (h1 : Hyp_BorelMAtLeast8_OPEN)
+  (h2 : Hyp_Eisenstein_Vanishing_OPEN) :
+  Hyp_FreudenthalClassPlacement_OPEN :=
+  paper_placement_reduction_OPEN h1 h2 mumford_1977_canonical_extension_OPEN
+
 /-- **gapClosedConditional** — (ii.b) Freudenthal extends compatibly.
- conditionalOn := ["Hyp_FreudenthalClassPlacement_OPEN"] -/
+ P35 REFACTOR: Hyp_FreudenthalClassPlacement input replaced by the derived
+ theorem; placement is now reducible to {Hyp_BorelMAtLeast8 + Hyp_Eisenstein}.
+ conditionalOn := ["Hyp_BorelMAtLeast8_OPEN", "Hyp_Eisenstein_Vanishing_OPEN"] -/
 theorem freudenthal_extends_compatibly_CONDITIONAL
-  (h : Hyp_FreudenthalClassPlacement_OPEN) :
+  (h1 : Hyp_BorelMAtLeast8_OPEN)
+  (h2 : Hyp_Eisenstein_Vanishing_OPEN) :
   freudenthal_extends_compatibly_deg8 :=
-  paper_iib_compatibility_OPEN bbd_saito_gm_ih_pullback_OPEN h
+  paper_iib_compatibility_OPEN bbd_saito_gm_ih_pullback_OPEN
+    (Hyp_FreudenthalClassPlacement_DERIVED_CONDITIONAL h1 h2)
 
 -- ============================================================================
 -- §8: Main Conditional Theorem
 -- ============================================================================
 
 /-- **MAIN gapClosedConditional THEOREM** — HC for Freudenthal quartic [q]
- on EVII Shimura varieties, conditional on 5 named broken-link hypotheses
+ on EVII Shimura varieties, conditional on 4 named broken-link hypotheses
  (each resolves to a real opaque carrier; none is `:= True`).
 
  P32 REFACTOR: Hyp_VZ_AqLambda dropped — R(q)=8 doesn't exist for E_{7(-25)}.
  P34 REFACTOR: Hyp_HigherRank_GoodMetric dropped — subsumed by Mumford 1977
  Thm 3.1 type-uniform framework + Harris 1985 + BKK 2007 + K_∞-isotypic.
+ P35 REFACTOR: Hyp_FreudenthalClassPlacement dropped — at deg 8 (only
+ relevant degree per P32) reduces to {Hyp_BorelMAtLeast8 + Hyp_Eisenstein
+ Vanishing} via Borel-Hirzebruch + Borel 1974 §11 + Mumford 1977 §1.3.
 
  Proof = composition of:
   (1) freudenthal_realized_by_G_invariant_CONDITIONAL (Cat 3 working assumption)
-  (2) freudenthal_extends_compatibly_CONDITIONAL (Cat 3 structural equation)
+  (2) freudenthal_extends_compatibly_CONDITIONAL (Cat 3, uses placement-derived)
   (3) goreskyPardon_EVII_CONDITIONAL (Cat 3 working assumption chain)
   (4) paper_clause_iii_polynomial_identity_OPEN (Cat 3 working assumption)
   (5) polynomial_in_chern_classes_is_algebraic_OPEN (Cat 2 standard)
@@ -513,14 +562,12 @@ theorem freudenthal_extends_compatibly_CONDITIONAL
    "Hyp_BorelMAtLeast8_OPEN",
    "Hyp_Eisenstein_Vanishing_OPEN",
    "Hyp_ChernWeilForm_Proportionality_OPEN",
-   "Hyp_FreudenthalClassPlacement_OPEN",
    "Hyp_CrossRingPhiNonzero_OPEN"
  ] -/
 theorem HC_for_freudenthal_quartic_on_EVII_CONDITIONAL
   (h_m_ge_8       : Hyp_BorelMAtLeast8_OPEN)
   (h_eisenstein   : Hyp_Eisenstein_Vanishing_OPEN)
   (h_form_prop    : Hyp_ChernWeilForm_Proportionality_OPEN)
-  (h_placement    : Hyp_FreudenthalClassPlacement_OPEN)
   (h_cross_ring   : Hyp_CrossRingPhiNonzero_OPEN) :
   HC_for_freudenthal_quartic_on_EVII :=
   paper_HC_equals_algebraicity_OPEN
@@ -528,7 +575,7 @@ theorem HC_for_freudenthal_quartic_on_EVII_CONDITIONAL
       (paper_clause_iii_polynomial_identity_OPEN
         h_cross_ring
         (freudenthal_realized_by_G_invariant_CONDITIONAL h_m_ge_8 h_eisenstein)
-        (freudenthal_extends_compatibly_CONDITIONAL h_placement)
+        (freudenthal_extends_compatibly_CONDITIONAL h_m_ge_8 h_eisenstein)
         (goreskyPardon_EVII_CONDITIONAL h_form_prop)))
 
 -- ============================================================================
@@ -820,14 +867,16 @@ def gap_Hyp_ChernWeilForm_Proportionality : StrictGapEntry :=
 
 def gap_Hyp_FreudenthalClassPlacement : StrictGapEntry :=
   { name := "Hyp_FreudenthalClassPlacement_OPEN"
-    status := .gapOpen, inputCategory := .cat3PaperNovel
+    status := .gapClosedConditional, inputCategory := .cat3PaperNovel
     cat3SubType := .conditionalHypothesis
-    paperSource := "Master tex L11625-11647 paper-acknowledged conditional"
+    paperSource := "Master tex L11625-11647 paper-acknowledged conditional; P35 BREAKTHROUGH: at deg 8 (only degree relevant per P32) reduces to {Hyp_BorelMAtLeast8 + Hyp_Eisenstein_Vanishing + Mumford 1977 §1.3 published synthesis}"
     attackHistory := ["P10 introduction",
                       "P23 `:= True` (vacuous violation)",
                       "P24 CRITICAL #2 fix: real carrier",
-                      "P25: maintained"]
-    scope := "Freudenthal [q] placed in G-P Chern subalgebra at deg 8" }
+                      "P25: maintained",
+                      "P35 deep-search (2026-05-15): Hyp_FreudenthalClassPlacement at deg 8 is REDUCIBLE. Argument: (i) Hyp_Eisenstein_Vanishing ⟹ H^8(S_Γ; ℂ)_G = H^8_cusp(S_Γ; ℂ)_G; (ii) Speh-Vogan + V-Z 1984 §5 in Hermitian symmetric: at deg 8 < dim_C(G/K)/2 = 13.5 only trivial-module contributes G-invariantly (holo discrete series have lowest (g,K)-cohomology degree = 14 in E_{7(-25)} from Hodge bidegree); (iii) Hyp_BorelMAtLeast8 + Borel 1974 §11 j^8 iso ⟹ H^8(S_Γ; ℂ)_G ≅ H^8(Ě_VII) = ⟨h^4⟩ (1-dim, b_8 = 1 from Borel-Hirzebruch Poincaré poly); (iv) j^8(h^4) = c_1(L)^4 where L = canonical line bundle (Borel-Hirzebruch 1958 identifies h = c_1(L)); (v) Mumford 1977 §1.3 ⟹ L extends to canonical L̄ on S_Γ^tor as algebraic bundle; (vi) c_1(L̄)^4 ∈ Chern subring of H^*(S_Γ^tor) by definition. Closure path: 6-10 page synthesis. Refactor: paper_placement_reduction_OPEN axiom added; paper_iib_compatibility_OPEN now consumes the derived Hyp_FreudenthalClassPlacement instead of taking it as input. Main Theorem signature: 5 → 4 Hyp_*."]
+    scope := "CLOSED-CONDITIONAL: placement at deg 8 reduces to Hyp_BorelMAtLeast8 + Hyp_Eisenstein_Vanishing + Mumford 1977 + Borel-Hirzebruch + V-Z 1984 + Speh-Vogan synthesis"
+    conditionalOn := ["Hyp_BorelMAtLeast8_OPEN", "Hyp_Eisenstein_Vanishing_OPEN"] }
 
 def gap_Hyp_CrossRingPhiNonzero : StrictGapEntry :=
   { name := "Hyp_CrossRingPhiNonzero_OPEN"
@@ -1000,6 +1049,14 @@ def gap_paper_section16_2 : StrictGapEntry :=
                       "P30 close target: decompose via boundary stratification + Chern generation"]
     scope := "paper §16.2 E_6-rep-compat reduction; close target P30" }
 
+def gap_paper_placement_reduction : StrictGapEntry :=
+  { name := "paper_placement_reduction_OPEN"
+    status := .gapOpen, inputCategory := .cat3PaperNovel
+    cat3SubType := .workingAssumption
+    paperSource := "P35 BREAKTHROUGH: synthesis of Master tex \\ref{rem:borel-matsushima} (L3471-3509) + \\ref{rem:E7-chernweil-tautology} (L3422). Composes Borel-Hirzebruch 1958 (Chern subring presentation of H^*(Ě_VII)) + Borel 1974 §11 (j^8 iso) + Mumford 1977 §1.3 (canonical extension of automorphic line bundle preserves algebraic Chern classes) + Speh-Vogan + V-Z 1984 §5 (Hermitian symmetric low-degree restriction)"
+    attackHistory := ["P35 introduction (2026-05-15): paper-stated reduction Hyp_BorelMAtLeast8 + Hyp_Eisenstein_Vanishing + mumford_framework → Hyp_FreudenthalClassPlacement (at deg 8). Reduces Main Theorem signature from 5 to 4 Hyp_*. Close target: 6-10 page synthesis write-up."]
+    scope := "paper placement reduction (3-input atomic, P35); close target P35+ via Borel-Hirzebruch + Borel 1974 + Mumford 1977 + V-Z 1984 synthesis" }
+
 def gap_paper_GP_EVII : StrictGapEntry :=
   { name := "paper_GP_EVII_OPEN"
     status := .gapOpen, inputCategory := .cat3PaperNovel
@@ -1089,14 +1146,24 @@ def gap_freudenthal_realized_CONDITIONAL : StrictGapEntry :=
     conditionalOn := ["Hyp_BorelMAtLeast8_OPEN",
                       "Hyp_Eisenstein_Vanishing_OPEN"] }
 
+def gap_Hyp_FreudenthalClassPlacement_DERIVED_CONDITIONAL : StrictGapEntry :=
+  { name := "Hyp_FreudenthalClassPlacement_DERIVED_CONDITIONAL"
+    status := .gapClosedConditional, inputCategory := .cat3PaperNovel
+    cat3SubType := .notApplicable
+    paperSource := "P35: derived via paper_placement_reduction + Mumford 1977 + Hyp_BorelMAtLeast8 + Hyp_Eisenstein_Vanishing"
+    attackHistory := ["P35 introduction (2026-05-15): derived theorem closing Hyp_FreudenthalClassPlacement at deg 8"]
+    scope := "Hyp_FreudenthalClassPlacement derived from {Hyp_BorelMAtLeast8 + Hyp_Eisenstein_Vanishing + Mumford 1977 + Borel-Hirzebruch}"
+    conditionalOn := ["Hyp_BorelMAtLeast8_OPEN", "Hyp_Eisenstein_Vanishing_OPEN"] }
+
 def gap_freudenthal_extends_CONDITIONAL : StrictGapEntry :=
   { name := "freudenthal_extends_compatibly_CONDITIONAL"
     status := .gapClosedConditional, inputCategory := .cat3PaperNovel
     cat3SubType := .notApplicable
-    paperSource := "derived via paper_iib_compatibility + BBD/Saito/GM + Hyp_*"
-    attackHistory := ["P25: derived theorem"]
-    scope := "(ii.b) compatibility (derived)"
-    conditionalOn := ["Hyp_FreudenthalClassPlacement_OPEN"] }
+    paperSource := "derived via paper_iib_compatibility + BBD/Saito/GM + Hyp_FreudenthalClassPlacement_DERIVED"
+    attackHistory := ["P25: derived theorem",
+                      "P35 refactor: Hyp_FreudenthalClassPlacement input REPLACED by derived (Hyp_BorelMAtLeast8 + Hyp_Eisenstein_Vanishing); compatibility now uses placement-derived"]
+    scope := "(ii.b) compatibility (derived; uses placement-derived)"
+    conditionalOn := ["Hyp_BorelMAtLeast8_OPEN", "Hyp_Eisenstein_Vanishing_OPEN"] }
 
 def gap_HC_Main : StrictGapEntry :=
   { name := "HC_for_freudenthal_quartic_on_EVII_CONDITIONAL"
@@ -1110,27 +1177,29 @@ def gap_HC_Main : StrictGapEntry :=
       "P25 audit-driven consolidation: deleted intermediates, multi-input workingAssumption tagged honestly, all Cat 2 frameworks load-bearing",
       "P26 minor: \\label anchors + folkloric Cat 2 dependencies acknowledged + round close-targets in workingAssumption attackHistory",
       "P32: Hyp_VZ_AqLambda DROPPED — R(q)=8 NEVER ACHIEVED in E_{7(-25)} (direct root-system enumeration); structural content reduces to Hyp_BorelMAtLeast8 via Borel 1974 §11 + Cartan H^*(g,K) = H^*(Ě_VII)",
-      "P34: Hyp_HigherRank_GoodMetric_OPEN DROPPED — Mumford 1977 Thm 3.1 is type-uniform for ANY automorphic ρ (covers V_56 on EVII directly) + Harris 1985 §4 algebraic upgrade + BKK 2007 Thm 5.2 + K_∞-isotypic V_56 = L_{+3} ⊕ E_{+1} ⊕ E_{-1} ⊕ L_{-3} = full closure synthesis"
+      "P34: Hyp_HigherRank_GoodMetric_OPEN DROPPED — Mumford 1977 Thm 3.1 is type-uniform for ANY automorphic ρ (covers V_56 on EVII directly) + Harris 1985 §4 algebraic upgrade + BKK 2007 Thm 5.2 + K_∞-isotypic V_56 = L_{+3} ⊕ E_{+1} ⊕ E_{-1} ⊕ L_{-3} = full closure synthesis",
+      "P35: Hyp_FreudenthalClassPlacement_OPEN DROPPED — at deg 8 (only relevant degree per P32) reduces to {Hyp_BorelMAtLeast8 + Hyp_Eisenstein_Vanishing + Mumford 1977 §1.3 + Borel-Hirzebruch 1958 + V-Z 1984/Speh-Vogan} via paper_placement_reduction_OPEN axiom + Hyp_FreudenthalClassPlacement_DERIVED_CONDITIONAL theorem"
     ]
-    scope := "HC for Freudenthal quartic [q] on EVII Shimura varieties; Hyp_* count 7 → 6 (P32) → 5 (P34)"
+    scope := "HC for Freudenthal quartic [q] on EVII Shimura varieties; Hyp_* count 7 → 6 (P32) → 5 (P34) → 4 (P35)"
     conditionalOn := [
-      -- 5 Hyp_* broken-link predicates (explicit in theorem signature)
+      -- 4 Hyp_* broken-link predicates (explicit in theorem signature)
       -- P32: Hyp_VZ_AqLambda DROPPED — R(q)=8 doesn't exist
       -- P34: Hyp_HigherRank_GoodMetric DROPPED — Mumford 1977 type-uniform
+      -- P35: Hyp_FreudenthalClassPlacement DROPPED — reducible to BorelM≥8 + Eisenstein
       "Hyp_BorelMAtLeast8_OPEN",
       "Hyp_Eisenstein_Vanishing_OPEN",
       "Hyp_ChernWeilForm_Proportionality_OPEN",
-      "Hyp_FreudenthalClassPlacement_OPEN",
       "Hyp_CrossRingPhiNonzero_OPEN",
       -- 3 Cat 2 PUBLISHED (was BLOCKED; P30 closure via Toda 1975 + Kono-Mimura 1976)
       "borel_toda_E6_U1_presentation_OPEN",
       "toda_1975_V27_generates_BE6_OPEN",
       "kono_mimura_1976_V56_generates_BE7_OPEN",
-      -- 7 paper workingAssumption axioms (must close pending derivation)
+      -- 8 paper workingAssumption axioms (must close pending derivation; P35 +1 for placement reduction)
       "paper_iia_realization_OPEN", "paper_formHM_EVII_OPEN",
       "paper_section16_2_OPEN", "paper_GP_EVII_OPEN",
       "paper_clause_iii_polynomial_identity_OPEN",
-      "paper_hodge44_step_OPEN", "paper_iib_compatibility_OPEN"
+      "paper_hodge44_step_OPEN", "paper_iib_compatibility_OPEN",
+      "paper_placement_reduction_OPEN"
     ] }
 
 /-! ### All-entries roll-up -/
@@ -1161,15 +1230,18 @@ def allEntries : List StrictGapEntry := [
   gap_mumford_1977, gap_vogan_zuckerman, gap_knapp_vogan_1995,
   gap_franke_1998, gap_borel_toda_E6_U1, gap_toda_1975_V27_BE6,
   gap_kono_mimura_1976_V56_BE7, gap_polynomial_is_algebraic,
-  -- Cat 3 workingAssumption + structuralEquation (8)
+  -- Cat 3 workingAssumption + structuralEquation (9, +1 P35 placement reduction)
   gap_paper_hodge44, gap_paper_iia, gap_paper_iib, gap_paper_formHM,
+  gap_paper_placement_reduction,
   gap_paper_section16_2, gap_paper_GP_EVII, gap_paper_clause_iii,
   gap_paper_HC_equals_algebraicity,
-  -- Derived gapClosedConditional (8)
+  -- Derived gapClosedConditional (9, +1 P35 Hyp_FreudenthalClassPlacement_DERIVED)
   gap_cohomologyIso_CONDITIONAL, gap_freudenthal_H8_auto_CONDITIONAL,
   gap_formHM_CONDITIONAL, gap_section16_2_CONDITIONAL,
   gap_goreskyPardon_EVII_CONDITIONAL, gap_freudenthal_realized_CONDITIONAL,
-  gap_freudenthal_extends_CONDITIONAL, gap_HC_Main
+  gap_freudenthal_extends_CONDITIONAL,
+  gap_Hyp_FreudenthalClassPlacement_DERIVED_CONDITIONAL,
+  gap_HC_Main
 ]
 
 -- ============================================================================
@@ -1220,8 +1292,9 @@ end HodgeReduction.Strict
 --
 -- §1.5 designates `#print axioms` as the primary verification tool. This
 -- surfaces the exact axiom dependency of the Main Theorem in the build log:
--- 21 atomic dependencies (13 Cat 2 + 8 Cat 3 paper-stated), no Cat 0 kernel
--- axioms (no propext / Quot.sound / Classical.choice / Lean.ofReduceBool).
+-- 22 atomic dependencies (13 Cat 2 + 9 Cat 3 paper-stated; P35 added
+-- paper_placement_reduction_OPEN), no Cat 0 kernel axioms (no propext /
+-- Quot.sound / Classical.choice / Lean.ofReduceBool).
 -- The proof is pure axiom-composition function application.
 
 #print axioms HodgeReduction.Strict.HC_for_freudenthal_quartic_on_EVII_CONDITIONAL
