@@ -85,20 +85,21 @@ the Mumford canonical extension stay L-block-diagonal at the toroidal
 boundary? Encoded via e6_compactness_form_proportionality +
 paper_chern_weil_form_L_refinement + Hyp_ChernWeilForm_Proportionality_DERIVED.
 
-P46 — the degree-8 class machinery. V_56^{can} on Ě_VII is the homogeneous
-bundle; since V_56 extends to an E_7-rep, the TOTAL bundle is TRIVIAL
-(c(V_56^{can}) = 1), but it carries the Hodge FILTRATION with nontrivial
-graded pieces 𝓛_{+3} ⊕ 𝓔_{+1} ⊕ 𝓔_{-1} ⊕ 𝓛_{-3}. The highest-weight line
-𝓛_{+3} = O(-1) (the tautological sub-bundle ⟨v⟩ ⊂ V_56), so c_1(𝓛_{+3}) =
--h; by V_56-self-duality 𝓛_{-3} = O(1), c_1 = +h. Triviality of the total
-bundle forces (1-h)·c(𝓔_{+1})·c(𝓔_{-1})·(1+h) = 1, hence the constraint
-  c(𝓔_{+1})·c(𝓔_{-1}) = 1/(1 - h^2) = 1 + h^2 + h^4 + ...
-binding the 27-bundle Chern classes to h. Combined with P45's q_2 = b^2
-relation O(4) ≅ 𝓛^{⊗2} (4h = 2c_1(𝓛)), this is the concrete machinery for
-[q] = P(c_1,...,c_4): every Chern class on Ě_VII is forced into ℚ[h] in
-low degree, and H^8(Ě_VII) = ℚ·h^4. The remaining open content is to
-assemble [q]_G from the order-2 jet q_2 and this Chern-class constraint
-and verify [q]_G = γ·h^4 with γ ≠ 0.
+P46 + P47 — the degree-8 class machinery, made fully concrete. V_56^{can}
+on Ě_VII is the homogeneous bundle; since V_56 extends to an E_7-rep, the
+TOTAL bundle is TRIVIAL (c(V_56^{can}) = 1), but it carries the Hodge
+FILTRATION with nontrivial graded pieces 𝓛_{+3} ⊕ 𝓔_{+1} ⊕ 𝓔_{-1} ⊕
+𝓛_{-3}. The highest-weight line 𝓛_{+3} = O(-1), so c_1(𝓛_{+3}) = -h; by
+V_56-self-duality 𝓛_{-3} = O(1), c_1 = +h. Triviality forces
+(1-h)·c(𝓔_{+1})·c(𝓔_{-1})·(1+h) = 1; and by the Hodge pairing 27' = 27^∨,
+so 𝓔_{-1} ≅ 𝓔_{+1}^∨, giving c(𝓔_{+1})·c(𝓔_{+1}^∨) = 1/(1-h^2). Degree
+by degree: 2c_2(𝓔_{+1}) - c_1(𝓔_{+1})^2 = h^2, and the degree-4 analogue.
+Since c_i(V_56^{can}) = 0, the master tex's [q] = P(c_1,...,c_4) means
+P(c_i(𝓔_{+1})), and [q]_G = P(c_i(𝓔_{+1})) ∈ H^8(Ě_VII) = ℚ·h^4. The
+filtered-triviality constraints reduce any such P to γ·h^4 for a definite
+γ ∈ ℚ. The remaining open content is the finite rational computation of
+γ: the order-2 jet q_2 = b^2 fixes which polynomial P, and the constraints
+evaluate P(c_i) as a multiple of h^4; verify γ ≠ 0.
 
 ## Disciplinary invariants
 
@@ -380,11 +381,25 @@ opaque eisensteinVanishing_E7minus25_Deg8 : Prop
 --   ⟹  c(𝓔_{+1})·c(𝓔_{-1}) = 1/(1 - h^2) = 1 + h^2 + h^4 + ...
 -- — the constraint binding the 27-bundle (= cotangent-bundle-related)
 -- Chern classes to h. Every Chern class on Ě_VII is thereby forced into
--- ℚ[h] in low degree; H^8(Ě_VII) = ℚ·h^4. REMAINING OPEN CONTENT: assemble
--- [q]_G ∈ H^8(Ě_VII) from the order-2 leading jet q_2 = b^2 and this
--- Chern-class constraint, and verify [q]_G = γ·h^4 with γ ≠ 0. The pieces
--- are now all concrete: the order-2 jet, the conormal line c_1(𝓛) = 2h,
--- and the 27-bundle constraint c(𝓔_{+1})·c(𝓔_{-1}) = 1/(1-h^2).
+-- ℚ[h] in low degree; H^8(Ě_VII) = ℚ·h^4.
+--
+-- P47 — the assembly made fully concrete. By the Hodge pairing 27' = 27^∨,
+-- so 𝓔_{-1} ≅ 𝓔_{+1}^∨, and the P46 constraint becomes
+--   c(𝓔_{+1}) · c(𝓔_{+1}^∨) = 1 / (1 - h^2).
+-- Expanding c(E)·c(E^∨) = (1 + c_1 + c_2 + ...)(1 - c_1 + c_2 - ...) degree
+-- by degree against 1 + h^2 + h^4 + ...:
+--   * degree 2:  2·c_2(𝓔_{+1}) - c_1(𝓔_{+1})^2 = h^2
+--   * degree 4:  [the degree-4 part of c(E)·c(E^∨)] = h^4
+-- These EXPRESS the symmetric Chern combinations of the 27-bundle in terms
+-- of h. Since V_56^{can} is filtered-trivial (c_i(V_56^{can}) = 0), the
+-- master tex's [q] = P(c_1,...,c_4) must mean P(c_i(𝓔_{+1})) — the Chern
+-- classes of the (2,1)-Hodge piece 𝓔_{+1}. The assembly is now fully
+-- concrete: [q]_G = P(c_i(𝓔_{+1})) ∈ H^8(Ě_VII) = ℚ·h^4, and the
+-- filtered-triviality constraints (2c_2 - c_1^2 = h^2, etc.) reduce ANY
+-- such degree-8 polynomial to γ·h^4 for a definite γ ∈ ℚ. The question
+-- "is [q]_G ≠ 0" has become "is the assembled γ ≠ 0" — a finite rational
+-- computation, with all inputs explicit (the order-2 jet q_2 = b^2 fixes
+-- which polynomial P; the constraints evaluate P(c_i) as a multiple of h^4).
 
 /-- **Cat 3 carrier (§3.4.1, P39, P41-confirmed)** — RIGOROUSLY ESTABLISHED:
  the canonical Φ factors through `Sym^4(t^∨)^{W(E_7)}_+`. Proof: q is
@@ -1430,8 +1445,9 @@ def gap_Hyp_TwistedPhiL_Coefficient_Nonzero : StrictGapEntry :=
                       "P43 positive direction (2026-05-15): the genuine twist IS the NORMAL JET of q along the closed orbit. GEOMETRIC reason canonical Φ(q) = 0: Ě_VII ⊂ ℙ(V_56) is the closed E_7-orbit = rank-1 locus, and {q = 0} = {rank ≤ 3} ⊃ {rank 1} = Ě_VII (Freudenthal / Sato-Kimura / Krutelevich rank stratification). So q LITERALLY VANISHES on Ě_VII; the bridge is the leading normal-derivative term (standard excess-intersection construction).",
                       "P44 computation (2026-05-15): normal-jet computed but with an ERROR — used N = 27'_{-1} ⊕ 1_{-3}, concluded order m = 1 with leading jet 4·b·N(A).",
                       "P45 hostile self-audit (2026-05-15): P44 FORGOT the O(1)-twist in the tangent bundle of projective space — T_{[v]}ℙ(V) = ⟨v⟩^∨ ⊗ (V/⟨v⟩), not V/⟨v⟩. CORRECT normal bundle: T_{[v_0]}ℙ(V_56) = 1_{-3} ⊗ (27_{+1} ⊕ 27'_{-1} ⊕ 1_{-3}) = 27_{-2} ⊕ 27'_{-4} ⊕ 1_{-6}; T_{[v_0]}Ě_VII = 27_{-2}; ⟹ N = 27'_{-4} ⊕ 1_{-6}, N^∨ = 27_{+4} ⊕ 1_{+6}. CHARGE-CONSISTENCY now passes: the order-m jet lives in (Sym^m N^∨ ⊗ O(4)_{[v_0]})^L with O(4)_{[v_0]} = 1_{-12}; a charge-+12 E_6-invariant in Sym^m(27_{+4} ⊕ 1_{+6}) requires 4a+6b=12, a+b=m ⟹ m ∈ {2,3}. At m = 2: Sym^2(1_{+6}) ⊗ 1_{-12} = 1_0 (L-invariant). The base-point normal slice q(1,0,B,b) = b^2 + 4N(B) has lowest term b^2 at ORDER 2 — CONSISTENT. CONCLUSION: q vanishes to order EXACTLY m = 2 along Ě_VII; leading jet q_2 = b^2 = (ab)^2|_{a=1} ∈ (Sym^2 N^∨ ⊗ O(4))^L = 1_0, L-INVARIANT and NONZERO. P39's (ab)^2 focus RE-VINDICATED.",
-                      "P46 degree-8 machinery (2026-05-15): V_56^{can} on Ě_VII is the homogeneous bundle; since V_56 extends to an E_7-rep, the TOTAL bundle is TRIVIAL (c(V_56^{can}) = 1), but it is FILTERED by the Hodge filtration with graded pieces 𝓛_{+3} ⊕ 𝓔_{+1} ⊕ 𝓔_{-1} ⊕ 𝓛_{-3}. The highest-weight line 𝓛_{+3} = O(-1) (tautological sub-bundle), c_1 = -h; by self-duality 𝓛_{-3} = O(1), c_1 = +h. Triviality of the total bundle forces (1-h)·c(𝓔_{+1})·c(𝓔_{-1})·(1+h) = 1, hence c(𝓔_{+1})·c(𝓔_{-1}) = 1/(1-h^2) = 1 + h^2 + h^4 + ... — the constraint binding the 27-bundle Chern classes to h. Combined with the P45 jet relation O(4) ≅ 𝓛^{⊗2}, every Chern class on Ě_VII is forced into ℚ[h] in low degree; H^8(Ě_VII) = ℚ·h^4. CLOSE PATH: assemble [q]_G from the order-2 jet q_2 = b^2 and the Chern-class constraint c(𝓔_{+1})·c(𝓔_{-1}) = 1/(1-h^2); verify [q]_G = γ·h^4 with γ ≠ 0."]
-    scope := "OPEN (P46-machinery-assembled): q vanishes to order EXACTLY m = 2 along Ě_VII; leading jet q_2 = b^2 = (ab)^2|_{a=1}, L-invariant, nonzero. V_56^{can} is filtered-trivial: c(𝓔_{+1})·c(𝓔_{-1}) = 1/(1-h^2). Remaining: assemble [q]_G ∈ H^8 = ℚ·h^4 from q_2 + the Chern-class constraint and verify γ ≠ 0" }
+                      "P46 degree-8 machinery (2026-05-15): V_56^{can} on Ě_VII is the homogeneous bundle; since V_56 extends to an E_7-rep, the TOTAL bundle is TRIVIAL (c(V_56^{can}) = 1), but it is FILTERED by the Hodge filtration with graded pieces 𝓛_{+3} ⊕ 𝓔_{+1} ⊕ 𝓔_{-1} ⊕ 𝓛_{-3}. The highest-weight line 𝓛_{+3} = O(-1), c_1 = -h; by self-duality 𝓛_{-3} = O(1), c_1 = +h. Triviality forces (1-h)·c(𝓔_{+1})·c(𝓔_{-1})·(1+h) = 1, hence c(𝓔_{+1})·c(𝓔_{-1}) = 1/(1-h^2) — the constraint binding the 27-bundle Chern classes to h. H^8(Ě_VII) = ℚ·h^4.",
+                      "P47 assembly made concrete (2026-05-15): by the Hodge pairing 27' = 27^∨, so 𝓔_{-1} ≅ 𝓔_{+1}^∨ and the P46 constraint is c(𝓔_{+1})·c(𝓔_{+1}^∨) = 1/(1-h^2). Expanding degree by degree: degree 2 gives 2·c_2(𝓔_{+1}) - c_1(𝓔_{+1})^2 = h^2; degree 4 gives [degree-4 part of c(E)·c(E^∨)] = h^4. These express the symmetric Chern combinations of the 27-bundle in terms of h. Since V_56^{can} is filtered-trivial (c_i(V_56^{can}) = 0), the master tex's [q] = P(c_1,...,c_4) means P(c_i(𝓔_{+1})). ASSEMBLY: [q]_G = P(c_i(𝓔_{+1})) ∈ H^8(Ě_VII) = ℚ·h^4, and the filtered-triviality constraints reduce ANY such degree-8 polynomial to γ·h^4 for a definite γ ∈ ℚ. The open question 'is [q]_G ≠ 0' has become 'is the assembled γ ≠ 0' — a finite rational computation: the order-2 jet q_2 = b^2 fixes which polynomial P, and the constraints (2c_2 - c_1^2 = h^2, etc.) evaluate P(c_i) as a multiple of h^4."]
+    scope := "OPEN (P47-assembly-concrete): q vanishes to order m = 2 along Ě_VII; leading jet q_2 = b^2 = (ab)^2|_{a=1}, L-invariant, nonzero. V_56^{can} filtered-trivial ⟹ c(𝓔_{+1})·c(𝓔_{+1}^∨) = 1/(1-h^2), giving 2c_2(𝓔_{+1}) - c_1(𝓔_{+1})^2 = h^2 etc. [q]_G = P(c_i(𝓔_{+1})) ∈ ℚ·h^4. Remaining: the finite rational computation of γ — fix P from q_2, evaluate via the constraints, verify γ ≠ 0" }
 
 /-! ### Cat 2 single-step axioms -/
 
