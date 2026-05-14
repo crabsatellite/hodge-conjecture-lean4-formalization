@@ -329,29 +329,34 @@ opaque eisensteinVanishing_E7minus25_Deg8 : Prop
 -- W(E_7)-symmetric-evaluation, and it uses the cubic T precisely through
 -- the normal derivatives of T(v,v,v) transverse to the rank-1 locus.
 --
--- P44 — the normal jet COMPUTED. Work in the affine chart a = 1 near the
--- base point [v_0]. Coordinates: (A, B, b) ∈ 27_{+1} ⊕ 27'_{-1} ⊕ 1_{-3}.
--- The tangent space T_{v_0}Ě_VII = e_7·v_0 ∩ chart = 27_{+1} (the
--- A-directions); the NORMAL directions are B and b (N_{[v_0]} = 27'_{-1} ⊕
--- 1_{-3}). Expand the Freudenthal quartic transverse to Ě_VII:
---   q = (b - ⟨A,B⟩)^2 + 4·N(B) + 4·b·N(A) - 4·⟨A^#, B^#⟩.
--- Order in the normal coordinates (B, b):
---   * (b - ⟨A,B⟩)^2 — order 2;   * 4·N(B) — order 3;
---   * -4·⟨A^#,B^#⟩ — order 2;     * 4·b·N(A) — ORDER 1.
--- So q vanishes to order EXACTLY m = 1 along Ě_VII, and the leading normal
--- jet is the explicit object
---     q_1 = 4·b·N(A)  ∈  H^0(Ě_VII, O(4) ⊗ N^∨),
--- where b is the conormal coordinate (the 1_{+3} ⊂ N^∨ summand, charge +3)
--- and N(A) is the E_6-CUBIC-NORM of the tangent coordinate A ∈ 27_{+1} =
--- T_{Ě_VII} (charge 3·(-1) = -3). Total U(1)-charge 0, E_6-invariant ⟹
--- q_1 is L-INVARIANT and NONZERO. The cubic structure that P42 predicted
--- enters EXPLICITLY as N(A) — the E_6-cubic norm. (Note: P39's focus on
--- the (ab)^2 piece was the WRONG piece; the leading normal jet is b·N(A).)
--- REMAINING OPEN CONTENT: from q_1 = 4·b·N(A) ∈ H^0(Ě_VII, O(4) ⊗ N^∨),
--- produce the class in H^8(Ě_VII) and verify it is a nonzero multiple of
--- h^4. This is now concrete: N(A) is the cubic norm of the tangent bundle
--- T_{Ě_VII} ≅ 27_{+1}-bundle, and b spans the conormal line — both have
--- Chern classes expressible in h on Ě_VII.
+-- P44 → P45-corrected — the normal jet COMPUTED (after a hostile self-audit
+-- fixing a P44 error). P44 forgot the O(1)-twist in the tangent bundle of
+-- projective space: T_{[v]}ℙ(V) = Hom(⟨v⟩, V/⟨v⟩) = ⟨v⟩^∨ ⊗ (V/⟨v⟩), NOT
+-- V/⟨v⟩. The CORRECT computation:
+--   T_{[v_0]}ℙ(V_56) = 1_{-3} ⊗ (27_{+1} ⊕ 27'_{-1} ⊕ 1_{-3})
+--                    = 27_{-2} ⊕ 27'_{-4} ⊕ 1_{-6};
+--   T_{[v_0]}Ě_VII   = 1_{-3} ⊗ 27_{+1} = 27_{-2};
+--   ⟹ NORMAL BUNDLE  N_{[v_0]} = 27'_{-4} ⊕ 1_{-6},  N^∨ = 27_{+4} ⊕ 1_{+6}.
+-- CHARGE-CONSISTENCY CHECK (now passes). The order-m leading jet lives in
+-- (Sym^m N^∨ ⊗ O(4)_{[v_0]})^L with O(4)_{[v_0]} = 1_{-12}. A charge-+12
+-- E_6-invariant in Sym^m(27_{+4} ⊕ 1_{+6}) needs 4a + 6b = 12, a + b = m
+-- ⟹ m ∈ {2, 3}. At m = 2: Sym^2(1_{+6}) ⊗ 1_{-12} = 1_0 — charge 0,
+-- E_6-invariant ⟹ L-INVARIANT. And the base-point normal slice
+-- q(1,0,B,b) = (b)^2 + 4·N(B) has lowest term b^2 at ORDER 2. CONSISTENT.
+-- CONCLUSION: q vanishes to order EXACTLY m = 2 along Ě_VII, and the
+-- leading normal jet is
+--     q_2 = b^2  =  (ab)^2 |_{a=1}   ∈  (Sym^2 N^∨ ⊗ O(4))^L = 1_0,
+-- L-INVARIANT and NONZERO. This VINDICATES P39's (ab)^2 focus — that WAS
+-- the geometrically relevant piece; P44's "b·N(A)" was an artifact of the
+-- wrong (untwisted) normal bundle. (b·N(A) is in fact NOT the lowest
+-- normal-order term once the O(1)-twist is included.)
+-- REMAINING OPEN CONTENT: q_2 = b^2 is a nonzero section of the TRIVIAL
+-- line bundle O(4) ⊗ Sym^2(L^∨) (L = 1_{-6} conormal line), giving the
+-- H^2 relation 4h = 2·c_1(L) ⟹ c_1(L) = 2h. From the order-2 jet plus the
+-- higher jet data, produce the degree-8 class [q]_G ∈ H^8(Ě_VII) and
+-- verify it is a nonzero multiple of h^4 (the order-2 jet alone gives an
+-- H^2 relation; the H^8 class needs the Segre/Euler class of N or the
+-- higher-jet structure).
 
 /-- **Cat 3 carrier (§3.4.1, P39, P41-confirmed)** — RIGOROUSLY ESTABLISHED:
  the canonical Φ factors through `Sym^4(t^∨)^{W(E_7)}_+`. Proof: q is
@@ -381,13 +386,15 @@ opaque V56_hodge_decomposition_under_E6_U1 : Prop
  carrier asserts `Φ_filt` is a well-defined non-W(E_7)-equivariant map. -/
 opaque twisted_Phi_L_well_defined : Prop
 
-/-- **Cat 3 carrier (§3.4.1, P39 → P41-caveated → P44-superseded)** — the
- pure-scalar L-piece `(ab)^2` maps under L-Chern-Weil to `81 h^4`. P41
- caveat: the five L-pieces sum to canonical Φ(q) = 0. P44 SUPERSEDED:
- `(ab)^2` was the WRONG piece. The genuine twist is the normal jet of q
- along the closed orbit Ě_VII; the leading jet (order m = 1) is `4·b·N(A)`
- — the `b·N(A)` term, NOT `(ab)^2`. This carrier is retained for the audit
- trail; the load-bearing object is now `q_1 = 4·b·N(A)`. -/
+/-- **Cat 3 carrier (§3.4.1, P39 → P41-caveated → P44-superseded → P45-RE-VINDICATED)**
+ — the pure-scalar L-piece `(ab)^2` of the Freudenthal quartic. P39: maps
+ under L-Chern-Weil to `81 h^4`. P41 caveat: the five L-pieces sum to
+ canonical Φ(q) = 0. P44 (erroneously) superseded it with `b·N(A)`. P45
+ hostile audit: P44 forgot the O(1)-twist in Tℙ(V); with the CORRECT
+ normal bundle N = 27'_{-4} ⊕ 1_{-6}, the leading normal jet of q along
+ Ě_VII is exactly `q_2 = b^2 = (ab)^2|_{a=1}` at order m = 2 — so `(ab)^2`
+ IS the geometrically relevant piece after all. The load-bearing object is
+ `q_2 = b^2`, the order-2 leading normal jet, L-invariant and nonzero. -/
 opaque freudenthal_scalar_piece_maps_to_81_h4 : Prop
 
 /-- **Cat 3 carrier (§3.4.1, P39)** — the total coefficient `γ` in
@@ -1234,11 +1241,12 @@ def gap_freudenthal_scalar_piece_maps_to_81_h4 : StrictGapEntry :=
   { name := "freudenthal_scalar_piece_maps_to_81_h4"
     status := .gapOpen, inputCategory := .cat3PaperNovel
     cat3SubType := .hypothesisPredicate
-    paperSource := "P39: (ab)^2 ↦ 81 h^4. P41 caveat: one Hodge-graded piece, not Φ(q). P44 SUPERSEDED: (ab)^2 was the WRONG piece — the genuine twist is the normal jet of q along Ě_VII, leading jet q_1 = 4·b·N(A) (the b·N(A) term, order m = 1)"
+    paperSource := "P39: (ab)^2 ↦ 81 h^4. P41 caveat: one Hodge-graded piece. P44 erroneously superseded. P45 RE-VINDICATED: with the correct O(1)-twisted normal bundle N = 27'_{-4} ⊕ 1_{-6}, the leading normal jet of q along Ě_VII is q_2 = b^2 = (ab)^2|_{a=1} at order m = 2 — (ab)^2 IS the geometrically relevant piece"
     attackHistory := ["P39: opaque Prop carrier for the (ab)^2 ↦ 81 h^4 computation",
-                      "P41 audit (2026-05-15): CAVEATED — the 81 h^4 is the (ab)^2-graded contribution only; the five L-pieces sum to zero",
-                      "P44 SUPERSEDED (2026-05-15): (ab)^2 is not the relevant piece. The normal-jet computation shows q vanishes to order m = 1 along Ě_VII with leading jet q_1 = 4·b·N(A) — the b·N(A) term. Carrier retained for audit trail; the load-bearing object is q_1 = 4·b·N(A)"]
-    scope := "SUPERSEDED by P44: (ab)^2 was the wrong piece; the genuine leading normal jet is q_1 = 4·b·N(A). Carrier retained for the audit trail" }
+                      "P41 audit (2026-05-15): CAVEATED — the 81 h^4 is the (ab)^2-graded contribution; the five L-pieces sum to zero",
+                      "P44 (2026-05-15): erroneously superseded — claimed the leading jet was b·N(A) (used the untwisted normal bundle)",
+                      "P45 hostile audit (2026-05-15): P44 forgot the O(1)-twist in Tℙ(V). Correct N = 27'_{-4} ⊕ 1_{-6}; the leading normal jet is q_2 = b^2 = (ab)^2|_{a=1} at order m = 2, L-invariant and nonzero. (ab)^2 IS the geometrically relevant piece — P39's focus RE-VINDICATED."]
+    scope := "P45-re-vindicated: (ab)^2 IS the geometrically relevant piece — the leading normal jet of q along Ě_VII is q_2 = b^2 = (ab)^2|_{a=1} (order m = 2, L-invariant, nonzero)" }
 
 def gap_twisted_Phi_L_total_coefficient_nonzero : StrictGapEntry :=
   { name := "twisted_Phi_L_total_coefficient_nonzero"
@@ -1392,8 +1400,9 @@ def gap_Hyp_TwistedPhiL_Coefficient_Nonzero : StrictGapEntry :=
                       "P41 hostile self-audit (2026-05-15): the P39 'decompose-and-sum' Φ_L is FLAWED — Σ_j [q_j|_{t^∨}] = [q|_{t^∨}], and q is W(E_7)-invariant, so it lands in the W(E_7)-augmentation ideal = canonical Φ = 0. The five L-pieces (e.g. (ab)^2 ↦ 81 h^4) are individually nonzero but SUM to zero. WHAT SURVIVES: the augmentation phenomenon (now rigorously confirmed: q|_{t^∨} = c·κ² since W(E_7) has no degree-4 invariant but κ²); the L = E_6×U(1) = weight-3 Hodge decomposition identification; the (ab)^2 ↦ 81 h^4 graded-piece computation.",
                       "P42 exploration (2026-05-15): three natural twist candidates RULED OUT. (1) Hodge-FILTRATION projection: q is E_7-invariant ⟹ Hodge-torus-invariant ⟹ PURE type (6,6) in Sym^4(V_56^∨); all monomial pieces lie in Gr_F^6, so the filtration does not distinguish them — projection twists nothing. (2) Weil operator C: on type (6,6), C = i^{6-6} = 1 — inserting C is the identity on q. (3) K-moment-map factorization: if q = P∘μ_K with P an E_7-invariant quadratic on k, then P ∝ κ_{E_7}|_k and κ_{E_7}∘μ = 0 (moment map image is in the nilpotent cone, Killing-isotropic) — forces q = 0, contradiction. POSITIVE RESIDUE: all three obstructions are QUADRATIC; the twist must use the genuinely CUBIC Freudenthal triple product T.",
                       "P43 positive direction (2026-05-15): the genuine twist IS the NORMAL JET of q along the closed orbit. GEOMETRIC reason canonical Φ(q) = 0: Ě_VII ⊂ ℙ(V_56) is the closed E_7-orbit = rank-1 locus, and {q = 0} = {rank ≤ 3} ⊃ {rank 1} = Ě_VII (Freudenthal / Sato-Kimura / Krutelevich rank stratification). So q LITERALLY VANISHES on Ě_VII; the bridge is the leading normal-derivative term (standard excess-intersection construction).",
-                      "P44 COMPUTATION (2026-05-15): the normal jet computed explicitly. Affine chart a = 1 near [v_0], coordinates (A,B,b) ∈ 27_{+1} ⊕ 27'_{-1} ⊕ 1_{-3}; tangent T_{v_0}Ě_VII = 27_{+1} (the A-directions), normal N = 27'_{-1} ⊕ 1_{-3} (B,b). Expanding q = (b - ⟨A,B⟩)^2 + 4N(B) + 4b·N(A) - 4⟨A^#,B^#⟩ in the normal coords (B,b): the terms have order 2, 3, 1, 2 respectively. The LOWEST is 4b·N(A) at ORDER 1. So q vanishes to order EXACTLY m = 1 along Ě_VII, and the leading normal jet is the EXPLICIT object q_1 = 4·b·N(A) ∈ H^0(Ě_VII, O(4) ⊗ N^∨), where b is the conormal coordinate (1_{+3} ⊂ N^∨, charge +3) and N(A) is the E_6-CUBIC-NORM of the tangent coordinate A ∈ 27_{+1} = T_{Ě_VII} (charge -3). Total charge 0, E_6-invariant ⟹ q_1 is L-INVARIANT and NONZERO. The cubic structure P42 predicted enters EXPLICITLY as the E_6-cubic-norm N(A). (P39's focus on (ab)^2 was the WRONG piece — the leading jet is b·N(A).) CLOSE PATH: from q_1 = 4·b·N(A) ∈ H^0(Ě_VII, O(4) ⊗ N^∨) produce the class in H^8(Ě_VII) and verify it is a nonzero multiple of h^4 — concrete: N(A) is the cubic norm of T_{Ě_VII} ≅ 27_{+1}-bundle, b spans the conormal line, both have Chern classes expressible in h."]
-    scope := "OPEN (P44-COMPUTED leading jet): the genuine twist Φ_jet(q) — the normal jet of q along the closed orbit Ě_VII — has been computed: q vanishes to order EXACTLY 1, leading jet q_1 = 4·b·N(A), explicit, L-invariant, NONZERO. Remaining: convert q_1 ∈ H^0(O(4) ⊗ N^∨) into the H^8(Ě_VII) class and verify ≠ 0·h^4" }
+                      "P44 computation (2026-05-15): normal-jet computed but with an ERROR — used N = 27'_{-1} ⊕ 1_{-3}, concluded order m = 1 with leading jet 4·b·N(A).",
+                      "P45 hostile self-audit (2026-05-15): P44 FORGOT the O(1)-twist in the tangent bundle of projective space — T_{[v]}ℙ(V) = ⟨v⟩^∨ ⊗ (V/⟨v⟩), not V/⟨v⟩. CORRECT normal bundle: T_{[v_0]}ℙ(V_56) = 1_{-3} ⊗ (27_{+1} ⊕ 27'_{-1} ⊕ 1_{-3}) = 27_{-2} ⊕ 27'_{-4} ⊕ 1_{-6}; T_{[v_0]}Ě_VII = 27_{-2}; ⟹ N = 27'_{-4} ⊕ 1_{-6}, N^∨ = 27_{+4} ⊕ 1_{+6}. CHARGE-CONSISTENCY now passes: the order-m jet lives in (Sym^m N^∨ ⊗ O(4)_{[v_0]})^L with O(4)_{[v_0]} = 1_{-12}; a charge-+12 E_6-invariant in Sym^m(27_{+4} ⊕ 1_{+6}) requires 4a+6b=12, a+b=m ⟹ m ∈ {2,3}. At m = 2: Sym^2(1_{+6}) ⊗ 1_{-12} = 1_0 (L-invariant). The base-point normal slice q(1,0,B,b) = b^2 + 4N(B) has lowest term b^2 at ORDER 2 — CONSISTENT. CONCLUSION: q vanishes to order EXACTLY m = 2 along Ě_VII; leading jet q_2 = b^2 = (ab)^2|_{a=1} ∈ (Sym^2 N^∨ ⊗ O(4))^L = 1_0, L-INVARIANT and NONZERO. This VINDICATES P39's (ab)^2 focus — that WAS the geometrically relevant piece; P44's b·N(A) was the artifact of the untwisted normal bundle. CLOSE PATH: q_2 = b^2 gives the H^2 relation 4h = 2·c_1(L) (L = 1_{-6} conormal line) ⟹ c_1(L) = 2h; the degree-8 class [q]_G needs the higher-jet / Segre-class structure on top of the order-2 jet."]
+    scope := "OPEN (P45-corrected): q vanishes to order EXACTLY m = 2 along Ě_VII (P44's m = 1 was an error — forgot the O(1)-twist in Tℙ(V)). Leading jet q_2 = b^2 = (ab)^2|_{a=1}, L-invariant, NONZERO, in (Sym^2 N^∨ ⊗ O(4))^L = 1_0. Vindicates P39's (ab)^2. Remaining: build the degree-8 class [q]_G from the order-2 jet + higher-jet/Segre structure" }
 
 /-! ### Cat 2 single-step axioms -/
 
@@ -1560,11 +1569,12 @@ def gap_freudenthal_scalar_piece_computation : StrictGapEntry :=
   { name := "freudenthal_scalar_piece_computation_OPEN"
     status := .gapOpen, inputCategory := .cat3PaperNovel
     cat3SubType := .structuralEquation
-    paperSource := "P39 → P41-caveated → P44-superseded: (ab)^2 ↦ 81 h^4 was the wrong piece. P44: q vanishes to order m = 1 along Ě_VII; the genuine leading normal jet is q_1 = 4·b·N(A) (the b·N(A) term of the Freudenthal quartic). Axiom retained for the chain structure; its load-bearing content is now the existence of the explicit nonzero leading jet q_1"
+    paperSource := "P39 → P41-caveated → P44-superseded → P45-corrected: q vanishes to order EXACTLY m = 2 along Ě_VII (P44's m = 1 was an error — forgot the O(1)-twist in Tℙ(V)). The genuine leading normal jet is q_2 = b^2 = (ab)^2|_{a=1}, L-invariant and nonzero. Axiom retained for the chain structure; its load-bearing content is the existence of the explicit nonzero order-2 leading jet q_2"
     attackHistory := ["P39 introduction (2026-05-15): the (ab)^2 ↦ 81 h^4 computation",
                       "P41 audit (2026-05-15): CAVEATED — the five L-pieces sum to zero",
-                      "P44 SUPERSEDED (2026-05-15): the normal-jet computation supersedes the (ab)^2 focus. q vanishes to order EXACTLY 1 along Ě_VII; leading jet q_1 = 4·b·N(A) ∈ H^0(Ě_VII, O(4) ⊗ N^∨), explicit, L-invariant, NONZERO. The cubic E_6-norm N(A) is the load-bearing structure"]
-    scope := "P44-superseded: the (ab)^2 computation is replaced by the normal-jet computation — q vanishes to order m = 1 along Ě_VII, leading jet q_1 = 4·b·N(A), explicit and nonzero (1-input structural; audit trail retained)" }
+                      "P44 (2026-05-15): erroneously claimed q vanishes to order m = 1 with leading jet 4·b·N(A) (used the untwisted normal bundle)",
+                      "P45 hostile audit (2026-05-15): P44 forgot the O(1)-twist in Tℙ(V). CORRECT: N = 27'_{-4} ⊕ 1_{-6}; charge-consistency forces m ∈ {2,3}; the base-point slice q(1,0,B,b) = b^2 + 4N(B) gives m = 2. Leading jet q_2 = b^2 = (ab)^2|_{a=1} ∈ (Sym^2 N^∨ ⊗ O(4))^L = 1_0, L-invariant, NONZERO. P39's (ab)^2 focus RE-VINDICATED"]
+    scope := "P45-corrected: q vanishes to order EXACTLY m = 2 along Ě_VII; leading jet q_2 = b^2 = (ab)^2|_{a=1}, L-invariant and nonzero (1-input structural; full audit trail P39→P45 retained)" }
 
 def gap_paper_chern_weil_form_L_refinement : StrictGapEntry :=
   { name := "paper_chern_weil_form_L_refinement_OPEN"
