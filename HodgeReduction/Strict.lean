@@ -1275,7 +1275,23 @@ def countCat3BySubType : List (Cat3SubType × Nat) :=
 def totalEntries : Nat := allEntries.length
 
 def openHypNames : List String :=
-  allEntries.filter (·.name.startsWith "Hyp_") |>.map (·.name)
+  allEntries.filter (fun e =>
+    e.name.startsWith "Hyp_" &&
+    e.status ≠ .gapClosed &&
+    e.status ≠ .gapClosedConditional &&
+    e.status ≠ .gapDeadEnd &&
+    ¬ e.name.endsWith "_CONDITIONAL")
+  |>.map (·.name)
+
+/-- All Hyp_* declarations by status (audit transparency). -/
+def hypNamesByStatus : List (StrictGapStatus × List String) :=
+  let s : List StrictGapStatus := [.gapOpen, .gapPartial, .gapBlocked,
+                                    .gapDeadEnd, .gapClosed, .gapClosedConditional]
+  s.map fun st =>
+    (st, allEntries.filter (fun e =>
+      e.name.startsWith "Hyp_" &&
+      e.status = st &&
+      ¬ e.name.endsWith "_CONDITIONAL") |>.map (·.name))
 
 def gapClosedConditionalBacklog : List String :=
   allEntries.filter (·.status = .gapClosedConditional) |>.map (·.name)
@@ -1291,7 +1307,8 @@ end HodgeReduction.Strict
 #eval s!"countByStatus: {repr HodgeReduction.Strict.countByStatus}"
 #eval s!"countByInputCategory: {repr HodgeReduction.Strict.countByInputCategory}"
 #eval s!"countCat3BySubType: {repr HodgeReduction.Strict.countCat3BySubType}"
-#eval s!"openHypNames: {repr HodgeReduction.Strict.openHypNames}"
+#eval s!"openHypNames (active gapOpen/gapPartial Hyp_*): {repr HodgeReduction.Strict.openHypNames}"
+#eval s!"hypNamesByStatus: {repr HodgeReduction.Strict.hypNamesByStatus}"
 #eval s!"gapClosedConditionalBacklog: {repr HodgeReduction.Strict.gapClosedConditionalBacklog}"
 #eval s!"conditionalInvariantHolds: {repr HodgeReduction.Strict.conditionalInvariantHolds}"
 
