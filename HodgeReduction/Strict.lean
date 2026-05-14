@@ -38,24 +38,29 @@ extends to c_1(L̄)^4 ∈ Chern subring of H^*(S_Γ^tor) via Mumford canonical
 extension. Encoded via paper_placement_reduction_OPEN axiom +
 Hyp_FreudenthalClassPlacement_DERIVED_CONDITIONAL theorem.
 
-P39 FUNDAMENTAL NEW MATHEMATICS — the Hodge-refined cross-ring map Φ_L.
+P39 + P41 — the cross-ring map twist (with hostile self-audit).
 Hyp_CrossRingPhiNonzero_OPEN was an INVENTION_CLASS ("invent a twisted Φ
-with Φ(q) ≠ 0"). P39 identifies the STRUCTURAL reason the canonical Φ
-vanishes: Φ evaluates q symmetrically on all 56 weights of V_56, landing
-in Sym^4(t^∨)^{W(E_7)}_+, the augmentation ideal that the Borel-Hirzebruch
+with Φ(q) ≠ 0"). P39 identified the STRUCTURAL reason the canonical Φ
+vanishes: q is W(E_7)-invariant, so q|_{t^∨} (degree 4) lies in
+Sym^4(t^∨)^{W(E_7)}_+, the augmentation ideal that the Borel-Hirzebruch
 coinvariant presentation H^*(Ě_VII) = Sym(t^∨)^{W(E_6)}/(Sym(t^∨)^{W(E_7)}_+)
-quotients out — the vanishing is FORCED by W(E_7)-symmetry. THE FIX is not
-arbitrary: the maximal compact K = E_6 × U(1) has its U(1) = the
-Deligne/Hodge torus, and V_56 = 1_{+3} ⊕ 27_{+1} ⊕ 27'_{-1} ⊕ 1_{-3} IS
-the weight-3 Hodge decomposition. The Hodge-refined Φ_L decomposes q
-L-equivariantly; each piece lands in Sym^4(t^∨)^{W(E_6)}, which SURJECTS
-onto H^8(Ě_VII). The pure-scalar piece (ab)^2 maps to (3h)^2(-3h)^2 =
-81 h^4 ≠ 0. Hyp_CrossRingPhiNonzero is thereby reduced from INVENTION_CLASS
-to the CONCRETE finite E_6-representation-theory computation
-Hyp_TwistedPhiL_Coefficient_Nonzero. Encoded via 3 Cat 2 axioms +
+quotients out. P41 hostile self-audit SHARPENED this (W(E_7) has invariant
+degrees 2,6,8,... — no degree 4 except κ² — so q|_{t^∨} = c·κ² → 0
+rigorously) and CORRECTED P39's proposed fix: P39's "decompose q
+L-equivariantly and SUM" equals canonical Φ = 0 (Σ_j q_j|_{t^∨} = q|_{t^∨};
+the five L-pieces, e.g. (ab)^2 ↦ 81 h^4, are individually nonzero but sum
+to zero). The genuine twist must NOT be W(E_7)-equivariant: it is the
+Hodge-FILTRATION projection Φ_filt — project q onto a Hodge-graded piece
+Gr_F^p(Sym^4 V_56^∨) BEFORE Chern-Weil. The Hodge filtration F^• is not
+W(E_7)-stable; only a Hodge structure (a point of the Shimura variety)
+determines it. WHAT SURVIVES P41: the augmentation phenomenon (rigorous);
+the L = E_6 × U(1) = weight-3 Hodge decomposition identification; the
+(ab)^2 ↦ 81 h^4 graded-piece value. Hyp_CrossRingPhiNonzero is still
+reduced to a concrete target Hyp_TwistedPhiL_Coefficient_Nonzero, now the
+Hodge-FILTRATION-projection coefficient. Encoded via 3 Cat 2 axioms +
 canonical_Phi_vanishes_by_augmentation + paper_twisted_Phi_L_reduction +
 freudenthal_scalar_piece_computation + Hyp_CrossRingPhiNonzero_DERIVED
-theorem.
+theorem (STRUCTURE unchanged, carrier MEANINGS P41-corrected).
 
 P40 — the Hodge-refinement principle GENERALIZES. The same L = E_6 × U(1)
 decomposition dissolves Hyp_ChernWeilForm_Proportionality. The "weight-3
@@ -247,39 +252,48 @@ opaque voganZuckermanAqLambda_E7minus25_Deg8 : Prop
 opaque eisensteinVanishing_E7minus25_Deg8 : Prop
 
 -- ============================================================================
--- §2bis: P39 — L-equivariant (Hodge-refined) Chern-Weil refinement
+-- §2bis: P39 + P41 — the Hodge-FILTRATION twist of the cross-ring map
 -- ============================================================================
 --
--- FUNDAMENTAL NEW MATHEMATICS (P39, 2026-05-15). The canonical cross-ring
--- map Φ vanishes on the Freudenthal quartic q for a STRUCTURAL reason, and
--- the correct "twist" is the Hodge refinement, not an arbitrary invention.
+-- P39 (2026-05-15) + P41 hostile self-audit (2026-05-15).
 --
--- WHY canonical Φ vanishes (the augmentation phenomenon):
---   Borel-Hirzebruch presents H^*(Ě_VII) = H^*(E_{7,C}/P_7) as the
---   COINVARIANT algebra Sym(t^∨)^{W(E_6)} / (Sym(t^∨)^{W(E_7)}_+). The
---   canonical Φ evaluates q symmetrically on all 56 weights of V_56,
---   landing in Sym^4(t^∨)^{W(E_7)}_+ — precisely the augmentation ideal
---   that is quotiented out. So Φ(q) = 0 is FORCED by W(E_7)-symmetry.
+-- WHAT IS RIGOROUSLY ESTABLISHED — the augmentation phenomenon. Borel-
+-- Hirzebruch presents H^*(Ě_VII) = H^*(E_{7,C}/P_7) as the COINVARIANT
+-- algebra Sym(t^∨)^{W(E_6)} / (Sym(t^∨)^{W(E_7)}_+). The Freudenthal
+-- quartic q is W(E_7)-invariant, so q evaluated on the 56 Chern roots of
+-- V_56^{can} (= q restricted to t^∨ via the weights) is a W(E_7)-invariant
+-- of degree 4. Since W(E_7) has invariant degrees 2,6,8,10,12,14,18 — NO
+-- degree-4 invariant except κ² (κ = degree-2 Killing invariant) — we get
+-- q|_{t^∨} = c·κ², which lies in Sym^4(t^∨)^{W(E_7)}_+ and hence maps to
+-- ZERO in H^8(Ě_VII). The canonical cross-ring map kills q. CONFIRMED.
 --
--- THE FIX (Hodge-refined Φ_L):
---   The maximal compact K = E_6 × U(1) has its U(1) factor = the
---   Deligne/Hodge torus. The decomposition V_56 = 1_{+3} ⊕ 27_{+1} ⊕
---   27'_{-1} ⊕ 1_{-3} IS the weight-3 Hodge decomposition. Decomposing q
---   L-equivariantly breaks W(E_7)-symmetry down to W(E_6): each L-isotypic
---   piece lands in Sym^4(t^∨)^{W(E_6)}, which SURJECTS onto H^8(Ě_VII).
+-- P41 HOSTILE SELF-AUDIT — P39's "Φ_L" did NOT escape this. P39 proposed
+-- Φ_L = "decompose q L-equivariantly under E_6 × U(1), apply W(E_6)-
+-- Chern-Weil piece by piece, sum." But Σ_j [q_j |_{t^∨}] = [q |_{t^∨}],
+-- and q is W(E_7)-invariant, so decompose-and-SUM equals canonical Φ = 0.
+-- The five L-pieces of q (e.g. (ab)^2 ↦ 81 h^4) are individually nonzero
+-- but they SUM to zero — that is exactly the content of canonical Φ(q) = 0.
+-- P39's claim that decompose-and-sum "breaks the symmetry" was FALSE.
 --
--- THE COMPUTATION:
---   The pure-scalar L-piece of the Freudenthal quartic is (ab)^2 (from the
---   (ab - ⟨A,B⟩)^2 term). Under L-Chern-Weil with c_1(1_{+3}) = 3h,
---   c_1(1_{-3}) = -3h (h = U(1)-curvature = Kähler class):
---     Φ_L((ab)^2) = c_1(1_{+3})^2 · c_1(1_{-3})^2 = (3h)^2(-3h)^2 = 81 h^4 ≠ 0.
---   So Hyp_CrossRingPhiNonzero is no longer an INVENTION_CLASS — it reduces
---   to the CONCRETE finite computation that the total coefficient γ in
---   Φ_L(q) = γ·h^4 (summed over all five L-pieces of q) is non-zero.
+-- WHAT SURVIVES AND THE CORRECTED DIRECTION. The genuine twist cannot be
+-- W(E_7)-equivariant in its construction. The L = E_6 × U(1) decomposition
+-- IS the weight-3 Hodge decomposition V_56 = V^{3,0} ⊕ V^{2,1} ⊕ V^{1,2} ⊕
+-- V^{0,3} (dims 1,27,27,1), and the genuine twist is the Hodge-FILTRATION
+-- projection — NOT the decomposition-sum. The Hodge filtration F^• is NOT
+-- W(E_7)-stable; only a Hodge structure (a point of the Shimura variety)
+-- determines it. Φ_filt(q) := Chern-Weil of the projection of q onto a
+-- chosen Hodge-graded piece Gr_F^p(Sym^4 V_56^∨). This genuinely differs
+-- from canonical Φ because the projection is not W(E_7)-equivariant.
+-- The (ab)^2 ↦ 81 h^4 computation remains valid as the contribution of
+-- ONE Hodge-graded piece; the open content is whether the chosen
+-- filtration projection (i) is non-zero and (ii) is the geometrically
+-- correct realization [q]_G.
 
-/-- **Cat 3 carrier (§3.4.1, P39)** — the structural fact that the
- canonical Φ factors through `Sym^4(t^∨)^{W(E_7)}_+`, the augmentation ideal
- of the coinvariant presentation of `H^*(Ě_VII)`. -/
+/-- **Cat 3 carrier (§3.4.1, P39, P41-confirmed)** — RIGOROUSLY ESTABLISHED:
+ the canonical Φ factors through `Sym^4(t^∨)^{W(E_7)}_+`. Proof: q is
+ W(E_7)-invariant, q|_{t^∨} has degree 4, and W(E_7) has no degree-4
+ invariant beyond `κ²`, so `q|_{t^∨} = c·κ² ∈ Sym^4(t^∨)^{W(E_7)}_+`, the
+ augmentation ideal of the coinvariant presentation of `H^*(Ě_VII)`. -/
 opaque canonical_Phi_lands_in_W_E7_augmentation_ideal : Prop
 
 /-- **Cat 3 carrier (§3.4.1, P39)** — `H^8(Ě_VII; ℚ)` is 1-dimensional,
@@ -287,19 +301,29 @@ opaque canonical_Phi_lands_in_W_E7_augmentation_ideal : Prop
 opaque H8_EVII_is_one_dim_spanned_by_h4 : Prop
 
 /-- **Cat 3 carrier (§3.4.1, P39)** — `V_56` decomposes under `E_6 × U(1)`
- as `1_{+3} ⊕ 27_{+1} ⊕ 27'_{-1} ⊕ 1_{-3}` (the weight-3 Hodge
- decomposition; U(1) = Deligne torus). -/
+ as `1_{+3} ⊕ 27_{+1} ⊕ 27'_{-1} ⊕ 1_{-3}`, which is precisely the
+ weight-3 Hodge decomposition `V^{3,0} ⊕ V^{2,1} ⊕ V^{1,2} ⊕ V^{0,3}`
+ (U(1) = Deligne torus). -/
 opaque V56_hodge_decomposition_under_E6_U1 : Prop
 
-/-- **Cat 3 carrier (§3.4.1, P39)** — the Hodge-refined cross-ring map
- `Φ_L`: decompose `q` L-equivariantly, apply `W(E_6)`-Chern-Weil
- (Borel-Hirzebruch SURJECTIVE) piece by piece. Well-defined and lands in
- `H^8(Ě_VII)` non-trivially in the sense that it does NOT factor through
- the `W(E_7)`-augmentation. -/
+/-- **Cat 3 carrier (§3.4.1, P39 → P41-reframed)** — the genuine twist:
+ the Hodge-FILTRATION projection `Φ_filt`. P41 audit: the P39
+ "decompose-and-sum" reading equals canonical Φ = 0 (q is W(E_7)-invariant,
+ so Σ_j q_j|_{t^∨} = q|_{t^∨} lands in the augmentation ideal). The genuine
+ twist projects q onto a Hodge-graded piece `Gr_F^p(Sym^4 V_56^∨)` BEFORE
+ Chern-Weil. The Hodge filtration `F^•` is not W(E_7)-stable — only the
+ Hodge structure (a point of the Shimura variety) determines it — so
+ `Φ_filt` genuinely differs from the W(E_7)-equivariant canonical Φ. This
+ carrier asserts `Φ_filt` is a well-defined non-W(E_7)-equivariant map. -/
 opaque twisted_Phi_L_well_defined : Prop
 
-/-- **Cat 3 carrier (§3.4.1, P39)** — the pure-scalar L-piece `(ab)^2` of
- the Freudenthal quartic maps under `Φ_L` to `81 h^4 ≠ 0` in `H^8(Ě_VII)`. -/
+/-- **Cat 3 carrier (§3.4.1, P39, P41-caveated)** — the pure-scalar L-piece
+ `(ab)^2` maps under L-Chern-Weil to `(3h)^2(-3h)^2 = 81 h^4`. P41 caveat:
+ this is the contribution of ONE Hodge-graded piece; the five pieces
+ individually are nonzero but SUM to zero (= canonical Φ(q) = 0). The
+ `81 h^4` value is real but is NOT by itself `Φ_filt(q)` — it is the
+ (ab)^2-graded contribution, relevant once `Φ_filt` projects onto the
+ right piece. -/
 opaque freudenthal_scalar_piece_maps_to_81_h4 : Prop
 
 /-- **Cat 3 carrier (§3.4.1, P39)** — the total coefficient `γ` in
@@ -343,6 +367,12 @@ opaque twisted_Phi_L_total_coefficient_nonzero : Prop
 -- Mumford canonical extension stay L = E_6 × U(1)-BLOCK-DIAGONAL at the
 -- toroidal boundary divisor (so that the L-decomposition of V_56^{can}
 -- extends as a direct sum of sub-bundles, not just on the open part)?
+--
+-- P41 note: P40 is INDEPENDENT of P39's audited flaw. P39's mistake was in
+-- a polynomial-level "decompose-and-sum" (which is W(E_7)-invariant, hence
+-- = 0). P40 instead decomposes the BUNDLE V_56^{can} into Hodge SUB-BUNDLES
+-- and applies E_6-compactness — that is a legitimate bundle decomposition,
+-- not a polynomial decompose-and-sum, and is unaffected by the P41 audit.
 
 /-- **Cat 3 carrier (§3.4.1, P40)** — the Levi `E_6 ⊂ K` is compact, so the
  Mumford good metric restricts to E_6-invariant on the rank-27 Hodge
@@ -509,27 +539,30 @@ axiom H8_EVII_one_dim_OPEN : H8_EVII_is_one_dim_spanned_by_h4
  (Hodge types `(3,0),(2,1),(1,2),(0,3)`). -/
 axiom V56_hodge_decomposition_OPEN : V56_hodge_decomposition_under_E6_U1
 
-/-- **Cat 3 structuralEquation (§3.4.3, P39)** — the canonical cross-ring
- map `Φ` vanishes on the Freudenthal quartic `q` BECAUSE `Φ` evaluates `q`
- symmetrically on all 56 weights of `V_56`, landing in
- `Sym^4(t^∨)^{W(E_7)}_+`, which the Borel-Hirzebruch coinvariant
- presentation quotients out. This is the STRUCTURAL reason for the
- vanishing — it is forced by `W(E_7)`-symmetry, not accidental. -/
+/-- **Cat 3 structuralEquation (§3.4.3, P39 → P41-reframed)** — the
+ canonical cross-ring map `Φ` vanishes on `q`; the genuine twist `Φ_filt`
+ must therefore NOT be W(E_7)-equivariant. P41 audit: the well-definedness
+ conclusion is that the Hodge-FILTRATION projection `Φ_filt` is a
+ well-defined non-W(E_7)-equivariant map (the P39 "decompose-and-sum"
+ reading equals canonical Φ = 0 and does NOT qualify as the twist). -/
 axiom canonical_Phi_vanishes_by_augmentation_OPEN :
   canonical_Phi_lands_in_W_E7_augmentation_ideal →
   H8_EVII_is_one_dim_spanned_by_h4 →
   twisted_Phi_L_well_defined
 
-/-- **Cat 3 workingAssumption (§3.4.4, P39)** — the Hodge-refined
- cross-ring map `Φ_L` is constructed by decomposing `q` L-equivariantly
- (`V_56` Hodge decomposition) and applying `W(E_6)`-Chern-Weil
- (Borel-Hirzebruch SURJECTIVE) piece by piece. Its image does NOT factor
- through the `W(E_7)`-augmentation. The pure-scalar piece `(ab)^2` maps to
- `81 h^4 ≠ 0`. Given (i) `Φ_L` well-defined, (ii) `V_56` Hodge
- decomposition, (iii) the scalar-piece computation, and (iv) the concrete
- hypothesis that the total coefficient `γ ≠ 0`, the cross-ring map is
- non-zero on `q`. P39 reframes `Hyp_CrossRingPhiNonzero` from
- INVENTION_CLASS to this concrete reduction. -/
+/-- **Cat 3 workingAssumption (§3.4.4, P39 → P41-reframed)** — the genuine
+ twisted cross-ring map is the Hodge-FILTRATION projection `Φ_filt`:
+ project `q` onto a Hodge-graded piece `Gr_F^p(Sym^4 V_56^∨)` (the
+ filtration `F^•` is NOT W(E_7)-stable — only the Hodge structure / a point
+ of the Shimura variety determines it) and then apply Chern-Weil. P41
+ audit: this REPLACES P39's flawed "decompose-and-sum" reading, which was
+ W(E_7)-invariant hence = canonical Φ = 0. Given (i) `Φ_filt` well-defined
+ and non-W(E_7)-equivariant, (ii) the `V_56` Hodge decomposition, (iii) the
+ `(ab)^2 ↦ 81 h^4` graded-piece computation, and (iv) the concrete
+ hypothesis that the filtration-projected coefficient `γ ≠ 0`, the
+ cross-ring map is non-zero on `q`. Still reduces `Hyp_CrossRingPhiNonzero`
+ to a concrete (filtration-projection) computation, but the operation is
+ now correctly identified as filtration-projection, not decompose-and-sum. -/
 axiom paper_twisted_Phi_L_reduction_OPEN :
   twisted_Phi_L_well_defined →
   V56_hodge_decomposition_under_E6_U1 →
@@ -537,11 +570,14 @@ axiom paper_twisted_Phi_L_reduction_OPEN :
   Hyp_TwistedPhiL_Coefficient_Nonzero_OPEN →
   Hyp_CrossRingPhiNonzero_OPEN
 
-/-- **Cat 3 structuralEquation (§3.4.3, P39)** — the pure-scalar L-piece
- `(ab)^2` of the Freudenthal quartic maps under `Φ_L` to `81 h^4`: with
- `c_1(1_{+3}) = 3h`, `c_1(1_{-3}) = -3h`, the splitting principle gives
- `Φ_L((ab)^2) = (3h)^2 (-3h)^2 = 81 h^4 ≠ 0`. This is a definitional
- computation, not a reduction conclusion. -/
+/-- **Cat 3 structuralEquation (§3.4.3, P39, P41-caveated)** — the
+ pure-scalar L-piece `(ab)^2` of the Freudenthal quartic maps under
+ L-Chern-Weil to `81 h^4`: with `c_1(1_{+3}) = 3h`, `c_1(1_{-3}) = -3h`,
+ the splitting principle gives `(3h)^2 (-3h)^2 = 81 h^4`. P41 caveat: this
+ is the contribution of ONE Hodge-graded piece. It is a real value but is
+ NOT by itself `Φ_filt(q)` — the five L-pieces sum to zero (= canonical
+ Φ(q) = 0); the `81` matters once `Φ_filt` projects onto the right
+ Hodge-graded component. -/
 axiom freudenthal_scalar_piece_computation_OPEN :
   V56_hodge_decomposition_under_E6_U1 →
   freudenthal_scalar_piece_maps_to_81_h4
@@ -1087,10 +1123,11 @@ def gap_cross_ring_phi_nonzero : StrictGapEntry :=
   { name := "cross_ring_phi_nonzero"
     status := .gapClosedConditional, inputCategory := .cat3PaperNovel
     cat3SubType := .carrier
-    paperSource := "Paper (i.b.2); P39 BREAKTHROUGH: no longer INVENTION_CLASS — reduces to the concrete computation Hyp_TwistedPhiL_Coefficient_Nonzero via the Hodge-refined cross-ring map Φ_L"
+    paperSource := "Paper (i.b.2); P39 → P41-reframed: reduces to the concrete Hodge-FILTRATION-projection computation Hyp_TwistedPhiL_Coefficient_Nonzero (P41 audit corrected the twist from 'decompose-and-sum' to 'filtration-projection')"
     attackHistory := ["P25: opaque Prop carrier for Hyp_CrossRingPhiNonzero",
-                      "P39 fundamental new math (2026-05-15): the canonical Φ vanishes on q for a STRUCTURAL reason — Φ evaluates q symmetrically on all 56 weights of V_56, landing in Sym^4(t^∨)^{W(E_7)}_+, the augmentation ideal that the Borel-Hirzebruch coinvariant presentation of H^*(Ě_VII) quotients out. The FIX is the Hodge-refined Φ_L: decompose q L-equivariantly (V_56 = 1_{+3} ⊕ 27_{+1} ⊕ 27'_{-1} ⊕ 1_{-3}, the weight-3 Hodge decomposition with U(1) = Deligne torus), apply W(E_6)-Chern-Weil (Borel-Hirzebruch SURJECTIVE) piece by piece. The pure-scalar piece (ab)^2 maps to (3h)^2(-3h)^2 = 81 h^4 ≠ 0. Hyp_CrossRingPhiNonzero is now derivable from Hyp_TwistedPhiL_Coefficient_Nonzero (a concrete finite E_6-rep-theory computation)."]
-    scope := "CLOSED-CONDITIONAL: cross-ring Φ(q) ≠ 0 reduces to the concrete computation Hyp_TwistedPhiL_Coefficient_Nonzero via the Hodge-refined Φ_L; no longer INVENTION_CLASS"
+                      "P39 fundamental new math (2026-05-15): identified the augmentation phenomenon (canonical Φ kills q because q|_{t^∨} is W(E_7)-invariant of degree 4) and proposed a Hodge-refined twist Φ_L.",
+                      "P41 hostile self-audit (2026-05-15): P39's specific Φ_L = 'decompose q L-equivariantly and sum' is FLAWED — it equals canonical Φ = 0 (Σ_j q_j|_{t^∨} = q|_{t^∨}, W(E_7)-invariant → augmentation ideal). SURVIVES: the augmentation phenomenon (now rigorously confirmed — W(E_7) has no degree-4 invariant but κ², so q|_{t^∨} = c·κ² → 0); the L = E_6×U(1) = weight-3 Hodge decomposition; the (ab)^2 ↦ 81 h^4 graded-piece value. CORRECTED: the genuine twist is the Hodge-FILTRATION projection Φ_filt (project q onto Gr_F^p before Chern-Weil; F^• is not W(E_7)-stable). Still reduces to a concrete computation (Hyp_TwistedPhiL_Coefficient_Nonzero), now correctly the filtration-projection coefficient."]
+    scope := "CLOSED-CONDITIONAL: cross-ring Φ(q) ≠ 0 reduces to Hyp_TwistedPhiL_Coefficient_Nonzero (the Hodge-FILTRATION-projection coefficient; P41 corrected from the flawed decompose-and-sum reading)"
     conditionalOn := ["Hyp_TwistedPhiL_Coefficient_Nonzero_OPEN"] }
 
 /-! ### P39 — L-equivariant (Hodge-refined) Chern-Weil refinement carriers -/
@@ -1099,9 +1136,10 @@ def gap_canonical_Phi_lands_in_W_E7_augmentation_ideal : StrictGapEntry :=
   { name := "canonical_Phi_lands_in_W_E7_augmentation_ideal"
     status := .gapOpen, inputCategory := .cat3PaperNovel
     cat3SubType := .hypothesisPredicate
-    paperSource := "P39: structural fact — canonical Φ evaluates q on all 56 weights symmetrically, landing in Sym^4(t^∨)^{W(E_7)}_+"
-    attackHistory := ["P39: opaque Prop carrier for the augmentation phenomenon"]
-    scope := "Canonical Φ factors through the W(E_7)-augmentation ideal of H^*(Ě_VII)" }
+    paperSource := "P39 → P41-confirmed: RIGOROUSLY ESTABLISHED — q is W(E_7)-invariant, q|_{t^∨} has degree 4, W(E_7) has no degree-4 invariant beyond κ², so q|_{t^∨} = c·κ² ∈ Sym^4(t^∨)^{W(E_7)}_+, the augmentation ideal of the Borel-Hirzebruch coinvariant presentation"
+    attackHistory := ["P39: opaque Prop carrier for the augmentation phenomenon",
+                      "P41 audit (2026-05-15): UPGRADED from heuristic to rigorous — the degree-4 W(E_7)-invariants are exactly ℚ·κ² (W(E_7) invariant degrees 2,6,8,10,12,14,18 — no degree 4), so canonical Φ(q) = c·[κ²] = 0 cleanly"]
+    scope := "Canonical Φ factors through the W(E_7)-augmentation ideal of H^*(Ě_VII); rigorously: q|_{t^∨} = c·κ² (RIGOROUSLY ESTABLISHED, P41-confirmed)" }
 
 def gap_H8_EVII_is_one_dim_spanned_by_h4 : StrictGapEntry :=
   { name := "H8_EVII_is_one_dim_spanned_by_h4"
@@ -1123,25 +1161,28 @@ def gap_twisted_Phi_L_well_defined : StrictGapEntry :=
   { name := "twisted_Phi_L_well_defined"
     status := .gapOpen, inputCategory := .cat3PaperNovel
     cat3SubType := .hypothesisPredicate
-    paperSource := "P39: the Hodge-refined cross-ring map Φ_L is well-defined via L-equivariant decomposition + W(E_6)-Chern-Weil"
-    attackHistory := ["P39: opaque Prop carrier for the twisted Φ_L construction"]
-    scope := "The Hodge-refined cross-ring map Φ_L is well-defined and does not factor through the W(E_7)-augmentation" }
+    paperSource := "P39 → P41-reframed: the genuine twist is the Hodge-FILTRATION projection Φ_filt (project q onto Gr_F^p(Sym^4 V_56^∨) before Chern-Weil; F^• is not W(E_7)-stable). The P39 'decompose-and-sum' reading was audited as = canonical Φ = 0."
+    attackHistory := ["P39: opaque Prop carrier for the twisted Φ_L construction (then framed as decompose-and-sum)",
+                      "P41 audit (2026-05-15): REFRAMED — decompose-and-sum = canonical Φ = 0 (q W(E_7)-invariant). The genuine non-W(E_7)-equivariant twist is the Hodge-FILTRATION projection Φ_filt; the filtration F^• depends on the Hodge structure (a point of the Shimura variety), not on W(E_7)"]
+    scope := "The Hodge-FILTRATION projection Φ_filt is a well-defined non-W(E_7)-equivariant map (P41-corrected from the flawed decompose-and-sum reading)" }
 
 def gap_freudenthal_scalar_piece_maps_to_81_h4 : StrictGapEntry :=
   { name := "freudenthal_scalar_piece_maps_to_81_h4"
     status := .gapOpen, inputCategory := .cat3PaperNovel
     cat3SubType := .hypothesisPredicate
-    paperSource := "P39: explicit splitting-principle computation Φ_L((ab)^2) = (3h)^2(-3h)^2 = 81 h^4"
-    attackHistory := ["P39: opaque Prop carrier for the (ab)^2 ↦ 81 h^4 computation"]
-    scope := "The pure-scalar L-piece (ab)^2 of the Freudenthal quartic maps under Φ_L to 81 h^4 ≠ 0" }
+    paperSource := "P39: explicit splitting-principle computation (ab)^2 ↦ (3h)^2(-3h)^2 = 81 h^4. P41 caveat: this is ONE Hodge-graded piece's contribution, not Φ_filt(q) itself — the five L-pieces sum to zero"
+    attackHistory := ["P39: opaque Prop carrier for the (ab)^2 ↦ 81 h^4 computation",
+                      "P41 audit (2026-05-15): CAVEATED — the 81 h^4 value is real but is the (ab)^2-graded contribution only; the full Φ_filt(q) requires projecting onto the geometrically correct Hodge-graded component"]
+    scope := "The pure-scalar L-piece (ab)^2 maps under L-Chern-Weil to 81 h^4 (one Hodge-graded contribution; P41-caveated — not Φ_filt(q) by itself)" }
 
 def gap_twisted_Phi_L_total_coefficient_nonzero : StrictGapEntry :=
   { name := "twisted_Phi_L_total_coefficient_nonzero"
     status := .gapOpen, inputCategory := .cat3PaperNovel
     cat3SubType := .carrier
-    paperSource := "P39: the total coefficient γ in Φ_L(q) = γ·h^4 (summed over all five L-pieces of q) is non-zero — a concrete finite E_6-rep-theory computation (NOT an invention)"
-    attackHistory := ["P39: opaque Prop carrier for Hyp_TwistedPhiL_Coefficient_Nonzero"]
-    scope := "The total Φ_L coefficient γ ≠ 0; concrete finite E_6-representation-theory computation (the (ab)^2 piece alone contributes +81)" }
+    paperSource := "P39 → P41-reframed: the coefficient γ in Φ_filt(q) = γ·h^4 is non-zero, where Φ_filt is the Hodge-FILTRATION projection (P41 corrected — the P39 decompose-and-SUM coefficient is identically 0, since the five L-pieces sum to canonical Φ(q) = 0)"
+    attackHistory := ["P39: opaque Prop carrier for Hyp_TwistedPhiL_Coefficient_Nonzero (then: decompose-and-sum γ)",
+                      "P41 audit (2026-05-15): the decompose-and-sum γ is identically 0; reframed as the Hodge-FILTRATION-projection coefficient — the Chern-Weil image of q's projection onto the geometrically correct Hodge-graded piece Gr_F^p(Sym^4 V_56^∨)"]
+    scope := "The Hodge-FILTRATION-projection coefficient γ ≠ 0 (P41-corrected; the decompose-and-sum γ was identically 0)" }
 
 /-! ### P40 — Hodge-refinement principle applied to Chern-Weil forms -/
 
@@ -1267,22 +1308,24 @@ def gap_Hyp_CrossRingPhiNonzero : StrictGapEntry :=
   { name := "Hyp_CrossRingPhiNonzero_OPEN"
     status := .gapClosedConditional, inputCategory := .cat3PaperNovel
     cat3SubType := .conditionalHypothesis
-    paperSource := "Paper (i.b.2); P39 FUNDAMENTAL NEW MATH: no longer INVENTION_CLASS — the canonical Φ vanishes by the W(E_7)-augmentation phenomenon, and the correct twist is the Hodge refinement Φ_L (V_56 = 1_{+3} ⊕ 27_{+1} ⊕ 27'_{-1} ⊕ 1_{-3}, U(1) = Deligne torus). Reduces to the concrete computation Hyp_TwistedPhiL_Coefficient_Nonzero."
+    paperSource := "Paper (i.b.2); P39 → P41-audited: the canonical Φ vanishes by the W(E_7)-augmentation phenomenon (rigorously confirmed); the genuine twist is the Hodge-FILTRATION projection Φ_filt (P41 corrected P39's flawed decompose-and-sum reading). Reduces to the concrete computation Hyp_TwistedPhiL_Coefficient_Nonzero."
     attackHistory := ["P11 introduction as INVENTION_CLASS",
                       "P23 `:= True` (vacuous violation)",
                       "P24 CRITICAL #2 fix: real carrier",
                       "P25: maintained",
-                      "P39 fundamental new math (2026-05-15): identified the STRUCTURAL reason canonical Φ vanishes — Φ evaluates q symmetrically on all 56 weights of V_56, landing in Sym^4(t^∨)^{W(E_7)}_+, which the Borel-Hirzebruch coinvariant presentation of H^*(Ě_VII) = Sym(t^∨)^{W(E_6)}/(Sym(t^∨)^{W(E_7)}_+) quotients out. The vanishing is FORCED by W(E_7)-symmetry, not accidental. THE FIX: the Hodge-refined Φ_L decomposes q L-equivariantly under E_6 × U(1) (the U(1) being the Deligne/Hodge torus), each L-isotypic piece landing in Sym^4(t^∨)^{W(E_6)} which SURJECTS onto H^8(Ě_VII). The pure-scalar piece (ab)^2 maps to (3h)^2(-3h)^2 = 81 h^4 ≠ 0. ENCODING: paper_twisted_Phi_L_reduction_OPEN axiom + Hyp_CrossRingPhiNonzero_DERIVED_CONDITIONAL theorem; Main Theorem signature replaces Hyp_CrossRingPhiNonzero (INVENTION) with Hyp_TwistedPhiL_Coefficient_Nonzero (CONCRETE finite E_6-rep-theory computation)."]
-    scope := "CLOSED-CONDITIONAL: cross-ring Φ(q) ≠ 0 reduces — via the Hodge-refined Φ_L — to the concrete finite computation Hyp_TwistedPhiL_Coefficient_Nonzero; the INVENTION_CLASS framing is superseded"
+                      "P39 fundamental new math (2026-05-15): identified the augmentation phenomenon — q|_{t^∨} is W(E_7)-invariant, lands in Sym^4(t^∨)^{W(E_7)}_+, which the Borel-Hirzebruch coinvariant presentation quotients out. Proposed a Hodge-refined twist Φ_L (decompose-and-sum).",
+                      "P41 hostile self-audit (2026-05-15): P39's decompose-and-sum Φ_L is FLAWED — Σ_j [q_j|_{t^∨}] = [q|_{t^∨}] = canonical Φ = 0 (the five L-pieces, e.g. (ab)^2 ↦ 81 h^4, are individually nonzero but SUM to zero — that IS the content of canonical Φ(q) = 0). SURVIVES: the augmentation phenomenon, now rigorously confirmed (W(E_7) has invariant degrees 2,6,8,10,12,14,18 — no degree 4 except κ² — so q|_{t^∨} = c·κ² → 0); the L = E_6×U(1) = weight-3 Hodge decomposition; the (ab)^2 ↦ 81 h^4 graded-piece value. CORRECTED: the genuine twist is the Hodge-FILTRATION projection Φ_filt (project q onto Gr_F^p(Sym^4 V_56^∨) before Chern-Weil; F^• is not W(E_7)-stable). Still reduces to a concrete computation, now correctly the filtration-projection coefficient. Lean STRUCTURE unchanged (builds GREEN); the carrier MEANINGS (docstrings + ledger) corrected per the discipline that opaque-carrier content = its documentation."]
+    scope := "CLOSED-CONDITIONAL: cross-ring Φ(q) ≠ 0 reduces to Hyp_TwistedPhiL_Coefficient_Nonzero (the Hodge-FILTRATION-projection coefficient; P41 corrected the twist from decompose-and-sum to filtration-projection)"
     conditionalOn := ["Hyp_TwistedPhiL_Coefficient_Nonzero_OPEN"] }
 
 def gap_Hyp_TwistedPhiL_Coefficient_Nonzero : StrictGapEntry :=
   { name := "Hyp_TwistedPhiL_Coefficient_Nonzero_OPEN"
     status := .gapOpen, inputCategory := .cat3PaperNovel
     cat3SubType := .workingAssumption
-    paperSource := "P39 fundamental new math: the total coefficient γ in the Hodge-refined Φ_L(q) = γ·h^4 (summed over all five L-pieces of the Freudenthal quartic q = (ab)^2 + cross terms) is non-zero. CONCRETE finite E_6-representation-theory computation — NOT an invention. The (ab)^2 piece alone contributes +81; the four E_6-rep-theoretic cross terms (a·N(B), b·N(A), ⟨A,B⟩^2, ⟨A^#,B^#⟩) must be evaluated and shown not to sum to exactly -81 (they generically do not — canonical Φ vanishes only via W(E_7)-symmetrization, which Φ_L deliberately breaks)."
-    attackHistory := ["P39 introduction (2026-05-15): replaces the INVENTION_CLASS Hyp_CrossRingPhiNonzero with a concrete computable target. Close path: compute the L-Chern-Weil image of each of the five Freudenthal-quartic L-pieces in H^8(Ě_VII) = ℚ·h^4 (the (ab)^2 piece is done: 81 h^4); the cross-term coefficients are a finite E_6-invariant-theory calculation (cubic norm N, pairing ⟨·,·⟩, adjoint # evaluated on the 27-weights). Sum and verify ≠ 0."]
-    scope := "CONCRETE COMPUTATION: total Hodge-refined Φ_L coefficient γ ≠ 0; finite E_6-rep-theory calculation (replaces the INVENTION_CLASS framing)" }
+    paperSource := "P39 → P41-reframed: the coefficient γ in Φ_filt(q) = γ·h^4 is non-zero, where Φ_filt is the Hodge-FILTRATION projection (NOT the P39 'decompose-and-sum', which the P41 audit showed equals canonical Φ = 0). Concrete target: the Hodge-graded projection of q onto Gr_F^p(Sym^4 V_56^∨) is non-zero in H^8(Ě_VII)."
+    attackHistory := ["P39 introduction (2026-05-15): replaced the INVENTION_CLASS Hyp_CrossRingPhiNonzero with a 'Φ_L decompose-and-sum' target.",
+                      "P41 hostile self-audit (2026-05-15): the P39 'decompose-and-sum' Φ_L is FLAWED — Σ_j [q_j|_{t^∨}] = [q|_{t^∨}], and q is W(E_7)-invariant, so it lands in the W(E_7)-augmentation ideal = canonical Φ = 0. The five L-pieces (e.g. (ab)^2 ↦ 81 h^4) are individually nonzero but SUM to zero. The genuine twist must NOT be W(E_7)-equivariant: it is the Hodge-FILTRATION projection Φ_filt, projecting q onto a Hodge-graded piece Gr_F^p(Sym^4 V_56^∨) BEFORE Chern-Weil. The filtration F^• is not W(E_7)-stable (only a Hodge structure determines it), so Φ_filt genuinely differs from canonical Φ. WHAT SURVIVES: the augmentation phenomenon (now rigorously confirmed: q|_{t^∨} = c·κ² since W(E_7) has no degree-4 invariant but κ²); the L = E_6×U(1) = weight-3 Hodge decomposition identification; the (ab)^2 ↦ 81 h^4 graded-piece computation. OPEN CONTENT: (i) is Φ_filt(q) ≠ 0 for the geometrically correct Hodge-graded piece, and (ii) is Φ_filt the geometrically correct realization [q]_G (= the holomorphic/GAGA-algebraic representative)? Close path: identify the correct Hodge-graded component of q (likely the F^{top} holomorphic part), compute its Chern-Weil image."]
+    scope := "CONCRETE (P41-corrected): the Hodge-FILTRATION projection Φ_filt(q) is non-zero in H^8(Ě_VII). The P39 decompose-and-sum reading was audited as = canonical Φ = 0; the genuine twist is filtration-projection, still concrete but not yet a finished computation" }
 
 /-! ### Cat 2 single-step axioms -/
 
@@ -1431,25 +1474,28 @@ def gap_canonical_Phi_vanishes_by_augmentation : StrictGapEntry :=
   { name := "canonical_Phi_vanishes_by_augmentation_OPEN"
     status := .gapOpen, inputCategory := .cat3PaperNovel
     cat3SubType := .structuralEquation
-    paperSource := "P39: structural equation — canonical Φ vanishes on q BECAUSE it lands in the W(E_7)-augmentation ideal; the twisted Φ_L is the well-defined Hodge-refined replacement"
-    attackHistory := ["P39 introduction (2026-05-15): the augmentation phenomenon is the structural reason for the canonical-Φ vanishing; identifies Φ_L as the correct map"]
-    scope := "Canonical Φ vanishes by W(E_7)-augmentation; twisted Φ_L well-defined (2-input structural)" }
+    paperSource := "P39 → P41-reframed: structural equation — canonical Φ vanishes (rigorously confirmed); the genuine twist Φ_filt is the Hodge-FILTRATION projection, a well-defined non-W(E_7)-equivariant map"
+    attackHistory := ["P39 introduction (2026-05-15): the augmentation phenomenon as the structural reason for canonical-Φ vanishing; identified a Hodge-refined twist as the correct map",
+                      "P41 audit (2026-05-15): conclusion REFRAMED — twisted_Phi_L_well_defined now means Φ_filt (Hodge-filtration projection) is well-defined and non-W(E_7)-equivariant; the P39 decompose-and-sum reading was = canonical Φ = 0"]
+    scope := "Canonical Φ vanishes by W(E_7)-augmentation; the Hodge-FILTRATION projection Φ_filt is the well-defined genuine twist (P41-reframed; 2-input structural)" }
 
 def gap_paper_twisted_Phi_L_reduction : StrictGapEntry :=
   { name := "paper_twisted_Phi_L_reduction_OPEN"
     status := .gapOpen, inputCategory := .cat3PaperNovel
     cat3SubType := .workingAssumption
-    paperSource := "P39 fundamental new math: Hodge-refined Φ_L reduction — given Φ_L well-defined + V_56 Hodge decomposition + scalar-piece computation + Hyp_TwistedPhiL_Coefficient_Nonzero, the cross-ring map is non-zero on q. 4-input."
-    attackHistory := ["P39 introduction (2026-05-15): replaces the INVENTION_CLASS framing of Hyp_CrossRingPhiNonzero with the concrete Hodge-refined reduction. Close target: the explicit E_6-rep-theory coefficient computation (Hyp_TwistedPhiL_Coefficient_Nonzero)."]
-    scope := "paper Hodge-refined Φ_L reduction (4-input); Hyp_CrossRingPhiNonzero ⟸ Hyp_TwistedPhiL_Coefficient_Nonzero" }
+    paperSource := "P39 → P41-reframed: the genuine twisted cross-ring map is the Hodge-FILTRATION projection Φ_filt — given Φ_filt well-defined + V_56 Hodge decomposition + (ab)^2-graded-piece computation + Hyp_TwistedPhiL_Coefficient_Nonzero, the cross-ring map is non-zero on q. 4-input. P41 corrected the operation from decompose-and-sum (= canonical Φ = 0) to filtration-projection."
+    attackHistory := ["P39 introduction (2026-05-15): replaced the INVENTION_CLASS framing with a Hodge-refined reduction (then: decompose-and-sum).",
+                      "P41 hostile self-audit (2026-05-15): decompose-and-sum = canonical Φ = 0; the genuine twist is the Hodge-FILTRATION projection Φ_filt. Close target: identify the geometrically correct Hodge-graded component of q (likely F^{top}/holomorphic part) and compute its Chern-Weil image."]
+    scope := "paper Hodge-FILTRATION-projection reduction (4-input, P41-corrected); Hyp_CrossRingPhiNonzero ⟸ Hyp_TwistedPhiL_Coefficient_Nonzero" }
 
 def gap_freudenthal_scalar_piece_computation : StrictGapEntry :=
   { name := "freudenthal_scalar_piece_computation_OPEN"
     status := .gapOpen, inputCategory := .cat3PaperNovel
     cat3SubType := .structuralEquation
-    paperSource := "P39: explicit splitting-principle computation — the pure-scalar L-piece (ab)^2 maps under Φ_L to (3h)^2(-3h)^2 = 81 h^4; definitional, not a reduction conclusion"
-    attackHistory := ["P39 introduction (2026-05-15): the (ab)^2 ↦ 81 h^4 computation with c_1(1_{+3}) = 3h, c_1(1_{-3}) = -3h"]
-    scope := "The pure-scalar L-piece (ab)^2 of the Freudenthal quartic maps under Φ_L to 81 h^4 ≠ 0 (1-input structural)" }
+    paperSource := "P39 → P41-caveated: explicit splitting-principle computation — (ab)^2 maps under L-Chern-Weil to (3h)^2(-3h)^2 = 81 h^4. P41 caveat: this is ONE Hodge-graded piece's contribution, not Φ_filt(q) itself"
+    attackHistory := ["P39 introduction (2026-05-15): the (ab)^2 ↦ 81 h^4 computation with c_1(1_{+3}) = 3h, c_1(1_{-3}) = -3h",
+                      "P41 audit (2026-05-15): CAVEATED — the 81 h^4 is the (ab)^2-graded contribution; the five L-pieces sum to zero, so this value matters only once Φ_filt projects onto the correct Hodge-graded component"]
+    scope := "The pure-scalar L-piece (ab)^2 maps under L-Chern-Weil to 81 h^4 (one Hodge-graded contribution, P41-caveated; 1-input structural)" }
 
 def gap_paper_chern_weil_form_L_refinement : StrictGapEntry :=
   { name := "paper_chern_weil_form_L_refinement_OPEN"
@@ -1630,9 +1676,10 @@ def gap_Hyp_CrossRingPhiNonzero_DERIVED_CONDITIONAL : StrictGapEntry :=
   { name := "Hyp_CrossRingPhiNonzero_DERIVED_CONDITIONAL"
     status := .gapClosedConditional, inputCategory := .cat3PaperNovel
     cat3SubType := .notApplicable
-    paperSource := "P39: derived via paper_twisted_Phi_L_reduction + canonical_Phi_vanishes_by_augmentation + V_56 Hodge decomposition + scalar-piece computation + Hyp_TwistedPhiL_Coefficient_Nonzero"
-    attackHistory := ["P39 introduction (2026-05-15): derived theorem reducing Hyp_CrossRingPhiNonzero (INVENTION_CLASS) to the concrete computation Hyp_TwistedPhiL_Coefficient_Nonzero via the Hodge-refined Φ_L"]
-    scope := "Hyp_CrossRingPhiNonzero derived from Hyp_TwistedPhiL_Coefficient_Nonzero via the Hodge-refined cross-ring map Φ_L"
+    paperSource := "P39 → P41-reframed: derived via paper_twisted_Phi_L_reduction + canonical_Phi_vanishes_by_augmentation + V_56 Hodge decomposition + (ab)^2-graded-piece computation + Hyp_TwistedPhiL_Coefficient_Nonzero (the Hodge-FILTRATION-projection coefficient)"
+    attackHistory := ["P39 introduction (2026-05-15): derived theorem reducing Hyp_CrossRingPhiNonzero to a concrete computation via a Hodge-refined twist",
+                      "P41 audit (2026-05-15): the twist correctly identified as the Hodge-FILTRATION projection Φ_filt (not decompose-and-sum); the derived-theorem STRUCTURE is unchanged, the carrier MEANINGS corrected"]
+    scope := "Hyp_CrossRingPhiNonzero derived from Hyp_TwistedPhiL_Coefficient_Nonzero via the Hodge-FILTRATION-projection cross-ring map Φ_filt (P41-corrected)"
     conditionalOn := ["Hyp_TwistedPhiL_Coefficient_Nonzero_OPEN"] }
 
 def gap_Hyp_ChernWeilForm_Proportionality_DERIVED_CONDITIONAL : StrictGapEntry :=
@@ -1658,7 +1705,7 @@ def gap_HC_Main : StrictGapEntry :=
       "P32 + P36 audit-reframe: Hyp_VZ_AqLambda DROPPED — under Hyp_BorelMAtLeast8 j^8 iso, H^8(S_Γ; ℚ)_G is 1-dim from trivial-module Cartan image (h^4); non-trivial A_q(λ) at R(q)=8 (if exists) doesn't contribute to freudenthal class. Earlier P32 'R(q)=8 NEVER ACHIEVED' verdict based on dim_C(u∩k_C) enumeration which is NOT V-Z R(q) := dim_C(u∩p_C); P36 hostile audit caught the mis-identification but the STRUCTURAL conclusion (Hyp_VZ_AqLambda redundant under Hyp_BorelMAtLeast8) stands.",
       "P34: Hyp_HigherRank_GoodMetric_OPEN DROPPED — Mumford 1977 Thm 3.1 is type-uniform for ANY automorphic ρ (covers V_56 on EVII directly) + Harris 1985 §4 algebraic upgrade + BKK 2007 Thm 5.2 + K_∞-isotypic V_56 = L_{+3} ⊕ E_{+1} ⊕ E_{-1} ⊕ L_{-3} = full closure synthesis",
       "P35: Hyp_FreudenthalClassPlacement_OPEN DROPPED — at deg 8 (only relevant degree per P32) reduces to {Hyp_BorelMAtLeast8 + Hyp_Eisenstein_Vanishing + Mumford 1977 §1.3 + Borel-Hirzebruch 1958 + V-Z 1984/Speh-Vogan} via paper_placement_reduction_OPEN axiom + Hyp_FreudenthalClassPlacement_DERIVED_CONDITIONAL theorem",
-      "P39 FUNDAMENTAL NEW MATH: Hyp_CrossRingPhiNonzero_OPEN (INVENTION_CLASS) REPLACED by Hyp_TwistedPhiL_Coefficient_Nonzero_OPEN (CONCRETE finite E_6-rep-theory computation). The canonical Φ vanishes on q because it lands in the W(E_7)-augmentation ideal of the Borel-Hirzebruch coinvariant presentation of H^*(Ě_VII). The Hodge-refined Φ_L decomposes q L-equivariantly under E_6 × U(1) (U(1) = Deligne torus), breaking W(E_7)-symmetry to W(E_6) (which surjects onto H^8). The pure-scalar (ab)^2 piece → 81 h^4 ≠ 0. Encoded via paper_twisted_Phi_L_reduction_OPEN + Hyp_CrossRingPhiNonzero_DERIVED_CONDITIONAL.",
+      "P39 + P41-audited: Hyp_CrossRingPhiNonzero_OPEN (INVENTION_CLASS) REPLACED by Hyp_TwistedPhiL_Coefficient_Nonzero_OPEN. The canonical Φ vanishes on q because q|_{t^∨} is W(E_7)-invariant of degree 4 = c·κ² (rigorously confirmed — W(E_7) has no degree-4 invariant beyond κ²), landing in the augmentation ideal. P39 proposed a Hodge-refined twist; P41 hostile self-audit found P39's specific 'decompose-and-sum' reading equals canonical Φ = 0 (the five L-pieces, e.g. (ab)^2 ↦ 81 h^4, sum to zero). CORRECTED: the genuine twist is the Hodge-FILTRATION projection Φ_filt (project q onto Gr_F^p before Chern-Weil; F^• is not W(E_7)-stable). The reduction STRUCTURE (paper_twisted_Phi_L_reduction_OPEN + Hyp_CrossRingPhiNonzero_DERIVED_CONDITIONAL) is unchanged; the carrier MEANINGS are P41-corrected.",
       "P40 HODGE-REFINEMENT PRINCIPLE: Hyp_ChernWeilForm_Proportionality_OPEN REPLACED by Hyp_MumfordExtension_LBlockDiagonal_OPEN. The same L = E_6 × U(1) Hodge decomposition dissolves the 'non-classical signature' difficulty: V_56 = L_{+3} ⊕ E_{+1} ⊕ E_{-1} ⊕ L_{-3}, where L_{±3} (line bundles) are Mumford 1977 and E_{±1} (rank-27) are compact-E_6-homogeneous (E_6 ⊂ K compact ⟹ invariant Chern-Weil forms proportional to homogeneous forms). The non-classical-signature obstruction never existed for the individual Hodge pieces. The genuine residue is the concrete functoriality question: does the Mumford extension stay L-block-diagonal at the toroidal boundary? Encoded via paper_chern_weil_form_L_refinement_OPEN + Hyp_ChernWeilForm_Proportionality_DERIVED_CONDITIONAL."
     ]
     scope := "HC for Freudenthal quartic [q] on EVII Shimura varieties; Hyp_* count 7 → 6 (P32) → 5 (P34) → 4 (P35); P39 + P40 upgrade two of the four from open-ended (INVENTION_CLASS / non-classical-signature) to CONCRETE targets via the Hodge-refinement principle"
