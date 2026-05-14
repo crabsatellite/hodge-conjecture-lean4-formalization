@@ -278,16 +278,30 @@ opaque eisensteinVanishing_E7minus25_Deg8 : Prop
 -- WHAT SURVIVES AND THE CORRECTED DIRECTION. The genuine twist cannot be
 -- W(E_7)-equivariant in its construction. The L = E_6 × U(1) decomposition
 -- IS the weight-3 Hodge decomposition V_56 = V^{3,0} ⊕ V^{2,1} ⊕ V^{1,2} ⊕
--- V^{0,3} (dims 1,27,27,1), and the genuine twist is the Hodge-FILTRATION
--- projection — NOT the decomposition-sum. The Hodge filtration F^• is NOT
--- W(E_7)-stable; only a Hodge structure (a point of the Shimura variety)
--- determines it. Φ_filt(q) := Chern-Weil of the projection of q onto a
--- chosen Hodge-graded piece Gr_F^p(Sym^4 V_56^∨). This genuinely differs
--- from canonical Φ because the projection is not W(E_7)-equivariant.
--- The (ab)^2 ↦ 81 h^4 computation remains valid as the contribution of
--- ONE Hodge-graded piece; the open content is whether the chosen
--- filtration projection (i) is non-zero and (ii) is the geometrically
--- correct realization [q]_G.
+-- V^{0,3} (dims 1,27,27,1). The genuine twist is some non-W(E_7)-equivariant
+-- operation; the (ab)^2 ↦ 81 h^4 computation remains valid as the
+-- contribution of ONE Hodge-graded piece.
+--
+-- P42 EXPLORATION — three natural twist candidates, all OBSTRUCTED. The
+-- search for the genuine twist is narrowed by ruling out:
+--   (1) Hodge-FILTRATION projection. q is E_7-invariant ⟹ Hodge-torus-
+--       invariant ⟹ PURE Hodge type (6,6) in Sym^4(V_56^∨) (weight 12).
+--       All monomial pieces of q lie in Gr_F^6 — the filtration does NOT
+--       distinguish them. "Project onto a Hodge-graded piece" twists
+--       nothing. OBSTRUCTED.
+--   (2) Weil-operator C insertion. On Hodge type (6,6), C = i^{6-6} = 1.
+--       Inserting C acts as the identity on q. OBSTRUCTED.
+--   (3) K-moment-map factorization. If q = P∘μ_K with P an E_7-invariant
+--       quadratic on k, then P ∝ κ_{E_7}|_k, and κ_{E_7}∘μ = 0 because the
+--       moment map image lies in the nilpotent cone (Killing-isotropic).
+--       That forces q = 0 — contradiction. q does NOT factor through the
+--       quadratic K-moment map. OBSTRUCTED.
+-- POSITIVE RESIDUE: all three obstructions are QUADRATIC in nature. The
+-- twist must use a genuinely CUBIC structure — the Freudenthal triple
+-- product T : V_56 × V_56 × V_56 → V_56 (making V_56 a Freudenthal triple
+-- system, with q(v) ∼ ⟨T(v,v,v), v⟩). The quadratic moment map is
+-- Killing-isotropic and dies; the cubic T is the structure the quadratic
+-- invariants cannot see. This is the corrected P42 search direction.
 
 /-- **Cat 3 carrier (§3.4.1, P39, P41-confirmed)** — RIGOROUSLY ESTABLISHED:
  the canonical Φ factors through `Sym^4(t^∨)^{W(E_7)}_+`. Proof: q is
@@ -1324,8 +1338,9 @@ def gap_Hyp_TwistedPhiL_Coefficient_Nonzero : StrictGapEntry :=
     cat3SubType := .workingAssumption
     paperSource := "P39 → P41-reframed: the coefficient γ in Φ_filt(q) = γ·h^4 is non-zero, where Φ_filt is the Hodge-FILTRATION projection (NOT the P39 'decompose-and-sum', which the P41 audit showed equals canonical Φ = 0). Concrete target: the Hodge-graded projection of q onto Gr_F^p(Sym^4 V_56^∨) is non-zero in H^8(Ě_VII)."
     attackHistory := ["P39 introduction (2026-05-15): replaced the INVENTION_CLASS Hyp_CrossRingPhiNonzero with a 'Φ_L decompose-and-sum' target.",
-                      "P41 hostile self-audit (2026-05-15): the P39 'decompose-and-sum' Φ_L is FLAWED — Σ_j [q_j|_{t^∨}] = [q|_{t^∨}], and q is W(E_7)-invariant, so it lands in the W(E_7)-augmentation ideal = canonical Φ = 0. The five L-pieces (e.g. (ab)^2 ↦ 81 h^4) are individually nonzero but SUM to zero. The genuine twist must NOT be W(E_7)-equivariant: it is the Hodge-FILTRATION projection Φ_filt, projecting q onto a Hodge-graded piece Gr_F^p(Sym^4 V_56^∨) BEFORE Chern-Weil. The filtration F^• is not W(E_7)-stable (only a Hodge structure determines it), so Φ_filt genuinely differs from canonical Φ. WHAT SURVIVES: the augmentation phenomenon (now rigorously confirmed: q|_{t^∨} = c·κ² since W(E_7) has no degree-4 invariant but κ²); the L = E_6×U(1) = weight-3 Hodge decomposition identification; the (ab)^2 ↦ 81 h^4 graded-piece computation. OPEN CONTENT: (i) is Φ_filt(q) ≠ 0 for the geometrically correct Hodge-graded piece, and (ii) is Φ_filt the geometrically correct realization [q]_G (= the holomorphic/GAGA-algebraic representative)? Close path: identify the correct Hodge-graded component of q (likely the F^{top} holomorphic part), compute its Chern-Weil image."]
-    scope := "CONCRETE (P41-corrected): the Hodge-FILTRATION projection Φ_filt(q) is non-zero in H^8(Ě_VII). The P39 decompose-and-sum reading was audited as = canonical Φ = 0; the genuine twist is filtration-projection, still concrete but not yet a finished computation" }
+                      "P41 hostile self-audit (2026-05-15): the P39 'decompose-and-sum' Φ_L is FLAWED — Σ_j [q_j|_{t^∨}] = [q|_{t^∨}], and q is W(E_7)-invariant, so it lands in the W(E_7)-augmentation ideal = canonical Φ = 0. The five L-pieces (e.g. (ab)^2 ↦ 81 h^4) are individually nonzero but SUM to zero. WHAT SURVIVES: the augmentation phenomenon (now rigorously confirmed: q|_{t^∨} = c·κ² since W(E_7) has no degree-4 invariant but κ²); the L = E_6×U(1) = weight-3 Hodge decomposition identification; the (ab)^2 ↦ 81 h^4 graded-piece computation.",
+                      "P42 exploration (2026-05-15): three natural twist candidates RULED OUT. (1) Hodge-FILTRATION projection: q is E_7-invariant ⟹ Hodge-torus-invariant ⟹ PURE type (6,6) in Sym^4(V_56^∨); all monomial pieces lie in Gr_F^6, so the filtration does not distinguish them — projection twists nothing. (2) Weil operator C: on type (6,6), C = i^{6-6} = 1 — inserting C is the identity on q. (3) K-moment-map factorization: if q = P∘μ_K with P an E_7-invariant quadratic on k, then P ∝ κ_{E_7}|_k and κ_{E_7}∘μ = 0 (moment map image is in the nilpotent cone, Killing-isotropic) — forces q = 0, contradiction. POSITIVE RESIDUE: all three obstructions are QUADRATIC; the twist must use the genuinely CUBIC Freudenthal triple product T : V_56^{×3} → V_56 (q(v) ∼ ⟨T(v,v,v),v⟩). The quadratic moment map is Killing-isotropic and dies; the cubic T is the structure quadratic invariants cannot see. The corrected search direction: construct the twist via T."]
+    scope := "OPEN (P42-narrowed): the genuine twist sends q ↦ γ·h^4 with γ ≠ 0. P41 audited away the decompose-and-sum reading; P42 ruled out the three natural QUADRATIC twist candidates (Hodge-filtration projection, Weil operator, K-moment-map factorization) and identified that the twist must use the CUBIC Freudenthal triple product T" }
 
 /-! ### Cat 2 single-step axioms -/
 
