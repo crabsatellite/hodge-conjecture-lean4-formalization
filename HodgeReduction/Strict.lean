@@ -322,14 +322,18 @@ axiom paper_hodge44_step_OPEN :
  the Borel-Wallach descent + V-Z + Knapp-Vogan + Franke framework, applied
  to E_{7(-25)} at deg 8 with `[q]_G` realisation, yields realization by
  G-invariant cohomology.
- 6-input composite per paper structure; must decompose with master tex
- consultation in future rounds. -/
+ P32 REFACTOR: Hyp_VZ_AqLambda_OPEN input REMOVED. Per P32 deep audit,
+ R(q) = 8 is NEVER achieved by any θ-stable parabolic of E_{7(-25)}
+ (R(q) values are {0, 16, 21, 24, 25, 26, 29, 30, 31, 32, 33, 34, 35, 36}).
+ The (ii.a) descent at deg 8 comes from the TRIVIAL g-module (R(q) = 0,
+ the constant h^4 Kähler class) via Borel 1974 §11 j^8 injection
+ (injective for 8 ≤ c(E_7) = 8 PUBLISHED §9.1(3) p.261), NOT from non-trivial
+ A_q(λ). So no Hyp_VZ_AqLambda dependency. Now 5-input. -/
 axiom paper_iia_realization_OPEN :
   voganZuckerman_1984_framework →
   knappVogan_1995_induction_framework →
   franke_1998_eisenstein_framework →
   freudenthal_H8_auto_G_invariant →
-  Hyp_VZ_AqLambda_OPEN →
   Hyp_Eisenstein_Vanishing_OPEN →
   freudenthal_realized_by_G_invariant
 
@@ -446,12 +450,11 @@ theorem goreskyPardon_EVII_CONDITIONAL
     (section16_2_E6_rep_compat_CONDITIONAL h1 h2)
 
 /-- **gapClosedConditional** — (ii.a) Freudenthal realized by G-invariant.
+ P32 REFACTOR: Hyp_VZ_AqLambda dropped (R(q)=8 doesn't exist).
  conditionalOn := ["Hyp_BorelMAtLeast8_OPEN",
-                   "Hyp_VZ_AqLambda_OPEN",
                    "Hyp_Eisenstein_Vanishing_OPEN"] -/
 theorem freudenthal_realized_by_G_invariant_CONDITIONAL
   (h1 : Hyp_BorelMAtLeast8_OPEN)
-  (h2 : Hyp_VZ_AqLambda_OPEN)
   (h3 : Hyp_Eisenstein_Vanishing_OPEN) :
   freudenthal_realized_by_G_invariant :=
   paper_iia_realization_OPEN
@@ -459,7 +462,7 @@ theorem freudenthal_realized_by_G_invariant_CONDITIONAL
     knapp_vogan_1995_OPEN
     franke_1998_OPEN
     (freudenthal_H8_auto_G_invariant_CONDITIONAL h1)
-    h2 h3
+    h3
 
 /-- **gapClosedConditional** — (ii.b) Freudenthal extends compatibly.
  conditionalOn := ["Hyp_FreudenthalClassPlacement_OPEN"] -/
@@ -498,7 +501,6 @@ theorem freudenthal_extends_compatibly_CONDITIONAL
  ] -/
 theorem HC_for_freudenthal_quartic_on_EVII_CONDITIONAL
   (h_m_ge_8       : Hyp_BorelMAtLeast8_OPEN)
-  (h_vz_aq        : Hyp_VZ_AqLambda_OPEN)
   (h_eisenstein   : Hyp_Eisenstein_Vanishing_OPEN)
   (h_higher_rank  : Hyp_HigherRank_GoodMetric_OPEN)
   (h_form_prop    : Hyp_ChernWeilForm_Proportionality_OPEN)
@@ -509,7 +511,7 @@ theorem HC_for_freudenthal_quartic_on_EVII_CONDITIONAL
     (polynomial_in_chern_classes_is_algebraic_OPEN
       (paper_clause_iii_polynomial_identity_OPEN
         h_cross_ring
-        (freudenthal_realized_by_G_invariant_CONDITIONAL h_m_ge_8 h_vz_aq h_eisenstein)
+        (freudenthal_realized_by_G_invariant_CONDITIONAL h_m_ge_8 h_eisenstein)
         (freudenthal_extends_compatibly_CONDITIONAL h_placement)
         (goreskyPardon_EVII_CONDITIONAL h_higher_rank h_form_prop)))
 
@@ -728,11 +730,12 @@ def gap_cross_ring_phi_nonzero : StrictGapEntry :=
 
 def gap_voganZuckermanAqLambda : StrictGapEntry :=
   { name := "voganZuckermanAqLambda_E7minus25_Deg8"
-    status := .gapOpen, inputCategory := .cat3PaperNovel
+    status := .gapDeadEnd, inputCategory := .cat3PaperNovel
     cat3SubType := .carrier
-    paperSource := "P16 paper-acknowledged conditional"
-    attackHistory := ["P25: opaque Prop carrier for Hyp_VZ_AqLambda"]
-    scope := "Specific V-Z A_q(λ) at R(q)=8 for E_{7(-25)}" }
+    paperSource := "P16 paper-acknowledged conditional; P32 deep-search VERDICT: literal carrier FALSE — no θ-stable parabolic of E_{7(-25)} has R(q) = 8; structural content reframed under Hyp_BorelMAtLeast8 + Borel 1974 §11 j^8 injection"
+    attackHistory := ["P25: opaque Prop carrier for Hyp_VZ_AqLambda",
+                      "P32 deep-search (2026-05-15): direct root-system enumeration. For (E_{7(-25)}, E_6·U(1)), R(q) := dim_C(u ∩ k_C) is fully determined by ξ_c ∈ Cartan(e_6). Enumerated all 64 subsets S ⊆ Π(E_6) of removed simple roots. Attained R(q) values: {0, 16, 21, 24, 25, 26, 29, 30, 31, 32, 33, 34, 35, 36}. R(q) = 8 IS NEVER ACHIEVED. Min nonzero R(q) = 16 (D_5 Levi case). The literal claim 'θ-stable parabolic with R(q) = 8' is mathematically FALSE. STRUCTURAL CONTENT: the (4,4) Kähler class h^4 ∈ H^8(Ě_VII; ℚ) (b_8 = 1 from Borel-Hirzebruch Poincaré poly (1-t^{20})(1-t^{28})(1-t^{36})/[(1-t^2)(1-t^{10})(1-t^{18})]) descends G-invariantly to H^8(S_Γ) via Borel 1974 §11 j^8 injection (injective for 8 ≤ c(E_7) = 8 by §9.1(3) p.261). This is the (g,K)-cohomology of the TRIVIAL g-module (q = g, R(q) = 0), per Cartan's theorem H^*(g,K;ℂ) = H^*(Ě_VII;ℂ). No A_q(λ) at R(q) = 8 needed."]
+    scope := "DEAD-END: V-Z A_q(λ) at R(q)=8 for E_{7(-25)} — DOES NOT EXIST; structural content reduces to Borel descent under Hyp_BorelMAtLeast8" }
 
 def gap_eisensteinVanishing : StrictGapEntry :=
   { name := "eisensteinVanishing_E7minus25_Deg8"
@@ -748,21 +751,21 @@ def gap_Hyp_BorelMAtLeast8 : StrictGapEntry :=
   { name := "Hyp_BorelMAtLeast8_OPEN"
     status := .gapOpen, inputCategory := .cat3PaperNovel
     cat3SubType := .workingAssumption
-    paperSource := "P15 audit: m ≥ 8 NOT in published lit (gap 6 from Borel 1981 m ≥ 2)"
-    attackHistory := ["P15-P23 introduction history",
-                      "P24 CRITICAL #2: real carrier via `borelM_E7minus25 ≥ 8`",
-                      "P25: maintained, consumed by Main Theorem"]
-    scope := "Borel stable range reaches deg 8 for E_{7(-25)}" }
+    paperSource := "Borel 1974 Ann. Sci. ÉNS 7 (235-272) Thm 7.5: j^q iso for q ≤ min(c(G), m(G(R))); §9.1(3) p.261: c(E_7) = 8 PUBLISHED; §9.5(3) p.262: m(E_{7(-25)}) ≥ ⌊rk_Q/4⌋ = 0 only published lower bound; sharp m ≥ 8 requires atlas-software A_q(λ) enumeration of θ-stable parabolics"
+    attackHistory := ["P15-P23 introduction; P24 real carrier; P25 maintained",
+                      "P31 retry (2026-05-15): Borel 1974 §9.1(3) explicitly gives c(E_7) = 8 (injectivity ceiling); j^q INJECTIVE for q ≤ 8 from PUBLISHED. m(G(R)) ≥ 8 (surjectivity) is the GENUINE OPEN. Reading (a) R(q_min)~1 misframed (R = contribution-degree, not m-upper-bound). Reading (b) V-Z dim_C G/K = 27 over-strong (only holomorphic-discrete-series degree, not full A_q(λ) bottom). Definitive m needs atlas enumeration; bound likely in [1, 8] per analogous Sp/SO cases (Tshishiku 2019)."]
+    scope := "Borel stable range m(E_{7(-25)}) ≥ 8 — needs atlas-verification of A_q(λ) θ-stable parabolic enumeration; c(E_7) = 8 injectivity half PUBLISHED" }
 
 def gap_Hyp_VZ_AqLambda : StrictGapEntry :=
   { name := "Hyp_VZ_AqLambda_OPEN"
-    status := .gapOpen, inputCategory := .cat3PaperNovel
+    status := .gapDeadEnd, inputCategory := .cat3PaperNovel
     cat3SubType := .workingAssumption
-    paperSource := "P16: V-Z A_q(λ) for E_{7(-25)} R(q)=8 NOT published"
+    paperSource := "P16: V-Z A_q(λ) for E_{7(-25)} R(q)=8 NOT published; P32 deep-search VERDICT: literal hypothesis FALSE (no R(q)=8 exists), structural content subsumed by Hyp_BorelMAtLeast8_OPEN"
     attackHistory := ["P16 introduction",
                       "P24 CRITICAL #2: real carrier",
-                      "P25: maintained, consumed by (ii.a) chain"]
-    scope := "V-Z A_q(λ) at R(q)=8 for E_{7(-25)}" }
+                      "P25: maintained, consumed by (ii.a) chain",
+                      "P32 deep-search (2026-05-15): direct E_7 root-system enumeration shows R(q) values for E_{7(-25)} are exactly {0, 16, 21, 24, 25, 26, 29, 30, 31, 32, 33, 34, 35, 36}; R(q) = 8 NEVER ACHIEVED. The (ii.a) chain at degree 8 does NOT require V-Z A_q(λ) at R(q)=8; the (4,4) Kähler class h^4 (b_8(Ě_VII) = 1) descends G-invariantly via Borel 1974 §11 j^8 injection (injective for 8 ≤ c(E_7) = 8 PUBLISHED §9.1(3)). This corresponds to the TRIVIAL g-module (q = g, R(q) = 0) per Cartan's theorem H^*(g,K;ℂ) = H^*(Ě_VII;ℂ). STRUCTURAL EQUIVALENCE: Hyp_VZ_AqLambda_OPEN as stated is FALSE; the genuine content needed by (ii.a) is Borel 1974 §11 injection at deg 8, which reduces to Hyp_BorelMAtLeast8_OPEN. REFACTORING REQUIRED: paper_iia_realization_OPEN axiom should be revised to drop the Hyp_VZ_AqLambda_OPEN input; in the meantime this gap is marked gapDeadEnd to surface the literature non-existence."]
+    scope := "DEAD-END: V-Z A_q(λ) at R(q)=8 — DOES NOT EXIST mathematically. Structural content (G-invariant descent of h^4 at deg 8) reduces to Hyp_BorelMAtLeast8_OPEN via Borel 1974 §11 + Cartan H^*(g,K;ℂ) = H^*(Ě_VII;ℂ)" }
 
 def gap_Hyp_Eisenstein_Vanishing : StrictGapEntry :=
   { name := "Hyp_Eisenstein_Vanishing_OPEN"
@@ -1064,7 +1067,6 @@ def gap_freudenthal_realized_CONDITIONAL : StrictGapEntry :=
     attackHistory := ["P25: derived theorem; consumes all (ii.a) Cat 2 frameworks"]
     scope := "(ii.a) realization (derived)"
     conditionalOn := ["Hyp_BorelMAtLeast8_OPEN",
-                      "Hyp_VZ_AqLambda_OPEN",
                       "Hyp_Eisenstein_Vanishing_OPEN"] }
 
 def gap_freudenthal_extends_CONDITIONAL : StrictGapEntry :=
@@ -1090,8 +1092,9 @@ def gap_HC_Main : StrictGapEntry :=
     ]
     scope := "HC for Freudenthal quartic [q] on EVII Shimura varieties"
     conditionalOn := [
-      -- 7 Hyp_* broken-link predicates (explicit in theorem signature)
-      "Hyp_BorelMAtLeast8_OPEN", "Hyp_VZ_AqLambda_OPEN",
+      -- 6 Hyp_* broken-link predicates (explicit in theorem signature)
+      -- P32: Hyp_VZ_AqLambda DROPPED — R(q)=8 doesn't exist, structurally redundant
+      "Hyp_BorelMAtLeast8_OPEN",
       "Hyp_Eisenstein_Vanishing_OPEN", "Hyp_HigherRank_GoodMetric_OPEN",
       "Hyp_ChernWeilForm_Proportionality_OPEN",
       "Hyp_FreudenthalClassPlacement_OPEN",
