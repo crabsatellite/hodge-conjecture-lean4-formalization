@@ -49,18 +49,27 @@ degrees 2,6,8,... — no degree 4 except κ² — so q|_{t^∨} = c·κ² → 0
 rigorously) and CORRECTED P39's proposed fix: P39's "decompose q
 L-equivariantly and SUM" equals canonical Φ = 0 (Σ_j q_j|_{t^∨} = q|_{t^∨};
 the five L-pieces, e.g. (ab)^2 ↦ 81 h^4, are individually nonzero but sum
-to zero). The genuine twist must NOT be W(E_7)-equivariant: it is the
-Hodge-FILTRATION projection Φ_filt — project q onto a Hodge-graded piece
-Gr_F^p(Sym^4 V_56^∨) BEFORE Chern-Weil. The Hodge filtration F^• is not
-W(E_7)-stable; only a Hodge structure (a point of the Shimura variety)
-determines it. WHAT SURVIVES P41: the augmentation phenomenon (rigorous);
-the L = E_6 × U(1) = weight-3 Hodge decomposition identification; the
-(ab)^2 ↦ 81 h^4 graded-piece value. Hyp_CrossRingPhiNonzero is still
-reduced to a concrete target Hyp_TwistedPhiL_Coefficient_Nonzero, now the
-Hodge-FILTRATION-projection coefficient. Encoded via 3 Cat 2 axioms +
+to zero). The genuine twist must NOT be W(E_7)-equivariant. P42 + P43 narrowed the
+search: P42 ruled out three natural QUADRATIC twist candidates (Hodge-
+filtration projection — q is pure type (6,6); Weil operator — C = 1 on
+type (6,6); K-moment-map factorization — κ_{E_7}∘μ = 0, nilcone-isotropic).
+P43 identified the genuine twist: the NORMAL JET of q along the closed
+orbit. Ě_VII ⊂ ℙ(V_56) IS the rank-1 locus, and {q = 0} = {rank ≤ 3} ⊃
+Ě_VII, so q literally VANISHES on Ě_VII as a function — that is the
+geometric reason canonical Φ(q) = 0. A section vanishing on a subvariety
+carries its class via the leading normal-derivative term: q vanishes along
+Ě_VII to order m, and its leading jet lives in H^0(Ě_VII, O(4) ⊗
+Sym^m N^∨) (N = normal bundle). This Φ_jet(q) is the genuine bridge —
+geometric, using the cubic Freudenthal triple product T through the normal
+derivatives of T(v,v,v) transverse to rank-1. WHAT SURVIVES from P39: the
+augmentation phenomenon (rigorous); the L = E_6 × U(1) = weight-3 Hodge
+decomposition identification; the (ab)^2 ↦ 81 h^4 graded-piece value.
+Hyp_CrossRingPhiNonzero is reduced to Hyp_TwistedPhiL_Coefficient_Nonzero,
+now correctly the normal-jet coefficient (close path: compute the order of
+vanishing m, verify the leading jet ≠ 0). Encoded via 3 Cat 2 axioms +
 canonical_Phi_vanishes_by_augmentation + paper_twisted_Phi_L_reduction +
 freudenthal_scalar_piece_computation + Hyp_CrossRingPhiNonzero_DERIVED
-theorem (STRUCTURE unchanged, carrier MEANINGS P41-corrected).
+theorem (STRUCTURE unchanged across P41-P43; carrier MEANINGS refined).
 
 P40 — the Hodge-refinement principle GENERALIZES. The same L = E_6 × U(1)
 decomposition dissolves Hyp_ChernWeilForm_Proportionality. The "weight-3
@@ -302,6 +311,25 @@ opaque eisensteinVanishing_E7minus25_Deg8 : Prop
 -- system, with q(v) ∼ ⟨T(v,v,v), v⟩). The quadratic moment map is
 -- Killing-isotropic and dies; the cubic T is the structure the quadratic
 -- invariants cannot see. This is the corrected P42 search direction.
+--
+-- P43 — the genuine twist IS the normal jet of q along the closed orbit.
+-- GEOMETRIC REASON canonical Φ(q) = 0: Ě_VII ⊂ ℙ(V_56) is the closed
+-- E_7-orbit = the rank-1 locus, and the Freudenthal quartic cuts out the
+-- rank-≤3 locus: {q = 0} = {rank ≤ 3} ⊃ {rank 1} = Ě_VII (Freudenthal /
+-- Sato-Kimura / Krutelevich rank stratification of the 56 of E_7). So q
+-- LITERALLY VANISHES on Ě_VII as a function — that is why canonical Φ(q)
+-- = 0 (q lies in the ideal of the closed orbit; the cohomological shadow
+-- is the augmentation vanishing). The two explanations agree.
+-- THE BRIDGE: when a section vanishes on a subvariety, the class it
+-- carries is its LEADING NORMAL-DERIVATIVE term (the standard excess-
+-- intersection / localized-class construction). q ∈ H^0(ℙ(V_56), O(4))
+-- vanishes along Ě_VII to some order m; its leading term lives in
+-- H^0(Ě_VII, O(4) ⊗ Sym^m N^∨), where N is the normal bundle of Ě_VII in
+-- ℙ(V_56). This normal jet Φ_jet(q) is the genuine twist — geometric, not
+-- W(E_7)-symmetric-evaluation, and it uses the cubic T precisely through
+-- the normal derivatives of T(v,v,v) transverse to the rank-1 locus.
+-- The open content of Hyp_TwistedPhiL_Coefficient_Nonzero is now: compute
+-- the order of vanishing m and verify the leading normal jet is non-zero.
 
 /-- **Cat 3 carrier (§3.4.1, P39, P41-confirmed)** — RIGOROUSLY ESTABLISHED:
  the canonical Φ factors through `Sym^4(t^∨)^{W(E_7)}_+`. Proof: q is
@@ -1339,8 +1367,9 @@ def gap_Hyp_TwistedPhiL_Coefficient_Nonzero : StrictGapEntry :=
     paperSource := "P39 → P41-reframed: the coefficient γ in Φ_filt(q) = γ·h^4 is non-zero, where Φ_filt is the Hodge-FILTRATION projection (NOT the P39 'decompose-and-sum', which the P41 audit showed equals canonical Φ = 0). Concrete target: the Hodge-graded projection of q onto Gr_F^p(Sym^4 V_56^∨) is non-zero in H^8(Ě_VII)."
     attackHistory := ["P39 introduction (2026-05-15): replaced the INVENTION_CLASS Hyp_CrossRingPhiNonzero with a 'Φ_L decompose-and-sum' target.",
                       "P41 hostile self-audit (2026-05-15): the P39 'decompose-and-sum' Φ_L is FLAWED — Σ_j [q_j|_{t^∨}] = [q|_{t^∨}], and q is W(E_7)-invariant, so it lands in the W(E_7)-augmentation ideal = canonical Φ = 0. The five L-pieces (e.g. (ab)^2 ↦ 81 h^4) are individually nonzero but SUM to zero. WHAT SURVIVES: the augmentation phenomenon (now rigorously confirmed: q|_{t^∨} = c·κ² since W(E_7) has no degree-4 invariant but κ²); the L = E_6×U(1) = weight-3 Hodge decomposition identification; the (ab)^2 ↦ 81 h^4 graded-piece computation.",
-                      "P42 exploration (2026-05-15): three natural twist candidates RULED OUT. (1) Hodge-FILTRATION projection: q is E_7-invariant ⟹ Hodge-torus-invariant ⟹ PURE type (6,6) in Sym^4(V_56^∨); all monomial pieces lie in Gr_F^6, so the filtration does not distinguish them — projection twists nothing. (2) Weil operator C: on type (6,6), C = i^{6-6} = 1 — inserting C is the identity on q. (3) K-moment-map factorization: if q = P∘μ_K with P an E_7-invariant quadratic on k, then P ∝ κ_{E_7}|_k and κ_{E_7}∘μ = 0 (moment map image is in the nilpotent cone, Killing-isotropic) — forces q = 0, contradiction. POSITIVE RESIDUE: all three obstructions are QUADRATIC; the twist must use the genuinely CUBIC Freudenthal triple product T : V_56^{×3} → V_56 (q(v) ∼ ⟨T(v,v,v),v⟩). The quadratic moment map is Killing-isotropic and dies; the cubic T is the structure quadratic invariants cannot see. The corrected search direction: construct the twist via T."]
-    scope := "OPEN (P42-narrowed): the genuine twist sends q ↦ γ·h^4 with γ ≠ 0. P41 audited away the decompose-and-sum reading; P42 ruled out the three natural QUADRATIC twist candidates (Hodge-filtration projection, Weil operator, K-moment-map factorization) and identified that the twist must use the CUBIC Freudenthal triple product T" }
+                      "P42 exploration (2026-05-15): three natural twist candidates RULED OUT. (1) Hodge-FILTRATION projection: q is E_7-invariant ⟹ Hodge-torus-invariant ⟹ PURE type (6,6) in Sym^4(V_56^∨); all monomial pieces lie in Gr_F^6, so the filtration does not distinguish them — projection twists nothing. (2) Weil operator C: on type (6,6), C = i^{6-6} = 1 — inserting C is the identity on q. (3) K-moment-map factorization: if q = P∘μ_K with P an E_7-invariant quadratic on k, then P ∝ κ_{E_7}|_k and κ_{E_7}∘μ = 0 (moment map image is in the nilpotent cone, Killing-isotropic) — forces q = 0, contradiction. POSITIVE RESIDUE: all three obstructions are QUADRATIC; the twist must use the genuinely CUBIC Freudenthal triple product T.",
+                      "P43 positive direction (2026-05-15): the genuine twist IS the NORMAL JET of q along the closed orbit. GEOMETRIC reason canonical Φ(q) = 0: Ě_VII ⊂ ℙ(V_56) is the closed E_7-orbit = rank-1 locus, and {q = 0} = {rank ≤ 3} ⊃ {rank 1} = Ě_VII (Freudenthal / Sato-Kimura / Krutelevich rank stratification of the 56 of E_7). So q LITERALLY VANISHES on Ě_VII as a function — q lies in the ideal of the closed orbit, and canonical Φ(q) = 0 is the cohomological shadow. THE BRIDGE: a section vanishing on a subvariety carries its class via the LEADING NORMAL-DERIVATIVE term (standard excess-intersection / localized-class construction). q ∈ H^0(ℙ(V_56), O(4)) vanishes along Ě_VII to order m; its leading term lives in H^0(Ě_VII, O(4) ⊗ Sym^m N^∨), N = normal bundle of Ě_VII in ℙ(V_56). This normal jet Φ_jet(q) is geometric, not W(E_7)-symmetric-evaluation, and uses the cubic T through the normal derivatives of T(v,v,v) transverse to rank-1. CLOSE PATH: compute the order of vanishing m and verify the leading normal jet is non-zero in H^8(Ě_VII) — a concrete computation in the geometry of the closed E_7-orbit."]
+    scope := "OPEN (P43-directed): the genuine twist is the NORMAL JET Φ_jet(q) of q along the closed orbit Ě_VII ⊂ ℙ(V_56) (q vanishes there — it is the rank-1 locus inside {q=0} = rank≤3). P41 audited away decompose-and-sum; P42 ruled out three quadratic twists; P43 identified the normal-jet construction. Close path: compute the order of vanishing m and verify the leading jet ≠ 0" }
 
 /-! ### Cat 2 single-step axioms -/
 
