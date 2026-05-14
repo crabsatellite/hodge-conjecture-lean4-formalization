@@ -5,57 +5,47 @@ import Mathlib.Data.Nat.Defs
 
 Proof-stage formalization of the Mumford-Tate reduction of the Hodge Conjecture
 under the canonical 4-input-category × 6-tier-status discipline (per
-`feedback_gap_ledger_in_lean4.md` 2026-05-13).
+`feedback_gap_ledger_in_lean4.md`).
 
-## P25 audit-driven consolidation (2026-05-14)
-
-P23 → P24 Phase 4 audit caught 5 fresh violations: invented intermediate
-carriers without paper anchor (N1), discarded proof step creating phantom
-chain (N2), 3-input axiom (N3), decorative Cat 1 (N4), unused Cat 2 (N5).
-
-Audit recommendation: reduce to ~30 atomic entries matching §19 Einstein
-Test exemplar — delete invented intermediates, consolidate to one axiom
-per paper-stated reasoning step, accept multi-input axioms tagged
-`workingAssumption` (§3.4.4) with explicit "must close" status.
-
-P25 = this consolidation. All audit defects addressed:
-
-  CRITICAL #1-5 (P23) — fully fixed in P24 + maintained in P25
-  N1 (invented intermediates) — DELETED; multi-input workingAssumption tagged
-  N2 (discarded proof step) — removed; (ii.a) chain re-merged into single
-     workingAssumption axiom; all framework Cat 2 axioms now load-bearing inputs
-  N3 (3-input atomic) — removed; consolidated into multi-input workingAssumption
-  N4 (decorative Cat 1) — REMOVED (no decorative entries)
-  N5 (unused Cat 2) — REMOVED (Watanabe + Borel 1981 deleted from this file)
+Main result: `HC_for_freudenthal_quartic_on_EVII_CONDITIONAL` —
+`gapClosedConditional` Hodge Conjecture for the Freudenthal quartic class on
+`E_{7(-25)}` Shimura varieties, conditional on 7 named broken-link predicates
++ 3 folkloric Cat 2 BLOCKED dependencies + 7 paper working assumptions (all
+tracked in the `conditionalOn` field of the ledger entry).
 
 ## Disciplinary invariants
 
-1. Cat 2 — Hodge-style `def + rfl` for closed-form OR opaque `axiom` + citation.
-2. Cat 3 — `opaque` (carrier/predicate) / `def` (Hyp_*) / `axiom`
-   (workingAssumption / structuralEquation) with sub-type in docstring.
-3. `Hyp_*` — `def Hyp_<Label> : Prop := <real_opaque_carrier>`; consumed via
-   theorem signature.
-4. Multi-input workingAssumption axioms ALLOWED per §3.4.4 ("temporarily
-   axiomatized higher-level claim pending derivation"); decomposition is a
-   future-round close target documented in attackHistory.
-5. Status suffix in names.
-6. `status = gapClosedConditional ↔ conditionalOn ≠ []` invariant verified
-   by `#eval`.
-7. Every declaration has a `StrictGapEntry` (bijective ledger per §19).
+1. **Cat 2** — Hodge-style `def + rfl` for closed-form OR opaque `axiom` +
+   `\ref{...}` master tex citation for structural.
+2. **Cat 3** — `opaque` (carrier/predicate) / `def` (Hyp_*) / `axiom`
+   (workingAssumption / structuralEquation) with sub-type declared in
+   `StrictGapEntry`.
+3. **`Hyp_*` broken-link predicates** — `def Hyp_<Label> : Prop :=
+   <real_opaque_carrier>`; consumed via theorem signature only.
+4. **Multi-input `workingAssumption` axioms** allowed per §3.4.4 with explicit
+   close-target round number in `attackHistory`.
+5. **Status suffix in names** (`_OPEN`, `_CLOSED`, `_CONDITIONAL`, `_BLOCKED`).
+6. **Invariant** `status = gapClosedConditional ↔ conditionalOn ≠ []` verified
+   by `#eval HodgeReduction.Strict.conditionalInvariantHolds`.
+7. **Bijective ledger** per §19 Einstein Test exemplar — every declaration has
+   exactly one `StrictGapEntry` and vice versa.
+8. **`#print axioms`** kernel-purity check (§1.5 primary verification tool) at
+   end of file surfaces all 21 atomic dependencies of the Main Theorem.
 
 ## Layout
 
 ```
-§1 framework infrastructure
-§2 Cat 3 carriers + hypothesis predicates (opaque)
-§3 Hyp_* broken-link predicates (def into carriers)
-§4 Cat 2 single-step axioms (only those consumed downstream)
-§5 Cat 3 workingAssumption axioms (paper-stated reductions, must close)
-§6 Cat 3 structuralEquation axiom (HC = algebraicity, §3.4.3)
-§7 Derived gapClosedConditional theorems
-§8 Main Conditional Theorem
-§9 StrictGapEntry definitions — bijective
-§10 #eval verification
+§1   framework infrastructure (InputCategory, Cat3SubType, StrictGapStatus,
+     StrictGapEntry)
+§2   Cat 3 carriers + hypothesis predicates (opaque types and Props)
+§3   Hyp_* broken-link predicates (§12.1 ladder)
+§4   Cat 2 single-step axioms (external published, all load-bearing)
+§5   Cat 3 workingAssumption axioms (paper-stated reductions; must close)
+§6   Cat 3 structuralEquation axiom (paper definitional content per §3.4.3)
+§7   Derived gapClosedConditional theorems (composition of atoms)
+§8   Main Conditional Theorem
+§9   StrictGapEntry definitions (bijective with declarations)
+§10  `#eval` verification (status × category cross-table) + `#print axioms`
 ```
 -/
 
@@ -173,20 +163,22 @@ opaque freudenthal_is_algebraic : Prop
  Freudenthal quartic [q] on EVII (Main Theorem target). -/
 opaque HC_for_freudenthal_quartic_on_EVII : Prop
 
-/-- **Cat 3 carrier (§3.4.1)** — P24-CRITICAL-2 fix: real opaque for the
- higher-rank good metric working-assumption Hyp_*. -/
+/-- **Cat 3 carrier (§3.4.1)** — opaque Prop for the higher-rank
+ good-metric working assumption (consumed via `Hyp_HigherRank_GoodMetric_OPEN`). -/
 opaque higher_rank_good_metric_for_EVII : Prop
 
-/-- **Cat 3 carrier (§3.4.1)** — P24-CRITICAL-2 fix: real opaque for the
- Chern-Weil form proportionality working-assumption Hyp_*. -/
+/-- **Cat 3 carrier (§3.4.1)** — opaque Prop for the Chern-Weil form
+ proportionality working assumption (consumed via
+ `Hyp_ChernWeilForm_Proportionality_OPEN`). -/
 opaque chern_weil_form_proportionality_EVII : Prop
 
-/-- **Cat 3 carrier (§3.4.1)** — P24-CRITICAL-2 fix: real opaque for the
- Freudenthal class placement working-assumption Hyp_*. -/
+/-- **Cat 3 carrier (§3.4.1)** — opaque Prop for the Freudenthal class
+ placement working assumption (consumed via `Hyp_FreudenthalClassPlacement_OPEN`). -/
 opaque freudenthal_placed_in_chern_subalgebra : Prop
 
-/-- **Cat 3 carrier (§3.4.1)** — P24-CRITICAL-2 fix: real opaque for the
- cross-ring Φ(q) ≠ 0 working-assumption Hyp_*. -/
+/-- **Cat 3 carrier (§3.4.1)** — opaque Prop for the twisted cross-ring
+ `Φ(q) ≠ 0` INVENTION_CLASS assumption (consumed via
+ `Hyp_CrossRingPhiNonzero_OPEN`). -/
 opaque cross_ring_phi_nonzero : Prop
 
 /-- **Cat 3 carrier (§3.4.1)** — V-Z A_q(λ) specific. -/
@@ -299,14 +291,12 @@ axiom polynomial_in_chern_classes_is_algebraic_OPEN :
 -- §5: Cat 3 workingAssumption axioms (paper-stated reductions; must close)
 -- ============================================================================
 --
--- P25 audit-response: multi-input workingAssumption axioms (§3.4.4) tagged
--- explicitly as "must close before publication". Each axiom = ONE paper-stated
--- reasoning step in the master tex's reduction chain, taking ALL its required
--- Cat 2 framework inputs + Cat 3 Hyp_* inputs.
---
--- §4 #14 (composite-bundling) acknowledged but §3.4.4 expressly permits
--- workingAssumption for higher-level claims pending derivation. Each axiom's
--- attackHistory records the close target for future-round decomposition.
+-- Multi-input workingAssumption axioms (§3.4.4) tagged explicitly with
+-- close-target round in attackHistory. Each axiom = ONE paper-stated
+-- reasoning step in the master tex's reduction chain, taking ALL its
+-- required Cat 2 framework inputs + Cat 3 Hyp_* inputs. §3.4.4 permits
+-- workingAssumption for higher-level claims pending derivation; §4 #14
+-- composite-bundling is acknowledged and the close path is documented.
 
 /-- **Cat 3 workingAssumption (§3.4.4)** — paper Hodge-(4,4) reduction step:
  cohomology iso at deg 8 + (4,4) bigrading → Freudenthal H^8 auto-G-invariant.
@@ -1090,7 +1080,7 @@ def gap_HC_Main : StrictGapEntry :=
       "Hyp_ChernWeilForm_Proportionality_OPEN",
       "Hyp_FreudenthalClassPlacement_OPEN",
       "Hyp_CrossRingPhiNonzero_OPEN",
-      -- 3 folkloric Cat 2 BLOCKED dependencies (also in proof chain per P26 audit suggestion)
+      -- 3 folkloric Cat 2 BLOCKED dependencies (also in proof chain)
       "borel_hirzebruch_mimura_toda_E6_U1_BLOCKED",
       "borel_toda_kono_mimura_V27_BLOCKED",
       "kono_mimura_mimura_toda_V56_BLOCKED",
@@ -1183,11 +1173,13 @@ end HodgeReduction.Strict
 #eval s!"conditionalInvariantHolds: {repr HodgeReduction.Strict.conditionalInvariantHolds}"
 
 -- ============================================================================
--- P27: kernel-purity verification via `#print axioms` (discipline §1.5)
+-- Kernel-purity verification via `#print axioms` (discipline §1.5)
 -- ============================================================================
 --
--- The discipline §1.5 designates `#print axioms` as the "primary verification
--- tool". This block surfaces the exact axiom dependency of the Main Theorem
--- in the build log, allowing audit to verify which atoms are load-bearing.
+-- §1.5 designates `#print axioms` as the primary verification tool. This
+-- surfaces the exact axiom dependency of the Main Theorem in the build log:
+-- 21 atomic dependencies (13 Cat 2 + 8 Cat 3 paper-stated), no Cat 0 kernel
+-- axioms (no propext / Quot.sound / Classical.choice / Lean.ofReduceBool).
+-- The proof is pure axiom-composition function application.
 
 #print axioms HodgeReduction.Strict.HC_for_freudenthal_quartic_on_EVII_CONDITIONAL
