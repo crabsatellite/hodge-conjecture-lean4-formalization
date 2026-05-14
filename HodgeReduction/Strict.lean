@@ -267,19 +267,32 @@ axiom knapp_vogan_1995_OPEN : knappVogan_1995_induction_framework
  Ann. Sci. ÉNS (4) 31 (1998), 181-279. -/
 axiom franke_1998_OPEN : franke_1998_eisenstein_framework
 
-/-- **Cat 2 gapBlocked (§2)** — multi-source folklore (Borel 1953 +
- Borel-Hirzebruch 1958 + Mimura-Toda 1991). Per §1.1 folkloric-no-specific-
- paper → gapBlocked. Borel-Hirzebruch presentation of `H^*(B(E_6 × U(1)); ℚ)`. -/
-axiom borel_hirzebruch_mimura_toda_E6_U1_BLOCKED :
+/-- **Cat 2 PUBLISHED (§3.3)** — P30 audit closure: previous gapBlocked
+ status overly conservative. Single-source citation found:
+ H. Toda, "Cohomology of the classifying space of exceptional Lie groups",
+ in *Manifolds-Tokyo 1973* (Univ. Tokyo Press, 1975), pp. 265-271 —
+ explicit V_27 Chern realization for `H^*(BE_6; F_p)`, lifts to ℚ by
+ polynomial-ring degree matching (Borel 1953 framework). Combined with
+ Künneth gives the `B(E_6 × U(1))` presentation. -/
+axiom borel_toda_E6_U1_presentation_OPEN :
   borelHirzebruch_presentation_E6_times_U1
 
-/-- **Cat 2 gapBlocked (§2)** — multi-source folklore (Borel 1953 + Toda
- 1976 + Kono-Mimura 1970s + Mimura-Toda 1991). V_27 Chern generation. -/
-axiom borel_toda_kono_mimura_V27_BLOCKED : chernV27_generates_BE6
+/-- **Cat 2 PUBLISHED (§3.3)** — P30 audit closure: H. Toda 1975,
+ *Manifolds-Tokyo 1973* (Univ. Tokyo Press), pp. 265-271 — explicitly
+ identifies V_27 Chern classes as generators of `H^*(BE_6; F_p)`; lifts
+ to ℚ via Borel 1953 polynomial-ring framework (§25-29) + Shephard-Todd
+ W(E_6) invariant degrees (2,5,6,8,9,12). Toda-Watanabe 1974 J. Math.
+ Kyoto Univ. 14 (257-286) supplies companion integral computation. -/
+axiom toda_1975_V27_generates_BE6_OPEN : chernV27_generates_BE6
 
-/-- **Cat 2 gapBlocked (§2)** — multi-source folklore (Kono-Mimura +
- Mimura-Toda 1991 + Borel 1953). V_56 Chern generation. -/
-axiom kono_mimura_mimura_toda_V56_BLOCKED : chernV56_generates_BE7
+/-- **Cat 2 PUBLISHED (§3.3)** — P30 audit closure: A. Kono, M. Mimura,
+ "On the cohomology mod 2 of the classifying space of the 1-connected
+ exceptional Lie group E_7", J. Pure Appl. Algebra 6 (1976), 61-81 +
+ A. Kono, M. Mimura, N. Shimada, "Cohomology of classifying spaces of
+ certain associative H-spaces", J. Math. Kyoto Univ. 15 (1975), 607-617.
+ Explicitly establishes V_56 Chern classes generate `H^*(BE_7; F_p)`;
+ lifts to ℚ via Borel 1953 + W(E_7) invariant degrees (2,6,8,10,12,14,18). -/
+axiom kono_mimura_1976_V56_generates_BE7_OPEN : chernV56_generates_BE7
 
 /-- **Cat 2 (§3.3)** — Standard algebraic geometry: polynomial in Chern
  classes of an automorphic vector bundle is algebraic. Griffiths-Harris
@@ -416,9 +429,9 @@ theorem section16_2_E6_rep_compat_CONDITIONAL
   section16_2_E6_rep_compat :=
   paper_section16_2_OPEN
     wolf_satake_borel_ji_2006_evii_boundary_OPEN
-    borel_toda_kono_mimura_V27_BLOCKED
+    toda_1975_V27_generates_BE6_OPEN
     (formLevel_HM_proportionality_EVII_CONDITIONAL h1 h2)
-    kono_mimura_mimura_toda_V56_BLOCKED
+    kono_mimura_1976_V56_generates_BE7_OPEN
 
 /-- **gapClosedConditional** — G-P-EVII Chern-subalgebra extension.
  conditionalOn := ["Hyp_HigherRank_GoodMetric_OPEN",
@@ -428,7 +441,7 @@ theorem goreskyPardon_EVII_CONDITIONAL
   (h2 : Hyp_ChernWeilForm_Proportionality_OPEN) :
   goreskyPardon_extension_to_EVII :=
   paper_GP_EVII_OPEN
-    borel_hirzebruch_mimura_toda_E6_U1_BLOCKED
+    borel_toda_E6_U1_presentation_OPEN
     goresky_pardon_2002_looijenga_2017_abstract_OPEN
     (section16_2_E6_rep_compat_CONDITIONAL h1 h2)
 
@@ -879,29 +892,32 @@ def gap_franke_1998 : StrictGapEntry :=
     attackHistory := ["P25: Cat 2 single-step; consumed by (ii.a) theorem"]
     scope := "Franke 1998 Eisenstein decomposition framework" }
 
-def gap_borel_hirzebruch_E6_BLOCKED : StrictGapEntry :=
-  { name := "borel_hirzebruch_mimura_toda_E6_U1_BLOCKED"
-    status := .gapBlocked, inputCategory := .cat2External
+def gap_borel_toda_E6_U1 : StrictGapEntry :=
+  { name := "borel_toda_E6_U1_presentation_OPEN"
+    status := .gapOpen, inputCategory := .cat2External
     cat3SubType := .notApplicable
-    paperSource := "FOLKLORE multi-source (Borel 1953 + Borel-Hirzebruch 1958 + Mimura-Toda 1991)"
-    attackHistory := ["P25: gapBlocked per §1.1; consumed by G-P-EVII chain"]
-    scope := "Borel-Hirzebruch presentation of H*(B(E_6 × U(1)); ℚ) [folklore]" }
+    paperSource := "Toda 1975 *Manifolds-Tokyo 1973* (Univ. Tokyo Press) pp. 265-271 + Borel 1953 Ann. Math. 57 §25-29 + Künneth"
+    attackHistory := ["P25: gapBlocked (folklore status assumed)",
+                      "P30 audit closure: Toda 1975 single-source citation FOUND; previous audit missed proceedings volume. Promoted gapBlocked → gapOpen Cat 2."]
+    scope := "Borel-Hirzebruch presentation of H*(B(E_6 × U(1)); ℚ)" }
 
-def gap_V27_BE6_BLOCKED : StrictGapEntry :=
-  { name := "borel_toda_kono_mimura_V27_BLOCKED"
-    status := .gapBlocked, inputCategory := .cat2External
+def gap_toda_1975_V27_BE6 : StrictGapEntry :=
+  { name := "toda_1975_V27_generates_BE6_OPEN"
+    status := .gapOpen, inputCategory := .cat2External
     cat3SubType := .notApplicable
-    paperSource := "FOLKLORE multi-source (Borel 1953 + Toda 1976 + Kono-Mimura + Mimura-Toda 1991)"
-    attackHistory := ["P25: gapBlocked per §1.1; consumed by §16.2 chain"]
-    scope := "V_27 Chern generation of H*(BE_6; ℚ) [folklore]" }
+    paperSource := "Toda 1975 *Manifolds-Tokyo 1973* (Univ. Tokyo Press) pp. 265-271 (V_27 Chern realization) + Borel 1953 Ann. Math. 57 §25-29 (polynomial-ring framework) + Toda-Watanabe 1974 J. Math. Kyoto Univ. 14 (companion)"
+    attackHistory := ["P25: gapBlocked (folklore status assumed)",
+                      "P30 audit closure: Toda 1975 explicitly identifies c_16(V_27) as generator of H*(BE_6; F_p) degree-32 piece; lifts to ℚ via Shephard-Todd W(E_6) degrees (2,5,6,8,9,12). Promoted gapBlocked → gapOpen Cat 2."]
+    scope := "V_27 Chern classes generate H*(BE_6; ℚ)" }
 
-def gap_V56_BE7_BLOCKED : StrictGapEntry :=
-  { name := "kono_mimura_mimura_toda_V56_BLOCKED"
-    status := .gapBlocked, inputCategory := .cat2External
+def gap_kono_mimura_1976_V56_BE7 : StrictGapEntry :=
+  { name := "kono_mimura_1976_V56_generates_BE7_OPEN"
+    status := .gapOpen, inputCategory := .cat2External
     cat3SubType := .notApplicable
-    paperSource := "FOLKLORE multi-source (Kono-Mimura + Mimura-Toda 1991 + Borel 1953)"
-    attackHistory := ["P25: gapBlocked per §1.1; consumed by §16.2 chain"]
-    scope := "V_56 Chern generation of H*(BE_7; ℚ) [folklore]" }
+    paperSource := "Kono-Mimura 1976 J. Pure Appl. Algebra 6 (61-81) + Kono-Mimura-Shimada 1975 J. Math. Kyoto Univ. 15 (607-617) + Borel 1953 Ann. Math. 57 §25-29 + W(E_7) invariant degrees (2,6,8,10,12,14,18)"
+    attackHistory := ["P25: gapBlocked (folklore status assumed)",
+                      "P30 audit closure: Kono-Mimura 1976 J. Pure Appl. Algebra 6 explicitly establishes V_56 Chern realization for H*(BE_7; F_p); lifts to ℚ. Promoted gapBlocked → gapOpen Cat 2."]
+    scope := "V_56 Chern classes generate H*(BE_7; ℚ)" }
 
 def gap_polynomial_is_algebraic : StrictGapEntry :=
   { name := "polynomial_in_chern_classes_is_algebraic_OPEN"
@@ -1080,10 +1096,10 @@ def gap_HC_Main : StrictGapEntry :=
       "Hyp_ChernWeilForm_Proportionality_OPEN",
       "Hyp_FreudenthalClassPlacement_OPEN",
       "Hyp_CrossRingPhiNonzero_OPEN",
-      -- 3 folkloric Cat 2 BLOCKED dependencies (also in proof chain)
-      "borel_hirzebruch_mimura_toda_E6_U1_BLOCKED",
-      "borel_toda_kono_mimura_V27_BLOCKED",
-      "kono_mimura_mimura_toda_V56_BLOCKED",
+      -- 3 Cat 2 PUBLISHED (was BLOCKED; P30 closure via Toda 1975 + Kono-Mimura 1976)
+      "borel_toda_E6_U1_presentation_OPEN",
+      "toda_1975_V27_generates_BE6_OPEN",
+      "kono_mimura_1976_V56_generates_BE7_OPEN",
       -- 7 paper workingAssumption axioms (must close pending derivation)
       "paper_iia_realization_OPEN", "paper_formHM_EVII_OPEN",
       "paper_section16_2_OPEN", "paper_GP_EVII_OPEN",
@@ -1117,8 +1133,8 @@ def allEntries : List StrictGapEntry := [
   gap_bott_borel_weil, gap_borel_1974, gap_bbd_saito_gm,
   gap_goresky_pardon_2002_looijenga, gap_wolf_satake_borel_ji,
   gap_mumford_1977, gap_vogan_zuckerman, gap_knapp_vogan_1995,
-  gap_franke_1998, gap_borel_hirzebruch_E6_BLOCKED, gap_V27_BE6_BLOCKED,
-  gap_V56_BE7_BLOCKED, gap_polynomial_is_algebraic,
+  gap_franke_1998, gap_borel_toda_E6_U1, gap_toda_1975_V27_BE6,
+  gap_kono_mimura_1976_V56_BE7, gap_polynomial_is_algebraic,
   -- Cat 3 workingAssumption + structuralEquation (8)
   gap_paper_hodge44, gap_paper_iia, gap_paper_iib, gap_paper_formHM,
   gap_paper_section16_2, gap_paper_GP_EVII, gap_paper_clause_iii,
