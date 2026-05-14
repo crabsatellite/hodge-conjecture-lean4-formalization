@@ -14,11 +14,15 @@ Main result: `HC_for_freudenthal_quartic_on_EVII_CONDITIONAL` —
 single-source dependencies + 8 paper working assumptions (all tracked in the
 `conditionalOn` field of the Main Theorem ledger entry).
 
-P32 closure: Hyp_VZ_AqLambda_OPEN dropped — direct E_7 root-system
-enumeration shows R(q) = 8 is NEVER achieved by any θ-stable parabolic of
-E_{7(-25)} (achieved values {0, 16, 21, 24, 25, 26, 29, 30, 31, 32, 33, 34,
-35, 36}); the (ii.a) deg-8 descent uses the TRIVIAL g-module (h^4 Kähler
-class, b_8 = 1) via Borel 1974 §11 j^8 injection.
+P32 closure (P36 audit-reframed): Hyp_VZ_AqLambda_OPEN dropped — under
+Hyp_BorelMAtLeast8 the j^8 iso makes H^8(S_Γ; ℚ)_G 1-dim coming from the
+TRIVIAL g-module h^4 Kähler class (Cartan theorem H^*(g,K;ℂ) =
+H^*(Ě_VII;ℂ); b_8(Ě_VII) = 1 from Borel-Hirzebruch Poincaré poly). Any
+non-trivial A_q(λ) at R(q)=8 (if it exists in V-Z sense) would either
+contribute zero G-invariantly or be absorbed into the 1-dim trivial-module
+image — either way doesn't affect the freudenthal class. P32's earlier
+"R(q)=8 NEVER ACHIEVED" verdict was based on dim_C(u ∩ k_C) enumeration,
+which is NOT V-Z R(q) := dim_C(u ∩ p_C); reframed under P36 audit.
 
 P34 closure: Hyp_HigherRank_GoodMetric_OPEN dropped — Mumford 1977 Thm 3.1
 is type-uniform for ANY automorphic ρ (covers V_56 on EVII directly) +
@@ -793,12 +797,14 @@ def gap_cross_ring_phi_nonzero : StrictGapEntry :=
 
 def gap_voganZuckermanAqLambda : StrictGapEntry :=
   { name := "voganZuckermanAqLambda_E7minus25_Deg8"
-    status := .gapDeadEnd, inputCategory := .cat3PaperNovel
+    status := .gapClosedConditional, inputCategory := .cat3PaperNovel
     cat3SubType := .carrier
-    paperSource := "P16 paper-acknowledged conditional; P32 deep-search VERDICT: literal carrier FALSE — no θ-stable parabolic of E_{7(-25)} has R(q) = 8; structural content reframed under Hyp_BorelMAtLeast8 + Borel 1974 §11 j^8 injection"
+    paperSource := "P16 paper-acknowledged conditional; P32 deep-search + P36 audit reframe VERDICT: redundant under Hyp_BorelMAtLeast8 + Cartan theorem H^*(g,K;ℂ) = H^*(Ě_VII;ℂ) — structural content of (ii.a) at deg 8 comes from TRIVIAL g-module Kähler class h^4, not from non-trivial A_q(λ) at R(q)=8"
     attackHistory := ["P25: opaque Prop carrier for Hyp_VZ_AqLambda",
-                      "P32 deep-search (2026-05-15): direct root-system enumeration. For (E_{7(-25)}, E_6·U(1)), R(q) := dim_C(u ∩ k_C) is fully determined by ξ_c ∈ Cartan(e_6). Enumerated all 64 subsets S ⊆ Π(E_6) of removed simple roots. Attained R(q) values: {0, 16, 21, 24, 25, 26, 29, 30, 31, 32, 33, 34, 35, 36}. R(q) = 8 IS NEVER ACHIEVED. Min nonzero R(q) = 16 (D_5 Levi case). The literal claim 'θ-stable parabolic with R(q) = 8' is mathematically FALSE. STRUCTURAL CONTENT: the (4,4) Kähler class h^4 ∈ H^8(Ě_VII; ℚ) (b_8 = 1 from Borel-Hirzebruch Poincaré poly (1-t^{20})(1-t^{28})(1-t^{36})/[(1-t^2)(1-t^{10})(1-t^{18})]) descends G-invariantly to H^8(S_Γ) via Borel 1974 §11 j^8 injection (injective for 8 ≤ c(E_7) = 8 by §9.1(3) p.261). This is the (g,K)-cohomology of the TRIVIAL g-module (q = g, R(q) = 0), per Cartan's theorem H^*(g,K;ℂ) = H^*(Ě_VII;ℂ). No A_q(λ) at R(q) = 8 needed."]
-    scope := "DEAD-END: V-Z A_q(λ) at R(q)=8 for E_{7(-25)} — DOES NOT EXIST; structural content reduces to Borel descent under Hyp_BorelMAtLeast8" }
+                      "P32 deep-search (2026-05-15): root-system enumeration; STRUCTURAL CONCLUSION sound: the (4,4) Kähler class h^4 ∈ H^8(Ě_VII; ℚ) (b_8 = 1 from Borel-Hirzebruch Poincaré poly (1-t^{20})(1-t^{28})(1-t^{36})/[(1-t^2)(1-t^{10})(1-t^{18})]) descends G-invariantly to H^8(S_Γ) via Borel 1974 §11 j^8 injection. This is the (g,K)-cohomology of the TRIVIAL g-module (q = g, R(q) = 0), per Cartan's theorem H^*(g,K;ℂ) = H^*(Ě_VII;ℂ). No A_q(λ) at R(q) = 8 needed.",
+                      "P36 hostile audit (2026-05-15): P32 enumeration computed dim_C(u ∩ k_C), NOT V-Z R(q) := dim_C(u ∩ p_C). The literal 'R(q) = 8 NEVER ACHIEVED' claim about V-Z parametrization was therefore unverified by the enumeration. CORRECT REFRAMING: under Hyp_BorelMAtLeast8 (j^8 iso), H^8(S_Γ; ℚ)_G is 1-dim coming from trivial module Cartan image; whether non-trivial A_q(λ) at R(q)=8 exists in V-Z sense is structurally irrelevant — they don't contribute to the freudenthal class. So Hyp_VZ_AqLambda is REDUNDANT under Hyp_BorelMAtLeast8, not literally FALSE. Status: gapDeadEnd → gapClosedConditional with conditionalOn = [Hyp_BorelMAtLeast8_OPEN]."]
+    scope := "CLOSED-CONDITIONAL: V-Z A_q(λ) at R(q)=8 contribution is REDUNDANT under Hyp_BorelMAtLeast8 + Cartan theorem — the trivial-module h^4 Kähler class covers the (ii.a) deg-8 structural content"
+    conditionalOn := ["Hyp_BorelMAtLeast8_OPEN"] }
 
 def gap_eisensteinVanishing : StrictGapEntry :=
   { name := "eisensteinVanishing_E7minus25_Deg8"
@@ -821,14 +827,16 @@ def gap_Hyp_BorelMAtLeast8 : StrictGapEntry :=
 
 def gap_Hyp_VZ_AqLambda : StrictGapEntry :=
   { name := "Hyp_VZ_AqLambda_OPEN"
-    status := .gapDeadEnd, inputCategory := .cat3PaperNovel
+    status := .gapClosedConditional, inputCategory := .cat3PaperNovel
     cat3SubType := .workingAssumption
-    paperSource := "P16: V-Z A_q(λ) for E_{7(-25)} R(q)=8 NOT published; P32 deep-search VERDICT: literal hypothesis FALSE (no R(q)=8 exists), structural content subsumed by Hyp_BorelMAtLeast8_OPEN"
+    paperSource := "P16: V-Z A_q(λ) for E_{7(-25)} R(q)=8 NOT published; P32 structural reduction + P36 audit reframe: REDUNDANT under Hyp_BorelMAtLeast8 + Cartan theorem H^*(g,K;ℂ) = H^*(Ě_VII;ℂ) — non-trivial A_q(λ) at R(q)=8 does not contribute to the freudenthal class because H^8(S_Γ; ℚ)_G is 1-dim from trivial module under Hyp_BorelMAtLeast8 j^8 iso"
     attackHistory := ["P16 introduction",
                       "P24 CRITICAL #2: real carrier",
                       "P25: maintained, consumed by (ii.a) chain",
-                      "P32 deep-search (2026-05-15): direct E_7 root-system enumeration shows R(q) values for E_{7(-25)} are exactly {0, 16, 21, 24, 25, 26, 29, 30, 31, 32, 33, 34, 35, 36}; R(q) = 8 NEVER ACHIEVED. The (ii.a) chain at degree 8 does NOT require V-Z A_q(λ) at R(q)=8; the (4,4) Kähler class h^4 (b_8(Ě_VII) = 1) descends G-invariantly via Borel 1974 §11 j^8 injection (injective for 8 ≤ c(E_7) = 8 PUBLISHED §9.1(3)). This corresponds to the TRIVIAL g-module (q = g, R(q) = 0) per Cartan's theorem H^*(g,K;ℂ) = H^*(Ě_VII;ℂ). STRUCTURAL EQUIVALENCE: Hyp_VZ_AqLambda_OPEN as stated is FALSE; the genuine content needed by (ii.a) is Borel 1974 §11 injection at deg 8, which reduces to Hyp_BorelMAtLeast8_OPEN. REFACTORING REQUIRED: paper_iia_realization_OPEN axiom should be revised to drop the Hyp_VZ_AqLambda_OPEN input; in the meantime this gap is marked gapDeadEnd to surface the literature non-existence."]
-    scope := "DEAD-END: V-Z A_q(λ) at R(q)=8 — DOES NOT EXIST mathematically. Structural content (G-invariant descent of h^4 at deg 8) reduces to Hyp_BorelMAtLeast8_OPEN via Borel 1974 §11 + Cartan H^*(g,K;ℂ) = H^*(Ě_VII;ℂ)" }
+                      "P32 deep-search (2026-05-15): STRUCTURAL CONCLUSION sound: (ii.a) chain at deg 8 doesn't require V-Z A_q(λ) at R(q)=8; the (4,4) Kähler class h^4 (b_8(Ě_VII) = 1) descends G-invariantly via Borel 1974 §11 j^8 injection (injective for 8 ≤ c(E_7) = 8 PUBLISHED §9.1(3)). This corresponds to the TRIVIAL g-module (q = g, V-Z R(q) = 0) per Cartan's theorem. paper_iia_realization_OPEN refactored 6 → 5 inputs (Hyp_VZ_AqLambda dropped).",
+                      "P36 hostile audit (2026-05-15): P32's enumeration of dim_C(u ∩ k_C) is NOT V-Z R(q) := dim_C(u ∩ p_C) (verified by checking q = k_C ⊕ p_+ case: dim(u ∩ k_C) = 0 but V-Z R(q) = dim p_+ = 27). The literal 'R(q) = 8 NEVER ACHIEVED' claim about V-Z parametrization was therefore NOT verified by the P32 enumeration. CORRECT REFRAMING: under Hyp_BorelMAtLeast8 (j^8 iso at deg 8), H^8(S_Γ; ℚ)_G is 1-dim coming entirely from trivial-module Cartan image (h^4 = c_1(L)^4); any non-trivial A_q(λ) at R(q)=8 (if it exists in V-Z sense) would either contribute zero to G-invariant cohomology OR be ABSORBED into the trivial-module 1-dim space. Either way: doesn't affect the freudenthal class realization. So Hyp_VZ_AqLambda is REDUNDANT under Hyp_BorelMAtLeast8, not literally FALSE. Status: gapDeadEnd → gapClosedConditional with conditionalOn = [Hyp_BorelMAtLeast8_OPEN]. The earlier DeadEnd verdict was based on POTENTIALLY incorrect identification of P32's enumeration with V-Z R(q)."]
+    scope := "CLOSED-CONDITIONAL: Hyp_VZ_AqLambda is REDUNDANT under Hyp_BorelMAtLeast8 + Cartan theorem H^*(g,K;ℂ) = H^*(Ě_VII;ℂ). Under j^8 iso, H^8(S_Γ; ℚ)_G is 1-dim from trivial module; any non-trivial A_q(λ) at R(q)=8 doesn't contribute to the freudenthal class."
+    conditionalOn := ["Hyp_BorelMAtLeast8_OPEN"] }
 
 def gap_Hyp_Eisenstein_Vanishing : StrictGapEntry :=
   { name := "Hyp_Eisenstein_Vanishing_OPEN"
@@ -1176,7 +1184,7 @@ def gap_HC_Main : StrictGapEntry :=
       "P24 audit-driven fix (introduced invented intermediates)",
       "P25 audit-driven consolidation: deleted intermediates, multi-input workingAssumption tagged honestly, all Cat 2 frameworks load-bearing",
       "P26 minor: \\label anchors + folkloric Cat 2 dependencies acknowledged + round close-targets in workingAssumption attackHistory",
-      "P32: Hyp_VZ_AqLambda DROPPED — R(q)=8 NEVER ACHIEVED in E_{7(-25)} (direct root-system enumeration); structural content reduces to Hyp_BorelMAtLeast8 via Borel 1974 §11 + Cartan H^*(g,K) = H^*(Ě_VII)",
+      "P32 + P36 audit-reframe: Hyp_VZ_AqLambda DROPPED — under Hyp_BorelMAtLeast8 j^8 iso, H^8(S_Γ; ℚ)_G is 1-dim from trivial-module Cartan image (h^4); non-trivial A_q(λ) at R(q)=8 (if exists) doesn't contribute to freudenthal class. Earlier P32 'R(q)=8 NEVER ACHIEVED' verdict based on dim_C(u∩k_C) enumeration which is NOT V-Z R(q) := dim_C(u∩p_C); P36 hostile audit caught the mis-identification but the STRUCTURAL conclusion (Hyp_VZ_AqLambda redundant under Hyp_BorelMAtLeast8) stands.",
       "P34: Hyp_HigherRank_GoodMetric_OPEN DROPPED — Mumford 1977 Thm 3.1 is type-uniform for ANY automorphic ρ (covers V_56 on EVII directly) + Harris 1985 §4 algebraic upgrade + BKK 2007 Thm 5.2 + K_∞-isotypic V_56 = L_{+3} ⊕ E_{+1} ⊕ E_{-1} ⊕ L_{-3} = full closure synthesis",
       "P35: Hyp_FreudenthalClassPlacement_OPEN DROPPED — at deg 8 (only relevant degree per P32) reduces to {Hyp_BorelMAtLeast8 + Hyp_Eisenstein_Vanishing + Mumford 1977 §1.3 + Borel-Hirzebruch 1958 + V-Z 1984/Speh-Vogan} via paper_placement_reduction_OPEN axiom + Hyp_FreudenthalClassPlacement_DERIVED_CONDITIONAL theorem"
     ]
