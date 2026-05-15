@@ -670,20 +670,48 @@ def J_3_O_cubic_norm_form_zorn_basis : Prop :=
  INTRINSIC structural data of (V_56, q, ω, σ) that defines the
  Freudenthal triple system. -/
 def freudenthal_triple_product_T : Prop :=
+  -- (1) 56-dim Q-module
   (Module.finrank ℚ Infrastructure.V56 = 56) ∧
+  -- (2) q homogeneous of degree 4
   (∀ (r : ℚ) (v : Infrastructure.V56),
     Infrastructure.V56.freudenthalQuartic (r • v)
       = r ^ 4 * Infrastructure.V56.freudenthalQuartic v) ∧
+  -- (3) ω antisymmetric
   (∀ v w : Infrastructure.V56,
     Infrastructure.V56.omega v w = -Infrastructure.V56.omega w v) ∧
+  -- (4) ω non-degenerate
   (∀ v : Infrastructure.V56,
     (∀ w : Infrastructure.V56, Infrastructure.V56.omega v w = 0) → v = 0) ∧
+  -- (5) q invariant under Cartan involution σ
   (∀ v : Infrastructure.V56,
     Infrastructure.V56.freudenthalQuartic (Infrastructure.V56.swap v)
       = Infrastructure.V56.freudenthalQuartic v) ∧
+  -- (6) ω anti-invariant under σ
   (∀ v w : Infrastructure.V56,
     Infrastructure.V56.omega (Infrastructure.V56.swap v) (Infrastructure.V56.swap w)
-      = -Infrastructure.V56.omega v w)
+      = -Infrastructure.V56.omega v w) ∧
+  -- (7) σ is an involution: σ² = id
+  (∀ v : Infrastructure.V56,
+    Infrastructure.V56.swap (Infrastructure.V56.swap v) = v) ∧
+  -- (8) q is even: q(-v) = q(v)
+  (∀ v : Infrastructure.V56,
+    Infrastructure.V56.freudenthalQuartic (-v) = Infrastructure.V56.freudenthalQuartic v) ∧
+  -- (9) q(0) = 0
+  (Infrastructure.V56.freudenthalQuartic 0 = 0) ∧
+  -- (10) ω is left-additive
+  (∀ v v' w : Infrastructure.V56,
+    Infrastructure.V56.omega (v + v') w
+    = Infrastructure.V56.omega v w + Infrastructure.V56.omega v' w) ∧
+  -- (11) ω is right-additive
+  (∀ v w w' : Infrastructure.V56,
+    Infrastructure.V56.omega v (w + w')
+    = Infrastructure.V56.omega v w + Infrastructure.V56.omega v w') ∧
+  -- (12) ω is left scalar-compatible
+  (∀ (r : ℚ) (v w : Infrastructure.V56),
+    Infrastructure.V56.omega (r • v) w = r * Infrastructure.V56.omega v w) ∧
+  -- (13) ω is right scalar-compatible
+  (∀ (r : ℚ) (v w : Infrastructure.V56),
+    Infrastructure.V56.omega v (r • w) = r * Infrastructure.V56.omega v w)
 
 /-- **Cat 3 hypothesis predicate (§3.4.2, P69)** — the Weyl group `W(E_7)`
  has invariant degrees `{2, 6, 8, 10, 12, 14, 18}` (Bourbaki Ch. VI tables;
@@ -1427,7 +1455,14 @@ theorem freudenthal_1954_brown_1969_sato_kimura_PUBLISHED_OPEN :
    Infrastructure.V56.omega_antisymm,
    Infrastructure.V56.omega_nondegenerate,
    Infrastructure.V56.freudenthalQuartic_swap,
-   Infrastructure.V56.omega_swap⟩
+   Infrastructure.V56.omega_swap,
+   Infrastructure.V56.swap_swap,
+   Infrastructure.V56.freudenthalQuartic_neg,
+   Infrastructure.V56.freudenthalQuartic_zero,
+   Infrastructure.V56.omega_add_left,
+   Infrastructure.V56.omega_add_right,
+   Infrastructure.V56.omega_smul_left,
+   Infrastructure.V56.omega_smul_right⟩
 
 /-- **Cat 2 PUBLISHED (§3.3, P69)** — N. Bourbaki, *Groupes et algèbres de
  Lie*, Chap. IV-VI (Hermann 1968), Ch. VI §4.5 Tables (E_7 invariant
