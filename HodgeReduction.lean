@@ -40,3 +40,4 @@ import HodgeReduction.MainTheorem
 import HodgeReduction.Ledger
 import HodgeReduction.Strict
 import HodgeReduction.CrossRingArithmetic
+import HodgeReduction.Infrastructure.CartanMatrices
