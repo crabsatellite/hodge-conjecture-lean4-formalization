@@ -4,6 +4,8 @@ Released under Apache 2.0 license as described in the file LICENSE.
 -/
 import HodgeReduction.Infrastructure.JordanJ3O
 import HodgeReduction.Infrastructure.V56Freudenthal
+import Mathlib.Tactic.LinearCombination
+import Mathlib.Tactic.Abel
 
 /-!
 # Jordan multiplication on `J₃(𝕆)`
@@ -355,6 +357,26 @@ theorem jordanMul_smul (r : ℚ) (X Y : J3O) :
     jordanMul X (r • Y) = r • jordanMul X Y := by
   rw [jordanMul_comm, smul_jordanMul, jordanMul_comm Y X]
 
+/-- **Negation right**: `X ∘ (-Y) = -(X ∘ Y)`. -/
+theorem jordanMul_neg (X Y : J3O) :
+    jordanMul X (-Y) = -jordanMul X Y := by
+  rw [← neg_one_smul ℚ Y, jordanMul_smul, neg_one_smul]
+
+/-- **Negation left**: `(-X) ∘ Y = -(X ∘ Y)`. -/
+theorem neg_jordanMul (X Y : J3O) :
+    jordanMul (-X) Y = -jordanMul X Y := by
+  rw [jordanMul_comm, jordanMul_neg, jordanMul_comm]
+
+/-- **Subtraction right**: `X ∘ (Y - Y') = X ∘ Y - X ∘ Y'`. -/
+theorem jordanMul_sub (X Y Y' : J3O) :
+    jordanMul X (Y - Y') = jordanMul X Y - jordanMul X Y' := by
+  rw [sub_eq_add_neg, jordanMul_add, jordanMul_neg, sub_eq_add_neg]
+
+/-- **Subtraction left**: `(X - X') ∘ Y = X ∘ Y - X' ∘ Y`. -/
+theorem sub_jordanMul (X X' Y : J3O) :
+    jordanMul (X - X') Y = jordanMul X Y - jordanMul X' Y := by
+  rw [jordanMul_comm, jordanMul_sub, jordanMul_comm Y X, jordanMul_comm Y X']
+
 end J3O
 
 end HodgeReduction.Infrastructure
@@ -577,5 +599,31 @@ theorem sharp_eq_cayley_hamilton (X : J3O) :
     dsimp
     ext <;> simp [OctonionQ.conj] <;> ring
 
-end J3O
-end HodgeReduction.Infrastructure
+/-- The **Cayley-Hamilton characteristic polynomial** for `J_3(O)`:
+`X^3 = tr(X) • X² − s_2(X) • X + N(X) • 1`
+where `X^3 := X ∘ X²`, `X² := X ∘ X`, `s_2(X) := ((tr X)^2 − tr X²) / 2`.
+
+This follows by substituting `sharp_eq_cayley_hamilton` into the cubic
+norm identity `X ∘ X^# = N(X) • 1` and using Jordan-product bilinearity. -/
+theorem cubed_eq_cayley_hamilton (X : J3O) :
+    jordanMul X (jordanMul X X)
+    = trace X • jordanMul X X
+      - (((trace X)^2 - trace (jordanMul X X)) / 2) • X
+      + cubicNorm X • (1 : J3O) := by
+  -- start with X ∘ X^# = N(X) • 1
+  have hcubic := jordanMul_sharp_eq_cubicNorm_smul_one X
+  -- rewrite X^# via Cayley-Hamilton
+  rw [sharp_eq_cayley_hamilton] at hcubic
+  -- expand jordanMul X (X² - tr X • X + s_2 • 1)
+  rw [jordanMul_add, jordanMul_sub, jordanMul_smul, jordanMul_smul,
+      jordanMul_one] at hcubic
+  -- hcubic : jordanMul X X² - tr X • jordanMul X X + s_2 • X = N(X) • 1
+  -- target: jordanMul X X² = tr X • jordanMul X X - s_2 • X + N(X) • 1
+  -- Algebra in AddCommGroup: A - B + C = D ⟹ A = B - C + D
+  have h2 : jordanMul X (jordanMul X X) - trace X • jordanMul X X
+          = cubicNorm X • (1 : J3O)
+            - (((trace X)^2 - trace (jordanMul X X)) / 2) • X := by
+    rw [eq_sub_iff_add_eq]; exact hcubic
+  rw [eq_add_of_sub_eq h2]
+  abel
+
