@@ -1092,7 +1092,15 @@ def V56_hodge_decomposition_under_E6_U1 : Prop :=
    + Module.finrank ℚ Infrastructure.V56.Hodge_2_1
    + Module.finrank ℚ Infrastructure.V56.Hodge_1_2
    + Module.finrank ℚ Infrastructure.V56.Hodge_0_3
-   = Module.finrank ℚ Infrastructure.V56)
+   = Module.finrank ℚ Infrastructure.V56) ∧
+  -- (11-13) Hodge filtration chain: F^3 ⊆ F^2 ⊆ F^1 ⊆ F^0
+  (Infrastructure.V56.Hodge_filt_3 ≤ Infrastructure.V56.Hodge_filt_2) ∧
+  (Infrastructure.V56.Hodge_filt_2 ≤ Infrastructure.V56.Hodge_filt_1) ∧
+  (Infrastructure.V56.Hodge_filt_1 ≤ Infrastructure.V56.Hodge_filt_0) ∧
+  -- (14-16) Hodge pieces sit in matching F^p
+  (Infrastructure.V56.Hodge_3_0 ≤ Infrastructure.V56.Hodge_filt_3) ∧
+  (Infrastructure.V56.Hodge_2_1 ≤ Infrastructure.V56.Hodge_filt_2) ∧
+  (Infrastructure.V56.Hodge_1_2 ≤ Infrastructure.V56.Hodge_filt_1)
 
 /-- **Cat 3 carrier (§3.4.1, P39 → P41-reframed)** — the genuine twist:
  the Hodge-FILTRATION projection `Φ_filt`. P41 audit: the P39
@@ -1585,7 +1593,13 @@ theorem V56_hodge_decomposition_OPEN : V56_hodge_decomposition_under_E6_U1 :=
    Infrastructure.V56.finrank_Hodge_2_1,
    Infrastructure.V56.finrank_Hodge_1_2,
    Infrastructure.V56.finrank_Hodge_0_3,
-   Infrastructure.V56.finrank_Hodge_pieces_sum_eq_V56⟩
+   Infrastructure.V56.finrank_Hodge_pieces_sum_eq_V56,
+   Infrastructure.V56.Hodge_filt_3_le_2,
+   Infrastructure.V56.Hodge_filt_2_le_1,
+   Infrastructure.V56.Hodge_filt_1_le_0,
+   Infrastructure.V56.Hodge_3_0_le_Hodge_filt_3,
+   Infrastructure.V56.Hodge_2_1_le_Hodge_filt_2,
+   Infrastructure.V56.Hodge_1_2_le_Hodge_filt_1⟩
 
 /-- **Cat 3 structuralEquation (§3.4.3, P39 → P41-reframed)** — the
  canonical cross-ring map `Φ` vanishes on `q`; the genuine twist `Φ_filt`
