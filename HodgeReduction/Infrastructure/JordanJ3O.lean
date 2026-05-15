@@ -99,6 +99,22 @@ instance : Zero J3O := ⟨⟨0, 0, 0, 0, 0, 0⟩⟩
 /-- The identity matrix `I₃ = diag(1, 1, 1)`. -/
 instance : One J3O := ⟨⟨1, 1, 1, 0, 0, 0⟩⟩
 
+/-! ### Component lemmas for `Zero` and `One` -/
+
+@[simp] theorem zero_xi1 : (0 : J3O).xi1 = 0 := rfl
+@[simp] theorem zero_xi2 : (0 : J3O).xi2 = 0 := rfl
+@[simp] theorem zero_xi3 : (0 : J3O).xi3 = 0 := rfl
+@[simp] theorem zero_x1 : (0 : J3O).x1 = 0 := rfl
+@[simp] theorem zero_x2 : (0 : J3O).x2 = 0 := rfl
+@[simp] theorem zero_x3 : (0 : J3O).x3 = 0 := rfl
+
+@[simp] theorem one_xi1 : (1 : J3O).xi1 = 1 := rfl
+@[simp] theorem one_xi2 : (1 : J3O).xi2 = 1 := rfl
+@[simp] theorem one_xi3 : (1 : J3O).xi3 = 1 := rfl
+@[simp] theorem one_x1 : (1 : J3O).x1 = 0 := rfl
+@[simp] theorem one_x2 : (1 : J3O).x2 = 0 := rfl
+@[simp] theorem one_x3 : (1 : J3O).x3 = 0 := rfl
+
 instance : Add J3O := ⟨fun X Y => ⟨
   X.xi1 + Y.xi1, X.xi2 + Y.xi2, X.xi3 + Y.xi3,
   X.x1 + Y.x1, X.x2 + Y.x2, X.x3 + Y.x3⟩⟩

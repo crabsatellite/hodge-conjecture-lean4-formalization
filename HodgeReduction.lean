@@ -44,3 +44,4 @@ import HodgeReduction.Infrastructure.CartanMatrices
 import HodgeReduction.Infrastructure.SchlafliGraph
 import HodgeReduction.Infrastructure.Octonion
 import HodgeReduction.Infrastructure.JordanJ3O
+import HodgeReduction.Infrastructure.V56Freudenthal

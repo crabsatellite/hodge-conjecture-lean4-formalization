@@ -145,6 +145,43 @@ instance : Mul OctonionQ := ⟨fun x y => {
 @[simp] theorem one_e6 : (1 : OctonionQ).e6 = 0 := rfl
 @[simp] theorem one_e7 : (1 : OctonionQ).e7 = 0 := rfl
 
+/-! ### Component lemmas for `Add`, `Neg`, `Sub`. -/
+
+@[simp] theorem add_e0 (x y : OctonionQ) : (x + y).e0 = x.e0 + y.e0 := rfl
+@[simp] theorem add_e1 (x y : OctonionQ) : (x + y).e1 = x.e1 + y.e1 := rfl
+@[simp] theorem add_e2 (x y : OctonionQ) : (x + y).e2 = x.e2 + y.e2 := rfl
+@[simp] theorem add_e3 (x y : OctonionQ) : (x + y).e3 = x.e3 + y.e3 := rfl
+@[simp] theorem add_e4 (x y : OctonionQ) : (x + y).e4 = x.e4 + y.e4 := rfl
+@[simp] theorem add_e5 (x y : OctonionQ) : (x + y).e5 = x.e5 + y.e5 := rfl
+@[simp] theorem add_e6 (x y : OctonionQ) : (x + y).e6 = x.e6 + y.e6 := rfl
+@[simp] theorem add_e7 (x y : OctonionQ) : (x + y).e7 = x.e7 + y.e7 := rfl
+
+@[simp] theorem neg_e0 (x : OctonionQ) : (-x).e0 = -x.e0 := rfl
+@[simp] theorem neg_e1 (x : OctonionQ) : (-x).e1 = -x.e1 := rfl
+@[simp] theorem neg_e2 (x : OctonionQ) : (-x).e2 = -x.e2 := rfl
+@[simp] theorem neg_e3 (x : OctonionQ) : (-x).e3 = -x.e3 := rfl
+@[simp] theorem neg_e4 (x : OctonionQ) : (-x).e4 = -x.e4 := rfl
+@[simp] theorem neg_e5 (x : OctonionQ) : (-x).e5 = -x.e5 := rfl
+@[simp] theorem neg_e6 (x : OctonionQ) : (-x).e6 = -x.e6 := rfl
+@[simp] theorem neg_e7 (x : OctonionQ) : (-x).e7 = -x.e7 := rfl
+
+@[simp] theorem sub_e0 (x y : OctonionQ) : (x - y).e0 = x.e0 - y.e0 := by
+  show (x + (-y)).e0 = _; simp; ring
+@[simp] theorem sub_e1 (x y : OctonionQ) : (x - y).e1 = x.e1 - y.e1 := by
+  show (x + (-y)).e1 = _; simp; ring
+@[simp] theorem sub_e2 (x y : OctonionQ) : (x - y).e2 = x.e2 - y.e2 := by
+  show (x + (-y)).e2 = _; simp; ring
+@[simp] theorem sub_e3 (x y : OctonionQ) : (x - y).e3 = x.e3 - y.e3 := by
+  show (x + (-y)).e3 = _; simp; ring
+@[simp] theorem sub_e4 (x y : OctonionQ) : (x - y).e4 = x.e4 - y.e4 := by
+  show (x + (-y)).e4 = _; simp; ring
+@[simp] theorem sub_e5 (x y : OctonionQ) : (x - y).e5 = x.e5 - y.e5 := by
+  show (x + (-y)).e5 = _; simp; ring
+@[simp] theorem sub_e6 (x y : OctonionQ) : (x - y).e6 = x.e6 - y.e6 := by
+  show (x + (-y)).e6 = _; simp; ring
+@[simp] theorem sub_e7 (x y : OctonionQ) : (x - y).e7 = x.e7 - y.e7 := by
+  show (x + (-y)).e7 = _; simp; ring
+
 /-! ### Multiplication unfolding `@[simp]` lemmas (one per component). -/
 
 @[simp] theorem mul_e0 (x y : OctonionQ) :
@@ -248,10 +285,10 @@ theorem normSq_nonneg (x : OctonionQ) : 0 ≤ normSq x := by
 /-! ### Multiplication by one -/
 
 @[simp] theorem mul_one (x : OctonionQ) : x * 1 = x := by
-  ext <;> simp <;> ring
+  ext <;> simp
 
 @[simp] theorem one_mul (x : OctonionQ) : (1 : OctonionQ) * x = x := by
-  ext <;> simp <;> ring
+  ext <;> simp
 
 /-! ### Alternative-algebra laws
 
