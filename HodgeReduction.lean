@@ -69,6 +69,10 @@ import HodgeReduction.Infrastructure.Cohomology.HCCodim1
 import HodgeReduction.Infrastructure.Cohomology.PicardGroup
 import HodgeReduction.Infrastructure.Cohomology.AmpleDivisor
 import HodgeReduction.Infrastructure.Cohomology.Galois
+import HodgeReduction.Infrastructure.Cohomology.DivisorClass
+import HodgeReduction.Infrastructure.Cohomology.AlgebraicCycle
+import HodgeReduction.Infrastructure.Cohomology.ChernCharacter
+import HodgeReduction.Infrastructure.Cohomology.LefschetzHyperplane
 import HodgeReduction.Infrastructure.Shimura.PeriodDomain
 import HodgeReduction.Infrastructure.Shimura.SchubertCells
 import HodgeReduction.Infrastructure.HodgeStructure.Basic
