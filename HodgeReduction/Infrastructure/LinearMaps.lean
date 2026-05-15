@@ -205,6 +205,37 @@ theorem omega_swap (v w : V56) :
        = -(v.a * w.b - v.b * w.a + J3O.innerProd v.A w.B - J3O.innerProd v.B w.A)
   ring
 
+/-! ### The contraction `ω(v, ·) : V_56 → ℚ`
+
+Non-degeneracy of `ω` gives an injective `ℚ`-linear map
+`v ↦ ω(v, ·) : V_56 → V_56*`. By dimension count (56 = 56), this is in
+fact a linear isomorphism `V_56 ≃ V_56^*`.
+-/
+
+/-- Contraction of `ω` with a fixed first argument: `v ↦ ω(v, ·)`. -/
+def omegaContract : V56 →ₗ[ℚ] (V56 →ₗ[ℚ] ℚ) := omegaBilin
+
+@[simp] theorem omegaContract_apply (v w : V56) :
+    omegaContract v w = omega v w := rfl
+
+/-- The contraction `v ↦ ω(v, ·)` is **injective**: if `ω(v, ·) = 0` as a
+linear functional, then `v = 0`. This is just `omega_nondegenerate`
+re-packaged at the LinearMap level. -/
+theorem omegaContract_injective :
+    Function.Injective (omegaContract : V56 → (V56 →ₗ[ℚ] ℚ)) := by
+  intro v w hvw
+  -- `ω(v, ·) = ω(w, ·)` implies `ω(v - w, ·) = 0`, hence `v - w = 0` by
+  -- non-degeneracy.
+  have h : ∀ x, omega (v - w) x = 0 := by
+    intro x
+    rw [show v - w = v + -w from sub_eq_add_neg v w, omega_add_left, omega_neg_left]
+    have h1 : omega v x = omega w x := by
+      have := congrArg (fun (f : V56 →ₗ[ℚ] ℚ) => f x) hvw
+      exact this
+    linarith
+  have hvw' : v - w = 0 := omega_nondegenerate (v - w) h
+  exact sub_eq_zero.mp hvw'
+
 end V56
 
 end HodgeReduction.Infrastructure
