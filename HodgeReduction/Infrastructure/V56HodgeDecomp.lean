@@ -313,6 +313,60 @@ theorem Hodge_1_2_le_Hodge_filt_1 : Hodge_1_2 ≤ Hodge_filt_1 := by
   intro v ⟨_, _, hb⟩
   exact hb
 
+/-! ### Symplectic polarization: `V_+ = F^2` and `V_- = (negative half)`
+
+The Lagrangian polarization `V_56 = V_+ ⊕ V_-` from the Hodge
+decomposition. Here:
+* `V_+ = F^2 V_56 = V^{3,0} ⊕ V^{2,1}` (positive U(1)-charges), 28-dim.
+* `V_- = V^{1,2} ⊕ V^{0,3}` (negative U(1)-charges), 28-dim.
+
+Both are Lagrangian under `ω`.
+-/
+
+/-- The **negative half** `V_- = V^{1,2} ⊕ V^{0,3}` ⊂ `V₅₆`. -/
+def Hodge_neg_half : Submodule ℚ V56 where
+  carrier := {v | v.a = 0 ∧ v.A = 0}
+  zero_mem' := ⟨rfl, rfl⟩
+  add_mem' := by
+    rintro v w ⟨hva, hvA⟩ ⟨hwa, hwA⟩
+    refine ⟨?_, ?_⟩
+    · show v.a + w.a = 0; rw [hva, hwa, add_zero]
+    · show v.A + w.A = 0; rw [hvA, hwA, add_zero]
+  smul_mem' := by
+    rintro r v ⟨hva, hvA⟩
+    refine ⟨?_, ?_⟩
+    · show r * v.a = 0; rw [hva, mul_zero]
+    · show r • v.A = 0; rw [hvA, smul_zero]
+
+/-- The positive half `Hodge_filt_2 = V^{3,0} ⊕ V^{2,1}` is linearly isomorphic
+to `ℚ × J₃(𝕆)` (the first two Hodge pieces packaged). -/
+def Hodge_pos_half_equiv : Hodge_filt_2 ≃ₗ[ℚ] ℚ × J3O where
+  toFun v := (v.1.a, v.1.A)
+  invFun p := ⟨⟨p.1, p.2, 0, 0⟩, rfl, rfl⟩
+  left_inv := by
+    rintro ⟨v, hB, hb⟩
+    apply Subtype.ext
+    refine V56.ext rfl rfl ?_ ?_
+    · exact hB.symm
+    · exact hb.symm
+  right_inv := fun _ => rfl
+  map_add' _ _ := rfl
+  map_smul' _ _ := rfl
+
+/-- The negative half `V_-` is linearly isomorphic to `J₃(𝕆) × ℚ`. -/
+def Hodge_neg_half_equiv : Hodge_neg_half ≃ₗ[ℚ] J3O × ℚ where
+  toFun v := (v.1.B, v.1.b)
+  invFun p := ⟨⟨0, 0, p.1, p.2⟩, rfl, rfl⟩
+  left_inv := by
+    rintro ⟨v, ha, hA⟩
+    apply Subtype.ext
+    refine V56.ext ?_ ?_ rfl rfl
+    · exact ha.symm
+    · exact hA.symm
+  right_inv := fun _ => rfl
+  map_add' _ _ := rfl
+  map_smul' _ _ := rfl
+
 end V56
 
 end HodgeReduction.Infrastructure
