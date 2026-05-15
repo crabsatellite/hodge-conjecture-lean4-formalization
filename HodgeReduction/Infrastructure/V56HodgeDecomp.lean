@@ -145,6 +145,99 @@ theorem hodge_decomp_exists (v : V56) :
     rw [zero_add, zero_add, add_zero]
   · show v.b = 0 + 0 + 0 + v.b; ring
 
+/-! ### Hodge-piece projections and inclusions as `LinearMap`s -/
+
+/-- The projection `V₅₆ → ℚ` onto the U(1)-charge `+3` component (the
+`a`-coordinate). -/
+def projA : V56 →ₗ[ℚ] ℚ where
+  toFun := V56.a
+  map_add' _ _ := rfl
+  map_smul' _ _ := rfl
+
+/-- The projection `V₅₆ → ℚ` onto the U(1)-charge `-3` component (the
+`b`-coordinate). -/
+def projB : V56 →ₗ[ℚ] ℚ where
+  toFun := V56.b
+  map_add' _ _ := rfl
+  map_smul' _ _ := rfl
+
+/-- The projection `V₅₆ → J₃(𝕆)` onto the U(1)-charge `+1` Hodge piece. -/
+def projUpperA : V56 →ₗ[ℚ] J3O where
+  toFun := V56.A
+  map_add' _ _ := rfl
+  map_smul' _ _ := rfl
+
+/-- The projection `V₅₆ → J₃(𝕆)` onto the U(1)-charge `-1` Hodge piece. -/
+def projUpperB : V56 →ₗ[ℚ] J3O where
+  toFun := V56.B
+  map_add' _ _ := rfl
+  map_smul' _ _ := rfl
+
+/-- The inclusion `ℚ → V₅₆` of the highest-weight (`+3`) line. -/
+def inclLowestPlus : ℚ →ₗ[ℚ] V56 where
+  toFun a := ⟨a, 0, 0, 0⟩
+  map_add' _ _ := by
+    refine V56.ext ?_ ?_ ?_ ?_
+    · rfl
+    · show (0 : J3O) = 0 + 0; rw [add_zero]
+    · show (0 : J3O) = 0 + 0; rw [add_zero]
+    · show (0 : ℚ) = 0 + 0; ring
+  map_smul' _ _ := by
+    refine V56.ext ?_ ?_ ?_ ?_
+    · rfl
+    · show (0 : J3O) = _ • (0 : J3O); rw [smul_zero]
+    · show (0 : J3O) = _ • (0 : J3O); rw [smul_zero]
+    · show (0 : ℚ) = _ * 0; ring
+
+/-- The inclusion `J₃(𝕆) → V₅₆` of the upper-A `(+1)` piece. -/
+def inclUpperA : J3O →ₗ[ℚ] V56 where
+  toFun A := ⟨0, A, 0, 0⟩
+  map_add' _ _ := by refine V56.ext ?_ ?_ ?_ ?_ <;> show _ = _ <;> simp
+  map_smul' _ _ := by refine V56.ext ?_ ?_ ?_ ?_ <;> show _ = _ <;> simp
+
+/-- The inclusion `J₃(𝕆) → V₅₆` of the upper-B `(-1)` piece. -/
+def inclUpperB : J3O →ₗ[ℚ] V56 where
+  toFun B := ⟨0, 0, B, 0⟩
+  map_add' _ _ := by refine V56.ext ?_ ?_ ?_ ?_ <;> show _ = _ <;> simp
+  map_smul' _ _ := by refine V56.ext ?_ ?_ ?_ ?_ <;> show _ = _ <;> simp
+
+/-- The inclusion `ℚ → V₅₆` of the lowest-weight (`-3`) line. -/
+def inclLowestMinus : ℚ →ₗ[ℚ] V56 where
+  toFun b := ⟨0, 0, 0, b⟩
+  map_add' _ _ := by
+    refine V56.ext ?_ ?_ ?_ ?_
+    · show (0 : ℚ) = 0 + 0; ring
+    · show (0 : J3O) = 0 + 0; rw [add_zero]
+    · show (0 : J3O) = 0 + 0; rw [add_zero]
+    · rfl
+  map_smul' _ _ := by
+    refine V56.ext ?_ ?_ ?_ ?_
+    · show (0 : ℚ) = _ * 0; ring
+    · show (0 : J3O) = _ • (0 : J3O); rw [smul_zero]
+    · show (0 : J3O) = _ • (0 : J3O); rw [smul_zero]
+    · rfl
+
+/-- The projection onto the `+1` Hodge piece composes to identity on `J₃(𝕆)`. -/
+@[simp] theorem projUpperA_inclUpperA (A : J3O) :
+    projUpperA (inclUpperA A) = A := rfl
+
+/-- The projection onto the `-1` Hodge piece composes to identity on `J₃(𝕆)`. -/
+@[simp] theorem projUpperB_inclUpperB (B : J3O) :
+    projUpperB (inclUpperB B) = B := rfl
+
+/-- The four projections sum to the identity (Hodge-decomposition relation). -/
+theorem inclusion_sum_id (v : V56) :
+    v = inclLowestPlus v.a + inclUpperA v.A + inclUpperB v.B + inclLowestMinus v.b := by
+  refine V56.ext ?_ ?_ ?_ ?_
+  · show v.a = v.a + 0 + 0 + 0; ring
+  · show v.A = 0 + v.A + 0 + 0
+    show v.A = (0 : J3O) + v.A + 0 + 0
+    rw [zero_add, add_zero, add_zero]
+  · show v.B = 0 + 0 + v.B + 0
+    show v.B = (0 : J3O) + 0 + v.B + 0
+    rw [zero_add, zero_add, add_zero]
+  · show v.b = 0 + 0 + 0 + v.b; ring
+
 end V56
 
 end HodgeReduction.Infrastructure
