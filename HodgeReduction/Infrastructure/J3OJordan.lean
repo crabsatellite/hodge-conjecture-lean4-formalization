@@ -665,6 +665,55 @@ theorem jordanMulLeft_eq_jordanMulRight (X : J3O) :
   show jordanMul X Y = jordanMul Y X
   exact jordanMul_comm X Y
 
-end J3O
-end HodgeReduction.Infrastructure
+/-! ### Trace of sharp: `tr(X^#) = s_2(X)`
+
+This is the trace counterpart of `sharp_eq_cayley_hamilton`. Taking the
+trace of both sides of `X^# = X² − tr(X) X + s_2(X) • 1` gives
+`tr(X^#) = tr(X²) − tr(X) · tr(X) + s_2(X) · 3`, which when rearranged
+recovers `tr(X^#) = ((tr X)² − tr X²) / 2 = s_2(X)`.
+
+We prove it directly by component expansion. -/
+
+/-- The **trace of sharp** equals the elementary symmetric polynomial
+of degree 2 in the eigenvalues of `X`:
+`tr(X^#) = ((tr X)² − tr X²) / 2`. -/
+theorem trace_sharp (X : J3O) :
+    trace (sharp X) = ((trace X)^2 - trace (jordanMul X X)) / 2 := by
+  rw [trace_jordanMul]
+  unfold trace sharp innerProd
+  dsimp
+  rw [re_mul_conj_self, re_mul_conj_self, re_mul_conj_self]
+  ring
+
+/-! ### Sharp-inner-product identity: `⟨X^#, X⟩ = 3 N(X)`
+
+This is the Euler-degree-3 identity for the cubic norm:
+since `N` is homogeneous of degree 3, by Euler:
+`3 N(X) = ⟨grad N(X), X⟩`, and `grad N = 3 X^#` (Freudenthal/Springer).
+So `⟨X^#, X⟩ = N(X)` — but in the symmetric-inner-product form
+`⟨A, B⟩ = tr(A ∘ B)`, this becomes `⟨X^#, X⟩ = 3 N(X)`.
+
+Proof by direct component expansion. -/
+
+/-- The **degree-3 Euler identity**: `⟨X^#, X⟩ = 3 N(X)`. -/
+theorem innerProd_sharp_self (X : J3O) :
+    innerProd (sharp X) X = 3 * cubicNorm X := by
+  unfold innerProd sharp cubicNorm
+  dsimp
+  -- Both sides as e0-level polynomial identity in the 24 components.
+  show (X.xi2 * X.xi3 - OctonionQ.normSq X.x1) * X.xi1
+     + (X.xi3 * X.xi1 - OctonionQ.normSq X.x2) * X.xi2
+     + (X.xi1 * X.xi2 - OctonionQ.normSq X.x3) * X.xi3
+     + 2 * ((OctonionQ.conj (X.x2 * X.x3) - X.xi1 • X.x1) * OctonionQ.conj X.x1).e0
+     + 2 * ((OctonionQ.conj (X.x3 * X.x1) - X.xi2 • X.x2) * OctonionQ.conj X.x2).e0
+     + 2 * ((OctonionQ.conj (X.x1 * X.x2) - X.xi3 • X.x3) * OctonionQ.conj X.x3).e0
+     = 3 * (X.xi1 * X.xi2 * X.xi3
+            - X.xi1 * OctonionQ.normSq X.x1
+            - X.xi2 * OctonionQ.normSq X.x2
+            - X.xi3 * OctonionQ.normSq X.x3
+            + 2 * (X.x1 * X.x2 * X.x3).e0)
+  unfold OctonionQ.normSq
+  simp [OctonionQ.conj]
+  ring
+
 
