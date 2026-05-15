@@ -67,3 +67,4 @@ import HodgeReduction.Infrastructure.HodgeStructure.MumfordTate
 import HodgeReduction.Infrastructure.HodgeStructure.Variation
 import HodgeReduction.Infrastructure.Coxeter.WE7
 import HodgeReduction.Infrastructure.Shimura.Basic
+import HodgeReduction.Infrastructure.AbelianVariety.Basic
