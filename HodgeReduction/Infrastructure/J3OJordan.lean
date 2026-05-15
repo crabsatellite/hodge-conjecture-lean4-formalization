@@ -47,6 +47,8 @@ Off-diagonals: more involved (octonion products + scalar terms).
 exceptional Jordan algebra, Jordan product, J_3(O)
 -/
 
+set_option maxHeartbeats 1000000
+
 namespace HodgeReduction.Infrastructure
 
 namespace J3O
@@ -168,6 +170,190 @@ theorem jordanMul_comm (X Y : J3O) : jordanMul X Y = jordanMul Y X := by
 
 @[simp] theorem jordanMul_one (X : J3O) : jordanMul X 1 = X := by
   rw [jordanMul_comm]; exact one_jordanMul X
+
+/-! ### Distributivity and scalar compatibility -/
+
+/-- **Right distributivity**: `(X + X') ∘ Y = X ∘ Y + X' ∘ Y`. -/
+theorem add_jordanMul (X X' Y : J3O) :
+    jordanMul (X + X') Y = jordanMul X Y + jordanMul X' Y := by
+  refine J3O.ext ?_ ?_ ?_ ?_ ?_ ?_
+  · -- xi1 component: distributes via ℚ-addition + Re-additivity + octonion mult.
+    show (X.xi1 + X'.xi1) * Y.xi1
+       + OctonionQ.re ((X.x2 + X'.x2) * conj Y.x2)
+       + OctonionQ.re ((X.x3 + X'.x3) * conj Y.x3)
+       = X.xi1 * Y.xi1 + OctonionQ.re (X.x2 * conj Y.x2) + OctonionQ.re (X.x3 * conj Y.x3)
+       + (X'.xi1 * Y.xi1 + OctonionQ.re (X'.x2 * conj Y.x2) + OctonionQ.re (X'.x3 * conj Y.x3))
+    have h1 : OctonionQ.re ((X.x2 + X'.x2) * conj Y.x2)
+            = OctonionQ.re (X.x2 * conj Y.x2) + OctonionQ.re (X'.x2 * conj Y.x2) := by
+      show ((X.x2 + X'.x2) * conj Y.x2).e0
+         = (X.x2 * conj Y.x2).e0 + (X'.x2 * conj Y.x2).e0
+      simp; ring
+    have h2 : OctonionQ.re ((X.x3 + X'.x3) * conj Y.x3)
+            = OctonionQ.re (X.x3 * conj Y.x3) + OctonionQ.re (X'.x3 * conj Y.x3) := by
+      show ((X.x3 + X'.x3) * conj Y.x3).e0
+         = (X.x3 * conj Y.x3).e0 + (X'.x3 * conj Y.x3).e0
+      simp; ring
+    rw [h1, h2]; ring
+  · show (X.xi2 + X'.xi2) * Y.xi2
+       + OctonionQ.re ((X.x3 + X'.x3) * conj Y.x3)
+       + OctonionQ.re ((X.x1 + X'.x1) * conj Y.x1)
+       = X.xi2 * Y.xi2 + OctonionQ.re (X.x3 * conj Y.x3) + OctonionQ.re (X.x1 * conj Y.x1)
+       + (X'.xi2 * Y.xi2 + OctonionQ.re (X'.x3 * conj Y.x3) + OctonionQ.re (X'.x1 * conj Y.x1))
+    have h1 : OctonionQ.re ((X.x3 + X'.x3) * conj Y.x3)
+            = OctonionQ.re (X.x3 * conj Y.x3) + OctonionQ.re (X'.x3 * conj Y.x3) := by
+      show ((X.x3 + X'.x3) * conj Y.x3).e0
+         = (X.x3 * conj Y.x3).e0 + (X'.x3 * conj Y.x3).e0
+      simp; ring
+    have h2 : OctonionQ.re ((X.x1 + X'.x1) * conj Y.x1)
+            = OctonionQ.re (X.x1 * conj Y.x1) + OctonionQ.re (X'.x1 * conj Y.x1) := by
+      show ((X.x1 + X'.x1) * conj Y.x1).e0
+         = (X.x1 * conj Y.x1).e0 + (X'.x1 * conj Y.x1).e0
+      simp; ring
+    rw [h1, h2]; ring
+  · show (X.xi3 + X'.xi3) * Y.xi3
+       + OctonionQ.re ((X.x1 + X'.x1) * conj Y.x1)
+       + OctonionQ.re ((X.x2 + X'.x2) * conj Y.x2)
+       = X.xi3 * Y.xi3 + OctonionQ.re (X.x1 * conj Y.x1) + OctonionQ.re (X.x2 * conj Y.x2)
+       + (X'.xi3 * Y.xi3 + OctonionQ.re (X'.x1 * conj Y.x1) + OctonionQ.re (X'.x2 * conj Y.x2))
+    have h1 : OctonionQ.re ((X.x1 + X'.x1) * conj Y.x1)
+            = OctonionQ.re (X.x1 * conj Y.x1) + OctonionQ.re (X'.x1 * conj Y.x1) := by
+      show ((X.x1 + X'.x1) * conj Y.x1).e0
+         = (X.x1 * conj Y.x1).e0 + (X'.x1 * conj Y.x1).e0
+      simp; ring
+    have h2 : OctonionQ.re ((X.x2 + X'.x2) * conj Y.x2)
+            = OctonionQ.re (X.x2 * conj Y.x2) + OctonionQ.re (X'.x2 * conj Y.x2) := by
+      show ((X.x2 + X'.x2) * conj Y.x2).e0
+         = (X.x2 * conj Y.x2).e0 + (X'.x2 * conj Y.x2).e0
+      simp; ring
+    rw [h1, h2]; ring
+  · -- x1 component
+    show ((X.xi2 + X'.xi2 + (X.xi3 + X'.xi3)) / 2) • Y.x1
+       + ((Y.xi2 + Y.xi3) / 2) • (X.x1 + X'.x1)
+       + (1 / 2 : ℚ) • OctonionQ.conj ((X.x2 + X'.x2) * Y.x3 + Y.x2 * (X.x3 + X'.x3))
+       = (((X.xi2 + X.xi3) / 2) • Y.x1 + ((Y.xi2 + Y.xi3) / 2) • X.x1
+            + (1 / 2 : ℚ) • OctonionQ.conj (X.x2 * Y.x3 + Y.x2 * X.x3))
+         + (((X'.xi2 + X'.xi3) / 2) • Y.x1 + ((Y.xi2 + Y.xi3) / 2) • X'.x1
+            + (1 / 2 : ℚ) • OctonionQ.conj (X'.x2 * Y.x3 + Y.x2 * X'.x3))
+    ext <;> simp [OctonionQ.conj] <;> ring
+  · -- x2 component
+    show ((X.xi3 + X'.xi3 + (X.xi1 + X'.xi1)) / 2) • Y.x2
+       + ((Y.xi3 + Y.xi1) / 2) • (X.x2 + X'.x2)
+       + (1 / 2 : ℚ) • OctonionQ.conj ((X.x3 + X'.x3) * Y.x1 + Y.x3 * (X.x1 + X'.x1))
+       = (((X.xi3 + X.xi1) / 2) • Y.x2 + ((Y.xi3 + Y.xi1) / 2) • X.x2
+            + (1 / 2 : ℚ) • OctonionQ.conj (X.x3 * Y.x1 + Y.x3 * X.x1))
+         + (((X'.xi3 + X'.xi1) / 2) • Y.x2 + ((Y.xi3 + Y.xi1) / 2) • X'.x2
+            + (1 / 2 : ℚ) • OctonionQ.conj (X'.x3 * Y.x1 + Y.x3 * X'.x1))
+    ext <;> simp [OctonionQ.conj] <;> ring
+  · -- x3 component
+    show ((X.xi1 + X'.xi1 + (X.xi2 + X'.xi2)) / 2) • Y.x3
+       + ((Y.xi1 + Y.xi2) / 2) • (X.x3 + X'.x3)
+       + (1 / 2 : ℚ) • OctonionQ.conj ((X.x1 + X'.x1) * Y.x2 + Y.x1 * (X.x2 + X'.x2))
+       = (((X.xi1 + X.xi2) / 2) • Y.x3 + ((Y.xi1 + Y.xi2) / 2) • X.x3
+            + (1 / 2 : ℚ) • OctonionQ.conj (X.x1 * Y.x2 + Y.x1 * X.x2))
+         + (((X'.xi1 + X'.xi2) / 2) • Y.x3 + ((Y.xi1 + Y.xi2) / 2) • X'.x3
+            + (1 / 2 : ℚ) • OctonionQ.conj (X'.x1 * Y.x2 + Y.x1 * X'.x2))
+    ext <;> simp [OctonionQ.conj] <;> ring
+
+/-- **Left distributivity**: `X ∘ (Y + Y') = X ∘ Y + X ∘ Y'`. -/
+theorem jordanMul_add (X Y Y' : J3O) :
+    jordanMul X (Y + Y') = jordanMul X Y + jordanMul X Y' := by
+  rw [jordanMul_comm, add_jordanMul]
+  congr 1 <;> exact jordanMul_comm _ _
+
+set_option maxHeartbeats 1000000 in
+/-- **Right scalar compatibility**: `(r • X) ∘ Y = r • (X ∘ Y)`. -/
+theorem smul_jordanMul (r : ℚ) (X Y : J3O) :
+    jordanMul (r • X) Y = r • jordanMul X Y := by
+  refine J3O.ext ?_ ?_ ?_ ?_ ?_ ?_
+  · show (r * X.xi1) * Y.xi1
+       + OctonionQ.re ((r • X.x2) * conj Y.x2)
+       + OctonionQ.re ((r • X.x3) * conj Y.x3)
+       = r * (X.xi1 * Y.xi1 + OctonionQ.re (X.x2 * conj Y.x2) + OctonionQ.re (X.x3 * conj Y.x3))
+    have h2 : OctonionQ.re ((r • X.x2) * conj Y.x2) = r * OctonionQ.re (X.x2 * conj Y.x2) := by
+      show ((r • X.x2) * conj Y.x2).e0 = r * (X.x2 * conj Y.x2).e0
+      simp; ring
+    have h3 : OctonionQ.re ((r • X.x3) * conj Y.x3) = r * OctonionQ.re (X.x3 * conj Y.x3) := by
+      show ((r • X.x3) * conj Y.x3).e0 = r * (X.x3 * conj Y.x3).e0
+      simp; ring
+    rw [h2, h3]; ring
+  · show (r * X.xi2) * Y.xi2
+       + OctonionQ.re ((r • X.x3) * conj Y.x3)
+       + OctonionQ.re ((r • X.x1) * conj Y.x1)
+       = r * (X.xi2 * Y.xi2 + OctonionQ.re (X.x3 * conj Y.x3) + OctonionQ.re (X.x1 * conj Y.x1))
+    have h3 : OctonionQ.re ((r • X.x3) * conj Y.x3) = r * OctonionQ.re (X.x3 * conj Y.x3) := by
+      show ((r • X.x3) * conj Y.x3).e0 = r * (X.x3 * conj Y.x3).e0
+      simp; ring
+    have h1 : OctonionQ.re ((r • X.x1) * conj Y.x1) = r * OctonionQ.re (X.x1 * conj Y.x1) := by
+      show ((r • X.x1) * conj Y.x1).e0 = r * (X.x1 * conj Y.x1).e0
+      simp; ring
+    rw [h3, h1]; ring
+  · show (r * X.xi3) * Y.xi3
+       + OctonionQ.re ((r • X.x1) * conj Y.x1)
+       + OctonionQ.re ((r • X.x2) * conj Y.x2)
+       = r * (X.xi3 * Y.xi3 + OctonionQ.re (X.x1 * conj Y.x1) + OctonionQ.re (X.x2 * conj Y.x2))
+    have h1 : OctonionQ.re ((r • X.x1) * conj Y.x1) = r * OctonionQ.re (X.x1 * conj Y.x1) := by
+      show ((r • X.x1) * conj Y.x1).e0 = r * (X.x1 * conj Y.x1).e0
+      simp; ring
+    have h2 : OctonionQ.re ((r • X.x2) * conj Y.x2) = r * OctonionQ.re (X.x2 * conj Y.x2) := by
+      show ((r • X.x2) * conj Y.x2).e0 = r * (X.x2 * conj Y.x2).e0
+      simp; ring
+    rw [h1, h2]; ring
+  · -- x1 component: combine ℚ-linearity at OctonionQ level.
+    show ((r * X.xi2 + r * X.xi3) / 2) • Y.x1 + ((Y.xi2 + Y.xi3) / 2) • (r • X.x1)
+       + (1 / 2 : ℚ) • OctonionQ.conj ((r • X.x2) * Y.x3 + Y.x2 * (r • X.x3))
+       = r • (((X.xi2 + X.xi3) / 2) • Y.x1 + ((Y.xi2 + Y.xi3) / 2) • X.x1
+            + (1 / 2 : ℚ) • OctonionQ.conj (X.x2 * Y.x3 + Y.x2 * X.x3))
+    have e1 : ((r * X.xi2 + r * X.xi3) / 2) • Y.x1
+            = r • (((X.xi2 + X.xi3) / 2) • Y.x1) := by
+      rw [OctonionQ.smul_smul]; congr 1; ring
+    have e2 : ((Y.xi2 + Y.xi3) / 2) • (r • X.x1)
+            = r • (((Y.xi2 + Y.xi3) / 2) • X.x1) := by
+      rw [OctonionQ.smul_smul, OctonionQ.smul_smul]; congr 1; ring
+    have e3 : (1 / 2 : ℚ) • OctonionQ.conj ((r • X.x2) * Y.x3 + Y.x2 * (r • X.x3))
+            = r • ((1 / 2 : ℚ) • OctonionQ.conj (X.x2 * Y.x3 + Y.x2 * X.x3)) := by
+      rw [OctonionQ.smul_mul, OctonionQ.mul_smul, ← OctonionQ.smul_add,
+          OctonionQ.conj_smul, OctonionQ.smul_smul, OctonionQ.smul_smul]
+      congr 1; ring
+    rw [e1, e2, e3, ← OctonionQ.smul_add, ← OctonionQ.smul_add]
+  · -- x2 component
+    show ((r * X.xi3 + r * X.xi1) / 2) • Y.x2 + ((Y.xi3 + Y.xi1) / 2) • (r • X.x2)
+       + (1 / 2 : ℚ) • OctonionQ.conj ((r • X.x3) * Y.x1 + Y.x3 * (r • X.x1))
+       = r • (((X.xi3 + X.xi1) / 2) • Y.x2 + ((Y.xi3 + Y.xi1) / 2) • X.x2
+            + (1 / 2 : ℚ) • OctonionQ.conj (X.x3 * Y.x1 + Y.x3 * X.x1))
+    have e1 : ((r * X.xi3 + r * X.xi1) / 2) • Y.x2
+            = r • (((X.xi3 + X.xi1) / 2) • Y.x2) := by
+      rw [OctonionQ.smul_smul]; congr 1; ring
+    have e2 : ((Y.xi3 + Y.xi1) / 2) • (r • X.x2)
+            = r • (((Y.xi3 + Y.xi1) / 2) • X.x2) := by
+      rw [OctonionQ.smul_smul, OctonionQ.smul_smul]; congr 1; ring
+    have e3 : (1 / 2 : ℚ) • OctonionQ.conj ((r • X.x3) * Y.x1 + Y.x3 * (r • X.x1))
+            = r • ((1 / 2 : ℚ) • OctonionQ.conj (X.x3 * Y.x1 + Y.x3 * X.x1)) := by
+      rw [OctonionQ.smul_mul, OctonionQ.mul_smul, ← OctonionQ.smul_add,
+          OctonionQ.conj_smul, OctonionQ.smul_smul, OctonionQ.smul_smul]
+      congr 1; ring
+    rw [e1, e2, e3, ← OctonionQ.smul_add, ← OctonionQ.smul_add]
+  · -- x3 component
+    show ((r * X.xi1 + r * X.xi2) / 2) • Y.x3 + ((Y.xi1 + Y.xi2) / 2) • (r • X.x3)
+       + (1 / 2 : ℚ) • OctonionQ.conj ((r • X.x1) * Y.x2 + Y.x1 * (r • X.x2))
+       = r • (((X.xi1 + X.xi2) / 2) • Y.x3 + ((Y.xi1 + Y.xi2) / 2) • X.x3
+            + (1 / 2 : ℚ) • OctonionQ.conj (X.x1 * Y.x2 + Y.x1 * X.x2))
+    have e1 : ((r * X.xi1 + r * X.xi2) / 2) • Y.x3
+            = r • (((X.xi1 + X.xi2) / 2) • Y.x3) := by
+      rw [OctonionQ.smul_smul]; congr 1; ring
+    have e2 : ((Y.xi1 + Y.xi2) / 2) • (r • X.x3)
+            = r • (((Y.xi1 + Y.xi2) / 2) • X.x3) := by
+      rw [OctonionQ.smul_smul, OctonionQ.smul_smul]; congr 1; ring
+    have e3 : (1 / 2 : ℚ) • OctonionQ.conj ((r • X.x1) * Y.x2 + Y.x1 * (r • X.x2))
+            = r • ((1 / 2 : ℚ) • OctonionQ.conj (X.x1 * Y.x2 + Y.x1 * X.x2)) := by
+      rw [OctonionQ.smul_mul, OctonionQ.mul_smul, ← OctonionQ.smul_add,
+          OctonionQ.conj_smul, OctonionQ.smul_smul, OctonionQ.smul_smul]
+      congr 1; ring
+    rw [e1, e2, e3, ← OctonionQ.smul_add, ← OctonionQ.smul_add]
+
+/-- **Left scalar compatibility**: `X ∘ (r • Y) = r • (X ∘ Y)`. -/
+theorem jordanMul_smul (r : ℚ) (X Y : J3O) :
+    jordanMul X (r • Y) = r • jordanMul X Y := by
+  rw [jordanMul_comm, smul_jordanMul, jordanMul_comm Y X]
 
 end J3O
 
