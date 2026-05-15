@@ -6,6 +6,7 @@ import HodgeReduction.Infrastructure.JordanJ3O
 import HodgeReduction.Infrastructure.V56Freudenthal
 import Mathlib.Tactic.LinearCombination
 import Mathlib.Tactic.Abel
+import Mathlib.LinearAlgebra.BilinearMap
 
 /-!
 # Jordan multiplication on `J₃(𝕆)`
@@ -626,4 +627,44 @@ theorem cubed_eq_cayley_hamilton (X : J3O) :
     rw [eq_sub_iff_add_eq]; exact hcubic
   rw [eq_add_of_sub_eq h2]
   abel
+
+/-! ### `jordanMul` bundled as a Mathlib bilinear map
+
+This packages the four bilinearity laws (`add_jordanMul`, `smul_jordanMul`,
+`jordanMul_add`, `jordanMul_smul`) into a Mathlib `LinearMap` so the
+Jordan product can be used with `LinearMap.BilinForm`, `LinearMap.flip`,
+and the rest of the standard linear-algebra machinery. -/
+
+/-- The Jordan product on `J_3(O)` as a `ℚ`-bilinear map. -/
+def jordanMulBilin : J3O →ₗ[ℚ] J3O →ₗ[ℚ] J3O :=
+  LinearMap.mk₂ ℚ jordanMul
+    add_jordanMul
+    smul_jordanMul
+    jordanMul_add
+    jordanMul_smul
+
+@[simp] theorem jordanMulBilin_apply (X Y : J3O) :
+    jordanMulBilin X Y = jordanMul X Y := rfl
+
+/-- Right Jordan multiplication `Y ↦ X ∘ Y` as a `ℚ`-linear map. -/
+def jordanMulLeft (X : J3O) : J3O →ₗ[ℚ] J3O := jordanMulBilin X
+
+@[simp] theorem jordanMulLeft_apply (X Y : J3O) :
+    jordanMulLeft X Y = jordanMul X Y := rfl
+
+/-- Left Jordan multiplication `X ↦ X ∘ Y` as a `ℚ`-linear map. -/
+def jordanMulRight (Y : J3O) : J3O →ₗ[ℚ] J3O := jordanMulBilin.flip Y
+
+@[simp] theorem jordanMulRight_apply (X Y : J3O) :
+    jordanMulRight Y X = jordanMul X Y := rfl
+
+/-- Commutativity in `LinearMap` form: `jordanMulLeft X = jordanMulRight X`. -/
+theorem jordanMulLeft_eq_jordanMulRight (X : J3O) :
+    jordanMulLeft X = jordanMulRight X := by
+  refine LinearMap.ext fun Y => ?_
+  show jordanMul X Y = jordanMul Y X
+  exact jordanMul_comm X Y
+
+end J3O
+end HodgeReduction.Infrastructure
 
