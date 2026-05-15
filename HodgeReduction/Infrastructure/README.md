@@ -115,6 +115,75 @@ cycle-class-image, q ≃ Chern-poly, q ≃ −48 h⁴).
 | `Shimura/MumfordExtension.lean` | `class MumfordExtensionData` (canonical extension + L-block-diagonality) |
 | `Shimura/IntersectionHomology.lean` | `structure IntersectionHomologyData` (BBD-Saito IH-pullback) |
 | `Shimura/HirzebruchMumford.lean` | `class HirzebruchMumfordData` (proportionality) |
+| `Shimura/PeriodDomain.lean` | `class PeriodDomainData` (Hermitian symmetric domain) |
+| `Shimura/SchubertCells.lean` | `class SchubertCellData` (Schubert calculus) |
+| `Shimura/HermitianSymmetric.lean` | `class HermitianSymmetricData` (G/K) |
+| `Shimura/HermitianForm.lean` | `class HermitianFormData` (Hodge-Riemann pairing) |
+| `Shimura/ArithmeticGroup.lean` | `class ArithmeticGroupData` (congruence subgroup Γ) |
+| `Shimura/ToroidalCompactification.lean` | `class ToroidalCompactificationData` (AMRT 1975) |
+| `Shimura/BorelHirzebruch.lean` | `class BorelHirzebruchData` (coinvariant algebra) |
+| `Shimura/Adelic.lean` | `class AdelicGroupData` (G(𝔸), strong approximation) |
+
+### Phase K — Lie algebra (`LieAlgebra/`)
+
+| Module | Description |
+|---|---|
+| `LieAlgebra/Basic.lean` | `class LieAlgebraData` (abstract Lie algebra over R) |
+| `LieAlgebra/ReductiveGroup.lean` | `class ReductiveGroupData` (G, dim, rank, realForm) |
+
+### Phase L — Cohomology extensions
+
+| Module | Description |
+|---|---|
+| `Cohomology/ChowRing.lean` | `ChowRingData` (linear cycle class map) |
+| `Cohomology/Lefschetz.lean` | `Lefschetz11Data` (Lefschetz (1,1) theorem) |
+| `Cohomology/HardLefschetz.lean` | `HardLefschetzData` (Lefschetz operator + iso) |
+| `Cohomology/HodgeCycle.lean` | `HodgeCycleData` + abstract HC statement |
+| `Cohomology/NeronSeveri.lean` | `NeronSeveriData` (codim-1 algebraic) |
+| `Cohomology/HCCodim1.lean` | **`HC_codim_1`** — codim-1 HC as PROVEN theorem |
+| `Cohomology/PicardGroup.lean` | `PicardGroupData` (Pic(X)_ℚ + c_1) |
+| `Cohomology/AmpleDivisor.lean` | `AmpleDivisorData` (Picard → KaehlerClass bridge) |
+| `Cohomology/Galois.lean` | `GaloisCohomologyData` (Galois action) |
+| `Cohomology/DivisorClass.lean` | `DivisorClassData` (codim-1 cycle classes) |
+| `Cohomology/AlgebraicCycle.lean` | `AlgebraicCycleData p` (codim-p cycle classes) |
+| `Cohomology/ChernCharacter.lean` | `ChernCharacterData` (ch_2, ch_4) |
+| `Cohomology/LefschetzHyperplane.lean` | `LefschetzHyperplaneData` (Lefschetz hyperplane) |
+| `Cohomology/Lattice.lean` | `LatticeData` (integer lattice) |
+| `Cohomology/RiemannRoch.lean` | `RiemannRochData` (Todd class) |
+| `Cohomology/SheafCohomology.lean` | `SheafCohomologyData` (Hodge bigrading abstract) |
+| `Cohomology/Motive.lean` | `PureMotiveData` (Grothendieck 1968 motives) |
+| `Cohomology/PoincareDuality.lean` | `PoincareDualityData` (top class + integration) |
+| `Cohomology/Matsushima.lean` | `MatsushimaData` (j^q + Borel 1974 stable range) |
+| `Cohomology/AbelJacobi.lean` | `AbelJacobiData` (intermediate Jacobian) |
+| `Cohomology/StandardConjectures.lean` | `StandardConjecturesData` (Grothendieck 1968) |
+| `Cohomology/TateConjecture.lean` | `TateConjectureData` (Tate conjecture) |
+| `Cohomology/DeRham.lean` | `DeRhamData` (Hodge filtration F^p) |
+| `Cohomology/BettiCohomology.lean` | `BettiCohomologyData` (integer lattice) |
+| `Cohomology/ComparisonTheorem.lean` | `ComparisonData` (de Rham vs Betti) |
+
+### Phase M — HodgeStructure extensions
+
+| Module | Description |
+|---|---|
+| `HodgeStructure/MixedHodge.lean` | `MixedHodgeStructureData` (weight filtration) |
+| `HodgeStructure/NilpotentOrbit.lean` | `NilpotentOrbitData` (Schmid 1973) |
+| `HodgeStructure/MixedHodgeModule.lean` | `MixedHodgeModuleData` (Saito 1988) |
+| `HodgeStructure/GaussManin.lean` | `GaussManinData` (flat connection) |
+
+### Phase N — Automorphic / AbelianVariety extensions
+
+| Module | Description |
+|---|---|
+| `Automorphic/HeckeCorrespondence.lean` | `HeckeAlgebraData` (Hecke algebra acting on H^*) |
+| `Automorphic/ModularForm.lean` | `AutomorphicFormData` |
+| `Automorphic/GKCohomology.lean` | `GKCohomologyData` ((g, K)-cohomology) |
+| `Automorphic/CuspidalCohomology.lean` | `CuspidalCohomologyData` |
+| `AbelianVariety/PolarisedAV.lean` | `PolarisedAbelianVarietyData` |
+| `AbelianVariety/CMType.lean` | `CMTypeData` (CM type) |
+| `AbelianVariety/KugaSatake.lean` | `KugaSatakeData` (Kuga-Satake construction) |
+| `AbelianVariety/K3Surface.lean` | `K3SurfaceData` (HC for K3 PROVEN) |
+| `AbelianVariety/HyperKahler.lean` | `HyperKahlerData` |
+| `AbelianVariety/TateModule.lean` | `TateModuleData` (ℓ-adic Tate module) |
 
 ### Top-level
 
