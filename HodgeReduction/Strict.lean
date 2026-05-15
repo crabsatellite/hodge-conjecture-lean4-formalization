@@ -245,6 +245,43 @@ of non-trivial A_q(λ) contributions at deg 8, leaving only the trivial-
 module Cartan image (P58) = ⟨h^4⟩. The (ii.a) argument now decomposes
 into 8 explicit ingredients.
 
+P61-P69 — CITATION-HYGIENE SATURATION ARC. After P58-P60 atomized the
+(ii.a) Hermitian-symmetric machinery, the same pattern is applied to
+every remaining bundled paper-stated step. Each round extracts ONE
+implicit-in-bundled-framework fact as a separately-cited Cat 2
+single-source dependency, refactoring the corresponding paper Cat 3
+axiom from k-input to (k+1)-input:
+
+  P61 — Matsushima 1962 + Borel 1974 §3-§8 j^q G-equivariance, added
+        to paper_hodge44_step_OPEN (2-input → 3-input).
+  P62 — Borel-Hirzebruch 1958-60 h = c_1(L) on Ě_VII, added to
+        paper_placement_reduction_OPEN (3-input → 4-input).
+  P63 — Burgos-Kramer-Kühn 2007 log-log automorphic framework, added
+        to paper_formHM_EVII_OPEN (2-input → 3-input).
+  P64 — Harris 1985/89/90 algebraic upgrade of Mumford metric, added
+        to paper_formHM_EVII_OPEN (3-input → 4-input).
+  P65 — Cattani-Kaplan-Schmid 1986 Hodge norm estimates / limiting
+        mixed Hodge structure, added to mumford_L_block_diagonal_via_
+        schmid_OPEN (3-input → 4-input).
+  P66 — Schläfli 1858 + Cameron-van Lint Schläfli graph srg(27,10,1,5)
+        on the 27 weights of E_6, added to twisted_Phi_L_coefficient_
+        nonzero_COMPUTED_OPEN (2-input → 3-input).
+  P67 — Tits 1962 + Jacobson 1968 + Freudenthal 1954 + McCrimmon 2004
+        J_3(O) cubic norm form / Zorn basis, added to twisted_Phi_L_
+        coefficient_nonzero_COMPUTED_OPEN (3-input → 4-input).
+  P68 — Freudenthal 1954 + Brown 1969 + Sato-Kimura 1977 triple
+        product T / rank stratification of V_56, added to freudenthal_
+        scalar_piece_computation_OPEN (1-input → 2-input).
+  P69 — Bourbaki Ch. VI Tables + Shephard-Todd 1954 + Solomon 1963
+        W(E_7) invariant degrees {2,6,8,10,12,14,18}, added to
+        canonical_Phi_vanishes_by_augmentation_OPEN (2-input → 3-input).
+
+The audit trail is now SATURATED for the cross-ring obstruction arc
+(P39-P53 computation) and the (ii.a)/(ii.b)/form-HM/placement
+reductions. The Main Theorem depends on 49 atomic axioms (33 Cat 2
+PUBLISHED + 16 Cat 3 paper-stated), each with explicit single-source
+or small-bundle citations.
+
 ## Disciplinary invariants
 
 1. **Cat 2** — Hodge-style `def + rfl` for closed-form OR opaque `axiom` +
