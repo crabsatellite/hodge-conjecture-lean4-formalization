@@ -74,6 +74,12 @@ cycle-class-image, q ≃ Chern-poly, q ≃ −48 h⁴).
 | `Cohomology/FreudenthalClass.lean` | `FreudenthalClassData` bridging Chern + Kähler routes |
 | `Cohomology/AlgebraicBundle.lean` | `AlgebraicVectorBundle` (rank + Chern + algebraicity) |
 | `Cohomology/CycleClassMap.lean` | `CycleRingData` (Chow ring → cohomology, image algebraic) |
+| `Cohomology/ChowRing.lean` | `ChowRingData` (Chow ring linear refinement) |
+| `Cohomology/Lefschetz.lean` | `Lefschetz11Data` (Lefschetz (1,1) theorem framework) |
+| `Cohomology/HardLefschetz.lean` | `HardLefschetzData` (Lefschetz operator + iso property) |
+| `Cohomology/HodgeCycle.lean` | `HodgeCycleData` + abstract HC statement |
+| `Cohomology/NeronSeveri.lean` | `NeronSeveriData` (codim-1 algebraic via Lefschetz (1,1)) |
+| `Cohomology/HCCodim1.lean` | **`HC_codim_1`** — codim-1 HC as PROVEN theorem |
 
 ### Phase G — Hodge structure framework (`HodgeStructure/`)
 
