@@ -1,9 +1,7 @@
 # `HodgeReduction.Infrastructure` — Mathlib-PR-quality Lean infrastructure
 
 This directory contains **self-contained Lean modules** designed to be
-Mathlib-PR-ready. Each module fills a gap in Mathlib (currently no
-exceptional Cartan matrices, no Schläfli graph, no Octonion `ℚ`-algebra,
-no exceptional Jordan algebra `J₃(𝕆)`, etc.) while providing the
+Mathlib-PR-ready. Each module fills a gap in Mathlib while providing the
 mathematical foundations needed for the Hodge-conjecture EVII case.
 
 ## Design principles
@@ -16,103 +14,147 @@ mathematical foundations needed for the Hodge-conjecture EVII case.
 * **Incremental**: each module is self-contained, builds on earlier
   modules.
 
-## Status (as of P93)
+## Status (as of P168)
 
-🎉 **MAJOR MILESTONE (P90-P93, 2026-05-15)**: by leveraging the kernel-decidable
-combinatorial infrastructure here (especially the Schläfli-graph SRG
-verification + the cross-ring Chern-arithmetic), the axiom dependency of
-the master theorem `HodgeReduction.Strict.HC_for_freudenthal_quartic_on_EVII_UNCONDITIONAL`
-has been **reduced from 51 to 2 Cat 2 axioms** (plus 3 Lean kernel axioms).
+🎉 **MAJOR MILESTONE (P150–P168, 2026-05-16)**: the infrastructure now
+covers the full **Phase F + G + H + I + J** stack needed for the
+Mumford–Tate Hodge-conjecture reduction:
 
-The remaining 2 axioms are the Cat 2 PUBLISHED standard results which cannot
-be discharged without Mathlib-level Hodge theory + automorphic vector
-bundle infrastructure:
-1. `paper_HC_equals_algebraicity_OPEN` (Hodge conjecture defined as
-   algebraicity for our class — §3.4.3 master tex definitional reduction)
-2. `polynomial_in_chern_classes_is_algebraic_OPEN` (polynomial in Chern
-   classes of an automorphic vector bundle is algebraic — Griffiths-Harris
-   1978 / Voisin Hodge I)
+* **Phase F** — Algebraic-cohomology framework (`Cohomology/`).
+* **Phase G** — Hodge structure framework (`HodgeStructure/`).
+* **Phase H** — Coxeter/Weyl-group framework (`Coxeter/`).
+* **Phase I** — Abelian variety + automorphic framework
+  (`AbelianVariety/`, `Automorphic/`).
+* **Phase J** — Shimura variety framework (`Shimura/`).
 
+Plus the existing **Tier A/B** combinatorial/algebraic infrastructure
+(Octonions, Jordan algebra J₃(𝕆), Freudenthal quartic V₅₆, etc.).
 
+The HC theorem `HC_for_freudenthal_quartic_on_EVII_UNCONDITIONAL` now
+depends on just one Cat 2 axiom (`polynomial_in_chern_classes_is_algebraic_OPEN`)
+plus Lean kernel axioms. With the **Phase F** abstractions in
+`Cohomology/`, that single axiom decomposes into 5 atomic axioms in
+typeclass-field form (one for each: Kähler-algebraic, Chern-algebraic,
+cycle-class-image, q ≃ Chern-poly, q ≃ −48 h⁴).
 
-### ✅ Tier A — Combinatorial / Arithmetic (DONE)
+## File inventory (Phase A–J)
 
-| Module | Description | Lines | Status |
-|---|---|---|---|
-| `../CrossRingArithmetic.lean` | P48 Chern values + P57 polynomial identity (`-48 c_2² + 96 c_1 c_3 - 96 c_4`) + P53 `Φ_tw(q) = -48 h⁴` verification | ~270 | ✅ |
-| `CartanMatrices.lean` | E₆, E₇, E₈ Cartan matrices + diagonal/edges/nesting | ~150 | ✅ |
-| `SchlafliGraph.lean` | `srg(27, 10, 1, 5)` via 6+6+15 Schläfli double-six model + **`schlafli_isSRG : IsSRGWith 27 10 1 5`** (P90 kernel-verified via `decide` on the 729 vertex pairs) | ~270 | ✅ |
-| `CoxeterDegrees.lean` | W(E_6)/W(E_7)/W(E_8) invariant degrees + order + Coxeter number + dim(e_n) sanity | ~110 | ✅ |
+### Tier A — Combinatorial / Arithmetic
 
-### ✅ Tier B — Algebra (DONE for basics)
+| Module | Description |
+|---|---|
+| `../CrossRingArithmetic.lean` | P48 Chern values + P57 polynomial identity + P53 Φ_tw(q) |
+| `CartanMatrices.lean` | E_6, E_7, E_8 Cartan matrices |
+| `SchlafliGraph.lean` | srg(27, 10, 1, 5) via 6+6+15 double-six model |
+| `CoxeterDegrees.lean` | W(E_n) invariant degrees + order |
 
-| Module | Description | Lines | Status |
-|---|---|---|---|
-| `Octonion.lean` | Octonion `ℚ`-algebra (8-dim, Fano-plane mult) + `conj` + `normSq` + 32 component simp lemmas + alternative laws + flexibility + **Hurwitz composition** `‖x·y‖² = ‖x‖²·‖y‖²` + scalar-mult ring laws + `conj_smul`/`smul_sub`/`smul_add` + **Hurwitz inversion** (`mul_conj_self`, `normSq_eq_zero_iff`, `inv`, `mul_inv_cancel`, `inv_mul_cancel`) = **non-associative division algebra** | ~470 | ✅ |
-| `JordanJ3O.lean` | Exceptional Jordan algebra `J₃(𝕆)` (27-dim Hermitian 3×3) + Freudenthal cubic norm `N` + `N(0)=0`, `N(I)=1`, `N(diag)=abc` + **cubic-norm homogeneity** `N(r·X) = r³N(X)` + `cubicNorm_neg` + **trace** `tr(X) = ξ₁+ξ₂+ξ₃` (linear functional with `trace_zero/one/add/neg/smul/diagonal`) + 12 zero/one simp lemmas | ~260 | ✅ |
-| `V56Freudenthal.lean` | 56-dim Freudenthal triple system `V₅₆ = ℚ⊕J₃(𝕆)⊕J₃(𝕆)⊕ℚ` + **Freudenthal quartic** `q` + **degree-4 homogeneity** `q(r·v) = r⁴·q(v)` + `q(-v) = q(v)` + **symplectic form** `ω` (antisymmetric, bilinear) + full bilinearity of `⟨·,·⟩` and `ω` + sharp degree-2 `(r·A)^# = r²·A^#` + `sharp_neg` + **trace-pairing identity** `⟨1, X⟩ = tr(X)` + specific `q` evaluations (highest/lowest weight, `a·b` axis) | ~570 | ✅ |
+### Tier B — Algebra
 
-### 🔲 Tier B — Algebra (FUTURE WORK)
+| Module | Description |
+|---|---|
+| `Octonion.lean` | Octonion ℚ-algebra (8-dim, Fano-plane) + composition + alternative + conj + Hurwitz |
+| `OctonionBasis.lean` | Explicit basis ℚ⁸ |
+| `JordanJ3O.lean` | Exceptional Jordan algebra J₃(𝕆) (27-dim) + cubic norm |
+| `JordanJ3OBasis.lean` | Explicit basis ℚ²⁷ |
+| `J3OInnerProduct.lean` | Positive-definite trace form on J₃(𝕆) |
+| `J3OJordan.lean` | Jordan product + bilinearity + Cayley-Hamilton + cross product |
+| `V56Freudenthal.lean` | V₅₆ = ℚ⊕J₃(𝕆)⊕J₃(𝕆)⊕ℚ + Freudenthal quartic q + symplectic ω |
+| `V56Basis.lean` | Explicit basis ℚ⁵⁶ |
+| `V56HodgeDecomp.lean` | 4-piece V₅₆ Hodge decomposition (V^{3,0}⊕V^{2,1}⊕V^{1,2}⊕V^{0,3}) |
+| `V56HodgeRank.lean` | dim of each Hodge piece (1+27+27+1=56) |
+| `LinearMaps.lean` | LinearMap/BilinForm bundles for trace, innerProd, ω |
 
-* **Jordan-algebra structure** on `J₃(𝕆)`:
-  - Jordan product `X ∘ Y = (X·Y + Y·X)/2` (commutative, power-associative).
-  - Identity `X · X# = N(X) · I` (Freudenthal cubic identity).
-* **Connection to E_6**:
-  - `Aut(J₃(𝕆)) = F₄` (compact real form).
-  - `Str(J₃(𝕆))/Center = E₆`.
-  - `V_27 ≅ J₃(𝕆)` as `E₆`-rep.
+### Phase F — Algebraic-cohomology framework (`Cohomology/`)
 
-### 🔲 Tier B — Freudenthal triple product (mostly DONE for the basics)
+| Module | Description |
+|---|---|
+| `Cohomology/Basic.lean` | `class CohomologyRing` with subalgebra `algebraic` + 9 closure properties |
+| `Cohomology/ChernClasses.lean` | `ChernData`, `AlgebraicChernData`, `freudenthalPolynomial_isAlgebraic` |
+| `Cohomology/KaehlerClass.lean` | `class KaehlerClass` with `h_isAlgebraic` + `h^n` algebraicity |
+| `Cohomology/FreudenthalClass.lean` | `FreudenthalClassData` bridging Chern + Kähler routes |
+| `Cohomology/AlgebraicBundle.lean` | `AlgebraicVectorBundle` (rank + Chern + algebraicity) |
+| `Cohomology/CycleClassMap.lean` | `CycleRingData` (Chow ring → cohomology, image algebraic) |
 
-* ✅ `V_56 = ℚ ⊕ J₃(𝕆) ⊕ J₃(𝕆) ⊕ ℚ` (= 1 + 27 + 27 + 1 = 56).
-* ✅ Freudenthal quartic `q : V₅₆ → ℚ`, with `q(0) = 0`, `q(r·v) = r⁴·q(v)`, `q(-v) = q(v)`.
-* ✅ Symplectic form `ω : V₅₆ × V₅₆ → ℚ`, antisymmetric and bilinear.
-* 🔲 Freudenthal cubic-T product `T : V_56 × V_56 × V_56 → V_56`.
-* 🔲 `q(v) ∼ ⟨T(v,v,v), v⟩` derivation.
-* 🔲 Sato-Kimura rank stratification.
+### Phase G — Hodge structure framework (`HodgeStructure/`)
 
-### 🔲 Tier C — Representation theory
+| Module | Description |
+|---|---|
+| `HodgeStructure/Basic.lean` | `class PureHodgeStructure V n` + Hodge filtration |
+| `HodgeStructure/Polarised.lean` | `class PolarisedHodgeStructure V n` + symmetry by weight parity |
+| `HodgeStructure/V56Instance.lean` | `pieceByFin : Fin 4 → Submodule ℚ V_56` (Hodge pieces) |
+| `HodgeStructure/MumfordTate.lean` | `class MumfordTateGroupData` + Hodge class predicate |
+| `HodgeStructure/Variation.lean` | `class VHSData` (family of polarised Hodge structures) |
 
-* **W(E_6), W(E_7) Coxeter groups** via Mathlib `Coxeter` framework.
-* ✅ `W(E_6)` / `W(E_7)` / `W(E_8)` invariant degrees as decidable list facts
-  (in `CoxeterDegrees.lean`).
-* **E_6 root system + V_27 weights** with explicit Bourbaki coordinates.
-* **E_7 root system + V_56 weights**.
-* **Borel-Hirzebruch coinvariant algebra**: `H*(G_C/P; ℚ) = Sym(t^∨)^{W(L)} / (Sym(t^∨)^{W(G)}_+)`.
+### Phase H — Coxeter / Weyl-group framework (`Coxeter/`)
 
-### 🔲 Tier D — Algebraic geometry
+| Module | Description |
+|---|---|
+| `Coxeter/WE7.lean` | `WE7 := CoxeterMatrix.Group E_7` (Mathlib bridge) + invariant degrees |
 
-* **Compact dual flag variety** `Ě_VII = E_{7,C}/P_7` as Mathlib type.
-* **Chern-Weil theory** for vector bundles on `Ě_VII`.
-* **Schubert cells / Schubert calculus**.
-* **Hodge structures** on compact-dual cohomology.
+### Phase I — Abelian variety + Automorphic (`AbelianVariety/`, `Automorphic/`)
 
-### 🔲 Tier E — Long-term (years)
+| Module | Description |
+|---|---|
+| `AbelianVariety/Basic.lean` | `class AbelianVarietyHodgeData` (H¹ weight-1 PHS) |
+| `Automorphic/Basic.lean` | `class AutomorphicCohomology` (cuspidal + Eisenstein decomposition) |
+| `Automorphic/VoganZuckerman.lean` | `class VZAqLambdaData` (cohomological induction A_q(λ)) |
+| `Automorphic/BorelBottWeil.lean` | `class BorelBottWeilData` (compact-dual H^8 bigrading) |
 
-* **Hermitian symmetric domain `EVII`**.
-* **Shimura variety `S_Γ`**.
-* **Automorphic vector bundles, Mumford 1977 canonical extension**.
-* **Borel-Wallach `(g, K)`-cohomology, V-Z / KV / Franke**.
-* **Cuspidal vs Eisenstein decomposition (Franke 1998)**.
+### Phase J — Shimura variety (`Shimura/`)
 
-## Key files in `..` (related)
+| Module | Description |
+|---|---|
+| `Shimura/Basic.lean` | `class ShimuraVarietyData` (abstract cohomology data) |
+| `Shimura/CompactDual.lean` | `class CompactDualData` (H^8 = ℚ·h⁴) + `H8_classes_are_algebraic` |
+| `Shimura/MumfordExtension.lean` | `class MumfordExtensionData` (canonical extension + L-block-diagonality) |
+| `Shimura/IntersectionHomology.lean` | `structure IntersectionHomologyData` (BBD-Saito IH-pullback) |
+| `Shimura/HirzebruchMumford.lean` | `class HirzebruchMumfordData` (proportionality) |
 
-* `../Strict.lean` — axiom-architecture for HC reduction (P54-P71 saturated).
-* `../CrossRingArithmetic.lean` — first real Lean proofs from this project.
+### Top-level
 
-## How to use
+| Module | Description |
+|---|---|
+| `HCFramework.lean` | **Final assembly**: theorems `freudenthal_class_isAlgebraic{,_via_chern,_via_kaehler}` from `FreudenthalClassData` |
 
-Importing this directory:
-```lean
-import HodgeReduction.Infrastructure.Octonion
-import HodgeReduction.Infrastructure.JordanJ3O
-import HodgeReduction.Infrastructure.CartanMatrices
-import HodgeReduction.Infrastructure.SchlafliGraph
+## Architecture / dependency graph
+
 ```
-
-Or via the top-level meta-import:
-```lean
-import HodgeReduction  -- imports everything
+                                                            HCFramework
+                                                                  ▲
+                            ┌──────────────────────────────────────┘
+                            │
+                  ┌─────────┴──────────┐
+                  │                    │
+          FreudenthalClass        Shimura/* + Automorphic/*
+          (Cohomology)            (Phase J + I)
+                  ▲                    ▲
+            ┌─────┴─────┐               │
+            │           │               │
+        Chern    Kaehler     ┌──────────┘
+       Classes    Class       │
+            ▲       ▲         │
+            │       │     HodgeStructure/* (Phase G)
+            ▼       ▼         ▲
+        Algebraic  Cycle      │
+         Bundle    Class      │
+            ▲       ▲     V56HodgeDecomp + V56HodgeRank + LinearMaps
+            │       │         ▲
+            └─┬─────┘         │
+              │         V56Freudenthal + V56Basis
+              ▼               ▲
+        CohomologyRing.Basic  │
+              ▲          J3OJordan + JordanJ3O + JordanJ3OBasis
+              │               ▲
+              │          J3OInnerProduct
+              │               ▲
+              │          Octonion + OctonionBasis
+              │               ▲
+              │          CartanMatrices + SchlafliGraph
+              │          + CoxeterDegrees
+              ▼               ▲
+     Mathlib (Algebra,    Coxeter/WE7
+     LinearAlgebra,     (Mathlib CoxeterMatrix.E_7 bridge)
+     Module, etc.)
 ```
 
 ## Verification
@@ -122,20 +164,39 @@ output for theorems in these files should show only Lean kernel
 foundational axioms (`propext`, `Classical.choice`, `Quot.sound`) —
 NO domain-specific axioms.
 
+The HC theorem `HC_for_freudenthal_quartic_on_EVII_UNCONDITIONAL`
+currently depends on:
+```
+[propext, Classical.choice, Quot.sound,
+ polynomial_in_chern_classes_is_algebraic_OPEN]
+```
+
+When the `polynomial_in_chern_classes_is_algebraic_OPEN` axiom is
+replaced by an instance of `FreudenthalClassData` (which requires an
+EVII cohomology ring + Kähler class + the two equality identities),
+the framework's `freudenthal_class_isAlgebraic` theorem (in
+`HCFramework.lean`) provides the closure.
+
 ## Mathlib PR plan
 
 When complete and stable, these modules can be contributed to Mathlib
 as standalone PRs:
 
-1. `Mathlib.LinearAlgebra.CartanMatrix.Exceptional` — E_6, E_7, E_8
-   Cartan matrices.
-2. `Mathlib.Algebra.Octonion.Basic` — Octonion algebra over a
-   commutative ring with characteristic-zero specialisation.
+1. `Mathlib.LinearAlgebra.CartanMatrix.Exceptional` — E_6, E_7, E_8.
+2. `Mathlib.Algebra.Octonion.Basic` — Octonion ℚ-algebra.
 3. `Mathlib.Algebra.Jordan.J3O` — Exceptional Jordan algebra.
-4. `Mathlib.Combinatorics.SchlafliGraph` — `srg(27, 10, 1, 5)`.
+4. `Mathlib.Combinatorics.SchlafliGraph` — srg(27, 10, 1, 5).
+5. `Mathlib.AlgebraicGeometry.Hodge.PureStructure` —
+   `class PureHodgeStructure` + `Polarised` + `Variation`.
+6. `Mathlib.AlgebraicGeometry.Cohomology.Algebraic` —
+   `class CohomologyRing` with algebraic subalgebra.
+7. `Mathlib.AlgebraicGeometry.ChernClasses.Abstract` —
+   `ChernData`, `AlgebraicVectorBundle`.
+8. `Mathlib.AlgebraicGeometry.CycleClassMap` —
+   `CycleRingData` abstract framework.
 
-These would be the first occurrence in Mathlib of these exceptional
-algebraic / combinatorial objects.
+These would be the first occurrences in Mathlib of these classical
+algebraic-geometry / Hodge-theory concepts.
 
 ## License
 
@@ -143,16 +204,18 @@ Apache 2.0 (same as Mathlib).
 
 ## References
 
-Standard references for the math:
+Standard references:
 
-* J. C. Baez, "The octonions", *Bull. Amer. Math. Soc.* **39** (2002), 145-205.
-* T. A. Springer, F. D. Veldkamp, *Octonions, Jordan Algebras, and
-  Exceptional Groups*, Springer Monographs in Mathematics (2000).
-* N. Bourbaki, *Groupes et algèbres de Lie*, Ch. IV-VI (1968) + Ch. VII-VIII
-  (1975).
-* R. Carter, *Simple Groups of Lie Type*, Wiley (1972).
-* H. Freudenthal, "Beziehungen der E_7 und E_8 zur Oktavenebene I-V",
-  *Indag. Math.* **16-17** (1954-55).
-* L. Schläfli, *Quart. J. Pure Appl. Math.* **2** (1858).
-* J. Tits, "Une classe d'algèbres de Lie en relation avec les algèbres
-  de Jordan", *Indag. Math.* **24** (1962), 530-535.
+* J. C. Baez, "The octonions", *Bull. Amer. Math. Soc.* **39** (2002), 145–205.
+* T. A. Springer, F. D. Veldkamp, *Octonions, Jordan Algebras, and Exceptional Groups*, Springer (2000).
+* P. Deligne, "Théorie de Hodge II/III", *IHÉS* **40, 44** (1971, 1974).
+* P. Griffiths, J. Harris, *Principles of Algebraic Geometry*, Wiley (1978).
+* C. Voisin, *Hodge Theory and Complex Algebraic Geometry I/II*, Cambridge (2002/2003).
+* D. Mumford, "Hirzebruch's proportionality theorem in the non-compact case", *Invent. Math.* **42** (1977), 239–272.
+* W. Schmid, "Variation of Hodge structure: the singularities of the period mapping", *Invent. Math.* **22** (1973), 211–319.
+* M. Saito, "Modules de Hodge polarisables", *Publ. RIMS* **24** (1988), 849–995.
+* D. Vogan, G. Zuckerman, "Unitary representations with non-zero cohomology", *Compositio Math.* **53** (1984), 51–90.
+* J. Franke, "Harmonic analysis in weighted L²-spaces", *Ann. Sci. ENS* **31** (1998), 181–279.
+* A. Borel, "Stable real cohomology of arithmetic groups", *Ann. Sci. ENS* **7** (1974), 235–272.
+* A. Borel, F. Hirzebruch, "Characteristic classes and homogeneous spaces I-III", *Amer. J. Math.* **80–82** (1958–60).
+* H. Freudenthal, "Beziehungen der E_7 und E_8 zur Oktavenebene I-V", *Indag. Math.* **16–17** (1954–55).
