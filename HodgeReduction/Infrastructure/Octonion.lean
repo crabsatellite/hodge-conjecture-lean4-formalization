@@ -295,6 +295,50 @@ theorem normSq_mul (x y : OctonionQ) : normSq (x * y) = normSq x * normSq y := b
   simp only [mul_e0, mul_e1, mul_e2, mul_e3, mul_e4, mul_e5, mul_e6, mul_e7]
   ring
 
+/-! ### Scalar multiplication component lemmas -/
+
+@[simp] theorem smul_e0 (r : ℚ) (x : OctonionQ) : (r • x).e0 = r * x.e0 := rfl
+@[simp] theorem smul_e1 (r : ℚ) (x : OctonionQ) : (r • x).e1 = r * x.e1 := rfl
+@[simp] theorem smul_e2 (r : ℚ) (x : OctonionQ) : (r • x).e2 = r * x.e2 := rfl
+@[simp] theorem smul_e3 (r : ℚ) (x : OctonionQ) : (r • x).e3 = r * x.e3 := rfl
+@[simp] theorem smul_e4 (r : ℚ) (x : OctonionQ) : (r • x).e4 = r * x.e4 := rfl
+@[simp] theorem smul_e5 (r : ℚ) (x : OctonionQ) : (r • x).e5 = r * x.e5 := rfl
+@[simp] theorem smul_e6 (r : ℚ) (x : OctonionQ) : (r • x).e6 = r * x.e6 := rfl
+@[simp] theorem smul_e7 (r : ℚ) (x : OctonionQ) : (r • x).e7 = r * x.e7 := rfl
+
+/-! ### Homogeneity of `normSq`, `re`, multiplication -/
+
+/-- `normSq` is **quadratic** (homogeneous of degree 2). -/
+theorem normSq_smul (r : ℚ) (x : OctonionQ) :
+    normSq (r • x) = r^2 * normSq x := by
+  unfold normSq
+  simp
+  ring
+
+/-- `re` is `ℚ`-linear: `Re(r • x) = r · Re(x)`. -/
+@[simp] theorem re_smul (r : ℚ) (x : OctonionQ) : re (r • x) = r * re x := rfl
+
+/-- `Mul` is **bilinear** with `ℚ`-scalar absorption:
+`(r • x) · (s • y) = (r·s) • (x · y)`. -/
+theorem smul_mul_smul (r s : ℚ) (x y : OctonionQ) :
+    (r • x) * (s • y) = (r * s) • (x * y) := by
+  ext <;> simp <;> ring
+
+/-- `Mul` is left-linear in `ℚ`-scalars: `(r • x) · y = r • (x · y)`. -/
+theorem smul_mul (r : ℚ) (x y : OctonionQ) :
+    (r • x) * y = r • (x * y) := by
+  ext <;> simp <;> ring
+
+/-- `Mul` is right-linear in `ℚ`-scalars: `x · (r • y) = r • (x · y)`. -/
+theorem mul_smul (r : ℚ) (x y : OctonionQ) :
+    x * (r • y) = r • (x * y) := by
+  ext <;> simp <;> ring
+
+/-- Scalar-multiplication compatibility: `r • (s • x) = (r·s) • x`. -/
+theorem smul_smul (r s : ℚ) (x : OctonionQ) :
+    r • (s • x) = (r * s) • x := by
+  ext <;> show r * (s * _) = (r * s) * _ <;> ring
+
 end OctonionQ
 
 end HodgeReduction.Infrastructure

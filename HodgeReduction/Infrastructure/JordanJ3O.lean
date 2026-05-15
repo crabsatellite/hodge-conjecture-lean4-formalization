@@ -151,6 +151,29 @@ theorem cubicNorm_diagonal (a b c : ℚ) :
        - c * OctonionQ.normSq 0 + 2 * OctonionQ.re (0 * 0 * 0) = a * b * c
   simp [OctonionQ.re]
 
+/-! ### Cubic-norm homogeneity (degree 3) -/
+
+/-- Scalar-mult on `J₃(𝕆)` field-by-field. -/
+@[simp] theorem smul_xi1 (r : ℚ) (X : J3O) : (r • X).xi1 = r * X.xi1 := rfl
+@[simp] theorem smul_xi2 (r : ℚ) (X : J3O) : (r • X).xi2 = r * X.xi2 := rfl
+@[simp] theorem smul_xi3 (r : ℚ) (X : J3O) : (r • X).xi3 = r * X.xi3 := rfl
+@[simp] theorem smul_x1 (r : ℚ) (X : J3O) : (r • X).x1 = r • X.x1 := rfl
+@[simp] theorem smul_x2 (r : ℚ) (X : J3O) : (r • X).x2 = r • X.x2 := rfl
+@[simp] theorem smul_x3 (r : ℚ) (X : J3O) : (r • X).x3 = r • X.x3 := rfl
+
+/-- **Cubic-norm homogeneity**: `N(r • X) = r³ · N(X)`. The cubic norm
+is homogeneous of degree 3. -/
+theorem cubicNorm_smul (r : ℚ) (X : J3O) :
+    cubicNorm (r • X) = r^3 * cubicNorm X := by
+  unfold cubicNorm
+  simp only [smul_xi1, smul_xi2, smul_xi3, smul_x1, smul_x2, smul_x3,
+             OctonionQ.normSq_smul,
+             OctonionQ.smul_mul,    -- (s•a) * b = s • (a*b)
+             OctonionQ.mul_smul,    -- a * (s•b) = s • (a*b)
+             OctonionQ.smul_smul,   -- s • (t • x) = (s*t) • x
+             OctonionQ.re_smul]     -- Re(r • z) = r * Re z
+  ring
+
 end J3O
 
 end HodgeReduction.Infrastructure
