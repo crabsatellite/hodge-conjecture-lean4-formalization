@@ -454,15 +454,35 @@ opaque eisensteinVanishing_E7minus25_Deg8 : Prop
 --     = -4h^2 (e_2(ν) = c_2 - 39h^2 = 2h^2 from P48);
 --   * N(u) = (-h/3)^3·N(𝟙) = -(h^3/27)·N(𝟙).
 -- ⟹  N(x) = -(N(𝟙)/27)·h^3 + 3·(-h/3)·(-4λh^2) = (4λ - N(𝟙)/27)·h^3.
+--
+-- P51 — the Jordan constants COMPUTED. The λ and N(𝟙) terms collapse via
+-- the triangle structure: for a weight-triangle (i,j,k), ν_i+ν_j+ν_k = 0,
+-- so x_i+x_j+x_k = -h (three -h/3 shifts). N(x) = Σ_triangles d_{ijk}·
+-- x_i x_j x_k expands with the cross-terms controlled by the signed
+-- vertex-degree m_i = Σ_{triangle ∋ i} d = N(𝟙)/9 (each triangle counted
+-- thrice ⟹ 27·m = 3·N(𝟙)). The clean collapse gives
+--   N(x) = -(N(𝟙)/9)·h^3.
+-- N(𝟙) is computed explicitly in the J_3(O) Zorn (= weight) basis:
+--   N(X) = ξ₁ξ₂ξ₃ - Σ ξ_i·n(x_i) + 2·Re(x₁x₂x₃);
+--   at all-coords-1: n(𝐮) = ab - v·w = 1 - 3 = -2; the Zorn triple product
+--   gives Re(x₁x₂x₃)|_𝟙 = (1/2)[2 + 6·3 + 0] = 10; so
+--   N(𝟙) = 1 - 3·(-2) + 2·10 = 1 + 6 + 20 = 27   (checked: N(1_J) = 1).
+-- ⟹  N(x) = -(27/9)·h^3 = -3 h^3.
+-- (Sanity: p_3(x) = c_1^3 - 3c_1c_2 + 3c_3 = -729 + 1107 - 375 = 3, so
+--  p_3(x) = 3h^3 and N(x) = -p_3(x) — consistent in the 1-dim ℚ·h^3.)
+--
+-- THE CUBIC TERM: Φ_tw(q) = 4h^4 + 8h·N(x) - 4·⟨#x,#x⟩
+--                        = 4h^4 - 24h^4 - 4·⟨#x,#x⟩ = -20 h^4 - 4·⟨#x,#x⟩.
+-- For ⟨#x,#x⟩: #(x)_i = Σ_{triangle ∋ i} d_{ijk} x_j x_k. Per triangle
+-- x_i+x_j+x_k = -h, so Σ_i #(x)_i = (1/2)h^2·N(𝟙) - (1/2)·(N(𝟙)/9)·Σx_i^2
+-- = (27/2)h^2 + (3/2)h^2 = 15 h^2. Hence
+--   ⟨#x,#x⟩ = (Σ_i #(x)_i)^2 - 2·e_2(#x) = 225 h^4 - 2·e_2(#x).
+-- The LAST remaining constant is e_2(#x) — the second elementary symmetric
+-- function of the adjoint's components — a specific combinatorial invariant
+-- of the weight-triangle incidence ("bowtie") structure of the 27 of E_6.
 -- THE FINAL REDUCTION:
---   Φ_tw(q) = (4 + 8·(4λ - N(𝟙)/27) - 4·⟨#x,#x⟩/h^4) · h^4 = γ·h^4,
--- and [q]_G ≠ 0 iff γ ≠ 0. The cross-ring obstruction is now reduced to
--- THREE explicit Jordan-algebra constants of the 27 of E_6:
---   (i)   N(𝟙)       — the (signed) weight-triangle count of the 27;
---   (ii)  λ          — the polarization constant in Ñ(𝟙,ν,ν) = λ·Σν_i^2;
---   (iii) ⟨#x,#x⟩    — the degree-8 class from the adjoint-pairing identity.
--- All three are finite, reference-checkable invariant-theory constants of
--- the exceptional Jordan algebra J_3(O); none is open-ended.
+--   Φ_tw(q) = (-20 - 4·(225 - 2·e_2(#x)/h^4)) · h^4 = (-920 + 8·e_2(#x)/h^4)·h^4,
+-- and [q]_G ≠ 0 iff e_2(#x)/h^4 ≠ 115. One combinatorial constant remains.
 
 /-- **Cat 3 carrier (§3.4.1, P39, P41-confirmed)** — RIGOROUSLY ESTABLISHED:
  the canonical Φ factors through `Sym^4(t^∨)^{W(E_7)}_+`. Proof: q is
@@ -1512,8 +1532,9 @@ def gap_Hyp_TwistedPhiL_Coefficient_Nonzero : StrictGapEntry :=
                       "P47 assembly made concrete (2026-05-15): by the Hodge pairing 27' = 27^∨, so 𝓔_{-1} ≅ 𝓔_{+1}^∨ and the P46 constraint is c(𝓔_{+1})·c(𝓔_{+1}^∨) = 1/(1-h^2). Expanding degree by degree: 2·c_2(𝓔_{+1}) - c_1(𝓔_{+1})^2 = h^2 (H^4) and 2c_4 - 2c_1c_3 + c_2^2 = h^4 (H^8). Since V_56^{can} is filtered-trivial, the master tex's [q] = P(c_1,...,c_4) means P(c_i(𝓔_{+1})).",
                       "P48 Chern classes COMPUTED + triple-checked (2026-05-15): c_1(𝓔_{+1}) = -9h, c_2 = 41h^2, c_3 = -125h^3, c_4 = 285h^4. c_1 from the weight count; c_2 from 2c_2 - c_1^2 = h^2; c_3 from e_3(ν - h/3) with e_3(ν) = 0 (W(E_6) has no degree-3 invariant); c_4 from 2c_4 - 2c_1c_3 + c_2^2 = h^4. Verified consistent: ch_2 = ch_3 = ch_4 = 0 for the trivial V_56^{can}. H^*(Ě_VII) in degree ≤ 8 completely explicit.",
                       "P49 the twist IDENTIFIED EXPLICITLY (2026-05-15): the genuine twist Φ_tw evaluates q on the HODGE-GRADED Chern roots {-h} ∪ {x_1,...,x_27} ∪ {-x_1,...,-x_27} ∪ {+h} of the filtered-trivial V_56^{can}. Canonical Φ uses the TRIVIAL TOTAL bundle (all roots 0 ⟹ q(0) = 0); Φ_tw uses the GRADED pieces' roots, which are NONZERO and not W(E_7)-equivariant — so Φ_tw genuinely differs from canonical Φ. DEFINITIVELY resolves the P41-P47 search. First term: ⟨A,B⟩ ↦ -Σx_i^2 = h^2, ab ↦ -h^2, (ab-⟨A,B⟩)^2 = 4h^4.",
-                      "P50 the cubic terms — final reduction (2026-05-15): Φ_tw(q) = 4h^4 + 4[a·N(B) + b·N(A) - ⟨A^#,B^#⟩]. With a = -h, b = +h, N cubic (N(-x) = -N(x)): a·N(B) = h·N(x), b·N(A) = h·N(x), ⟨A^#,B^#⟩ = ⟨#x,#x⟩ (# quadratic, even). So Φ_tw(q) = 4h^4 + 8h·N(x) - 4⟨#x,#x⟩. Computing N(x) via the shift expansion x_i = -h/3 + ν_i: N(u+w) = N(u) + 3Ñ(u,u,w) + 3Ñ(u,w,w) + N(w) with u = -h/3·𝟙, w = ν; N(ν) = 0 (no degree-3 W(E_6)-invariant), Ñ(𝟙,𝟙,ν) = 0 (linear W(E_6)-invariant, Σν = 0), Ñ(𝟙,ν,ν) = λ·Σν_i^2 = λ·(-4h^2), N(u) = -(h^3/27)·N(𝟙). ⟹ N(x) = (4λ - N(𝟙)/27)·h^3. FINAL REDUCTION: Φ_tw(q) = (4 + 8(4λ - N(𝟙)/27) - 4⟨#x,#x⟩/h^4)·h^4 = γ·h^4. [q]_G ≠ 0 iff γ ≠ 0. The cross-ring obstruction is now reduced to THREE explicit Jordan-algebra constants of the 27 of E_6: N(𝟙) (signed weight-triangle count), λ (polarization constant), ⟨#x,#x⟩ (degree-8 adjoint-pairing class) — all finite, reference-checkable, none open-ended."]
-    scope := "OPEN (P50-final-reduction): the cross-ring obstruction is reduced to Φ_tw(q) = (4 + 8(4λ - N(𝟙)/27) - 4⟨#x,#x⟩/h^4)·h^4 = γ·h^4, [q]_G ≠ 0 iff γ ≠ 0. The genuine twist Φ_tw (evaluate q on the Hodge-graded Chern roots) is explicit; the first term is 4h^4; the cubic terms reduce to three finite Jordan-algebra constants N(𝟙), λ, ⟨#x,#x⟩. Remaining: evaluate these three constants" }
+                      "P50 the cubic terms (2026-05-15): Φ_tw(q) = 4h^4 + 8h·N(x) - 4⟨#x,#x⟩ (a·N(B) = b·N(A) = h·N(x), ⟨A^#,B^#⟩ = ⟨#x,#x⟩). N(x) via shift expansion = (4λ - N(𝟙)/27)·h^3, reduced to Jordan constants N(𝟙), λ, ⟨#x,#x⟩.",
+                      "P51 the Jordan constants COMPUTED (2026-05-15): the λ/N(𝟙) terms collapse via the triangle structure. For a weight-triangle (i,j,k): ν_i+ν_j+ν_k = 0 ⟹ x_i+x_j+x_k = -h. The signed vertex-degree m_i = Σ_{triangle∋i} d = N(𝟙)/9 (27·m = 3·N(𝟙)). Clean collapse: N(x) = -(N(𝟙)/9)·h^3. N(𝟙) computed explicitly in the J_3(O) Zorn (= weight) basis: N(X) = ξ₁ξ₂ξ₃ - Σξ_i n(x_i) + 2Re(x₁x₂x₃); at all-coords-1, n(𝐮) = ab - v·w = -2, Re(x₁x₂x₃)|_𝟙 = (1/2)[2 + 18 + 0] = 10, so N(𝟙) = 1 - 3(-2) + 2(10) = 27 (checked: N(1_J) = 1). ⟹ N(x) = -(27/9)h^3 = -3h^3. Sanity: p_3(x) = c_1^3-3c_1c_2+3c_3 = 3h^3, and N(x) = -p_3(x) — consistent in 1-dim ℚ·h^3. Then Φ_tw(q) = 4h^4 + 8h(-3h^3) - 4⟨#x,#x⟩ = -20h^4 - 4⟨#x,#x⟩. For ⟨#x,#x⟩: #(x)_i = Σ_{triangle∋i}d·x_jx_k, and Σ_i #(x)_i = (1/2)h^2·N(𝟙) - (1/2)(N(𝟙)/9)Σx_i^2 = (27/2)h^2 + (3/2)h^2 = 15h^2. So ⟨#x,#x⟩ = (15h^2)^2 - 2e_2(#x) = 225h^4 - 2e_2(#x). FINAL REDUCTION: Φ_tw(q) = (-920 + 8·e_2(#x)/h^4)·h^4; [q]_G ≠ 0 iff e_2(#x)/h^4 ≠ 115. ONE combinatorial constant remains: e_2(#x), determined by the weight-triangle incidence ('bowtie') structure of the 27 of E_6."]
+    scope := "OPEN (P51-one-constant-remains): the cross-ring obstruction is reduced to Φ_tw(q) = (-920 + 8·e_2(#x)/h^4)·h^4. N(x) = -3h^3 is fully computed (N(𝟙) = 27 from explicit J_3(O) Zorn-basis computation + the triangle-vertex-degree argument). Σ#(x)_i = 15h^2 computed. ⟨#x,#x⟩ = 225h^4 - 2e_2(#x). [q]_G ≠ 0 iff e_2(#x) ≠ 115h^4. ONE combinatorial constant remains — e_2(#x), the weight-triangle-incidence invariant of the 27 of E_6" }
 
 /-! ### Cat 2 single-step axioms -/
 
