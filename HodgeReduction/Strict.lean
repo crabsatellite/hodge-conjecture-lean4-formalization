@@ -437,11 +437,32 @@ opaque eisensteinVanishing_E7minus25_Deg8 : Prop
 -- COMPUTING Φ_tw(q) = q(-h; x_i; -x_i; +h):
 --   ⟨A,B⟩ ↦ Σ x_i·(-x_i) = -Σx_i^2 = -(c_1^2 - 2c_2) = -(81-82)h^2 = h^2;
 --   ab ↦ (-h)(+h) = -h^2;   so  (ab - ⟨A,B⟩)^2 = (-h^2 - h^2)^2 = 4 h^4.
--- The first term of Φ_tw(q) is 4 h^4 ≠ 0. The remaining
--- 4·[a·N(B) + b·N(A) - ⟨A^#,B^#⟩] requires the Jordan cubic-norm
--- identities (N(x) and ⟨#x,#x⟩ as classes in H^6, H^8) — the next concrete
--- step. So Φ_tw(q) = (4 + κ)·h^4 where κ·h^4 is the cubic-term
--- contribution; [q]_G ≠ 0 iff κ ≠ -4.
+--
+-- P50 — the cubic terms. q = (ab-⟨A,B⟩)^2 + 4[a·N(B) + b·N(A) - ⟨A^#,B^#⟩].
+-- With a = -h, b = +h and N cubic (N(-x) = -N(x)):
+--   a·N(B) = (-h)·N(-x_i) = (-h)·(-N(x)) = h·N(x);
+--   b·N(A) = (+h)·N(x) = h·N(x);
+--   ⟨A^#,B^#⟩ = ⟨#(x), #(x)⟩  (the # map is quadratic, hence even).
+-- So  Φ_tw(q) = 4 h^4 + 8 h·N(x) - 4·⟨#x,#x⟩.
+-- COMPUTING N(x) via the shift expansion. x_i = -h/3 + ν_i (charge
+-- contribution + E_6-weight). N cubic: N(u+w) = N(u) + 3Ñ(u,u,w) +
+-- 3Ñ(u,w,w) + N(w), with u = -h/3·𝟙 (𝟙 = all-ones in the weight basis,
+-- W(E_6)-fixed), w = ν:
+--   * N(ν) = 0   — degree-3 W(E_6)-invariant; W(E_6) has NO degree-3 invariant;
+--   * Ñ(𝟙,𝟙,ν) = 0 — linear W(E_6)-invariant in ν, and Σ ν_i = 0;
+--   * Ñ(𝟙,ν,ν) = λ·Σν_i^2 — W(E_6)-invariant quadratic; Σν_i^2 = -2e_2(ν)
+--     = -4h^2 (e_2(ν) = c_2 - 39h^2 = 2h^2 from P48);
+--   * N(u) = (-h/3)^3·N(𝟙) = -(h^3/27)·N(𝟙).
+-- ⟹  N(x) = -(N(𝟙)/27)·h^3 + 3·(-h/3)·(-4λh^2) = (4λ - N(𝟙)/27)·h^3.
+-- THE FINAL REDUCTION:
+--   Φ_tw(q) = (4 + 8·(4λ - N(𝟙)/27) - 4·⟨#x,#x⟩/h^4) · h^4 = γ·h^4,
+-- and [q]_G ≠ 0 iff γ ≠ 0. The cross-ring obstruction is now reduced to
+-- THREE explicit Jordan-algebra constants of the 27 of E_6:
+--   (i)   N(𝟙)       — the (signed) weight-triangle count of the 27;
+--   (ii)  λ          — the polarization constant in Ñ(𝟙,ν,ν) = λ·Σν_i^2;
+--   (iii) ⟨#x,#x⟩    — the degree-8 class from the adjoint-pairing identity.
+-- All three are finite, reference-checkable invariant-theory constants of
+-- the exceptional Jordan algebra J_3(O); none is open-ended.
 
 /-- **Cat 3 carrier (§3.4.1, P39, P41-confirmed)** — RIGOROUSLY ESTABLISHED:
  the canonical Φ factors through `Sym^4(t^∨)^{W(E_7)}_+`. Proof: q is
@@ -1490,8 +1511,9 @@ def gap_Hyp_TwistedPhiL_Coefficient_Nonzero : StrictGapEntry :=
                       "P46 degree-8 machinery (2026-05-15): V_56^{can} on Ě_VII is the homogeneous bundle; since V_56 extends to an E_7-rep, the TOTAL bundle is TRIVIAL (c(V_56^{can}) = 1), but it is FILTERED by the Hodge filtration with graded pieces 𝓛_{+3} ⊕ 𝓔_{+1} ⊕ 𝓔_{-1} ⊕ 𝓛_{-3}. The highest-weight line 𝓛_{+3} = O(-1), c_1 = -h; by self-duality 𝓛_{-3} = O(1), c_1 = +h. Triviality forces (1-h)·c(𝓔_{+1})·c(𝓔_{-1})·(1+h) = 1, hence c(𝓔_{+1})·c(𝓔_{-1}) = 1/(1-h^2) — the constraint binding the 27-bundle Chern classes to h. H^8(Ě_VII) = ℚ·h^4.",
                       "P47 assembly made concrete (2026-05-15): by the Hodge pairing 27' = 27^∨, so 𝓔_{-1} ≅ 𝓔_{+1}^∨ and the P46 constraint is c(𝓔_{+1})·c(𝓔_{+1}^∨) = 1/(1-h^2). Expanding degree by degree: 2·c_2(𝓔_{+1}) - c_1(𝓔_{+1})^2 = h^2 (H^4) and 2c_4 - 2c_1c_3 + c_2^2 = h^4 (H^8). Since V_56^{can} is filtered-trivial, the master tex's [q] = P(c_1,...,c_4) means P(c_i(𝓔_{+1})).",
                       "P48 Chern classes COMPUTED + triple-checked (2026-05-15): c_1(𝓔_{+1}) = -9h, c_2 = 41h^2, c_3 = -125h^3, c_4 = 285h^4. c_1 from the weight count; c_2 from 2c_2 - c_1^2 = h^2; c_3 from e_3(ν - h/3) with e_3(ν) = 0 (W(E_6) has no degree-3 invariant); c_4 from 2c_4 - 2c_1c_3 + c_2^2 = h^4. Verified consistent: ch_2 = ch_3 = ch_4 = 0 for the trivial V_56^{can}. H^*(Ě_VII) in degree ≤ 8 completely explicit.",
-                      "P49 the twist IDENTIFIED EXPLICITLY (2026-05-15): the genuine twist Φ_tw evaluates q on the HODGE-GRADED Chern roots. V_56^{can} is filtered-trivial; its 56 Chern roots, taken from the GRADED pieces, are {-h} ∪ {x_1,...,x_27} ∪ {-x_1,...,-x_27} ∪ {+h} (from 𝓛_{+3} = O(-1), 𝓔_{+1}, 𝓔_{-1} = 𝓔_{+1}^∨, 𝓛_{-3} = O(1)). Canonical Φ uses the TRIVIAL TOTAL bundle (all 56 roots 0 ⟹ q(0) = 0); Φ_tw uses the GRADED pieces' roots, which are NONZERO. The filtration is the Hodge structure — not W(E_7)-equivariant — so Φ_tw genuinely differs from canonical Φ. This DEFINITIVELY resolves the P41-P47 search. COMPUTING Φ_tw(q) = q(-h; x_i; -x_i; +h): ⟨A,B⟩ ↦ Σ x_i(-x_i) = -Σx_i^2 = -(c_1^2 - 2c_2) = -(81-82)h^2 = h^2; ab ↦ -h^2; so (ab - ⟨A,B⟩)^2 = (-h^2 - h^2)^2 = 4h^4. The FIRST TERM of Φ_tw(q) is 4h^4 ≠ 0. The remaining 4·[a·N(B) + b·N(A) - ⟨A^#,B^#⟩] needs the Jordan cubic-norm identities (N(x), ⟨#x,#x⟩ as H^6/H^8 classes). So Φ_tw(q) = (4 + κ)·h^4; [q]_G ≠ 0 iff κ ≠ -4."]
-    scope := "OPEN (P49-twist-explicit): the genuine twist is Φ_tw = evaluate q on the Hodge-graded Chern roots {-h} ∪ {x_i} ∪ {-x_i} ∪ {+h} of the filtered-trivial V_56^{can} (NOT the zero roots of the trivial total bundle — that gives canonical Φ = 0). Φ_tw(q) = (ab-⟨A,B⟩)^2 + 4[...] = 4h^4 + κ·h^4 (cubic-term contribution). [q]_G ≠ 0 iff κ ≠ -4. Remaining: the Jordan cubic-norm identities for N(x), ⟨#x,#x⟩" }
+                      "P49 the twist IDENTIFIED EXPLICITLY (2026-05-15): the genuine twist Φ_tw evaluates q on the HODGE-GRADED Chern roots {-h} ∪ {x_1,...,x_27} ∪ {-x_1,...,-x_27} ∪ {+h} of the filtered-trivial V_56^{can}. Canonical Φ uses the TRIVIAL TOTAL bundle (all roots 0 ⟹ q(0) = 0); Φ_tw uses the GRADED pieces' roots, which are NONZERO and not W(E_7)-equivariant — so Φ_tw genuinely differs from canonical Φ. DEFINITIVELY resolves the P41-P47 search. First term: ⟨A,B⟩ ↦ -Σx_i^2 = h^2, ab ↦ -h^2, (ab-⟨A,B⟩)^2 = 4h^4.",
+                      "P50 the cubic terms — final reduction (2026-05-15): Φ_tw(q) = 4h^4 + 4[a·N(B) + b·N(A) - ⟨A^#,B^#⟩]. With a = -h, b = +h, N cubic (N(-x) = -N(x)): a·N(B) = h·N(x), b·N(A) = h·N(x), ⟨A^#,B^#⟩ = ⟨#x,#x⟩ (# quadratic, even). So Φ_tw(q) = 4h^4 + 8h·N(x) - 4⟨#x,#x⟩. Computing N(x) via the shift expansion x_i = -h/3 + ν_i: N(u+w) = N(u) + 3Ñ(u,u,w) + 3Ñ(u,w,w) + N(w) with u = -h/3·𝟙, w = ν; N(ν) = 0 (no degree-3 W(E_6)-invariant), Ñ(𝟙,𝟙,ν) = 0 (linear W(E_6)-invariant, Σν = 0), Ñ(𝟙,ν,ν) = λ·Σν_i^2 = λ·(-4h^2), N(u) = -(h^3/27)·N(𝟙). ⟹ N(x) = (4λ - N(𝟙)/27)·h^3. FINAL REDUCTION: Φ_tw(q) = (4 + 8(4λ - N(𝟙)/27) - 4⟨#x,#x⟩/h^4)·h^4 = γ·h^4. [q]_G ≠ 0 iff γ ≠ 0. The cross-ring obstruction is now reduced to THREE explicit Jordan-algebra constants of the 27 of E_6: N(𝟙) (signed weight-triangle count), λ (polarization constant), ⟨#x,#x⟩ (degree-8 adjoint-pairing class) — all finite, reference-checkable, none open-ended."]
+    scope := "OPEN (P50-final-reduction): the cross-ring obstruction is reduced to Φ_tw(q) = (4 + 8(4λ - N(𝟙)/27) - 4⟨#x,#x⟩/h^4)·h^4 = γ·h^4, [q]_G ≠ 0 iff γ ≠ 0. The genuine twist Φ_tw (evaluate q on the Hodge-graded Chern roots) is explicit; the first term is 4h^4; the cubic terms reduce to three finite Jordan-algebra constants N(𝟙), λ, ⟨#x,#x⟩. Remaining: evaluate these three constants" }
 
 /-! ### Cat 2 single-step axioms -/
 
