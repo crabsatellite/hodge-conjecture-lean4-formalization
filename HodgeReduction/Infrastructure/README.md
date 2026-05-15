@@ -16,7 +16,7 @@ mathematical foundations needed for the Hodge-conjecture EVII case.
 * **Incremental**: each module is self-contained, builds on earlier
   modules.
 
-## Status (as of P85)
+## Status (as of P88)
 
 ### ✅ Tier A — Combinatorial / Arithmetic (DONE)
 
@@ -31,9 +31,9 @@ mathematical foundations needed for the Hodge-conjecture EVII case.
 
 | Module | Description | Lines | Status |
 |---|---|---|---|
-| `Octonion.lean` | Octonion `ℚ`-algebra (8-dim, Fano-plane mult) + `conj` + `normSq` + 32 component simp lemmas + alternative laws + flexibility + **Hurwitz composition** `‖x·y‖² = ‖x‖²·‖y‖²` + scalar-mult ring laws + `conj_smul`/`smul_sub`/`smul_add` | ~410 | ✅ |
-| `JordanJ3O.lean` | Exceptional Jordan algebra `J₃(𝕆)` (27-dim Hermitian 3×3) + Freudenthal cubic norm `N` + `N(0)=0`, `N(I)=1`, `N(diag)=abc` + **cubic-norm homogeneity** `N(r·X) = r³N(X)` + 12 zero/one simp lemmas | ~200 | ✅ |
-| `V56Freudenthal.lean` | 56-dim Freudenthal triple system `V₅₆ = ℚ⊕J₃(𝕆)⊕J₃(𝕆)⊕ℚ` + **Freudenthal quartic** `q` + **degree-4 homogeneity** `q(r·v) = r⁴·q(v)` + **symplectic form** `ω` + full bilinearity of `⟨·,·⟩` and `ω` + sharp degree-2 `(r·A)^# = r²·A^#` | ~500 | ✅ |
+| `Octonion.lean` | Octonion `ℚ`-algebra (8-dim, Fano-plane mult) + `conj` + `normSq` + 32 component simp lemmas + alternative laws + flexibility + **Hurwitz composition** `‖x·y‖² = ‖x‖²·‖y‖²` + scalar-mult ring laws + `conj_smul`/`smul_sub`/`smul_add` + **Hurwitz inversion** (`mul_conj_self`, `normSq_eq_zero_iff`, `inv`, `mul_inv_cancel`, `inv_mul_cancel`) = **non-associative division algebra** | ~470 | ✅ |
+| `JordanJ3O.lean` | Exceptional Jordan algebra `J₃(𝕆)` (27-dim Hermitian 3×3) + Freudenthal cubic norm `N` + `N(0)=0`, `N(I)=1`, `N(diag)=abc` + **cubic-norm homogeneity** `N(r·X) = r³N(X)` + `cubicNorm_neg` + **trace** `tr(X) = ξ₁+ξ₂+ξ₃` (linear functional with `trace_zero/one/add/neg/smul/diagonal`) + 12 zero/one simp lemmas | ~260 | ✅ |
+| `V56Freudenthal.lean` | 56-dim Freudenthal triple system `V₅₆ = ℚ⊕J₃(𝕆)⊕J₃(𝕆)⊕ℚ` + **Freudenthal quartic** `q` + **degree-4 homogeneity** `q(r·v) = r⁴·q(v)` + `q(-v) = q(v)` + **symplectic form** `ω` (antisymmetric, bilinear) + full bilinearity of `⟨·,·⟩` and `ω` + sharp degree-2 `(r·A)^# = r²·A^#` + `sharp_neg` + **trace-pairing identity** `⟨1, X⟩ = tr(X)` + specific `q` evaluations (highest/lowest weight, `a·b` axis) | ~570 | ✅ |
 
 ### 🔲 Tier B — Algebra (FUTURE WORK)
 
