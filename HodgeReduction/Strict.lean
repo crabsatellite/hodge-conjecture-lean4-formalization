@@ -648,7 +648,15 @@ def J_3_O_cubic_norm_form_zorn_basis : Prop :=
   -- (13) sharp polarization bilinearity (left scalar-compatible)   [P135]
   (∀ (r : ℚ) (X Y : Infrastructure.J3O),
     Infrastructure.J3O.freudenthalCross (r • X) Y
-    = r • Infrastructure.J3O.freudenthalCross X Y)
+    = r • Infrastructure.J3O.freudenthalCross X Y) ∧
+  -- (14) inner product symmetry: <X, Y> = <Y, X>
+  (∀ X Y : Infrastructure.J3O,
+    Infrastructure.J3O.innerProd X Y = Infrastructure.J3O.innerProd Y X) ∧
+  -- (15) inner product is positive semi-definite: <X, X> ≥ 0
+  (∀ X : Infrastructure.J3O, 0 ≤ Infrastructure.J3O.innerProd X X) ∧
+  -- (16) inner product is positive-definite: <X, X> = 0 ↔ X = 0
+  (∀ X : Infrastructure.J3O,
+    Infrastructure.J3O.innerProd X X = 0 ↔ X = 0)
 
 /-- **Cat 1 derivation-stage (§3.4.2, P68)** — the Freudenthal triple
  product `T : V_56 × V_56 × V_56 → V_56`, making `V_56` a Freudenthal
@@ -1454,7 +1462,10 @@ theorem tits_jacobson_J_3_O_PUBLISHED_OPEN :
    Infrastructure.J3O.freudenthalCross_self,
    Infrastructure.J3O.freudenthalCross_comm,
    Infrastructure.J3O.freudenthalCross_add_left,
-   Infrastructure.J3O.freudenthalCross_smul_left⟩
+   Infrastructure.J3O.freudenthalCross_smul_left,
+   Infrastructure.J3O.innerProd_symm,
+   Infrastructure.J3O.innerProd_self_nonneg,
+   Infrastructure.J3O.innerProd_self_eq_zero_iff⟩
 
 /-- **Cat 1 derivation-stage (§3.3, P68)** — H. Freudenthal, "Beziehungen
  der E_7 und E_8 zur Oktavenebene I-V", Indag. Math. 16-17 (1954-55) +
