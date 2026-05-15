@@ -613,9 +613,17 @@ opaque H8_cuspidal_G_invariant_equals_trivial_module : Prop
 /-- **Cat 3 hypothesis predicate (§3.4.2)** — [q] is algebraic on S_Γ^{tor}. -/
 opaque freudenthal_is_algebraic : Prop
 
-/-- **Cat 3 hypothesis predicate (§3.4.2)** — Hodge Conjecture for
- Freudenthal quartic [q] on EVII (Main Theorem target). -/
-opaque HC_for_freudenthal_quartic_on_EVII : Prop
+/-- **Cat 1 derivation-stage (§3.4.2)** — Hodge Conjecture for
+ Freudenthal quartic [q] on EVII (Main Theorem target).
+
+ **P111 LEAN-CLOSED**: per the master tex §3.4.3 definitional
+ reduction, the Hodge Conjecture for the specific Freudenthal-quartic
+ class is **by definition** the algebraicity of `[q]`. We make this
+ explicit by defining `HC_for_freudenthal_quartic_on_EVII :=
+ freudenthal_is_algebraic`. The axiom
+ `paper_HC_equals_algebraicity_OPEN` then becomes the identity
+ theorem (no longer needs to be an axiom). -/
+def HC_for_freudenthal_quartic_on_EVII : Prop := freudenthal_is_algebraic
 
 /-- **Cat 3 carrier (§3.4.1)** — opaque Prop for the higher-rank
  good-metric working assumption (consumed via `Hyp_HigherRank_GoodMetric_OPEN`). -/
@@ -1694,11 +1702,16 @@ axiom paper_clause_iii_polynomial_identity_OPEN :
 -- §6: Cat 3 structuralEquation (§3.4.3)
 -- ============================================================================
 
-/-- **Cat 3 structuralEquation (§3.4.3)** — paper's definitional equation:
- HC for a class is the algebraicity statement. Genuine paper definition,
- not a reduction conclusion. -/
-axiom paper_HC_equals_algebraicity_OPEN :
-  freudenthal_is_algebraic → HC_for_freudenthal_quartic_on_EVII
+/-- **Cat 1 derivation-stage (§3.4.3)** — paper's definitional equation:
+ HC for the Freudenthal-quartic class IS the algebraicity statement.
+ Genuine paper definition, not a reduction conclusion.
+
+ **P111 LEAN-CLOSED**: now an identity theorem because
+ `HC_for_freudenthal_quartic_on_EVII` is defined as
+ `freudenthal_is_algebraic` (above). -/
+theorem paper_HC_equals_algebraicity_OPEN :
+    freudenthal_is_algebraic → HC_for_freudenthal_quartic_on_EVII :=
+  id
 
 -- ============================================================================
 -- §7: Derived gapClosedConditional theorems
