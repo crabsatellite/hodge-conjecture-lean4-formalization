@@ -120,14 +120,19 @@ For `A ∈ J₃(𝕆)` with `A = ((α₁, α₂, α₃), (a₁, a₂, a₃))`:
 The key identity is `A · A^# = N(A) · I` (Freudenthal cubic-norm identity).
 -/
 
-/-- The adjoint (sharp) of `A ∈ J₃(𝕆)`. -/
+/-- The adjoint (sharp) of `A ∈ J₃(𝕆)`. The off-diagonal entries use
+`conj (X.x_i * X.x_j)` rather than `conj X.x_i * conj X.x_j` — these
+differ for non-commutative octonions, and the former is the form
+consistent with the Cayley-Hamilton characterization
+`X^# = X ∘ X - tr(X) * X + ((tr(X)² - tr(X²))/2) * I` which makes the
+cubic-norm identity `X ∘ X^# = N(X) * I` hold (P119+ Jordan-mult work). -/
 def sharp (A : J3O) : J3O := {
   xi1 := A.xi2 * A.xi3 - OctonionQ.normSq A.x1
   xi2 := A.xi3 * A.xi1 - OctonionQ.normSq A.x2
   xi3 := A.xi1 * A.xi2 - OctonionQ.normSq A.x3
-  x1 := OctonionQ.conj A.x2 * OctonionQ.conj A.x3 - A.xi1 • A.x1
-  x2 := OctonionQ.conj A.x3 * OctonionQ.conj A.x1 - A.xi2 • A.x2
-  x3 := OctonionQ.conj A.x1 * OctonionQ.conj A.x2 - A.xi3 • A.x3
+  x1 := OctonionQ.conj (A.x2 * A.x3) - A.xi1 • A.x1
+  x2 := OctonionQ.conj (A.x3 * A.x1) - A.xi2 • A.x2
+  x3 := OctonionQ.conj (A.x1 * A.x2) - A.xi3 • A.x3
 }
 
 /-- `sharp 0 = 0` (the sharp of the zero element is zero). -/
@@ -268,31 +273,32 @@ theorem sharp_smul (r : ℚ) (A : J3O) : sharp (r • A) = r^2 • sharp A := by
   · show (r • A).xi1 * (r • A).xi2 - OctonionQ.normSq (r • A).x3
          = r^2 * (A.xi1 * A.xi2 - OctonionQ.normSq A.x3)
     simp [OctonionQ.normSq_smul]; ring
-  · -- (sharp (r • A)).x1 = (r²) • (sharp A).x1
-    show OctonionQ.conj (r • A.x2) * OctonionQ.conj (r • A.x3) - (r * A.xi1) • (r • A.x1)
-         = r^2 • (OctonionQ.conj A.x2 * OctonionQ.conj A.x3 - A.xi1 • A.x1)
-    rw [OctonionQ.conj_smul, OctonionQ.conj_smul,
-        OctonionQ.smul_mul_smul, OctonionQ.smul_smul,
+  · -- (sharp (r • A)).x1 = conj((r•A.x2) * (r•A.x3)) - (r*A.xi1) • (r•A.x1)
+    --                    = conj(r²•(A.x2*A.x3)) - r²•(A.xi1•A.x1)
+    --                    = r²•conj(A.x2*A.x3) - r²•(A.xi1•A.x1)
+    --                    = r² • (conj(A.x2*A.x3) - A.xi1•A.x1)
+    --                    = r² • (sharp A).x1
+    show OctonionQ.conj ((r • A.x2) * (r • A.x3)) - (r * A.xi1) • (r • A.x1)
+         = r^2 • (OctonionQ.conj (A.x2 * A.x3) - A.xi1 • A.x1)
+    rw [OctonionQ.smul_mul_smul, OctonionQ.conj_smul, OctonionQ.smul_smul,
         OctonionQ.smul_sub]
     congr 1
     · show (r * r) • _ = r^2 • _; rw [show r * r = r^2 from by ring]
     · show (r * A.xi1 * r) • A.x1 = r^2 • (A.xi1 • A.x1)
       rw [show r * A.xi1 * r = r * r * A.xi1 from by ring,
           show r * r = r^2 from by ring, ← OctonionQ.smul_smul]
-  · show OctonionQ.conj (r • A.x3) * OctonionQ.conj (r • A.x1) - (r * A.xi2) • (r • A.x2)
-         = r^2 • (OctonionQ.conj A.x3 * OctonionQ.conj A.x1 - A.xi2 • A.x2)
-    rw [OctonionQ.conj_smul, OctonionQ.conj_smul,
-        OctonionQ.smul_mul_smul, OctonionQ.smul_smul,
+  · show OctonionQ.conj ((r • A.x3) * (r • A.x1)) - (r * A.xi2) • (r • A.x2)
+         = r^2 • (OctonionQ.conj (A.x3 * A.x1) - A.xi2 • A.x2)
+    rw [OctonionQ.smul_mul_smul, OctonionQ.conj_smul, OctonionQ.smul_smul,
         OctonionQ.smul_sub]
     congr 1
     · show (r * r) • _ = r^2 • _; rw [show r * r = r^2 from by ring]
     · show (r * A.xi2 * r) • A.x2 = r^2 • (A.xi2 • A.x2)
       rw [show r * A.xi2 * r = r * r * A.xi2 from by ring,
           show r * r = r^2 from by ring, ← OctonionQ.smul_smul]
-  · show OctonionQ.conj (r • A.x1) * OctonionQ.conj (r • A.x2) - (r * A.xi3) • (r • A.x3)
-         = r^2 • (OctonionQ.conj A.x1 * OctonionQ.conj A.x2 - A.xi3 • A.x3)
-    rw [OctonionQ.conj_smul, OctonionQ.conj_smul,
-        OctonionQ.smul_mul_smul, OctonionQ.smul_smul,
+  · show OctonionQ.conj ((r • A.x1) * (r • A.x2)) - (r * A.xi3) • (r • A.x3)
+         = r^2 • (OctonionQ.conj (A.x1 * A.x2) - A.xi3 • A.x3)
+    rw [OctonionQ.smul_mul_smul, OctonionQ.conj_smul, OctonionQ.smul_smul,
         OctonionQ.smul_sub]
     congr 1
     · show (r * r) • _ = r^2 • _; rw [show r * r = r^2 from by ring]
