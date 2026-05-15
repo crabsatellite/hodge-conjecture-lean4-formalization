@@ -547,6 +547,20 @@ opaque freudenthal_triple_product_T : Prop
  algebra. -/
 opaque W_E7_invariant_degrees_2_6_8_10_12_14_18 : Prop
 
+/-- **Cat 3 carrier (§3.4.1, P71)** — Step A of the (ii.a) realization
+ argument: under Eisenstein vanishing + Franke 1998 decomposition,
+ `H^8(S_Γ; ℂ)_G = H^8_cusp(S_Γ; ℂ)_G` — the G-invariant H^8 cohomology
+ of `S_Γ` reduces to its cuspidal part. -/
+opaque H8_G_invariant_equals_cuspidal : Prop
+
+/-- **Cat 3 carrier (§3.4.1, P71)** — Step B of the (ii.a) realization
+ argument: under V-Z 1984 + KV 1995 A_q(λ) decomposition of cuspidal
+ cohomology + Salamanca-Riba 1999 low-deg vanishing + V-Z 1984 §5
+ holo-discrete `R(q) = dim_C(G/K) = 27 > 8` + Cartan 1929 compact-dual
+ identification, the cuspidal G-invariant H^8 of `S_Γ` equals the
+ trivial-module Cartan image `= j^8(H^8(Ě_VII; ℂ)) = ⟨h^4⟩`. -/
+opaque H8_cuspidal_G_invariant_equals_trivial_module : Prop
+
 /-- **Cat 3 hypothesis predicate (§3.4.2)** — [q] is algebraic on S_Γ^{tor}. -/
 opaque freudenthal_is_algebraic : Prop
 
@@ -1463,40 +1477,59 @@ axiom paper_hodge44_step_OPEN :
   j_q_G_equivariance_principle →
   freudenthal_H8_auto_G_invariant
 
-/-- **Cat 3 workingAssumption (§3.4.4)** — paper (ii.a) reduction:
- the Borel-Wallach descent + V-Z + Knapp-Vogan + Franke + Cartan +
- Salamanca-Riba + holo-discrete-lowest-degree framework, applied to
- E_{7(-25)} at deg 8 with `[q]_G` realisation, yields realization by
- G-invariant cohomology.
- P32 REFACTOR: Hyp_VZ_AqLambda_OPEN input REMOVED.
- P58 REFACTOR: Cartan 1929's compact-dual identification added explicitly.
- P59 REFACTOR: Salamanca-Riba 1999 low-degree vanishing added explicitly.
- P60 REFACTOR: holomorphic-discrete-series lowest cohomological degree
- R(q) = dim_C(G/K) = 27 for E_{7(-25)} added explicitly — this is the
- load-bearing fact that kills holo-discrete A_q(λ) contributions at
- deg 8 < 27 (previously implicit in V-Z 1984 §5 framework; now extracted).
- The (ii.a) descent at deg 8 argument:
-   (1) Hyp_Eisenstein_Vanishing + Franke 1998 ⟹ H^8(S_Γ)_G = H^8_cusp(S_Γ)_G.
-   (2) V-Z 1984 + KV 1995 ⟹ H^*_cusp(S_Γ; ℂ) decomposes via A_q(λ) modules.
-   (3) Salamanca-Riba 1999: at deg q < dim_C(G/K) = 27, only trivial-module
-       + holo-discrete A_q(λ) can contribute G-invariantly.
-   (4) V-Z 1984 §5: holo-discrete A_q(λ) has R(q) = dim_C(G/K) = 27 > 8 ⟹
-       holo-discrete contributions also empty at deg 8.
-   (5) Combining (3)+(4): at deg 8 ONLY trivial-module contributes.
-   (6) Cartan 1929: trivial-module (g, K)-cohomology = H^*(Ě_VII; ℂ) ⟹
-       H^8_cusp(S_Γ)_G ≅ H^8(Ě_VII; ℂ) = ⟨h^4⟩ (1-dim).
-   (7) [q] (assumed G-invariant via freudenthal_H8_auto_G_invariant) is
-       therefore the j^8-image of h^4 = realized.
- 8-input atomic now. -/
-axiom paper_iia_realization_OPEN :
+/-- **Cat 3 structuralEquation (§3.4.3, P71)** — STEP A of (ii.a)
+ realization: Eisenstein → cuspidal reduction. Under Franke 1998
+ §1.4 (L²-decomposition cuspidal ⊕ Eisenstein) + Hyp_Eisenstein_Vanishing
+ (the H^8 Eisenstein part vanishes), the G-invariant H^8 cohomology of
+ `S_Γ` reduces to its cuspidal part:
+   `H^8(S_Γ; ℂ)_G = H^8_cusp(S_Γ; ℂ)_G`. -/
+axiom paper_iia_step_A_eisenstein_to_cusp_OPEN :
+  franke_1998_eisenstein_framework →
+  Hyp_Eisenstein_Vanishing_OPEN →
+  H8_G_invariant_equals_cuspidal
+
+/-- **Cat 3 structuralEquation (§3.4.3, P71)** — STEP B of (ii.a)
+ realization: cuspidal → trivial-module restriction at degree 8.
+ Combining
+   (i)   V-Z 1984 A_q(λ) decomposition of cuspidal cohomology,
+   (ii)  KV 1995 cohomological induction giving the relative `(g, K)`
+         -cohomology formula,
+   (iii) Salamanca-Riba 1999 low-degree vanishing (only trivial +
+         holo-discrete contribute at deg < dim_C(G/K) = 27),
+   (iv)  V-Z 1984 §5 (holo-discrete has R(q) = 27 > 8 ⟹ absent at deg 8),
+   (v)   Cartan 1929 (trivial-module (g, K)-cohomology = `H^*(Ě_VII; ℂ)`),
+ yields `H^8_cusp(S_Γ; ℂ)_G = H^8(Ě_VII; ℂ) = ⟨h^4⟩` (1-dim).
+ The "trivial-module Cartan image" identification is the load-bearing
+ conclusion. -/
+axiom paper_iia_step_B_cuspidal_to_trivial_OPEN :
   voganZuckerman_1984_framework →
   knappVogan_1995_induction_framework →
-  franke_1998_eisenstein_framework →
-  cartan_1929_compact_dual_iso →
   salamanca_riba_low_deg_vanishing →
   holo_discrete_lowest_deg_E7minus25 →
+  cartan_1929_compact_dual_iso →
+  H8_cuspidal_G_invariant_equals_trivial_module
+
+/-- **Cat 3 workingAssumption (§3.4.4)** — paper (ii.a) realization
+ (Step C: ASSEMBLY).
+ P71 DECOMPOSITION: previously this was an 8-input bundling. Now it is
+ decomposed into 3 sub-steps (P71):
+   * Step A (`paper_iia_step_A_eisenstein_to_cusp_OPEN`): Eisenstein
+     vanishing + Franke 1998 ⟹ `H^8_G = H^8_cusp_G`.
+   * Step B (`paper_iia_step_B_cuspidal_to_trivial_OPEN`): V-Z 1984 +
+     KV 1995 + Salamanca-Riba 1999 + V-Z holo-discrete + Cartan 1929
+     ⟹ `H^8_cusp_G = ⟨h^4⟩` (trivial-module Cartan image).
+   * Step C (THIS axiom, paper_iia_realization_OPEN): assemble Step A +
+     Step B + `freudenthal_H8_auto_G_invariant` ⟹ freudenthal class IS
+     realized as the `j^8`-image of `h^4`.
+ The final step C is paper-stated: given that `[q]` is G-invariant (input
+ `freudenthal_H8_auto_G_invariant`), and `H^8_G = H^8_cusp_G = ⟨h^4⟩`
+ (from Step A composed with Step B), `[q]` must equal a scalar multiple
+ of `j^8(h^4)`, hence realized by G-invariant cohomology.
+ 3-input atomic post-P71. -/
+axiom paper_iia_realization_OPEN :
+  H8_G_invariant_equals_cuspidal →
+  H8_cuspidal_G_invariant_equals_trivial_module →
   freudenthal_H8_auto_G_invariant →
-  Hyp_Eisenstein_Vanishing_OPEN →
   freudenthal_realized_by_G_invariant
 
 /-- **Cat 3 structuralEquation (§3.4.3)** — paper master tex §11.5
@@ -1710,19 +1743,22 @@ theorem Hyp_CrossRingPhiNonzero_DERIVED :
       freudenthal_1954_brown_1969_sato_kimura_PUBLISHED_OPEN)
     Hyp_TwistedPhiL_Coefficient_Nonzero_COMPUTED
 
-/-- **gapClosed** — (ii.a) Freudenthal realized by G-invariant (P56 unconditional,
- P58 Cartan-explicit, P59 Salamanca-Riba-explicit, P60 holo-discrete-explicit). -/
+/-- **gapClosed** — (ii.a) Freudenthal realized by G-invariant (P56
+ unconditional, P58 Cartan-explicit, P59 Salamanca-Riba-explicit, P60
+ holo-discrete-explicit, P71 3-sub-step assembly). -/
 theorem freudenthal_realized_by_G_invariant_DERIVED :
   freudenthal_realized_by_G_invariant :=
   paper_iia_realization_OPEN
-    vogan_zuckerman_1984_OPEN
-    knapp_vogan_1995_OPEN
-    franke_1998_OPEN
-    cartan_1929_PUBLISHED_OPEN
-    salamanca_riba_1999_PUBLISHED_OPEN
-    vz_1984_holo_discrete_lowest_deg_PUBLISHED_OPEN
+    (paper_iia_step_A_eisenstein_to_cusp_OPEN
+      franke_1998_OPEN
+      Hyp_Eisenstein_Vanishing_DERIVED)
+    (paper_iia_step_B_cuspidal_to_trivial_OPEN
+      vogan_zuckerman_1984_OPEN
+      knapp_vogan_1995_OPEN
+      salamanca_riba_1999_PUBLISHED_OPEN
+      vz_1984_holo_discrete_lowest_deg_PUBLISHED_OPEN
+      cartan_1929_PUBLISHED_OPEN)
     freudenthal_H8_auto_G_invariant_DERIVED
-    Hyp_Eisenstein_Vanishing_DERIVED
 
 /-- **gapClosed** — Freudenthal class placement derived (P56 unconditional).
  P56 REFACTOR: paper_placement_reduction_OPEN now takes cohomologyIso_at_deg8
@@ -2080,6 +2116,22 @@ def gap_W_E7_invariant_degrees_2_6_8_10_12_14_18 : StrictGapEntry :=
     paperSource := "P69: W(E_7) Weyl-group invariant degrees {2, 6, 8, 10, 12, 14, 18} (Bourbaki Ch. VI tables); NO degree-4 invariant beyond κ². Load-bearing in P39's augmentation-ideal argument (q|_{t^∨} = c·κ²)"
     attackHistory := ["P69: opaque Prop carrier for the W(E_7) Weyl-group invariant-degrees structure"]
     scope := "W(E_7) invariant degrees {2,6,8,10,12,14,18}; load-bearing for q|_{t^∨} = c·κ² → augmentation ideal (P69)" }
+
+def gap_H8_G_invariant_equals_cuspidal : StrictGapEntry :=
+  { name := "H8_G_invariant_equals_cuspidal"
+    status := .gapOpen, inputCategory := .cat3PaperNovel
+    cat3SubType := .hypothesisPredicate
+    paperSource := "P71 (Step A intermediate): H^8(S_Γ; ℂ)_G = H^8_cusp(S_Γ; ℂ)_G under Eisenstein vanishing + Franke 1998 §1.4"
+    attackHistory := ["P71: opaque Prop carrier for the Step A conclusion of (ii.a) realization (decomposed from paper_iia_realization_OPEN)"]
+    scope := "Intermediate carrier: G-invariant H^8 = cuspidal H^8 (Step A of (ii.a) decomposition, P71)" }
+
+def gap_H8_cuspidal_G_invariant_equals_trivial_module : StrictGapEntry :=
+  { name := "H8_cuspidal_G_invariant_equals_trivial_module"
+    status := .gapOpen, inputCategory := .cat3PaperNovel
+    cat3SubType := .hypothesisPredicate
+    paperSource := "P71 (Step B intermediate): cuspidal G-invariant H^8 of S_Γ equals trivial-module Cartan image = j^8(H^8(Ě_VII; ℂ)) = ⟨h^4⟩, derived from V-Z 1984 + KV 1995 + Salamanca-Riba 1999 + V-Z holo-disc + Cartan 1929"
+    attackHistory := ["P71: opaque Prop carrier for the Step B conclusion of (ii.a) realization (decomposed from paper_iia_realization_OPEN)"]
+    scope := "Intermediate carrier: cuspidal G-invariant H^8 = trivial-module Cartan image = ⟨h^4⟩ (Step B of (ii.a) decomposition, P71)" }
 
 def gap_freudenthal_is_algebraic : StrictGapEntry :=
   { name := "freudenthal_is_algebraic"
@@ -2722,14 +2774,29 @@ def gap_paper_iia : StrictGapEntry :=
   { name := "paper_iia_realization_OPEN"
     status := .gapOpen, inputCategory := .cat3PaperNovel
     cat3SubType := .workingAssumption
-    paperSource := "Master tex \\ref{hyp:ChernWeil-bridge-E7} clause (ii.a) (L11450+) + \\ref{rem:borel-matsushima} (L3453) Borel-Matsushima. P58 REFACTOR: Cartan 1929 compact-dual iso. P59 REFACTOR: Salamanca-Riba 1999 low-degree vanishing. P60 REFACTOR: holo-discrete-series lowest cohomological degree dim_C(G/K) = 27 for E_{7(-25)}"
+    paperSource := "Master tex \\ref{hyp:ChernWeil-bridge-E7} clause (ii.a) (L11450+) + \\ref{rem:borel-matsushima} (L3453) Borel-Matsushima. P58 REFACTOR: Cartan. P59: Salamanca-Riba. P60: holo-disc-lowest. P71 DECOMPOSITION: 8-input bundling → 3-sub-step chain (Step A eisenstein-to-cusp, Step B cuspidal-to-trivial, Step C assembly)"
     attackHistory := ["P25: 6-input workingAssumption (3 Cat 2 frameworks + Hodge-(4,4) + 2 Hyp_*)",
                       "P26: \\label anchored to master tex (ii.a) clause",
                       "P32: refactored to 5-input (Hyp_VZ_AqLambda dropped)",
-                      "P58 (2026-05-15): REFACTORED 5-input → 6-input by adding cartan_1929_compact_dual_iso (Cartan 1929 + Borel-Wallach Ch. II §3.3 Cor. 3.4)",
-                      "P59 (2026-05-15): REFACTORED 6-input → 7-input by adding salamanca_riba_low_deg_vanishing (Salamanca-Riba 1999 + Vogan 1984 + V-Z 1984 §5)",
-                      "P60 (2026-05-15): REFACTORED 7-input → 8-input by adding holo_discrete_lowest_deg_E7minus25 (V-Z 1984 §5 + Knapp-Wallach 1976 + Borel-Wallach Ch. VI: holo-discrete A_q(λ) in Hermitian symmetric has R(q) = dim_C(G/K) = 27). Combined with Salamanca-Riba (P59), this fully eliminates non-trivial A_q(λ) contributions at deg 8 < 27, leaving only the trivial-module Cartan image (P58) = ⟨h^4⟩"]
-    scope := "paper (ii.a) reduction; 8-input atomic (P58+P59+P60); decomposition close target = atomize V-Z 1984 / KV 1995 / Franke 1998 each into smaller specific theorems" }
+                      "P58-P60: refactored 5-input → 8-input by adding Cartan / Salamanca-Riba / V-Z holo-disc lowest-deg",
+                      "P71 (2026-05-15): DECOMPOSED 8-input bundling into 3-sub-step chain. The (ii.a) realization argument logically has 3 distinct phases: (A) Eisenstein vanishing + Franke 1998 reduces G-invariant H^8 to cuspidal, (B) V-Z + KV + Salamanca-Riba + V-Z holo-disc + Cartan reduce cuspidal G-invariant H^8 to trivial-module Cartan image = ⟨h^4⟩, (C) final assembly combines (A) + (B) + freudenthal G-invariance input to give realization. paper_iia_realization_OPEN is now Step C only (3-input); Steps A and B are separate Cat 3 sub-axioms with their own intermediate carriers. Each sub-step is independently auditable / verifiable. This is the first Cat 3 DEEP DECOMPOSITION round (after P57-P69 citation-hygiene saturation)."]
+    scope := "paper (ii.a) reduction; 3-input atomic (Step C) post-P71; Steps A and B are separate sub-axioms (paper_iia_step_A_eisenstein_to_cusp_OPEN + paper_iia_step_B_cuspidal_to_trivial_OPEN)" }
+
+def gap_paper_iia_step_A_eisenstein_to_cusp : StrictGapEntry :=
+  { name := "paper_iia_step_A_eisenstein_to_cusp_OPEN"
+    status := .gapOpen, inputCategory := .cat3PaperNovel
+    cat3SubType := .structuralEquation
+    paperSource := "P71 STEP A: Eisenstein vanishing + Franke 1998 §1.4 ⟹ H^8_G(S_Γ) = H^8_cusp_G(S_Γ). Standard L²-decomposition + Hyp_Eisenstein_Vanishing eliminates the Eisenstein contribution at deg 8"
+    attackHistory := ["P71 introduction (2026-05-15): Step A of paper_iia_realization decomposition. 2-input atomic: franke_1998 + Hyp_Eisenstein_Vanishing → H8_G_invariant_equals_cuspidal"]
+    scope := "Step A of (ii.a) realization decomposition (P71): Eisenstein vanishing + Franke 1998 ⟹ cusp = G-inv at H^8 (2-input atomic)" }
+
+def gap_paper_iia_step_B_cuspidal_to_trivial : StrictGapEntry :=
+  { name := "paper_iia_step_B_cuspidal_to_trivial_OPEN"
+    status := .gapOpen, inputCategory := .cat3PaperNovel
+    cat3SubType := .structuralEquation
+    paperSource := "P71 STEP B: V-Z 1984 A_q(λ) decomposition + KV 1995 cohomological induction + Salamanca-Riba 1999 low-deg vanishing + V-Z 1984 §5 holo-disc R(q) = 27 + Cartan 1929 compact-dual iso ⟹ H^8_cusp_G(S_Γ) = H^8(Ě_VII; ℂ) = ⟨h^4⟩"
+    attackHistory := ["P71 introduction (2026-05-15): Step B of paper_iia_realization decomposition. 5-input atomic: V-Z + KV + Salamanca-Riba + V-Z holo-disc + Cartan → H8_cuspidal_G_invariant_equals_trivial_module"]
+    scope := "Step B of (ii.a) realization decomposition (P71): cuspidal G-invariant H^8 = trivial-module Cartan image = ⟨h^4⟩ (5-input atomic; combines A_q(λ) decomposition + low-deg vanishing + holo-disc-absent + Cartan compact-dual)" }
 
 def gap_paper_iib : StrictGapEntry :=
   { name := "paper_iib_compatibility_OPEN"
@@ -2980,7 +3047,10 @@ def gap_HC_Main : StrictGapEntry :=
       "freudenthal_1954_brown_1969_sato_kimura_PUBLISHED_OPEN",
       "bourbaki_E7_W_invariants_PUBLISHED_OPEN",
       -- 15 paper workingAssumption/structuralEquation axioms (P35 +1, P39 +3, P40 +1, P53 +1, P54 +1, P55 +1)
-      "paper_iia_realization_OPEN", "paper_formHM_EVII_OPEN",
+      "paper_iia_realization_OPEN",
+      "paper_iia_step_A_eisenstein_to_cusp_OPEN",
+      "paper_iia_step_B_cuspidal_to_trivial_OPEN",
+      "paper_formHM_EVII_OPEN",
       "paper_section16_2_OPEN", "paper_GP_EVII_OPEN",
       "paper_clause_iii_polynomial_identity_OPEN",
       "paper_hodge44_step_OPEN", "paper_iib_compatibility_OPEN",
@@ -3034,6 +3104,8 @@ def allEntries : List StrictGapEntry := [
   gap_J_3_O_cubic_norm_form_zorn_basis,
   gap_freudenthal_triple_product_T,
   gap_W_E7_invariant_degrees_2_6_8_10_12_14_18,
+  gap_H8_G_invariant_equals_cuspidal,
+  gap_H8_cuspidal_G_invariant_equals_trivial_module,
   -- Hyp_* (9, +1 P39 TwistedPhiL_Coefficient, +1 P40 MumfordExtension_LBlockDiagonal)
   gap_Hyp_BorelMAtLeast8, gap_Hyp_VZ_AqLambda, gap_Hyp_Eisenstein_Vanishing,
   gap_Hyp_HigherRank_GoodMetric, gap_Hyp_ChernWeilForm_Proportionality,
@@ -3064,7 +3136,10 @@ def allEntries : List StrictGapEntry := [
   gap_freudenthal_1954_brown_1969_sato_kimura_PUBLISHED,
   gap_bourbaki_E7_W_invariants_PUBLISHED,
   -- Cat 3 workingAssumption + structuralEquation (16, +1 P35, +3 P39, +1 P40, +1 P53, +1 P54, +1 P55)
-  gap_paper_hodge44, gap_paper_iia, gap_paper_iib, gap_paper_formHM,
+  gap_paper_hodge44, gap_paper_iia,
+  gap_paper_iia_step_A_eisenstein_to_cusp,
+  gap_paper_iia_step_B_cuspidal_to_trivial,
+  gap_paper_iib, gap_paper_formHM,
   gap_paper_placement_reduction,
   gap_paper_section16_2, gap_paper_GP_EVII, gap_paper_clause_iii,
   gap_paper_HC_equals_algebraicity,
