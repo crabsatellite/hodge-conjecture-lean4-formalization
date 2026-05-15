@@ -381,6 +381,20 @@ theorem normSq_smul (r : ℚ) (x : OctonionQ) :
   simp
   ring
 
+/-- **Polarization** of `normSq`:
+`‖a + b‖² = ‖a‖² + ‖b‖² + 2 Re(a · conj b)`,
+where `Re(a · conj b)` is the Euclidean inner product on `OctonionQ`. -/
+theorem normSq_add (a b : OctonionQ) :
+    normSq (a + b) = normSq a + normSq b + 2 * re (a * conj b) := by
+  unfold normSq re conj
+  show (a + b).e0^2 + (a + b).e1^2 + (a + b).e2^2 + (a + b).e3^2
+       + (a + b).e4^2 + (a + b).e5^2 + (a + b).e6^2 + (a + b).e7^2
+       = (a.e0^2 + a.e1^2 + a.e2^2 + a.e3^2 + a.e4^2 + a.e5^2 + a.e6^2 + a.e7^2)
+       + (b.e0^2 + b.e1^2 + b.e2^2 + b.e3^2 + b.e4^2 + b.e5^2 + b.e6^2 + b.e7^2)
+       + 2 * (a * ⟨b.e0, -b.e1, -b.e2, -b.e3, -b.e4, -b.e5, -b.e6, -b.e7⟩).e0
+  simp
+  ring
+
 /-- `re` is `ℚ`-linear: `Re(r • x) = r · Re(x)`. -/
 @[simp] theorem re_smul (r : ℚ) (x : OctonionQ) : re (r • x) = r * re x := rfl
 

@@ -695,6 +695,42 @@ So `⟨X^#, X⟩ = N(X)` — but in the symmetric-inner-product form
 
 Proof by direct component expansion. -/
 
+/-! ### Freudenthal cross product `X × Y`
+
+The **polarization** of the (degree-2) sharp map: the symmetric bilinear
+operation `X × Y := X^#(X + Y) − X^# − Y^#` that gives back `2 X^#` on
+the diagonal `Y = X`. This is the J_3(O) analogue of the cross product
+in the Springer triple `(J, N, X × Y)` axiomatics. -/
+
+/-- The **Freudenthal cross product** on `J_3(O)`. -/
+def freudenthalCross (X Y : J3O) : J3O := sharp (X + Y) - sharp X - sharp Y
+
+/-- Diagonal value: `X × X = 2 • X^#`. -/
+@[simp] theorem freudenthalCross_self (X : J3O) :
+    freudenthalCross X X = (2 : ℚ) • sharp X := by
+  unfold freudenthalCross
+  rw [show X + X = (2 : ℚ) • X from (two_smul ℚ X).symm, sharp_smul]
+  show ((2 : ℚ)^2) • sharp X - sharp X - sharp X = (2 : ℚ) • sharp X
+  rw [show ((2 : ℚ)^2 : ℚ) = 2 + 1 + 1 from by norm_num,
+      add_smul, add_smul, one_smul]
+  abel
+
+/-- The cross product is **symmetric**: `X × Y = Y × X`. -/
+theorem freudenthalCross_comm (X Y : J3O) :
+    freudenthalCross X Y = freudenthalCross Y X := by
+  unfold freudenthalCross
+  rw [add_comm X Y]
+  abel
+
+-- TODO: prove the **closed-form** for the Freudenthal cross product:
+--   X × Y = 2 • (X ∘ Y) − tr(X) • Y − tr(Y) • X + (tr(X) · tr(Y) − ⟨X, Y⟩) • 1
+-- which, by bilinearity of jordanMul/innerProd/trace, would give
+-- bilinearity of freudenthalCross for free.
+-- Direct polynomial expansion times out; deferred until we either:
+-- (a) split into helper lemmas for each component,
+-- (b) develop normSq_add_eq lemma at OctonionQ level, or
+-- (c) use an abstract polarization principle for degree-2 maps.
+
 /-- The **degree-3 Euler identity**: `⟨X^#, X⟩ = 3 N(X)`. -/
 theorem innerProd_sharp_self (X : J3O) :
     innerProd (sharp X) X = 3 * cubicNorm X := by
