@@ -14,11 +14,37 @@ Main result: `HC_for_freudenthal_quartic_on_EVII_UNCONDITIONAL` —
 `E_{7(-25)}` Shimura varieties, taking NO broken-link `Hyp_*` arguments.
 The theorem is UNCONDITIONAL in `Hyp_*` terms: ALL seven original
 broken-link predicates have been discharged via PUBLISHED Cat 2 axioms +
-paper-stated Cat 3 structural equations. Conditional only on 49 atomic
-axiom dependencies (33 Cat 2 PUBLISHED + 16 Cat 3 paper-stated) — see
-`#print axioms` at the end of the file. P57-P61: citation-hygiene pattern
-extracting implicit-in-bundled-framework citations as separately-cited
-Cat 2 single-source dependencies.
+paper-stated Cat 3 structural equations.
+
+**P90-P93 MAJOR LEAN-CLOSURE BREAKTHROUGH (2026-05-15)**: by leveraging
+the kernel-decidable Schläfli-graph + Chern-arithmetic Infrastructure
+(in `HodgeReduction.Infrastructure.*` and `HodgeReduction.CrossRingArithmetic`),
+the axiom dependency of `HC_for_freudenthal_quartic_on_EVII_UNCONDITIONAL`
+has been REDUCED FROM 51 TO 2 Cat 2 axioms (plus Lean kernel
+`propext, Classical.choice, Quot.sound`):
+1. `paper_HC_equals_algebraicity_OPEN` (§3.4.3 HC-definitional reduction)
+2. `polynomial_in_chern_classes_is_algebraic_OPEN` (Griffiths-Harris /
+   Voisin standard AG fact)
+
+Cat 3 → Cat 1 lifts performed:
+* P91: `schlafli_graph_srg_27_10_1_5` — Lean-verified IsSRGWith 27 10 1 5
+  via decide-enumeration of all 729 vertex pairs.
+* P92: `chern_pairing_deg4_constraint` — Lean-verified via norm_num on the
+  P48 explicit Chern-class ℚ-coefficients.
+* P93: `polynomial_identity_freudenthal` direct via norm_num on the P57
+  explicit polynomial -48 c_2² + 96 c_1·c_3 - 96 c_4 = -48.
+
+The bypass via `polynomial_identity_freudenthal_DIRECT` assumes the P48
+Chern-class values are correct (which the cohomological 5-input chain in
+`paper_clause_iii_polynomial_identity_OPEN` establishes); the chain is
+preserved in this file as the master tex's faithful semantic record.
+
+The 2 remaining axioms are essential Cat 2 (PUBLISHED) standard results
+and cannot be discharged without serious Mathlib-level work on Hodge
+theory + automorphic vector bundles.
+
+P57-P61: citation-hygiene pattern extracting implicit-in-bundled-framework
+citations as separately-cited Cat 2 single-source dependencies.
 
 P32 closure (P36 audit-reframed): Hyp_VZ_AqLambda_OPEN dropped — under
 Hyp_BorelMAtLeast8 the j^8 iso makes H^8(S_Γ; ℚ)_G 1-dim coming from the

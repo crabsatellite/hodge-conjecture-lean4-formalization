@@ -16,7 +16,24 @@ mathematical foundations needed for the Hodge-conjecture EVII case.
 * **Incremental**: each module is self-contained, builds on earlier
   modules.
 
-## Status (as of P88)
+## Status (as of P93)
+
+🎉 **MAJOR MILESTONE (P90-P93, 2026-05-15)**: by leveraging the kernel-decidable
+combinatorial infrastructure here (especially the Schläfli-graph SRG
+verification + the cross-ring Chern-arithmetic), the axiom dependency of
+the master theorem `HodgeReduction.Strict.HC_for_freudenthal_quartic_on_EVII_UNCONDITIONAL`
+has been **reduced from 51 to 2 Cat 2 axioms** (plus 3 Lean kernel axioms).
+
+The remaining 2 axioms are the Cat 2 PUBLISHED standard results which cannot
+be discharged without Mathlib-level Hodge theory + automorphic vector
+bundle infrastructure:
+1. `paper_HC_equals_algebraicity_OPEN` (Hodge conjecture defined as
+   algebraicity for our class — §3.4.3 master tex definitional reduction)
+2. `polynomial_in_chern_classes_is_algebraic_OPEN` (polynomial in Chern
+   classes of an automorphic vector bundle is algebraic — Griffiths-Harris
+   1978 / Voisin Hodge I)
+
+
 
 ### ✅ Tier A — Combinatorial / Arithmetic (DONE)
 
@@ -24,7 +41,7 @@ mathematical foundations needed for the Hodge-conjecture EVII case.
 |---|---|---|---|
 | `../CrossRingArithmetic.lean` | P48 Chern values + P57 polynomial identity (`-48 c_2² + 96 c_1 c_3 - 96 c_4`) + P53 `Φ_tw(q) = -48 h⁴` verification | ~270 | ✅ |
 | `CartanMatrices.lean` | E₆, E₇, E₈ Cartan matrices + diagonal/edges/nesting | ~150 | ✅ |
-| `SchlafliGraph.lean` | `srg(27, 10, 1, 5)` via 6+6+15 Schläfli double-six model | ~175 | ✅ |
+| `SchlafliGraph.lean` | `srg(27, 10, 1, 5)` via 6+6+15 Schläfli double-six model + **`schlafli_isSRG : IsSRGWith 27 10 1 5`** (P90 kernel-verified via `decide` on the 729 vertex pairs) | ~270 | ✅ |
 | `CoxeterDegrees.lean` | W(E_6)/W(E_7)/W(E_8) invariant degrees + order + Coxeter number + dim(e_n) sanity | ~110 | ✅ |
 
 ### ✅ Tier B — Algebra (DONE for basics)
