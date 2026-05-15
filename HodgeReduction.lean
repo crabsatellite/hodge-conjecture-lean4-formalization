@@ -68,6 +68,7 @@ import HodgeReduction.Infrastructure.Cohomology.ChowRing
 import HodgeReduction.Infrastructure.Cohomology.HCCodim1
 import HodgeReduction.Infrastructure.Cohomology.PicardGroup
 import HodgeReduction.Infrastructure.Cohomology.AmpleDivisor
+import HodgeReduction.Infrastructure.Cohomology.Galois
 import HodgeReduction.Infrastructure.Shimura.PeriodDomain
 import HodgeReduction.Infrastructure.Shimura.SchubertCells
 import HodgeReduction.Infrastructure.HodgeStructure.Basic
@@ -83,6 +84,7 @@ import HodgeReduction.Infrastructure.Shimura.CompactDual
 import HodgeReduction.Infrastructure.Shimura.MumfordExtension
 import HodgeReduction.Infrastructure.Shimura.IntersectionHomology
 import HodgeReduction.Infrastructure.Shimura.HirzebruchMumford
+import HodgeReduction.Infrastructure.Shimura.ToroidalCompactification
 import HodgeReduction.Infrastructure.AbelianVariety.Basic
 import HodgeReduction.Infrastructure.AbelianVariety.PolarisedAV
 import HodgeReduction.Infrastructure.AbelianVariety.CMType
@@ -92,5 +94,6 @@ import HodgeReduction.Infrastructure.Automorphic.Basic
 import HodgeReduction.Infrastructure.Automorphic.VoganZuckerman
 import HodgeReduction.Infrastructure.Automorphic.BorelBottWeil
 import HodgeReduction.Infrastructure.Automorphic.HeckeCorrespondence
+import HodgeReduction.Infrastructure.Automorphic.ModularForm
 import HodgeReduction.Infrastructure.LieAlgebra.Basic
 import HodgeReduction.Infrastructure.HCFramework
