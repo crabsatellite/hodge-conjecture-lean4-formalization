@@ -519,5 +519,63 @@ theorem jordanMul_sharp_eq_cubicNorm_smul_one (X : J3O) :
     show (0 : OctonionQ) = cubicNorm X • (0 : OctonionQ)
     rw [smul_zero]
 
+/-! ### Cayley-Hamilton in `J_3(O)`: `X^# = X² − tr(X) X + s_2(X) · 1`
+
+Together with the previously-proved cubic norm identity
+`X ∘ X^# = N(X) · 1`, this yields the Cayley-Hamilton-in-`J_3(O)`
+characteristic polynomial:
+`X^3 = tr(X) X² − s_2(X) X + N(X) · 1`
+where `X^3 := X ∘ X²`, `X² := X ∘ X`, and
+`s_2(X) := ((tr X)^2 − tr X²) / 2`.
+
+This is the bridge between the directly-defined sharp `X^#` and the
+Jordan-product-derived square `X²`. -/
+
+/-- The **Cayley-Hamilton identity** for `J_3(O)`:
+`X^# = X² − tr(X) • X + s_2(X) • 1`. -/
+theorem sharp_eq_cayley_hamilton (X : J3O) :
+    sharp X = jordanMul X X - trace X • X
+              + (((trace X)^2 - trace (jordanMul X X)) / 2) • (1 : J3O) := by
+  refine J3O.ext ?_ ?_ ?_ ?_ ?_ ?_
+  · -- xi1 component
+    show (sharp X).xi1 = _
+    simp only [sub_xi1, add_xi1, smul_xi1, one_xi1]
+    unfold sharp jordanMul trace
+    dsimp
+    rw [re_mul_conj_self, re_mul_conj_self, re_mul_conj_self]
+    ring
+  · -- xi2 component
+    show (sharp X).xi2 = _
+    simp only [sub_xi2, add_xi2, smul_xi2, one_xi2]
+    unfold sharp jordanMul trace
+    dsimp
+    rw [re_mul_conj_self, re_mul_conj_self, re_mul_conj_self]
+    ring
+  · -- xi3 component
+    show (sharp X).xi3 = _
+    simp only [sub_xi3, add_xi3, smul_xi3, one_xi3]
+    unfold sharp jordanMul trace
+    dsimp
+    rw [re_mul_conj_self, re_mul_conj_self, re_mul_conj_self]
+    ring
+  · -- x1 component
+    show (sharp X).x1 = _
+    simp only [sub_x1, add_x1, smul_x1, one_x1, smul_zero, add_zero]
+    unfold sharp jordanMul trace
+    dsimp
+    ext <;> simp [OctonionQ.conj] <;> ring
+  · -- x2 component
+    show (sharp X).x2 = _
+    simp only [sub_x2, add_x2, smul_x2, one_x2, smul_zero, add_zero]
+    unfold sharp jordanMul trace
+    dsimp
+    ext <;> simp [OctonionQ.conj] <;> ring
+  · -- x3 component
+    show (sharp X).x3 = _
+    simp only [sub_x3, add_x3, smul_x3, one_x3, smul_zero, add_zero]
+    unfold sharp jordanMul trace
+    dsimp
+    ext <;> simp [OctonionQ.conj] <;> ring
+
 end J3O
 end HodgeReduction.Infrastructure

@@ -245,6 +245,22 @@ master tex's identification `V_27 ≅ J₃(𝕆)` as an `E₆`-module.
 
 instance : Sub J3O := ⟨fun X Y => X + (-Y)⟩
 
+@[simp] theorem sub_xi1 (X Y : J3O) : (X - Y).xi1 = X.xi1 - Y.xi1 := by
+  show X.xi1 + (-Y).xi1 = _; show X.xi1 + -Y.xi1 = X.xi1 - Y.xi1; ring
+@[simp] theorem sub_xi2 (X Y : J3O) : (X - Y).xi2 = X.xi2 - Y.xi2 := by
+  show X.xi2 + (-Y).xi2 = _; show X.xi2 + -Y.xi2 = X.xi2 - Y.xi2; ring
+@[simp] theorem sub_xi3 (X Y : J3O) : (X - Y).xi3 = X.xi3 - Y.xi3 := by
+  show X.xi3 + (-Y).xi3 = _; show X.xi3 + -Y.xi3 = X.xi3 - Y.xi3; ring
+@[simp] theorem sub_x1 (X Y : J3O) : (X - Y).x1 = X.x1 - Y.x1 := by
+  show X.x1 + (-Y).x1 = _; show X.x1 + -Y.x1 = X.x1 - Y.x1
+  ext <;> simp <;> ring
+@[simp] theorem sub_x2 (X Y : J3O) : (X - Y).x2 = X.x2 - Y.x2 := by
+  show X.x2 + (-Y).x2 = _; show X.x2 + -Y.x2 = X.x2 - Y.x2
+  ext <;> simp <;> ring
+@[simp] theorem sub_x3 (X Y : J3O) : (X - Y).x3 = X.x3 - Y.x3 := by
+  show X.x3 + (-Y).x3 = _; show X.x3 + -Y.x3 = X.x3 - Y.x3
+  ext <;> simp <;> ring
+
 instance instAddCommGroup : AddCommGroup J3O where
   zero := (0 : J3O)
   add := (· + ·)
