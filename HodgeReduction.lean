@@ -82,6 +82,9 @@ import HodgeReduction.Infrastructure.Shimura.MumfordExtension
 import HodgeReduction.Infrastructure.Shimura.IntersectionHomology
 import HodgeReduction.Infrastructure.Shimura.HirzebruchMumford
 import HodgeReduction.Infrastructure.AbelianVariety.Basic
+import HodgeReduction.Infrastructure.AbelianVariety.PolarisedAV
+import HodgeReduction.Infrastructure.AbelianVariety.CMType
+import HodgeReduction.Infrastructure.Shimura.HermitianSymmetric
 import HodgeReduction.Infrastructure.Automorphic.Basic
 import HodgeReduction.Infrastructure.Automorphic.VoganZuckerman
 import HodgeReduction.Infrastructure.Automorphic.BorelBottWeil
