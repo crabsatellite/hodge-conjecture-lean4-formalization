@@ -971,16 +971,23 @@ opaque H8_EVII_is_one_dim_spanned_by_h4 : Prop
  precisely the weight-3 Hodge decomposition
  `V^{3,0} ⊕ V^{2,1} ⊕ V^{1,2} ⊕ V^{0,3}` (U(1) = Deligne torus).
 
- **P116 LEAN-CLOSED**: the numerical / dimension content is captured by
- our explicit Mathlib Submodule realisation
- (`Infrastructure.V56.Hodge_3_0/2_1/1_2/0_3`, P100) with dimensions
- 1 + 27 + 27 + 1 (P107). The E_6 × U(1)-equivariance (representation
- theory of E_6 acting on V_27) remains an external citation. -/
+ **P116 → P128 LEAN-CLOSED (genuine)**: captures the full structural
+ content we have:
+ 1. Each Hodge piece is a Submodule (P100)
+ 2. Decomposition existence: every v factors uniquely (P100)
+ 3. Charge-+3 piece is 1-dim (linearly iso to Q)               (P107)
+ 4. Charge-+1 piece is 27-dim (linearly iso to J3O)            (P107)
+ 5. Charge--1 piece is 27-dim (linearly iso to J3O)            (P107)
+ 6. Charge--3 piece is 1-dim (linearly iso to Q)               (P107)
+ The deep claim "this is the E_6 × U(1) decomposition" (i.e., these
+ pieces ARE the V_27, V_27* representations of E_6) requires defining
+ E_6 acting on J_3(O), deferred. What's captured is the structural data
+ of the 4-piece graded decomposition with correct dimensions. -/
 def V56_hodge_decomposition_under_E6_U1 : Prop :=
-  (Module.finrank ℚ Infrastructure.V56.Hodge_3_0 = 1) ∧
-  (Module.finrank ℚ Infrastructure.V56.Hodge_2_1 = 27) ∧
-  (Module.finrank ℚ Infrastructure.V56.Hodge_1_2 = 27) ∧
-  (Module.finrank ℚ Infrastructure.V56.Hodge_0_3 = 1) ∧
+  (Nonempty (Infrastructure.V56.Hodge_3_0 ≃ₗ[ℚ] ℚ)) ∧
+  (Nonempty (Infrastructure.V56.Hodge_2_1 ≃ₗ[ℚ] Infrastructure.J3O)) ∧
+  (Nonempty (Infrastructure.V56.Hodge_1_2 ≃ₗ[ℚ] Infrastructure.J3O)) ∧
+  (Nonempty (Infrastructure.V56.Hodge_0_3 ≃ₗ[ℚ] ℚ)) ∧
   (∀ v : Infrastructure.V56,
     ∃ (v30 : Infrastructure.V56.Hodge_3_0) (v21 : Infrastructure.V56.Hodge_2_1)
       (v12 : Infrastructure.V56.Hodge_1_2) (v03 : Infrastructure.V56.Hodge_0_3),
@@ -1442,13 +1449,14 @@ axiom H8_EVII_one_dim_OPEN : H8_EVII_is_one_dim_spanned_by_h4
  this decomposition IS the Hodge decomposition (Hodge types
  `(3,0),(2,1),(1,2),(0,3)`).
 
- **P116 LEAN-CLOSED**: backed by our concrete Mathlib Submodule
- construction of the 4 Hodge pieces (P100, P107). -/
+ **P128 LEAN-CLOSED**: backed by explicit `LinearEquiv` constructions
+ to `ℚ` and `J3O` (P100 Submodules + P107 equivs), not just dimension
+ numerics. -/
 theorem V56_hodge_decomposition_OPEN : V56_hodge_decomposition_under_E6_U1 :=
-  ⟨Infrastructure.V56.finrank_Hodge_3_0,
-   Infrastructure.V56.finrank_Hodge_2_1,
-   Infrastructure.V56.finrank_Hodge_1_2,
-   Infrastructure.V56.finrank_Hodge_0_3,
+  ⟨⟨Infrastructure.V56.Hodge_3_0_equiv⟩,
+   ⟨Infrastructure.V56.Hodge_2_1_equiv⟩,
+   ⟨Infrastructure.V56.Hodge_1_2_equiv⟩,
+   ⟨Infrastructure.V56.Hodge_0_3_equiv⟩,
    Infrastructure.V56.hodge_decomp_exists⟩
 
 /-- **Cat 3 structuralEquation (§3.4.3, P39 → P41-reframed)** — the
