@@ -824,6 +824,25 @@ theorem freudenthalCross_smul_right (r : ℚ) (X Y : J3O) :
     freudenthalCross X (r • Y) = r • freudenthalCross X Y := by
   rw [freudenthalCross_comm, freudenthalCross_smul_left, freudenthalCross_comm]
 
+/-- The Freudenthal cross product as a Mathlib `ℚ`-bilinear map. -/
+def freudenthalCrossBilin : J3O →ₗ[ℚ] J3O →ₗ[ℚ] J3O :=
+  LinearMap.mk₂ ℚ freudenthalCross
+    freudenthalCross_add_left
+    freudenthalCross_smul_left
+    freudenthalCross_add_right
+    freudenthalCross_smul_right
+
+@[simp] theorem freudenthalCrossBilin_apply (X Y : J3O) :
+    freudenthalCrossBilin X Y = freudenthalCross X Y := rfl
+
+/-- The cross product `BilinForm` is symmetric: `freudenthalCrossBilin.flip = freudenthalCrossBilin`. -/
+theorem freudenthalCrossBilin_isSymm :
+    freudenthalCrossBilin.flip = freudenthalCrossBilin := by
+  refine LinearMap.ext fun X => ?_
+  refine LinearMap.ext fun Y => ?_
+  show freudenthalCross Y X = freudenthalCross X Y
+  exact (freudenthalCross_comm X Y).symm
+
 /-- The **degree-3 Euler identity**: `⟨X^#, X⟩ = 3 N(X)`. -/
 theorem innerProd_sharp_self (X : J3O) :
     innerProd (sharp X) X = 3 * cubicNorm X := by
