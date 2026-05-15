@@ -7,6 +7,8 @@ import Mathlib.Tactic.Ring
 import Mathlib.Tactic.NormNum
 import Mathlib.Tactic.Linarith
 import Mathlib.Tactic.Positivity
+import Mathlib.Algebra.Module.Basic
+import Mathlib.Algebra.Group.Basic
 
 /-!
 # Octonions over `ℚ` (8-dimensional non-associative `ℚ`-algebra)
@@ -464,6 +466,40 @@ theorem inv_mul_cancel (x : OctonionQ) (hx : x ≠ 0) : inv x * x = 1 := by
   have hne : normSq x ≠ 0 := (normSq_ne_zero_iff x).mpr hx
   rw [inv_mul_cancel₀ hne]
   ext <;> simp
+
+/-! ### Mathlib typeclass upgrade: `AddCommGroup` + `Module ℚ`
+
+Promote the explicit standalone instances `Zero`, `Add`, `Neg`, `Sub`,
+`SMul ℚ` to a full Mathlib `AddCommGroup` + `Module ℚ` structure. This
+opens access to all of Mathlib's linear-algebra machinery (`LinearMap`,
+`Basis`, `Module.rank`, `FiniteDimensional`, ...).
+
+The `nsmul` / `zsmul` actions are defined component-wise via the
+`ℕ → ℚ` / `ℤ → ℚ` casts, avoiding the `nsmulRec`/`zsmulRec` default
+which sometimes fails to elaborate for struct-of-fields types.
+-/
+
+instance instAddCommGroup : AddCommGroup OctonionQ where
+  zero := (0 : OctonionQ)
+  add := (· + ·)
+  neg := Neg.neg
+  sub := Sub.sub
+  add_assoc x y z := by ext <;> show _ + _ + _ = _ + (_ + _) <;> ring
+  zero_add x := by ext <;> show (0 : ℚ) + _ = _ <;> ring
+  add_zero x := by ext <;> show _ + (0 : ℚ) = _ <;> ring
+  add_comm x y := by ext <;> show _ + _ = _ + _ <;> ring
+  neg_add_cancel x := by ext <;> show -(_ : ℚ) + _ = 0 <;> ring
+  nsmul := nsmulRec
+  zsmul := zsmulRec
+
+instance instModuleRat : Module ℚ OctonionQ where
+  smul := SMul.smul
+  one_smul x := by ext <;> show (1 : ℚ) * _ = _ <;> ring
+  mul_smul r s x := by ext <;> show (_ * _) * _ = _ * (_ * _) <;> ring
+  smul_zero r := by ext <;> simp
+  smul_add r x y := by ext <;> show _ * (_ + _) = _ * _ + _ * _ <;> ring
+  add_smul r s x := by ext <;> show (_ + _) * _ = _ * _ + _ * _ <;> ring
+  zero_smul x := by ext <;> simp
 
 end OctonionQ
 
