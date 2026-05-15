@@ -318,6 +318,16 @@ instance : SMul ℚ V56 := ⟨fun r v => ⟨r * v.a, r • v.A, r • v.B, r * v
 @[simp] theorem smul_B (r : ℚ) (v : V56) : (r • v).B = r • v.B := rfl
 @[simp] theorem smul_b (r : ℚ) (v : V56) : (r • v).b = r * v.b := rfl
 
+@[simp] theorem add_a (v w : V56) : (v + w).a = v.a + w.a := rfl
+@[simp] theorem add_A (v w : V56) : (v + w).A = v.A + w.A := rfl
+@[simp] theorem add_B (v w : V56) : (v + w).B = v.B + w.B := rfl
+@[simp] theorem add_b (v w : V56) : (v + w).b = v.b + w.b := rfl
+
+@[simp] theorem neg_a (v : V56) : (-v).a = -v.a := rfl
+@[simp] theorem neg_A (v : V56) : (-v).A = -v.A := rfl
+@[simp] theorem neg_B (v : V56) : (-v).B = -v.B := rfl
+@[simp] theorem neg_b (v : V56) : (-v).b = -v.b := rfl
+
 /-- The **Freudenthal quartic** `q : V₅₆ → ℚ`. -/
 def freudenthalQuartic (v : V56) : ℚ :=
   (v.a * v.b - J3O.innerProd v.A v.B)^2
@@ -382,6 +392,109 @@ theorem freudenthalQuartic_neg (v : V56) :
     · show -v.b = (-1 : ℚ) * v.b; ring
   rw [h, freudenthalQuartic_smul]
   norm_num
+
+/-! ### The symplectic form `ω : V₅₆ × V₅₆ → ℚ`
+
+Beyond the Freudenthal quartic `q`, the 56-dim Freudenthal triple system carries
+a canonical **antisymmetric bilinear form** `ω`, the symplectic form making
+`V₅₆` a 56-dim symplectic representation of `E₇` ⊂ `Sp(56, ℚ)`.
+
+For `v = (a, A, B, b)` and `w = (c, C, D, d)`:
+```
+   ω(v, w) = a·d - b·c + ⟨A, D⟩ - ⟨B, C⟩
+```
+
+Key properties (proven here):
+* `omega_antisymm`: `ω(v, w) = -ω(w, v)`
+* `omega_zero_left`: `ω(0, w) = 0`
+* `omega_smul_left`: `ω(r • v, w) = r · ω(v, w)`
+* `omega_smul_diag`: `ω(r • v, r • w) = r² · ω(v, w)` (homogeneous of degree 2)
+
+`E₇` is precisely the subgroup of `GL(V₅₆)` preserving the pair `(q, ω)`.
+
+References:
+* R. B. Brown, "Groups of type E_7", *J. Reine Angew. Math.* **236** (1969),
+  79-102.
+* H. Freudenthal, "Beziehungen der E_7 und E_8 zur Oktavenebene I-V",
+  *Indag. Math.* **16-17** (1954-55).
+-/
+
+/-- The **symplectic form** `ω : V₅₆ × V₅₆ → ℚ` on the 56-dim Freudenthal
+triple system. -/
+def omega (v w : V56) : ℚ :=
+  v.a * w.b - v.b * w.a + J3O.innerProd v.A w.B - J3O.innerProd v.B w.A
+
+/-- `ω` is **antisymmetric**: `ω(v, w) = -ω(w, v)`. -/
+theorem omega_antisymm (v w : V56) : omega v w = -omega w v := by
+  unfold omega
+  rw [J3O.innerProd_symm v.A w.B, J3O.innerProd_symm v.B w.A]
+  ring
+
+/-- `ω(v, v) = 0` (consequence of antisymmetry). -/
+@[simp] theorem omega_self (v : V56) : omega v v = 0 := by
+  have h : omega v v = -omega v v := omega_antisymm v v
+  linarith
+
+/-- `ω(0, w) = 0`. -/
+@[simp] theorem omega_zero_left (w : V56) : omega 0 w = 0 := by
+  unfold omega
+  show (0 : ℚ) * w.b - 0 * w.a + J3O.innerProd 0 w.B - J3O.innerProd 0 w.A = 0
+  simp
+
+/-- `ω(v, 0) = 0`. -/
+@[simp] theorem omega_zero_right (v : V56) : omega v 0 = 0 := by
+  rw [omega_antisymm, omega_zero_left, neg_zero]
+
+/-- `ω` is **left-linear** under scalar multiplication: `ω(r • v, w) = r · ω(v, w)`. -/
+theorem omega_smul_left (r : ℚ) (v w : V56) :
+    omega (r • v) w = r * omega v w := by
+  unfold omega
+  simp only [smul_a, smul_b, smul_A, smul_B,
+             J3O.innerProd_smul_left]
+  ring
+
+/-- `ω` is **right-linear** under scalar multiplication: `ω(v, r • w) = r · ω(v, w)`. -/
+theorem omega_smul_right (r : ℚ) (v w : V56) :
+    omega v (r • w) = r * omega v w := by
+  unfold omega
+  simp only [smul_a, smul_b, smul_A, smul_B,
+             J3O.innerProd_smul_right]
+  ring
+
+/-- `ω` is **diagonal-quadratic**: `ω(r • v, r • w) = r² · ω(v, w)`. -/
+theorem omega_smul_diag (r : ℚ) (v w : V56) :
+    omega (r • v) (r • w) = r^2 * omega v w := by
+  rw [omega_smul_left, omega_smul_right]; ring
+
+/-- `ω` is **left-additive**: `ω(v + v', w) = ω(v, w) + ω(v', w)`. -/
+theorem omega_add_left (v v' w : V56) :
+    omega (v + v') w = omega v w + omega v' w := by
+  unfold omega
+  simp only [add_a, add_b, add_A, add_B,
+             J3O.innerProd_add_left]
+  ring
+
+/-- `ω` is **right-additive**: `ω(v, w + w') = ω(v, w) + ω(v, w')`. -/
+theorem omega_add_right (v w w' : V56) :
+    omega v (w + w') = omega v w + omega v w' := by
+  unfold omega
+  simp only [add_a, add_b, add_A, add_B,
+             J3O.innerProd_add_right]
+  ring
+
+/-- `ω` is **left-negation-compatible**: `ω(-v, w) = -ω(v, w)`. -/
+theorem omega_neg_left (v w : V56) : omega (-v) w = -omega v w := by
+  unfold omega
+  simp only [neg_a, neg_b, neg_A, neg_B,
+             J3O.innerProd_neg_left]
+  ring
+
+/-- `ω` is **right-negation-compatible**: `ω(v, -w) = -ω(v, w)`. -/
+theorem omega_neg_right (v w : V56) : omega v (-w) = -omega v w := by
+  unfold omega
+  simp only [neg_a, neg_b, neg_A, neg_B,
+             J3O.innerProd_neg_right]
+  ring
 
 end V56
 
