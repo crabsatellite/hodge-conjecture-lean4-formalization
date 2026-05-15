@@ -100,10 +100,13 @@ import HodgeReduction.Infrastructure.Shimura.IntersectionHomology
 import HodgeReduction.Infrastructure.Shimura.HirzebruchMumford
 import HodgeReduction.Infrastructure.Shimura.ToroidalCompactification
 import HodgeReduction.Infrastructure.Shimura.BorelHirzebruch
+import HodgeReduction.Infrastructure.Shimura.HermitianForm
 import HodgeReduction.Infrastructure.AbelianVariety.Basic
 import HodgeReduction.Infrastructure.AbelianVariety.PolarisedAV
 import HodgeReduction.Infrastructure.AbelianVariety.CMType
 import HodgeReduction.Infrastructure.AbelianVariety.KugaSatake
+import HodgeReduction.Infrastructure.AbelianVariety.K3Surface
+import HodgeReduction.Infrastructure.AbelianVariety.HyperKahler
 import HodgeReduction.Infrastructure.Shimura.HermitianSymmetric
 import HodgeReduction.Infrastructure.Shimura.ArithmeticGroup
 import HodgeReduction.Infrastructure.Automorphic.Basic
