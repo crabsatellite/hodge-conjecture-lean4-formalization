@@ -64,6 +64,7 @@ import HodgeReduction.Infrastructure.Cohomology.Lefschetz
 import HodgeReduction.Infrastructure.Cohomology.HodgeCycle
 import HodgeReduction.Infrastructure.Cohomology.HardLefschetz
 import HodgeReduction.Infrastructure.Cohomology.NeronSeveri
+import HodgeReduction.Infrastructure.Cohomology.ChowRing
 import HodgeReduction.Infrastructure.HodgeStructure.Basic
 import HodgeReduction.Infrastructure.HodgeStructure.Polarised
 import HodgeReduction.Infrastructure.HodgeStructure.V56Instance
