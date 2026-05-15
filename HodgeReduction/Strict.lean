@@ -12,8 +12,8 @@ Main result: `HC_for_freudenthal_quartic_on_EVII_UNCONDITIONAL` —
 `E_{7(-25)}` Shimura varieties, taking NO broken-link `Hyp_*` arguments.
 The theorem is UNCONDITIONAL in `Hyp_*` terms: ALL seven original
 broken-link predicates have been discharged via PUBLISHED Cat 2 axioms +
-paper-stated Cat 3 structural equations. Conditional only on 48 atomic
-axiom dependencies (32 Cat 2 PUBLISHED + 16 Cat 3 paper-stated) — see
+paper-stated Cat 3 structural equations. Conditional only on 49 atomic
+axiom dependencies (33 Cat 2 PUBLISHED + 16 Cat 3 paper-stated) — see
 `#print axioms` at the end of the file. P57-P61: citation-hygiene pattern
 extracting implicit-in-bundled-framework citations as separately-cited
 Cat 2 single-source dependencies.
@@ -262,7 +262,7 @@ into 8 explicit ingredients.
 7. **Bijective ledger** per §19 Einstein Test exemplar — every declaration has
    exactly one `StrictGapEntry` and vice versa.
 8. **`#print axioms`** kernel-purity check (§1.5 primary verification tool) at
-   end of file surfaces all 48 atomic dependencies of the Main Theorem (32
+   end of file surfaces all 49 atomic dependencies of the Main Theorem (33
    Cat 2 PUBLISHED + 16 Cat 3 paper-stated; ZERO Hyp_* in signature).
 
 ## Layout
@@ -499,6 +499,16 @@ opaque J_3_O_cubic_norm_form_zorn_basis : Prop
  (`{q = 0} = {rank ≤ 3} ⊃ {rank 1} = Ě_VII`). Load-bearing in P43-P45
  normal-jet identification of `q` along the closed orbit. -/
 opaque freudenthal_triple_product_T : Prop
+
+/-- **Cat 3 hypothesis predicate (§3.4.2, P69)** — the Weyl group `W(E_7)`
+ has invariant degrees `{2, 6, 8, 10, 12, 14, 18}` (Bourbaki Ch. VI tables;
+ alternatively the Shephard-Todd classification of finite reflection
+ groups). Crucially, there is NO degree-4 invariant other than `κ²` (the
+ square of the degree-2 Killing form). This is the load-bearing fact
+ making the W(E_7)-invariant degree-4 polynomial `q|_{t^∨}` reduce to
+ `c·κ²`, hence land in the augmentation ideal of the coinvariant
+ algebra. -/
+opaque W_E7_invariant_degrees_2_6_8_10_12_14_18 : Prop
 
 /-- **Cat 3 hypothesis predicate (§3.4.2)** — [q] is algebraic on S_Γ^{tor}. -/
 opaque freudenthal_is_algebraic : Prop
@@ -1149,6 +1159,16 @@ axiom tits_jacobson_J_3_O_PUBLISHED_OPEN :
 axiom freudenthal_1954_brown_1969_sato_kimura_PUBLISHED_OPEN :
   freudenthal_triple_product_T
 
+/-- **Cat 2 PUBLISHED (§3.3, P69)** — N. Bourbaki, *Groupes et algèbres de
+ Lie*, Chap. IV-VI (Hermann 1968), Ch. VI §4.5 Tables (E_7 invariant
+ degrees) + G. C. Shephard, J. A. Todd, "Finite unitary reflection
+ groups", Canad. J. Math. 6 (1954), 274-304 + L. Solomon, "Invariants of
+ finite reflection groups", Nagoya Math. J. 22 (1963), 57-64. The Weyl
+ group `W(E_7)` has invariant degrees `{2, 6, 8, 10, 12, 14, 18}`; in
+ particular NO degree-4 invariant beyond `κ²`. -/
+axiom bourbaki_E7_W_invariants_PUBLISHED_OPEN :
+  W_E7_invariant_degrees_2_6_8_10_12_14_18
+
 /-- **Cat 2 PUBLISHED (§3.3)** — P30 audit closure: previous gapBlocked
  status overly conservative. Single-source citation found:
  H. Toda, "Cohomology of the classifying space of exceptional Lie groups",
@@ -1227,6 +1247,7 @@ axiom V56_hodge_decomposition_OPEN : V56_hodge_decomposition_under_E6_U1
 axiom canonical_Phi_vanishes_by_augmentation_OPEN :
   canonical_Phi_lands_in_W_E7_augmentation_ideal →
   H8_EVII_is_one_dim_spanned_by_h4 →
+  W_E7_invariant_degrees_2_6_8_10_12_14_18 →
   twisted_Phi_L_well_defined
 
 /-- **Cat 3 workingAssumption (§3.4.4, P39 → P41-reframed)** — the genuine
@@ -1596,7 +1617,8 @@ theorem Hyp_TwistedPhiL_Coefficient_Nonzero_COMPUTED :
     V56_hodge_decomposition_OPEN
     (canonical_Phi_vanishes_by_augmentation_OPEN
       borel_hirzebruch_coinvariant_augmentation_OPEN
-      H8_EVII_one_dim_OPEN)
+      H8_EVII_one_dim_OPEN
+      bourbaki_E7_W_invariants_PUBLISHED_OPEN)
     schlafli_graph_PUBLISHED_OPEN
     tits_jacobson_J_3_O_PUBLISHED_OPEN
 
@@ -1643,7 +1665,8 @@ theorem Hyp_CrossRingPhiNonzero_DERIVED :
   paper_twisted_Phi_L_reduction_OPEN
     (canonical_Phi_vanishes_by_augmentation_OPEN
       borel_hirzebruch_coinvariant_augmentation_OPEN
-      H8_EVII_one_dim_OPEN)
+      H8_EVII_one_dim_OPEN
+      bourbaki_E7_W_invariants_PUBLISHED_OPEN)
     V56_hodge_decomposition_OPEN
     (freudenthal_scalar_piece_computation_OPEN
       V56_hodge_decomposition_OPEN
@@ -2012,6 +2035,14 @@ def gap_freudenthal_triple_product_T : StrictGapEntry :=
     paperSource := "P68: Freudenthal triple product T : V_56³ → V_56 making V_56 a Freudenthal triple system; q(v) ∼ ⟨T(v,v,v), v⟩. Plus Sato-Kimura rank stratification {q = 0} = {rank ≤ 3} ⊃ Ě_VII = {rank 1}. Used in P43-P45 normal-jet identification"
     attackHistory := ["P68: opaque Prop carrier for the Freudenthal triple product T and the Sato-Kimura rank stratification"]
     scope := "Freudenthal triple product T + Sato-Kimura rank stratification; load-bearing in P43-P45 normal-jet computation (P68)" }
+
+def gap_W_E7_invariant_degrees_2_6_8_10_12_14_18 : StrictGapEntry :=
+  { name := "W_E7_invariant_degrees_2_6_8_10_12_14_18"
+    status := .gapOpen, inputCategory := .cat3PaperNovel
+    cat3SubType := .hypothesisPredicate
+    paperSource := "P69: W(E_7) Weyl-group invariant degrees {2, 6, 8, 10, 12, 14, 18} (Bourbaki Ch. VI tables); NO degree-4 invariant beyond κ². Load-bearing in P39's augmentation-ideal argument (q|_{t^∨} = c·κ²)"
+    attackHistory := ["P69: opaque Prop carrier for the W(E_7) Weyl-group invariant-degrees structure"]
+    scope := "W(E_7) invariant degrees {2,6,8,10,12,14,18}; load-bearing for q|_{t^∨} = c·κ² → augmentation ideal (P69)" }
 
 def gap_freudenthal_is_algebraic : StrictGapEntry :=
   { name := "freudenthal_is_algebraic"
@@ -2468,6 +2499,14 @@ def gap_freudenthal_1954_brown_1969_sato_kimura_PUBLISHED : StrictGapEntry :=
     attackHistory := ["P68 (2026-05-15): Cat 2 single-step; Freudenthal triple product T on V_56 + Sato-Kimura rank stratification. Previously implicit in P43-P45 normal-jet paper-narrative; now extracted as a separately-cited Cat 2 single-source dependency"]
     scope := "Cat 2 PUBLISHED: Freudenthal triple product T + Sato-Kimura rank stratification of V_56 of E_7; load-bearing in P43-P45 normal-jet identification (P68)" }
 
+def gap_bourbaki_E7_W_invariants_PUBLISHED : StrictGapEntry :=
+  { name := "bourbaki_E7_W_invariants_PUBLISHED_OPEN"
+    status := .gapOpen, inputCategory := .cat2External
+    cat3SubType := .notApplicable
+    paperSource := "N. Bourbaki, *Groupes et algèbres de Lie*, Chap. IV-VI (Hermann 1968), Ch. VI §4.5 Tables + G. C. Shephard, J. A. Todd, 'Finite unitary reflection groups', Canad. J. Math. 6 (1954), 274-304 + L. Solomon, 'Invariants of finite reflection groups', Nagoya Math. J. 22 (1963), 57-64"
+    attackHistory := ["P69 (2026-05-15): Cat 2 single-step; Bourbaki Ch. VI Tables W(E_7) invariant degrees {2,6,8,10,12,14,18}; no degree-4 invariant beyond κ². Previously embedded in P39 augmentation-ideal narrative; now extracted as a separately-cited Cat 2 single-source dependency"]
+    scope := "Cat 2 PUBLISHED: Bourbaki W(E_7) invariant degrees; load-bearing in P39 q|_{t^∨} = c·κ² augmentation reasoning (P69)" }
+
 def gap_borel_toda_E6_U1 : StrictGapEntry :=
   { name := "borel_toda_E6_U1_presentation_OPEN"
     status := .gapOpen, inputCategory := .cat2External
@@ -2875,7 +2914,7 @@ def gap_HC_Main : StrictGapEntry :=
       "P61 EXPLICIT j^q G-EQUIVARIANCE: paper_hodge44_step_OPEN refactored 2-input → 3-input by adding j_q_G_equivariance_principle (the Matsushima homomorphism j^q is G-equivariant, sending G-invariant classes on Ě to G-invariant classes on S_Γ). Cited to Matsushima 1962 Osaka Math. J. 14 + Borel 1974 §3-§8. Previously implicit in cohomologyIso_at_deg8 carrier semantics; now extracted as a separately-cited Cat 2 single-source dependency. Load-bearing in the freudenthal-class-G-invariance derivation: h^4 G-inv on Ě_VII ⟹ j^8(h^4) G-inv on S_Γ.",
       "P62 EXPLICIT BOREL-HIRZEBRUCH h = c_1(L): paper_placement_reduction_OPEN refactored 3-input → 4-input by adding h_equals_c_1_canonical_line_bundle (the Borel-Hirzebruch 1958-60 identification of the Kähler class h on Ě_VII with the first Chern class of the canonical line bundle L). Cited to Borel-Hirzebruch Amer. J. Math. 80-82 Part I §13-15 + Part II §28-30. Previously implicit in paper-narrative step (iv) j^8(h^4) = c_1(L̄)^4; now extracted as a separately-cited Cat 2 single-source dependency."
     ]
-    scope := "HC for Freudenthal quartic [q] on EVII Shimura varieties; Hyp_* count 7 → 6 (P32) → 5 (P34) → 4 (P35) → 3 (P53) → 2 (P54) → 1 (P55) → 0 (P56). P57-P68 citation-hygiene rounds extract implicit-in-bundled-framework facts as separately-cited Cat 2 axioms. Conditional only on 48 atomic axioms (32 Cat 2 PUBLISHED + 16 Cat 3 paper-stated)."
+    scope := "HC for Freudenthal quartic [q] on EVII Shimura varieties; Hyp_* count 7 → 6 (P32) → 5 (P34) → 4 (P35) → 3 (P53) → 2 (P54) → 1 (P55) → 0 (P56). P57-P69 citation-hygiene rounds extract implicit-in-bundled-framework facts as separately-cited Cat 2 axioms. Conditional only on 49 atomic axioms (33 Cat 2 PUBLISHED + 16 Cat 3 paper-stated)."
     conditionalOn := [
       -- ZERO Hyp_* broken-link predicates (P56 final: Main Theorem is UNCONDITIONAL in Hyp_* terms)
       -- 3 Cat 2 PUBLISHED (was BLOCKED; P30 closure via Toda 1975 + Kono-Mimura 1976)
@@ -2902,6 +2941,7 @@ def gap_HC_Main : StrictGapEntry :=
       "schlafli_graph_PUBLISHED_OPEN",
       "tits_jacobson_J_3_O_PUBLISHED_OPEN",
       "freudenthal_1954_brown_1969_sato_kimura_PUBLISHED_OPEN",
+      "bourbaki_E7_W_invariants_PUBLISHED_OPEN",
       -- 15 paper workingAssumption/structuralEquation axioms (P35 +1, P39 +3, P40 +1, P53 +1, P54 +1, P55 +1)
       "paper_iia_realization_OPEN", "paper_formHM_EVII_OPEN",
       "paper_section16_2_OPEN", "paper_GP_EVII_OPEN",
@@ -2956,6 +2996,7 @@ def allEntries : List StrictGapEntry := [
   gap_schlafli_graph_srg_27_10_1_5,
   gap_J_3_O_cubic_norm_form_zorn_basis,
   gap_freudenthal_triple_product_T,
+  gap_W_E7_invariant_degrees_2_6_8_10_12_14_18,
   -- Hyp_* (9, +1 P39 TwistedPhiL_Coefficient, +1 P40 MumfordExtension_LBlockDiagonal)
   gap_Hyp_BorelMAtLeast8, gap_Hyp_VZ_AqLambda, gap_Hyp_Eisenstein_Vanishing,
   gap_Hyp_HigherRank_GoodMetric, gap_Hyp_ChernWeilForm_Proportionality,
@@ -2984,6 +3025,7 @@ def allEntries : List StrictGapEntry := [
   gap_schlafli_graph_PUBLISHED,
   gap_tits_jacobson_J_3_O_PUBLISHED,
   gap_freudenthal_1954_brown_1969_sato_kimura_PUBLISHED,
+  gap_bourbaki_E7_W_invariants_PUBLISHED,
   -- Cat 3 workingAssumption + structuralEquation (16, +1 P35, +3 P39, +1 P40, +1 P53, +1 P54, +1 P55)
   gap_paper_hodge44, gap_paper_iia, gap_paper_iib, gap_paper_formHM,
   gap_paper_placement_reduction,
@@ -3073,7 +3115,7 @@ end HodgeReduction.Strict
 --
 -- §1.5 designates `#print axioms` as the primary verification tool. This
 -- surfaces the exact axiom dependency of the Main Theorem in the build log:
--- 48 atomic dependencies (32 Cat 2 + 16 Cat 3 paper-stated; P35 added
+-- 49 atomic dependencies (33 Cat 2 + 16 Cat 3 paper-stated; P35 added
 -- paper_placement_reduction_OPEN, P39 added the L-equivariant Chern-Weil
 -- refinement: 3 Cat 2 + 3 Cat 3, P40 added the Hodge-refinement of
 -- Chern-Weil forms: 1 Cat 2 + 1 Cat 3, P53 added
