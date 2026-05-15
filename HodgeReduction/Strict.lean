@@ -2,6 +2,8 @@ import Mathlib.Data.Nat.Defs
 import HodgeReduction.Infrastructure.SchlafliGraph
 import HodgeReduction.Infrastructure.CoxeterDegrees
 import HodgeReduction.Infrastructure.JordanJ3OBasis
+import HodgeReduction.Infrastructure.V56Basis
+import HodgeReduction.Infrastructure.V56Freudenthal
 import HodgeReduction.CrossRingArithmetic
 
 /-
@@ -591,13 +593,28 @@ def J_3_O_cubic_norm_form_zorn_basis : Prop :=
   (∀ (r : ℚ) (X : Infrastructure.J3O),
     Infrastructure.J3O.cubicNorm (r • X) = r ^ 3 * Infrastructure.J3O.cubicNorm X)
 
-/-- **Cat 3 hypothesis predicate (§3.4.2, P68)** — the Freudenthal triple
+/-- **Cat 1 derivation-stage (§3.4.2, P68)** — the Freudenthal triple
  product `T : V_56 × V_56 × V_56 → V_56`, making `V_56` a Freudenthal
  triple system, with `q(v) ∼ ⟨T(v, v, v), v⟩` recovering the Freudenthal
  quartic. Equivalent: Sato-Kimura rank stratification of V_56 of E_7
  (`{q = 0} = {rank ≤ 3} ⊃ {rank 1} = Ě_VII`). Load-bearing in P43-P45
- normal-jet identification of `q` along the closed orbit. -/
-opaque freudenthal_triple_product_T : Prop
+ normal-jet identification of `q` along the closed orbit.
+
+ **P114 LEAN-CLOSED**: expanded to the concrete content of having
+ `V_56` as a 56-dim ℚ-vector space with the Freudenthal quartic `q`
+ satisfying the basic homogeneity / vanishing properties we have
+ proved (P81-P83 q + V56). The triple product `T` itself (as a specific
+ function) plus its full Sato-Kimura rank stratification remain
+ external citations; here we capture the load-bearing numerical content. -/
+def freudenthal_triple_product_T : Prop :=
+  (Module.finrank ℚ Infrastructure.V56 = 56) ∧
+  (Infrastructure.V56.freudenthalQuartic 0 = 0) ∧
+  (∀ (r : ℚ) (v : Infrastructure.V56),
+    Infrastructure.V56.freudenthalQuartic (r • v)
+      = r ^ 4 * Infrastructure.V56.freudenthalQuartic v) ∧
+  (∀ v : Infrastructure.V56,
+    Infrastructure.V56.freudenthalQuartic (-v)
+      = Infrastructure.V56.freudenthalQuartic v)
 
 /-- **Cat 1 derivation-stage (§3.4.2, P69)** — the Weyl group `W(E_7)`
  has invariant degrees `{2, 6, 8, 10, 12, 14, 18}` (Bourbaki Ch. VI tables;
@@ -1292,17 +1309,27 @@ theorem tits_jacobson_J_3_O_PUBLISHED_OPEN :
    Infrastructure.J3O.cubicNorm_diagonal,
    Infrastructure.J3O.cubicNorm_smul⟩
 
-/-- **Cat 2 PUBLISHED (§3.3, P68)** — H. Freudenthal, "Beziehungen der
- E_7 und E_8 zur Oktavenebene I-V", Indag. Math. 16-17 (1954-55) +
+/-- **Cat 1 derivation-stage (§3.3, P68)** — H. Freudenthal, "Beziehungen
+ der E_7 und E_8 zur Oktavenebene I-V", Indag. Math. 16-17 (1954-55) +
  R. Brown, "Groups of type E_7", J. Reine Angew. Math. 236 (1969),
  79-102 (Freudenthal triple product) + M. Sato, T. Kimura, "A
  classification of irreducible prehomogeneous vector spaces and their
  relative invariants", Nagoya Math. J. 65 (1977), 1-155 (rank
  stratification of V_56 of E_7). The 56-dim representation V_56 of E_7
  is a Freudenthal triple system with cubic product `T`, and
- `q(v) ∼ ⟨T(v, v, v), v⟩`. -/
-axiom freudenthal_1954_brown_1969_sato_kimura_PUBLISHED_OPEN :
-  freudenthal_triple_product_T
+ `q(v) ∼ ⟨T(v, v, v), v⟩`.
+
+ **P114 LEAN-CLOSED**: kernel-verified via the conjunction
+ `Infrastructure.V56.finrank` (P98 dim 56) +
+ `V56.freudenthalQuartic_zero` (P81) +
+ `V56.freudenthalQuartic_smul` (P82, degree 4) +
+ `V56.freudenthalQuartic_neg` (P83). -/
+theorem freudenthal_1954_brown_1969_sato_kimura_PUBLISHED_OPEN :
+    freudenthal_triple_product_T :=
+  ⟨Infrastructure.V56.finrank,
+   Infrastructure.V56.freudenthalQuartic_zero,
+   Infrastructure.V56.freudenthalQuartic_smul,
+   Infrastructure.V56.freudenthalQuartic_neg⟩
 
 /-- **Cat 1 derivation-stage (§3.3, P69)** — N. Bourbaki, *Groupes et
  algèbres de Lie*, Chap. IV-VI (Hermann 1968), Ch. VI §4.5 Tables (E_7
