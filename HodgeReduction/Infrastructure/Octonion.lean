@@ -492,6 +492,11 @@ theorem conj_self_mul (x : OctonionQ) :
     conj x * x = normSq x • (1 : OctonionQ) := by
   ext <;> simp [conj, normSq] <;> ring
 
+/-- **Anti-multiplicativity of conjugation**: `conj(x · y) = conj y · conj x`. -/
+theorem conj_mul (x y : OctonionQ) :
+    conj (x * y) = conj y * conj x := by
+  ext <;> simp [conj] <;> ring
+
 /-- `normSq x = 0 ↔ x = 0` over `ℚ`: octonions form a division algebra. -/
 theorem normSq_eq_zero_iff (x : OctonionQ) : normSq x = 0 ↔ x = 0 := by
   constructor
