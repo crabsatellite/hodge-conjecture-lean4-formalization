@@ -194,5 +194,47 @@ theorem trace_jordanMul (X Y : J3O) : trace (jordanMul X Y) = innerProd X Y := b
        + 2 * OctonionQ.re (X.x3 * conj Y.x3)
   ring
 
+/-! ### Cubic norm identity: `(X ∘ X^#).ξ_i = N(X)` for each `i`
+
+This is the load-bearing Freudenthal identity for the exceptional Jordan
+algebra. Together with the off-diagonal vanishing `(X ∘ X^#).x_i = 0`
+(P123+), it gives `X ∘ X^# = N(X) · I`. -/
+
+/-- Helper: `Re(x * conj x) = normSq x` (Hurwitz on the inner product). -/
+private theorem re_mul_conj_self (x : OctonionQ) :
+    OctonionQ.re (x * conj x) = OctonionQ.normSq x := by
+  rw [OctonionQ.mul_conj_self]
+  show (OctonionQ.normSq x • (1 : OctonionQ)).e0 = OctonionQ.normSq x
+  show OctonionQ.normSq x * 1 = OctonionQ.normSq x
+  ring
+
+/-- The **cubic norm identity on the (1,1)-diagonal**:
+`(X ∘ X^#).xi1 = N(X)`. Proved by reducing both sides to a polynomial
+identity in the 24 ℚ-components of `(X.x1, X.x2, X.x3)`. -/
+theorem jordanMul_sharp_xi1 (X : J3O) :
+    (jordanMul X (sharp X)).xi1 = cubicNorm X := by
+  unfold cubicNorm jordanMul sharp
+  dsimp
+  -- Goal: X.xi1 * (X.xi2 * X.xi3 - normSq X.x1)
+  --       + Re(X.x2 * conj(conj(X.x3 * X.x1) - X.xi2 • X.x2))
+  --       + Re(X.x3 * conj(conj(X.x1 * X.x2) - X.xi3 • X.x3))
+  --     = X.xi1*X.xi2*X.xi3 - X.xi1*normSq X.x1
+  --       - X.xi2*normSq X.x2 - X.xi3*normSq X.x3
+  --       + 2 * Re(X.x1 * X.x2 * X.x3)
+  --
+  -- Convert each Re to its .e0 form, expand `conj` and the multiplications
+  -- explicitly, then `ring`.
+  show X.xi1 * (X.xi2 * X.xi3 - OctonionQ.normSq X.x1)
+     + (X.x2 * conj (conj (X.x3 * X.x1) - X.xi2 • X.x2)).e0
+     + (X.x3 * conj (conj (X.x1 * X.x2) - X.xi3 • X.x3)).e0
+     = X.xi1 * X.xi2 * X.xi3
+       - X.xi1 * OctonionQ.normSq X.x1
+       - X.xi2 * OctonionQ.normSq X.x2
+       - X.xi3 * OctonionQ.normSq X.x3
+       + 2 * (X.x1 * X.x2 * X.x3).e0
+  unfold OctonionQ.normSq
+  simp [OctonionQ.conj]
+  ring
+
 end J3O
 end HodgeReduction.Infrastructure
