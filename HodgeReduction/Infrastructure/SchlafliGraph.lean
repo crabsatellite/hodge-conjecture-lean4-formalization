@@ -3,6 +3,8 @@ Copyright (c) 2026 Alex Chengyu Li. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 -/
 import Mathlib.Combinatorics.SimpleGraph.Basic
+import Mathlib.Combinatorics.SimpleGraph.Finite
+import Mathlib.Combinatorics.SimpleGraph.StronglyRegular
 import Mathlib.Data.Finset.Card
 import Mathlib.Data.Fintype.Basic
 import Mathlib.Data.Fintype.Sum
@@ -227,5 +229,40 @@ theorem card_eq_27 : Fintype.card V27Vertex = 27 := by
   simp [Fintype.card_sum, UPair6.card_eq_15]
 
 end V27Vertex
+
+/-! ### `schlafliComplementGraph` is the strongly regular graph `srg(27, 10, 1, 5)`
+
+The three defining SRG conditions are all decidable on the finite vertex
+set, and Lean's kernel verifies them directly. This is the **first
+explicit Lean proof** that the triangle graph of the 27 lines on a cubic
+surface (= the 27 weights of the minuscule rep `V₂₇` of `E₆`) is
+`srg(27, 10, 1, 5)`.
+
+The decision procedure enumerates all `27 × 27 = 729` ordered pairs of
+vertices, checks adjacency, counts common neighbors, and verifies the
+counts match `1` (adjacent) or `5` (nonadjacent), plus that every vertex
+has degree exactly `10`.
+-/
+
+/-- The Schläfli-complement graph (= triangle graph on the 27 lines of a
+cubic surface, = 27 weights of V₂₇ of E₆) is **regular of degree 10**. -/
+theorem schlafli_isRegular :
+    schlafliComplementGraph.IsRegularOfDegree 10 := by
+  show ∀ v : V27Vertex, schlafliComplementGraph.degree v = 10
+  decide
+
+/-- **`srg(27, 10, 1, 5)`**: the Schläfli-complement graph is strongly
+regular with parameters `(n, k, ℓ, μ) = (27, 10, 1, 5)`. -/
+theorem schlafli_isSRG :
+    schlafliComplementGraph.IsSRGWith 27 10 1 5 where
+  card := V27Vertex.card_eq_27
+  regular := schlafli_isRegular
+  of_adj := by decide
+  of_not_adj := by
+    intro v w hvw hadj
+    revert hadj
+    revert hvw
+    revert w v
+    decide
 
 end HodgeReduction.Infrastructure
