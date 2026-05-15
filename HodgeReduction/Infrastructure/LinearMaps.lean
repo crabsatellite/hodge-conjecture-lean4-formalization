@@ -252,6 +252,39 @@ noncomputable def omegaContractEquiv : V56 ≃ₗ[ℚ] Module.Dual ℚ V56 :=
      LinearMap.injective_iff_surjective_of_finrank_eq_finrank
        (Subspace.dual_finrank_eq.symm) |>.mp omegaContract_injective⟩
 
+/-! ### `q` vanishes on the Hodge polarization halves `V_±`
+
+For any `v ∈ V_+` (positive Hodge half: `v.B = v.b = 0`) or `v ∈ V_-`
+(negative: `v.a = v.A = 0`), the Freudenthal quartic `q(v) = 0`.
+
+Geometrically: the closed `E_7`-orbit `Ě_VII = {[v] | q(v) = 0} ⊂ ℙ(V_56)`
+contains both projective Lagrangians `ℙ(V_+)` and `ℙ(V_-)`.
+
+This is the structural reason `Ě_VII` (the rank-`≤ 1` locus) has 28-dim
+families of points (one for each Lagrangian half), with the actual
+rank-1 stratum being a much smaller 27-dim subvariety.
+-/
+
+/-- The Freudenthal quartic **vanishes on the positive Hodge half**:
+for any `(a, A, 0, 0) ∈ V₅₆`, `q(a, A, 0, 0) = 0`. -/
+theorem freudenthalQuartic_vanishes_on_pos_half (v : V56)
+    (hB : v.B = 0) (hb : v.b = 0) :
+    freudenthalQuartic v = 0 := by
+  unfold freudenthalQuartic
+  rw [hB, hb, J3O.innerProd_zero_right, J3O.cubicNorm_zero,
+      J3O.sharp_zero, J3O.innerProd_zero_right]
+  ring
+
+/-- The Freudenthal quartic **vanishes on the negative Hodge half**:
+for any `(0, 0, B, b) ∈ V₅₆`, `q(0, 0, B, b) = 0`. -/
+theorem freudenthalQuartic_vanishes_on_neg_half (v : V56)
+    (ha : v.a = 0) (hA : v.A = 0) :
+    freudenthalQuartic v = 0 := by
+  unfold freudenthalQuartic
+  rw [ha, hA, J3O.innerProd_zero_left, J3O.cubicNorm_zero,
+      J3O.sharp_zero, J3O.innerProd_zero_left]
+  ring
+
 end V56
 
 end HodgeReduction.Infrastructure
