@@ -427,23 +427,18 @@ opaque section16_2_E6_rep_compat : Prop
 /-- **Cat 3 hypothesis predicate (§3.4.2)** — codim-1 boundary of EVII is EIII. -/
 opaque evii_codim1_boundary_is_eiii : Prop
 
-/-- **Cat 1 derivation-stage (§3.4.2)** — V_27 Chern generation of BE_6.
-The deep cohomological content (Borel 1953 + Toda 1975) requires
-Mathlib AG; we capture the numerical hook via the W(E_6) invariant
-degrees `{2, 5, 6, 8, 9, 12}` (Infrastructure.wE6Degrees, P85). -/
-def chernV27_generates_BE6 : Prop :=
-  Infrastructure.wE6Degrees = [2, 5, 6, 8, 9, 12]
+/-- **Cat 3 hypothesis predicate (§3.4.2)** — V_27 Chern generation of BE_6.
+ **P118 REVERTED**: P117 trick (list equality) restored to opaque
+ pending real classifying-space cohomology infrastructure. -/
+opaque chernV27_generates_BE6 : Prop
 
-/-- **Cat 1 derivation-stage (§3.4.2)** — V_56 Chern generation of BE_7.
-Numerical hook: W(E_7) invariant degrees `{2, 6, 8, 10, 12, 14, 18}`. -/
-def chernV56_generates_BE7 : Prop :=
-  Infrastructure.wE7Degrees = [2, 6, 8, 10, 12, 14, 18]
+/-- **Cat 3 hypothesis predicate (§3.4.2)** — V_56 Chern generation of BE_7.
+ **P118 REVERTED** similarly. -/
+opaque chernV56_generates_BE7 : Prop
 
-/-- **Cat 1 derivation-stage (§3.4.2)** — Borel-Hirzebruch presentation
- of H*(B(E_6 × U(1)); ℚ). Numerical hook: W(E_6) degrees + product = order. -/
-def borelHirzebruch_presentation_E6_times_U1 : Prop :=
-  Infrastructure.wE6Degrees = [2, 5, 6, 8, 9, 12] ∧
-  Infrastructure.wE6Degrees.prod = 51840
+/-- **Cat 3 hypothesis predicate (§3.4.2)** — Borel-Hirzebruch presentation
+ of H*(B(E_6 × U(1)); ℚ). **P118 REVERTED** similarly. -/
+opaque borelHirzebruch_presentation_E6_times_U1 : Prop
 
 /-- **Cat 3 hypothesis predicate (§3.4.2)** — G-P §10-12 abstract framework
  is group-agnostic (per Looijenga 2017). -/
@@ -626,7 +621,7 @@ def freudenthal_triple_product_T : Prop :=
     Infrastructure.V56.freudenthalQuartic (-v)
       = Infrastructure.V56.freudenthalQuartic v)
 
-/-- **Cat 1 derivation-stage (§3.4.2, P69)** — the Weyl group `W(E_7)`
+/-- **Cat 3 hypothesis predicate (§3.4.2, P69)** — the Weyl group `W(E_7)`
  has invariant degrees `{2, 6, 8, 10, 12, 14, 18}` (Bourbaki Ch. VI tables;
  alternatively the Shephard-Todd classification of finite reflection
  groups). Crucially, there is NO degree-4 invariant other than `κ²` (the
@@ -635,12 +630,13 @@ def freudenthal_triple_product_T : Prop :=
  `c·κ²`, hence land in the augmentation ideal of the coinvariant
  algebra.
 
- **P112 LEAN-CLOSED**: this carrier is no longer an `opaque Prop`; it
- expands definitionally to the concrete arithmetic fact
- `Infrastructure.wE7Degrees = [2, 6, 8, 10, 12, 14, 18]`, decidable by
- `rfl`. -/
-def W_E7_invariant_degrees_2_6_8_10_12_14_18 : Prop :=
-  Infrastructure.wE7Degrees = [2, 6, 8, 10, 12, 14, 18]
+ **P118 REVERTED-from-trick**: P112's "numerical-hook" closure (def
+ `wE7Degrees = [2,6,...]`) was identified as a trick — list-equality
+ does not capture the rep-theoretic content (W(E_7)-acts-on-its-reflection-
+ rep with these as polynomial-generator degrees). Restored to opaque
+ pending real Coxeter-group + invariant-ring infrastructure
+ (Shephard-Todd / Chevalley theorem for E_7). -/
+opaque W_E7_invariant_degrees_2_6_8_10_12_14_18 : Prop
 
 /-- **Cat 3 carrier (§3.4.1, P71)** — Step A of the (ii.a) realization
  argument: under Eisenstein vanishing + Franke 1998 decomposition,
@@ -992,17 +988,17 @@ opaque twisted_Phi_L_well_defined : Prop
  `q_2 = b^2`, the order-2 leading normal jet, L-invariant and nonzero. -/
 opaque freudenthal_scalar_piece_maps_to_81_h4 : Prop
 
-/-- **Cat 1 derivation-stage (§3.4.1, P39)** — the total coefficient `γ` in
+/-- **Cat 3 carrier (§3.4.1, P39)** — the total coefficient `γ` in
  `Φ_L(q) = γ·h^4`, summed over all five L-pieces of the Freudenthal
  quartic `q = (ab)^2 + (cross terms involving the E_6-cubic-norm N, the
  E_6-pairing ⟨·,·⟩, and the E_6-adjoint #)`, is non-zero (γ = -48 ≠ 0).
 
- **P115 LEAN-CLOSED**: expanded to the explicit ℚ-non-zero fact
- `Phi_tw_q ≠ 0` where `Phi_tw_q = 4 + 8 * N_x - 4 * adjoint_pairing`
- with the P51 + P53 values `N_x = -3, adjoint_pairing = 7`, evaluating
- to `-48 ≠ 0`. Proved via `norm_num`. -/
-def twisted_Phi_L_total_coefficient_nonzero : Prop :=
-  (4 : ℚ) + 8 * CrossRingArithmetic.N_x - 4 * CrossRingArithmetic.adjoint_pairing ≠ 0
+ **P118 REVERTED**: P115 closure (def := ℚ-arithmetic `-48 ≠ 0`) was a
+ trick — `-48 ≠ 0` is decidable but does NOT capture the cohomological
+ content (Φ_L is a cross-ring map between H^*(BG; ℚ) and H^*(S_Γ; ℚ)).
+ Restored to opaque pending Chern-class / classifying-space
+ infrastructure. -/
+opaque twisted_Phi_L_total_coefficient_nonzero : Prop
 
 -- ============================================================================
 -- §2ter: P40 — the Hodge-refinement principle applied to Chern-Weil forms
@@ -1355,42 +1351,28 @@ theorem freudenthal_1954_brown_1969_sato_kimura_PUBLISHED_OPEN :
    Infrastructure.V56.freudenthalQuartic_smul,
    Infrastructure.V56.freudenthalQuartic_neg⟩
 
-/-- **Cat 1 derivation-stage (§3.3, P69)** — N. Bourbaki, *Groupes et
- algèbres de Lie*, Chap. IV-VI (Hermann 1968), Ch. VI §4.5 Tables (E_7
- invariant degrees) + G. C. Shephard, J. A. Todd, "Finite unitary
- reflection groups", Canad. J. Math. 6 (1954), 274-304 + L. Solomon,
- "Invariants of finite reflection groups", Nagoya Math. J. 22 (1963),
- 57-64. The Weyl group `W(E_7)` has invariant degrees
- `{2, 6, 8, 10, 12, 14, 18}`; in particular NO degree-4 invariant beyond
- `κ²`.
+/-- **Cat 2 PUBLISHED (§3.3, P69)** — N. Bourbaki, *Groupes et algèbres de
+ Lie*, Chap. IV-VI (Hermann 1968), Ch. VI §4.5 Tables (E_7 invariant
+ degrees) + G. C. Shephard, J. A. Todd, "Finite unitary reflection
+ groups", Canad. J. Math. 6 (1954), 274-304 + L. Solomon, "Invariants of
+ finite reflection groups", Nagoya Math. J. 22 (1963), 57-64. The Weyl
+ group `W(E_7)` has invariant degrees `{2, 6, 8, 10, 12, 14, 18}`; in
+ particular NO degree-4 invariant beyond `κ²`.
 
- **P112 LEAN-CLOSED**: now a theorem via `rfl`, since the carrier
- `W_E7_invariant_degrees_2_6_8_10_12_14_18` is defined as
- `Infrastructure.wE7Degrees = [2, 6, 8, 10, 12, 14, 18]`. The deep claim
- "these ARE the invariant degrees of W(E_7) acting on its reflection
- representation" remains an external Bourbaki/Shephard-Todd citation;
- our Lean version captures the numerical content. -/
-theorem bourbaki_E7_W_invariants_PUBLISHED_OPEN :
-    W_E7_invariant_degrees_2_6_8_10_12_14_18 := rfl
+ **P118 REVERTED**: was P112 trick `rfl` lift; restored to axiom pending
+ real Coxeter / invariant-ring infrastructure for E_7. -/
+axiom bourbaki_E7_W_invariants_PUBLISHED_OPEN :
+  W_E7_invariant_degrees_2_6_8_10_12_14_18
 
-/-- **Cat 1 derivation-stage (§3.3)** — H. Toda 1975 — V_27 Chern classes
- generate H*(BE_6).
+/-- **Cat 2 PUBLISHED (§3.3)** — Toda 1975. **P118 REVERTED** to axiom. -/
+axiom borel_toda_E6_U1_presentation_OPEN :
+  borelHirzebruch_presentation_E6_times_U1
 
- **P117 LEAN-CLOSED**: numerical-hook theorem; deep cohomological content
- is paper citation. -/
-theorem borel_toda_E6_U1_presentation_OPEN :
-    borelHirzebruch_presentation_E6_times_U1 :=
-  ⟨rfl, by decide⟩
+/-- **Cat 2 PUBLISHED (§3.3)** — Toda 1975. **P118 REVERTED** to axiom. -/
+axiom toda_1975_V27_generates_BE6_OPEN : chernV27_generates_BE6
 
-/-- **Cat 1 derivation-stage (§3.3)** — V_27 Chern generation of BE_6.
-
- **P117 LEAN-CLOSED**: numerical hook via W(E_6) invariant degrees. -/
-theorem toda_1975_V27_generates_BE6_OPEN : chernV27_generates_BE6 := rfl
-
-/-- **Cat 1 derivation-stage (§3.3)** — V_56 Chern generation of BE_7.
-
- **P117 LEAN-CLOSED**: numerical hook via W(E_7) invariant degrees. -/
-theorem kono_mimura_1976_V56_generates_BE7_OPEN : chernV56_generates_BE7 := rfl
+/-- **Cat 2 PUBLISHED (§3.3)** — Kono-Mimura 1976. **P118 REVERTED** to axiom. -/
+axiom kono_mimura_1976_V56_generates_BE7_OPEN : chernV56_generates_BE7
 
 /-- **Cat 2 (§3.3)** — Standard algebraic geometry: polynomial in Chern
  classes of an automorphic vector bundle is algebraic. Griffiths-Harris
@@ -1495,7 +1477,7 @@ axiom freudenthal_scalar_piece_computation_OPEN :
   freudenthal_triple_product_T →
   freudenthal_scalar_piece_maps_to_81_h4
 
-/-- **Cat 1 derivation-stage (§3.4.3, P53)** — the cross-ring coefficient
+/-- **Cat 3 structuralEquation (§3.4.3, P53)** — the cross-ring coefficient
  COMPUTED. The finite computation P39-P53 establishes, within the P49
  Hodge-graded Chern-root framework Φ_tw, that Φ_tw(q) = γ·h^4 with γ = -48
  (NON-ZERO). The computation: N(𝟙) = 27 (J_3(O) Zorn basis) ⟹ N(x) = -3h^3;
@@ -1506,21 +1488,14 @@ axiom freudenthal_scalar_piece_computation_OPEN :
  Φ_tw(q) = 4h^4 - 24h^4 - 28h^4 = -48 h^4 ≠ 0. This DISCHARGES
  Hyp_TwistedPhiL_Coefficient_Nonzero (the coefficient γ = -48 ≠ 0).
 
- **P115 LEAN-CLOSED**: with the carrier `twisted_Phi_L_total_coefficient_nonzero`
- now defined as the explicit ℚ-fact `-48 ≠ 0` (via P115 def above), this
- axiom collapses to a theorem: it ignores all 4 inputs and supplies the
- direct `norm_num` proof. -/
-theorem twisted_Phi_L_coefficient_nonzero_COMPUTED_OPEN :
-    V56_hodge_decomposition_under_E6_U1 →
-    twisted_Phi_L_well_defined →
-    schlafli_graph_srg_27_10_1_5 →
-    J_3_O_cubic_norm_form_zorn_basis →
-    Hyp_TwistedPhiL_Coefficient_Nonzero_OPEN :=
-  fun _ _ _ _ => by
-    show twisted_Phi_L_total_coefficient_nonzero
-    show (4 : ℚ) + 8 * CrossRingArithmetic.N_x - 4 * CrossRingArithmetic.adjoint_pairing ≠ 0
-    unfold CrossRingArithmetic.N_x CrossRingArithmetic.adjoint_pairing
-    norm_num
+ **P118 REVERTED**: was P115 trick `fun _ _ _ _ => norm_num`; restored
+ to axiom pending real cohomology infrastructure. -/
+axiom twisted_Phi_L_coefficient_nonzero_COMPUTED_OPEN :
+  V56_hodge_decomposition_under_E6_U1 →
+  twisted_Phi_L_well_defined →
+  schlafli_graph_srg_27_10_1_5 →
+  J_3_O_cubic_norm_form_zorn_basis →
+  Hyp_TwistedPhiL_Coefficient_Nonzero_OPEN
 
 /-- **Cat 2 (§3.3, P40)** — classical fact on compact homogeneous spaces:
  for a COMPACT group action, an invariant metric exists (averaging) and the
