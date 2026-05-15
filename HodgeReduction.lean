@@ -88,4 +88,6 @@ import HodgeReduction.Infrastructure.Shimura.HermitianSymmetric
 import HodgeReduction.Infrastructure.Automorphic.Basic
 import HodgeReduction.Infrastructure.Automorphic.VoganZuckerman
 import HodgeReduction.Infrastructure.Automorphic.BorelBottWeil
+import HodgeReduction.Infrastructure.Automorphic.HeckeCorrespondence
+import HodgeReduction.Infrastructure.LieAlgebra.Basic
 import HodgeReduction.Infrastructure.HCFramework
