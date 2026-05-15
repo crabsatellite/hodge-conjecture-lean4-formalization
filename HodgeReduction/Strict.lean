@@ -1100,7 +1100,19 @@ def V56_hodge_decomposition_under_E6_U1 : Prop :=
   -- (14-16) Hodge pieces sit in matching F^p
   (Infrastructure.V56.Hodge_3_0 ≤ Infrastructure.V56.Hodge_filt_3) ∧
   (Infrastructure.V56.Hodge_2_1 ≤ Infrastructure.V56.Hodge_filt_2) ∧
-  (Infrastructure.V56.Hodge_1_2 ≤ Infrastructure.V56.Hodge_filt_1)
+  (Infrastructure.V56.Hodge_1_2 ≤ Infrastructure.V56.Hodge_filt_1) ∧
+  -- (17-18) Lagrangian polarisation: q vanishes on positive/negative halves
+  (∀ v : Infrastructure.V56, v.B = 0 ∧ v.b = 0 →
+    Infrastructure.V56.freudenthalQuartic v = 0) ∧
+  (∀ v : Infrastructure.V56, v.a = 0 ∧ v.A = 0 →
+    Infrastructure.V56.freudenthalQuartic v = 0) ∧
+  -- (19-20) Symplectic Lagrangian: ω vanishes on positive/negative halves
+  (∀ v w : Infrastructure.V56,
+    v.B = 0 ∧ v.b = 0 → w.B = 0 ∧ w.b = 0 →
+    Infrastructure.V56.omega v w = 0) ∧
+  (∀ v w : Infrastructure.V56,
+    v.a = 0 ∧ v.A = 0 → w.a = 0 ∧ w.A = 0 →
+    Infrastructure.V56.omega v w = 0)
 
 /-- **Cat 3 carrier (§3.4.1, P39 → P41-reframed)** — the genuine twist:
  the Hodge-FILTRATION projection `Φ_filt`. P41 audit: the P39
@@ -1599,7 +1611,11 @@ theorem V56_hodge_decomposition_OPEN : V56_hodge_decomposition_under_E6_U1 :=
    Infrastructure.V56.Hodge_filt_1_le_0,
    Infrastructure.V56.Hodge_3_0_le_Hodge_filt_3,
    Infrastructure.V56.Hodge_2_1_le_Hodge_filt_2,
-   Infrastructure.V56.Hodge_1_2_le_Hodge_filt_1⟩
+   Infrastructure.V56.Hodge_1_2_le_Hodge_filt_1,
+   (fun v hv => Infrastructure.V56.freudenthalQuartic_vanishes_on_pos_half v hv.1 hv.2),
+   (fun v hv => Infrastructure.V56.freudenthalQuartic_vanishes_on_neg_half v hv.1 hv.2),
+   Infrastructure.V56.omega_eq_zero_on_pos_half,
+   Infrastructure.V56.omega_eq_zero_on_neg_half⟩
 
 /-- **Cat 3 structuralEquation (§3.4.3, P39 → P41-reframed)** — the
  canonical cross-ring map `Φ` vanishes on `q`; the genuine twist `Φ_filt`
