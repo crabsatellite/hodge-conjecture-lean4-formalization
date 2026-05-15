@@ -46,3 +46,6 @@ import HodgeReduction.Infrastructure.Octonion
 import HodgeReduction.Infrastructure.JordanJ3O
 import HodgeReduction.Infrastructure.V56Freudenthal
 import HodgeReduction.Infrastructure.CoxeterDegrees
+import HodgeReduction.Infrastructure.OctonionBasis
+import HodgeReduction.Infrastructure.JordanJ3OBasis
+import HodgeReduction.Infrastructure.V56Basis
