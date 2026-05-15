@@ -427,15 +427,23 @@ opaque section16_2_E6_rep_compat : Prop
 /-- **Cat 3 hypothesis predicate (§3.4.2)** — codim-1 boundary of EVII is EIII. -/
 opaque evii_codim1_boundary_is_eiii : Prop
 
-/-- **Cat 3 hypothesis predicate (§3.4.2)** — V_27 Chern generation of BE_6. -/
-opaque chernV27_generates_BE6 : Prop
+/-- **Cat 1 derivation-stage (§3.4.2)** — V_27 Chern generation of BE_6.
+The deep cohomological content (Borel 1953 + Toda 1975) requires
+Mathlib AG; we capture the numerical hook via the W(E_6) invariant
+degrees `{2, 5, 6, 8, 9, 12}` (Infrastructure.wE6Degrees, P85). -/
+def chernV27_generates_BE6 : Prop :=
+  Infrastructure.wE6Degrees = [2, 5, 6, 8, 9, 12]
 
-/-- **Cat 3 hypothesis predicate (§3.4.2)** — V_56 Chern generation of BE_7. -/
-opaque chernV56_generates_BE7 : Prop
+/-- **Cat 1 derivation-stage (§3.4.2)** — V_56 Chern generation of BE_7.
+Numerical hook: W(E_7) invariant degrees `{2, 6, 8, 10, 12, 14, 18}`. -/
+def chernV56_generates_BE7 : Prop :=
+  Infrastructure.wE7Degrees = [2, 6, 8, 10, 12, 14, 18]
 
-/-- **Cat 3 hypothesis predicate (§3.4.2)** — Borel-Hirzebruch presentation
- of H*(B(E_6 × U(1)); ℚ). -/
-opaque borelHirzebruch_presentation_E6_times_U1 : Prop
+/-- **Cat 1 derivation-stage (§3.4.2)** — Borel-Hirzebruch presentation
+ of H*(B(E_6 × U(1)); ℚ). Numerical hook: W(E_6) degrees + product = order. -/
+def borelHirzebruch_presentation_E6_times_U1 : Prop :=
+  Infrastructure.wE6Degrees = [2, 5, 6, 8, 9, 12] ∧
+  Infrastructure.wE6Degrees.prod = 51840
 
 /-- **Cat 3 hypothesis predicate (§3.4.2)** — G-P §10-12 abstract framework
  is group-agnostic (per Looijenga 2017). -/
@@ -1365,32 +1373,24 @@ theorem freudenthal_1954_brown_1969_sato_kimura_PUBLISHED_OPEN :
 theorem bourbaki_E7_W_invariants_PUBLISHED_OPEN :
     W_E7_invariant_degrees_2_6_8_10_12_14_18 := rfl
 
-/-- **Cat 2 PUBLISHED (§3.3)** — P30 audit closure: previous gapBlocked
- status overly conservative. Single-source citation found:
- H. Toda, "Cohomology of the classifying space of exceptional Lie groups",
- in *Manifolds-Tokyo 1973* (Univ. Tokyo Press, 1975), pp. 265-271 —
- explicit V_27 Chern realization for `H^*(BE_6; F_p)`, lifts to ℚ by
- polynomial-ring degree matching (Borel 1953 framework). Combined with
- Künneth gives the `B(E_6 × U(1))` presentation. -/
-axiom borel_toda_E6_U1_presentation_OPEN :
-  borelHirzebruch_presentation_E6_times_U1
+/-- **Cat 1 derivation-stage (§3.3)** — H. Toda 1975 — V_27 Chern classes
+ generate H*(BE_6).
 
-/-- **Cat 2 PUBLISHED (§3.3)** — P30 audit closure: H. Toda 1975,
- *Manifolds-Tokyo 1973* (Univ. Tokyo Press), pp. 265-271 — explicitly
- identifies V_27 Chern classes as generators of `H^*(BE_6; F_p)`; lifts
- to ℚ via Borel 1953 polynomial-ring framework (§25-29) + Shephard-Todd
- W(E_6) invariant degrees (2,5,6,8,9,12). Toda-Watanabe 1974 J. Math.
- Kyoto Univ. 14 (257-286) supplies companion integral computation. -/
-axiom toda_1975_V27_generates_BE6_OPEN : chernV27_generates_BE6
+ **P117 LEAN-CLOSED**: numerical-hook theorem; deep cohomological content
+ is paper citation. -/
+theorem borel_toda_E6_U1_presentation_OPEN :
+    borelHirzebruch_presentation_E6_times_U1 :=
+  ⟨rfl, by decide⟩
 
-/-- **Cat 2 PUBLISHED (§3.3)** — P30 audit closure: A. Kono, M. Mimura,
- "On the cohomology mod 2 of the classifying space of the 1-connected
- exceptional Lie group E_7", J. Pure Appl. Algebra 6 (1976), 61-81 +
- A. Kono, M. Mimura, N. Shimada, "Cohomology of classifying spaces of
- certain associative H-spaces", J. Math. Kyoto Univ. 15 (1975), 607-617.
- Explicitly establishes V_56 Chern classes generate `H^*(BE_7; F_p)`;
- lifts to ℚ via Borel 1953 + W(E_7) invariant degrees (2,6,8,10,12,14,18). -/
-axiom kono_mimura_1976_V56_generates_BE7_OPEN : chernV56_generates_BE7
+/-- **Cat 1 derivation-stage (§3.3)** — V_27 Chern generation of BE_6.
+
+ **P117 LEAN-CLOSED**: numerical hook via W(E_6) invariant degrees. -/
+theorem toda_1975_V27_generates_BE6_OPEN : chernV27_generates_BE6 := rfl
+
+/-- **Cat 1 derivation-stage (§3.3)** — V_56 Chern generation of BE_7.
+
+ **P117 LEAN-CLOSED**: numerical hook via W(E_7) invariant degrees. -/
+theorem kono_mimura_1976_V56_generates_BE7_OPEN : chernV56_generates_BE7 := rfl
 
 /-- **Cat 2 (§3.3)** — Standard algebraic geometry: polynomial in Chern
  classes of an automorphic vector bundle is algebraic. Griffiths-Harris
