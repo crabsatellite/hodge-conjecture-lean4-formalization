@@ -145,6 +145,40 @@ instance : Mul OctonionQ := ⟨fun x y => {
 @[simp] theorem one_e6 : (1 : OctonionQ).e6 = 0 := rfl
 @[simp] theorem one_e7 : (1 : OctonionQ).e7 = 0 := rfl
 
+/-! ### Multiplication unfolding `@[simp]` lemmas (one per component). -/
+
+@[simp] theorem mul_e0 (x y : OctonionQ) :
+    (x * y).e0 = x.e0*y.e0 - x.e1*y.e1 - x.e2*y.e2 - x.e3*y.e3
+                 - x.e4*y.e4 - x.e5*y.e5 - x.e6*y.e6 - x.e7*y.e7 := rfl
+
+@[simp] theorem mul_e1 (x y : OctonionQ) :
+    (x * y).e1 = x.e0*y.e1 + x.e1*y.e0 + x.e2*y.e3 - x.e3*y.e2
+                 + x.e4*y.e5 - x.e5*y.e4 - x.e6*y.e7 + x.e7*y.e6 := rfl
+
+@[simp] theorem mul_e2 (x y : OctonionQ) :
+    (x * y).e2 = x.e0*y.e2 - x.e1*y.e3 + x.e2*y.e0 + x.e3*y.e1
+                 + x.e4*y.e6 + x.e5*y.e7 - x.e6*y.e4 - x.e7*y.e5 := rfl
+
+@[simp] theorem mul_e3 (x y : OctonionQ) :
+    (x * y).e3 = x.e0*y.e3 + x.e1*y.e2 - x.e2*y.e1 + x.e3*y.e0
+                 + x.e4*y.e7 - x.e5*y.e6 + x.e6*y.e5 - x.e7*y.e4 := rfl
+
+@[simp] theorem mul_e4 (x y : OctonionQ) :
+    (x * y).e4 = x.e0*y.e4 - x.e1*y.e5 - x.e2*y.e6 - x.e3*y.e7
+                 + x.e4*y.e0 + x.e5*y.e1 + x.e6*y.e2 + x.e7*y.e3 := rfl
+
+@[simp] theorem mul_e5 (x y : OctonionQ) :
+    (x * y).e5 = x.e0*y.e5 + x.e1*y.e4 - x.e2*y.e7 + x.e3*y.e6
+                 - x.e4*y.e1 + x.e5*y.e0 - x.e6*y.e3 + x.e7*y.e2 := rfl
+
+@[simp] theorem mul_e6 (x y : OctonionQ) :
+    (x * y).e6 = x.e0*y.e6 + x.e1*y.e7 + x.e2*y.e4 - x.e3*y.e5
+                 - x.e4*y.e2 + x.e5*y.e3 + x.e6*y.e0 - x.e7*y.e1 := rfl
+
+@[simp] theorem mul_e7 (x y : OctonionQ) :
+    (x * y).e7 = x.e0*y.e7 - x.e1*y.e6 + x.e2*y.e5 + x.e3*y.e4
+                 - x.e4*y.e3 - x.e5*y.e2 + x.e6*y.e1 + x.e7*y.e0 := rfl
+
 /-! ### Basic algebraic identities -/
 
 theorem add_comm (x y : OctonionQ) : x + y = y + x := by
@@ -202,6 +236,14 @@ theorem conj_conj (x : OctonionQ) : conj (conj x) = x := by
 theorem normSq_nonneg (x : OctonionQ) : 0 ≤ normSq x := by
   unfold normSq
   positivity
+
+/-! ### Multiplication by zero -/
+
+@[simp] theorem mul_zero (x : OctonionQ) : x * 0 = 0 := by
+  ext <;> simp
+
+@[simp] theorem zero_mul (x : OctonionQ) : (0 : OctonionQ) * x = 0 := by
+  ext <;> simp
 
 end OctonionQ
 

@@ -43,3 +43,4 @@ import HodgeReduction.CrossRingArithmetic
 import HodgeReduction.Infrastructure.CartanMatrices
 import HodgeReduction.Infrastructure.SchlafliGraph
 import HodgeReduction.Infrastructure.Octonion
+import HodgeReduction.Infrastructure.JordanJ3O
