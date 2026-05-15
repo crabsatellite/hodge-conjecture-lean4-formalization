@@ -711,7 +711,15 @@ def freudenthal_triple_product_T : Prop :=
     Infrastructure.V56.omega (r • v) w = r * Infrastructure.V56.omega v w) ∧
   -- (13) ω is right scalar-compatible
   (∀ (r : ℚ) (v w : Infrastructure.V56),
-    Infrastructure.V56.omega v (r • w) = r * Infrastructure.V56.omega v w)
+    Infrastructure.V56.omega v (r • w) = r * Infrastructure.V56.omega v w) ∧
+  -- (14) ω is alternating: ω(v, v) = 0   [omega_self via ω antisym]
+  (∀ v : Infrastructure.V56, Infrastructure.V56.omega v v = 0) ∧
+  -- (15) Highest weight on closed orbit: q(1, 0, 0, 0) = 0
+  (Infrastructure.V56.freudenthalQuartic ⟨1, 0, 0, 0⟩ = 0) ∧
+  -- (16) Lowest weight on closed orbit: q(0, 0, 0, 1) = 0
+  (Infrastructure.V56.freudenthalQuartic ⟨0, 0, 0, 1⟩ = 0) ∧
+  -- (17) Off-orbit value: q(1, 0, 0, 1) = 1 (q is not identically zero)
+  (Infrastructure.V56.freudenthalQuartic ⟨1, 0, 0, 1⟩ = 1)
 
 /-- **Cat 3 hypothesis predicate (§3.4.2, P69)** — the Weyl group `W(E_7)`
  has invariant degrees `{2, 6, 8, 10, 12, 14, 18}` (Bourbaki Ch. VI tables;
@@ -1475,7 +1483,11 @@ theorem freudenthal_1954_brown_1969_sato_kimura_PUBLISHED_OPEN :
    Infrastructure.V56.omega_add_left,
    Infrastructure.V56.omega_add_right,
    Infrastructure.V56.omega_smul_left,
-   Infrastructure.V56.omega_smul_right⟩
+   Infrastructure.V56.omega_smul_right,
+   Infrastructure.V56.omega_self,
+   Infrastructure.V56.freudenthalQuartic_highest_weight,
+   Infrastructure.V56.freudenthalQuartic_lowest_weight,
+   Infrastructure.V56.freudenthalQuartic_a_times_b⟩
 
 /-- **Cat 2 PUBLISHED (§3.3, P69)** — N. Bourbaki, *Groupes et algèbres de
  Lie*, Chap. IV-VI (Hermann 1968), Ch. VI §4.5 Tables (E_7 invariant
