@@ -681,6 +681,15 @@ theorem sharp_jordanMul_sharp_self (X : J3O) :
     sharp (jordanMul X (sharp X)) = cubicNorm X ^ 2 • (1 : J3O) := by
   rw [jordanMul_sharp_eq_cubicNorm_smul_one, sharp_smul, sharp_one]
 
+-- TODO: prove the **sharp-inversion identity** `(X^#)^# = N(X) · X`,
+-- one of the defining axioms of cubic Jordan algebras
+-- (Springer-Veldkamp axiomatics). The proof requires:
+-- * normSq expansion for `normSq (conj(x_j * x_k) - xi_i • x_i)`
+-- * normSq(conj z) = normSq z (NOT yet a named lemma)
+-- * Substantial polynomial juggling
+-- Deferred until we add `normSq_conj : normSq(conj x) = normSq x` and
+-- the helper lemma for `normSq` of octonion sums with smul terms.
+
 /-! ### Trace of sharp: `tr(X^#) = s_2(X)`
 
 This is the trace counterpart of `sharp_eq_cayley_hamilton`. Taking the

@@ -497,6 +497,15 @@ theorem conj_mul (x y : OctonionQ) :
     conj (x * y) = conj y * conj x := by
   ext <;> simp [conj] <;> ring
 
+/-- `normSq` is invariant under conjugation: `‖conj x‖² = ‖x‖²`. -/
+@[simp] theorem normSq_conj (x : OctonionQ) : normSq (conj x) = normSq x := by
+  unfold normSq conj
+  show x.e0^2 + (-x.e1)^2 + (-x.e2)^2 + (-x.e3)^2
+       + (-x.e4)^2 + (-x.e5)^2 + (-x.e6)^2 + (-x.e7)^2
+       = x.e0^2 + x.e1^2 + x.e2^2 + x.e3^2
+       + x.e4^2 + x.e5^2 + x.e6^2 + x.e7^2
+  ring
+
 /-- `normSq x = 0 ↔ x = 0` over `ℚ`: octonions form a division algebra. -/
 theorem normSq_eq_zero_iff (x : OctonionQ) : normSq x = 0 ↔ x = 0 := by
   constructor
