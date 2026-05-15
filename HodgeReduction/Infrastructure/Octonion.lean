@@ -391,6 +391,80 @@ theorem smul_add (r : ℚ) (x y : OctonionQ) :
     r • (x + y) = r • x + r • y := by
   ext <;> simp <;> ring
 
+/-! ### Hurwitz inversion and conjugate-multiplication identity
+
+The fundamental composition-algebra identity:
+```
+   x · x̄ = ‖x‖² · 1   (and symmetrically  x̄ · x = ‖x‖² · 1)
+```
+This says: multiplying an octonion by its conjugate gives a scalar — the
+norm-squared, embedded as `(normSq x) • 1 ∈ 𝕆`.
+
+Together with `normSq` being a quadratic form satisfying `‖x·y‖² = ‖x‖²·‖y‖²`
+(Hurwitz composition, already proved), this gives `𝕆` the structure of a
+**composition algebra** and lets us invert nonzero elements:
+```
+   x⁻¹ = (1/‖x‖²) · x̄    for ‖x‖² ≠ 0
+```
+
+For octonions over `ℚ`, `‖x‖² = 0 ↔ x = 0`, so every nonzero octonion is
+invertible — `𝕆` is a (non-associative) division algebra. This is the
+final classical Hurwitz/Frobenius/Cayley-Dickson invariant.
+-/
+
+/-- The fundamental conjugate-multiplication identity:
+`x · conj x = (normSq x) • 1`. -/
+theorem mul_conj_self (x : OctonionQ) :
+    x * conj x = normSq x • (1 : OctonionQ) := by
+  ext <;> simp [conj, normSq] <;> ring
+
+/-- The symmetric version: `conj x · x = (normSq x) • 1`. -/
+theorem conj_self_mul (x : OctonionQ) :
+    conj x * x = normSq x • (1 : OctonionQ) := by
+  ext <;> simp [conj, normSq] <;> ring
+
+/-- `normSq x = 0 ↔ x = 0` over `ℚ`: octonions form a division algebra. -/
+theorem normSq_eq_zero_iff (x : OctonionQ) : normSq x = 0 ↔ x = 0 := by
+  constructor
+  · intro h
+    -- `normSq x = 0` means `Σ xᵢ² = 0`. Over `ℚ` this forces every `xᵢ = 0`.
+    have hx : x.e0^2 + x.e1^2 + x.e2^2 + x.e3^2 +
+              x.e4^2 + x.e5^2 + x.e6^2 + x.e7^2 = 0 := h
+    -- Each `xᵢ² ≥ 0` and they sum to 0, so each `xᵢ² = 0`, hence `xᵢ = 0`.
+    have h0 : x.e0 = 0 ∧ x.e1 = 0 ∧ x.e2 = 0 ∧ x.e3 = 0 ∧
+              x.e4 = 0 ∧ x.e5 = 0 ∧ x.e6 = 0 ∧ x.e7 = 0 := by
+      refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
+      all_goals nlinarith [sq_nonneg x.e0, sq_nonneg x.e1, sq_nonneg x.e2,
+                           sq_nonneg x.e3, sq_nonneg x.e4, sq_nonneg x.e5,
+                           sq_nonneg x.e6, sq_nonneg x.e7]
+    obtain ⟨h0, h1, h2, h3, h4, h5, h6, h7⟩ := h0
+    ext <;> simp [h0, h1, h2, h3, h4, h5, h6, h7]
+  · intro h; subst h; exact normSq_zero
+
+/-- `normSq x ≠ 0 ↔ x ≠ 0`. -/
+theorem normSq_ne_zero_iff (x : OctonionQ) : normSq x ≠ 0 ↔ x ≠ 0 := by
+  rw [Ne, normSq_eq_zero_iff]
+
+/-- The **multiplicative inverse** of a nonzero octonion: `x⁻¹ = (1/‖x‖²) · x̄`. -/
+noncomputable def inv (x : OctonionQ) : OctonionQ :=
+  (normSq x)⁻¹ • conj x
+
+/-- The defining property of `inv`: `x · x⁻¹ = 1` for nonzero `x`. -/
+theorem mul_inv_cancel (x : OctonionQ) (hx : x ≠ 0) : x * inv x = 1 := by
+  unfold inv
+  rw [mul_smul, mul_conj_self, smul_smul]
+  have hne : normSq x ≠ 0 := (normSq_ne_zero_iff x).mpr hx
+  rw [inv_mul_cancel₀ hne]
+  ext <;> simp
+
+/-- The symmetric inverse property: `x⁻¹ · x = 1` for nonzero `x`. -/
+theorem inv_mul_cancel (x : OctonionQ) (hx : x ≠ 0) : inv x * x = 1 := by
+  unfold inv
+  rw [smul_mul, conj_self_mul, smul_smul]
+  have hne : normSq x ≠ 0 := (normSq_ne_zero_iff x).mpr hx
+  rw [inv_mul_cancel₀ hne]
+  ext <;> simp
+
 end OctonionQ
 
 end HodgeReduction.Infrastructure
