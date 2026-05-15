@@ -51,3 +51,4 @@ import HodgeReduction.Infrastructure.JordanJ3OBasis
 import HodgeReduction.Infrastructure.V56Basis
 import HodgeReduction.Infrastructure.LinearMaps
 import HodgeReduction.Infrastructure.V56HodgeDecomp
+import HodgeReduction.Infrastructure.J3OInnerProduct
