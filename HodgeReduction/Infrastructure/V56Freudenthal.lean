@@ -402,6 +402,24 @@ instance : SMul ℚ V56 := ⟨fun r v => ⟨r * v.a, r • v.A, r • v.B, r * v
 @[simp] theorem neg_B (v : V56) : (-v).B = -v.B := rfl
 @[simp] theorem neg_b (v : V56) : (-v).b = -v.b := rfl
 
+/-- The four `(a, A, B, b)` components together define a `ℚ`-bijection
+`V_56 ≃ ℚ × J_3(O) × J_3(O) × ℚ`.
+
+This is the structure-level statement of the decomposition
+`V_56 = 1_{+3} ⊕ 27_{+1} ⊕ 27_{-1} ⊕ 1_{-3}` under `E_6 × U(1)`. -/
+def toProd : V56 → ℚ × J3O × J3O × ℚ :=
+  fun v => (v.a, v.A, v.B, v.b)
+
+@[simp] theorem toProd_apply (v : V56) :
+    toProd v = (v.a, v.A, v.B, v.b) := rfl
+
+/-- Inverse: `(a, A, B, b) ↦ {a, A, B, b}`. -/
+def ofProd : ℚ × J3O × J3O × ℚ → V56 :=
+  fun p => ⟨p.1, p.2.1, p.2.2.1, p.2.2.2⟩
+
+@[simp] theorem toProd_ofProd (p : ℚ × J3O × J3O × ℚ) : toProd (ofProd p) = p := rfl
+@[simp] theorem ofProd_toProd (v : V56) : ofProd (toProd v) = v := rfl
+
 /-- The **Freudenthal quartic** `q : V₅₆ → ℚ`. -/
 def freudenthalQuartic (v : V56) : ℚ :=
   (v.a * v.b - J3O.innerProd v.A v.B)^2
