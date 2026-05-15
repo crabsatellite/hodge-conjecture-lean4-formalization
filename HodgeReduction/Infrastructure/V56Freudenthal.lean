@@ -230,6 +230,31 @@ theorem innerProd_neg_right (A B : J3O) :
     innerProd A (-B) = -innerProd A B := by
   rw [innerProd_symm A (-B), innerProd_neg_left, innerProd_symm B A]
 
+/-! ### Trace-pairing identities: `⟨1, X⟩ = tr(X)` -/
+
+/-- The pairing of `X` with the identity equals the **trace** of `X`. This
+identifies `tr : J₃(𝕆) → ℚ` as the linear functional `⟨1, ·⟩`. -/
+theorem innerProd_one_left (X : J3O) : innerProd 1 X = trace X := by
+  unfold innerProd trace
+  show (1 : ℚ) * X.xi1 + 1 * X.xi2 + 1 * X.xi3
+       + 2 * OctonionQ.re ((0 : OctonionQ) * OctonionQ.conj X.x1)
+       + 2 * OctonionQ.re ((0 : OctonionQ) * OctonionQ.conj X.x2)
+       + 2 * OctonionQ.re ((0 : OctonionQ) * OctonionQ.conj X.x3)
+       = X.xi1 + X.xi2 + X.xi3
+  simp
+
+/-- Right-version: `⟨X, 1⟩ = tr(X)`. -/
+theorem innerProd_one_right (X : J3O) : innerProd X 1 = trace X := by
+  rw [innerProd_symm, innerProd_one_left]
+
+/-- The identity has trace `3`: `⟨1, 1⟩ = tr(1) = 3`. -/
+@[simp] theorem innerProd_one_one : innerProd (1 : J3O) 1 = 3 := by
+  rw [innerProd_one_left, trace_one]
+
+/-- The cubic norm of `r · 1`: `N(r · I) = r³`. -/
+theorem cubicNorm_smul_one (r : ℚ) : cubicNorm (r • (1 : J3O)) = r^3 := by
+  rw [cubicNorm_smul, cubicNorm_one, mul_one]
+
 /-- `sharp` is **quadratic** (homogeneous of degree 2): `(r • A)^# = r² • A^#`. -/
 theorem sharp_smul (r : ℚ) (A : J3O) : sharp (r • A) = r^2 • sharp A := by
   -- We prove this field-by-field using `J3O.ext`.
@@ -517,6 +542,44 @@ theorem omega_neg_right (v w : V56) : omega v (-w) = -omega v w := by
   simp only [neg_a, neg_b, neg_A, neg_B,
              J3O.innerProd_neg_right]
   ring
+
+/-! ### Specific evaluations of `q`
+
+These concrete computations illustrate how `q` behaves on canonical
+elements of `V₅₆`. They also serve as sanity-check evidence that `q` is
+well-defined and nonzero in general.
+-/
+
+/-- The **highest-weight vector** `v₀ = (1, 0, 0, 0)` (the U(1)-charge +3
+generator) satisfies `q(v₀) = 0`. Geometrically: `v₀` lies on the closed
+`E₇`-orbit `Ě_VII = {rank ≤ 1}` ⊂ `ℙ(V₅₆)`, hence `q(v₀) = 0`. -/
+theorem freudenthalQuartic_highest_weight :
+    freudenthalQuartic ⟨1, 0, 0, 0⟩ = 0 := by
+  unfold freudenthalQuartic
+  show ((1 : ℚ) * 0 - J3O.innerProd 0 0)^2
+       + 4 * (1 * J3O.cubicNorm 0 + 0 * J3O.cubicNorm 0
+              - J3O.innerProd (J3O.sharp 0) (J3O.sharp 0)) = 0
+  simp
+
+/-- The **lowest-weight vector** `v∞ = (0, 0, 0, 1)` (the U(1)-charge -3
+generator) satisfies `q(v∞) = 0`. Also on the closed orbit. -/
+theorem freudenthalQuartic_lowest_weight :
+    freudenthalQuartic ⟨0, 0, 0, 1⟩ = 0 := by
+  unfold freudenthalQuartic
+  show ((0 : ℚ) * 1 - J3O.innerProd 0 0)^2
+       + 4 * (0 * J3O.cubicNorm 0 + 1 * J3O.cubicNorm 0
+              - J3O.innerProd (J3O.sharp 0) (J3O.sharp 0)) = 0
+  simp
+
+/-- The **`a·b`-axis element** `v = (1, 0, 0, 1)`: `q(v) = 1`. This is the
+simplest nonzero quartic value, showing `q` is not identically zero. -/
+theorem freudenthalQuartic_a_times_b :
+    freudenthalQuartic ⟨1, 0, 0, 1⟩ = 1 := by
+  unfold freudenthalQuartic
+  show ((1 : ℚ) * 1 - J3O.innerProd 0 0)^2
+       + 4 * (1 * J3O.cubicNorm 0 + 1 * J3O.cubicNorm 0
+              - J3O.innerProd (J3O.sharp 0) (J3O.sharp 0)) = 1
+  simp
 
 end V56
 
