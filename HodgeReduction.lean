@@ -65,3 +65,4 @@ import HodgeReduction.Infrastructure.HodgeStructure.Polarised
 import HodgeReduction.Infrastructure.HodgeStructure.V56Instance
 import HodgeReduction.Infrastructure.HodgeStructure.MumfordTate
 import HodgeReduction.Infrastructure.Coxeter.WE7
+import HodgeReduction.Infrastructure.Shimura.Basic
