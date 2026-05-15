@@ -12,8 +12,8 @@ Main result: `HC_for_freudenthal_quartic_on_EVII_UNCONDITIONAL` —
 `E_{7(-25)}` Shimura varieties, taking NO broken-link `Hyp_*` arguments.
 The theorem is UNCONDITIONAL in `Hyp_*` terms: ALL seven original
 broken-link predicates have been discharged via PUBLISHED Cat 2 axioms +
-paper-stated Cat 3 structural equations. Conditional only on 41 atomic
-axiom dependencies (25 Cat 2 PUBLISHED + 16 Cat 3 paper-stated) — see
+paper-stated Cat 3 structural equations. Conditional only on 42 atomic
+axiom dependencies (26 Cat 2 PUBLISHED + 16 Cat 3 paper-stated) — see
 `#print axioms` at the end of the file. P57-P61: citation-hygiene pattern
 extracting implicit-in-bundled-framework citations as separately-cited
 Cat 2 single-source dependencies.
@@ -262,7 +262,7 @@ into 8 explicit ingredients.
 7. **Bijective ledger** per §19 Einstein Test exemplar — every declaration has
    exactly one `StrictGapEntry` and vice versa.
 8. **`#print axioms`** kernel-purity check (§1.5 primary verification tool) at
-   end of file surfaces all 41 atomic dependencies of the Main Theorem (25
+   end of file surfaces all 42 atomic dependencies of the Main Theorem (26
    Cat 2 PUBLISHED + 16 Cat 3 paper-stated; ZERO Hyp_* in signature).
 
 ## Layout
@@ -437,6 +437,16 @@ opaque holo_discrete_lowest_deg_E7minus25 : Prop
  S_Γ. In particular, `j^8(h^4)` is G-invariant on `S_Γ` because `h^4` is
  G-invariant on `Ě_VII`. -/
 opaque j_q_G_equivariance_principle : Prop
+
+/-- **Cat 3 hypothesis predicate (§3.4.2, P62)** — Borel-Hirzebruch's
+ identification of the Kähler class `h ∈ H^2(Ě_VII; ℤ)` with the first
+ Chern class of the canonical line bundle `L`: `h = c_1(L)`. For the
+ compact dual `Ě_VII = E_{7,C}/P_7` of EVII, `L` is the holomorphic line
+ bundle generating the Picard group; `h` is the positive generator of
+ `H^2(Ě_VII; ℤ) = ℤ`. This is the standard B-H 1958-60 identification
+ of the Kähler class with the Chern class of the canonical bundle on
+ a Hermitian symmetric space of compact type. -/
+opaque h_equals_c_1_canonical_line_bundle : Prop
 
 /-- **Cat 3 hypothesis predicate (§3.4.2)** — [q] is algebraic on S_Γ^{tor}. -/
 opaque freudenthal_is_algebraic : Prop
@@ -1007,6 +1017,16 @@ axiom vz_1984_holo_discrete_lowest_deg_PUBLISHED_OPEN :
 axiom borel_1974_j_q_G_equivariance_PUBLISHED_OPEN :
   j_q_G_equivariance_principle
 
+/-- **Cat 2 PUBLISHED (§3.3, P62)** — A. Borel, F. Hirzebruch,
+ "Characteristic classes and homogeneous spaces I-III", Amer. J. Math.
+ 80-82 (1958-60), Part I §13-15 (Kähler classes on compact homogeneous
+ spaces) + Part II §28-30 (Picard groups of generalised flag varieties).
+ For the compact dual `Ě_VII = E_{7,C}/P_7`, the Kähler class
+ `h ∈ H^2(Ě_VII; ℤ) = ℤ` equals the first Chern class of the canonical
+ (very ample) holomorphic line bundle `L`: `h = c_1(L)`. -/
+axiom borel_hirzebruch_h_equals_c_1_L_PUBLISHED_OPEN :
+  h_equals_c_1_canonical_line_bundle
+
 /-- **Cat 2 PUBLISHED (§3.3)** — P30 audit closure: previous gapBlocked
  status overly conservative. Single-source citation found:
  H. Toda, "Cohomology of the classifying space of exceptional Lie groups",
@@ -1323,6 +1343,7 @@ axiom paper_placement_reduction_OPEN :
   cohomologyIso_at_deg8 →
   Hyp_Eisenstein_Vanishing_OPEN →
   mumford_canonical_extension_framework →
+  h_equals_c_1_canonical_line_bundle →
   Hyp_FreudenthalClassPlacement_OPEN
 
 /-- **Cat 3 workingAssumption (§3.4.4)** — paper form-HM-EVII reduction.
@@ -1518,6 +1539,7 @@ theorem Hyp_FreudenthalClassPlacement_DERIVED :
     cohomologyIso_at_deg8_DERIVED
     Hyp_Eisenstein_Vanishing_DERIVED
     mumford_1977_canonical_extension_OPEN
+    borel_hirzebruch_h_equals_c_1_L_PUBLISHED_OPEN
 
 /-- **gapClosed** — (ii.b) Freudenthal extends compatibly (P56 unconditional). -/
 theorem freudenthal_extends_compatibly_DERIVED :
@@ -1799,6 +1821,14 @@ def gap_j_q_G_equivariance_principle : StrictGapEntry :=
     paperSource := "P61: G-equivariance of the Matsushima homomorphism j^q (Matsushima 1962 / Borel 1974 §3-§8). The j^q map commutes with the G-action; G-invariant classes on Ě descend to G-invariant classes on S_Γ"
     attackHistory := ["P61: opaque Prop carrier for the j^q G-equivariance principle"]
     scope := "j^q G-equivariance (Matsushima 1962 / Borel 1974 §3-§8); load-bearing in paper_hodge44_step's freudenthal-class-G-invariance derivation (P61)" }
+
+def gap_h_equals_c_1_canonical_line_bundle : StrictGapEntry :=
+  { name := "h_equals_c_1_canonical_line_bundle"
+    status := .gapOpen, inputCategory := .cat3PaperNovel
+    cat3SubType := .hypothesisPredicate
+    paperSource := "P62: Borel-Hirzebruch 1958-60 identification h = c_1(L) on Ě_VII — the Kähler class equals the first Chern class of the canonical holomorphic line bundle"
+    attackHistory := ["P62: opaque Prop carrier for the Borel-Hirzebruch Kähler-class = c_1 identification"]
+    scope := "Borel-Hirzebruch h = c_1(L) on Ě_VII; load-bearing in paper_placement_reduction step (iv) j^8(h^4) = c_1(L̄)^4 (P62)" }
 
 def gap_freudenthal_is_algebraic : StrictGapEntry :=
   { name := "freudenthal_is_algebraic"
@@ -2199,6 +2229,14 @@ def gap_borel_1974_j_q_G_equivariance_PUBLISHED : StrictGapEntry :=
     attackHistory := ["P61 (2026-05-15): Cat 2 single-step; G-equivariance of the Matsushima homomorphism j^q (commutes with G-action; G-invariant classes on Ě descend to G-invariant classes on S_Γ). Previously implicit in cohomologyIso_at_deg8 carrier semantics; now extracted as a separately cited Cat 2 single-source dependency for paper_hodge44_step_OPEN's load-bearing step h^4 G-inv on Ě_VII ⟹ j^8(h^4) G-inv on S_Γ"]
     scope := "Cat 2 PUBLISHED: Matsushima 1962 + Borel 1974 §3-§8 j^q G-equivariance; load-bearing in paper_hodge44_step's freudenthal-G-invariance derivation (P61)" }
 
+def gap_borel_hirzebruch_h_equals_c_1_L_PUBLISHED : StrictGapEntry :=
+  { name := "borel_hirzebruch_h_equals_c_1_L_PUBLISHED_OPEN"
+    status := .gapOpen, inputCategory := .cat2External
+    cat3SubType := .notApplicable
+    paperSource := "A. Borel, F. Hirzebruch, 'Characteristic classes and homogeneous spaces I-III', Amer. J. Math. 80-82 (1958-60), Part I §13-15 + Part II §28-30. Kähler class on Ě_VII = c_1 of canonical line bundle"
+    attackHistory := ["P62 (2026-05-15): Cat 2 single-step; h = c_1(L) identification on Ě_VII. Previously implicit in paper-narrative for paper_placement_reduction step (iv); now extracted as a separately cited Cat 2 single-source dependency"]
+    scope := "Cat 2 PUBLISHED: Borel-Hirzebruch 1958-60 Kähler-class = c_1(L) identification on Ě_VII; load-bearing in placement-reduction step (iv) (P62)" }
+
 def gap_borel_toda_E6_U1 : StrictGapEntry :=
   { name := "borel_toda_E6_U1_presentation_OPEN"
     status := .gapOpen, inputCategory := .cat2External
@@ -2420,9 +2458,11 @@ def gap_paper_placement_reduction : StrictGapEntry :=
   { name := "paper_placement_reduction_OPEN"
     status := .gapOpen, inputCategory := .cat3PaperNovel
     cat3SubType := .workingAssumption
-    paperSource := "P35 BREAKTHROUGH: synthesis of Master tex \\ref{rem:borel-matsushima} (L3471-3509) + \\ref{rem:E7-chernweil-tautology} (L3422). Composes Borel-Hirzebruch 1958 (Chern subring presentation of H^*(Ě_VII)) + Borel 1974 §11 (j^8 iso) + Mumford 1977 §1.3 (canonical extension of automorphic line bundle preserves algebraic Chern classes) + Speh-Vogan + V-Z 1984 §5 (Hermitian symmetric low-degree restriction)"
-    attackHistory := ["P35 introduction (2026-05-15): paper-stated reduction Hyp_BorelMAtLeast8 + Hyp_Eisenstein_Vanishing + mumford_framework → Hyp_FreudenthalClassPlacement (at deg 8). Reduces Main Theorem signature from 5 to 4 Hyp_*. Close target: 6-10 page synthesis write-up."]
-    scope := "paper placement reduction (3-input atomic, P35); close target P35+ via Borel-Hirzebruch + Borel 1974 + Mumford 1977 + V-Z 1984 synthesis" }
+    paperSource := "P35 BREAKTHROUGH: synthesis of Master tex \\ref{rem:borel-matsushima} + \\ref{rem:E7-chernweil-tautology}. P56 REFACTOR: Hyp_BorelMAtLeast8 input replaced by cohomologyIso_at_deg8 carrier (PUBLISHED-supplied). P62 REFACTOR: h = c_1(L) added as explicit input (Borel-Hirzebruch 1958-60)"
+    attackHistory := ["P35 introduction (2026-05-15): paper-stated reduction Hyp_BorelMAtLeast8 + Hyp_Eisenstein_Vanishing + mumford_framework → Hyp_FreudenthalClassPlacement (at deg 8).",
+                      "P56 (2026-05-15): refactored to use cohomologyIso_at_deg8 (PUBLISHED via c(E_7) = 8) instead of Hyp_BorelMAtLeast8",
+                      "P62 (2026-05-15): REFACTORED 3-input → 4-input by adding h_equals_c_1_canonical_line_bundle (Borel-Hirzebruch 1958-60 Kähler-class identification on Ě_VII). Previously implicit in paper-narrative step (iv) 'j^8(h^4) = c_1(L̄)^4'; now extracted as a separately-cited Cat 2 single-source dependency"]
+    scope := "paper placement reduction (4-input atomic, P62); load-bearing step j^8(h^4) = c_1(L̄)^4 now atomically derivable" }
 
 def gap_paper_GP_EVII : StrictGapEntry :=
   { name := "paper_GP_EVII_OPEN"
@@ -2601,9 +2641,10 @@ def gap_HC_Main : StrictGapEntry :=
       "P58 EXPLICIT CARTAN COMPACT-DUAL ISO: paper_iia_realization_OPEN refactored 5-input → 6-input by adding cartan_1929_compact_dual_iso (the published identification H^*(g, K; ℂ) = H^*(Ě; ℂ) for Hermitian symmetric Lie pairs of compact type, specialised to (E_{7(-25)}, E_6 × U(1), Ě_VII)). This was previously implicit in voganZuckerman_1984_framework's encoding; making it explicit as a separately cited Cat 2 single-source dependency (Cartan 1929 + Borel-Wallach Ch. II §3.3 Cor. 3.4) extracts the load-bearing fact that the trivial-module (g, K)-cohomology image at H^8 IS ⟨h^4⟩ = j^8(H^8(Ě_VII; ℂ)) — the step from 'non-trivial A_q(λ) absent at deg 8 < 13.5' to 'freudenthal class realized'.",
       "P59 EXPLICIT SALAMANCA-RIBA LOW-DEGREE VANISHING: paper_iia_realization_OPEN refactored 6-input → 7-input by adding salamanca_riba_low_deg_vanishing (the published low-degree vanishing principle for A_q(λ) cuspidal cohomology in Hermitian symmetric: at deg < dim_C(G/K), only trivial + holo-discrete contribute). Cited to Salamanca-Riba 1999 Duke Math. J. 96, no. 3 + Vogan 1984 Ann. Math. 120 + V-Z 1984 §5. Previously implicit in V-Z 1984's framework; now extracted as a separately-cited Cat 2 single-source dependency for the (ii.a) realization argument's step (3) that KILLS non-trivial A_q(λ) contributions at deg 8 < dim_C(G/K) = 27 for E_{7(-25)}.",
       "P60 EXPLICIT HOLO-DISCRETE LOWEST COHOMOLOGICAL DEGREE: paper_iia_realization_OPEN refactored 7-input → 8-input by adding holo_discrete_lowest_deg_E7minus25 (every holomorphic discrete series A_q(λ) in Hermitian symmetric (g, K) has R(q) = dim_C(G/K); for E_{7(-25)}, dim_C(G/K) = 27). Cited to V-Z 1984 Compositio Math. 53 §5 + Knapp-Wallach 1976 Invent. Math. 34 + Borel-Wallach 1980 Ch. VI. Previously implicit in V-Z 1984 §5 framework; now extracted. Combined with Salamanca-Riba (P59), this completely eliminates non-trivial A_q(λ) contributions at deg 8 < 27 in the (ii.a) realization argument's step (4), leaving only the trivial-module Cartan image (P58) = ⟨h^4⟩.",
-      "P61 EXPLICIT j^q G-EQUIVARIANCE: paper_hodge44_step_OPEN refactored 2-input → 3-input by adding j_q_G_equivariance_principle (the Matsushima homomorphism j^q is G-equivariant, sending G-invariant classes on Ě to G-invariant classes on S_Γ). Cited to Matsushima 1962 Osaka Math. J. 14 + Borel 1974 §3-§8. Previously implicit in cohomologyIso_at_deg8 carrier semantics; now extracted as a separately-cited Cat 2 single-source dependency. Load-bearing in the freudenthal-class-G-invariance derivation: h^4 G-inv on Ě_VII ⟹ j^8(h^4) G-inv on S_Γ."
+      "P61 EXPLICIT j^q G-EQUIVARIANCE: paper_hodge44_step_OPEN refactored 2-input → 3-input by adding j_q_G_equivariance_principle (the Matsushima homomorphism j^q is G-equivariant, sending G-invariant classes on Ě to G-invariant classes on S_Γ). Cited to Matsushima 1962 Osaka Math. J. 14 + Borel 1974 §3-§8. Previously implicit in cohomologyIso_at_deg8 carrier semantics; now extracted as a separately-cited Cat 2 single-source dependency. Load-bearing in the freudenthal-class-G-invariance derivation: h^4 G-inv on Ě_VII ⟹ j^8(h^4) G-inv on S_Γ.",
+      "P62 EXPLICIT BOREL-HIRZEBRUCH h = c_1(L): paper_placement_reduction_OPEN refactored 3-input → 4-input by adding h_equals_c_1_canonical_line_bundle (the Borel-Hirzebruch 1958-60 identification of the Kähler class h on Ě_VII with the first Chern class of the canonical line bundle L). Cited to Borel-Hirzebruch Amer. J. Math. 80-82 Part I §13-15 + Part II §28-30. Previously implicit in paper-narrative step (iv) j^8(h^4) = c_1(L̄)^4; now extracted as a separately-cited Cat 2 single-source dependency."
     ]
-    scope := "HC for Freudenthal quartic [q] on EVII Shimura varieties; Hyp_* count 7 → 6 (P32) → 5 (P34) → 4 (P35) → 3 (P53 discharges Hyp_TwistedPhiL) → 2 (P54 closes Hyp_MumfordExtension via Schmid 1973 + Deligne 1970) → 1 (P55 closes Hyp_Eisenstein_Vanishing via Borel-Serre + Franke + E_7 codim) → 0 (P56 bypasses Hyp_BorelMAtLeast8 via c(E_7) = 8 PUBLISHED). P57-P61 citation-hygiene rounds extract implicit-in-bundled-framework facts as separately-cited Cat 2 axioms. Conditional only on 41 atomic axioms (25 Cat 2 PUBLISHED + 16 Cat 3 paper-stated)."
+    scope := "HC for Freudenthal quartic [q] on EVII Shimura varieties; Hyp_* count 7 → 6 (P32) → 5 (P34) → 4 (P35) → 3 (P53) → 2 (P54) → 1 (P55) → 0 (P56). P57-P62 citation-hygiene rounds extract implicit-in-bundled-framework facts as separately-cited Cat 2 axioms. Conditional only on 42 atomic axioms (26 Cat 2 PUBLISHED + 16 Cat 3 paper-stated)."
     conditionalOn := [
       -- ZERO Hyp_* broken-link predicates (P56 final: Main Theorem is UNCONDITIONAL in Hyp_* terms)
       -- 3 Cat 2 PUBLISHED (was BLOCKED; P30 closure via Toda 1975 + Kono-Mimura 1976)
@@ -2623,6 +2664,7 @@ def gap_HC_Main : StrictGapEntry :=
       "salamanca_riba_1999_PUBLISHED_OPEN",
       "vz_1984_holo_discrete_lowest_deg_PUBLISHED_OPEN",
       "borel_1974_j_q_G_equivariance_PUBLISHED_OPEN",
+      "borel_hirzebruch_h_equals_c_1_L_PUBLISHED_OPEN",
       -- 15 paper workingAssumption/structuralEquation axioms (P35 +1, P39 +3, P40 +1, P53 +1, P54 +1, P55 +1)
       "paper_iia_realization_OPEN", "paper_formHM_EVII_OPEN",
       "paper_section16_2_OPEN", "paper_GP_EVII_OPEN",
@@ -2670,6 +2712,7 @@ def allEntries : List StrictGapEntry := [
   gap_salamanca_riba_low_deg_vanishing,
   gap_holo_discrete_lowest_deg_E7minus25,
   gap_j_q_G_equivariance_principle,
+  gap_h_equals_c_1_canonical_line_bundle,
   -- Hyp_* (9, +1 P39 TwistedPhiL_Coefficient, +1 P40 MumfordExtension_LBlockDiagonal)
   gap_Hyp_BorelMAtLeast8, gap_Hyp_VZ_AqLambda, gap_Hyp_Eisenstein_Vanishing,
   gap_Hyp_HigherRank_GoodMetric, gap_Hyp_ChernWeilForm_Proportionality,
@@ -2691,6 +2734,7 @@ def allEntries : List StrictGapEntry := [
   gap_salamanca_riba_1999_PUBLISHED,
   gap_vz_1984_holo_discrete_lowest_deg_PUBLISHED,
   gap_borel_1974_j_q_G_equivariance_PUBLISHED,
+  gap_borel_hirzebruch_h_equals_c_1_L_PUBLISHED,
   -- Cat 3 workingAssumption + structuralEquation (16, +1 P35, +3 P39, +1 P40, +1 P53, +1 P54, +1 P55)
   gap_paper_hodge44, gap_paper_iia, gap_paper_iib, gap_paper_formHM,
   gap_paper_placement_reduction,
@@ -2780,7 +2824,7 @@ end HodgeReduction.Strict
 --
 -- §1.5 designates `#print axioms` as the primary verification tool. This
 -- surfaces the exact axiom dependency of the Main Theorem in the build log:
--- 41 atomic dependencies (25 Cat 2 + 16 Cat 3 paper-stated; P35 added
+-- 42 atomic dependencies (26 Cat 2 + 16 Cat 3 paper-stated; P35 added
 -- paper_placement_reduction_OPEN, P39 added the L-equivariant Chern-Weil
 -- refinement: 3 Cat 2 + 3 Cat 3, P40 added the Hodge-refinement of
 -- Chern-Weil forms: 1 Cat 2 + 1 Cat 3, P53 added
