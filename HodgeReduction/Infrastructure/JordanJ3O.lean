@@ -236,6 +236,111 @@ theorem trace_smul (r : ℚ) (X : J3O) : trace (r • X) = r * trace X := by
 theorem trace_diagonal (a b c : ℚ) :
     trace ⟨a, b, c, 0, 0, 0⟩ = a + b + c := rfl
 
+/-! ### Mathlib typeclass upgrade: `AddCommGroup` + `Module ℚ`
+
+Promote `J3O` to a full Mathlib `AddCommGroup` (and `ℚ`-module). This
+realises `J₃(𝕆)` as the 27-dimensional `ℚ`-vector space promised by the
+master tex's identification `V_27 ≅ J₃(𝕆)` as an `E₆`-module.
+-/
+
+instance : Sub J3O := ⟨fun X Y => X + (-Y)⟩
+
+instance instAddCommGroup : AddCommGroup J3O where
+  zero := (0 : J3O)
+  add := (· + ·)
+  neg := Neg.neg
+  sub := Sub.sub
+  add_assoc X Y Z := by
+    refine J3O.ext ?_ ?_ ?_ ?_ ?_ ?_
+    · show _ + _ + _ = _ + (_ + _); ring
+    · show _ + _ + _ = _ + (_ + _); ring
+    · show _ + _ + _ = _ + (_ + _); ring
+    · show _ + _ + _ = _ + (_ + _); ext <;> simp <;> ring
+    · show _ + _ + _ = _ + (_ + _); ext <;> simp <;> ring
+    · show _ + _ + _ = _ + (_ + _); ext <;> simp <;> ring
+  zero_add X := by
+    refine J3O.ext ?_ ?_ ?_ ?_ ?_ ?_
+    · show (0 : ℚ) + _ = _; ring
+    · show (0 : ℚ) + _ = _; ring
+    · show (0 : ℚ) + _ = _; ring
+    · show (0 : OctonionQ) + _ = _; ext <;> simp
+    · show (0 : OctonionQ) + _ = _; ext <;> simp
+    · show (0 : OctonionQ) + _ = _; ext <;> simp
+  add_zero X := by
+    refine J3O.ext ?_ ?_ ?_ ?_ ?_ ?_
+    · show _ + (0 : ℚ) = _; ring
+    · show _ + (0 : ℚ) = _; ring
+    · show _ + (0 : ℚ) = _; ring
+    · show _ + (0 : OctonionQ) = _; ext <;> simp
+    · show _ + (0 : OctonionQ) = _; ext <;> simp
+    · show _ + (0 : OctonionQ) = _; ext <;> simp
+  add_comm X Y := by
+    refine J3O.ext ?_ ?_ ?_ ?_ ?_ ?_
+    · show _ + _ = _ + _; ring
+    · show _ + _ = _ + _; ring
+    · show _ + _ = _ + _; ring
+    · show _ + _ = _ + _; ext <;> simp <;> ring
+    · show _ + _ = _ + _; ext <;> simp <;> ring
+    · show _ + _ = _ + _; ext <;> simp <;> ring
+  neg_add_cancel X := by
+    refine J3O.ext ?_ ?_ ?_ ?_ ?_ ?_
+    · show -(_ : ℚ) + _ = 0; ring
+    · show -(_ : ℚ) + _ = 0; ring
+    · show -(_ : ℚ) + _ = 0; ring
+    · show -(_ : OctonionQ) + _ = 0; ext <;> simp
+    · show -(_ : OctonionQ) + _ = 0; ext <;> simp
+    · show -(_ : OctonionQ) + _ = 0; ext <;> simp
+  nsmul := nsmulRec
+  zsmul := zsmulRec
+
+instance instModuleRat : Module ℚ J3O where
+  smul := SMul.smul
+  one_smul X := by
+    refine J3O.ext ?_ ?_ ?_ ?_ ?_ ?_
+    · show (1 : ℚ) * _ = _; ring
+    · show (1 : ℚ) * _ = _; ring
+    · show (1 : ℚ) * _ = _; ring
+    · show (1 : ℚ) • _ = _; ext <;> simp
+    · show (1 : ℚ) • _ = _; ext <;> simp
+    · show (1 : ℚ) • _ = _; ext <;> simp
+  mul_smul r s X := by
+    refine J3O.ext ?_ ?_ ?_ ?_ ?_ ?_
+    · show (_ * _) * _ = _ * (_ * _); ring
+    · show (_ * _) * _ = _ * (_ * _); ring
+    · show (_ * _) * _ = _ * (_ * _); ring
+    · show (_ * _) • _ = _ • _ • _; ext <;> simp <;> ring
+    · show (_ * _) • _ = _ • _ • _; ext <;> simp <;> ring
+    · show (_ * _) • _ = _ • _ • _; ext <;> simp <;> ring
+  smul_zero r := by
+    refine J3O.ext ?_ ?_ ?_ ?_ ?_ ?_
+    all_goals first
+      | (show _ * (0 : ℚ) = 0; ring)
+      | (show _ • (0 : OctonionQ) = 0; ext <;> simp)
+  smul_add r X Y := by
+    refine J3O.ext ?_ ?_ ?_ ?_ ?_ ?_
+    · show _ * (_ + _) = _ * _ + _ * _; ring
+    · show _ * (_ + _) = _ * _ + _ * _; ring
+    · show _ * (_ + _) = _ * _ + _ * _; ring
+    · show _ • (_ + _) = _ • _ + _ • _; ext <;> simp <;> ring
+    · show _ • (_ + _) = _ • _ + _ • _; ext <;> simp <;> ring
+    · show _ • (_ + _) = _ • _ + _ • _; ext <;> simp <;> ring
+  add_smul r s X := by
+    refine J3O.ext ?_ ?_ ?_ ?_ ?_ ?_
+    · show (_ + _) * _ = _ * _ + _ * _; ring
+    · show (_ + _) * _ = _ * _ + _ * _; ring
+    · show (_ + _) * _ = _ * _ + _ * _; ring
+    · show (_ + _) • _ = _ • _ + _ • _; ext <;> simp <;> ring
+    · show (_ + _) • _ = _ • _ + _ • _; ext <;> simp <;> ring
+    · show (_ + _) • _ = _ • _ + _ • _; ext <;> simp <;> ring
+  zero_smul X := by
+    refine J3O.ext ?_ ?_ ?_ ?_ ?_ ?_
+    · show (0 : ℚ) * _ = 0; ring
+    · show (0 : ℚ) * _ = 0; ring
+    · show (0 : ℚ) * _ = 0; ring
+    · show (0 : ℚ) • _ = 0; ext <;> simp
+    · show (0 : ℚ) • _ = 0; ext <;> simp
+    · show (0 : ℚ) • _ = 0; ext <;> simp
+
 end J3O
 
 end HodgeReduction.Infrastructure
