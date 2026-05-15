@@ -60,6 +60,7 @@ import HodgeReduction.Infrastructure.Cohomology.KaehlerClass
 import HodgeReduction.Infrastructure.Cohomology.FreudenthalClass
 import HodgeReduction.Infrastructure.Cohomology.AlgebraicBundle
 import HodgeReduction.Infrastructure.Cohomology.CycleClassMap
+import HodgeReduction.Infrastructure.Cohomology.Lefschetz
 import HodgeReduction.Infrastructure.HodgeStructure.Basic
 import HodgeReduction.Infrastructure.HodgeStructure.Polarised
 import HodgeReduction.Infrastructure.HodgeStructure.V56Instance
