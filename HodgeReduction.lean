@@ -79,6 +79,8 @@ import HodgeReduction.Infrastructure.Cohomology.Motive
 import HodgeReduction.Infrastructure.Cohomology.Lattice
 import HodgeReduction.Infrastructure.Cohomology.PoincareDuality
 import HodgeReduction.Infrastructure.Cohomology.Matsushima
+import HodgeReduction.Infrastructure.Cohomology.AbelJacobi
+import HodgeReduction.Infrastructure.Cohomology.StandardConjectures
 import HodgeReduction.Infrastructure.Shimura.PeriodDomain
 import HodgeReduction.Infrastructure.Shimura.SchubertCells
 import HodgeReduction.Infrastructure.HodgeStructure.Basic
