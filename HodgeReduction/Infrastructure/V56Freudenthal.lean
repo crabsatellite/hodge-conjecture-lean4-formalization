@@ -581,6 +581,92 @@ theorem freudenthalQuartic_a_times_b :
               - J3O.innerProd (J3O.sharp 0) (J3O.sharp 0)) = 1
   simp
 
+/-! ### Mathlib typeclass upgrade: `AddCommGroup` + `Module ℚ`
+
+Promote `V56` to a full Mathlib `AddCommGroup` (and `ℚ`-module). This
+realises `V_56` as the 56-dim `ℚ`-vector space (the minuscule
+representation of `E_7`) at the level of Mathlib's linear-algebra
+interfaces. -/
+
+instance : Sub V56 := ⟨fun v w => v + (-w)⟩
+
+instance instAddCommGroup : AddCommGroup V56 where
+  zero := (0 : V56)
+  add := (· + ·)
+  neg := Neg.neg
+  sub := Sub.sub
+  add_assoc v w u := by
+    refine V56.ext ?_ ?_ ?_ ?_
+    · show _ + _ + _ = _ + (_ + _); ring
+    · show _ + _ + _ = _ + (_ + _); apply add_assoc
+    · show _ + _ + _ = _ + (_ + _); apply add_assoc
+    · show _ + _ + _ = _ + (_ + _); ring
+  zero_add v := by
+    refine V56.ext ?_ ?_ ?_ ?_
+    · show (0 : ℚ) + _ = _; ring
+    · show (0 : J3O) + _ = _; apply zero_add
+    · show (0 : J3O) + _ = _; apply zero_add
+    · show (0 : ℚ) + _ = _; ring
+  add_zero v := by
+    refine V56.ext ?_ ?_ ?_ ?_
+    · show _ + (0 : ℚ) = _; ring
+    · show _ + (0 : J3O) = _; apply add_zero
+    · show _ + (0 : J3O) = _; apply add_zero
+    · show _ + (0 : ℚ) = _; ring
+  add_comm v w := by
+    refine V56.ext ?_ ?_ ?_ ?_
+    · show _ + _ = _ + _; ring
+    · show _ + _ = _ + _; apply add_comm
+    · show _ + _ = _ + _; apply add_comm
+    · show _ + _ = _ + _; ring
+  neg_add_cancel v := by
+    refine V56.ext ?_ ?_ ?_ ?_
+    · show -(_ : ℚ) + _ = 0; ring
+    · show -(_ : J3O) + _ = 0; apply neg_add_cancel
+    · show -(_ : J3O) + _ = 0; apply neg_add_cancel
+    · show -(_ : ℚ) + _ = 0; ring
+  nsmul := nsmulRec
+  zsmul := zsmulRec
+
+instance instModuleRat : Module ℚ V56 where
+  smul := SMul.smul
+  one_smul v := by
+    refine V56.ext ?_ ?_ ?_ ?_
+    · show (1 : ℚ) * _ = _; ring
+    · show (1 : ℚ) • _ = _; apply one_smul
+    · show (1 : ℚ) • _ = _; apply one_smul
+    · show (1 : ℚ) * _ = _; ring
+  mul_smul r s v := by
+    refine V56.ext ?_ ?_ ?_ ?_
+    · show (_ * _) * _ = _ * (_ * _); ring
+    · show (_ * _) • _ = _ • _ • _; apply mul_smul
+    · show (_ * _) • _ = _ • _ • _; apply mul_smul
+    · show (_ * _) * _ = _ * (_ * _); ring
+  smul_zero r := by
+    refine V56.ext ?_ ?_ ?_ ?_
+    · show _ * (0 : ℚ) = 0; ring
+    · show _ • (0 : J3O) = 0; apply smul_zero
+    · show _ • (0 : J3O) = 0; apply smul_zero
+    · show _ * (0 : ℚ) = 0; ring
+  smul_add r v w := by
+    refine V56.ext ?_ ?_ ?_ ?_
+    · show _ * (_ + _) = _ * _ + _ * _; ring
+    · show _ • (_ + _) = _ • _ + _ • _; apply smul_add
+    · show _ • (_ + _) = _ • _ + _ • _; apply smul_add
+    · show _ * (_ + _) = _ * _ + _ * _; ring
+  add_smul r s v := by
+    refine V56.ext ?_ ?_ ?_ ?_
+    · show (_ + _) * _ = _ * _ + _ * _; ring
+    · show (_ + _) • _ = _ • _ + _ • _; apply add_smul
+    · show (_ + _) • _ = _ • _ + _ • _; apply add_smul
+    · show (_ + _) * _ = _ * _ + _ * _; ring
+  zero_smul v := by
+    refine V56.ext ?_ ?_ ?_ ?_
+    · show (0 : ℚ) * _ = 0; ring
+    · show (0 : ℚ) • _ = 0; apply zero_smul
+    · show (0 : ℚ) • _ = 0; apply zero_smul
+    · show (0 : ℚ) * _ = 0; ring
+
 end V56
 
 end HodgeReduction.Infrastructure
