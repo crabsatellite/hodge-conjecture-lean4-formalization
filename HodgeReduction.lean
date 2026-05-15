@@ -72,6 +72,8 @@ import HodgeReduction.Infrastructure.Shimura.PeriodDomain
 import HodgeReduction.Infrastructure.Shimura.SchubertCells
 import HodgeReduction.Infrastructure.HodgeStructure.Basic
 import HodgeReduction.Infrastructure.HodgeStructure.Polarised
+import HodgeReduction.Infrastructure.HodgeStructure.MixedHodge
+import HodgeReduction.Infrastructure.HodgeStructure.NilpotentOrbit
 import HodgeReduction.Infrastructure.HodgeStructure.V56Instance
 import HodgeReduction.Infrastructure.HodgeStructure.MumfordTate
 import HodgeReduction.Infrastructure.HodgeStructure.Variation
@@ -85,6 +87,7 @@ import HodgeReduction.Infrastructure.AbelianVariety.Basic
 import HodgeReduction.Infrastructure.AbelianVariety.PolarisedAV
 import HodgeReduction.Infrastructure.AbelianVariety.CMType
 import HodgeReduction.Infrastructure.Shimura.HermitianSymmetric
+import HodgeReduction.Infrastructure.Shimura.ArithmeticGroup
 import HodgeReduction.Infrastructure.Automorphic.Basic
 import HodgeReduction.Infrastructure.Automorphic.VoganZuckerman
 import HodgeReduction.Infrastructure.Automorphic.BorelBottWeil
