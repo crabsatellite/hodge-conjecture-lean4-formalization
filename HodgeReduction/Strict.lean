@@ -12,8 +12,8 @@ Main result: `HC_for_freudenthal_quartic_on_EVII_UNCONDITIONAL` —
 `E_{7(-25)}` Shimura varieties, taking NO broken-link `Hyp_*` arguments.
 The theorem is UNCONDITIONAL in `Hyp_*` terms: ALL seven original
 broken-link predicates have been discharged via PUBLISHED Cat 2 axioms +
-paper-stated Cat 3 structural equations. Conditional only on 43 atomic
-axiom dependencies (27 Cat 2 PUBLISHED + 16 Cat 3 paper-stated) — see
+paper-stated Cat 3 structural equations. Conditional only on 44 atomic
+axiom dependencies (28 Cat 2 PUBLISHED + 16 Cat 3 paper-stated) — see
 `#print axioms` at the end of the file. P57-P61: citation-hygiene pattern
 extracting implicit-in-bundled-framework citations as separately-cited
 Cat 2 single-source dependencies.
@@ -262,7 +262,7 @@ into 8 explicit ingredients.
 7. **Bijective ledger** per §19 Einstein Test exemplar — every declaration has
    exactly one `StrictGapEntry` and vice versa.
 8. **`#print axioms`** kernel-purity check (§1.5 primary verification tool) at
-   end of file surfaces all 43 atomic dependencies of the Main Theorem (27
+   end of file surfaces all 44 atomic dependencies of the Main Theorem (28
    Cat 2 PUBLISHED + 16 Cat 3 paper-stated; ZERO Hyp_* in signature).
 
 ## Layout
@@ -455,6 +455,13 @@ opaque h_equals_c_1_canonical_line_bundle : Prop
  to `S_Γ^{tor}` with log-log boundary behaviour, yielding well-defined
  algebraic Chern classes in `H^*(S_Γ^{tor}; ℚ)`. -/
 opaque bkk_2007_log_log_automorphic_framework : Prop
+
+/-- **Cat 3 hypothesis predicate (§3.4.2, P64)** — Harris 1985 algebraic
+ upgrade: the Chern classes of Mumford-extended automorphic vector bundles
+ (with canonical singular Hermitian metric) on Shimura varieties are
+ ALGEBRAIC cycle classes in `H^*(S_Γ^{tor}; ℚ)`. This upgrades Mumford
+ 1977's good-metric Chern classes from `C^∞`-level to algebraic-level. -/
+opaque harris_1985_algebraic_upgrade : Prop
 
 /-- **Cat 3 hypothesis predicate (§3.4.2)** — [q] is algebraic on S_Γ^{tor}. -/
 opaque freudenthal_is_algebraic : Prop
@@ -1047,6 +1054,17 @@ axiom borel_hirzebruch_h_equals_c_1_L_PUBLISHED_OPEN :
 axiom burgos_kramer_kuhn_2007_PUBLISHED_OPEN :
   bkk_2007_log_log_automorphic_framework
 
+/-- **Cat 2 PUBLISHED (§3.3, P64)** — M. Harris, "Automorphic forms of
+ ∂̄-cohomology type as coherent cohomology classes", J. Diff. Geom. 32
+ (1990), 1-63 + M. Harris, "Functorial properties of toroidal
+ compactifications of locally symmetric varieties", Proc. London Math.
+ Soc. (3) 59 (1989), §4.1 (algebraic upgrade of Mumford 1977 §1.3
+ canonical singular metric). The Mumford-extended automorphic vector
+ bundles have algebraic Chern classes in `H^*(S_Γ^{tor}; ℚ)` — not just
+ `C^∞`-Chern-Weil classes. -/
+axiom harris_1985_algebraic_upgrade_PUBLISHED_OPEN :
+  harris_1985_algebraic_upgrade
+
 /-- **Cat 2 PUBLISHED (§3.3)** — P30 audit closure: previous gapBlocked
  status overly conservative. Single-source citation found:
  H. Toda, "Cohomology of the classifying space of exceptional Lie groups",
@@ -1379,6 +1397,7 @@ axiom paper_formHM_EVII_OPEN :
   mumford_canonical_extension_framework →
   Hyp_ChernWeilForm_Proportionality_OPEN →
   bkk_2007_log_log_automorphic_framework →
+  harris_1985_algebraic_upgrade →
   formLevel_HM_proportionality_EVII
 
 /-- **Cat 3 workingAssumption (§3.4.4)** — paper §16.2 E_6-rep-compat
@@ -1507,6 +1526,7 @@ theorem formLevel_HM_proportionality_EVII_DERIVED :
     mumford_1977_canonical_extension_OPEN
     Hyp_ChernWeilForm_Proportionality_DERIVED
     burgos_kramer_kuhn_2007_PUBLISHED_OPEN
+    harris_1985_algebraic_upgrade_PUBLISHED_OPEN
 
 /-- **gapClosed** — §16.2 E_6-rep-compat (P56 unconditional). -/
 theorem section16_2_E6_rep_compat_DERIVED :
@@ -1859,6 +1879,14 @@ def gap_bkk_2007_log_log_automorphic_framework : StrictGapEntry :=
     paperSource := "P63: Burgos-Kramer-Kühn 2007 log-log automorphic forms framework — Mumford canonical singular metric extends to toroidal boundary with log-log behaviour, yielding algebraic Chern classes in H^*(S_Γ^{tor})"
     attackHistory := ["P63: opaque Prop carrier for the BKK 2007 log-log automorphic framework"]
     scope := "Burgos-Kramer-Kühn 2007 log-log automorphic Chern forms; load-bearing in paper_formHM_EVII for toroidal boundary extension (P63)" }
+
+def gap_harris_1985_algebraic_upgrade : StrictGapEntry :=
+  { name := "harris_1985_algebraic_upgrade"
+    status := .gapOpen, inputCategory := .cat3PaperNovel
+    cat3SubType := .hypothesisPredicate
+    paperSource := "P64: Harris 1985 algebraic upgrade — Mumford-extended automorphic vector bundles have algebraic Chern classes in H^*(S_Γ^{tor}; ℚ), not just C^∞-Chern-Weil classes"
+    attackHistory := ["P64: opaque Prop carrier for the Harris algebraic-upgrade principle"]
+    scope := "Harris 1985 / 1989 / 1990 algebraic upgrade of Mumford-extended automorphic Chern classes; load-bearing in paper_formHM_EVII (P64)" }
 
 def gap_freudenthal_is_algebraic : StrictGapEntry :=
   { name := "freudenthal_is_algebraic"
@@ -2275,6 +2303,14 @@ def gap_burgos_kramer_kuhn_2007_PUBLISHED : StrictGapEntry :=
     attackHistory := ["P63 (2026-05-15): Cat 2 single-step; BKK 2007 log-log automorphic Chern forms framework. Previously implicit in paper_formHM_EVII synthesis; now extracted as a separately-cited Cat 2 single-source dependency"]
     scope := "Cat 2 PUBLISHED: BKK 2007 log-log automorphic framework; load-bearing in form-HM-EVII toroidal-boundary extension (P63)" }
 
+def gap_harris_1985_algebraic_upgrade_PUBLISHED : StrictGapEntry :=
+  { name := "harris_1985_algebraic_upgrade_PUBLISHED_OPEN"
+    status := .gapOpen, inputCategory := .cat2External
+    cat3SubType := .notApplicable
+    paperSource := "M. Harris, 'Automorphic forms of ∂̄-cohomology type as coherent cohomology classes', J. Diff. Geom. 32 (1990), 1-63 + M. Harris, 'Functorial properties of toroidal compactifications of locally symmetric varieties', Proc. London Math. Soc. (3) 59 (1989), §4.1"
+    attackHistory := ["P64 (2026-05-15): Cat 2 single-step; Harris 1985/1989/1990 algebraic upgrade of Mumford-extended Chern classes. Previously implicit in paper_formHM_EVII P34 closure synthesis; now extracted as a separately-cited Cat 2 single-source dependency"]
+    scope := "Cat 2 PUBLISHED: Harris 1985 algebraic upgrade of Mumford-extended automorphic Chern classes; load-bearing in form-HM-EVII (P64)" }
+
 def gap_borel_toda_E6_U1 : StrictGapEntry :=
   { name := "borel_toda_E6_U1_presentation_OPEN"
     status := .gapOpen, inputCategory := .cat2External
@@ -2682,7 +2718,7 @@ def gap_HC_Main : StrictGapEntry :=
       "P61 EXPLICIT j^q G-EQUIVARIANCE: paper_hodge44_step_OPEN refactored 2-input → 3-input by adding j_q_G_equivariance_principle (the Matsushima homomorphism j^q is G-equivariant, sending G-invariant classes on Ě to G-invariant classes on S_Γ). Cited to Matsushima 1962 Osaka Math. J. 14 + Borel 1974 §3-§8. Previously implicit in cohomologyIso_at_deg8 carrier semantics; now extracted as a separately-cited Cat 2 single-source dependency. Load-bearing in the freudenthal-class-G-invariance derivation: h^4 G-inv on Ě_VII ⟹ j^8(h^4) G-inv on S_Γ.",
       "P62 EXPLICIT BOREL-HIRZEBRUCH h = c_1(L): paper_placement_reduction_OPEN refactored 3-input → 4-input by adding h_equals_c_1_canonical_line_bundle (the Borel-Hirzebruch 1958-60 identification of the Kähler class h on Ě_VII with the first Chern class of the canonical line bundle L). Cited to Borel-Hirzebruch Amer. J. Math. 80-82 Part I §13-15 + Part II §28-30. Previously implicit in paper-narrative step (iv) j^8(h^4) = c_1(L̄)^4; now extracted as a separately-cited Cat 2 single-source dependency."
     ]
-    scope := "HC for Freudenthal quartic [q] on EVII Shimura varieties; Hyp_* count 7 → 6 (P32) → 5 (P34) → 4 (P35) → 3 (P53) → 2 (P54) → 1 (P55) → 0 (P56). P57-P63 citation-hygiene rounds extract implicit-in-bundled-framework facts as separately-cited Cat 2 axioms. Conditional only on 43 atomic axioms (27 Cat 2 PUBLISHED + 16 Cat 3 paper-stated)."
+    scope := "HC for Freudenthal quartic [q] on EVII Shimura varieties; Hyp_* count 7 → 6 (P32) → 5 (P34) → 4 (P35) → 3 (P53) → 2 (P54) → 1 (P55) → 0 (P56). P57-P64 citation-hygiene rounds extract implicit-in-bundled-framework facts as separately-cited Cat 2 axioms. Conditional only on 44 atomic axioms (28 Cat 2 PUBLISHED + 16 Cat 3 paper-stated)."
     conditionalOn := [
       -- ZERO Hyp_* broken-link predicates (P56 final: Main Theorem is UNCONDITIONAL in Hyp_* terms)
       -- 3 Cat 2 PUBLISHED (was BLOCKED; P30 closure via Toda 1975 + Kono-Mimura 1976)
@@ -2704,6 +2740,7 @@ def gap_HC_Main : StrictGapEntry :=
       "borel_1974_j_q_G_equivariance_PUBLISHED_OPEN",
       "borel_hirzebruch_h_equals_c_1_L_PUBLISHED_OPEN",
       "burgos_kramer_kuhn_2007_PUBLISHED_OPEN",
+      "harris_1985_algebraic_upgrade_PUBLISHED_OPEN",
       -- 15 paper workingAssumption/structuralEquation axioms (P35 +1, P39 +3, P40 +1, P53 +1, P54 +1, P55 +1)
       "paper_iia_realization_OPEN", "paper_formHM_EVII_OPEN",
       "paper_section16_2_OPEN", "paper_GP_EVII_OPEN",
@@ -2753,6 +2790,7 @@ def allEntries : List StrictGapEntry := [
   gap_j_q_G_equivariance_principle,
   gap_h_equals_c_1_canonical_line_bundle,
   gap_bkk_2007_log_log_automorphic_framework,
+  gap_harris_1985_algebraic_upgrade,
   -- Hyp_* (9, +1 P39 TwistedPhiL_Coefficient, +1 P40 MumfordExtension_LBlockDiagonal)
   gap_Hyp_BorelMAtLeast8, gap_Hyp_VZ_AqLambda, gap_Hyp_Eisenstein_Vanishing,
   gap_Hyp_HigherRank_GoodMetric, gap_Hyp_ChernWeilForm_Proportionality,
@@ -2776,6 +2814,7 @@ def allEntries : List StrictGapEntry := [
   gap_borel_1974_j_q_G_equivariance_PUBLISHED,
   gap_borel_hirzebruch_h_equals_c_1_L_PUBLISHED,
   gap_burgos_kramer_kuhn_2007_PUBLISHED,
+  gap_harris_1985_algebraic_upgrade_PUBLISHED,
   -- Cat 3 workingAssumption + structuralEquation (16, +1 P35, +3 P39, +1 P40, +1 P53, +1 P54, +1 P55)
   gap_paper_hodge44, gap_paper_iia, gap_paper_iib, gap_paper_formHM,
   gap_paper_placement_reduction,
@@ -2865,7 +2904,7 @@ end HodgeReduction.Strict
 --
 -- §1.5 designates `#print axioms` as the primary verification tool. This
 -- surfaces the exact axiom dependency of the Main Theorem in the build log:
--- 43 atomic dependencies (27 Cat 2 + 16 Cat 3 paper-stated; P35 added
+-- 44 atomic dependencies (28 Cat 2 + 16 Cat 3 paper-stated; P35 added
 -- paper_placement_reduction_OPEN, P39 added the L-equivariant Chern-Weil
 -- refinement: 3 Cat 2 + 3 Cat 3, P40 added the Hodge-refinement of
 -- Chern-Weil forms: 1 Cat 2 + 1 Cat 3, P53 added
