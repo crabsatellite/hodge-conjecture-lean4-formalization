@@ -12,10 +12,11 @@ Main result: `HC_for_freudenthal_quartic_on_EVII_UNCONDITIONAL` —
 `E_{7(-25)}` Shimura varieties, taking NO broken-link `Hyp_*` arguments.
 The theorem is UNCONDITIONAL in `Hyp_*` terms: ALL seven original
 broken-link predicates have been discharged via PUBLISHED Cat 2 axioms +
-paper-stated Cat 3 structural equations. Conditional only on 37 atomic
-axiom dependencies (21 Cat 2 PUBLISHED + 16 Cat 3 paper-stated) — see
+paper-stated Cat 3 structural equations. Conditional only on 38 atomic
+axiom dependencies (22 Cat 2 PUBLISHED + 16 Cat 3 paper-stated) — see
 `#print axioms` at the end of the file. P57: polynomial identity made
 explicit — `[q] = -48 c_2² + 96 c_1·c_3 - 96 c_4` (in `c_i(𝓔_{+1})`).
+P58: Cartan 1929 compact-dual iso made explicit in (ii.a) realization.
 
 P32 closure (P36 audit-reframed): Hyp_VZ_AqLambda_OPEN dropped — under
 Hyp_BorelMAtLeast8 the j^8 iso makes H^8(S_Γ; ℚ)_G 1-dim coming from the
@@ -194,6 +195,22 @@ the P53 result. The polynomial P(c_1,c_2,c_3,c_4) = -48 c_2² + 96 c_1·c_3
 - 96 c_4 is now part of the formal audit trail (not just paper-stated
 existence).
 
+P58 — Cartan 1929 compact-dual cohomology iso made EXPLICIT. The 5-input
+paper_iia_realization_OPEN axiom is refactored 5-input → 6-input by
+adding the published trivial-module (g, K)-cohomology iso
+cartan_1929_compact_dual_iso (= H^*(g, K; ℂ) = H^*(Ě_VII; ℂ); supplied
+by the new Cat 2 axiom cartan_1929_PUBLISHED_OPEN, cited to É. Cartan
+1929 Rend. Circ. Mat. Palermo 53 + Borel-Wallach Ch. II §3.3 Cor. 3.4).
+This identification was previously implicit in voganZuckerman_1984_
+framework; extracting it makes the (ii.a) realization argument's step
+"trivial-module (g, K)-cohomology image at H^8 = ⟨h^4⟩" atomically
+citeable. The (ii.a) argument now decomposes into 6 explicit ingredients:
+(1) V-Z 1984 cuspidal A_q(λ) decomposition, (2) KV 1995 cohomological
+induction, (3) Franke 1998 Eisenstein vs cuspidal split, (4) Cartan
+1929 compact-dual iso, (5) Hodge-(4,4) bigrading on [q], (6) Eisenstein
+vanishing at H^8. Improves citation hygiene; no change to load-bearing
+math content.
+
 ## Disciplinary invariants
 
 1. **Cat 2** — Hodge-style `def + rfl` for closed-form OR opaque `axiom` +
@@ -211,7 +228,7 @@ existence).
 7. **Bijective ledger** per §19 Einstein Test exemplar — every declaration has
    exactly one `StrictGapEntry` and vice versa.
 8. **`#print axioms`** kernel-purity check (§1.5 primary verification tool) at
-   end of file surfaces all 37 atomic dependencies of the Main Theorem (21
+   end of file surfaces all 38 atomic dependencies of the Main Theorem (22
    Cat 2 PUBLISHED + 16 Cat 3 paper-stated; ZERO Hyp_* in signature).
 
 ## Layout
@@ -349,6 +366,13 @@ opaque polynomial_identity_freudenthal : Prop
  degree-4 part of `c(𝓔)·c(𝓔^∨) = 1/(1-h²)`, which follows from
  `V_56^{can}` being filtered-trivial (`c(V_56^{can}) = (1-h)(1+h)·c(𝓔_{+1})·c(𝓔_{-1}) = 1`). -/
 opaque chern_pairing_deg4_constraint : Prop
+
+/-- **Cat 3 hypothesis predicate (§3.4.2, P58)** — Cartan's identification
+ of trivial-module relative `(g, K)`-cohomology with the de Rham cohomology
+ of the compact dual: `H^*(g, K; ℂ) = H^*(Ě_VII; ℂ)`. This is the
+ load-bearing fact in the (ii.a) realization argument identifying the
+ trivial-module Cartan image at `H^8` with `⟨h^4⟩`. -/
+opaque cartan_1929_compact_dual_iso : Prop
 
 /-- **Cat 3 hypothesis predicate (§3.4.2)** — [q] is algebraic on S_Γ^{tor}. -/
 opaque freudenthal_is_algebraic : Prop
@@ -859,6 +883,24 @@ axiom knapp_vogan_1995_OPEN : knappVogan_1995_induction_framework
  Ann. Sci. ÉNS (4) 31 (1998), 181-279. -/
 axiom franke_1998_OPEN : franke_1998_eisenstein_framework
 
+/-- **Cat 2 PUBLISHED (§3.3, P58)** — É. Cartan, "Sur la détermination
+ d'un système orthogonal complet dans un espace de Riemann symétrique
+ clos", Rend. Circ. Mat. Palermo 53 (1929), 217-252 + A. Borel,
+ N. Wallach, *Continuous Cohomology, Discrete Subgroups, and
+ Representations of Reductive Groups*, Princeton Math. Notes 1980 (2nd
+ ed. AMS Math. Surveys & Monographs 67, 2000), Ch. II §3.3 Cor. 3.4.
+ For a Hermitian symmetric space `G/K` of compact type and its compact
+ dual `Ě = G_C/P`, the relative Lie algebra cohomology of the trivial
+ `g`-module equals the de Rham cohomology of the compact dual:
+   `H^*(g, K; ℂ) = H^*(Ě; ℂ)`.
+ Specialised to `g = e_{7(-25)}, K = E_6 × U(1), Ě = Ě_VII = E_{7,C}/P_7`,
+ this identifies the trivial-module `(g, K)`-cohomology image inside
+ cuspidal `H^8(S_Γ; ℂ)_G` with `H^8(Ě_VII; ℂ) = ⟨h^4⟩`. Load-bearing in
+ the (ii.a) realization argument's step from "non-trivial A_q(λ) absent
+ at deg < dim/2 = 13.5" to "freudenthal class IS the j^8-image of h^4". -/
+axiom cartan_1929_PUBLISHED_OPEN :
+  cartan_1929_compact_dual_iso
+
 /-- **Cat 2 PUBLISHED (§3.3)** — P30 audit closure: previous gapBlocked
  status overly conservative. Single-source citation found:
  H. Toda, "Cohomology of the classifying space of exceptional Lie groups",
@@ -1105,20 +1147,33 @@ axiom paper_hodge44_step_OPEN :
     freudenthal_H8_auto_G_invariant
 
 /-- **Cat 3 workingAssumption (§3.4.4)** — paper (ii.a) reduction:
- the Borel-Wallach descent + V-Z + Knapp-Vogan + Franke framework, applied
- to E_{7(-25)} at deg 8 with `[q]_G` realisation, yields realization by
- G-invariant cohomology.
- P32 REFACTOR: Hyp_VZ_AqLambda_OPEN input REMOVED. Per P32 deep audit,
- R(q) = 8 is NEVER achieved by any θ-stable parabolic of E_{7(-25)}
- (R(q) values are {0, 16, 21, 24, 25, 26, 29, 30, 31, 32, 33, 34, 35, 36}).
- The (ii.a) descent at deg 8 comes from the TRIVIAL g-module (R(q) = 0,
- the constant h^4 Kähler class) via Borel 1974 §11 j^8 injection
- (injective for 8 ≤ c(E_7) = 8 PUBLISHED §9.1(3) p.261), NOT from non-trivial
- A_q(λ). So no Hyp_VZ_AqLambda dependency. Now 5-input. -/
+ the Borel-Wallach descent + V-Z + Knapp-Vogan + Franke + Cartan
+ framework, applied to E_{7(-25)} at deg 8 with `[q]_G` realisation,
+ yields realization by G-invariant cohomology.
+ P32 REFACTOR: Hyp_VZ_AqLambda_OPEN input REMOVED.
+ P58 REFACTOR: Cartan 1929's compact-dual identification
+ `H^*(g, K; ℂ) = H^*(Ě_VII; ℂ)` added as explicit input — this is the
+ load-bearing fact that identifies the trivial-module `(g, K)`-cohomology
+ image at H^8 with `⟨h^4⟩ = j^8(H^8(Ě_VII; ℂ))`. Previously implicit in
+ the V-Z 1984 framework input; now explicit for audit clarity.
+ The (ii.a) descent at deg 8 argument:
+   (1) Hyp_Eisenstein_Vanishing + Franke 1998 ⟹ H^8(S_Γ)_G = H^8_cusp(S_Γ)_G.
+   (2) V-Z 1984 + KV 1995 ⟹ H^*_cusp(S_Γ; ℂ) decomposes via A_q(λ) modules.
+   (3) Speh-Vogan / Salamanca-Riba (in V-Z 1984): at deg 8 < dim_C(G/K)/2
+       = 13.5 in Hermitian symmetric, only trivial-module + holo-discrete
+       contribute G-invariantly.
+   (4) Holo-discrete (g,K)-cohomology starts at deg 27 > 8.
+   (5) Hence at deg 8: ONLY trivial-module contributes.
+   (6) Cartan 1929: trivial-module (g,K)-cohomology = H^*(Ě_VII; ℂ) ⟹
+       H^8_cusp(S_Γ)_G ≅ H^8(Ě_VII; ℂ) = ⟨h^4⟩ (1-dim).
+   (7) [q] (assumed G-invariant via freudenthal_H8_auto_G_invariant) is
+       therefore the j^8-image of h^4 = realized.
+ 6-input atomic now. -/
 axiom paper_iia_realization_OPEN :
   voganZuckerman_1984_framework →
   knappVogan_1995_induction_framework →
   franke_1998_eisenstein_framework →
+  cartan_1929_compact_dual_iso →
   freudenthal_H8_auto_G_invariant →
   Hyp_Eisenstein_Vanishing_OPEN →
   freudenthal_realized_by_G_invariant
@@ -1320,13 +1375,15 @@ theorem Hyp_CrossRingPhiNonzero_DERIVED :
     (freudenthal_scalar_piece_computation_OPEN V56_hodge_decomposition_OPEN)
     Hyp_TwistedPhiL_Coefficient_Nonzero_COMPUTED
 
-/-- **gapClosed** — (ii.a) Freudenthal realized by G-invariant (P56 unconditional). -/
+/-- **gapClosed** — (ii.a) Freudenthal realized by G-invariant (P56 unconditional,
+ P58 Cartan-explicit). -/
 theorem freudenthal_realized_by_G_invariant_DERIVED :
   freudenthal_realized_by_G_invariant :=
   paper_iia_realization_OPEN
     vogan_zuckerman_1984_OPEN
     knapp_vogan_1995_OPEN
     franke_1998_OPEN
+    cartan_1929_PUBLISHED_OPEN
     freudenthal_H8_auto_G_invariant_DERIVED
     Hyp_Eisenstein_Vanishing_DERIVED
 
@@ -1589,6 +1646,14 @@ def gap_chern_pairing_deg4_constraint : StrictGapEntry :=
     paperSource := "P57: degree-4 trivialization constraint 2 c_4(𝓔_{+1}) - 2 c_1(𝓔_{+1})·c_3(𝓔_{+1}) + c_2(𝓔_{+1})² = h⁴ in H^8(Ě_VII; ℚ), from the filtered-trivial total bundle V_56^{can} (c(𝓔_{+1})·c(𝓔_{+1}^∨) = 1/(1-h²))"
     attackHistory := ["P57: opaque Prop carrier for the degree-4 Chern pairing constraint"]
     scope := "Standard degree-4 Chern-pairing constraint in H^8(Ě_VII; ℚ): 2c_4 - 2c_1c_3 + c_2² = h⁴ (P57)" }
+
+def gap_cartan_1929_compact_dual_iso : StrictGapEntry :=
+  { name := "cartan_1929_compact_dual_iso"
+    status := .gapOpen, inputCategory := .cat3PaperNovel
+    cat3SubType := .hypothesisPredicate
+    paperSource := "P58: Cartan 1929's compact-dual cohomology iso — for Hermitian symmetric (g, K) of compact type and its compact dual Ě, the trivial-module (g, K)-cohomology equals de Rham cohomology of the compact dual: H^*(g, K; ℂ) = H^*(Ě; ℂ). Specialised to (E_{7(-25)}, E_6 × U(1), Ě_VII)"
+    attackHistory := ["P58: opaque Prop carrier for the Cartan compact-dual identification"]
+    scope := "Cartan 1929 trivial-module (g, K)-cohomology iso H^*(g, K; ℂ) = H^*(Ě_VII; ℂ); load-bearing in (ii.a) realization at H^8 = ⟨h^4⟩ (P58)" }
 
 def gap_freudenthal_is_algebraic : StrictGapEntry :=
   { name := "freudenthal_is_algebraic"
@@ -1957,6 +2022,14 @@ def gap_franke_1998 : StrictGapEntry :=
     attackHistory := ["P25: Cat 2 single-step; consumed by (ii.a) theorem"]
     scope := "Franke 1998 Eisenstein decomposition framework" }
 
+def gap_cartan_1929_PUBLISHED : StrictGapEntry :=
+  { name := "cartan_1929_PUBLISHED_OPEN"
+    status := .gapOpen, inputCategory := .cat2External
+    cat3SubType := .notApplicable
+    paperSource := "É. Cartan, 'Sur la détermination d'un système orthogonal complet dans un espace de Riemann symétrique clos', Rend. Circ. Mat. Palermo 53 (1929), 217-252 + A. Borel, N. Wallach, *Continuous Cohomology, Discrete Subgroups, and Representations of Reductive Groups*, Princeton 1980 / AMS 2000 Ch. II §3.3 Cor. 3.4"
+    attackHistory := ["P58 (2026-05-15): Cat 2 single-step; the Cartan compact-dual cohomology iso H^*(g, K; ℂ) = H^*(Ě; ℂ), previously implicit in V-Z 1984 framework, now explicit as a separately cited single-source dependency for the (ii.a) realization argument's identification of trivial-module image with j^8(H^8(Ě_VII; ℂ))"]
+    scope := "Cat 2 PUBLISHED: Cartan 1929 compact-dual identification of trivial-module (g, K)-cohomology with H^*(Ě_VII; ℂ); load-bearing in (ii.a) realization (P58)" }
+
 def gap_borel_toda_E6_U1 : StrictGapEntry :=
   { name := "borel_toda_E6_U1_presentation_OPEN"
     status := .gapOpen, inputCategory := .cat2External
@@ -2134,11 +2207,12 @@ def gap_paper_iia : StrictGapEntry :=
   { name := "paper_iia_realization_OPEN"
     status := .gapOpen, inputCategory := .cat3PaperNovel
     cat3SubType := .workingAssumption
-    paperSource := "Master tex \\ref{hyp:ChernWeil-bridge-E7} clause (ii.a) (L11450+) + \\ref{rem:borel-matsushima} (L3453) Borel-Matsushima"
+    paperSource := "Master tex \\ref{hyp:ChernWeil-bridge-E7} clause (ii.a) (L11450+) + \\ref{rem:borel-matsushima} (L3453) Borel-Matsushima. P58 REFACTOR: Cartan 1929 compact-dual iso added as explicit input, making the trivial-module Cartan image identification atomic (previously implicit in V-Z 1984 input)"
     attackHistory := ["P25: 6-input workingAssumption (3 Cat 2 frameworks + Hodge-(4,4) + 2 Hyp_*)",
                       "P26: \\label anchored to master tex (ii.a) clause",
-                      "P32 close target: decompose via Borel-Wallach Ch. VII step-by-step"]
-    scope := "paper (ii.a) reduction; close target P32" }
+                      "P32: refactored to 5-input (Hyp_VZ_AqLambda dropped)",
+                      "P58 (2026-05-15): REFACTORED 5-input → 6-input by adding cartan_1929_compact_dual_iso. The (ii.a) realization argument's step (6) identifying trivial-module (g, K)-cohomology with H^*(Ě_VII; ℂ) was implicit in V-Z 1984's framework; now extracted as a SEPARATELY cited Cat 2 single-source dependency (Cartan 1929 + Borel-Wallach Ch. II §3.3 Cor. 3.4). This makes the audit trail more atomic and improves citation hygiene"]
+    scope := "paper (ii.a) reduction; 6-input atomic (P58); decomposition close target = atomize V-Z 1984 / KV 1995 / Franke 1998 each into smaller specific theorems" }
 
 def gap_paper_iib : StrictGapEntry :=
   { name := "paper_iib_compatibility_OPEN"
@@ -2351,16 +2425,17 @@ def gap_HC_Main : StrictGapEntry :=
       "P54 CLOSED Hyp_MumfordExtension_LBlockDiagonal: the L = E_6 × U(1) decomposition IS the Hodge filtration (U(1) = Deligne torus); by Schmid 1973 (nilpotent orbit theorem) + Deligne 1970 (canonical extension), the Hodge filtration F^p extends to sub-bundles of the canonical extension, the graded pieces Gr_F^p are locally free, and Gr(canonical extension) = canonical extension of Gr — the L-block structure extends to S_Γ^{tor} by standard filtered functoriality. On the open S_Γ the Hodge metric is block-diagonal (Hodge-metric-orthogonality); BKK 2007 controls the boundary log-log behaviour. Encoded via schmid_1973_deligne_1970_OPEN + mumford_L_block_diagonal_via_schmid_OPEN + Hyp_MumfordExtension_LBlockDiagonal_DERIVED. Main Theorem 3 → 2 Hyp_*.",
       "P55 CLOSED Hyp_Eisenstein_Vanishing: the Eisenstein cohomology H^*_Eis(S_Γ; ℂ) of an arithmetic Γ ⊂ E_{7(-25)}(ℚ) decomposes by proper ℚ-parabolic (Franke 1998 §1.4 + Borel-Serre 1973 boundary stratification + Borel-Wallach Ch. VII spectral sequence + Schwermer 1994 + Saper 2005), each layer contributing at degrees ≥ codim Y_P. The minimum codim across proper ℚ-parabolics of E_7 is 26 (E_6-Levi maximal parabolic: dim N_P = 27, split-center rank 1 ⟹ codim Y_P = 26; all other proper ℚ-parabolics have strictly larger N_P). At target degree d = 8 < 26 every layer contributes zero, giving H^8_Eis(S_Γ; ℂ) = 0. (Q-rank 0 case is trivial: cocompact, no boundary, no Eisenstein.) Encoded via borel_serre_1973_franke_1998_eisenstein_layer_OPEN + e7_min_parabolic_BS_codim_OPEN + eisenstein_vanishing_at_deg8_via_franke_layer_OPEN + Hyp_Eisenstein_Vanishing_DERIVED. Main Theorem 2 → 1 Hyp_*.",
       "P56 BYPASSED Hyp_BorelMAtLeast8: Hyp_BorelMAtLeast8 (= m(E_{7(-25)}) ≥ 8 = full j^8 ISO) is OVER-STRONG. Proof chain only needs the INJECTIVE half — c(E_7) = 8 PUBLISHED via Borel 1974 §9.1(3) p.261 directly. With injectivity alone, the freudenthal class [q] := j^8(h^4) is a non-zero G-invariant (4,4)-Hodge class (G-equivariance of j^q from Borel 1974 §3-§8; Cartan thm for h^4 G-invariance on Ě_VII); algebraicity follows from j^8(h^4) = c_1(L̄)^4 via Borel-Hirzebruch 1958 + Mumford 1977 §1.3 canonical extension. The '1-dim H^8(S_Γ; ℚ)_G' reading (surjectivity-dependent) was paper narrative, NOT load-bearing. Encoded via borel_1974_c_E7_eq_8_PUBLISHED_OPEN (no Hyp_* input) + refactored paper_placement_reduction_OPEN (takes cohomologyIso_at_deg8 instead of Hyp_BorelMAtLeast8) + cascade-unconditional DERIVED theorems. Main Theorem 1 → 0 Hyp_* (UNCONDITIONAL).",
-      "P57 EXPLICIT POLYNOMIAL IDENTITY: paper_clause_iii_polynomial_identity_OPEN refactored 4-input → 5-input by adding chern_pairing_deg4_constraint (the standard degree-4 Chern-pairing relation 2c_4 - 2c_1c_3 + c_2² = h⁴ from V_56^{can} filtered-trivial). The polynomial P in [q] = P(c_1,...,c_4) is now CONCRETELY P = -48 c_2² + 96 c_1·c_3 - 96 c_4 (in c_i(𝓔_{+1})), derived by combining Φ_tw(q) = -48 h⁴ (P53) with h⁴ = 2c_4 - 2c_1·c_3 + c_2². Verified numerically using P48 values (c_1=-9h, c_2=41h², c_3=-125h³, c_4=285h⁴): -48·1681 + 96·1125 - 96·285 = -48. Encoded via new Cat 2 axiom chern_pairing_deg4_PUBLISHED_OPEN (Bott-Tu §21 / Griffiths-Harris Ch.3 §3 / Fulton §3.2)."
+      "P57 EXPLICIT POLYNOMIAL IDENTITY: paper_clause_iii_polynomial_identity_OPEN refactored 4-input → 5-input by adding chern_pairing_deg4_constraint (the standard degree-4 Chern-pairing relation 2c_4 - 2c_1c_3 + c_2² = h⁴ from V_56^{can} filtered-trivial). The polynomial P in [q] = P(c_1,...,c_4) is now CONCRETELY P = -48 c_2² + 96 c_1·c_3 - 96 c_4 (in c_i(𝓔_{+1})), derived by combining Φ_tw(q) = -48 h⁴ (P53) with h⁴ = 2c_4 - 2c_1·c_3 + c_2². Verified numerically using P48 values (c_1=-9h, c_2=41h², c_3=-125h³, c_4=285h⁴): -48·1681 + 96·1125 - 96·285 = -48. Encoded via new Cat 2 axiom chern_pairing_deg4_PUBLISHED_OPEN (Bott-Tu §21 / Griffiths-Harris Ch.3 §3 / Fulton §3.2).",
+      "P58 EXPLICIT CARTAN COMPACT-DUAL ISO: paper_iia_realization_OPEN refactored 5-input → 6-input by adding cartan_1929_compact_dual_iso (the published identification H^*(g, K; ℂ) = H^*(Ě; ℂ) for Hermitian symmetric Lie pairs of compact type, specialised to (E_{7(-25)}, E_6 × U(1), Ě_VII)). This was previously implicit in voganZuckerman_1984_framework's encoding; making it explicit as a separately cited Cat 2 single-source dependency (Cartan 1929 + Borel-Wallach Ch. II §3.3 Cor. 3.4) extracts the load-bearing fact that the trivial-module (g, K)-cohomology image at H^8 IS ⟨h^4⟩ = j^8(H^8(Ě_VII; ℂ)) — the step from 'non-trivial A_q(λ) absent at deg 8 < 13.5' to 'freudenthal class realized'."
     ]
-    scope := "HC for Freudenthal quartic [q] on EVII Shimura varieties; Hyp_* count 7 → 6 (P32) → 5 (P34) → 4 (P35) → 3 (P53 discharges Hyp_TwistedPhiL) → 2 (P54 closes Hyp_MumfordExtension via Schmid 1973 + Deligne 1970) → 1 (P55 closes Hyp_Eisenstein_Vanishing via Borel-Serre + Franke + E_7 codim) → 0 (P56 bypasses Hyp_BorelMAtLeast8 via c(E_7) = 8 PUBLISHED). P57: polynomial identity P = -48 c_2² + 96 c_1·c_3 - 96 c_4 made explicit. Conditional only on 37 atomic axioms (21 Cat 2 PUBLISHED + 16 Cat 3 paper-stated)."
+    scope := "HC for Freudenthal quartic [q] on EVII Shimura varieties; Hyp_* count 7 → 6 (P32) → 5 (P34) → 4 (P35) → 3 (P53 discharges Hyp_TwistedPhiL) → 2 (P54 closes Hyp_MumfordExtension via Schmid 1973 + Deligne 1970) → 1 (P55 closes Hyp_Eisenstein_Vanishing via Borel-Serre + Franke + E_7 codim) → 0 (P56 bypasses Hyp_BorelMAtLeast8 via c(E_7) = 8 PUBLISHED). P57: polynomial identity P = -48 c_2² + 96 c_1·c_3 - 96 c_4 made explicit. P58: Cartan 1929 compact-dual iso made explicit. Conditional only on 38 atomic axioms (22 Cat 2 PUBLISHED + 16 Cat 3 paper-stated)."
     conditionalOn := [
       -- ZERO Hyp_* broken-link predicates (P56 final: Main Theorem is UNCONDITIONAL in Hyp_* terms)
       -- 3 Cat 2 PUBLISHED (was BLOCKED; P30 closure via Toda 1975 + Kono-Mimura 1976)
       "borel_toda_E6_U1_presentation_OPEN",
       "toda_1975_V27_generates_BE6_OPEN",
       "kono_mimura_1976_V56_generates_BE7_OPEN",
-      -- 9 Cat 2 PUBLISHED (P39: Borel-Hirzebruch augmentation + H^8 dim + V_56 Hodge decomp; P40: E_6-compactness; P54: Schmid 1973 + Deligne 1970; P55: Borel-Serre + Franke Eisenstein layer + E_7 codim; P56: Borel 1974 §9.1(3) c(E_7) = 8; P57: Bott-Tu/Griffiths-Harris/Fulton Chern-pairing degree-4 constraint)
+      -- 10 Cat 2 PUBLISHED (P39: Borel-Hirzebruch augmentation + H^8 dim + V_56 Hodge decomp; P40: E_6-compactness; P54: Schmid 1973 + Deligne 1970; P55: Borel-Serre + Franke Eisenstein layer + E_7 codim; P56: Borel 1974 §9.1(3) c(E_7) = 8; P57: Bott-Tu/Griffiths-Harris/Fulton Chern-pairing degree-4 constraint; P58: Cartan 1929 / Borel-Wallach compact-dual cohomology iso)
       "borel_hirzebruch_coinvariant_augmentation_OPEN",
       "H8_EVII_one_dim_OPEN", "V56_hodge_decomposition_OPEN",
       "e6_compactness_form_proportionality_OPEN",
@@ -2369,6 +2444,7 @@ def gap_HC_Main : StrictGapEntry :=
       "e7_min_parabolic_BS_codim_OPEN",
       "borel_1974_c_E7_eq_8_PUBLISHED_OPEN",
       "chern_pairing_deg4_PUBLISHED_OPEN",
+      "cartan_1929_PUBLISHED_OPEN",
       -- 15 paper workingAssumption/structuralEquation axioms (P35 +1, P39 +3, P40 +1, P53 +1, P54 +1, P55 +1)
       "paper_iia_realization_OPEN", "paper_formHM_EVII_OPEN",
       "paper_section16_2_OPEN", "paper_GP_EVII_OPEN",
@@ -2412,12 +2488,13 @@ def allEntries : List StrictGapEntry := [
   gap_eisenstein_franke_layer_decomposition,
   gap_E7_proper_Q_parabolic_min_BS_codim,
   gap_chern_pairing_deg4_constraint,
+  gap_cartan_1929_compact_dual_iso,
   -- Hyp_* (9, +1 P39 TwistedPhiL_Coefficient, +1 P40 MumfordExtension_LBlockDiagonal)
   gap_Hyp_BorelMAtLeast8, gap_Hyp_VZ_AqLambda, gap_Hyp_Eisenstein_Vanishing,
   gap_Hyp_HigherRank_GoodMetric, gap_Hyp_ChernWeilForm_Proportionality,
   gap_Hyp_FreudenthalClassPlacement, gap_Hyp_CrossRingPhiNonzero,
   gap_Hyp_TwistedPhiL_Coefficient_Nonzero, gap_Hyp_MumfordExtension_LBlockDiagonal,
-  -- Cat 2 (21, +3 P39 augmentation/H^8-dim/V_56-decomp, +1 P40 E_6-compactness, +1 P54 Schmid-Deligne, +2 P55 Eisenstein layer + E_7 codim, +1 P57 Chern pairing)
+  -- Cat 2 (22, +3 P39 augmentation/H^8-dim/V_56-decomp, +1 P40 E_6-compactness, +1 P54 Schmid-Deligne, +2 P55 Eisenstein layer + E_7 codim, +1 P57 Chern pairing, +1 P58 Cartan)
   gap_bott_borel_weil, gap_borel_1974, gap_bbd_saito_gm,
   gap_goresky_pardon_2002_looijenga, gap_wolf_satake_borel_ji,
   gap_mumford_1977, gap_vogan_zuckerman, gap_knapp_vogan_1995,
@@ -2429,6 +2506,7 @@ def allEntries : List StrictGapEntry := [
   gap_borel_serre_1973_franke_1998_eisenstein_layer,
   gap_e7_min_parabolic_BS_codim,
   gap_chern_pairing_deg4_PUBLISHED,
+  gap_cartan_1929_PUBLISHED,
   -- Cat 3 workingAssumption + structuralEquation (16, +1 P35, +3 P39, +1 P40, +1 P53, +1 P54, +1 P55)
   gap_paper_hodge44, gap_paper_iia, gap_paper_iib, gap_paper_formHM,
   gap_paper_placement_reduction,
@@ -2518,7 +2596,7 @@ end HodgeReduction.Strict
 --
 -- §1.5 designates `#print axioms` as the primary verification tool. This
 -- surfaces the exact axiom dependency of the Main Theorem in the build log:
--- 37 atomic dependencies (21 Cat 2 + 16 Cat 3 paper-stated; P35 added
+-- 38 atomic dependencies (22 Cat 2 + 16 Cat 3 paper-stated; P35 added
 -- paper_placement_reduction_OPEN, P39 added the L-equivariant Chern-Weil
 -- refinement: 3 Cat 2 + 3 Cat 3, P40 added the Hodge-refinement of
 -- Chern-Weil forms: 1 Cat 2 + 1 Cat 3, P53 added
@@ -2537,8 +2615,12 @@ end HodgeReduction.Strict
 -- with PUBLISHED c(E_7) = 8); P57 added chern_pairing_deg4_PUBLISHED_OPEN
 -- (Bott-Tu/Griffiths-Harris/Fulton degree-4 Chern-pairing constraint
 -- 2c_4 - 2c_1c_3 + c_2² = h⁴) making the polynomial identity EXPLICIT as
--- [q] = -48 c_2² + 96 c_1·c_3 - 96 c_4). No Cat 0 kernel axioms (no
--- propext / Quot.sound / Classical.choice / Lean.ofReduceBool). The proof
--- is pure axiom-composition function application.
+-- [q] = -48 c_2² + 96 c_1·c_3 - 96 c_4); P58 added cartan_1929_PUBLISHED_OPEN
+-- (Cartan 1929 / Borel-Wallach Ch.II §3.3 Cor.3.4 trivial-module
+-- (g,K)-cohomology iso H^*(g,K;ℂ) = H^*(Ě;ℂ)) making the trivial-module
+-- Cartan image identification explicit in the (ii.a) realization argument.
+-- No Cat 0 kernel axioms (no propext / Quot.sound / Classical.choice /
+-- Lean.ofReduceBool). The proof is pure axiom-composition function
+-- application.
 
 #print axioms HodgeReduction.Strict.HC_for_freudenthal_quartic_on_EVII_UNCONDITIONAL
