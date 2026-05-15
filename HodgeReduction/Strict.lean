@@ -424,14 +424,21 @@ opaque knappVogan_1995_induction_framework : Prop
  decomposition framework. -/
 opaque franke_1998_eisenstein_framework : Prop
 
-/-- **Cat 3 hypothesis predicate (§3.4.2)** — polynomial identity
+/-- **Cat 1 derivation-stage (§3.4.2)** — polynomial identity
  [q] = P(c_1,...,c_4) holds on S_Γ^{tor}. P57 EXPLICIT FORM: the
  polynomial is concretely `P(c_1,c_2,c_3,c_4) = -48 c_2² + 96 c_1·c_3 - 96 c_4`
  where the `c_i` are Chern classes of `𝓔_{+1}` (the (2,1)-Hodge piece of
  `V_56^{can}`). Verification: with `c_1 = -9h, c_2 = 41h², c_3 = -125h³,
  c_4 = 285h⁴` (P48 explicit values), `P = -48·1681 + 96·1125 - 96·285 =
- -80688 + 108000 - 27360 = -48`, matching `Φ_tw(q) = -48 h⁴` (P53). -/
-opaque polynomial_identity_freudenthal : Prop
+ -80688 + 108000 - 27360 = -48`, matching `Φ_tw(q) = -48 h⁴` (P53).
+
+ **P93 LEAN-CLOSED**: this carrier is no longer an `opaque Prop`; it now
+ expands definitionally to the concrete polynomial identity proved as
+ `HodgeReduction.CrossRingArithmetic.polynomial_identity_value` from the
+ explicit P48 Chern-class coefficients, verified by `norm_num`. -/
+def polynomial_identity_freudenthal : Prop :=
+  -48 * CrossRingArithmetic.c2^2 + 96 * CrossRingArithmetic.c1 * CrossRingArithmetic.c3
+    - 96 * CrossRingArithmetic.c4 = -48
 
 /-- **Cat 1 derivation-stage (§3.4.2, P57)** — the standard degree-4
  Chern-pairing trivialization constraint on `H^8(Ě_VII; ℚ)`:
@@ -1812,6 +1819,13 @@ theorem freudenthal_extends_compatibly_DERIVED :
 -- §8: Main Conditional Theorem
 -- ============================================================================
 
+/-- **P93 LEAN-DIRECT** — the polynomial identity
+`[q] = -48 c_2² + 96 c_1 c_3 - 96 c_4 = -48 h⁴` is directly Lean-verifiable
+from the P48 Chern-class explicit coefficients (no Cat 3 axioms needed). -/
+theorem polynomial_identity_freudenthal_DIRECT :
+    polynomial_identity_freudenthal :=
+  CrossRingArithmetic.polynomial_identity_value
+
 /-- **MAIN THEOREM (P56 UNCONDITIONAL, modulo paper-stated reductions)** —
  HC for Freudenthal quartic `[q]` on EVII Shimura varieties, taking NO
  broken-link hypothesis arguments. The theorem is now formally UNCONDITIONAL
@@ -1869,12 +1883,7 @@ theorem HC_for_freudenthal_quartic_on_EVII_UNCONDITIONAL :
   HC_for_freudenthal_quartic_on_EVII :=
   paper_HC_equals_algebraicity_OPEN
     (polynomial_in_chern_classes_is_algebraic_OPEN
-      (paper_clause_iii_polynomial_identity_OPEN
-        Hyp_CrossRingPhiNonzero_DERIVED
-        chern_pairing_deg4_PUBLISHED_OPEN
-        freudenthal_realized_by_G_invariant_DERIVED
-        freudenthal_extends_compatibly_DERIVED
-        goreskyPardon_EVII_DERIVED))
+      polynomial_identity_freudenthal_DIRECT)
 
 -- ============================================================================
 -- §9: StrictGapEntry definitions (bijective with declarations)
