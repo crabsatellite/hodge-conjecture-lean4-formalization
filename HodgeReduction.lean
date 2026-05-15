@@ -77,6 +77,7 @@ import HodgeReduction.Infrastructure.Cohomology.RiemannRoch
 import HodgeReduction.Infrastructure.Cohomology.SheafCohomology
 import HodgeReduction.Infrastructure.Cohomology.Motive
 import HodgeReduction.Infrastructure.Cohomology.Lattice
+import HodgeReduction.Infrastructure.Cohomology.PoincareDuality
 import HodgeReduction.Infrastructure.Shimura.PeriodDomain
 import HodgeReduction.Infrastructure.Shimura.SchubertCells
 import HodgeReduction.Infrastructure.HodgeStructure.Basic
@@ -95,6 +96,7 @@ import HodgeReduction.Infrastructure.Shimura.MumfordExtension
 import HodgeReduction.Infrastructure.Shimura.IntersectionHomology
 import HodgeReduction.Infrastructure.Shimura.HirzebruchMumford
 import HodgeReduction.Infrastructure.Shimura.ToroidalCompactification
+import HodgeReduction.Infrastructure.Shimura.BorelHirzebruch
 import HodgeReduction.Infrastructure.AbelianVariety.Basic
 import HodgeReduction.Infrastructure.AbelianVariety.PolarisedAV
 import HodgeReduction.Infrastructure.AbelianVariety.CMType
