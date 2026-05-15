@@ -160,6 +160,76 @@ theorem innerProd_smul_diag (r : ℚ) (A B : J3O) :
              OctonionQ.conj_smul, OctonionQ.smul_mul_smul, OctonionQ.re_smul]
   ring
 
+/-! ### Component lemmas for J3O `Add`, `Neg`. -/
+
+@[simp] theorem add_xi1 (X Y : J3O) : (X + Y).xi1 = X.xi1 + Y.xi1 := rfl
+@[simp] theorem add_xi2 (X Y : J3O) : (X + Y).xi2 = X.xi2 + Y.xi2 := rfl
+@[simp] theorem add_xi3 (X Y : J3O) : (X + Y).xi3 = X.xi3 + Y.xi3 := rfl
+@[simp] theorem add_x1 (X Y : J3O) : (X + Y).x1 = X.x1 + Y.x1 := rfl
+@[simp] theorem add_x2 (X Y : J3O) : (X + Y).x2 = X.x2 + Y.x2 := rfl
+@[simp] theorem add_x3 (X Y : J3O) : (X + Y).x3 = X.x3 + Y.x3 := rfl
+
+@[simp] theorem neg_xi1 (X : J3O) : (-X).xi1 = -X.xi1 := rfl
+@[simp] theorem neg_xi2 (X : J3O) : (-X).xi2 = -X.xi2 := rfl
+@[simp] theorem neg_xi3 (X : J3O) : (-X).xi3 = -X.xi3 := rfl
+@[simp] theorem neg_x1 (X : J3O) : (-X).x1 = -X.x1 := rfl
+@[simp] theorem neg_x2 (X : J3O) : (-X).x2 = -X.x2 := rfl
+@[simp] theorem neg_x3 (X : J3O) : (-X).x3 = -X.x3 := rfl
+
+/-! ### Full bilinearity of `innerProd` -/
+
+/-- `innerProd` is **left-linear** under scalar multiplication:
+`⟨r • A, B⟩ = r · ⟨A, B⟩`. -/
+theorem innerProd_smul_left (r : ℚ) (A B : J3O) :
+    innerProd (r • A) B = r * innerProd A B := by
+  unfold innerProd
+  simp only [J3O.smul_xi1, J3O.smul_xi2, J3O.smul_xi3,
+             J3O.smul_x1, J3O.smul_x2, J3O.smul_x3,
+             OctonionQ.smul_mul, OctonionQ.re_smul]
+  ring
+
+/-- `innerProd` is **right-linear** under scalar multiplication:
+`⟨A, r • B⟩ = r · ⟨A, B⟩`. -/
+theorem innerProd_smul_right (r : ℚ) (A B : J3O) :
+    innerProd A (r • B) = r * innerProd A B := by
+  rw [innerProd_symm, innerProd_smul_left, innerProd_symm]
+
+/-- `innerProd` is **left-additive**: `⟨A + A', B⟩ = ⟨A, B⟩ + ⟨A', B⟩`. -/
+theorem innerProd_add_left (A A' B : J3O) :
+    innerProd (A + A') B = innerProd A B + innerProd A' B := by
+  unfold innerProd
+  have hmul : ∀ (a b c : OctonionQ),
+      (a + b) * c = a * c + b * c := by
+    intro a b c; ext <;> simp <;> ring
+  have hre_add : ∀ (a b : OctonionQ), OctonionQ.re (a + b) = OctonionQ.re a + OctonionQ.re b := by
+    intro a b; rfl
+  simp only [add_xi1, add_xi2, add_xi3, add_x1, add_x2, add_x3,
+             hmul, hre_add]
+  ring
+
+/-- `innerProd` is **right-additive**: `⟨A, B + B'⟩ = ⟨A, B⟩ + ⟨A, B'⟩`. -/
+theorem innerProd_add_right (A B B' : J3O) :
+    innerProd A (B + B') = innerProd A B + innerProd A B' := by
+  rw [innerProd_symm A (B + B'), innerProd_add_left,
+      innerProd_symm B A, innerProd_symm B' A]
+
+/-- `innerProd` is **left-negation-compatible**: `⟨-A, B⟩ = -⟨A, B⟩`. -/
+theorem innerProd_neg_left (A B : J3O) :
+    innerProd (-A) B = -innerProd A B := by
+  unfold innerProd
+  have hmul : ∀ (a c : OctonionQ), (-a) * c = -(a * c) := by
+    intro a c; ext <;> simp <;> ring
+  have hre_neg : ∀ (a : OctonionQ), OctonionQ.re (-a) = -OctonionQ.re a := by
+    intro a; rfl
+  simp only [neg_xi1, neg_xi2, neg_xi3, neg_x1, neg_x2, neg_x3,
+             hmul, hre_neg]
+  ring
+
+/-- `innerProd` is **right-negation-compatible**: `⟨A, -B⟩ = -⟨A, B⟩`. -/
+theorem innerProd_neg_right (A B : J3O) :
+    innerProd A (-B) = -innerProd A B := by
+  rw [innerProd_symm A (-B), innerProd_neg_left, innerProd_symm B A]
+
 /-- `sharp` is **quadratic** (homogeneous of degree 2): `(r • A)^# = r² • A^#`. -/
 theorem sharp_smul (r : ℚ) (A : J3O) : sharp (r • A) = r^2 • sharp A := by
   -- We prove this field-by-field using `J3O.ext`.
@@ -285,6 +355,33 @@ theorem freudenthalQuartic_smul (r : ℚ) (v : V56) :
              J3O.cubicNorm_smul,
              J3O.sharp_smul]
   ring
+
+/-- The Freudenthal quartic is **even**: `q(-v) = q(v)` (degree-4 corollary). -/
+theorem freudenthalQuartic_neg (v : V56) :
+    freudenthalQuartic (-v) = freudenthalQuartic v := by
+  -- `-v = (-1) • v`, and `q((-1) • v) = (-1)⁴ · q(v) = q(v)`.
+  have h : -v = (-1 : ℚ) • v := by
+    refine V56.ext ?_ ?_ ?_ ?_
+    · show -v.a = (-1 : ℚ) * v.a; ring
+    · show -v.A = (-1 : ℚ) • v.A
+      refine J3O.ext ?_ ?_ ?_ ?_ ?_ ?_
+      · show -v.A.xi1 = (-1 : ℚ) * v.A.xi1; ring
+      · show -v.A.xi2 = (-1 : ℚ) * v.A.xi2; ring
+      · show -v.A.xi3 = (-1 : ℚ) * v.A.xi3; ring
+      · show -v.A.x1 = (-1 : ℚ) • v.A.x1; ext <;> simp
+      · show -v.A.x2 = (-1 : ℚ) • v.A.x2; ext <;> simp
+      · show -v.A.x3 = (-1 : ℚ) • v.A.x3; ext <;> simp
+    · show -v.B = (-1 : ℚ) • v.B
+      refine J3O.ext ?_ ?_ ?_ ?_ ?_ ?_
+      · show -v.B.xi1 = (-1 : ℚ) * v.B.xi1; ring
+      · show -v.B.xi2 = (-1 : ℚ) * v.B.xi2; ring
+      · show -v.B.xi3 = (-1 : ℚ) * v.B.xi3; ring
+      · show -v.B.x1 = (-1 : ℚ) • v.B.x1; ext <;> simp
+      · show -v.B.x2 = (-1 : ℚ) • v.B.x2; ext <;> simp
+      · show -v.B.x3 = (-1 : ℚ) • v.B.x3; ext <;> simp
+    · show -v.b = (-1 : ℚ) * v.b; ring
+  rw [h, freudenthalQuartic_smul]
+  norm_num
 
 end V56
 
