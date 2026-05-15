@@ -12,12 +12,13 @@ Main result: `HC_for_freudenthal_quartic_on_EVII_UNCONDITIONAL` —
 `E_{7(-25)}` Shimura varieties, taking NO broken-link `Hyp_*` arguments.
 The theorem is UNCONDITIONAL in `Hyp_*` terms: ALL seven original
 broken-link predicates have been discharged via PUBLISHED Cat 2 axioms +
-paper-stated Cat 3 structural equations. Conditional only on 39 atomic
-axiom dependencies (23 Cat 2 PUBLISHED + 16 Cat 3 paper-stated) — see
+paper-stated Cat 3 structural equations. Conditional only on 40 atomic
+axiom dependencies (24 Cat 2 PUBLISHED + 16 Cat 3 paper-stated) — see
 `#print axioms` at the end of the file. P57: polynomial identity made
 explicit — `[q] = -48 c_2² + 96 c_1·c_3 - 96 c_4` (in `c_i(𝓔_{+1})`).
 P58: Cartan 1929 compact-dual iso made explicit in (ii.a) realization.
 P59: Salamanca-Riba 1999 low-degree vanishing made explicit.
+P60: V-Z 1984 §5 holo-discrete lowest cohomological degree (= 27) made explicit.
 
 P32 closure (P36 audit-reframed): Hyp_VZ_AqLambda_OPEN dropped — under
 Hyp_BorelMAtLeast8 the j^8 iso makes H^8(S_Γ; ℚ)_G 1-dim coming from the
@@ -230,6 +231,22 @@ citation hygiene improvement; the P57-P59 pattern of extracting
 "implicit-in-bundled-framework" citations as separate single-source
 Cat 2 axioms generalises naturally to other paper-stated axioms.
 
+P60 — holomorphic discrete series lowest cohomological degree made
+EXPLICIT. The 7-input paper_iia_realization_OPEN axiom is refactored
+7-input → 8-input by adding the published fact that for Hermitian
+symmetric `(g, K)` of compact type, every holomorphic discrete series
+`A_q(λ)` has bottom `(g, K)`-cohomology degree `R(q) = dim_C(G/K)`,
+specialised to `(E_{7(-25)}, E_6 × U(1))`: `dim_C(G/K) = 27`. Supplied
+by the new Cat 2 axiom vz_1984_holo_discrete_lowest_deg_PUBLISHED_OPEN,
+cited to V-Z 1984 Compositio Math. 53 §5 + Knapp-Wallach 1976 Invent.
+Math. 34 + Borel-Wallach 1980 Ch. VI. This fact was previously implicit
+in V-Z 1984's framework; extracting it makes the load-bearing step "no
+holo-discrete A_q(λ) at deg 8 < 27" atomically citeable. Combined with
+Salamanca-Riba (P59), this completes the (ii.a) argument's elimination
+of non-trivial A_q(λ) contributions at deg 8, leaving only the trivial-
+module Cartan image (P58) = ⟨h^4⟩. The (ii.a) argument now decomposes
+into 8 explicit ingredients.
+
 ## Disciplinary invariants
 
 1. **Cat 2** — Hodge-style `def + rfl` for closed-form OR opaque `axiom` +
@@ -247,7 +264,7 @@ Cat 2 axioms generalises naturally to other paper-stated axioms.
 7. **Bijective ledger** per §19 Einstein Test exemplar — every declaration has
    exactly one `StrictGapEntry` and vice versa.
 8. **`#print axioms`** kernel-purity check (§1.5 primary verification tool) at
-   end of file surfaces all 39 atomic dependencies of the Main Theorem (23
+   end of file surfaces all 40 atomic dependencies of the Main Theorem (24
    Cat 2 PUBLISHED + 16 Cat 3 paper-stated; ZERO Hyp_* in signature).
 
 ## Layout
@@ -403,6 +420,17 @@ opaque cartan_1929_compact_dual_iso : Prop
  with `dim_C(G/K) = 27`, at `q = 8 < 27` only trivial-module `A_q(λ)`
  contributes G-invariantly to cuspidal H^8. -/
 opaque salamanca_riba_low_deg_vanishing : Prop
+
+/-- **Cat 3 hypothesis predicate (§3.4.2, P60)** — for the Hermitian
+ symmetric pair `(g, K) = (e_{7(-25)}, E_6 × U(1))`, every holomorphic
+ discrete series A_q(λ) module has bottom (g, K)-cohomology degree
+ `R(q) = dim_C(G/K) = 27`. So at any degree `q < 27`, NO holo-discrete
+ A_q(λ) contributes G-invariantly. This complements P59's
+ salamanca_riba_low_deg_vanishing: P59 says non-trivial + non-holo-
+ discrete A_q(λ) absent at deg < dim_C(G/K); P60 says holo-discrete is
+ absent at deg < dim_C(G/K) too. Together they pin "deg 8 < 27 ⟹ only
+ trivial-module contributes". -/
+opaque holo_discrete_lowest_deg_E7minus25 : Prop
 
 /-- **Cat 3 hypothesis predicate (§3.4.2)** — [q] is algebraic on S_Γ^{tor}. -/
 opaque freudenthal_is_algebraic : Prop
@@ -949,6 +977,19 @@ axiom cartan_1929_PUBLISHED_OPEN :
 axiom salamanca_riba_1999_PUBLISHED_OPEN :
   salamanca_riba_low_deg_vanishing
 
+/-- **Cat 2 PUBLISHED (§3.3, P60)** — D. Vogan, G. Zuckerman, "Unitary
+ representations with non-zero cohomology", Compositio Math. 53 (1984),
+ 51-90, §5 (Hermitian symmetric case) + A. Knapp, N. Wallach, "Szegö
+ kernels associated with discrete series", Invent. Math. 34 (1976),
+ 163-200 + A. Borel, N. Wallach, *Continuous Cohomology* (Princeton 1980)
+ Ch. VI (discrete series cohomology). For a Hermitian symmetric Lie pair
+ `(g, K)` of compact type, every holomorphic discrete series `A_q(λ)`
+ module has bottom `(g, K)`-cohomology degree `R(q) = dim_C(G/K)`.
+ Specialised to `(E_{7(-25)}, E_6 × U(1))`: `dim_C(G/K) = 27`. So at
+ `q < 27`, holo-discrete `A_q(λ)` modules do NOT contribute G-invariantly. -/
+axiom vz_1984_holo_discrete_lowest_deg_PUBLISHED_OPEN :
+  holo_discrete_lowest_deg_E7minus25
+
 /-- **Cat 2 PUBLISHED (§3.3)** — P30 audit closure: previous gapBlocked
  status overly conservative. Single-source citation found:
  H. Toda, "Cohomology of the classifying space of exceptional Lie groups",
@@ -1196,33 +1237,36 @@ axiom paper_hodge44_step_OPEN :
 
 /-- **Cat 3 workingAssumption (§3.4.4)** — paper (ii.a) reduction:
  the Borel-Wallach descent + V-Z + Knapp-Vogan + Franke + Cartan +
- Salamanca-Riba framework, applied to E_{7(-25)} at deg 8 with `[q]_G`
- realisation, yields realization by G-invariant cohomology.
+ Salamanca-Riba + holo-discrete-lowest-degree framework, applied to
+ E_{7(-25)} at deg 8 with `[q]_G` realisation, yields realization by
+ G-invariant cohomology.
  P32 REFACTOR: Hyp_VZ_AqLambda_OPEN input REMOVED.
  P58 REFACTOR: Cartan 1929's compact-dual identification added explicitly.
- P59 REFACTOR: Salamanca-Riba 1999 low-degree vanishing added explicitly
- — this is the load-bearing fact that kills non-trivial, non-holo-discrete
- `A_q(λ)` contributions at deg 8 (which is < dim_C(G/K) = 27). Previously
- implicit in the V-Z 1984 framework input; now extracted for audit clarity.
+ P59 REFACTOR: Salamanca-Riba 1999 low-degree vanishing added explicitly.
+ P60 REFACTOR: holomorphic-discrete-series lowest cohomological degree
+ R(q) = dim_C(G/K) = 27 for E_{7(-25)} added explicitly — this is the
+ load-bearing fact that kills holo-discrete A_q(λ) contributions at
+ deg 8 < 27 (previously implicit in V-Z 1984 §5 framework; now extracted).
  The (ii.a) descent at deg 8 argument:
    (1) Hyp_Eisenstein_Vanishing + Franke 1998 ⟹ H^8(S_Γ)_G = H^8_cusp(S_Γ)_G.
    (2) V-Z 1984 + KV 1995 ⟹ H^*_cusp(S_Γ; ℂ) decomposes via A_q(λ) modules.
-   (3) Salamanca-Riba 1999: at deg 8 < dim_C(G/K) = 27 in Hermitian
-       symmetric, only trivial-module + holo-discrete A_q(λ) contribute
-       cuspidally to (g, K)-cohomology.
-   (4) Holo-discrete (g, K)-cohomology starts at deg dim_C(G/K) = 27 > 8.
-   (5) Hence at deg 8: ONLY trivial-module contributes.
+   (3) Salamanca-Riba 1999: at deg q < dim_C(G/K) = 27, only trivial-module
+       + holo-discrete A_q(λ) can contribute G-invariantly.
+   (4) V-Z 1984 §5: holo-discrete A_q(λ) has R(q) = dim_C(G/K) = 27 > 8 ⟹
+       holo-discrete contributions also empty at deg 8.
+   (5) Combining (3)+(4): at deg 8 ONLY trivial-module contributes.
    (6) Cartan 1929: trivial-module (g, K)-cohomology = H^*(Ě_VII; ℂ) ⟹
        H^8_cusp(S_Γ)_G ≅ H^8(Ě_VII; ℂ) = ⟨h^4⟩ (1-dim).
    (7) [q] (assumed G-invariant via freudenthal_H8_auto_G_invariant) is
        therefore the j^8-image of h^4 = realized.
- 7-input atomic now. -/
+ 8-input atomic now. -/
 axiom paper_iia_realization_OPEN :
   voganZuckerman_1984_framework →
   knappVogan_1995_induction_framework →
   franke_1998_eisenstein_framework →
   cartan_1929_compact_dual_iso →
   salamanca_riba_low_deg_vanishing →
+  holo_discrete_lowest_deg_E7minus25 →
   freudenthal_H8_auto_G_invariant →
   Hyp_Eisenstein_Vanishing_OPEN →
   freudenthal_realized_by_G_invariant
@@ -1425,7 +1469,7 @@ theorem Hyp_CrossRingPhiNonzero_DERIVED :
     Hyp_TwistedPhiL_Coefficient_Nonzero_COMPUTED
 
 /-- **gapClosed** — (ii.a) Freudenthal realized by G-invariant (P56 unconditional,
- P58 Cartan-explicit, P59 Salamanca-Riba-explicit). -/
+ P58 Cartan-explicit, P59 Salamanca-Riba-explicit, P60 holo-discrete-explicit). -/
 theorem freudenthal_realized_by_G_invariant_DERIVED :
   freudenthal_realized_by_G_invariant :=
   paper_iia_realization_OPEN
@@ -1434,6 +1478,7 @@ theorem freudenthal_realized_by_G_invariant_DERIVED :
     franke_1998_OPEN
     cartan_1929_PUBLISHED_OPEN
     salamanca_riba_1999_PUBLISHED_OPEN
+    vz_1984_holo_discrete_lowest_deg_PUBLISHED_OPEN
     freudenthal_H8_auto_G_invariant_DERIVED
     Hyp_Eisenstein_Vanishing_DERIVED
 
@@ -1712,6 +1757,14 @@ def gap_salamanca_riba_low_deg_vanishing : StrictGapEntry :=
     paperSource := "P59: Salamanca-Riba 1999 low-deg vanishing — for Hermitian symmetric (g, K) of compact type, every A_q(λ) module with bottom (g, K)-cohomology degree R(q) < dim_C(G/K) is either trivial (R(q) = 0) or a holomorphic discrete series (R(q) = dim_C(G/K)). Specialised to (E_{7(-25)}, E_6 × U(1)) with dim_C(G/K) = 27: at q = 8 only trivial-module contributes G-invariantly"
     attackHistory := ["P59: opaque Prop carrier for the Salamanca-Riba low-degree vanishing principle"]
     scope := "Salamanca-Riba 1999 low-deg vanishing for A_q(λ) cuspidal cohomology in Hermitian symmetric; load-bearing in (ii.a) realization step killing non-trivial A_q(λ) at deg 8 < 27 (P59)" }
+
+def gap_holo_discrete_lowest_deg_E7minus25 : StrictGapEntry :=
+  { name := "holo_discrete_lowest_deg_E7minus25"
+    status := .gapOpen, inputCategory := .cat3PaperNovel
+    cat3SubType := .hypothesisPredicate
+    paperSource := "P60: holomorphic discrete series lowest (g, K)-cohomology degree for (E_{7(-25)}, E_6 × U(1)) — every holo-discrete A_q(λ) has R(q) = dim_C(G/K) = 27. Complements Salamanca-Riba (P59) to fully eliminate non-trivial A_q(λ) contributions at deg q < 27"
+    attackHistory := ["P60: opaque Prop carrier for the holo-discrete-series lowest-cohomological-degree fact"]
+    scope := "Holo-discrete series A_q(λ) has R(q) = dim_C(G/K) = 27 for E_{7(-25)}; load-bearing in (ii.a) step (4) killing holo-discrete at deg 8 (P60)" }
 
 def gap_freudenthal_is_algebraic : StrictGapEntry :=
   { name := "freudenthal_is_algebraic"
@@ -2096,6 +2149,14 @@ def gap_salamanca_riba_1999_PUBLISHED : StrictGapEntry :=
     attackHistory := ["P59 (2026-05-15): Cat 2 single-step; the Salamanca-Riba low-degree vanishing principle for A_q(λ) cuspidal cohomology in Hermitian symmetric, previously implicit in V-Z 1984 framework, now explicit as a separately cited single-source dependency for the (ii.a) realization argument's step killing non-trivial A_q(λ) contributions at deg 8 < dim_C(G/K) = 27"]
     scope := "Cat 2 PUBLISHED: Salamanca-Riba 1999 low-degree vanishing for A_q(λ) in Hermitian symmetric; load-bearing in (ii.a) realization step (P59)" }
 
+def gap_vz_1984_holo_discrete_lowest_deg_PUBLISHED : StrictGapEntry :=
+  { name := "vz_1984_holo_discrete_lowest_deg_PUBLISHED_OPEN"
+    status := .gapOpen, inputCategory := .cat2External
+    cat3SubType := .notApplicable
+    paperSource := "D. Vogan, G. Zuckerman, 'Unitary representations with non-zero cohomology', Compositio Math. 53 (1984), 51-90, §5 (Hermitian symmetric case) + A. Knapp, N. Wallach, 'Szegö kernels associated with discrete series', Invent. Math. 34 (1976), 163-200 + A. Borel, N. Wallach, *Continuous Cohomology, Discrete Subgroups, and Representations of Reductive Groups*, Princeton 1980 / AMS 2000, Ch. VI"
+    attackHistory := ["P60 (2026-05-15): Cat 2 single-step; the fact that holomorphic discrete series A_q(λ) in Hermitian symmetric (g, K) has bottom (g, K)-cohomology degree R(q) = dim_C(G/K), specialised to (E_{7(-25)}, E_6 × U(1)) giving R(q) = 27. Previously implicit in V-Z 1984 §5 framework; now explicit as a separately cited single-source dependency for the (ii.a) realization argument's step killing holo-discrete contributions at deg 8 < 27"]
+    scope := "Cat 2 PUBLISHED: V-Z 1984 §5 + Knapp-Wallach 1976 + Borel-Wallach Ch. VI holo-discrete lowest cohomological degree fact; load-bearing in (ii.a) realization step (P60)" }
+
 def gap_borel_toda_E6_U1 : StrictGapEntry :=
   { name := "borel_toda_E6_U1_presentation_OPEN"
     status := .gapOpen, inputCategory := .cat2External
@@ -2273,13 +2334,14 @@ def gap_paper_iia : StrictGapEntry :=
   { name := "paper_iia_realization_OPEN"
     status := .gapOpen, inputCategory := .cat3PaperNovel
     cat3SubType := .workingAssumption
-    paperSource := "Master tex \\ref{hyp:ChernWeil-bridge-E7} clause (ii.a) (L11450+) + \\ref{rem:borel-matsushima} (L3453) Borel-Matsushima. P58 REFACTOR: Cartan 1929 compact-dual iso added as explicit input. P59 REFACTOR: Salamanca-Riba 1999 low-degree vanishing added as explicit input"
+    paperSource := "Master tex \\ref{hyp:ChernWeil-bridge-E7} clause (ii.a) (L11450+) + \\ref{rem:borel-matsushima} (L3453) Borel-Matsushima. P58 REFACTOR: Cartan 1929 compact-dual iso. P59 REFACTOR: Salamanca-Riba 1999 low-degree vanishing. P60 REFACTOR: holo-discrete-series lowest cohomological degree dim_C(G/K) = 27 for E_{7(-25)}"
     attackHistory := ["P25: 6-input workingAssumption (3 Cat 2 frameworks + Hodge-(4,4) + 2 Hyp_*)",
                       "P26: \\label anchored to master tex (ii.a) clause",
                       "P32: refactored to 5-input (Hyp_VZ_AqLambda dropped)",
                       "P58 (2026-05-15): REFACTORED 5-input → 6-input by adding cartan_1929_compact_dual_iso (Cartan 1929 + Borel-Wallach Ch. II §3.3 Cor. 3.4)",
-                      "P59 (2026-05-15): REFACTORED 6-input → 7-input by adding salamanca_riba_low_deg_vanishing (Salamanca-Riba 1999 Duke Math. J. 96 + Vogan 1984 Ann. Math. 120 + V-Z 1984 §5). This is the published structural fact that at deg q < dim_C(G/K) = 27 in Hermitian symmetric, only trivial-module + holo-discrete A_q(λ) modules contribute to (g,K)-cohomology. Previously implicit in V-Z 1984's framework; now extracted as a SEPARATELY cited Cat 2 single-source dependency. Together with Cartan 1929 (P58), the (ii.a) argument's step (3)-(5) chain — 'non-trivial A_q(λ) at q = 8 absent ⟹ only trivial-module survives ⟹ image = ⟨h^4⟩' — is now atomically citeable"]
-    scope := "paper (ii.a) reduction; 7-input atomic (P58+P59); decomposition close target = atomize V-Z 1984 / KV 1995 / Franke 1998 each into smaller specific theorems" }
+                      "P59 (2026-05-15): REFACTORED 6-input → 7-input by adding salamanca_riba_low_deg_vanishing (Salamanca-Riba 1999 + Vogan 1984 + V-Z 1984 §5)",
+                      "P60 (2026-05-15): REFACTORED 7-input → 8-input by adding holo_discrete_lowest_deg_E7minus25 (V-Z 1984 §5 + Knapp-Wallach 1976 + Borel-Wallach Ch. VI: holo-discrete A_q(λ) in Hermitian symmetric has R(q) = dim_C(G/K) = 27). Combined with Salamanca-Riba (P59), this fully eliminates non-trivial A_q(λ) contributions at deg 8 < 27, leaving only the trivial-module Cartan image (P58) = ⟨h^4⟩"]
+    scope := "paper (ii.a) reduction; 8-input atomic (P58+P59+P60); decomposition close target = atomize V-Z 1984 / KV 1995 / Franke 1998 each into smaller specific theorems" }
 
 def gap_paper_iib : StrictGapEntry :=
   { name := "paper_iib_compatibility_OPEN"
@@ -2494,16 +2556,17 @@ def gap_HC_Main : StrictGapEntry :=
       "P56 BYPASSED Hyp_BorelMAtLeast8: Hyp_BorelMAtLeast8 (= m(E_{7(-25)}) ≥ 8 = full j^8 ISO) is OVER-STRONG. Proof chain only needs the INJECTIVE half — c(E_7) = 8 PUBLISHED via Borel 1974 §9.1(3) p.261 directly. With injectivity alone, the freudenthal class [q] := j^8(h^4) is a non-zero G-invariant (4,4)-Hodge class (G-equivariance of j^q from Borel 1974 §3-§8; Cartan thm for h^4 G-invariance on Ě_VII); algebraicity follows from j^8(h^4) = c_1(L̄)^4 via Borel-Hirzebruch 1958 + Mumford 1977 §1.3 canonical extension. The '1-dim H^8(S_Γ; ℚ)_G' reading (surjectivity-dependent) was paper narrative, NOT load-bearing. Encoded via borel_1974_c_E7_eq_8_PUBLISHED_OPEN (no Hyp_* input) + refactored paper_placement_reduction_OPEN (takes cohomologyIso_at_deg8 instead of Hyp_BorelMAtLeast8) + cascade-unconditional DERIVED theorems. Main Theorem 1 → 0 Hyp_* (UNCONDITIONAL).",
       "P57 EXPLICIT POLYNOMIAL IDENTITY: paper_clause_iii_polynomial_identity_OPEN refactored 4-input → 5-input by adding chern_pairing_deg4_constraint (the standard degree-4 Chern-pairing relation 2c_4 - 2c_1c_3 + c_2² = h⁴ from V_56^{can} filtered-trivial). The polynomial P in [q] = P(c_1,...,c_4) is now CONCRETELY P = -48 c_2² + 96 c_1·c_3 - 96 c_4 (in c_i(𝓔_{+1})), derived by combining Φ_tw(q) = -48 h⁴ (P53) with h⁴ = 2c_4 - 2c_1·c_3 + c_2². Verified numerically using P48 values (c_1=-9h, c_2=41h², c_3=-125h³, c_4=285h⁴): -48·1681 + 96·1125 - 96·285 = -48. Encoded via new Cat 2 axiom chern_pairing_deg4_PUBLISHED_OPEN (Bott-Tu §21 / Griffiths-Harris Ch.3 §3 / Fulton §3.2).",
       "P58 EXPLICIT CARTAN COMPACT-DUAL ISO: paper_iia_realization_OPEN refactored 5-input → 6-input by adding cartan_1929_compact_dual_iso (the published identification H^*(g, K; ℂ) = H^*(Ě; ℂ) for Hermitian symmetric Lie pairs of compact type, specialised to (E_{7(-25)}, E_6 × U(1), Ě_VII)). This was previously implicit in voganZuckerman_1984_framework's encoding; making it explicit as a separately cited Cat 2 single-source dependency (Cartan 1929 + Borel-Wallach Ch. II §3.3 Cor. 3.4) extracts the load-bearing fact that the trivial-module (g, K)-cohomology image at H^8 IS ⟨h^4⟩ = j^8(H^8(Ě_VII; ℂ)) — the step from 'non-trivial A_q(λ) absent at deg 8 < 13.5' to 'freudenthal class realized'.",
-      "P59 EXPLICIT SALAMANCA-RIBA LOW-DEGREE VANISHING: paper_iia_realization_OPEN refactored 6-input → 7-input by adding salamanca_riba_low_deg_vanishing (the published low-degree vanishing principle for A_q(λ) cuspidal cohomology in Hermitian symmetric: at deg < dim_C(G/K), only trivial + holo-discrete contribute). Cited to Salamanca-Riba 1999 Duke Math. J. 96, no. 3 + Vogan 1984 Ann. Math. 120 + V-Z 1984 §5. Previously implicit in V-Z 1984's framework; now extracted as a separately-cited Cat 2 single-source dependency for the (ii.a) realization argument's step (3) that KILLS non-trivial A_q(λ) contributions at deg 8 < dim_C(G/K) = 27 for E_{7(-25)}."
+      "P59 EXPLICIT SALAMANCA-RIBA LOW-DEGREE VANISHING: paper_iia_realization_OPEN refactored 6-input → 7-input by adding salamanca_riba_low_deg_vanishing (the published low-degree vanishing principle for A_q(λ) cuspidal cohomology in Hermitian symmetric: at deg < dim_C(G/K), only trivial + holo-discrete contribute). Cited to Salamanca-Riba 1999 Duke Math. J. 96, no. 3 + Vogan 1984 Ann. Math. 120 + V-Z 1984 §5. Previously implicit in V-Z 1984's framework; now extracted as a separately-cited Cat 2 single-source dependency for the (ii.a) realization argument's step (3) that KILLS non-trivial A_q(λ) contributions at deg 8 < dim_C(G/K) = 27 for E_{7(-25)}.",
+      "P60 EXPLICIT HOLO-DISCRETE LOWEST COHOMOLOGICAL DEGREE: paper_iia_realization_OPEN refactored 7-input → 8-input by adding holo_discrete_lowest_deg_E7minus25 (every holomorphic discrete series A_q(λ) in Hermitian symmetric (g, K) has R(q) = dim_C(G/K); for E_{7(-25)}, dim_C(G/K) = 27). Cited to V-Z 1984 Compositio Math. 53 §5 + Knapp-Wallach 1976 Invent. Math. 34 + Borel-Wallach 1980 Ch. VI. Previously implicit in V-Z 1984 §5 framework; now extracted. Combined with Salamanca-Riba (P59), this completely eliminates non-trivial A_q(λ) contributions at deg 8 < 27 in the (ii.a) realization argument's step (4), leaving only the trivial-module Cartan image (P58) = ⟨h^4⟩."
     ]
-    scope := "HC for Freudenthal quartic [q] on EVII Shimura varieties; Hyp_* count 7 → 6 (P32) → 5 (P34) → 4 (P35) → 3 (P53 discharges Hyp_TwistedPhiL) → 2 (P54 closes Hyp_MumfordExtension via Schmid 1973 + Deligne 1970) → 1 (P55 closes Hyp_Eisenstein_Vanishing via Borel-Serre + Franke + E_7 codim) → 0 (P56 bypasses Hyp_BorelMAtLeast8 via c(E_7) = 8 PUBLISHED). P57: polynomial identity P = -48 c_2² + 96 c_1·c_3 - 96 c_4 made explicit. P58: Cartan 1929 compact-dual iso made explicit. P59: Salamanca-Riba 1999 low-degree vanishing made explicit. Conditional only on 39 atomic axioms (23 Cat 2 PUBLISHED + 16 Cat 3 paper-stated)."
+    scope := "HC for Freudenthal quartic [q] on EVII Shimura varieties; Hyp_* count 7 → 6 (P32) → 5 (P34) → 4 (P35) → 3 (P53 discharges Hyp_TwistedPhiL) → 2 (P54 closes Hyp_MumfordExtension via Schmid 1973 + Deligne 1970) → 1 (P55 closes Hyp_Eisenstein_Vanishing via Borel-Serre + Franke + E_7 codim) → 0 (P56 bypasses Hyp_BorelMAtLeast8 via c(E_7) = 8 PUBLISHED). P57: polynomial identity P = -48 c_2² + 96 c_1·c_3 - 96 c_4 made explicit. P58: Cartan 1929 compact-dual iso made explicit. P59: Salamanca-Riba 1999 low-degree vanishing made explicit. P60: V-Z 1984 §5 holo-discrete lowest cohomological degree (= dim_C(G/K) = 27 for E_{7(-25)}) made explicit. Conditional only on 40 atomic axioms (24 Cat 2 PUBLISHED + 16 Cat 3 paper-stated)."
     conditionalOn := [
       -- ZERO Hyp_* broken-link predicates (P56 final: Main Theorem is UNCONDITIONAL in Hyp_* terms)
       -- 3 Cat 2 PUBLISHED (was BLOCKED; P30 closure via Toda 1975 + Kono-Mimura 1976)
       "borel_toda_E6_U1_presentation_OPEN",
       "toda_1975_V27_generates_BE6_OPEN",
       "kono_mimura_1976_V56_generates_BE7_OPEN",
-      -- 11 Cat 2 PUBLISHED (P39: Borel-Hirzebruch augmentation + H^8 dim + V_56 Hodge decomp; P40: E_6-compactness; P54: Schmid 1973 + Deligne 1970; P55: Borel-Serre + Franke Eisenstein layer + E_7 codim; P56: Borel 1974 §9.1(3) c(E_7) = 8; P57: Bott-Tu/Griffiths-Harris/Fulton Chern-pairing degree-4 constraint; P58: Cartan 1929 / Borel-Wallach compact-dual cohomology iso; P59: Salamanca-Riba 1999 low-deg vanishing for A_q(λ))
+      -- 12 Cat 2 PUBLISHED (P39: Borel-Hirzebruch augmentation + H^8 dim + V_56 Hodge decomp; P40: E_6-compactness; P54: Schmid 1973 + Deligne 1970; P55: Borel-Serre + Franke Eisenstein layer + E_7 codim; P56: Borel 1974 §9.1(3) c(E_7) = 8; P57: Bott-Tu/Griffiths-Harris/Fulton Chern-pairing degree-4 constraint; P58: Cartan 1929 / Borel-Wallach compact-dual cohomology iso; P59: Salamanca-Riba 1999 low-deg vanishing for A_q(λ); P60: V-Z 1984 §5 / Knapp-Wallach 1976 / Borel-Wallach Ch. VI holo-discrete lowest-deg)
       "borel_hirzebruch_coinvariant_augmentation_OPEN",
       "H8_EVII_one_dim_OPEN", "V56_hodge_decomposition_OPEN",
       "e6_compactness_form_proportionality_OPEN",
@@ -2514,6 +2577,7 @@ def gap_HC_Main : StrictGapEntry :=
       "chern_pairing_deg4_PUBLISHED_OPEN",
       "cartan_1929_PUBLISHED_OPEN",
       "salamanca_riba_1999_PUBLISHED_OPEN",
+      "vz_1984_holo_discrete_lowest_deg_PUBLISHED_OPEN",
       -- 15 paper workingAssumption/structuralEquation axioms (P35 +1, P39 +3, P40 +1, P53 +1, P54 +1, P55 +1)
       "paper_iia_realization_OPEN", "paper_formHM_EVII_OPEN",
       "paper_section16_2_OPEN", "paper_GP_EVII_OPEN",
@@ -2559,12 +2623,13 @@ def allEntries : List StrictGapEntry := [
   gap_chern_pairing_deg4_constraint,
   gap_cartan_1929_compact_dual_iso,
   gap_salamanca_riba_low_deg_vanishing,
+  gap_holo_discrete_lowest_deg_E7minus25,
   -- Hyp_* (9, +1 P39 TwistedPhiL_Coefficient, +1 P40 MumfordExtension_LBlockDiagonal)
   gap_Hyp_BorelMAtLeast8, gap_Hyp_VZ_AqLambda, gap_Hyp_Eisenstein_Vanishing,
   gap_Hyp_HigherRank_GoodMetric, gap_Hyp_ChernWeilForm_Proportionality,
   gap_Hyp_FreudenthalClassPlacement, gap_Hyp_CrossRingPhiNonzero,
   gap_Hyp_TwistedPhiL_Coefficient_Nonzero, gap_Hyp_MumfordExtension_LBlockDiagonal,
-  -- Cat 2 (23, +3 P39 augmentation/H^8-dim/V_56-decomp, +1 P40 E_6-compactness, +1 P54 Schmid-Deligne, +2 P55 Eisenstein layer + E_7 codim, +1 P57 Chern pairing, +1 P58 Cartan, +1 P59 Salamanca-Riba)
+  -- Cat 2 (24, +3 P39 augmentation/H^8-dim/V_56-decomp, +1 P40 E_6-compactness, +1 P54 Schmid-Deligne, +2 P55 Eisenstein layer + E_7 codim, +1 P57 Chern pairing, +1 P58 Cartan, +1 P59 Salamanca-Riba, +1 P60 holo-discrete-lowest-deg)
   gap_bott_borel_weil, gap_borel_1974, gap_bbd_saito_gm,
   gap_goresky_pardon_2002_looijenga, gap_wolf_satake_borel_ji,
   gap_mumford_1977, gap_vogan_zuckerman, gap_knapp_vogan_1995,
@@ -2578,6 +2643,7 @@ def allEntries : List StrictGapEntry := [
   gap_chern_pairing_deg4_PUBLISHED,
   gap_cartan_1929_PUBLISHED,
   gap_salamanca_riba_1999_PUBLISHED,
+  gap_vz_1984_holo_discrete_lowest_deg_PUBLISHED,
   -- Cat 3 workingAssumption + structuralEquation (16, +1 P35, +3 P39, +1 P40, +1 P53, +1 P54, +1 P55)
   gap_paper_hodge44, gap_paper_iia, gap_paper_iib, gap_paper_formHM,
   gap_paper_placement_reduction,
@@ -2667,7 +2733,7 @@ end HodgeReduction.Strict
 --
 -- §1.5 designates `#print axioms` as the primary verification tool. This
 -- surfaces the exact axiom dependency of the Main Theorem in the build log:
--- 39 atomic dependencies (23 Cat 2 + 16 Cat 3 paper-stated; P35 added
+-- 40 atomic dependencies (24 Cat 2 + 16 Cat 3 paper-stated; P35 added
 -- paper_placement_reduction_OPEN, P39 added the L-equivariant Chern-Weil
 -- refinement: 3 Cat 2 + 3 Cat 3, P40 added the Hodge-refinement of
 -- Chern-Weil forms: 1 Cat 2 + 1 Cat 3, P53 added
@@ -2693,7 +2759,11 @@ end HodgeReduction.Strict
 -- P59 added salamanca_riba_1999_PUBLISHED_OPEN (Salamanca-Riba 1999 Duke
 -- Math. J. 96 + Vogan 1984 + V-Z 1984 §5 low-degree vanishing for A_q(λ)
 -- cuspidal cohomology in Hermitian symmetric) making the non-trivial-
--- module-vanishing-at-deg-8 step in (ii.a) explicit.
+-- module-vanishing-at-deg-8 step in (ii.a) explicit; P60 added
+-- vz_1984_holo_discrete_lowest_deg_PUBLISHED_OPEN (V-Z 1984 §5 +
+-- Knapp-Wallach 1976 + Borel-Wallach Ch. VI holo-discrete A_q(λ) has
+-- R(q) = dim_C(G/K) = 27 for E_{7(-25)}) completing the (ii.a) elimination
+-- of non-trivial A_q(λ) at deg 8 < 27.
 -- No Cat 0 kernel axioms (no propext / Quot.sound / Classical.choice /
 -- Lean.ofReduceBool). The proof is pure axiom-composition function
 -- application.
