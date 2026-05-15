@@ -595,16 +595,60 @@ def schlafli_graph_srg_27_10_1_5 : Prop :=
  5. Trace-inner-product compatibility tr(X ∘ Y) = ⟨X, Y⟩ (P121).
  These are all kernel-verified theorems in Infrastructure.J3OJordan. -/
 def J_3_O_cubic_norm_form_zorn_basis : Prop :=
+  -- (1) 27-dim Q-module
   (Module.finrank ℚ Infrastructure.J3O = 27) ∧
+  -- (2) Jordan product commutative
   (∀ X Y : Infrastructure.J3O,
     Infrastructure.J3O.jordanMul X Y = Infrastructure.J3O.jordanMul Y X) ∧
+  -- (3) Identity is Jordan unit
   (∀ X : Infrastructure.J3O, Infrastructure.J3O.jordanMul 1 X = X) ∧
+  -- (4) Freudenthal cubic norm identity X o X^# = N(X) . 1
   (∀ X : Infrastructure.J3O,
     Infrastructure.J3O.jordanMul X (Infrastructure.J3O.sharp X)
       = Infrastructure.J3O.cubicNorm X • (1 : Infrastructure.J3O)) ∧
+  -- (5) trace-inner-product compatibility tr(X o Y) = <X, Y>
   (∀ X Y : Infrastructure.J3O,
     Infrastructure.J3O.trace (Infrastructure.J3O.jordanMul X Y)
-      = Infrastructure.J3O.innerProd X Y)
+      = Infrastructure.J3O.innerProd X Y) ∧
+  -- (6) Cayley-Hamilton: X^# = X^2 - tr(X) X + s_2(X) . 1   [P130]
+  (∀ X : Infrastructure.J3O,
+    Infrastructure.J3O.sharp X
+    = Infrastructure.J3O.jordanMul X X
+      - Infrastructure.J3O.trace X • X
+      + (((Infrastructure.J3O.trace X)^2
+          - Infrastructure.J3O.trace (Infrastructure.J3O.jordanMul X X)) / 2)
+        • (1 : Infrastructure.J3O)) ∧
+  -- (7) X^3 characteristic polynomial: X o X^2 = tr(X) X^2 - s_2(X) X + N(X) . 1   [P131]
+  (∀ X : Infrastructure.J3O,
+    Infrastructure.J3O.jordanMul X (Infrastructure.J3O.jordanMul X X)
+    = Infrastructure.J3O.trace X • Infrastructure.J3O.jordanMul X X
+      - (((Infrastructure.J3O.trace X)^2
+          - Infrastructure.J3O.trace (Infrastructure.J3O.jordanMul X X)) / 2)
+        • X
+      + Infrastructure.J3O.cubicNorm X • (1 : Infrastructure.J3O)) ∧
+  -- (8) trace of sharp: tr(X^#) = s_2(X)   [P133]
+  (∀ X : Infrastructure.J3O,
+    Infrastructure.J3O.trace (Infrastructure.J3O.sharp X)
+    = ((Infrastructure.J3O.trace X)^2
+       - Infrastructure.J3O.trace (Infrastructure.J3O.jordanMul X X)) / 2) ∧
+  -- (9) degree-3 Euler identity: <X^#, X> = 3 N(X)   [P133]
+  (∀ X : Infrastructure.J3O,
+    Infrastructure.J3O.innerProd (Infrastructure.J3O.sharp X) X
+    = 3 * Infrastructure.J3O.cubicNorm X) ∧
+  -- (10) sharp polarization diagonal: X x X = 2 . sharp X   [P134]
+  (∀ X : Infrastructure.J3O,
+    Infrastructure.J3O.freudenthalCross X X = (2 : ℚ) • Infrastructure.J3O.sharp X) ∧
+  -- (11) sharp polarization commutativity: X x Y = Y x X   [P134]
+  (∀ X Y : Infrastructure.J3O,
+    Infrastructure.J3O.freudenthalCross X Y = Infrastructure.J3O.freudenthalCross Y X) ∧
+  -- (12) sharp polarization bilinearity (left additive)   [P135]
+  (∀ X X' Y : Infrastructure.J3O,
+    Infrastructure.J3O.freudenthalCross (X + X') Y
+    = Infrastructure.J3O.freudenthalCross X Y + Infrastructure.J3O.freudenthalCross X' Y) ∧
+  -- (13) sharp polarization bilinearity (left scalar-compatible)   [P135]
+  (∀ (r : ℚ) (X Y : Infrastructure.J3O),
+    Infrastructure.J3O.freudenthalCross (r • X) Y
+    = r • Infrastructure.J3O.freudenthalCross X Y)
 
 /-- **Cat 1 derivation-stage (§3.4.2, P68)** — the Freudenthal triple
  product `T : V_56 × V_56 × V_56 → V_56`, making `V_56` a Freudenthal
@@ -1353,7 +1397,15 @@ theorem tits_jacobson_J_3_O_PUBLISHED_OPEN :
    Infrastructure.J3O.jordanMul_comm,
    Infrastructure.J3O.one_jordanMul,
    Infrastructure.J3O.jordanMul_sharp_eq_cubicNorm_smul_one,
-   Infrastructure.J3O.trace_jordanMul⟩
+   Infrastructure.J3O.trace_jordanMul,
+   Infrastructure.J3O.sharp_eq_cayley_hamilton,
+   Infrastructure.J3O.cubed_eq_cayley_hamilton,
+   Infrastructure.J3O.trace_sharp,
+   Infrastructure.J3O.innerProd_sharp_self,
+   Infrastructure.J3O.freudenthalCross_self,
+   Infrastructure.J3O.freudenthalCross_comm,
+   Infrastructure.J3O.freudenthalCross_add_left,
+   Infrastructure.J3O.freudenthalCross_smul_left⟩
 
 /-- **Cat 1 derivation-stage (§3.3, P68)** — H. Freudenthal, "Beziehungen
  der E_7 und E_8 zur Oktavenebene I-V", Indag. Math. 16-17 (1954-55) +
