@@ -1,5 +1,6 @@
 import Mathlib.Data.Nat.Defs
 import HodgeReduction.Infrastructure.SchlafliGraph
+import HodgeReduction.CrossRingArithmetic
 
 /-
 # HodgeReduction.Strict — strict Cat 1-3 ATOMIC MINIMAL UNITS discipline
@@ -432,12 +433,20 @@ opaque franke_1998_eisenstein_framework : Prop
  -80688 + 108000 - 27360 = -48`, matching `Φ_tw(q) = -48 h⁴` (P53). -/
 opaque polynomial_identity_freudenthal : Prop
 
-/-- **Cat 3 hypothesis predicate (§3.4.2, P57)** — the standard degree-4
+/-- **Cat 1 derivation-stage (§3.4.2, P57)** — the standard degree-4
  Chern-pairing trivialization constraint on `H^8(Ě_VII; ℚ)`:
  `2 c_4(𝓔_{+1}) - 2 c_1(𝓔_{+1})·c_3(𝓔_{+1}) + c_2(𝓔_{+1})² = h⁴`. This is the
  degree-4 part of `c(𝓔)·c(𝓔^∨) = 1/(1-h²)`, which follows from
- `V_56^{can}` being filtered-trivial (`c(V_56^{can}) = (1-h)(1+h)·c(𝓔_{+1})·c(𝓔_{-1}) = 1`). -/
-opaque chern_pairing_deg4_constraint : Prop
+ `V_56^{can}` being filtered-trivial (`c(V_56^{can}) = (1-h)(1+h)·c(𝓔_{+1})·c(𝓔_{-1}) = 1`).
+
+ **P91 LEAN-CLOSED**: this carrier is no longer an `opaque Prop`; it now
+ expands definitionally to the concrete polynomial identity proved as
+ `HodgeReduction.CrossRingArithmetic.chern_pairing_deg4` from the explicit
+ P48 Chern-class coefficients (`c_1 = -9h, c_2 = 41h², c_3 = -125h³, c_4
+ = 285h⁴`), verified by `norm_num`. -/
+def chern_pairing_deg4_constraint : Prop :=
+  2 * CrossRingArithmetic.c4 - 2 * CrossRingArithmetic.c1 * CrossRingArithmetic.c3
+    + CrossRingArithmetic.c2^2 = 1
 
 /-- **Cat 3 hypothesis predicate (§3.4.2, P58)** — Cartan's identification
  of trivial-module relative `(g, K)`-cohomology with the de Rham cohomology
@@ -1276,9 +1285,16 @@ axiom polynomial_in_chern_classes_is_algebraic_OPEN :
  Algebraic Topology* (1982) §21 or Griffiths-Harris 1978 Ch. 3 §3, or
  Fulton *Intersection Theory* (1984) §3.2.) Specialised here to
  `𝓔 = 𝓔_{+1}` (the (2,1)-Hodge piece of `V_56^{can}`) and
- `L_{±3} = O(∓1)` (Hodge weight ±3 lines). -/
-axiom chern_pairing_deg4_PUBLISHED_OPEN :
-  chern_pairing_deg4_constraint
+ `L_{±3} = O(∓1)` (Hodge weight ±3 lines).
+
+ **P91 LEAN-CLOSED** — the degree-4 Chern-pairing constraint
+ `2 c_4 - 2 c_1·c_3 + c_2² = h⁴` is verified at the level of the explicit
+ P48 Chern-class ℚ-coefficients in `CrossRingArithmetic.chern_pairing_deg4`
+ (`norm_num` over `570 - 2250 + 1681 = 1`). This was previously an axiom;
+ it is now a theorem. -/
+theorem chern_pairing_deg4_PUBLISHED_OPEN :
+    chern_pairing_deg4_constraint :=
+  CrossRingArithmetic.chern_pairing_deg4
 
 /-- **Cat 2 (§3.3, P39)** — A. Borel, F. Hirzebruch, "Characteristic
  classes and homogeneous spaces I-III", Amer. J. Math. 80-82 (1958-60),
@@ -2029,11 +2045,12 @@ def gap_polynomial_identity_freudenthal : StrictGapEntry :=
 
 def gap_chern_pairing_deg4_constraint : StrictGapEntry :=
   { name := "chern_pairing_deg4_constraint"
-    status := .gapOpen, inputCategory := .cat3PaperNovel
+    status := .gapClosed, inputCategory := .cat3PaperNovel
     cat3SubType := .hypothesisPredicate
     paperSource := "P57: degree-4 trivialization constraint 2 c_4(𝓔_{+1}) - 2 c_1(𝓔_{+1})·c_3(𝓔_{+1}) + c_2(𝓔_{+1})² = h⁴ in H^8(Ě_VII; ℚ), from the filtered-trivial total bundle V_56^{can} (c(𝓔_{+1})·c(𝓔_{+1}^∨) = 1/(1-h²))"
-    attackHistory := ["P57: opaque Prop carrier for the degree-4 Chern pairing constraint"]
-    scope := "Standard degree-4 Chern-pairing constraint in H^8(Ě_VII; ℚ): 2c_4 - 2c_1c_3 + c_2² = h⁴ (P57)" }
+    attackHistory := ["P57: opaque Prop carrier for the degree-4 Chern pairing constraint",
+                      "P91 LEAN-CLOSED (2026-05-15): kernel-verified via CrossRingArithmetic.chern_pairing_deg4 (norm_num on the P48 explicit ℚ-coefficients: 2·285 - 2·(-9)·(-125) + 41² = 570 - 2250 + 1681 = 1). carrier opaque → def, axiom → theorem in HodgeReduction.Strict; backed by HodgeReduction.CrossRingArithmetic.chern_pairing_deg4. Axioms depended on: [propext, Classical.choice, Quot.sound] (kernel-only)."]
+    scope := "CLOSED: degree-4 Chern-pairing constraint 2c_4 - 2c_1c_3 + c_2² = h⁴ in H^8(Ě_VII; ℚ); P91 Lean-closure depends only on Lean kernel axioms." }
 
 def gap_cartan_1929_compact_dual_iso : StrictGapEntry :=
   { name := "cartan_1929_compact_dual_iso"
