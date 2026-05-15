@@ -722,14 +722,107 @@ theorem freudenthalCross_comm (X Y : J3O) :
   rw [add_comm X Y]
   abel
 
--- TODO: prove the **closed-form** for the Freudenthal cross product:
---   X × Y = 2 • (X ∘ Y) − tr(X) • Y − tr(Y) • X + (tr(X) · tr(Y) − ⟨X, Y⟩) • 1
--- which, by bilinearity of jordanMul/innerProd/trace, would give
--- bilinearity of freudenthalCross for free.
--- Direct polynomial expansion times out; deferred until we either:
--- (a) split into helper lemmas for each component,
--- (b) develop normSq_add_eq lemma at OctonionQ level, or
--- (c) use an abstract polarization principle for degree-2 maps.
+set_option maxHeartbeats 4000000 in
+/-- The cross product is **left-additive**:
+`(X + X') × Y = X × Y + X' × Y`. Proved by component expansion using
+`normSq_add₃` for the diagonal entries and direct `e_i`-level
+polynomial expansion for the off-diagonal entries. -/
+theorem freudenthalCross_add_left (X X' Y : J3O) :
+    freudenthalCross (X + X') Y
+    = freudenthalCross X Y + freudenthalCross X' Y := by
+  unfold freudenthalCross
+  refine J3O.ext ?_ ?_ ?_ ?_ ?_ ?_
+  · -- xi1
+    simp only [sub_xi1, add_xi1]
+    unfold sharp
+    dsimp
+    rw [OctonionQ.normSq_add₃, OctonionQ.normSq_add,
+        OctonionQ.normSq_add, OctonionQ.normSq_add]
+    ring
+  · -- xi2
+    simp only [sub_xi2, add_xi2]
+    unfold sharp
+    dsimp
+    rw [OctonionQ.normSq_add₃, OctonionQ.normSq_add,
+        OctonionQ.normSq_add, OctonionQ.normSq_add]
+    ring
+  · -- xi3
+    simp only [sub_xi3, add_xi3]
+    unfold sharp
+    dsimp
+    rw [OctonionQ.normSq_add₃, OctonionQ.normSq_add,
+        OctonionQ.normSq_add, OctonionQ.normSq_add]
+    ring
+  · -- x1
+    simp only [sub_x1, add_x1]
+    unfold sharp
+    dsimp
+    ext <;> simp [OctonionQ.conj] <;> ring
+  · -- x2
+    simp only [sub_x2, add_x2]
+    unfold sharp
+    dsimp
+    ext <;> simp [OctonionQ.conj] <;> ring
+  · -- x3
+    simp only [sub_x3, add_x3]
+    unfold sharp
+    dsimp
+    ext <;> simp [OctonionQ.conj] <;> ring
+
+/-- The cross product is **right-additive** (via symmetry). -/
+theorem freudenthalCross_add_right (X Y Y' : J3O) :
+    freudenthalCross X (Y + Y')
+    = freudenthalCross X Y + freudenthalCross X Y' := by
+  rw [freudenthalCross_comm, freudenthalCross_add_left]
+  congr 1 <;> exact freudenthalCross_comm _ _
+
+set_option maxHeartbeats 4000000 in
+/-- The cross product is **left-scalar-compatible**: `(r • X) × Y = r • (X × Y)`. -/
+theorem freudenthalCross_smul_left (r : ℚ) (X Y : J3O) :
+    freudenthalCross (r • X) Y = r • freudenthalCross X Y := by
+  unfold freudenthalCross
+  refine J3O.ext ?_ ?_ ?_ ?_ ?_ ?_
+  · -- xi1
+    simp only [sub_xi1, add_xi1, smul_xi1]
+    unfold sharp
+    dsimp
+    rw [OctonionQ.normSq_add, OctonionQ.normSq_add, OctonionQ.normSq_smul,
+        OctonionQ.smul_mul, OctonionQ.re_smul]
+    ring
+  · -- xi2
+    simp only [sub_xi2, add_xi2, smul_xi2]
+    unfold sharp
+    dsimp
+    rw [OctonionQ.normSq_add, OctonionQ.normSq_add, OctonionQ.normSq_smul,
+        OctonionQ.smul_mul, OctonionQ.re_smul]
+    ring
+  · -- xi3
+    simp only [sub_xi3, add_xi3, smul_xi3]
+    unfold sharp
+    dsimp
+    rw [OctonionQ.normSq_add, OctonionQ.normSq_add, OctonionQ.normSq_smul,
+        OctonionQ.smul_mul, OctonionQ.re_smul]
+    ring
+  · -- x1
+    simp only [sub_x1, add_x1, smul_x1]
+    unfold sharp
+    dsimp
+    ext <;> simp [OctonionQ.conj] <;> ring
+  · -- x2
+    simp only [sub_x2, add_x2, smul_x2]
+    unfold sharp
+    dsimp
+    ext <;> simp [OctonionQ.conj] <;> ring
+  · -- x3
+    simp only [sub_x3, add_x3, smul_x3]
+    unfold sharp
+    dsimp
+    ext <;> simp [OctonionQ.conj] <;> ring
+
+/-- The cross product is **right-scalar-compatible** (via symmetry). -/
+theorem freudenthalCross_smul_right (r : ℚ) (X Y : J3O) :
+    freudenthalCross X (r • Y) = r • freudenthalCross X Y := by
+  rw [freudenthalCross_comm, freudenthalCross_smul_left, freudenthalCross_comm]
 
 /-- The **degree-3 Euler identity**: `⟨X^#, X⟩ = 3 N(X)`. -/
 theorem innerProd_sharp_self (X : J3O) :

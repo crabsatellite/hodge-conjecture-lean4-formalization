@@ -395,6 +395,32 @@ theorem normSq_add (a b : OctonionQ) :
   simp
   ring
 
+/-- **3-term polarization** of `normSq` (used in bilinearity proofs):
+`‖a + b + c‖² = ‖a‖² + ‖b‖² + ‖c‖²
+              + 2 Re(a · conj b) + 2 Re(a · conj c) + 2 Re(b · conj c)`. -/
+theorem normSq_add₃ (a b c : OctonionQ) :
+    normSq (a + b + c)
+    = normSq a + normSq b + normSq c
+      + 2 * re (a * conj b) + 2 * re (a * conj c) + 2 * re (b * conj c) := by
+  rw [normSq_add, normSq_add]
+  have h : re ((a + b) * conj c) = re (a * conj c) + re (b * conj c) := by
+    show ((a + b) * conj c).e0 = (a * conj c).e0 + (b * conj c).e0
+    simp; ring
+  rw [h]
+  ring
+
+/-- `re` distributes over octonion addition (left): `Re((a + b) * c) = Re(a*c) + Re(b*c)`. -/
+theorem re_add_mul (a b c : OctonionQ) :
+    re ((a + b) * c) = re (a * c) + re (b * c) := by
+  show ((a + b) * c).e0 = (a * c).e0 + (b * c).e0
+  simp; ring
+
+/-- `re` distributes over octonion addition (right): `Re(a * (b + c)) = Re(a*b) + Re(a*c)`. -/
+theorem re_mul_add (a b c : OctonionQ) :
+    re (a * (b + c)) = re (a * b) + re (a * c) := by
+  show (a * (b + c)).e0 = (a * b).e0 + (a * c).e0
+  simp; ring
+
 /-- `re` is `ℚ`-linear: `Re(r • x) = r · Re(x)`. -/
 @[simp] theorem re_smul (r : ℚ) (x : OctonionQ) : re (r • x) = r * re x := rfl
 
