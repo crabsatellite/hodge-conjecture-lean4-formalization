@@ -665,6 +665,14 @@ theorem jordanMulLeft_eq_jordanMulRight (X : J3O) :
   show jordanMul X Y = jordanMul Y X
   exact jordanMul_comm X Y
 
+/-- The **square-sharp Jordan identity**: `X · (X · X^#) = N(X) · X`.
+
+This follows directly from `X · X^# = N(X) · 1` and `X · 1 = X`. It's
+the simpler half of the "fundamental formula" U_X(X^#) = N(X) · X. -/
+theorem jordanMul_jordanMul_sharp_self_eq (X : J3O) :
+    jordanMul X (jordanMul X (sharp X)) = cubicNorm X • X := by
+  rw [jordanMul_sharp_eq_cubicNorm_smul_one, jordanMul_smul, jordanMul_one]
+
 /-! ### Trace of sharp: `tr(X^#) = s_2(X)`
 
 This is the trace counterpart of `sharp_eq_cayley_hamilton`. Taking the
