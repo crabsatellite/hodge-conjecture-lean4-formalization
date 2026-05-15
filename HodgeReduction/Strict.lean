@@ -12,8 +12,8 @@ Main result: `HC_for_freudenthal_quartic_on_EVII_UNCONDITIONAL` —
 `E_{7(-25)}` Shimura varieties, taking NO broken-link `Hyp_*` arguments.
 The theorem is UNCONDITIONAL in `Hyp_*` terms: ALL seven original
 broken-link predicates have been discharged via PUBLISHED Cat 2 axioms +
-paper-stated Cat 3 structural equations. Conditional only on 44 atomic
-axiom dependencies (28 Cat 2 PUBLISHED + 16 Cat 3 paper-stated) — see
+paper-stated Cat 3 structural equations. Conditional only on 45 atomic
+axiom dependencies (29 Cat 2 PUBLISHED + 16 Cat 3 paper-stated) — see
 `#print axioms` at the end of the file. P57-P61: citation-hygiene pattern
 extracting implicit-in-bundled-framework citations as separately-cited
 Cat 2 single-source dependencies.
@@ -262,7 +262,7 @@ into 8 explicit ingredients.
 7. **Bijective ledger** per §19 Einstein Test exemplar — every declaration has
    exactly one `StrictGapEntry` and vice versa.
 8. **`#print axioms`** kernel-purity check (§1.5 primary verification tool) at
-   end of file surfaces all 44 atomic dependencies of the Main Theorem (28
+   end of file surfaces all 45 atomic dependencies of the Main Theorem (29
    Cat 2 PUBLISHED + 16 Cat 3 paper-stated; ZERO Hyp_* in signature).
 
 ## Layout
@@ -462,6 +462,16 @@ opaque bkk_2007_log_log_automorphic_framework : Prop
  ALGEBRAIC cycle classes in `H^*(S_Γ^{tor}; ℚ)`. This upgrades Mumford
  1977's good-metric Chern classes from `C^∞`-level to algebraic-level. -/
 opaque harris_1985_algebraic_upgrade : Prop
+
+/-- **Cat 3 hypothesis predicate (§3.4.2, P65)** — Cattani-Kaplan-Schmid
+ 1986 Hodge norm estimates: for a polarized VHS approaching a boundary
+ divisor with unipotent monodromy, the Hodge norm has explicit asymptotic
+ behaviour, and the Hodge filtration `F^p` decomposes asymptotically into
+ the weight filtration `W_•` of the limiting mixed Hodge structure. This
+ REFINES Schmid 1973's nilpotent orbit theorem with quantitative boundary
+ control — load-bearing for showing the L-block structure stays block-
+ diagonal after canonical extension (P54). -/
+opaque cattani_kaplan_schmid_1986_hodge_norm_estimates : Prop
 
 /-- **Cat 3 hypothesis predicate (§3.4.2)** — [q] is algebraic on S_Γ^{tor}. -/
 opaque freudenthal_is_algebraic : Prop
@@ -1065,6 +1075,16 @@ axiom burgos_kramer_kuhn_2007_PUBLISHED_OPEN :
 axiom harris_1985_algebraic_upgrade_PUBLISHED_OPEN :
   harris_1985_algebraic_upgrade
 
+/-- **Cat 2 PUBLISHED (§3.3, P65)** — E. Cattani, A. Kaplan, W. Schmid,
+ "Degeneration of Hodge structures", Ann. Math. (2) 123 (1986), 457-535
+ + Cattani-Kaplan, "Polarized mixed Hodge structures and the local
+ monodromy of a variation of Hodge structure", Invent. Math. 67 (1982),
+ 101-115. Refines Schmid 1973's nilpotent orbit theorem with quantitative
+ Hodge norm estimates at the boundary, giving the limiting mixed Hodge
+ structure with weight filtration `W_•`. -/
+axiom cattani_kaplan_schmid_1986_PUBLISHED_OPEN :
+  cattani_kaplan_schmid_1986_hodge_norm_estimates
+
 /-- **Cat 2 PUBLISHED (§3.3)** — P30 audit closure: previous gapBlocked
  status overly conservative. Single-source citation found:
  H. Toda, "Cohomology of the classifying space of exceptional Lie groups",
@@ -1246,6 +1266,7 @@ axiom mumford_L_block_diagonal_via_schmid_OPEN :
   schmid_deligne_hodge_filtration_extends →
   V56_hodge_decomposition_under_E6_U1 →
   mumford_canonical_extension_framework →
+  cattani_kaplan_schmid_1986_hodge_norm_estimates →
   Hyp_MumfordExtension_LBlockDiagonal_OPEN
 
 /-- **Cat 2 (§3.3, P55)** — A. Borel, J.-P. Serre, "Corners and arithmetic
@@ -1490,6 +1511,7 @@ theorem Hyp_MumfordExtension_LBlockDiagonal_DERIVED :
     schmid_1973_deligne_1970_OPEN
     V56_hodge_decomposition_OPEN
     mumford_1977_canonical_extension_OPEN
+    cattani_kaplan_schmid_1986_PUBLISHED_OPEN
 
 /-- **gapClosed** — Eisenstein vanishing at degree 8, CLOSED.
  P55: Borel-Serre 1973 + Franke 1998 §1.4 + E_7 root-system codim ≥ 26. -/
@@ -1887,6 +1909,14 @@ def gap_harris_1985_algebraic_upgrade : StrictGapEntry :=
     paperSource := "P64: Harris 1985 algebraic upgrade — Mumford-extended automorphic vector bundles have algebraic Chern classes in H^*(S_Γ^{tor}; ℚ), not just C^∞-Chern-Weil classes"
     attackHistory := ["P64: opaque Prop carrier for the Harris algebraic-upgrade principle"]
     scope := "Harris 1985 / 1989 / 1990 algebraic upgrade of Mumford-extended automorphic Chern classes; load-bearing in paper_formHM_EVII (P64)" }
+
+def gap_cattani_kaplan_schmid_1986_hodge_norm_estimates : StrictGapEntry :=
+  { name := "cattani_kaplan_schmid_1986_hodge_norm_estimates"
+    status := .gapOpen, inputCategory := .cat3PaperNovel
+    cat3SubType := .hypothesisPredicate
+    paperSource := "P65: Cattani-Kaplan-Schmid 1986 'Degeneration of Hodge structures' Ann. Math. 123 + Cattani-Kaplan 1982 Invent. Math. 67 — refines Schmid 1973 nilpotent orbit with quantitative Hodge norm estimates at boundary, giving limiting mixed Hodge structure with weight filtration W_•"
+    attackHistory := ["P65: opaque Prop carrier for the CKS 1986 Hodge norm estimates"]
+    scope := "CKS 1986 Hodge norm estimates / limiting mixed Hodge structure; load-bearing for L-block-diagonal extension in P54's mumford_L_block_diagonal_via_schmid (P65)" }
 
 def gap_freudenthal_is_algebraic : StrictGapEntry :=
   { name := "freudenthal_is_algebraic"
@@ -2311,6 +2341,14 @@ def gap_harris_1985_algebraic_upgrade_PUBLISHED : StrictGapEntry :=
     attackHistory := ["P64 (2026-05-15): Cat 2 single-step; Harris 1985/1989/1990 algebraic upgrade of Mumford-extended Chern classes. Previously implicit in paper_formHM_EVII P34 closure synthesis; now extracted as a separately-cited Cat 2 single-source dependency"]
     scope := "Cat 2 PUBLISHED: Harris 1985 algebraic upgrade of Mumford-extended automorphic Chern classes; load-bearing in form-HM-EVII (P64)" }
 
+def gap_cattani_kaplan_schmid_1986_PUBLISHED : StrictGapEntry :=
+  { name := "cattani_kaplan_schmid_1986_PUBLISHED_OPEN"
+    status := .gapOpen, inputCategory := .cat2External
+    cat3SubType := .notApplicable
+    paperSource := "E. Cattani, A. Kaplan, W. Schmid, 'Degeneration of Hodge structures', Ann. Math. (2) 123 (1986), 457-535 + Cattani-Kaplan, 'Polarized mixed Hodge structures and the local monodromy of a variation of Hodge structure', Invent. Math. 67 (1982), 101-115"
+    attackHistory := ["P65 (2026-05-15): Cat 2 single-step; CKS 1986 Hodge norm estimates / limiting mixed Hodge structure. Previously bundled with schmid_1973_deligne_1970_OPEN; now extracted as a separately-cited Cat 2 single-source dependency for the L-block-diagonal extension argument in P54"]
+    scope := "Cat 2 PUBLISHED: CKS 1986 Hodge norm estimates / limiting mixed Hodge structure; load-bearing in L-block-diagonal extension (P65)" }
+
 def gap_borel_toda_E6_U1 : StrictGapEntry :=
   { name := "borel_toda_E6_U1_presentation_OPEN"
     status := .gapOpen, inputCategory := .cat2External
@@ -2718,7 +2756,7 @@ def gap_HC_Main : StrictGapEntry :=
       "P61 EXPLICIT j^q G-EQUIVARIANCE: paper_hodge44_step_OPEN refactored 2-input → 3-input by adding j_q_G_equivariance_principle (the Matsushima homomorphism j^q is G-equivariant, sending G-invariant classes on Ě to G-invariant classes on S_Γ). Cited to Matsushima 1962 Osaka Math. J. 14 + Borel 1974 §3-§8. Previously implicit in cohomologyIso_at_deg8 carrier semantics; now extracted as a separately-cited Cat 2 single-source dependency. Load-bearing in the freudenthal-class-G-invariance derivation: h^4 G-inv on Ě_VII ⟹ j^8(h^4) G-inv on S_Γ.",
       "P62 EXPLICIT BOREL-HIRZEBRUCH h = c_1(L): paper_placement_reduction_OPEN refactored 3-input → 4-input by adding h_equals_c_1_canonical_line_bundle (the Borel-Hirzebruch 1958-60 identification of the Kähler class h on Ě_VII with the first Chern class of the canonical line bundle L). Cited to Borel-Hirzebruch Amer. J. Math. 80-82 Part I §13-15 + Part II §28-30. Previously implicit in paper-narrative step (iv) j^8(h^4) = c_1(L̄)^4; now extracted as a separately-cited Cat 2 single-source dependency."
     ]
-    scope := "HC for Freudenthal quartic [q] on EVII Shimura varieties; Hyp_* count 7 → 6 (P32) → 5 (P34) → 4 (P35) → 3 (P53) → 2 (P54) → 1 (P55) → 0 (P56). P57-P64 citation-hygiene rounds extract implicit-in-bundled-framework facts as separately-cited Cat 2 axioms. Conditional only on 44 atomic axioms (28 Cat 2 PUBLISHED + 16 Cat 3 paper-stated)."
+    scope := "HC for Freudenthal quartic [q] on EVII Shimura varieties; Hyp_* count 7 → 6 (P32) → 5 (P34) → 4 (P35) → 3 (P53) → 2 (P54) → 1 (P55) → 0 (P56). P57-P65 citation-hygiene rounds extract implicit-in-bundled-framework facts as separately-cited Cat 2 axioms. Conditional only on 45 atomic axioms (29 Cat 2 PUBLISHED + 16 Cat 3 paper-stated)."
     conditionalOn := [
       -- ZERO Hyp_* broken-link predicates (P56 final: Main Theorem is UNCONDITIONAL in Hyp_* terms)
       -- 3 Cat 2 PUBLISHED (was BLOCKED; P30 closure via Toda 1975 + Kono-Mimura 1976)
@@ -2741,6 +2779,7 @@ def gap_HC_Main : StrictGapEntry :=
       "borel_hirzebruch_h_equals_c_1_L_PUBLISHED_OPEN",
       "burgos_kramer_kuhn_2007_PUBLISHED_OPEN",
       "harris_1985_algebraic_upgrade_PUBLISHED_OPEN",
+      "cattani_kaplan_schmid_1986_PUBLISHED_OPEN",
       -- 15 paper workingAssumption/structuralEquation axioms (P35 +1, P39 +3, P40 +1, P53 +1, P54 +1, P55 +1)
       "paper_iia_realization_OPEN", "paper_formHM_EVII_OPEN",
       "paper_section16_2_OPEN", "paper_GP_EVII_OPEN",
@@ -2791,6 +2830,7 @@ def allEntries : List StrictGapEntry := [
   gap_h_equals_c_1_canonical_line_bundle,
   gap_bkk_2007_log_log_automorphic_framework,
   gap_harris_1985_algebraic_upgrade,
+  gap_cattani_kaplan_schmid_1986_hodge_norm_estimates,
   -- Hyp_* (9, +1 P39 TwistedPhiL_Coefficient, +1 P40 MumfordExtension_LBlockDiagonal)
   gap_Hyp_BorelMAtLeast8, gap_Hyp_VZ_AqLambda, gap_Hyp_Eisenstein_Vanishing,
   gap_Hyp_HigherRank_GoodMetric, gap_Hyp_ChernWeilForm_Proportionality,
@@ -2815,6 +2855,7 @@ def allEntries : List StrictGapEntry := [
   gap_borel_hirzebruch_h_equals_c_1_L_PUBLISHED,
   gap_burgos_kramer_kuhn_2007_PUBLISHED,
   gap_harris_1985_algebraic_upgrade_PUBLISHED,
+  gap_cattani_kaplan_schmid_1986_PUBLISHED,
   -- Cat 3 workingAssumption + structuralEquation (16, +1 P35, +3 P39, +1 P40, +1 P53, +1 P54, +1 P55)
   gap_paper_hodge44, gap_paper_iia, gap_paper_iib, gap_paper_formHM,
   gap_paper_placement_reduction,
@@ -2904,7 +2945,7 @@ end HodgeReduction.Strict
 --
 -- §1.5 designates `#print axioms` as the primary verification tool. This
 -- surfaces the exact axiom dependency of the Main Theorem in the build log:
--- 44 atomic dependencies (28 Cat 2 + 16 Cat 3 paper-stated; P35 added
+-- 45 atomic dependencies (29 Cat 2 + 16 Cat 3 paper-stated; P35 added
 -- paper_placement_reduction_OPEN, P39 added the L-equivariant Chern-Weil
 -- refinement: 3 Cat 2 + 3 Cat 3, P40 added the Hodge-refinement of
 -- Chern-Weil forms: 1 Cat 2 + 1 Cat 3, P53 added
