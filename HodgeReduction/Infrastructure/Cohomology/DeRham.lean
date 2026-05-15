@@ -4,6 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 -/
 import Mathlib.Algebra.Module.Submodule.Basic
 import Mathlib.Algebra.Order.Field.Rat
+import Mathlib.Algebra.Algebra.Defs
 
 /-!
 # de Rham cohomology framework
@@ -34,7 +35,7 @@ de Rham cohomology, differential form, Hodge filtration, wedge product
 
 namespace HodgeReduction.Infrastructure.Cohomology
 
-variable (A : Type*) [CommRing A] [Algebra ℚ A]
+variable (A : Type*) [AddCommGroup A] [Module ℚ A]
 
 /-- **de Rham cohomology data**:
 
