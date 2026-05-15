@@ -236,5 +236,102 @@ theorem jordanMul_sharp_xi1 (X : J3O) :
   simp [OctonionQ.conj]
   ring
 
+/-- The **cubic norm identity on the (2,2)-diagonal**:
+`(X ∘ X^#).xi2 = N(X)`. -/
+theorem jordanMul_sharp_xi2 (X : J3O) :
+    (jordanMul X (sharp X)).xi2 = cubicNorm X := by
+  unfold cubicNorm jordanMul sharp
+  dsimp
+  show X.xi2 * (X.xi3 * X.xi1 - OctonionQ.normSq X.x2)
+     + (X.x3 * conj (conj (X.x1 * X.x2) - X.xi3 • X.x3)).e0
+     + (X.x1 * conj (conj (X.x2 * X.x3) - X.xi1 • X.x1)).e0
+     = X.xi1 * X.xi2 * X.xi3
+       - X.xi1 * OctonionQ.normSq X.x1
+       - X.xi2 * OctonionQ.normSq X.x2
+       - X.xi3 * OctonionQ.normSq X.x3
+       + 2 * (X.x1 * X.x2 * X.x3).e0
+  unfold OctonionQ.normSq
+  simp [OctonionQ.conj]
+  ring
+
+/-- The **cubic norm identity on the (3,3)-diagonal**:
+`(X ∘ X^#).xi3 = N(X)`. -/
+theorem jordanMul_sharp_xi3 (X : J3O) :
+    (jordanMul X (sharp X)).xi3 = cubicNorm X := by
+  unfold cubicNorm jordanMul sharp
+  dsimp
+  show X.xi3 * (X.xi1 * X.xi2 - OctonionQ.normSq X.x3)
+     + (X.x1 * conj (conj (X.x2 * X.x3) - X.xi1 • X.x1)).e0
+     + (X.x2 * conj (conj (X.x3 * X.x1) - X.xi2 • X.x2)).e0
+     = X.xi1 * X.xi2 * X.xi3
+       - X.xi1 * OctonionQ.normSq X.x1
+       - X.xi2 * OctonionQ.normSq X.x2
+       - X.xi3 * OctonionQ.normSq X.x3
+       + 2 * (X.x1 * X.x2 * X.x3).e0
+  unfold OctonionQ.normSq
+  simp [OctonionQ.conj]
+  ring
+
+/-! ### Off-diagonal vanishing: `(X ∘ X^#).x_i = 0` -/
+
+set_option maxHeartbeats 1000000 in
+/-- The **cubic norm identity off-diagonal (2,3) entry**:
+`(X ∘ X^#).x1 = 0`. Proved component-wise on each of the 8 octonion
+components by `simp + ring` over the explicit Fano-plane multiplication. -/
+theorem jordanMul_sharp_x1 (X : J3O) :
+    (jordanMul X (sharp X)).x1 = 0 := by
+  unfold jordanMul sharp
+  dsimp
+  ext <;> simp [OctonionQ.conj, OctonionQ.normSq] <;> ring
+
+set_option maxHeartbeats 1000000 in
+/-- The **cubic norm identity off-diagonal (1,3) entry**:
+`(X ∘ X^#).x2 = 0`. -/
+theorem jordanMul_sharp_x2 (X : J3O) :
+    (jordanMul X (sharp X)).x2 = 0 := by
+  unfold jordanMul sharp
+  dsimp
+  ext <;> simp [OctonionQ.conj, OctonionQ.normSq] <;> ring
+
+set_option maxHeartbeats 1000000 in
+/-- The **cubic norm identity off-diagonal (1,2) entry**:
+`(X ∘ X^#).x3 = 0`. -/
+theorem jordanMul_sharp_x3 (X : J3O) :
+    (jordanMul X (sharp X)).x3 = 0 := by
+  unfold jordanMul sharp
+  dsimp
+  ext <;> simp [OctonionQ.conj, OctonionQ.normSq] <;> ring
+
+/-! ### Bundled cubic norm identity: `X ∘ X^# = N(X) • 1` -/
+
+/-- The **Freudenthal cubic norm identity**: `X ∘ X^# = N(X) • I`.
+This is the load-bearing structural identity defining the cubic norm
+of the exceptional Jordan algebra `J_3(O)`. Together with
+`tr(X ∘ Y) = ⟨X, Y⟩` (P121), this gives `J_3(O)` the structure of a
+cubic Jordan algebra in the Springer-Veldkamp / Jacobson sense. -/
+theorem jordanMul_sharp_eq_cubicNorm_smul_one (X : J3O) :
+    jordanMul X (sharp X) = cubicNorm X • (1 : J3O) := by
+  refine J3O.ext ?_ ?_ ?_ ?_ ?_ ?_
+  · rw [jordanMul_sharp_xi1]
+    show cubicNorm X = cubicNorm X * (1 : J3O).xi1
+    show cubicNorm X = cubicNorm X * 1
+    ring
+  · rw [jordanMul_sharp_xi2]
+    show cubicNorm X = cubicNorm X * 1
+    ring
+  · rw [jordanMul_sharp_xi3]
+    show cubicNorm X = cubicNorm X * 1
+    ring
+  · rw [jordanMul_sharp_x1]
+    show (0 : OctonionQ) = cubicNorm X • (1 : J3O).x1
+    show (0 : OctonionQ) = cubicNorm X • (0 : OctonionQ)
+    rw [smul_zero]
+  · rw [jordanMul_sharp_x2]
+    show (0 : OctonionQ) = cubicNorm X • (0 : OctonionQ)
+    rw [smul_zero]
+  · rw [jordanMul_sharp_x3]
+    show (0 : OctonionQ) = cubicNorm X • (0 : OctonionQ)
+    rw [smul_zero]
+
 end J3O
 end HodgeReduction.Infrastructure
