@@ -4,6 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 -/
 import HodgeReduction.Infrastructure.V56Freudenthal
 import HodgeReduction.Infrastructure.V56Basis
+import HodgeReduction.Infrastructure.J3OInnerProduct
 import Mathlib.LinearAlgebra.BilinearMap
 
 /-!
@@ -71,6 +72,71 @@ theorem omegaBilin_antisymm (v w : V56) :
     omegaBilin v w = -omegaBilin w v := by
   show omega v w = -omega w v
   exact omega_antisymm v w
+
+/-- The symplectic form `ω` is **non-degenerate**: if `ω(v, w) = 0` for all `w`,
+then `v = 0`. This realises `V₅₆` as a 56-dim symplectic `ℚ`-vector space,
+matching the inclusion `E₇ ⊂ Sp(56, ℚ)`.
+
+The proof tests `v` against the four Hodge-piece projectors:
+* `ω(v, (0, 0, 0, 1)) = v.a ⇒ v.a = 0`;
+* `ω(v, (1, 0, 0, 0)) = -v.b ⇒ v.b = 0`;
+* `ω(v, (0, A', 0, 0)) = -⟨v.B, A'⟩` for all `A'`, with positive-definite
+  `⟨·, ·⟩` ⇒ `v.B = 0`;
+* `ω(v, (0, 0, B', 0)) = ⟨v.A, B'⟩` ⇒ `v.A = 0`. -/
+theorem omega_nondegenerate (v : V56) (hv : ∀ w : V56, omega v w = 0) :
+    v = 0 := by
+  -- Test against (0, 0, 0, 1): omega v (0,0,0,1) = v.a.
+  have ha : v.a = 0 := by
+    have h := hv ⟨0, 0, 0, 1⟩
+    unfold omega at h
+    show v.a = 0
+    rw [show ((⟨0, 0, 0, 1⟩ : V56).a : ℚ) = 0 from rfl,
+        show ((⟨0, 0, 0, 1⟩ : V56).b : ℚ) = 1 from rfl,
+        show ((⟨0, 0, 0, 1⟩ : V56).A : J3O) = 0 from rfl,
+        show ((⟨0, 0, 0, 1⟩ : V56).B : J3O) = 0 from rfl,
+        J3O.innerProd_zero_right, J3O.innerProd_zero_right] at h
+    linarith
+  -- Test against (1, 0, 0, 0): omega v (1,0,0,0) = -v.b.
+  have hb : v.b = 0 := by
+    have h := hv ⟨1, 0, 0, 0⟩
+    unfold omega at h
+    show v.b = 0
+    rw [show ((⟨1, 0, 0, 0⟩ : V56).a : ℚ) = 1 from rfl,
+        show ((⟨1, 0, 0, 0⟩ : V56).b : ℚ) = 0 from rfl,
+        show ((⟨1, 0, 0, 0⟩ : V56).A : J3O) = 0 from rfl,
+        show ((⟨1, 0, 0, 0⟩ : V56).B : J3O) = 0 from rfl,
+        J3O.innerProd_zero_right, J3O.innerProd_zero_right] at h
+    linarith
+  -- Test against (0, 0, v.A, 0): omega v (0, 0, v.A, 0) = innerProd v.A v.A.
+  have hA : v.A = 0 := by
+    have h := hv ⟨0, 0, v.A, 0⟩
+    unfold omega at h
+    -- h : v.a * 0 - v.b * 0 + <v.A, v.A> - <v.B, 0> = 0
+    show v.A = 0
+    rw [show ((⟨0, 0, v.A, 0⟩ : V56).a : ℚ) = 0 from rfl,
+        show ((⟨0, 0, v.A, 0⟩ : V56).b : ℚ) = 0 from rfl,
+        show ((⟨0, 0, v.A, 0⟩ : V56).A : J3O) = 0 from rfl,
+        show ((⟨0, 0, v.A, 0⟩ : V56).B : J3O) = v.A from rfl,
+        J3O.innerProd_zero_right] at h
+    have key : J3O.innerProd v.A v.A = 0 := by linarith
+    exact (J3O.innerProd_self_eq_zero_iff v.A).mp key
+  -- Test against (0, v.B, 0, 0): omega v (0, v.B, 0, 0) = -innerProd v.B v.B.
+  have hB : v.B = 0 := by
+    have h := hv ⟨0, v.B, 0, 0⟩
+    unfold omega at h
+    show v.B = 0
+    rw [show ((⟨0, v.B, 0, 0⟩ : V56).a : ℚ) = 0 from rfl,
+        show ((⟨0, v.B, 0, 0⟩ : V56).b : ℚ) = 0 from rfl,
+        show ((⟨0, v.B, 0, 0⟩ : V56).A : J3O) = v.B from rfl,
+        show ((⟨0, v.B, 0, 0⟩ : V56).B : J3O) = 0 from rfl,
+        J3O.innerProd_zero_right] at h
+    have key : J3O.innerProd v.B v.B = 0 := by linarith
+    exact (J3O.innerProd_self_eq_zero_iff v.B).mp key
+  refine V56.ext ?_ ?_ ?_ ?_
+  · exact ha
+  · exact hA
+  · exact hB
+  · exact hb
 
 end V56
 
