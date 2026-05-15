@@ -238,6 +238,81 @@ theorem inclusion_sum_id (v : V56) :
     rw [zero_add, zero_add, add_zero]
   · show v.b = 0 + 0 + 0 + v.b; ring
 
+/-! ### The Hodge filtration `F^p V_56 = ⊕_{q ≥ p} V^{q, 3-q}`
+
+The Hodge filtration is the decreasing filtration `F^p V_56 = ⊕_{q ≥ p} V^{q, 3-q}`,
+i.e., the cumulative direct sum of the U(1)-eigenspaces:
+
+* `F^3 = V^{3,0}`               (charge +3 only)
+* `F^2 = V^{3,0} ⊕ V^{2,1}`     (charge ≥ +1)
+* `F^1 = V^{3,0} ⊕ V^{2,1} ⊕ V^{1,2}`  (charge ≥ -1)
+* `F^0 = V_56`                  (all charges)
+
+Concretely, `v ∈ F^p` iff the charge `< +p` components of `v` vanish:
+* `v ∈ F^3 ↔ v.A = v.B = v.b = 0`
+* `v ∈ F^2 ↔ v.B = v.b = 0`
+* `v ∈ F^1 ↔ v.b = 0`
+* `v ∈ F^0 ↔ True`
+-/
+
+/-- The Hodge filtration step `F^3 V_56`: the highest-weight line. -/
+def Hodge_filt_3 : Submodule ℚ V56 := Hodge_3_0
+
+/-- The Hodge filtration step `F^2 V_56`: charge `≥ +1` (the positive Hodge half). -/
+def Hodge_filt_2 : Submodule ℚ V56 where
+  carrier := {v | v.B = 0 ∧ v.b = 0}
+  zero_mem' := ⟨rfl, rfl⟩
+  add_mem' := by
+    rintro v w ⟨hvB, hvb⟩ ⟨hwB, hwb⟩
+    refine ⟨?_, ?_⟩
+    · show v.B + w.B = 0; rw [hvB, hwB, add_zero]
+    · show v.b + w.b = 0; rw [hvb, hwb, add_zero]
+  smul_mem' := by
+    rintro r v ⟨hvB, hvb⟩
+    refine ⟨?_, ?_⟩
+    · show r • v.B = 0; rw [hvB, smul_zero]
+    · show r * v.b = 0; rw [hvb, mul_zero]
+
+/-- The Hodge filtration step `F^1 V_56`: charge `≥ -1`. -/
+def Hodge_filt_1 : Submodule ℚ V56 where
+  carrier := {v | v.b = 0}
+  zero_mem' := rfl
+  add_mem' := by
+    rintro v w hvb hwb
+    show v.b + w.b = 0
+    rw [hvb, hwb, add_zero]
+  smul_mem' := by
+    rintro r v hvb
+    show r * v.b = 0
+    rw [hvb, mul_zero]
+
+/-- The Hodge filtration step `F^0 V_56`: all of `V_56`. -/
+def Hodge_filt_0 : Submodule ℚ V56 := ⊤
+
+/-- The Hodge filtration is **strictly decreasing**: `F^3 ⊂ F^2 ⊂ F^1 ⊂ F^0`. -/
+theorem Hodge_filt_3_le_2 : Hodge_filt_3 ≤ Hodge_filt_2 := by
+  intro v ⟨_, hB, hb⟩
+  exact ⟨hB, hb⟩
+
+theorem Hodge_filt_2_le_1 : Hodge_filt_2 ≤ Hodge_filt_1 := by
+  intro v ⟨_, hb⟩
+  exact hb
+
+theorem Hodge_filt_1_le_0 : Hodge_filt_1 ≤ Hodge_filt_0 := by
+  intro _ _
+  trivial
+
+/-- The Hodge `(p, 3-p)`-piece is contained in `F^p V_56`. -/
+theorem Hodge_3_0_le_Hodge_filt_3 : Hodge_3_0 ≤ Hodge_filt_3 := le_refl _
+
+theorem Hodge_2_1_le_Hodge_filt_2 : Hodge_2_1 ≤ Hodge_filt_2 := by
+  intro v ⟨_, hB, hb⟩
+  exact ⟨hB, hb⟩
+
+theorem Hodge_1_2_le_Hodge_filt_1 : Hodge_1_2 ≤ Hodge_filt_1 := by
+  intro v ⟨_, _, hb⟩
+  exact hb
+
 end V56
 
 end HodgeReduction.Infrastructure
