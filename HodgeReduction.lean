@@ -69,6 +69,7 @@ import HodgeReduction.Infrastructure.Coxeter.WE7
 import HodgeReduction.Infrastructure.Shimura.Basic
 import HodgeReduction.Infrastructure.Shimura.CompactDual
 import HodgeReduction.Infrastructure.Shimura.MumfordExtension
+import HodgeReduction.Infrastructure.Shimura.IntersectionHomology
 import HodgeReduction.Infrastructure.AbelianVariety.Basic
 import HodgeReduction.Infrastructure.Automorphic.Basic
 import HodgeReduction.Infrastructure.Automorphic.VoganZuckerman
