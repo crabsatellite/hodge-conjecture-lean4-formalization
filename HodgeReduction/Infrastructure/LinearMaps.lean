@@ -138,6 +138,73 @@ theorem omega_nondegenerate (v : V56) (hv : ∀ w : V56, omega v w = 0) :
   · exact hB
   · exact hb
 
+/-! ### Lagrangian polarization `V_{≥0} ⊕ V_{<0}`
+
+Split `V₅₆` into "positive" `V_{≥0} = V^{3,0} ⊕ V^{2,1}` (charges `+3, +1`)
+and "negative" `V_{<0} = V^{1,2} ⊕ V^{0,3}` (charges `-1, -3`). Each
+piece is **Lagrangian** under `ω`: `ω` vanishes when both arguments are
+in the same half-piece. This is the standard symplectic polarization
+coming from the Hodge decomposition.
+-/
+
+/-- The "positive" half `V^{3,0} ⊕ V^{2,1}` is **isotropic** under `ω`:
+for `v, w` both with `v.B = w.B = 0` and `v.b = w.b = 0`, `ω(v, w) = 0`. -/
+theorem omega_eq_zero_on_pos_half (v w : V56)
+    (hv : v.B = 0 ∧ v.b = 0) (hw : w.B = 0 ∧ w.b = 0) :
+    omega v w = 0 := by
+  obtain ⟨hvB, hvb⟩ := hv
+  obtain ⟨hwB, hwb⟩ := hw
+  unfold omega
+  rw [hvB, hvb, hwB, hwb, J3O.innerProd_zero_right, J3O.innerProd_zero_left]
+  ring
+
+/-- The "negative" half `V^{1,2} ⊕ V^{0,3}` is **isotropic** under `ω`:
+for `v, w` both with `v.a = w.a = 0` and `v.A = w.A = 0`, `ω(v, w) = 0`. -/
+theorem omega_eq_zero_on_neg_half (v w : V56)
+    (hv : v.a = 0 ∧ v.A = 0) (hw : w.a = 0 ∧ w.A = 0) :
+    omega v w = 0 := by
+  obtain ⟨hva, hvA⟩ := hv
+  obtain ⟨hwa, hwA⟩ := hw
+  unfold omega
+  rw [hva, hvA, hwa, hwA, J3O.innerProd_zero_right, J3O.innerProd_zero_left]
+  ring
+
+/-! ### Discrete symmetry `(a, A, B, b) ↔ (b, B, A, a)`
+
+The Freudenthal quartic is invariant under the swap involution exchanging
+charge `+3 ↔ -3` and charge `+1 ↔ -1`. This is the Cartan involution
+realising `E_7` from its compact dual `EVII`.
+-/
+
+/-- The **swap involution** `σ : V₅₆ → V₅₆` exchanging `+3 ↔ -3` and
+`+1 ↔ -1` pieces. -/
+def swap : V56 →ₗ[ℚ] V56 where
+  toFun v := ⟨v.b, v.B, v.A, v.a⟩
+  map_add' _ _ := by refine V56.ext ?_ ?_ ?_ ?_ <;> rfl
+  map_smul' _ _ := by refine V56.ext ?_ ?_ ?_ ?_ <;> rfl
+
+@[simp] theorem swap_swap (v : V56) : swap (swap v) = v := by
+  refine V56.ext ?_ ?_ ?_ ?_ <;> rfl
+
+/-- `q` is **invariant under `swap`**: `q(σ v) = q(v)`. This is the
+involutive symmetry of the Freudenthal triple system. -/
+theorem freudenthalQuartic_swap (v : V56) :
+    freudenthalQuartic (swap v) = freudenthalQuartic v := by
+  unfold freudenthalQuartic swap
+  show (v.b * v.a - J3O.innerProd v.B v.A)^2
+       + 4 * (v.b * J3O.cubicNorm v.A + v.a * J3O.cubicNorm v.B
+              - J3O.innerProd (J3O.sharp v.B) (J3O.sharp v.A)) = _
+  rw [J3O.innerProd_symm v.B v.A, J3O.innerProd_symm (J3O.sharp v.B)]
+  ring
+
+/-- `ω` is **anti-invariant under `swap`**: `ω(σ v, σ w) = -ω(v, w)`. -/
+theorem omega_swap (v w : V56) :
+    omega (swap v) (swap w) = -omega v w := by
+  unfold omega swap
+  show v.b * w.a - v.a * w.b + J3O.innerProd v.B w.A - J3O.innerProd v.A w.B
+       = -(v.a * w.b - v.b * w.a + J3O.innerProd v.A w.B - J3O.innerProd v.B w.A)
+  ring
+
 end V56
 
 end HodgeReduction.Infrastructure
