@@ -275,6 +275,28 @@ theorem sharp_smul (r : ℚ) (A : J3O) : sharp (r • A) = r^2 • sharp A := by
       rw [show r * A.xi3 * r = r * r * A.xi3 from by ring,
           show r * r = r^2 from by ring, ← OctonionQ.smul_smul]
 
+/-- `sharp` is **even** at the level of negation: `(-A)^# = A^#` (degree-2 corollary).
+The proof works via `-A = (-1) • A` and `sharp_smul` with `r = -1`, giving
+`sharp (-A) = (-1)² • sharp A = sharp A`. -/
+theorem sharp_neg (A : J3O) : sharp (-A) = sharp A := by
+  have hA : -A = (-1 : ℚ) • A := by
+    refine J3O.ext ?_ ?_ ?_ ?_ ?_ ?_
+    · show -A.xi1 = (-1 : ℚ) * A.xi1; ring
+    · show -A.xi2 = (-1 : ℚ) * A.xi2; ring
+    · show -A.xi3 = (-1 : ℚ) * A.xi3; ring
+    · show -A.x1 = (-1 : ℚ) • A.x1; ext <;> simp
+    · show -A.x2 = (-1 : ℚ) • A.x2; ext <;> simp
+    · show -A.x3 = (-1 : ℚ) • A.x3; ext <;> simp
+  rw [hA, sharp_smul]
+  -- Now: (-1)² • sharp A = sharp A
+  refine J3O.ext ?_ ?_ ?_ ?_ ?_ ?_
+  · show ((-1 : ℚ)^2) * (sharp A).xi1 = (sharp A).xi1; ring
+  · show ((-1 : ℚ)^2) * (sharp A).xi2 = (sharp A).xi2; ring
+  · show ((-1 : ℚ)^2) * (sharp A).xi3 = (sharp A).xi3; ring
+  · show ((-1 : ℚ)^2) • (sharp A).x1 = (sharp A).x1; ext <;> simp
+  · show ((-1 : ℚ)^2) • (sharp A).x2 = (sharp A).x2; ext <;> simp
+  · show ((-1 : ℚ)^2) • (sharp A).x3 = (sharp A).x3; ext <;> simp
+
 end J3O
 
 /-! ### The 56-dimensional Freudenthal triple system `V₅₆`

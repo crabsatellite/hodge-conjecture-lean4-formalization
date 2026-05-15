@@ -190,6 +190,52 @@ theorem cubicNorm_smul (r : ℚ) (X : J3O) :
              OctonionQ.re_smul]     -- Re(r • z) = r * Re z
   ring
 
+/-- The cubic norm is **odd** (degree 3): `N(-X) = -N(X)`. -/
+theorem cubicNorm_neg (X : J3O) : cubicNorm (-X) = -cubicNorm X := by
+  -- `-X = (-1) • X`; degree-3 homogeneity gives `N((-1)·X) = (-1)³·N(X) = -N(X)`.
+  have h : -X = (-1 : ℚ) • X := by
+    refine J3O.ext ?_ ?_ ?_ ?_ ?_ ?_
+    · show -X.xi1 = (-1 : ℚ) * X.xi1; ring
+    · show -X.xi2 = (-1 : ℚ) * X.xi2; ring
+    · show -X.xi3 = (-1 : ℚ) * X.xi3; ring
+    · show -X.x1 = (-1 : ℚ) • X.x1; ext <;> simp
+    · show -X.x2 = (-1 : ℚ) • X.x2; ext <;> simp
+    · show -X.x3 = (-1 : ℚ) • X.x3; ext <;> simp
+  rw [h, cubicNorm_smul]
+  norm_num
+
+/-! ### Trace on `J₃(𝕆)`
+
+The **trace** of an Hermitian 3×3 matrix is the sum of its diagonal entries.
+It is a ℚ-linear functional `J₃(𝕆) → ℚ` whose properties mirror the standard
+trace on Hermitian matrices over a commutative ring. -/
+
+/-- The **trace** of `X ∈ J₃(𝕆)`: `tr(X) = ξ₁ + ξ₂ + ξ₃`. -/
+def trace (X : J3O) : ℚ := X.xi1 + X.xi2 + X.xi3
+
+@[simp] theorem trace_zero : trace (0 : J3O) = 0 := by
+  show (0 : ℚ) + 0 + 0 = 0; ring
+
+@[simp] theorem trace_one : trace (1 : J3O) = 3 := by
+  show (1 : ℚ) + 1 + 1 = 3; ring
+
+theorem trace_add (X Y : J3O) : trace (X + Y) = trace X + trace Y := by
+  show (X.xi1 + Y.xi1) + (X.xi2 + Y.xi2) + (X.xi3 + Y.xi3)
+       = (X.xi1 + X.xi2 + X.xi3) + (Y.xi1 + Y.xi2 + Y.xi3)
+  ring
+
+theorem trace_neg (X : J3O) : trace (-X) = -trace X := by
+  show (-X.xi1) + (-X.xi2) + (-X.xi3) = -(X.xi1 + X.xi2 + X.xi3)
+  ring
+
+theorem trace_smul (r : ℚ) (X : J3O) : trace (r • X) = r * trace X := by
+  show (r * X.xi1) + (r * X.xi2) + (r * X.xi3) = r * (X.xi1 + X.xi2 + X.xi3)
+  ring
+
+/-- The trace of a diagonal matrix is the sum of its diagonal: `tr(diag(a,b,c)) = a+b+c`. -/
+theorem trace_diagonal (a b c : ℚ) :
+    trace ⟨a, b, c, 0, 0, 0⟩ = a + b + c := rfl
+
 end J3O
 
 end HodgeReduction.Infrastructure
