@@ -139,6 +139,27 @@ def sharp (A : J3O) : J3O := {
 @[simp] theorem sharp_zero : sharp 0 = 0 := by
   ext <;> simp [sharp]
 
+/-- `sharp 1 = 1` (the sharp of the identity is the identity).
+
+This expresses that `1 ∈ J_3(O)` is its own quadratic adjoint
+(equivalently, `1` lies on the "smooth locus" of sharp). Together with
+`cubicNorm_one : N(1) = 1` and the cubic norm identity, this gives
+`1 ∘ 1^# = 1 ∘ 1 = 1 = N(1) • 1`. -/
+@[simp] theorem sharp_one : sharp (1 : J3O) = 1 := by
+  refine J3O.ext ?_ ?_ ?_ ?_ ?_ ?_
+  · show (1 : ℚ) * 1 - OctonionQ.normSq 0 = 1
+    simp [OctonionQ.normSq]
+  · show (1 : ℚ) * 1 - OctonionQ.normSq 0 = 1
+    simp [OctonionQ.normSq]
+  · show (1 : ℚ) * 1 - OctonionQ.normSq 0 = 1
+    simp [OctonionQ.normSq]
+  · show OctonionQ.conj ((0 : OctonionQ) * 0) - (1 : ℚ) • (0 : OctonionQ) = 0
+    ext <;> simp [OctonionQ.conj]
+  · show OctonionQ.conj ((0 : OctonionQ) * 0) - (1 : ℚ) • (0 : OctonionQ) = 0
+    ext <;> simp [OctonionQ.conj]
+  · show OctonionQ.conj ((0 : OctonionQ) * 0) - (1 : ℚ) • (0 : OctonionQ) = 0
+    ext <;> simp [OctonionQ.conj]
+
 /-! ### Symmetry and scalar-mult behaviour -/
 
 /-- `innerProd` is **symmetric**: `⟨A, B⟩ = ⟨B, A⟩`. -/
