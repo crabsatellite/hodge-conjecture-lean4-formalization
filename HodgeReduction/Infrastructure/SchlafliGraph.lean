@@ -4,6 +4,9 @@ Released under Apache 2.0 license as described in the file LICENSE.
 -/
 import Mathlib.Combinatorics.SimpleGraph.Basic
 import Mathlib.Data.Finset.Card
+import Mathlib.Data.Fintype.Basic
+import Mathlib.Data.Fintype.Sum
+import Mathlib.Data.Fintype.Sigma
 import Mathlib.Tactic.FinCases
 
 /-!
@@ -168,5 +171,61 @@ def schlafliComplementGraph : SimpleGraph V27Vertex where
 /-- Adjacency in `schlafliComplementGraph` is decidable. -/
 instance : DecidableRel schlafliComplementGraph.Adj := fun u v =>
   inferInstanceAs (Decidable (V27Vertex.isTriangleEdge u v = true))
+
+/-! ### Cardinality: `|V₂₇| = 27`
+
+The 27 vertices of `V₂₇` are partitioned as `6 + 6 + 15 = 27`. This is
+provable by `decide` once we equip the inductive type with a `Fintype`
+instance. The `Fintype` derivation is straightforward via the
+`Fin 6 ⊕ Fin 6 ⊕ UPair6` decomposition.
+-/
+
+namespace UPair6
+
+/-- The bijection between `UPair6` and the subtype `{p : Fin 6 × Fin 6 // p.1 < p.2}`. -/
+def equivSubtype : UPair6 ≃ {p : Fin 6 × Fin 6 // p.1 < p.2} where
+  toFun := fun u => ⟨(u.fst, u.snd), u.lt⟩
+  invFun := fun ⟨p, hp⟩ => ⟨p.1, p.2, hp⟩
+  left_inv := fun _ => rfl
+  right_inv := fun _ => rfl
+
+/-- `UPair6` is a finite type with 15 elements. -/
+instance : Fintype UPair6 := Fintype.ofEquiv _ equivSubtype.symm
+
+/-- Cardinality check: `|UPair6| = 15` (= "6 choose 2"). -/
+theorem card_eq_15 : Fintype.card UPair6 = 15 := by decide
+
+end UPair6
+
+/-! ### `V27Vertex` cardinality -/
+
+namespace V27Vertex
+
+/-- The bijection `V27Vertex ≃ Fin 6 ⊕ Fin 6 ⊕ UPair6` (= 6 + 6 + 15 = 27). -/
+def equivSum : V27Vertex ≃ Fin 6 ⊕ Fin 6 ⊕ UPair6 where
+  toFun
+    | .a i => .inl i
+    | .b i => .inr (.inl i)
+    | .c p => .inr (.inr p)
+  invFun
+    | .inl i => .a i
+    | .inr (.inl i) => .b i
+    | .inr (.inr p) => .c p
+  left_inv := fun v => by cases v <;> rfl
+  right_inv := fun v => by
+    rcases v with _ | _ | _
+    · rfl
+    · rfl
+    · rfl
+
+/-- `V27Vertex` is a finite type. -/
+instance : Fintype V27Vertex := Fintype.ofEquiv _ equivSum.symm
+
+/-- The cardinality of `V27Vertex` is `27 = 6 + 6 + 15`. -/
+theorem card_eq_27 : Fintype.card V27Vertex = 27 := by
+  rw [Fintype.card_congr equivSum]
+  simp [Fintype.card_sum, UPair6.card_eq_15]
+
+end V27Vertex
 
 end HodgeReduction.Infrastructure
