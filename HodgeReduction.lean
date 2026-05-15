@@ -45,3 +45,4 @@ import HodgeReduction.Infrastructure.SchlafliGraph
 import HodgeReduction.Infrastructure.Octonion
 import HodgeReduction.Infrastructure.JordanJ3O
 import HodgeReduction.Infrastructure.V56Freudenthal
+import HodgeReduction.Infrastructure.CoxeterDegrees

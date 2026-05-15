@@ -16,7 +16,7 @@ mathematical foundations needed for the Hodge-conjecture EVII case.
 * **Incremental**: each module is self-contained, builds on earlier
   modules.
 
-## Status (as of P78)
+## Status (as of P85)
 
 ### ✅ Tier A — Combinatorial / Arithmetic (DONE)
 
@@ -25,39 +25,40 @@ mathematical foundations needed for the Hodge-conjecture EVII case.
 | `../CrossRingArithmetic.lean` | P48 Chern values + P57 polynomial identity (`-48 c_2² + 96 c_1 c_3 - 96 c_4`) + P53 `Φ_tw(q) = -48 h⁴` verification | ~270 | ✅ |
 | `CartanMatrices.lean` | E₆, E₇, E₈ Cartan matrices + diagonal/edges/nesting | ~150 | ✅ |
 | `SchlafliGraph.lean` | `srg(27, 10, 1, 5)` via 6+6+15 Schläfli double-six model | ~175 | ✅ |
+| `CoxeterDegrees.lean` | W(E_6)/W(E_7)/W(E_8) invariant degrees + order + Coxeter number + dim(e_n) sanity | ~110 | ✅ |
 
 ### ✅ Tier B — Algebra (DONE for basics)
 
 | Module | Description | Lines | Status |
 |---|---|---|---|
-| `Octonion.lean` | Octonion `ℚ`-algebra (8-dim, Fano-plane mult) + `conj` + `normSq` + 8 component simp lemmas + alternative laws + flexibility + **Hurwitz composition** `‖x·y‖² = ‖x‖²·‖y‖²` | ~280 | ✅ |
-| `JordanJ3O.lean` | Exceptional Jordan algebra `J₃(𝕆)` (27-dim Hermitian 3×3) + Freudenthal cubic norm `N` + `N(0)=0`, `N(I)=1`, `N(diag)=abc` | ~150 | ✅ |
+| `Octonion.lean` | Octonion `ℚ`-algebra (8-dim, Fano-plane mult) + `conj` + `normSq` + 32 component simp lemmas + alternative laws + flexibility + **Hurwitz composition** `‖x·y‖² = ‖x‖²·‖y‖²` + scalar-mult ring laws + `conj_smul`/`smul_sub`/`smul_add` | ~410 | ✅ |
+| `JordanJ3O.lean` | Exceptional Jordan algebra `J₃(𝕆)` (27-dim Hermitian 3×3) + Freudenthal cubic norm `N` + `N(0)=0`, `N(I)=1`, `N(diag)=abc` + **cubic-norm homogeneity** `N(r·X) = r³N(X)` + 12 zero/one simp lemmas | ~200 | ✅ |
+| `V56Freudenthal.lean` | 56-dim Freudenthal triple system `V₅₆ = ℚ⊕J₃(𝕆)⊕J₃(𝕆)⊕ℚ` + **Freudenthal quartic** `q` + **degree-4 homogeneity** `q(r·v) = r⁴·q(v)` + **symplectic form** `ω` + full bilinearity of `⟨·,·⟩` and `ω` + sharp degree-2 `(r·A)^# = r²·A^#` | ~500 | ✅ |
 
 ### 🔲 Tier B — Algebra (FUTURE WORK)
 
 * **Jordan-algebra structure** on `J₃(𝕆)`:
   - Jordan product `X ∘ Y = (X·Y + Y·X)/2` (commutative, power-associative).
-  - Adjoint `X#` and identity `X · X# = N(X) · I`.
-* **Cubic-norm identities**: `N(rX) = r³ N(X)`, etc.
+  - Identity `X · X# = N(X) · I` (Freudenthal cubic identity).
 * **Connection to E_6**:
   - `Aut(J₃(𝕆)) = F₄` (compact real form).
   - `Str(J₃(𝕆))/Center = E₆`.
   - `V_27 ≅ J₃(𝕆)` as `E₆`-rep.
 
-### 🔲 Tier B — Freudenthal triple product
+### 🔲 Tier B — Freudenthal triple product (mostly DONE for the basics)
 
-* **`V_56` as Freudenthal triple system**:
-  - `V_56 = ℚ ⊕ J₃(𝕆) ⊕ J₃(𝕆) ⊕ ℚ` (= 1 + 27 + 27 + 1 = 56).
-  - Freudenthal cubic-T product `T : V_56 × V_56 × V_56 → V_56`.
-  - Freudenthal quartic `q(v) ∼ ⟨T(v,v,v), v⟩`.
-  - Sato-Kimura rank stratification.
+* ✅ `V_56 = ℚ ⊕ J₃(𝕆) ⊕ J₃(𝕆) ⊕ ℚ` (= 1 + 27 + 27 + 1 = 56).
+* ✅ Freudenthal quartic `q : V₅₆ → ℚ`, with `q(0) = 0`, `q(r·v) = r⁴·q(v)`, `q(-v) = q(v)`.
+* ✅ Symplectic form `ω : V₅₆ × V₅₆ → ℚ`, antisymmetric and bilinear.
+* 🔲 Freudenthal cubic-T product `T : V_56 × V_56 × V_56 → V_56`.
+* 🔲 `q(v) ∼ ⟨T(v,v,v), v⟩` derivation.
+* 🔲 Sato-Kimura rank stratification.
 
 ### 🔲 Tier C — Representation theory
 
 * **W(E_6), W(E_7) Coxeter groups** via Mathlib `Coxeter` framework.
-* **W(E_6) invariant degrees**: `{2, 5, 6, 8, 9, 12}`.
-* **W(E_7) invariant degrees**: `{2, 6, 8, 10, 12, 14, 18}` (P69 in
-  the `Strict.lean` ledger).
+* ✅ `W(E_6)` / `W(E_7)` / `W(E_8)` invariant degrees as decidable list facts
+  (in `CoxeterDegrees.lean`).
 * **E_6 root system + V_27 weights** with explicit Bourbaki coordinates.
 * **E_7 root system + V_56 weights**.
 * **Borel-Hirzebruch coinvariant algebra**: `H*(G_C/P; ℚ) = Sym(t^∨)^{W(L)} / (Sym(t^∨)^{W(G)}_+)`.
