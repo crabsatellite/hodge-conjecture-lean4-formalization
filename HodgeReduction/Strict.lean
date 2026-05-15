@@ -1056,14 +1056,27 @@ opaque H8_EVII_is_one_dim_spanned_by_h4 : Prop
  E_6 acting on J_3(O), deferred. What's captured is the structural data
  of the 4-piece graded decomposition with correct dimensions. -/
 def V56_hodge_decomposition_under_E6_U1 : Prop :=
+  -- (1-4) Linear equivalences to the standard target spaces
   (Nonempty (Infrastructure.V56.Hodge_3_0 ≃ₗ[ℚ] ℚ)) ∧
   (Nonempty (Infrastructure.V56.Hodge_2_1 ≃ₗ[ℚ] Infrastructure.J3O)) ∧
   (Nonempty (Infrastructure.V56.Hodge_1_2 ≃ₗ[ℚ] Infrastructure.J3O)) ∧
   (Nonempty (Infrastructure.V56.Hodge_0_3 ≃ₗ[ℚ] ℚ)) ∧
+  -- (5) Existence of decomposition v = v_{3,0} + v_{2,1} + v_{1,2} + v_{0,3}
   (∀ v : Infrastructure.V56,
     ∃ (v30 : Infrastructure.V56.Hodge_3_0) (v21 : Infrastructure.V56.Hodge_2_1)
       (v12 : Infrastructure.V56.Hodge_1_2) (v03 : Infrastructure.V56.Hodge_0_3),
-      v = v30.1 + v21.1 + v12.1 + v03.1)
+      v = v30.1 + v21.1 + v12.1 + v03.1) ∧
+  -- (6-9) Individual finrank claims
+  (Module.finrank ℚ Infrastructure.V56.Hodge_3_0 = 1) ∧
+  (Module.finrank ℚ Infrastructure.V56.Hodge_2_1 = 27) ∧
+  (Module.finrank ℚ Infrastructure.V56.Hodge_1_2 = 27) ∧
+  (Module.finrank ℚ Infrastructure.V56.Hodge_0_3 = 1) ∧
+  -- (10) Dimension consistency: sum of pieces = 56
+  (Module.finrank ℚ Infrastructure.V56.Hodge_3_0
+   + Module.finrank ℚ Infrastructure.V56.Hodge_2_1
+   + Module.finrank ℚ Infrastructure.V56.Hodge_1_2
+   + Module.finrank ℚ Infrastructure.V56.Hodge_0_3
+   = Module.finrank ℚ Infrastructure.V56)
 
 /-- **Cat 3 carrier (§3.4.1, P39 → P41-reframed)** — the genuine twist:
  the Hodge-FILTRATION projection `Φ_filt`. P41 audit: the P39
@@ -1544,7 +1557,12 @@ theorem V56_hodge_decomposition_OPEN : V56_hodge_decomposition_under_E6_U1 :=
    ⟨Infrastructure.V56.Hodge_2_1_equiv⟩,
    ⟨Infrastructure.V56.Hodge_1_2_equiv⟩,
    ⟨Infrastructure.V56.Hodge_0_3_equiv⟩,
-   Infrastructure.V56.hodge_decomp_exists⟩
+   Infrastructure.V56.hodge_decomp_exists,
+   Infrastructure.V56.finrank_Hodge_3_0,
+   Infrastructure.V56.finrank_Hodge_2_1,
+   Infrastructure.V56.finrank_Hodge_1_2,
+   Infrastructure.V56.finrank_Hodge_0_3,
+   Infrastructure.V56.finrank_Hodge_pieces_sum_eq_V56⟩
 
 /-- **Cat 3 structuralEquation (§3.4.3, P39 → P41-reframed)** — the
  canonical cross-ring map `Φ` vanishes on `q`; the genuine twist `Φ_filt`
