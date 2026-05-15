@@ -49,3 +49,4 @@ import HodgeReduction.Infrastructure.CoxeterDegrees
 import HodgeReduction.Infrastructure.OctonionBasis
 import HodgeReduction.Infrastructure.JordanJ3OBasis
 import HodgeReduction.Infrastructure.V56Basis
+import HodgeReduction.Infrastructure.LinearMaps
