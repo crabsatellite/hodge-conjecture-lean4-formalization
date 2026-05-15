@@ -3,6 +3,7 @@ Copyright (c) 2026 Alex Chengyu Li. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 -/
 import HodgeReduction.Infrastructure.JordanJ3O
+import HodgeReduction.Infrastructure.V56Freudenthal
 
 /-!
 # Jordan multiplication on `J₃(𝕆)`
@@ -170,4 +171,28 @@ theorem jordanMul_comm (X Y : J3O) : jordanMul X Y = jordanMul Y X := by
 
 end J3O
 
+end HodgeReduction.Infrastructure
+
+/-! ### Trace form: `tr(X ∘ Y) = ⟨X, Y⟩` -/
+
+namespace HodgeReduction.Infrastructure
+namespace J3O
+
+open OctonionQ (conj re)
+
+/-- The trace of the Jordan product equals the symmetric inner product:
+`tr(X ∘ Y) = ⟨X, Y⟩`. -/
+theorem trace_jordanMul (X Y : J3O) : trace (jordanMul X Y) = innerProd X Y := by
+  unfold trace innerProd jordanMul
+  dsimp
+  show X.xi1 * Y.xi1 + OctonionQ.re (X.x2 * conj Y.x2) + OctonionQ.re (X.x3 * conj Y.x3)
+     + (X.xi2 * Y.xi2 + OctonionQ.re (X.x3 * conj Y.x3) + OctonionQ.re (X.x1 * conj Y.x1))
+     + (X.xi3 * Y.xi3 + OctonionQ.re (X.x1 * conj Y.x1) + OctonionQ.re (X.x2 * conj Y.x2))
+     = X.xi1 * Y.xi1 + X.xi2 * Y.xi2 + X.xi3 * Y.xi3
+       + 2 * OctonionQ.re (X.x1 * conj Y.x1)
+       + 2 * OctonionQ.re (X.x2 * conj Y.x2)
+       + 2 * OctonionQ.re (X.x3 * conj Y.x3)
+  ring
+
+end J3O
 end HodgeReduction.Infrastructure

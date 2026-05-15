@@ -292,6 +292,33 @@ theorem normSq_nonneg (x : OctonionQ) : 0 ≤ normSq x := by
 @[simp] theorem one_mul (x : OctonionQ) : (1 : OctonionQ) * x = x := by
   ext <;> simp
 
+/-! ### Re-associativity and Re-cyclic identities
+
+For any composition algebra (octonions included), the trace `tr(x) = 2*Re(x)`
+satisfies the "associative-on-trace" property:
+* `Re((ab)c) = Re(a(bc))` (the associator vanishes on Re)
+* `Re((ab)c) = Re((bc)a) = Re((ca)b)` (cyclic in 3 args)
+
+These follow from the explicit Fano-plane multiplication via `ring`. -/
+
+/-- **Re-associativity** for octonion triple products. -/
+theorem re_mul_assoc (a b c : OctonionQ) :
+    re ((a * b) * c) = re (a * (b * c)) := by
+  show ((a * b) * c).e0 = (a * (b * c)).e0
+  simp; ring
+
+/-- **Re-cyclic** for octonion triple products: `Re((ab)c) = Re((bc)a)`. -/
+theorem re_mul_cyclic (a b c : OctonionQ) :
+    re ((a * b) * c) = re ((b * c) * a) := by
+  show ((a * b) * c).e0 = ((b * c) * a).e0
+  simp; ring
+
+/-- **Re-cyclic** alternative form: `Re((ab)c) = Re((ca)b)`. -/
+theorem re_mul_cyclic' (a b c : OctonionQ) :
+    re ((a * b) * c) = re ((c * a) * b) := by
+  show ((a * b) * c).e0 = ((c * a) * b).e0
+  simp; ring
+
 /-! ### Alternative-algebra laws
 
 Octonions are **non-associative** but **alternative**, meaning:
