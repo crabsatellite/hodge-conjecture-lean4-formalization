@@ -6,6 +6,8 @@ import HodgeReduction.Infrastructure.V56Freudenthal
 import HodgeReduction.Infrastructure.V56Basis
 import HodgeReduction.Infrastructure.J3OInnerProduct
 import Mathlib.LinearAlgebra.BilinearMap
+import Mathlib.LinearAlgebra.Dual
+import Mathlib.LinearAlgebra.Dimension.DivisionRing
 
 /-!
 # Linear / bilinear interfaces for `J₃(𝕆)` and `V₅₆`
@@ -235,6 +237,20 @@ theorem omegaContract_injective :
     linarith
   have hvw' : v - w = 0 := omega_nondegenerate (v - w) h
   exact sub_eq_zero.mp hvw'
+
+/-- The symplectic-form contraction is a **linear equivalence**
+`V_56 ≃ₗ[ℚ] V_56*`. From injectivity + dim equality + finite-dim, the
+omega-contraction is automatically surjective, giving a canonical
+identification of `V_56` with its `ℚ`-linear dual.
+
+Built via `LinearEquiv.ofBijective`: injectivity is `omegaContract_injective`;
+surjectivity follows from injectivity + dim equality (both sides are
+56-dim by `Module.finrank_dual_eq_finrank`). -/
+noncomputable def omegaContractEquiv : V56 ≃ₗ[ℚ] Module.Dual ℚ V56 :=
+  LinearEquiv.ofBijective omegaContract
+    ⟨omegaContract_injective,
+     LinearMap.injective_iff_surjective_of_finrank_eq_finrank
+       (Subspace.dual_finrank_eq.symm) |>.mp omegaContract_injective⟩
 
 end V56
 
