@@ -376,6 +376,21 @@ theorem smul_smul (r s : ℚ) (x : OctonionQ) :
     r • (s • x) = (r * s) • x := by
   ext <;> show r * (s * _) = (r * s) * _ <;> ring
 
+/-- Conjugation is `ℚ`-linear: `conj (r • x) = r • conj x`. -/
+@[simp] theorem conj_smul (r : ℚ) (x : OctonionQ) :
+    conj (r • x) = r • conj x := by
+  ext <;> simp [conj]
+
+/-- Scalar absorption over subtraction: `r • (x - y) = r • x - r • y`. -/
+theorem smul_sub (r : ℚ) (x y : OctonionQ) :
+    r • (x - y) = r • x - r • y := by
+  ext <;> simp <;> ring
+
+/-- Scalar absorption over addition: `r • (x + y) = r • x + r • y`. -/
+theorem smul_add (r : ℚ) (x y : OctonionQ) :
+    r • (x + y) = r • x + r • y := by
+  ext <;> simp <;> ring
+
 end OctonionQ
 
 end HodgeReduction.Infrastructure

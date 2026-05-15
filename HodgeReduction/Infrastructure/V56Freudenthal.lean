@@ -134,6 +134,77 @@ def sharp (A : J3O) : J3O := {
 @[simp] theorem sharp_zero : sharp 0 = 0 := by
   ext <;> simp [sharp]
 
+/-! ### Symmetry and scalar-mult behaviour -/
+
+/-- `innerProd` is **symmetric**: `⟨A, B⟩ = ⟨B, A⟩`. -/
+theorem innerProd_symm (A B : J3O) : innerProd A B = innerProd B A := by
+  unfold innerProd
+  -- Reduce to component-wise statements. For the diagonal: `α₁β₁ = β₁α₁` etc.
+  -- For the off-diagonals: `Re(a · b̄) = Re(b · ā)`, which we prove by
+  -- expanding `Re` and `conj` and using `ring`.
+  have hre : ∀ (a b : OctonionQ),
+      OctonionQ.re (a * OctonionQ.conj b) = OctonionQ.re (b * OctonionQ.conj a) := by
+    intro a b
+    show (a * OctonionQ.conj b).e0 = (b * OctonionQ.conj a).e0
+    simp [OctonionQ.conj]
+    ring
+  rw [hre A.x1 B.x1, hre A.x2 B.x2, hre A.x3 B.x3]
+  ring
+
+/-- `innerProd` is scalar-bilinear: `⟨r • A, r • B⟩ = r² · ⟨A, B⟩`. -/
+theorem innerProd_smul_diag (r : ℚ) (A B : J3O) :
+    innerProd (r • A) (r • B) = r^2 * innerProd A B := by
+  unfold innerProd
+  simp only [J3O.smul_xi1, J3O.smul_xi2, J3O.smul_xi3,
+             J3O.smul_x1, J3O.smul_x2, J3O.smul_x3,
+             OctonionQ.conj_smul, OctonionQ.smul_mul_smul, OctonionQ.re_smul]
+  ring
+
+/-- `sharp` is **quadratic** (homogeneous of degree 2): `(r • A)^# = r² • A^#`. -/
+theorem sharp_smul (r : ℚ) (A : J3O) : sharp (r • A) = r^2 • sharp A := by
+  -- We prove this field-by-field using `J3O.ext`.
+  refine J3O.ext ?h1 ?h2 ?h3 ?hx1 ?hx2 ?hx3
+  · show (r • A).xi2 * (r • A).xi3 - OctonionQ.normSq (r • A).x1
+         = r^2 * (A.xi2 * A.xi3 - OctonionQ.normSq A.x1)
+    simp [OctonionQ.normSq_smul]; ring
+  · show (r • A).xi3 * (r • A).xi1 - OctonionQ.normSq (r • A).x2
+         = r^2 * (A.xi3 * A.xi1 - OctonionQ.normSq A.x2)
+    simp [OctonionQ.normSq_smul]; ring
+  · show (r • A).xi1 * (r • A).xi2 - OctonionQ.normSq (r • A).x3
+         = r^2 * (A.xi1 * A.xi2 - OctonionQ.normSq A.x3)
+    simp [OctonionQ.normSq_smul]; ring
+  · -- (sharp (r • A)).x1 = (r²) • (sharp A).x1
+    show OctonionQ.conj (r • A.x2) * OctonionQ.conj (r • A.x3) - (r * A.xi1) • (r • A.x1)
+         = r^2 • (OctonionQ.conj A.x2 * OctonionQ.conj A.x3 - A.xi1 • A.x1)
+    rw [OctonionQ.conj_smul, OctonionQ.conj_smul,
+        OctonionQ.smul_mul_smul, OctonionQ.smul_smul,
+        OctonionQ.smul_sub]
+    congr 1
+    · show (r * r) • _ = r^2 • _; rw [show r * r = r^2 from by ring]
+    · show (r * A.xi1 * r) • A.x1 = r^2 • (A.xi1 • A.x1)
+      rw [show r * A.xi1 * r = r * r * A.xi1 from by ring,
+          show r * r = r^2 from by ring, ← OctonionQ.smul_smul]
+  · show OctonionQ.conj (r • A.x3) * OctonionQ.conj (r • A.x1) - (r * A.xi2) • (r • A.x2)
+         = r^2 • (OctonionQ.conj A.x3 * OctonionQ.conj A.x1 - A.xi2 • A.x2)
+    rw [OctonionQ.conj_smul, OctonionQ.conj_smul,
+        OctonionQ.smul_mul_smul, OctonionQ.smul_smul,
+        OctonionQ.smul_sub]
+    congr 1
+    · show (r * r) • _ = r^2 • _; rw [show r * r = r^2 from by ring]
+    · show (r * A.xi2 * r) • A.x2 = r^2 • (A.xi2 • A.x2)
+      rw [show r * A.xi2 * r = r * r * A.xi2 from by ring,
+          show r * r = r^2 from by ring, ← OctonionQ.smul_smul]
+  · show OctonionQ.conj (r • A.x1) * OctonionQ.conj (r • A.x2) - (r * A.xi3) • (r • A.x3)
+         = r^2 • (OctonionQ.conj A.x1 * OctonionQ.conj A.x2 - A.xi3 • A.x3)
+    rw [OctonionQ.conj_smul, OctonionQ.conj_smul,
+        OctonionQ.smul_mul_smul, OctonionQ.smul_smul,
+        OctonionQ.smul_sub]
+    congr 1
+    · show (r * r) • _ = r^2 • _; rw [show r * r = r^2 from by ring]
+    · show (r * A.xi3 * r) • A.x3 = r^2 • (A.xi3 • A.x3)
+      rw [show r * A.xi3 * r = r * r * A.xi3 from by ring,
+          show r * r = r^2 from by ring, ← OctonionQ.smul_smul]
+
 end J3O
 
 /-! ### The 56-dimensional Freudenthal triple system `V₅₆`
@@ -161,6 +232,22 @@ instance : Zero V56 := ⟨⟨0, 0, 0, 0⟩⟩
 
 instance : Add V56 := ⟨fun v w => ⟨v.a + w.a, v.A + w.A, v.B + w.B, v.b + w.b⟩⟩
 
+instance : Neg V56 := ⟨fun v => ⟨-v.a, -v.A, -v.B, -v.b⟩⟩
+
+instance : SMul ℚ V56 := ⟨fun r v => ⟨r * v.a, r • v.A, r • v.B, r * v.b⟩⟩
+
+/-! ### Component lemmas for `Zero`, `Add`, `SMul`. -/
+
+@[simp] theorem zero_a : (0 : V56).a = 0 := rfl
+@[simp] theorem zero_A : (0 : V56).A = 0 := rfl
+@[simp] theorem zero_B : (0 : V56).B = 0 := rfl
+@[simp] theorem zero_b : (0 : V56).b = 0 := rfl
+
+@[simp] theorem smul_a (r : ℚ) (v : V56) : (r • v).a = r * v.a := rfl
+@[simp] theorem smul_A (r : ℚ) (v : V56) : (r • v).A = r • v.A := rfl
+@[simp] theorem smul_B (r : ℚ) (v : V56) : (r • v).B = r • v.B := rfl
+@[simp] theorem smul_b (r : ℚ) (v : V56) : (r • v).b = r * v.b := rfl
+
 /-- The **Freudenthal quartic** `q : V₅₆ → ℚ`. -/
 def freudenthalQuartic (v : V56) : ℚ :=
   (v.a * v.b - J3O.innerProd v.A v.B)^2
@@ -176,6 +263,28 @@ theorem freudenthalQuartic_zero : freudenthalQuartic 0 = 0 := by
        + 4 * (0 * J3O.cubicNorm 0 + 0 * J3O.cubicNorm 0
               - J3O.innerProd (J3O.sharp 0) (J3O.sharp 0)) = 0
   simp
+
+/-! ### Freudenthal-quartic homogeneity (degree 4)
+
+The Freudenthal quartic `q` is **homogeneous of degree 4**: `q(r • v) = r⁴ · q(v)`.
+This is the defining property of the Sato-Kimura prehomogeneous quartic and
+the source of the `r⁴` scaling that makes `q` an `E₇`-invariant. The proof
+uses:
+* `cubicNorm` is degree-3 in its argument.
+* `sharp` is degree-2 in its argument.
+* `innerProd` is bilinear, so `⟨r·X, r·Y⟩ = r² · ⟨X, Y⟩` (`innerProd_smul_diag`).
+* Combining: `⟨(r•A)^#, (r•B)^#⟩ = ⟨r²•A^#, r²•B^#⟩ = r⁴ · ⟨A^#, B^#⟩`.
+-/
+
+/-- **Freudenthal-quartic homogeneity**: `q(r • v) = r⁴ · q(v)`. -/
+theorem freudenthalQuartic_smul (r : ℚ) (v : V56) :
+    freudenthalQuartic (r • v) = r^4 * freudenthalQuartic v := by
+  unfold freudenthalQuartic
+  simp only [smul_a, smul_b, smul_A, smul_B,
+             J3O.innerProd_smul_diag,
+             J3O.cubicNorm_smul,
+             J3O.sharp_smul]
+  ring
 
 end V56
 
