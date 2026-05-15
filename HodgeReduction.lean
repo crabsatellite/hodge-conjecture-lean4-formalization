@@ -41,3 +41,4 @@ import HodgeReduction.Ledger
 import HodgeReduction.Strict
 import HodgeReduction.CrossRingArithmetic
 import HodgeReduction.Infrastructure.CartanMatrices
+import HodgeReduction.Infrastructure.SchlafliGraph
