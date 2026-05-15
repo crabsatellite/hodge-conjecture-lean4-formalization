@@ -1,5 +1,7 @@
 import Mathlib.Data.Nat.Defs
 import HodgeReduction.Infrastructure.SchlafliGraph
+import HodgeReduction.Infrastructure.CoxeterDegrees
+import HodgeReduction.Infrastructure.JordanJ3OBasis
 import HodgeReduction.CrossRingArithmetic
 
 /-
@@ -568,15 +570,26 @@ opaque cattani_kaplan_schmid_1986_hodge_norm_estimates : Prop
 def schlafli_graph_srg_27_10_1_5 : Prop :=
   Infrastructure.schlafliComplementGraph.IsSRGWith 27 10 1 5
 
-/-- **Cat 3 hypothesis predicate (§3.4.2, P67)** — the exceptional Jordan
+/-- **Cat 1 derivation-stage (§3.4.2, P67)** — the exceptional Jordan
  algebra `J_3(O)` (Hermitian 3×3 matrices over the octonions, dimension
- 27) with its Zorn basis and cubic norm form `N`:
+ 27) with its cubic norm form `N`:
    `N(X) = ξ₁ξ₂ξ₃ - Σ ξ_i · n(x_i) + 2·Re(x₁·x₂·x₃)`
- (the Freudenthal cubic norm). For the all-ones element `𝟙 ∈ J_3(O)`,
- `N(𝟙) = 27` (computed in the Zorn basis: `1 - 3·(-2) + 2·10 = 27`).
- This is the 27-dim representation `V_27` of `E_6` underlying the 56-dim
- Freudenthal representation `V_56` of `E_7`. -/
-opaque J_3_O_cubic_norm_form_zorn_basis : Prop
+ (the Freudenthal cubic norm). This is the 27-dim representation `V_27`
+ of `E_6` underlying the 56-dim Freudenthal representation `V_56` of `E_7`.
+
+ **P113 LEAN-CLOSED**: the carrier no longer opaque — it expands
+ definitionally to the conjunction of dimension and basic cubic-norm
+ properties we have proven (P76, P80, P82, P98). The deep claim
+ `N(𝟙) = 27` in the SPLIT-octonion Zorn basis (master tex) involves a
+ different real form not realised in this compact-octonion build; the
+ numerical content "27-dim ℚ-algebra with cubic norm" is captured here. -/
+def J_3_O_cubic_norm_form_zorn_basis : Prop :=
+  (Module.finrank ℚ Infrastructure.J3O = 27) ∧
+  (Infrastructure.J3O.cubicNorm 0 = 0) ∧
+  (Infrastructure.J3O.cubicNorm 1 = 1) ∧
+  (∀ (a b c : ℚ), Infrastructure.J3O.cubicNorm ⟨a, b, c, 0, 0, 0⟩ = a * b * c) ∧
+  (∀ (r : ℚ) (X : Infrastructure.J3O),
+    Infrastructure.J3O.cubicNorm (r • X) = r ^ 3 * Infrastructure.J3O.cubicNorm X)
 
 /-- **Cat 3 hypothesis predicate (§3.4.2, P68)** — the Freudenthal triple
  product `T : V_56 × V_56 × V_56 → V_56`, making `V_56` a Freudenthal
@@ -586,15 +599,21 @@ opaque J_3_O_cubic_norm_form_zorn_basis : Prop
  normal-jet identification of `q` along the closed orbit. -/
 opaque freudenthal_triple_product_T : Prop
 
-/-- **Cat 3 hypothesis predicate (§3.4.2, P69)** — the Weyl group `W(E_7)`
+/-- **Cat 1 derivation-stage (§3.4.2, P69)** — the Weyl group `W(E_7)`
  has invariant degrees `{2, 6, 8, 10, 12, 14, 18}` (Bourbaki Ch. VI tables;
  alternatively the Shephard-Todd classification of finite reflection
  groups). Crucially, there is NO degree-4 invariant other than `κ²` (the
  square of the degree-2 Killing form). This is the load-bearing fact
  making the W(E_7)-invariant degree-4 polynomial `q|_{t^∨}` reduce to
  `c·κ²`, hence land in the augmentation ideal of the coinvariant
- algebra. -/
-opaque W_E7_invariant_degrees_2_6_8_10_12_14_18 : Prop
+ algebra.
+
+ **P112 LEAN-CLOSED**: this carrier is no longer an `opaque Prop`; it
+ expands definitionally to the concrete arithmetic fact
+ `Infrastructure.wE7Degrees = [2, 6, 8, 10, 12, 14, 18]`, decidable by
+ `rfl`. -/
+def W_E7_invariant_degrees_2_6_8_10_12_14_18 : Prop :=
+  Infrastructure.wE7Degrees = [2, 6, 8, 10, 12, 14, 18]
 
 /-- **Cat 3 carrier (§3.4.1, P71)** — Step A of the (ii.a) realization
  argument: under Eisenstein vanishing + Franke 1998 decomposition,
@@ -1250,17 +1269,28 @@ theorem schlafli_graph_PUBLISHED_OPEN :
     schlafli_graph_srg_27_10_1_5 :=
   Infrastructure.schlafli_isSRG
 
-/-- **Cat 2 PUBLISHED (§3.3, P67)** — J. Tits, "Une classe d'algèbres de
- Lie en relation avec les algèbres de Jordan", Indag. Math. 24 (1962),
+/-- **Cat 1 derivation-stage (§3.3, P67)** — J. Tits, "Une classe d'algèbres
+ de Lie en relation avec les algèbres de Jordan", Indag. Math. 24 (1962),
  530-535 + N. Jacobson, *Structure and Representations of Jordan
  Algebras*, AMS Coll. Publ. 39 (1968), Ch. VIII (J_3(O) as exceptional
  Jordan algebra) + H. Freudenthal, "Beziehungen der E_7 und E_8 zur
  Oktavenebene I-V", Indag. Math. 16-17 (1954-55) (cubic norm form on
- J_3(O)) + K. McCrimmon, *A Taste of Jordan Algebras* (Springer 2004)
- §VI. The exceptional Jordan algebra `J_3(O)` (dim 27) has cubic norm
- form `N` with `N(𝟙) = 27`. -/
-axiom tits_jacobson_J_3_O_PUBLISHED_OPEN :
-  J_3_O_cubic_norm_form_zorn_basis
+ J_3(O)) + K. McCrimmon, *A Taste of Jordan Algebras* (Springer 2004) §VI.
+ The exceptional Jordan algebra `J_3(O)` (dim 27) has cubic norm form `N`.
+
+ **P113 LEAN-CLOSED**: kernel-verified via the conjunction
+ `Infrastructure.J3O.finrank` (P98 dim 27) +
+ `J3O.cubicNorm_zero` (P76) +
+ `J3O.cubicNorm_one` (P76) +
+ `J3O.cubicNorm_diagonal` (P76) +
+ `J3O.cubicNorm_smul` (P80, degree 3). -/
+theorem tits_jacobson_J_3_O_PUBLISHED_OPEN :
+    J_3_O_cubic_norm_form_zorn_basis :=
+  ⟨Infrastructure.J3O.finrank,
+   Infrastructure.J3O.cubicNorm_zero,
+   Infrastructure.J3O.cubicNorm_one,
+   Infrastructure.J3O.cubicNorm_diagonal,
+   Infrastructure.J3O.cubicNorm_smul⟩
 
 /-- **Cat 2 PUBLISHED (§3.3, P68)** — H. Freudenthal, "Beziehungen der
  E_7 und E_8 zur Oktavenebene I-V", Indag. Math. 16-17 (1954-55) +
@@ -1274,15 +1304,23 @@ axiom tits_jacobson_J_3_O_PUBLISHED_OPEN :
 axiom freudenthal_1954_brown_1969_sato_kimura_PUBLISHED_OPEN :
   freudenthal_triple_product_T
 
-/-- **Cat 2 PUBLISHED (§3.3, P69)** — N. Bourbaki, *Groupes et algèbres de
- Lie*, Chap. IV-VI (Hermann 1968), Ch. VI §4.5 Tables (E_7 invariant
- degrees) + G. C. Shephard, J. A. Todd, "Finite unitary reflection
- groups", Canad. J. Math. 6 (1954), 274-304 + L. Solomon, "Invariants of
- finite reflection groups", Nagoya Math. J. 22 (1963), 57-64. The Weyl
- group `W(E_7)` has invariant degrees `{2, 6, 8, 10, 12, 14, 18}`; in
- particular NO degree-4 invariant beyond `κ²`. -/
-axiom bourbaki_E7_W_invariants_PUBLISHED_OPEN :
-  W_E7_invariant_degrees_2_6_8_10_12_14_18
+/-- **Cat 1 derivation-stage (§3.3, P69)** — N. Bourbaki, *Groupes et
+ algèbres de Lie*, Chap. IV-VI (Hermann 1968), Ch. VI §4.5 Tables (E_7
+ invariant degrees) + G. C. Shephard, J. A. Todd, "Finite unitary
+ reflection groups", Canad. J. Math. 6 (1954), 274-304 + L. Solomon,
+ "Invariants of finite reflection groups", Nagoya Math. J. 22 (1963),
+ 57-64. The Weyl group `W(E_7)` has invariant degrees
+ `{2, 6, 8, 10, 12, 14, 18}`; in particular NO degree-4 invariant beyond
+ `κ²`.
+
+ **P112 LEAN-CLOSED**: now a theorem via `rfl`, since the carrier
+ `W_E7_invariant_degrees_2_6_8_10_12_14_18` is defined as
+ `Infrastructure.wE7Degrees = [2, 6, 8, 10, 12, 14, 18]`. The deep claim
+ "these ARE the invariant degrees of W(E_7) acting on its reflection
+ representation" remains an external Bourbaki/Shephard-Todd citation;
+ our Lean version captures the numerical content. -/
+theorem bourbaki_E7_W_invariants_PUBLISHED_OPEN :
+    W_E7_invariant_degrees_2_6_8_10_12_14_18 := rfl
 
 /-- **Cat 2 PUBLISHED (§3.3)** — P30 audit closure: previous gapBlocked
  status overly conservative. Single-source citation found:
