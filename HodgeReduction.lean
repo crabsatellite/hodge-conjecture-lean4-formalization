@@ -58,3 +58,4 @@ import HodgeReduction.Infrastructure.Cohomology.Basic
 import HodgeReduction.Infrastructure.Cohomology.ChernClasses
 import HodgeReduction.Infrastructure.Cohomology.KaehlerClass
 import HodgeReduction.Infrastructure.Cohomology.FreudenthalClass
+import HodgeReduction.Infrastructure.HodgeStructure.Basic
