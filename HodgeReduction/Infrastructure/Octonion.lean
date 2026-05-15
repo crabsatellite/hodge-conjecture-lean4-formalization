@@ -277,6 +277,24 @@ theorem mul_right_alt (y x : OctonionQ) : (y * x) * x = y * (x * x) := by
 theorem mul_flex (x y : OctonionQ) : (x * y) * x = x * (y * x) := by
   ext <;> simp <;> ring
 
+/-! ### Hurwitz composition law
+
+Octonions are the maximal **composition algebra** over `ℝ` (or `ℚ`):
+the norm-squared is multiplicative, `‖x·y‖² = ‖x‖²·‖y‖²`. This is
+Hurwitz's theorem — the four normed division algebras `ℝ ⊂ ℂ ⊂ ℍ ⊂ 𝕆`
+are the unique composition algebras over `ℝ`.
+
+For our `ℚ`-version of `𝕆`, the same identity holds as a polynomial
+identity in the 16 components (8 of `x` and 8 of `y`), verifiable
+by `ring`.
+-/
+
+/-- **Hurwitz composition law**: `‖x·y‖² = ‖x‖² · ‖y‖²`. -/
+theorem normSq_mul (x y : OctonionQ) : normSq (x * y) = normSq x * normSq y := by
+  unfold normSq
+  simp only [mul_e0, mul_e1, mul_e2, mul_e3, mul_e4, mul_e5, mul_e6, mul_e7]
+  ring
+
 end OctonionQ
 
 end HodgeReduction.Infrastructure
