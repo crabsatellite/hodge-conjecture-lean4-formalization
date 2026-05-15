@@ -673,6 +673,14 @@ theorem jordanMul_jordanMul_sharp_self_eq (X : J3O) :
     jordanMul X (jordanMul X (sharp X)) = cubicNorm X • X := by
   rw [jordanMul_sharp_eq_cubicNorm_smul_one, jordanMul_smul, jordanMul_one]
 
+/-- `sharp(X · X^#) = N(X)^2 · 1`.
+
+Applying sharp to both sides of the cubic norm identity
+`X · X^# = N(X) · 1` and using `sharp(r · 1) = r^2 · 1`. -/
+theorem sharp_jordanMul_sharp_self (X : J3O) :
+    sharp (jordanMul X (sharp X)) = cubicNorm X ^ 2 • (1 : J3O) := by
+  rw [jordanMul_sharp_eq_cubicNorm_smul_one, sharp_smul, sharp_one]
+
 /-! ### Trace of sharp: `tr(X^#) = s_2(X)`
 
 This is the trace counterpart of `sharp_eq_cayley_hamilton`. Taking the
