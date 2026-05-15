@@ -73,6 +73,8 @@ import HodgeReduction.Infrastructure.Cohomology.DivisorClass
 import HodgeReduction.Infrastructure.Cohomology.AlgebraicCycle
 import HodgeReduction.Infrastructure.Cohomology.ChernCharacter
 import HodgeReduction.Infrastructure.Cohomology.LefschetzHyperplane
+import HodgeReduction.Infrastructure.Cohomology.RiemannRoch
+import HodgeReduction.Infrastructure.Cohomology.SheafCohomology
 import HodgeReduction.Infrastructure.Shimura.PeriodDomain
 import HodgeReduction.Infrastructure.Shimura.SchubertCells
 import HodgeReduction.Infrastructure.HodgeStructure.Basic
@@ -92,6 +94,7 @@ import HodgeReduction.Infrastructure.Shimura.ToroidalCompactification
 import HodgeReduction.Infrastructure.AbelianVariety.Basic
 import HodgeReduction.Infrastructure.AbelianVariety.PolarisedAV
 import HodgeReduction.Infrastructure.AbelianVariety.CMType
+import HodgeReduction.Infrastructure.AbelianVariety.KugaSatake
 import HodgeReduction.Infrastructure.Shimura.HermitianSymmetric
 import HodgeReduction.Infrastructure.Shimura.ArithmeticGroup
 import HodgeReduction.Infrastructure.Automorphic.Basic
