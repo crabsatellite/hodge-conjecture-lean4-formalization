@@ -1,4 +1,5 @@
 import Mathlib.Data.Nat.Defs
+import HodgeReduction.Infrastructure.SchlafliGraph
 
 /-
 # HodgeReduction.Strict — strict Cat 1-3 ATOMIC MINIMAL UNITS discipline
@@ -510,14 +511,20 @@ opaque harris_1985_algebraic_upgrade : Prop
  diagonal after canonical extension (P54). -/
 opaque cattani_kaplan_schmid_1986_hodge_norm_estimates : Prop
 
-/-- **Cat 3 hypothesis predicate (§3.4.2, P66)** — the triangle graph of
+/-- **Cat 1 derivation-stage (§3.4.2, P66)** — the triangle graph of
  the 27 of E_6 is the strongly regular graph `srg(27, 10, 1, 5)` (the
  Schläfli-complement: complement of the Schläfli graph on 27 vertices).
  Properties: 27 vertices, valence 10, every edge in exactly 1 triangle,
  every non-edge in 5 triangles. 45 triangles total (36 positive, 9
  negative); the 9 negative triangles partition the 27 weights into a
- perfect matching of triples. -/
-opaque schlafli_graph_srg_27_10_1_5 : Prop
+ perfect matching of triples.
+
+ **P90 LEAN-CLOSED**: this carrier is no longer an `opaque Prop`; it now
+ expands definitionally to a concrete `Infrastructure` predicate, fully
+ verified by Lean kernel `decide` (see `HodgeReduction.Infrastructure.
+ SchlafliGraph.schlafli_isSRG`). -/
+def schlafli_graph_srg_27_10_1_5 : Prop :=
+  Infrastructure.schlafliComplementGraph.IsSRGWith 27 10 1 5
 
 /-- **Cat 3 hypothesis predicate (§3.4.2, P67)** — the exceptional Jordan
  algebra `J_3(O)` (Hermitian 3×3 matrices over the octonions, dimension
@@ -1182,9 +1189,16 @@ axiom cattani_kaplan_schmid_1986_PUBLISHED_OPEN :
  (the Schläfli graph srg(27,16,10,8) and its complement). The triangle
  graph of the 27 of E_6 is the strongly regular graph `srg(27, 10, 1, 5)`
  (= Schläfli-complement); the 27 weights form 45 triangles (36 positive,
- 9 negative; negatives partition the 27). -/
-axiom schlafli_graph_PUBLISHED_OPEN :
-  schlafli_graph_srg_27_10_1_5
+ 9 negative; negatives partition the 27).
+
+ **P90 LEAN-CLOSED** — this was previously the axiom
+ `schlafli_graph_PUBLISHED_OPEN`. It is now a theorem verified by
+ `HodgeReduction.Infrastructure.SchlafliGraph.schlafli_isSRG` via
+ kernel-level `decide` on the 27 × 27 = 729 ordered vertex pairs of the
+ 6 + 6 + 15 Schläfli double-six model. -/
+theorem schlafli_graph_PUBLISHED_OPEN :
+    schlafli_graph_srg_27_10_1_5 :=
+  Infrastructure.schlafli_isSRG
 
 /-- **Cat 2 PUBLISHED (§3.3, P67)** — J. Tits, "Une classe d'algèbres de
  Lie en relation avec les algèbres de Jordan", Indag. Math. 24 (1962),
@@ -2087,11 +2101,12 @@ def gap_cattani_kaplan_schmid_1986_hodge_norm_estimates : StrictGapEntry :=
 
 def gap_schlafli_graph_srg_27_10_1_5 : StrictGapEntry :=
   { name := "schlafli_graph_srg_27_10_1_5"
-    status := .gapOpen, inputCategory := .cat3PaperNovel
+    status := .gapClosed, inputCategory := .cat3PaperNovel
     cat3SubType := .hypothesisPredicate
     paperSource := "P66: triangle graph of the 27 of E_6 = strongly regular graph srg(27,10,1,5) (Schläfli-complement); 45 triangles, valence 10, each edge in 1 triangle, each non-edge in 5 triangles. Used in P53's c_0 = 1/4 computation"
-    attackHistory := ["P66: opaque Prop carrier for the Schläfli graph srg(27,10,1,5) structure"]
-    scope := "Schläfli-complement graph srg(27,10,1,5) on the 27 weights of E_6; load-bearing in P53 c_0 = 1/4 finite computation (P66)" }
+    attackHistory := ["P66: opaque Prop carrier for the Schläfli graph srg(27,10,1,5) structure",
+                      "P90 LEAN-CLOSED (2026-05-15): kernel-verified IsSRGWith 27 10 1 5 via decide over the 27×27 = 729 ordered vertex pairs in the 6+6+15 Schläfli double-six model (a/b/c V27Vertex). carrier opaque → def, axiom → theorem in HodgeReduction.Strict; backed by HodgeReduction.Infrastructure.SchlafliGraph.schlafli_isSRG. Axioms depended on: [propext, Classical.choice, Quot.sound] (kernel-only)."]
+    scope := "CLOSED: Schläfli-complement graph srg(27,10,1,5) on the 27 weights of E_6; load-bearing in P53 c_0 = 1/4 finite computation. P90 Lean-closure dependes only on Lean kernel axioms." }
 
 def gap_J_3_O_cubic_norm_form_zorn_basis : StrictGapEntry :=
   { name := "J_3_O_cubic_norm_form_zorn_basis"
