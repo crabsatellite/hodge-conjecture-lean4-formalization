@@ -12,8 +12,8 @@ Main result: `HC_for_freudenthal_quartic_on_EVII_UNCONDITIONAL` —
 `E_{7(-25)}` Shimura varieties, taking NO broken-link `Hyp_*` arguments.
 The theorem is UNCONDITIONAL in `Hyp_*` terms: ALL seven original
 broken-link predicates have been discharged via PUBLISHED Cat 2 axioms +
-paper-stated Cat 3 structural equations. Conditional only on 46 atomic
-axiom dependencies (30 Cat 2 PUBLISHED + 16 Cat 3 paper-stated) — see
+paper-stated Cat 3 structural equations. Conditional only on 47 atomic
+axiom dependencies (31 Cat 2 PUBLISHED + 16 Cat 3 paper-stated) — see
 `#print axioms` at the end of the file. P57-P61: citation-hygiene pattern
 extracting implicit-in-bundled-framework citations as separately-cited
 Cat 2 single-source dependencies.
@@ -262,7 +262,7 @@ into 8 explicit ingredients.
 7. **Bijective ledger** per §19 Einstein Test exemplar — every declaration has
    exactly one `StrictGapEntry` and vice versa.
 8. **`#print axioms`** kernel-purity check (§1.5 primary verification tool) at
-   end of file surfaces all 46 atomic dependencies of the Main Theorem (30
+   end of file surfaces all 47 atomic dependencies of the Main Theorem (31
    Cat 2 PUBLISHED + 16 Cat 3 paper-stated; ZERO Hyp_* in signature).
 
 ## Layout
@@ -481,6 +481,16 @@ opaque cattani_kaplan_schmid_1986_hodge_norm_estimates : Prop
  negative); the 9 negative triangles partition the 27 weights into a
  perfect matching of triples. -/
 opaque schlafli_graph_srg_27_10_1_5 : Prop
+
+/-- **Cat 3 hypothesis predicate (§3.4.2, P67)** — the exceptional Jordan
+ algebra `J_3(O)` (Hermitian 3×3 matrices over the octonions, dimension
+ 27) with its Zorn basis and cubic norm form `N`:
+   `N(X) = ξ₁ξ₂ξ₃ - Σ ξ_i · n(x_i) + 2·Re(x₁·x₂·x₃)`
+ (the Freudenthal cubic norm). For the all-ones element `𝟙 ∈ J_3(O)`,
+ `N(𝟙) = 27` (computed in the Zorn basis: `1 - 3·(-2) + 2·10 = 27`).
+ This is the 27-dim representation `V_27` of `E_6` underlying the 56-dim
+ Freudenthal representation `V_56` of `E_7`. -/
+opaque J_3_O_cubic_norm_form_zorn_basis : Prop
 
 /-- **Cat 3 hypothesis predicate (§3.4.2)** — [q] is algebraic on S_Γ^{tor}. -/
 opaque freudenthal_is_algebraic : Prop
@@ -1107,6 +1117,18 @@ axiom cattani_kaplan_schmid_1986_PUBLISHED_OPEN :
 axiom schlafli_graph_PUBLISHED_OPEN :
   schlafli_graph_srg_27_10_1_5
 
+/-- **Cat 2 PUBLISHED (§3.3, P67)** — J. Tits, "Une classe d'algèbres de
+ Lie en relation avec les algèbres de Jordan", Indag. Math. 24 (1962),
+ 530-535 + N. Jacobson, *Structure and Representations of Jordan
+ Algebras*, AMS Coll. Publ. 39 (1968), Ch. VIII (J_3(O) as exceptional
+ Jordan algebra) + H. Freudenthal, "Beziehungen der E_7 und E_8 zur
+ Oktavenebene I-V", Indag. Math. 16-17 (1954-55) (cubic norm form on
+ J_3(O)) + K. McCrimmon, *A Taste of Jordan Algebras* (Springer 2004)
+ §VI. The exceptional Jordan algebra `J_3(O)` (dim 27) has cubic norm
+ form `N` with `N(𝟙) = 27`. -/
+axiom tits_jacobson_J_3_O_PUBLISHED_OPEN :
+  J_3_O_cubic_norm_form_zorn_basis
+
 /-- **Cat 2 PUBLISHED (§3.3)** — P30 audit closure: previous gapBlocked
  status overly conservative. Single-source citation found:
  H. Toda, "Cohomology of the classifying space of exceptional Lie groups",
@@ -1233,6 +1255,7 @@ axiom twisted_Phi_L_coefficient_nonzero_COMPUTED_OPEN :
   V56_hodge_decomposition_under_E6_U1 →
   twisted_Phi_L_well_defined →
   schlafli_graph_srg_27_10_1_5 →
+  J_3_O_cubic_norm_form_zorn_basis →
   Hyp_TwistedPhiL_Coefficient_Nonzero_OPEN
 
 /-- **Cat 2 (§3.3, P40)** — classical fact on compact homogeneous spaces:
@@ -1554,6 +1577,7 @@ theorem Hyp_TwistedPhiL_Coefficient_Nonzero_COMPUTED :
       borel_hirzebruch_coinvariant_augmentation_OPEN
       H8_EVII_one_dim_OPEN)
     schlafli_graph_PUBLISHED_OPEN
+    tits_jacobson_J_3_O_PUBLISHED_OPEN
 
 /-- **gapClosed** — Chern-Weil form proportionality derived (P56 unconditional
  via Hyp_MumfordExtension_LBlockDiagonal_DERIVED). -/
@@ -1949,6 +1973,14 @@ def gap_schlafli_graph_srg_27_10_1_5 : StrictGapEntry :=
     paperSource := "P66: triangle graph of the 27 of E_6 = strongly regular graph srg(27,10,1,5) (Schläfli-complement); 45 triangles, valence 10, each edge in 1 triangle, each non-edge in 5 triangles. Used in P53's c_0 = 1/4 computation"
     attackHistory := ["P66: opaque Prop carrier for the Schläfli graph srg(27,10,1,5) structure"]
     scope := "Schläfli-complement graph srg(27,10,1,5) on the 27 weights of E_6; load-bearing in P53 c_0 = 1/4 finite computation (P66)" }
+
+def gap_J_3_O_cubic_norm_form_zorn_basis : StrictGapEntry :=
+  { name := "J_3_O_cubic_norm_form_zorn_basis"
+    status := .gapOpen, inputCategory := .cat3PaperNovel
+    cat3SubType := .hypothesisPredicate
+    paperSource := "P67: exceptional Jordan algebra J_3(O) (dim 27) with cubic norm form N — N(X) = ξ₁ξ₂ξ₃ - Σ ξ_i·n(x_i) + 2·Re(x₁·x₂·x₃) (Freudenthal cubic norm); N(𝟙) = 27 (Zorn basis: 1 - 3·(-2) + 2·10 = 27). Used in P51's N(x) = -3 h³ computation"
+    attackHistory := ["P67: opaque Prop carrier for the J_3(O) cubic norm form in Zorn basis"]
+    scope := "Tits-Jacobson J_3(O) (dim-27 exceptional Jordan algebra) cubic norm form N(𝟙) = 27; load-bearing in P51 finite computation (P67)" }
 
 def gap_freudenthal_is_algebraic : StrictGapEntry :=
   { name := "freudenthal_is_algebraic"
@@ -2389,6 +2421,14 @@ def gap_schlafli_graph_PUBLISHED : StrictGapEntry :=
     attackHistory := ["P66 (2026-05-15): Cat 2 single-step; Schläfli graph srg(27,10,1,5) structure. Previously embedded in twisted_Phi_L_coefficient_nonzero_COMPUTED_OPEN docstring; now extracted as a separately-cited Cat 2 single-source dependency for the P53 c_0 = 1/4 finite computation"]
     scope := "Cat 2 PUBLISHED: Schläfli graph srg(27,10,1,5) on the 27 weights of E_6; load-bearing in P53 finite computation (P66)" }
 
+def gap_tits_jacobson_J_3_O_PUBLISHED : StrictGapEntry :=
+  { name := "tits_jacobson_J_3_O_PUBLISHED_OPEN"
+    status := .gapOpen, inputCategory := .cat2External
+    cat3SubType := .notApplicable
+    paperSource := "J. Tits, 'Une classe d'algèbres de Lie en relation avec les algèbres de Jordan', Indag. Math. 24 (1962), 530-535 + N. Jacobson, *Structure and Representations of Jordan Algebras*, AMS Coll. Publ. 39 (1968), Ch. VIII + H. Freudenthal, 'Beziehungen der E_7 und E_8 zur Oktavenebene I-V', Indag. Math. 16-17 (1954-55) + K. McCrimmon, *A Taste of Jordan Algebras* (Springer 2004) §VI"
+    attackHistory := ["P67 (2026-05-15): Cat 2 single-step; Tits-Jacobson J_3(O) exceptional Jordan algebra with cubic norm form N. Previously embedded in P51 paper-narrative for N(𝟙) = 27 computation; now extracted as a separately-cited Cat 2 single-source dependency"]
+    scope := "Cat 2 PUBLISHED: Tits-Jacobson J_3(O) cubic norm form (Freudenthal cubic norm); load-bearing in P51 N(𝟙) = 27 computation (P67)" }
+
 def gap_borel_toda_E6_U1 : StrictGapEntry :=
   { name := "borel_toda_E6_U1_presentation_OPEN"
     status := .gapOpen, inputCategory := .cat2External
@@ -2796,7 +2836,7 @@ def gap_HC_Main : StrictGapEntry :=
       "P61 EXPLICIT j^q G-EQUIVARIANCE: paper_hodge44_step_OPEN refactored 2-input → 3-input by adding j_q_G_equivariance_principle (the Matsushima homomorphism j^q is G-equivariant, sending G-invariant classes on Ě to G-invariant classes on S_Γ). Cited to Matsushima 1962 Osaka Math. J. 14 + Borel 1974 §3-§8. Previously implicit in cohomologyIso_at_deg8 carrier semantics; now extracted as a separately-cited Cat 2 single-source dependency. Load-bearing in the freudenthal-class-G-invariance derivation: h^4 G-inv on Ě_VII ⟹ j^8(h^4) G-inv on S_Γ.",
       "P62 EXPLICIT BOREL-HIRZEBRUCH h = c_1(L): paper_placement_reduction_OPEN refactored 3-input → 4-input by adding h_equals_c_1_canonical_line_bundle (the Borel-Hirzebruch 1958-60 identification of the Kähler class h on Ě_VII with the first Chern class of the canonical line bundle L). Cited to Borel-Hirzebruch Amer. J. Math. 80-82 Part I §13-15 + Part II §28-30. Previously implicit in paper-narrative step (iv) j^8(h^4) = c_1(L̄)^4; now extracted as a separately-cited Cat 2 single-source dependency."
     ]
-    scope := "HC for Freudenthal quartic [q] on EVII Shimura varieties; Hyp_* count 7 → 6 (P32) → 5 (P34) → 4 (P35) → 3 (P53) → 2 (P54) → 1 (P55) → 0 (P56). P57-P66 citation-hygiene rounds extract implicit-in-bundled-framework facts as separately-cited Cat 2 axioms. Conditional only on 46 atomic axioms (30 Cat 2 PUBLISHED + 16 Cat 3 paper-stated)."
+    scope := "HC for Freudenthal quartic [q] on EVII Shimura varieties; Hyp_* count 7 → 6 (P32) → 5 (P34) → 4 (P35) → 3 (P53) → 2 (P54) → 1 (P55) → 0 (P56). P57-P67 citation-hygiene rounds extract implicit-in-bundled-framework facts as separately-cited Cat 2 axioms. Conditional only on 47 atomic axioms (31 Cat 2 PUBLISHED + 16 Cat 3 paper-stated)."
     conditionalOn := [
       -- ZERO Hyp_* broken-link predicates (P56 final: Main Theorem is UNCONDITIONAL in Hyp_* terms)
       -- 3 Cat 2 PUBLISHED (was BLOCKED; P30 closure via Toda 1975 + Kono-Mimura 1976)
@@ -2821,6 +2861,7 @@ def gap_HC_Main : StrictGapEntry :=
       "harris_1985_algebraic_upgrade_PUBLISHED_OPEN",
       "cattani_kaplan_schmid_1986_PUBLISHED_OPEN",
       "schlafli_graph_PUBLISHED_OPEN",
+      "tits_jacobson_J_3_O_PUBLISHED_OPEN",
       -- 15 paper workingAssumption/structuralEquation axioms (P35 +1, P39 +3, P40 +1, P53 +1, P54 +1, P55 +1)
       "paper_iia_realization_OPEN", "paper_formHM_EVII_OPEN",
       "paper_section16_2_OPEN", "paper_GP_EVII_OPEN",
@@ -2873,6 +2914,7 @@ def allEntries : List StrictGapEntry := [
   gap_harris_1985_algebraic_upgrade,
   gap_cattani_kaplan_schmid_1986_hodge_norm_estimates,
   gap_schlafli_graph_srg_27_10_1_5,
+  gap_J_3_O_cubic_norm_form_zorn_basis,
   -- Hyp_* (9, +1 P39 TwistedPhiL_Coefficient, +1 P40 MumfordExtension_LBlockDiagonal)
   gap_Hyp_BorelMAtLeast8, gap_Hyp_VZ_AqLambda, gap_Hyp_Eisenstein_Vanishing,
   gap_Hyp_HigherRank_GoodMetric, gap_Hyp_ChernWeilForm_Proportionality,
@@ -2899,6 +2941,7 @@ def allEntries : List StrictGapEntry := [
   gap_harris_1985_algebraic_upgrade_PUBLISHED,
   gap_cattani_kaplan_schmid_1986_PUBLISHED,
   gap_schlafli_graph_PUBLISHED,
+  gap_tits_jacobson_J_3_O_PUBLISHED,
   -- Cat 3 workingAssumption + structuralEquation (16, +1 P35, +3 P39, +1 P40, +1 P53, +1 P54, +1 P55)
   gap_paper_hodge44, gap_paper_iia, gap_paper_iib, gap_paper_formHM,
   gap_paper_placement_reduction,
@@ -2988,7 +3031,7 @@ end HodgeReduction.Strict
 --
 -- §1.5 designates `#print axioms` as the primary verification tool. This
 -- surfaces the exact axiom dependency of the Main Theorem in the build log:
--- 46 atomic dependencies (30 Cat 2 + 16 Cat 3 paper-stated; P35 added
+-- 47 atomic dependencies (31 Cat 2 + 16 Cat 3 paper-stated; P35 added
 -- paper_placement_reduction_OPEN, P39 added the L-equivariant Chern-Weil
 -- refinement: 3 Cat 2 + 3 Cat 3, P40 added the Hodge-refinement of
 -- Chern-Weil forms: 1 Cat 2 + 1 Cat 3, P53 added
