@@ -78,6 +78,7 @@ import HodgeReduction.Infrastructure.Cohomology.SheafCohomology
 import HodgeReduction.Infrastructure.Cohomology.Motive
 import HodgeReduction.Infrastructure.Cohomology.Lattice
 import HodgeReduction.Infrastructure.Cohomology.PoincareDuality
+import HodgeReduction.Infrastructure.Cohomology.Matsushima
 import HodgeReduction.Infrastructure.Shimura.PeriodDomain
 import HodgeReduction.Infrastructure.Shimura.SchubertCells
 import HodgeReduction.Infrastructure.HodgeStructure.Basic
@@ -109,6 +110,7 @@ import HodgeReduction.Infrastructure.Automorphic.BorelBottWeil
 import HodgeReduction.Infrastructure.Automorphic.HeckeCorrespondence
 import HodgeReduction.Infrastructure.Automorphic.ModularForm
 import HodgeReduction.Infrastructure.Automorphic.GKCohomology
+import HodgeReduction.Infrastructure.Automorphic.CuspidalCohomology
 import HodgeReduction.Infrastructure.LieAlgebra.Basic
 import HodgeReduction.Infrastructure.LieAlgebra.ReductiveGroup
 import HodgeReduction.Infrastructure.HCFramework
