@@ -72,3 +72,4 @@ import HodgeReduction.Infrastructure.Shimura.MumfordExtension
 import HodgeReduction.Infrastructure.AbelianVariety.Basic
 import HodgeReduction.Infrastructure.Automorphic.Basic
 import HodgeReduction.Infrastructure.Automorphic.VoganZuckerman
+import HodgeReduction.Infrastructure.HCFramework
