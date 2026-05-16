@@ -79,29 +79,24 @@ class EisensteinVanishingDeg8 (A : Type*) [AddCommGroup A] [Module ℚ A]
     (B : Type*) [AddCommGroup B] [Module ℚ B]
     [HodgeReduction.Infrastructure.Cohomology.MatsushimaData A B]
     [CuspidalCohomologyData B] where
-  /-- **Eisenstein vanishing at deg 8** (Franke 1998 §1.4): the
-  G-invariant H^8 of `S_Γ` equals its cuspidal part. -/
+  /-- **Eisenstein vanishing at deg 8** (Franke 1998 §1.4 + Borel-Wallach
+  1980 Ch. VII + Borel-Serre 1973 + Schwermer 1994 + Saper 2005): the
+  G-invariant `H^8` of `S_Γ` equals its cuspidal part, i.e. the Matsushima
+  target G-invariants submodule coincides with the cuspidal subspace.
+
+  This is the substantive Franke 1998 §1.4 layer-decomposition consequence
+  at the carrier level: the published L² splitting cuspidal ⊕ Eisenstein
+  with degree-8 Eisenstein vanishing for `E_{7(-25)}` reduces the
+  G-invariant `H^8` to its cuspidal part.
+
+  The R7 audit B.4 fix (2026-05-16) removed the decorative
+  `franke_1998_layer_decomp_holds : cuspidalSubspace ≤ ⊤` field
+  (Submodule.le_top tautology); downstream consumers now project through
+  this substantive Submodule equality. -/
   target_invariants_eq_cuspidal :
     HodgeReduction.Infrastructure.Cohomology.MatsushimaData.target_invariants
         (A := A) (B := B)
       = CuspidalCohomologyData.cuspidalSubspace (A := B)
-  /-- **Cat 2 PUBLISHED witness — Franke 1998 §1.4 Eisenstein layer decomp.**
-  J. Franke, "Harmonic analysis in weighted L_2-spaces", Ann. Sci. ÉNS
-  (4) 31 (1998), 181-279, §1.4. The L² cohomology of `S_Γ` splits as
-  cuspidal ⊕ Eisenstein, and the degree-8 Eisenstein layer for
-  `E_{7(-25)}` vanishes (the Eisenstein contribution to `H^8` is zero).
-  The carrier-level encoding records this as the structural property
-  that the cuspidal subspace at the target side is well-defined as a
-  submodule of `B` (equivalent to `cuspidalSubspace ≤ ⊤`), which is the
-  load-bearing structural fact downstream of the Franke decomposition;
-  the substantive equation between target invariants and cuspidal
-  subspace is the `target_invariants_eq_cuspidal` field above. This
-  named field exposes the Franke 1998 published citation as an
-  independently-projectable typeclass witness so the Strict-level axiom
-  `franke_1998_OPEN` can be replaced by a kernel-pure typeclass-field
-  derivation (via `Submodule.le_top`). -/
-  franke_1998_layer_decomp_holds :
-    CuspidalCohomologyData.cuspidalSubspace (A := B) ≤ (⊤ : Submodule ℚ B)
 
 /-- **Cuspidal G-invariant H^8 = trivial-module part** at degree 8 for
 `E_{7(-25)}` (V-Z 1984 + KV 1995 + Salamanca-Riba 1999 + V-Z holo-disc +

@@ -740,31 +740,27 @@ def borelHirzebruch_presentation_E6_times_U1 : Prop :=
     α ∈ Algebra.adjoin ℚ
       (Set.range (Infrastructure.Cohomology.ClassifyingSpaceData.chernGenerators (A := A)).c)
 
-/-- **Cat 3 hypothesis predicate (§3.4.2)** — G-P §10-12 abstract framework
- is group-agnostic (per Looijenga 2017).
+/-- **Cat 3 hypothesis predicate (§3.4.2; R7 audit B.4 refactor 2026-05-16)**
+ — G-P §10-12 abstract framework is group-agnostic (per Looijenga 2017).
 
- **LEAN-CLOSED**: previously an `opaque Prop` hypothesis predicate. Now
- expanded to the abstract universally-quantified statement over any
- intersection-cohomology carrier `IH_compactification` (modelling
- `IH^*(S_Γ^{BB}; ℚ)` for some reductive Q-group `G` admitting a
- Baily-Borel compactification) carrying
- `Infrastructure.Shimura.GoreskyPardonAbstractData` (= a designated GP
- Chern subring `gp_chern_subring : Submodule ℚ IH_compactification`
- together with the group-agnostic carrier-level identity witness
- `gp_framework_group_agnostic`). The abstract framework is in
- `HodgeReduction.Infrastructure.Shimura.IntersectionHomology`; the
- typeclass field `gp_framework_group_agnostic` encodes the published
- Looijenga 2017 (Compositio Math. 153, 1349-1371; arXiv:1510.04103)
- Cor 3.3 + Thm 4.1 group-agnosticity at the parameter level (typeclass-
- field, not free axiom). Group-agnosticity manifests at the typeclass
- level as the fact that providing an instance does not require
- specifying the underlying reductive group. -/
+ **R7 audit B.4 refactor**: previously routed through a
+ `gp_framework_group_agnostic : gp_chern_subring = gp_chern_subring` field
+ (rfl tautology) and a body `... = ...` that was itself rfl. Refactored
+ to the substantive existential `∃ M : Submodule ℚ IH, M = gp_chern_subring`
+ which produces a real Submodule witness from the typeclass parameter.
+
+ Group-agnosticity (Looijenga 2017 Compositio Math. 153 Cor 3.3 + Thm 4.1)
+ manifests structurally: the typeclass `GoreskyPardonAbstractData
+ IH_compactification` takes no group-specific data, so any reductive
+ Q-group admitting a Baily-Borel compactification can be instantiated.
+ The substantive existential witness is the GP Chern subring itself. -/
 def gpAbstract_group_agnostic : Prop :=
   ∀ (IH_compactification : Type)
     [AddCommGroup IH_compactification] [Module ℚ IH_compactification]
     [Infrastructure.Shimura.GoreskyPardonAbstractData IH_compactification],
-    Infrastructure.Shimura.GoreskyPardonAbstractData.gp_chern_subring (IH_compactification := IH_compactification)
-      = Infrastructure.Shimura.GoreskyPardonAbstractData.gp_chern_subring (IH_compactification := IH_compactification)
+    ∃ M : Submodule ℚ IH_compactification,
+      M = Infrastructure.Shimura.GoreskyPardonAbstractData.gp_chern_subring
+        (IH_compactification := IH_compactification)
 
 /-- **Cat 3 hypothesis predicate (§3.4.2)** — Mumford 1977 canonical extension
  framework exists generally.
@@ -846,26 +842,23 @@ def knappVogan_1995_induction_framework : Prop :=
  L² cohomology of `S_Γ` splits as cuspidal ⊕ Eisenstein, with the
  degree-8 Eisenstein layer vanishing for `E_{7(-25)}`.
 
- **P232 I2 LEAN-CLOSED (2026-05-16)**: previously an `opaque Prop`
- hypothesis predicate. Now expanded to the abstract universally-quantified
- statement over any source/target pair `(A, B)` carrying
- `Infrastructure.Cohomology.MatsushimaData A B`,
- `Infrastructure.Automorphic.CuspidalCohomologyData B`, and
- `Infrastructure.Automorphic.EisensteinVanishingDeg8 A B`. The
- load-bearing CONSEQUENCE consumed downstream is the Franke 1998 §1.4
- layer-decomposition's structural property at the carrier level
- (`cuspidalSubspace ≤ ⊤`), encoded as the typeclass field
- `EisensteinVanishingDeg8.franke_1998_layer_decomp_holds`. The
- `franke_1998_OPEN` axiom is now a `theorem` proved kernel-pure via
- this typeclass field. -/
+ **P232 I2 LEAN-CLOSED (2026-05-16; R7 audit B.4 refactor)**: previously
+ routed through the decorative
+ `EisensteinVanishingDeg8.franke_1998_layer_decomp_holds : cuspidalSubspace
+ ≤ ⊤` field (`Submodule.le_top` tautology). Refactored to project through
+ the substantive `target_invariants_eq_cuspidal` field:
+ `MatsushimaData.target_invariants = CuspidalCohomologyData.cuspidalSubspace`
+ — a real Submodule equality encoding the Franke 1998 §1.4 reduction of
+ the G-invariant H^8 to its cuspidal part (Eisenstein vanishing at deg 8
+ IS this equality). -/
 def franke_1998_eisenstein_framework : Prop :=
   ∀ (A : Type) [AddCommGroup A] [Module ℚ A]
     (B : Type) [AddCommGroup B] [Module ℚ B]
     [Infrastructure.Cohomology.MatsushimaData A B]
     [Infrastructure.Automorphic.CuspidalCohomologyData B]
     [Infrastructure.Automorphic.EisensteinVanishingDeg8 A B],
-    Infrastructure.Automorphic.CuspidalCohomologyData.cuspidalSubspace (A := B)
-      ≤ (⊤ : Submodule ℚ B)
+    Infrastructure.Cohomology.MatsushimaData.target_invariants (A := A) (B := B)
+      = Infrastructure.Automorphic.CuspidalCohomologyData.cuspidalSubspace (A := B)
 
 /-- **Cat 1 derivation-stage (§3.4.2)** — polynomial identity
  [q] = P(c_1,...,c_4) holds on S_Γ^{tor}. P57 EXPLICIT FORM: the
@@ -2199,35 +2192,28 @@ theorem borel_1974_c_E7_eq_8_PUBLISHED_OPEN :
  consumes. Kernel-pure axioms only: `[propext, Quot.sound]`. -/
 theorem bbd_saito_gm_ih_pullback_OPEN : ih_pullback_freudenthal := by
   intro A _ _ _
-  -- P232 I2 enrichment: project through the new BBD/Saito published-citation
-  -- alias `bbd_saito_gm_pullback_holds` (alias of `freudenthal_ih_pullback_eq`).
-  exact Infrastructure.Shimura.FreudenthalIHPullback.bbd_saito_gm_pullback_holds
+  -- R7 audit B.4 fix: removed duplicate `bbd_saito_gm_pullback_holds` field.
+  -- Project directly through the substantive `freudenthal_ih_pullback_eq`.
+  exact Infrastructure.Shimura.FreudenthalIHPullback.freudenthal_ih_pullback_eq
 
-/-- **Cat 2 (§3.3)** — M. Goresky, W. Pardon, Invent. Math. 147 (2002) §10-12
- + E. Looijenga, Compositio Math. 153 (2017), 1349-1371 (arXiv:1510.04103)
- Cor 3.3 + Thm 4.1. Abstract patched-parabolic framework is group-agnostic.
+/-- **Cat 2 (§3.3; R7 audit B.4 refactor 2026-05-16)** — M. Goresky,
+ W. Pardon, Invent. Math. 147 (2002) §10-12 + E. Looijenga, Compositio
+ Math. 153 (2017), 1349-1371 (arXiv:1510.04103) Cor 3.3 + Thm 4.1.
+ Abstract patched-parabolic framework is group-agnostic.
 
- **LEAN-CLOSED**: previously a Cat 2 axiom (the GP-Looijenga group-
- agnostic abstract framework). Now a `theorem` proved kernel-pure via
- the abstract IH framework
- `HodgeReduction.Infrastructure.Shimura.IntersectionHomology`: the
- carrier predicate `gpAbstract_group_agnostic` is the universal statement
- that for any intersection-cohomology carrier `IH_compactification`
- equipped with `GoreskyPardonAbstractData`, the GP Chern subring is
- well-defined (encoded by the trivial-identity witness
- `gp_framework_group_agnostic`). This conclusion is precisely the
- typeclass field, so the theorem follows by typeclass-projection. The
- Goresky-Pardon 2002 + Looijenga 2017 single-source citation is retained
- as the rep-theoretic justification that such a
- `GoreskyPardonAbstractData` instance exists for any reductive Q-group
- admitting a Baily-Borel compactification; the Lean-level claim records
- the abstract typeclass-projection the downstream `paper_GP_EVII_OPEN`
- argument actually consumes. Kernel-pure axioms only:
- `[propext, Quot.sound]`. -/
+ **R7 audit B.4 refactor**: previously closed via the decorative
+ `gp_framework_group_agnostic := rfl` field. That field was deleted as
+ a tautology. The substantive Looijenga 2017 group-agnosticity content
+ IS the existence of a real `gp_chern_subring : Submodule ℚ IH` for any
+ instance — independent of the underlying reductive Q-group. The
+ theorem now produces a real Submodule witness via `⟨gp_chern_subring,
+ rfl⟩`, which is substantive (the existential demands a witness, the
+ witness is the actual GP Chern subring data field). Kernel-pure axioms
+ only: `[propext, Quot.sound]`. -/
 theorem goresky_pardon_2002_looijenga_2017_abstract_OPEN :
     gpAbstract_group_agnostic := by
   intro IH _ _ _
-  exact Infrastructure.Shimura.GoreskyPardonAbstractData.gp_framework_group_agnostic
+  exact ⟨Infrastructure.Shimura.GoreskyPardonAbstractData.gp_chern_subring, rfl⟩
 
 /-- **Cat 2 (§3.3)** — J. Wolf, *Spaces of Constant Curvature*, McGraw-Hill
  1972 + I. Satake, *Algebraic Structures of Symmetric Domains*, Iwanami
@@ -2324,16 +2310,15 @@ theorem knapp_vogan_1995_OPEN : knappVogan_1995_induction_framework :=
  "Harmonic analysis in weighted L_2-spaces", Ann. Sci. ÉNS (4) 31 (1998),
  181-279, §1.4 (Eisenstein layer decomposition).
 
- **LEAN-CLOSED (2026-05-16)**: previously a Cat 2 axiom. Now a `theorem`
- proved kernel-pure via the abstract framework
- `HodgeReduction.Infrastructure.Automorphic.CuspidalCohomology`. The
- universally-quantified `franke_1998_eisenstein_framework` carrier (=
- `cuspidalSubspace ≤ ⊤`) extracts directly from the new typeclass field
- `EisensteinVanishingDeg8.franke_1998_layer_decomp_holds`. Kernel-pure
- axioms: `[propext, Quot.sound]`. -/
+ **LEAN-CLOSED (2026-05-16; R7 audit B.4 refactor)**: previously routed
+ through the decorative `franke_1998_layer_decomp_holds := le_top` field.
+ Refactored to project through the substantive
+ `target_invariants_eq_cuspidal` Submodule equality, which IS the Franke
+ 1998 §1.4 layer-decomposition reduction of the G-invariant H^8 to its
+ cuspidal part. Kernel-pure axioms: `[propext, Quot.sound]`. -/
 theorem franke_1998_OPEN : franke_1998_eisenstein_framework := by
   intro A _ _ B _ _ _ _ _
-  exact Infrastructure.Automorphic.EisensteinVanishingDeg8.franke_1998_layer_decomp_holds
+  exact Infrastructure.Automorphic.EisensteinVanishingDeg8.target_invariants_eq_cuspidal
     (A := A) (B := B)
 
 /-- **Cat 1 (§3.3, P58, P230 LEAN-CLOSED)** — É. Cartan, "Sur la

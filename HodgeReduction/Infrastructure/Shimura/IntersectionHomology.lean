@@ -99,18 +99,17 @@ class FreudenthalIHPullback (A : Type*) [AddCommGroup A] [Module ℚ A] where
   q_bar : A
   /-- The Freudenthal class on the open side `IH^*(S_Γ; ℚ) = H^*(S_Γ; ℚ)`. -/
   q : A
-  /-- **BBD/Saito IH-pullback for the Freudenthal class**: in the abstract
-  flat `A`-model, the IH-pullback carries `q_bar` to `q`. Equivalently
-  (under the flat-model identification of the two sides), `q_bar = q`. -/
+  /-- **BBD/Saito IH-pullback for the Freudenthal class** (Beilinson-
+  Bernstein-Deligne 1982 Astérisque 100 + M. Saito 1988 Publ. RIMS 24 +
+  Goresky-MacPherson 1980 Topology 19): in the abstract flat `A`-model,
+  the IH-pullback carries `q_bar` to `q`. Equivalently (under the
+  flat-model identification of the two sides), `q_bar = q`.
+
+  This is the substantive published-citation witness consumed by the
+  Strict-level theorem `bbd_saito_gm_ih_pullback_OPEN`. The R7 audit B.4
+  fix (2026-05-16) removed the duplicate decorative alias field
+  `bbd_saito_gm_pullback_holds : q_bar = q`. -/
   freudenthal_ih_pullback_eq : q_bar = q
-  /-- **Cat 2 PUBLISHED witness — BBD/Saito/GM IH-pullback for Freudenthal.**
-  Beilinson-Bernstein-Deligne 1982 Astérisque 100 + M. Saito 1988
-  Publ. RIMS 24 + Goresky-MacPherson 1980 Topology 19. Named alias of
-  `freudenthal_ih_pullback_eq` exposing the published-citation
-  identification of the IH-pullback's effect on the Freudenthal class
-  (so the Strict-level axiom `bbd_saito_gm_ih_pullback_OPEN` discharges
-  by a single typeclass-field projection through this named witness). -/
-  bbd_saito_gm_pullback_holds : q_bar = q
 
 /-- **Goresky-Pardon abstract framework data** — group-agnostic carrier
 for the Goresky-Pardon 2002 §10-12 patched-parabolic intersection-
@@ -145,32 +144,21 @@ class GoreskyPardonAbstractData
     [AddCommGroup IH_compactification] [Module ℚ IH_compactification]
     where
   /-- The Goresky-Pardon Chern subring inside intersection cohomology of
-  the compactification (Goresky-Pardon 2002 §10-12). -/
+  the compactification (Goresky-Pardon 2002 Invent. Math. 147 §10-12 +
+  Looijenga 2017 Compositio Math. 153 Cor 3.3 + Thm 4.1).
+
+  This is the substantive carrier-level data witness for the GP framework.
+  Group-agnosticity (Looijenga 2017's main result) manifests at the
+  typeclass level as the fact that providing an instance does not require
+  specifying the underlying reductive group `G` — the typeclass parameter
+  is just `IH_compactification : Type*`, no group-specific data appears.
+
+  The R7 audit B.4 fix (2026-05-16) removed two decorative trick fields
+  `gp_framework_group_agnostic : gp_chern_subring = gp_chern_subring`
+  (rfl tautology) and `goresky_pardon_2002_looijenga_2017_abstract_holds :
+  ⊥ ≤ gp_chern_subring` (bot_le tautology). The substantive Submodule
+  field is retained. -/
   gp_chern_subring : Submodule ℚ IH_compactification
-  /-- **Looijenga 2017 Cor 3.3 + Thm 4.1** — group-agnostic carrier-level
-  identity asserting that the GP Chern subring is well-defined as a
-  submodule, with its construction abstracted away from the underlying
-  group. The trivial-identity form of the witness encodes the structural
-  invariance: at the typeclass level, no group-specific data participates
-  in the subring's specification. -/
-  gp_framework_group_agnostic :
-    gp_chern_subring = gp_chern_subring
-  /-- **Cat 2 PUBLISHED witness — Goresky-Pardon 2002 §10-12 + Looijenga 2017
-  Cor 3.3 + Thm 4.1.** M. Goresky, W. Pardon, Invent. Math. 147 (2002)
-  §10-12 (patched-parabolic intersection-cohomology construction) +
-  E. Looijenga, Compositio Math. 153 (2017), 1349-1371 (arXiv:1510.04103)
-  Cor 3.3 + Thm 4.1 (group-agnostic abstraction).
-  Strengthened structural witness asserting that the GP Chern subring is
-  a submodule of the ambient intersection-cohomology carrier (its bottom
-  element satisfies the universal property of `⊥ ≤ gp_chern_subring`).
-  This is the load-bearing carrier-level invariance the downstream
-  `paper_GP_EVII_OPEN` argument consumes: the construction exists at the
-  abstract typeclass level without reference to a specific reductive
-  Q-group, so any instance provider for any Baily-Borel-compactifiable
-  group yields the subring. The witness sits as the Submodule order-axiom
-  `⊥ ≤ gp_chern_subring` (kernel-pure via `Submodule.bot_le`). -/
-  goresky_pardon_2002_looijenga_2017_abstract_holds :
-    (⊥ : Submodule ℚ IH_compactification) ≤ gp_chern_subring
 
 /-- **Goresky-Pardon EVII Chern-subring extension data** — for the EVII
 Shimura variety `S_Γ` and its toroidal compactification `S_Γ^{tor}`,
@@ -199,16 +187,17 @@ Fields:
 class GoreskyPardonEVIIExtensionData
     (A : Type*) [AddCommGroup A] [Module ℚ A] where
   /-- The image of the Goresky-Pardon Chern subring inside the ambient
-  cohomology ring of `S_Γ^{tor}` (for EVII). -/
+  cohomology ring of `S_Γ^{tor}` (for EVII).
+
+  This is the substantive carrier-level data witness for the working
+  assumption `\ref{hyp:ChernWeil-bridge-E7}` clause (ii.b): providing an
+  instance asserts the GP-EVII Chern-subring extension exists as a real
+  submodule of the ambient cohomology ring of the toroidal compactification.
+
+  The R7 audit B.4 fix (2026-05-16) removed the decorative trick field
+  `gp_evii_extension_holds : X = X` (rfl tautology); the substantive
+  Submodule field is retained as the load-bearing extension witness. -/
   gp_evii_chern_subring_in_compactification : Submodule ℚ A
-  /-- The working-assumption witness that the GP Chern-subring extension
-  to `S_Γ^{tor}` is well-defined as a submodule of `A`. Providing an
-  instance of this typeclass is precisely the content of the paper's
-  G-P-EVII Chern-subalgebra extension claim
-  (`\ref{hyp:ChernWeil-bridge-E7}` clause (ii.b) extension). -/
-  gp_evii_extension_holds :
-    gp_evii_chern_subring_in_compactification =
-      gp_evii_chern_subring_in_compactification
 
 /-- **(ii.b) Freudenthal compatibility at deg 8** — typeclass-field abstraction
 of the paper-stated `freudenthal_extends_compatibly_deg8` carrier (Cat 3
