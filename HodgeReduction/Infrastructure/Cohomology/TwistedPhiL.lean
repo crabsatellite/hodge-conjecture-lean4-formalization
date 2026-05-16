@@ -238,6 +238,25 @@ This is the kernel-decidable arithmetic fact making the cross-ring twist
 genuinely "non-trivial". -/
 theorem coefficient_neg_48_ne_zero : (-48 : ℚ) ≠ 0 := by norm_num
 
+/-- **Cross-ring twist non-zero on q** — the genuine paper-novel
+conclusion `Φ_filt(q) ≠ 0`.
+
+Derived kernel-pure from three existing infrastructure facts:
+* `twistedPhiFilt_q_eq_neg_48_h_pow_4` (typeclass field): the P53
+  explicit cohomology identity `Φ_filt(q) = -48 • h^4`.
+* `KaehlerClass.h_pow_4_ne_zero` (typeclass field): the Borel-Hirzebruch
+  non-degeneracy `h^4 ≠ 0` in `H^8(Ě_VII; ℚ)`.
+* `coefficient_neg_48_ne_zero` (kernel-decidable `ℚ`-arithmetic):
+  `(-48 : ℚ) ≠ 0`.
+
+The third fact combined with `ℚ`-algebra structure rules out `-48 • h^4 = 0`
+when `h^4 ≠ 0` (no non-zero rational kills a non-zero element of a
+`ℚ`-algebra). -/
+theorem twistedPhiFilt_q_ne_zero :
+    twistedPhiFilt_q (A := A) ≠ 0 := by
+  rw [twistedPhiFilt_q_eq_neg_48_h_pow_4]
+  exact KaehlerClass.neg_48_h_pow_4_ne_zero
+
 end TwistedPhiFiltData
 
 end HodgeReduction.Infrastructure.Cohomology

@@ -31,6 +31,19 @@ Re-exports:
                                         explicit-content Cat 2 axioms +
                                         derived theorems + honest conditional
                                         structure for open targets.
+  * `HodgeReduction.Concrete`         — concrete instances of the abstract
+                                        HC framework typeclasses. First
+                                        sub-module: `HodgeReduction.Concrete.EVII`
+                                        gives a concrete carrier `A_EVII`
+                                        (= `Polynomial ℚ` at scaffolding stage)
+                                        with `CohomologyRing` / `KaehlerClass` /
+                                        `Lefschetz11Data` / `HodgeCycleData`
+                                        instances and a concrete
+                                        `FreudenthalClassData`; the sanity-check
+                                        theorem `HC_for_Concrete_EVII`
+                                        specialises the abstract closure
+                                        `HC_for_freudenthal_quartic_on_EVII_UNCONDITIONAL`
+                                        to a concrete witness.
 -/
 
 import HodgeReduction.Types
@@ -125,3 +138,4 @@ import HodgeReduction.Infrastructure.Automorphic.CuspidalCohomology
 import HodgeReduction.Infrastructure.LieAlgebra.Basic
 import HodgeReduction.Infrastructure.LieAlgebra.ReductiveGroup
 import HodgeReduction.Infrastructure.HCFramework
+import HodgeReduction.Concrete
