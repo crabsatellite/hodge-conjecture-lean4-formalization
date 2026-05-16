@@ -37,16 +37,35 @@ comparison theorem, Grothendieck-de Rham, Artin-Grothendieck, motive
 
 namespace HodgeReduction.Infrastructure.Cohomology
 
-variable (A : Type*) [AddCommGroup A] [Module ℚ A]
+/-- **Comparison theorem data** (Grothendieck-de Rham 1966):
 
-/-- **Comparison theorem data**:
+For a cohomology ring `A` carrying both `DeRhamData` (Hodge filtration
+`F : ℕ → Submodule ℚ A`) and `BettiCohomologyData` (integer lattice
+`Z_lattice : AddSubgroup A`), the comparison theorem asserts that the
+integer lattice is contained in the bottom Hodge filtration step `F^0`
+(via the rational lift). This is the load-bearing structural inclusion
+that the comparison isomorphism `H^*_{dR}(X; ℂ) ≃ H^*_B(X; ℂ)` restricts
+to on the integer lattice.
 
-* `Betti_to_dR` : the Betti → de Rham comparison (after extending scalars
-  to ℂ).
+**R7 audit B.3 refactor (2026-05-16)**: previously carried a
+`comparisonWitness : True` placeholder field with no mathematical
+content. Refactored to the substantive submodule inclusion
+`Z_lattice ⊆ F 0` whose TYPE depends on both `BettiCohomologyData` and
+`DeRhamData` typeclass parameters. Instance providers must produce a
+real membership-preserving proof.
 
-For our purposes we abstract the existence of such comparison. -/
-class ComparisonData where
-  /-- The comparison map (abstractly). -/
-  comparisonWitness : True
+The trivial instance for `Z_lattice = ⊥` discharges by `False.elim`
+after `Submodule.mem_bot`; for a non-trivial integer lattice the
+instance must use the published Grothendieck-de Rham comparison. -/
+class ComparisonData (A : Type*) [AddCommGroup A] [Module ℚ A]
+    [BettiCohomologyData A] [DeRhamData A] where
+  /-- **Grothendieck-de Rham comparison inclusion** (Grothendieck 1966):
+  every element of the Betti integer lattice lies in the bottom Hodge
+  filtration step `F^0` of de Rham cohomology. This is the load-bearing
+  structural content of the comparison isomorphism at the abstract A-level.
+  -/
+  lattice_in_F0 :
+    ∀ a : A, a ∈ BettiCohomologyData.Z_lattice (A := A) →
+      a ∈ DeRhamData.F (A := A) 0
 
 end HodgeReduction.Infrastructure.Cohomology

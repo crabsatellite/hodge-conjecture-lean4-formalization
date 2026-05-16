@@ -275,14 +275,16 @@ classification of θ-stable parabolics for `E_{7(-25)}`.
 * All structural axioms (`trivial_bottomDegree_zero`,
   `holoDiscrete_bottomDegree_eq_dim`, `salamancaRibaClassification`,
   `knappVoganUnitarity`) discharge by kernel `decide` on the §3
-  theorems.
-* The two framework witnesses
-  (`voganZuckerman_framework`, `knappVogan_induction`) are realised as
-  `True` (the Atlas classification is the concrete computational
-  realisation of both frameworks: the Vogan-Zuckerman 1984 θ-stable
-  parabolic enumeration + Knapp-Vogan 1995 cohomological induction
-  unitarity hold trivially on the finite list, since each label is
-  produced by Atlas as a unitary cohomologically-induced module).
+  theorems. These four substantive fields carry the entire framework
+  content: the Salamanca-Riba 1999 low-bottom-degree classification
+  IS the Vogan-Zuckerman 1984 testable consequence, and
+  `knappVoganUnitarity` IS the Knapp-Vogan 1995 Ch. XII Thm 9.1
+  unitarity transfer.
+* The decorative `voganZuckerman_framework`/`knappVogan_induction`
+  Prop fields and their `True := trivial` witnesses were removed from
+  `VZAqLambdaData` in the R7 audit B.1 fix (2026-05-16); they
+  carried no mathematical content. Strict.lean now projects through
+  the four substantive fields above.
 
 `noncomputable` because Mathlib's `Classical.choice` machinery is
 implicit in the typeclass field projection (the `Type`-valued field

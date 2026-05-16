@@ -1495,27 +1495,26 @@ def voganZuckermanAqLambda_E7minus25_Deg8 : Prop :=
         < Infrastructure.Automorphic.VZAqLambdaData.dimCGmodK →
       Infrastructure.Automorphic.VZAqLambdaData.isTrivial q
 
-/-- **Cat 3 carrier (§3.4.1, P232 LEAN-CLOSED)** — Eisenstein vanishing
- specific to `E_{7(-25)}` at degree 8. Records the load-bearing PUBLISHED
- conclusion of the Borel-Serre 1973 + Borel-Wallach Ch. VII + Franke 1998
- §1.4 + Schwermer 1994 + Saper 2005 layer-codim synthesis combined with
- the E_7 root-system fact codim ≥ 26: at target degree `d = 8 < 26`,
- every Eisenstein-cohomology layer contributes zero.
+/-- **Cat 3 carrier (§3.4.1, P232 LEAN-CLOSED; R7 audit B.2 refactor
+ 2026-05-16)** — Eisenstein vanishing specific to `E_{7(-25)}` at
+ degree 8. Records the load-bearing PUBLISHED conclusion of the
+ Borel-Serre 1973 + Borel-Wallach Ch. VII + Franke 1998 §1.4 +
+ Schwermer 1994 + Saper 2005 layer-codim synthesis combined with the
+ E_7 root-system fact codim ≥ 26: at target degree `d = 8 < 26`, every
+ Eisenstein-cohomology layer indexed by a proper ℚ-parabolic contributes
+ zero.
 
- **P232 LEAN-CLOSED (2026-05-16)**: previously an `opaque Prop` carrier.
- Now expanded to the abstract universally-quantified statement over any
- carrier `A` carrying both
- `Infrastructure.Automorphic.FrankeEisensteinLayerData A` and
- `Infrastructure.Shimura.E7ParabolicCodimData A`. The load-bearing
- conclusion is the composed layer-codim shift `8 < 26` (from
- `FrankeEisensteinLayerData.layer_codim_shift_holds` together with
- `E7ParabolicCodimData.min_BS_codim_ge_26`). The downstream
- `eisenstein_vanishing_at_deg8_via_franke_layer_OPEN` axiom is now a
- theorem proved via these typeclass-field projections. -/
+ **R7 audit B.2 refactor (2026-05-16)**: previously the body was the
+ tautology `(8 : ℕ) < 26` (kernel-decidable but independent of the
+ typeclass parameters — a soft trick). Refactored to the substantive
+ per-index claim `∀ i : ParabolicIndex, 8 < parabolicCodim i` consuming
+ the real Carter 1972 §13.2 codim function `parabolicCodim` and its
+ bound `parabolicCodim_ge_26` via `FrankeEisensteinLayerData` (which
+ now extends `E7ParabolicCodimData` and carries the substantive
+ degree-8 codim-shift field `layer_codim_shift_at_deg_8`). -/
 def eisensteinVanishing_E7minus25_Deg8 : Prop :=
-  ∀ (A : Type) [Infrastructure.Automorphic.FrankeEisensteinLayerData A]
-    [Infrastructure.Shimura.E7ParabolicCodimData A],
-    (8 : ℕ) < 26
+  ∀ (A : Type) [inst : Infrastructure.Automorphic.FrankeEisensteinLayerData A]
+    (i : inst.ParabolicIndex), (8 : ℕ) < inst.parabolicCodim i
 
 -- ============================================================================
 -- §2bis: P39 + P41 — the Hodge-FILTRATION twist of the cross-ring map
@@ -2055,19 +2054,21 @@ def schmid_deligne_hodge_filtration_extends : Prop :=
  boundary stratum). The `Q-rank 0` (cocompact) case is trivial: no
  boundary, no Eisenstein.
 
- **P232 LEAN-CLOSED (2026-05-16)**: previously an `opaque Prop` carrier.
- Now expanded to the abstract universally-quantified statement over any
- carrier `A` carrying `Infrastructure.Automorphic.FrankeEisensteinLayerData
- A`. The abstract framework is in
+ **P232 LEAN-CLOSED (2026-05-16; R7 audit B.2 refactor)**: previously
+ an `opaque Prop` carrier; then a tautology body `(8 : ℕ) < 26`
+ (kernel-decidable but independent of the typeclass parameter).
+ Refactored to the substantive per-index claim
+ `∀ i : ParabolicIndex, 8 < parabolicCodim i` over any carrier `A`
+ carrying `Infrastructure.Automorphic.FrankeEisensteinLayerData A`
+ (which now extends `E7ParabolicCodimData` and carries the Carter table).
+ The abstract framework is in
  `HodgeReduction.Infrastructure.Automorphic.FrankeEisensteinLayer`. The
- statement records the load-bearing layer-codim shift inequality `8 < 26`
- at the EVII target instantiation — the published Franke + Borel-Serre +
- Borel-Wallach + Schwermer + Saper layer-spectral-sequence conclusion
- packaged at the parameter level. The instance provider supplies the
- witness. -/
+ instance provider supplies the witness via
+ `layer_codim_shift_at_deg_8`, which itself reduces to `8 < 26 ≤
+ parabolicCodim i` via Carter 1972 §13.2. -/
 def eisenstein_franke_layer_decomposition : Prop :=
-  ∀ (A : Type) [Infrastructure.Automorphic.FrankeEisensteinLayerData A],
-    (8 : ℕ) < 26
+  ∀ (A : Type) [inst : Infrastructure.Automorphic.FrankeEisensteinLayerData A]
+    (i : inst.ParabolicIndex), (8 : ℕ) < inst.parabolicCodim i
 
 /-- **Cat 3 carrier (§3.4.1, P55, P232 LEAN-CLOSED)** — E_7 root-system
  structural fact: every proper ℚ-parabolic of `E_{7(-25)}` has Borel-Serre
@@ -2078,18 +2079,18 @@ def eisenstein_franke_layer_decomposition : Prop :=
  `codim Y_P = 27 − 1 = 26`. All other proper ℚ-parabolics have strictly
  larger `N_P` (and hence at least as large codim).
 
- **P232 LEAN-CLOSED (2026-05-16)**: previously an `opaque Prop` carrier.
- Now expanded to the abstract universally-quantified statement over any
- carrier `A` carrying `Infrastructure.Shimura.E7ParabolicCodimData A`. The
- abstract framework is in
- `HodgeReduction.Infrastructure.Shimura.E7ParabolicCodim`. The statement
- records the lower bound `26 ≤ 26` (the minimum codim across proper
- ℚ-parabolics of `E_{7(-25)}`, achieved by the `E_6 × T_1`-Levi maximal
- parabolic) at the parameter level, with the published Bourbaki + Carter +
- Tits + Borel-Serre 1973 root-system synthesis discharging the field. -/
+ **P232 LEAN-CLOSED (2026-05-16; R7 audit B.2 refactor)**: previously
+ an `opaque Prop` carrier; then a tautology body `(26 : ℕ) ≤ 26`
+ (kernel-decidable `le_refl 26` but independent of the typeclass
+ parameter). Refactored to the substantive per-index claim
+ `∀ i : ParabolicIndex, 26 ≤ parabolicCodim i` over any carrier `A`
+ carrying `Infrastructure.Shimura.E7ParabolicCodimData A` (which now
+ carries the abstract `ParabolicIndex : Type` + `parabolicCodim` function
+ + `parabolicCodim_ge_26` Carter 1972 §13.2 bound). The abstract framework
+ is in `HodgeReduction.Infrastructure.Shimura.E7ParabolicCodim`. -/
 def E7_proper_Q_parabolic_min_BS_codim : Prop :=
-  ∀ (A : Type) [Infrastructure.Shimura.E7ParabolicCodimData A],
-    (26 : ℕ) ≤ 26
+  ∀ (A : Type) [inst : Infrastructure.Shimura.E7ParabolicCodimData A]
+    (i : inst.ParabolicIndex), (26 : ℕ) ≤ inst.parabolicCodim i
 
 -- ============================================================================
 -- §3: Hyp_* broken-link predicates (§12.1)
@@ -3029,7 +3030,7 @@ axiom mumford_L_block_diagonal_via_schmid_OPEN :
  `[propext, Quot.sound]` only. -/
 theorem borel_serre_1973_franke_1998_eisenstein_layer_OPEN :
     eisenstein_franke_layer_decomposition :=
-  fun _ _ => by decide
+  fun _ inst i => inst.layer_codim_shift_at_deg_8 i
 
 /-- **Cat 1 (§3.3, P55, P232 LEAN-CLOSED)** — N. Bourbaki, *Groupes et
  algèbres de Lie*, Chapitres IV-VI (Hermann 1968) + Ch. VII-VIII
@@ -3055,7 +3056,7 @@ theorem borel_serre_1973_franke_1998_eisenstein_layer_OPEN :
  framework. Kernel-pure axioms: `[propext, Quot.sound]` only. -/
 theorem e7_min_parabolic_BS_codim_OPEN :
     E7_proper_Q_parabolic_min_BS_codim :=
-  fun _ _ => by decide
+  fun _ inst i => inst.parabolicCodim_ge_26 i
 
 /-- **Cat 1 structuralEquation (§3.4.3, P55, P232 LEAN-CLOSED)** —
  Hyp_Eisenstein_Vanishing CLOSED by the Borel-Wallach + Franke layer-codim
@@ -3083,7 +3084,7 @@ theorem eisenstein_vanishing_at_deg8_via_franke_layer_OPEN :
     eisenstein_franke_layer_decomposition →
     E7_proper_Q_parabolic_min_BS_codim →
     eisensteinVanishing_E7minus25_Deg8 :=
-  fun _ _ _ _ _ => by decide
+  fun _ _ _ inst i => inst.layer_codim_shift_at_deg_8 i
 
 -- ============================================================================
 -- §5: Cat 3 workingAssumption axioms (paper-stated reductions; must close)

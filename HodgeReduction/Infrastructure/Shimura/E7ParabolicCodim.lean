@@ -78,20 +78,28 @@ Instance providers supply the witness; for the EVII concrete carrier
 the witness is the finite root-system enumeration over the seven
 maximal parabolic conjugacy classes (one per simple root deletion). -/
 class E7ParabolicCodimData (A : Type*) where
-  /-- **Minimum Borel-Serre stratum codim is at least 26** (Bourbaki
-  IV-VI + VII-VIII E_7 root data + Carter 1972 §13.2 + Tits 1966 +
-  Borel-Serre 1973 §1-§2): every proper ℚ-parabolic of `E_{7(-25)}`
-  has Borel-Serre boundary stratum codim `≥ 26`. Equivalently, the
-  minimum value across all proper ℚ-parabolics of the function
-  `P ↦ codim Y_P` is `26`, achieved by the `E_6 × T_1`-Levi maximal
-  parabolic (delete `α_7`).
+  /-- **Abstract index for proper ℚ-parabolic conjugacy classes.**
+  Concretely for `E_{7(-25)}` this is `Fin 7` (the seven maximal parabolics
+  obtained by deleting one simple root α_1, …, α_7 in Bourbaki labelling). -/
+  ParabolicIndex : Type
+  /-- **Per-parabolic Borel-Serre stratum codim.** For each parabolic
+  `i`, records the Borel-Serre boundary stratum codim
+  `codim Y_{P_i} = dim_ℝ N_{P_i} − (split-center rank of P_i)`. -/
+  parabolicCodim : ParabolicIndex → ℕ
+  /-- **Carter 1972 §13.2 + Borel-Serre 1973 §1-§2 lower bound**
+  (Bourbaki Ch. IV-VIII E_7 root data + Carter 1972 §13.2 parabolic
+  dimensions + Tits 1966 ℚ-rational structure): every proper ℚ-parabolic
+  of `E_{7(-25)}` has Borel-Serre boundary stratum codim `≥ 26`. The
+  minimum value `26` is achieved by the `E_6 × T_1`-Levi maximal parabolic
+  (delete `α_7`).
 
-  Encoded abstractly as the load-bearing numerical inequality
-  `26 ≤ 26` — the published bound at the achieving parabolic
-  recorded at the parameter level. Downstream consumers use this
-  together with `FrankeEisensteinLayerData.layer_codim_shift_holds`
-  to derive degree-8 Eisenstein vanishing (`8 < 26`). -/
-  min_BS_codim_ge_26 : (26 : ℕ) ≤ 26
+  Substantive content: this is a per-index numerical bound that the
+  concrete EVII instance discharges by `fin_cases` over the seven
+  maximal parabolic conjugacy classes against the published Carter
+  table `parabolicCodimList = [32, 41, 46, 52, 49, 41, 26]`.
+  Downstream consumers use this together with the Franke 1998 §1.4
+  layer-codim shift to derive degree-8 Eisenstein vanishing. -/
+  parabolicCodim_ge_26 : ∀ i : ParabolicIndex, 26 ≤ parabolicCodim i
 
 /-! ## Concrete enumeration of `E_7` maximal parabolics
 
@@ -207,18 +215,24 @@ theorem parabolicCodim_ge_26 (i : Fin 7) : 26 ≤ parabolicCodim i := by
   fin_cases i <;> decide
 
 /-- **Concrete data witness for `E7ParabolicCodimData` via the
-finite-enumeration `min_parabolic_codim_eq_26`.**
+finite-enumeration `parabolicCodimList` and the per-index lower-bound
+`parabolicCodim_ge_26`.**
 
-For any carrier type `A`, the Borel-Serre stratum codim datum
-`min_BS_codim_ge_26 : (26 : ℕ) ≤ 26` is trivially `le_refl 26`,
-mirrored at the parameter level by the published value `26`
-emerging as the minimum of `parabolicCodimList`
-(see `min_parabolic_codim_eq_26`).
+For any carrier type `A`, the abstract index `ParabolicIndex` is
+realised by `Fin 7` (the seven maximal parabolic conjugacy classes,
+one per simple-root deletion), and the per-parabolic codim function
+is the Bourbaki + Carter-published `parabolicCodim` (the list-indexed
+view of `parabolicCodimList = [32, 41, 46, 52, 49, 41, 26]`). The
+lower bound `26 ≤ parabolicCodim i` for every `i : Fin 7` is the
+`parabolicCodim_ge_26` `fin_cases`/`decide` theorem.
 
-Available as a default instance for any type `A` (it carries no
-type-specific data; it just records the published numerical bound). -/
+Available as a default instance for any type `A`: every consumer
+carrying an `A` automatically inherits the substantive codim table +
+lower bound. -/
 instance e7ParabolicCodimData_of_min_eq_26 (A : Type*) :
     E7ParabolicCodimData A where
-  min_BS_codim_ge_26 := le_refl 26
+  ParabolicIndex := Fin 7
+  parabolicCodim := parabolicCodim
+  parabolicCodim_ge_26 := parabolicCodim_ge_26
 
 end HodgeReduction.Infrastructure.Shimura

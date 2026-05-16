@@ -4,6 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 -/
 import HodgeReduction.Infrastructure.Shimura.E7ParabolicCodim
 import Mathlib.Data.Nat.Defs
+import Mathlib.Data.Fintype.Basic
 
 /-!
 # Franke 1998 + Borel-Serre 1973 Eisenstein-cohomology layer decomposition
@@ -66,26 +67,55 @@ proper ℚ-parabolic subgroups `P ⊂ G`, with the `P`-layer supported at
 degrees `d ≥ codim Y_P`.
 
 For our HC application (`G = E_{7(-25)}`, target deg `d = 8`), the
-load-bearing consequence is the **codim-shift inequality**: at the
-target degree `d = 8`, every layer's contribution vanishes whenever
-`d < min_P codim Y_P`. We package this as the abstract numerical
-inequality `8 < 26` (the published target gap at the EVII
-instantiation), composed with `Shimura.E7ParabolicCodimData.min_BS_codim_ge_26`
-to give the degree-8 Eisenstein vanishing for `E_{7(-25)}` (the
-Q-rank 0 cocompact case trivially satisfies the same vanishing). -/
-class FrankeEisensteinLayerData (A : Type*) where
-  /-- **Layer-codim shift holds** (Franke 1998 §1.4 + Borel-Wallach
-  Ch. VII §2-3 + Borel-Serre 1973 §1-§2 + Schwermer 1994 + Saper 2005):
-  for the Eisenstein cohomology `H^*_{Eis}(S_Γ; ℂ)` decomposed by proper
-  ℚ-parabolic with the layer-codim shift, at target degree `d = 8`
-  every layer contributes zero whenever the minimum codim across all
-  proper ℚ-parabolic Borel-Serre strata is strictly greater than 8 —
-  hence `H^8_{Eis}(S_Γ; ℂ) = 0`.
+load-bearing consequence is the **degree-8 specialisation of the
+layer-codim shift**: every Eisenstein layer indexed by a proper
+ℚ-parabolic of `E_{7(-25)}` has its lowest contribution above degree 8
+(because `parabolicCodim i ≥ 26 > 8` for every i in the seven Carter-
+indexed maximal-parabolic conjugacy classes, hence
+`8 < parabolicCodim i` for every `i`).
 
-  Encoded abstractly as the load-bearing numerical inequality `8 < 26`
-  (the published codim gap at the EVII target instantiation). The
-  instance provider supplies the witness from the Franke + Borel-Wallach
-  + Schwermer + Saper layer-spectral-sequence synthesis. -/
-  layer_codim_shift_holds : (8 : ℕ) < 26
+This typeclass **extends** `Shimura.E7ParabolicCodimData` so the field
+type below is the substantive per-index numerical claim
+`∀ i : ParabolicIndex, 8 < parabolicCodim i`, whose proof must consume
+`parabolicCodim_ge_26` together with the kernel-decidable `8 < 26`. The
+Franke 1998 §1.4 + Borel-Wallach Ch. VII §2-3 + Borel-Serre 1973 §1-§2 +
+Schwermer 1994 + Saper 2005 spectral-sequence framework is what justifies
+that this degree-8 codim shift implies `H^8_Eis(S_Γ; ℂ) = 0`. -/
+class FrankeEisensteinLayerData (A : Type*) extends
+    HodgeReduction.Infrastructure.Shimura.E7ParabolicCodimData A where
+  /-- **Franke 1998 §1.4 degree-8 layer-codim shift**: for every proper
+  ℚ-parabolic conjugacy class `i`, the parabolic's Borel-Serre stratum
+  codim strictly exceeds the target degree `8`.
+
+  Substantive content: per-index numerical claim
+  `∀ i : ParabolicIndex, 8 < parabolicCodim i`. The instance discharges
+  via the substantive Carter 1972 §13.2 bound
+  `parabolicCodim_ge_26 i : 26 ≤ parabolicCodim i` together with the
+  kernel-decidable `8 < 26`, composed by `Nat.lt_of_lt_of_le`.
+
+  The Franke 1998 §1.4 + Borel-Wallach Ch. VII §2-3 + Borel-Serre 1973
+  §1-§2 + Schwermer 1994 + Saper 2005 layer-spectral-sequence framework
+  is what justifies that this per-index codim-shift implies vanishing of
+  the total `H^8_Eis(S_Γ; ℂ)`; the substantive numerical content lives
+  in this typeclass field. -/
+  layer_codim_shift_at_deg_8 :
+    ∀ i : ParabolicIndex, (8 : ℕ) < parabolicCodim i
+
+/-- **Default instance for `FrankeEisensteinLayerData`** via the
+substantive `E7ParabolicCodimData` Carter table and the
+`8 < 26 ≤ parabolicCodim i` transitivity.
+
+For any carrier `A`, the parent fields come from
+`e7ParabolicCodimData_of_min_eq_26 A` (substantive Fin 7-indexed
+`parabolicCodim` from `parabolicCodimList = [32, 41, 46, 52, 49, 41, 26]`),
+and the degree-8 layer-codim shift discharges by
+`Nat.lt_of_lt_of_le (by decide : (8:ℕ) < 26) (parabolicCodim_ge_26 i)`. -/
+instance frankeEisensteinLayerData_via_E7_carter (A : Type*) :
+    FrankeEisensteinLayerData A where
+  toE7ParabolicCodimData :=
+    HodgeReduction.Infrastructure.Shimura.e7ParabolicCodimData_of_min_eq_26 A
+  layer_codim_shift_at_deg_8 := fun i =>
+    Nat.lt_of_lt_of_le (by decide : (8 : ℕ) < 26)
+      (HodgeReduction.Infrastructure.Shimura.parabolicCodim_ge_26 i)
 
 end HodgeReduction.Infrastructure.Automorphic

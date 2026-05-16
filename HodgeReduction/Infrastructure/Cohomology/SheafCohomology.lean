@@ -37,19 +37,19 @@ namespace HodgeReduction.Infrastructure.Cohomology
 /-- **Sheaf cohomology data** for a smooth projective variety:
 
 * `H_pq` : the Hodge `(p, q)`-piece for `p + q = k`.
-* `H_k_decomp` : `H^k(X; ℂ) = ⨁_{p+q=k} H^{p,q}`.
 
 For our HC application: this is the Hodge decomposition at the
 abstract level. The full theory requires complex-analytic input
-(de Rham / Dolbeault cohomology). -/
+(de Rham / Dolbeault cohomology).
+
+**R7 audit B.3 refactor (2026-05-16)**: previously carried a
+`H_pq_bigrading_compatible : True` placeholder field with no
+mathematical content. That field was deleted. The substantive
+`H_pq : ℕ → ℕ → Submodule ℚ A` Submodule-valued data is retained;
+downstream consumers will refine this with concrete bigrading axioms
+on a per-variety basis (e.g., `V56HodgeDecomp`). -/
 class SheafCohomologyData (A : Type*) [AddCommGroup A] [Module ℚ A] where
   /-- The `(p, q)`-Hodge piece of `A`. -/
   H_pq : ℕ → ℕ → Submodule ℚ A
-  /-- The Hodge bigrading is compatible: `H^{p,q}` lives in degree
-  `2(p + q)` (cohomological convention).
-
-  We don't enforce the full direct-sum decomposition here; that's a
-  refinement. -/
-  H_pq_bigrading_compatible : True  -- placeholder for compatibility axiom
 
 end HodgeReduction.Infrastructure.Cohomology
