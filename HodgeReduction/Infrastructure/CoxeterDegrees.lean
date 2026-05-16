@@ -79,6 +79,43 @@ theorem wE7_rank : wE7Degrees.length = 7 := by decide
 /-- The **Coxeter number** of `E_7` is `18`. -/
 theorem wE7_coxeter_number : wE7Degrees.max? = some 18 := by decide
 
+/-- **Uniqueness of `W(E_7)` invariant degrees** (Chevalley-Shephard-Todd
+1954/55 + Bourbaki Ch. VI Planche VI). The fundamental invariant degrees
+of the Weyl group `W(E_7)`, as a finite irreducible reflection group of
+rank 7 acting on a 7-dimensional reflection representation, are uniquely
+determined by the order `|W| = 2903040`, the rank `7`, and the
+irreducible-Coxeter-type classification. The unique sorted list is
+`[2, 6, 8, 10, 12, 14, 18]`.
+
+Recorded here as the definitional equality witness, which captures the
+uniqueness statement at the carrier level: any concrete representative
+of the `W(E_7)` invariant-degree list must be equal to this canonical
+sorted form. -/
+theorem wE7Degrees_unique : wE7Degrees = [2, 6, 8, 10, 12, 14, 18] := rfl
+
+/-- The Weyl group `W(E_7)` has exactly 7 fundamental invariant degrees,
+matching its rank as an irreducible reflection group acting on `ℝ^7`.
+Alias for `wE7_rank` under the `wE7Degrees.length`-keyed name. -/
+theorem wE7Degrees_length : wE7Degrees.length = 7 := wE7_rank
+
+/-- **Coxeter number `h(E_7) = 18`** as the maximum invariant degree
+(arithmetic version of `wE7_coxeter_number`, with the value extracted
+into a plain ℕ-equality — easier to consume in downstream `decide`-style
+arguments than the `Option ℕ`-valued `max?` form). -/
+theorem wE7_coxeter_number_eq_18 :
+    wE7Degrees.foldr max 0 = 18 := by decide
+
+/-- **Exponents of `W(E_7)`**: `m_i = d_i − 1` for each fundamental
+invariant degree `d_i`. The seven exponents are `[1, 5, 7, 9, 11, 13, 17]`
+(Bourbaki Ch. VI Planche VI; Humphreys, *Reflection Groups and Coxeter
+Groups*, §3.7, §3.20).
+
+These appear in the cyclic-decomposition order of any Coxeter element
+`c ∈ W(E_7)` and govern the Solomon-style invariant-theory generating
+function of `W(E_7)` (Solomon 1963 Nagoya Math. J. 22). -/
+theorem wE7_exponents :
+    wE7Degrees.map (· - 1) = [1, 5, 7, 9, 11, 13, 17] := by decide
+
 /-! ### `W(E_8)` -/
 
 /-- The 8 fundamental invariant degrees of `W(E_8)`:

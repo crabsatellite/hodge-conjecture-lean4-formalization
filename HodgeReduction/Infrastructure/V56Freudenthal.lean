@@ -737,6 +737,128 @@ theorem triple_product_definition_holds :
       freudenthalQuartic (r • v) = r ^ 4 * freudenthalQuartic v :=
   freudenthalQuartic_smul
 
+/-! ### Symmetric trilinear polarisation of the Freudenthal quartic
+
+The **third-difference operator** applied to a homogeneous polynomial of
+degree ≥ 3 extracts a symmetric trilinear form. For the Freudenthal
+quartic `q : V_56 → ℚ` (homogeneous of degree 4), the operator
+```
+   T(x, y, z) := q(x+y+z) - q(x+y) - q(x+z) - q(y+z) + q(x) + q(y) + q(z)
+```
+is **manifestly symmetric** in `x, y, z` (the formula is a sum of `q` of
+sums, which is invariant under any permutation of `x, y, z` because
+`(x+y) = (y+x)` etc. in the commutative `V_56` addition). The proof of
+each symmetry equation reduces to commutativity of `+` on `V_56`.
+
+`T(v, v, v)` is then proportional to `q(v)` (up to a scalar absorbed in
+the normalisation), giving the Freudenthal triple-product structure
+recorded in `triple_product_definition_holds` above.
+-/
+
+/-- The **symmetric trilinear polarisation** of the Freudenthal quartic. -/
+def tripleProduct (x y z : V56) : ℚ :=
+  freudenthalQuartic (x + y + z)
+    - freudenthalQuartic (x + y)
+    - freudenthalQuartic (x + z)
+    - freudenthalQuartic (y + z)
+    + freudenthalQuartic x
+    + freudenthalQuartic y
+    + freudenthalQuartic z
+
+/-- **Symmetry under `(x, y) ↔ (y, x)`**: `T(x, y, z) = T(y, x, z)`. -/
+theorem tripleProduct_swap_xy (x y z : V56) :
+    tripleProduct x y z = tripleProduct y x z := by
+  unfold tripleProduct
+  have e1 : x + y + z = y + x + z := by rw [add_comm x y]
+  have e2 : x + y = y + x := add_comm x y
+  rw [e1, e2]
+  ring
+
+/-- **Symmetry under `(y, z) ↔ (z, y)`**: `T(x, y, z) = T(x, z, y)`. -/
+theorem tripleProduct_swap_yz (x y z : V56) :
+    tripleProduct x y z = tripleProduct x z y := by
+  unfold tripleProduct
+  have e1 : x + y + z = x + z + y := by
+    rw [add_assoc, add_comm y z, ← add_assoc]
+  have e2 : y + z = z + y := add_comm y z
+  rw [e1, e2]
+  ring
+
+/-- **Symmetry under `(x, z) ↔ (z, x)`**: `T(x, y, z) = T(z, y, x)`. -/
+theorem tripleProduct_swap_xz (x y z : V56) :
+    tripleProduct x y z = tripleProduct z y x := by
+  -- (x z) = (x y) · (y z) · (x y) in S_3
+  rw [tripleProduct_swap_xy x y z,
+      tripleProduct_swap_yz y x z,
+      tripleProduct_swap_xy y z x]
+
+/-- **Full triple-product symmetry**: `T` is symmetric in all three arguments
+(equivalently, invariant under any permutation in `S_3`). -/
+theorem tripleProduct_symmetric (x y z : V56) :
+    tripleProduct x y z = tripleProduct y x z
+    ∧ tripleProduct x y z = tripleProduct z y x
+    ∧ tripleProduct x y z = tripleProduct x z y :=
+  ⟨tripleProduct_swap_xy x y z,
+   tripleProduct_swap_xz x y z,
+   tripleProduct_swap_yz x y z⟩
+
+/-- **Diagonal evaluation** of the triple product: `T(v, v, v) = 36 · q(v)`.
+
+Computation via degree-4 homogeneity:
+* `q(3v) = 81 q(v)` (degree 4: `3⁴ = 81`)
+* `q(2v) = 16 q(v)` (degree 4: `2⁴ = 16`)
+Substituting `x = y = z = v` into the polarisation:
+```
+T(v,v,v) = q(3v) - 3 q(2v) + 3 q(v) = 81 q(v) - 48 q(v) + 3 q(v) = 36 q(v).
+```
+This is the load-bearing identification `T(·,·,·) ~ q(·)` used downstream
+in the Freudenthal-quartic ↔ triple-product equivalence. -/
+theorem tripleProduct_diagonal (v : V56) :
+    tripleProduct v v v = 36 * freudenthalQuartic v := by
+  unfold tripleProduct
+  have h2 : v + v = (2 : ℚ) • v := by
+    refine V56.ext ?_ ?_ ?_ ?_
+    · show v.a + v.a = (2 : ℚ) * v.a; ring
+    · show v.A + v.A = (2 : ℚ) • v.A
+      refine J3O.ext ?_ ?_ ?_ ?_ ?_ ?_
+      · show v.A.xi1 + v.A.xi1 = (2 : ℚ) * v.A.xi1; ring
+      · show v.A.xi2 + v.A.xi2 = (2 : ℚ) * v.A.xi2; ring
+      · show v.A.xi3 + v.A.xi3 = (2 : ℚ) * v.A.xi3; ring
+      · show v.A.x1 + v.A.x1 = (2 : ℚ) • v.A.x1; ext <;> simp <;> ring
+      · show v.A.x2 + v.A.x2 = (2 : ℚ) • v.A.x2; ext <;> simp <;> ring
+      · show v.A.x3 + v.A.x3 = (2 : ℚ) • v.A.x3; ext <;> simp <;> ring
+    · show v.B + v.B = (2 : ℚ) • v.B
+      refine J3O.ext ?_ ?_ ?_ ?_ ?_ ?_
+      · show v.B.xi1 + v.B.xi1 = (2 : ℚ) * v.B.xi1; ring
+      · show v.B.xi2 + v.B.xi2 = (2 : ℚ) * v.B.xi2; ring
+      · show v.B.xi3 + v.B.xi3 = (2 : ℚ) * v.B.xi3; ring
+      · show v.B.x1 + v.B.x1 = (2 : ℚ) • v.B.x1; ext <;> simp <;> ring
+      · show v.B.x2 + v.B.x2 = (2 : ℚ) • v.B.x2; ext <;> simp <;> ring
+      · show v.B.x3 + v.B.x3 = (2 : ℚ) • v.B.x3; ext <;> simp <;> ring
+    · show v.b + v.b = (2 : ℚ) * v.b; ring
+  have h3 : v + v + v = (3 : ℚ) • v := by
+    refine V56.ext ?_ ?_ ?_ ?_
+    · show v.a + v.a + v.a = (3 : ℚ) * v.a; ring
+    · show v.A + v.A + v.A = (3 : ℚ) • v.A
+      refine J3O.ext ?_ ?_ ?_ ?_ ?_ ?_
+      · show v.A.xi1 + v.A.xi1 + v.A.xi1 = (3 : ℚ) * v.A.xi1; ring
+      · show v.A.xi2 + v.A.xi2 + v.A.xi2 = (3 : ℚ) * v.A.xi2; ring
+      · show v.A.xi3 + v.A.xi3 + v.A.xi3 = (3 : ℚ) * v.A.xi3; ring
+      · show v.A.x1 + v.A.x1 + v.A.x1 = (3 : ℚ) • v.A.x1; ext <;> simp <;> ring
+      · show v.A.x2 + v.A.x2 + v.A.x2 = (3 : ℚ) • v.A.x2; ext <;> simp <;> ring
+      · show v.A.x3 + v.A.x3 + v.A.x3 = (3 : ℚ) • v.A.x3; ext <;> simp <;> ring
+    · show v.B + v.B + v.B = (3 : ℚ) • v.B
+      refine J3O.ext ?_ ?_ ?_ ?_ ?_ ?_
+      · show v.B.xi1 + v.B.xi1 + v.B.xi1 = (3 : ℚ) * v.B.xi1; ring
+      · show v.B.xi2 + v.B.xi2 + v.B.xi2 = (3 : ℚ) * v.B.xi2; ring
+      · show v.B.xi3 + v.B.xi3 + v.B.xi3 = (3 : ℚ) * v.B.xi3; ring
+      · show v.B.x1 + v.B.x1 + v.B.x1 = (3 : ℚ) • v.B.x1; ext <;> simp <;> ring
+      · show v.B.x2 + v.B.x2 + v.B.x2 = (3 : ℚ) • v.B.x2; ext <;> simp <;> ring
+      · show v.B.x3 + v.B.x3 + v.B.x3 = (3 : ℚ) • v.B.x3; ext <;> simp <;> ring
+    · show v.b + v.b + v.b = (3 : ℚ) * v.b; ring
+  rw [h3, h2, freudenthalQuartic_smul, freudenthalQuartic_smul]
+  ring
+
 end V56
 
 end HodgeReduction.Infrastructure

@@ -59,6 +59,7 @@ import HodgeReduction.Infrastructure.Octonion
 import HodgeReduction.Infrastructure.JordanJ3O
 import HodgeReduction.Infrastructure.V56Freudenthal
 import HodgeReduction.Infrastructure.CoxeterDegrees
+import HodgeReduction.Infrastructure.PoincarePolynomialEVII
 import HodgeReduction.Infrastructure.OctonionBasis
 import HodgeReduction.Infrastructure.JordanJ3OBasis
 import HodgeReduction.Infrastructure.V56Basis
@@ -131,6 +132,7 @@ import HodgeReduction.Infrastructure.Shimura.ArithmeticGroup
 import HodgeReduction.Infrastructure.Shimura.E7ParabolicCodim
 import HodgeReduction.Infrastructure.Automorphic.Basic
 import HodgeReduction.Infrastructure.Automorphic.VoganZuckerman
+import HodgeReduction.Infrastructure.Automorphic.AtlasE7minus25
 import HodgeReduction.Infrastructure.Automorphic.BorelBottWeil
 import HodgeReduction.Infrastructure.Automorphic.HeckeCorrespondence
 import HodgeReduction.Infrastructure.Automorphic.ModularForm

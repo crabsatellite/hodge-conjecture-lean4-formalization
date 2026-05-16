@@ -343,6 +343,39 @@ theorem mul_right_alt (y x : OctonionQ) : (y * x) * x = y * (x * x) := by
 theorem mul_flex (x y : OctonionQ) : (x * y) * x = x * (y * x) := by
   ext <;> simp <;> ring
 
+/-! ### Moufang identities
+
+The two **Moufang identities** are stronger consequences of alternativity
+that hold in every alternative algebra (Artin's theorem):
+
+* `moufang_left`: `x · (y · (x · z)) = ((x · y) · x) · z`
+* `moufang_right`: `((z · x) · y) · x = z · (x · (y · x))`
+* `moufang_central`: `(x · y) · (z · x) = (x · (y · z)) · x`
+
+For the explicit Fano-plane octonions over `ℚ`, both sides expand to
+polynomials in the 24 components `(x.eᵢ, y.eᵢ, z.eᵢ)` and the identities
+are verified componentwise by `ring`. The expansion is degree-4 in 24
+variables, which is heavy but tractable on the increased heartbeat budget.
+-/
+
+set_option maxHeartbeats 4000000 in
+/-- **Left Moufang identity**: `x · (y · (x · z)) = ((x · y) · x) · z`. -/
+theorem moufang_left (x y z : OctonionQ) :
+    x * (y * (x * z)) = ((x * y) * x) * z := by
+  ext <;> simp <;> ring
+
+set_option maxHeartbeats 4000000 in
+/-- **Right Moufang identity**: `((z · x) · y) · x = z · (x · (y · x))`. -/
+theorem moufang_right (x y z : OctonionQ) :
+    ((z * x) * y) * x = z * (x * (y * x)) := by
+  ext <;> simp <;> ring
+
+set_option maxHeartbeats 4000000 in
+/-- **Central Moufang identity**: `(x · y) · (z · x) = (x · (y · z)) · x`. -/
+theorem moufang_central (x y z : OctonionQ) :
+    (x * y) * (z * x) = (x * (y * z)) * x := by
+  ext <;> simp <;> ring
+
 /-! ### Hurwitz composition law
 
 Octonions are the maximal **composition algebra** over `ℝ` (or `ℚ`):
