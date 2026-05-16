@@ -142,5 +142,8 @@ import HodgeReduction.Infrastructure.Automorphic.FrankeEisensteinLayer
 import HodgeReduction.Infrastructure.Cohomology.BorelHirzebruchCoinvariant
 import HodgeReduction.Infrastructure.LieAlgebra.Basic
 import HodgeReduction.Infrastructure.LieAlgebra.ReductiveGroup
+import HodgeReduction.Infrastructure.AlgebraicGeometry.LineBundle
+import HodgeReduction.Infrastructure.AlgebraicGeometry.PicardGroup
+import HodgeReduction.Infrastructure.AlgebraicGeometry.FirstChernClass
 import HodgeReduction.Infrastructure.HCFramework
 import HodgeReduction.Concrete

@@ -43,7 +43,21 @@ Headline: **Mathlib has essentially none of the geometric infrastructure** requi
 
 **Proposed PR sequence** (5 PRs, ≈ 4–8 kLOC total; ordered by dependency).
 
-### PR 1 — `Mathlib/AlgebraicGeometry/LineBundle.lean` (~600 LOC)
+### PR 1 — `Mathlib/AlgebraicGeometry/LineBundle.lean` (~600 LOC) — **R6-A IN-PROGRESS**
+
+> **R6-A status (2026-05-16).** First in-tree draft landed at
+> `HodgeReduction/Infrastructure/AlgebraicGeometry/LineBundle.lean`
+> as a parametric (carrier-level) `LineBundleData X` typeclass plus
+> the `CommGroup (IsoClass X)` proof and a worked `Unit` example. The
+> file is Cat 1 kernel-pure (no `sorry`, no `axiom`); the only
+> classical dependence is whatever `Quotient.sound` itself uses. This
+> draft is the staging ground for the eventual upstream
+> `Mathlib.AlgebraicGeometry.LineBundle` PR — once Mathlib gains a
+> scheme-level invertible-sheaf API, instantiate `LineBundleData X`
+> via `Carrier := Mathlib.AlgebraicGeometry.LineBundle X` and the
+> `CommGroup` proof here ports verbatim. See file docstring for the
+> Mathlib-compatibility note.
+
 
 ```lean
 namespace AlgebraicGeometry
