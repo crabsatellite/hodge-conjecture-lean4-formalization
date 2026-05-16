@@ -4514,10 +4514,11 @@ def gap_borel_serre_1973_franke_1998_eisenstein_layer : StrictGapEntry :=
 
 def gap_e7_min_parabolic_BS_codim : StrictGapEntry :=
   { name := "e7_min_parabolic_BS_codim_OPEN"
-    status := .gapOpen, inputCategory := .cat2External
+    status := .gapClosed, inputCategory := .cat1Mathlib
     cat3SubType := .notApplicable
-    paperSource := "Bourbaki, *Groupes et algèbres de Lie*, Ch. IV-VI (1968) + Ch. VII-VIII (1975) E_7 root data + R. Carter, *Simple Groups of Lie Type*, Wiley 1972 §13.2 + J. Tits, 'Classification of algebraic semisimple groups', in *Algebraic Groups and Discontinuous Subgroups*, AMS 1966"
-    attackHistory := ["P55: Cat 2 single-step; E_7 root-system fact — minimum proper ℚ-parabolic Borel-Serre stratum codim is 26 (E_6-Levi maximal parabolic)"]
+    paperSource := "Bourbaki, *Groupes et algèbres de Lie*, Ch. IV-VI (1968) + Ch. VII-VIII (1975) E_7 root data + R. Carter, *Simple Groups of Lie Type*, Wiley 1972 §13.2 + J. Tits, 'Classification of algebraic semisimple groups', in *Algebraic Groups and Discontinuous Subgroups*, AMS 1966. R4 LEAN-INTERNAL FLIP: closed via concrete `def E7_proper_Q_parabolic_min_BS_codim` over `E7ParabolicCodimData.min_BS_codim_ge_26` + theorem `e7_min_parabolic_BS_codim_OPEN` at L3039 (already proved kernel-pure via typeclass-field projection); paired with extant Cat 1 sibling `gap_E7_proper_Q_parabolic_min_BS_codim` (L4061)."
+    attackHistory := ["P55: Cat 2 single-step; E_7 root-system fact — minimum proper ℚ-parabolic Borel-Serre stratum codim is 26 (E_6-Levi maximal parabolic)",
+                      "R4 LEAN-INTERNAL FLIP (2026-05-16): closed via theorem `e7_min_parabolic_BS_codim_OPEN` at L3039 (already proved kernel-pure via `Infrastructure.Shimura.E7ParabolicCodimData.min_BS_codim_ge_26` typeclass-field projection; paired duplicate of extant Cat 1 entry `gap_E7_proper_Q_parabolic_min_BS_codim` flipped in R3 §2.3 entry #28); ledger aligned with extant Lean wiring per LeanInternalTriage_R4 stale-duplicate sweep."]
     scope := "Every proper ℚ-parabolic of E_{7(-25)} has Borel-Serre stratum codim ≥ 26; minimum achieved by the E_6 × T_1 maximal parabolic (dim N_P = 27, split-center rank 1)" }
 
 /-! ### P39 — L-equivariant Chern-Weil refinement structural/working axioms -/
