@@ -74,4 +74,188 @@ theorem c1_isAlgebraic (L : PicardGroupData.PicRat (A := A)) :
 
 end PicardGroupData
 
+/-! ### Cohomology-side Picard data (Voisin Vol. I Ch. 11; Beauville §I)
+
+The previous `PicardGroupData` packages the **source-side** abstraction
+of `Pic(X)_ℚ` together with the Chern map `c_1`. The class below is a
+**target-side** companion: it slices the rational cohomology vector
+space `A` directly into:
+
+* `picTotal` — the rational Picard subspace `Pic(X)_ℚ ⊆ A` (identified
+  with its image under `c_1`, which is injective on `Pic(X) ⊗ ℚ` because
+  `Pic^0 ⊗ ℚ` and `NS ⊗ ℚ` both inject into `H²(X; ℚ)` — Voisin Vol. I
+  Prop. 11.10).
+* `picZero` — the connected-component piece `Pic^0(X)_ℚ` (Voisin
+  Vol. I §12.1; image of the analytic Albanese map).
+
+The submodule containment `picZero ≤ picTotal` is the standard fact
+that `Pic^0(X)` is a connected closed subgroup of the algebraic group
+scheme `Pic(X)`; rationally, the inclusion is a sub-vector-space
+inclusion (Beauville 1996 *Complex Algebraic Surfaces*, §I.3).
+
+The natural number `nsDim` records the **Néron-Severi rank** (= the
+Picard number `ρ(X) := dim_ℚ NS(X)_ℚ`). This is a finite invariant
+(Mumford 1966 *Lectures on Curves*, Lec. 24). -/
+class CohomologyPicardData (X : Type*) (A : Type*)
+    [AddCommGroup A] [Module ℚ A] where
+  /-- The full rational Picard subspace `Pic(X)_ℚ ⊆ A` (i.e., the
+  image of the rational Chern map). -/
+  picTotal : Submodule ℚ A
+  /-- The rational `Pic^0`-piece (connected component of identity). -/
+  picZero : Submodule ℚ A
+  /-- `Pic^0(X)_ℚ` is a sub-vector-space of the rational Picard space
+  (standard: `Pic^0` is a closed subgroup scheme of `Pic`; rationally
+  the inclusion is sub-vector-space). -/
+  picZero_le_picTotal : picZero ≤ picTotal
+  /-- The Néron-Severi rank (= Picard number `ρ(X)`), a finite invariant
+  by the theorem of the base (Mumford 1966 Lec. 24). -/
+  nsDim : ℕ
+
+namespace CohomologyPicardData
+
+variable {X : Type*} {A : Type*} [AddCommGroup A] [Module ℚ A]
+variable [CohomologyPicardData X A]
+
+/-- The Néron-Severi rank (Picard number) as an `ℕ`-valued invariant.
+The Picard number `ρ(X)` of a smooth projective variety `X` is the
+free rank of the Néron-Severi group `NS(X)`. -/
+def picardNumber : ℕ := CohomologyPicardData.nsDim (X := X) (A := A)
+
+/-- The connected-component piece `Pic^0(X)_ℚ ⊆ Pic(X)_ℚ` is contained
+in the total Picard space, as a real submodule inclusion. -/
+theorem picZero_le : (picZero (X := X) (A := A)) ≤
+    (picTotal (X := X) (A := A)) :=
+  picZero_le_picTotal
+
+/-- Membership form of the `picZero ≤ picTotal` inclusion: any class
+in `Pic^0(X)_ℚ` lies in the full rational Picard subspace. -/
+theorem mem_picTotal_of_mem_picZero {α : A}
+    (hα : α ∈ (picZero (X := X) (A := A))) :
+    α ∈ (picTotal (X := X) (A := A)) :=
+  picZero_le_picTotal hα
+
+/-- Zero lies in `picZero` (every submodule contains zero). -/
+theorem zero_mem_picZero : (0 : A) ∈ (picZero (X := X) (A := A)) :=
+  Submodule.zero_mem _
+
+/-- Zero lies in `picTotal`. -/
+theorem zero_mem_picTotal : (0 : A) ∈ (picTotal (X := X) (A := A)) :=
+  Submodule.zero_mem _
+
+/-- `picZero` is closed under addition (it is a `ℚ`-submodule). -/
+theorem picZero_add_mem {α β : A}
+    (hα : α ∈ (picZero (X := X) (A := A)))
+    (hβ : β ∈ (picZero (X := X) (A := A))) :
+    α + β ∈ (picZero (X := X) (A := A)) :=
+  Submodule.add_mem _ hα hβ
+
+/-- `picTotal` is closed under addition. -/
+theorem picTotal_add_mem {α β : A}
+    (hα : α ∈ (picTotal (X := X) (A := A)))
+    (hβ : β ∈ (picTotal (X := X) (A := A))) :
+    α + β ∈ (picTotal (X := X) (A := A)) :=
+  Submodule.add_mem _ hα hβ
+
+/-- `picZero` is closed under rational-scalar multiplication. -/
+theorem picZero_smul_mem (r : ℚ) {α : A}
+    (hα : α ∈ (picZero (X := X) (A := A))) :
+    r • α ∈ (picZero (X := X) (A := A)) :=
+  Submodule.smul_mem _ r hα
+
+/-- `picTotal` is closed under rational-scalar multiplication. -/
+theorem picTotal_smul_mem (r : ℚ) {α : A}
+    (hα : α ∈ (picTotal (X := X) (A := A))) :
+    r • α ∈ (picTotal (X := X) (A := A)) :=
+  Submodule.smul_mem _ r hα
+
+/-- Transitivity of the picZero-via-picTotal inclusion under addition
+of classes both lying in `picZero`. -/
+theorem add_in_picTotal_of_both_picZero {α β : A}
+    (hα : α ∈ (picZero (X := X) (A := A)))
+    (hβ : β ∈ (picZero (X := X) (A := A))) :
+    α + β ∈ (picTotal (X := X) (A := A)) :=
+  picZero_le_picTotal (Submodule.add_mem _ hα hβ)
+
+end CohomologyPicardData
+
+/-! ### Trivial inhabiting instance for `CohomologyPicardData`
+
+Any rational vector space `A` carries a trivial Picard datum where
+both `picTotal` and `picZero` are the bottom submodule `⊥` and the
+Néron-Severi rank is `0`. This is the cohomology-Picard datum of a
+variety with trivial Picard group (e.g. a point). -/
+instance trivialCohomologyPicardData (X : Type*) (A : Type*)
+    [AddCommGroup A] [Module ℚ A] : CohomologyPicardData X A where
+  picTotal := ⊥
+  picZero := ⊥
+  picZero_le_picTotal := le_refl _
+  nsDim := 0
+
+/-! ### Picard variety data (Voisin Vol. I §12 — Albanese / Picard
+variety; Beauville §V on the Picard variety as an abelian variety)
+
+For a smooth projective variety `X`, the connected component
+`Pic^0(X)` is an **abelian variety** of dimension equal to the
+irregularity `q(X) = h^{0,1}(X) = h^1(X, 𝒪_X)`. Its first homology
+(equivalently, its `ℤ`-rank as a real torus) is `2·q(X)`. -/
+class PicardVarietyData (X : Type*) where
+  /-- The underlying type of the Picard variety `Pic^0(X)`. -/
+  Pic0 : Type
+  /-- `Pic0` is an additive abelian group (abelian variety; here just
+  the underlying additive group structure). -/
+  pic0_addCommGroup : AddCommGroup Pic0
+  /-- The complex dimension of the Picard variety `Pic^0(X)`. Equals
+  the irregularity `q(X) = h^{0,1}(X)` (Voisin Vol. I Thm. 12.10). -/
+  pic0_dim : ℕ
+  /-- The `ℤ`-rank of the Picard variety as a real torus
+  (= rank of `H_1(Pic^0(X); ℤ)`). For an abelian variety of complex
+  dimension `g`, this rank is `2g`. -/
+  Pic0_rank : ℕ
+  /-- The standard rank identity for an abelian variety of complex
+  dimension `g`: the underlying real torus has dimension `2g`, hence
+  its first homology has rank `2g`. -/
+  Pic0_rank_eq : Pic0_rank = 2 * pic0_dim
+
+namespace PicardVarietyData
+
+variable {X : Type*} [PicardVarietyData X]
+
+/-- Convenience accessor: the additive group structure on `Pic0 X`. -/
+instance : AddCommGroup (PicardVarietyData.Pic0 X) :=
+  PicardVarietyData.pic0_addCommGroup
+
+/-- The complex dimension of `Pic^0(X)`, i.e., the irregularity. -/
+def irregularity : ℕ := PicardVarietyData.pic0_dim (X := X)
+
+/-- The real torus rank of `Pic^0(X)` equals twice its complex
+dimension — this is the abelian-variety rank identity. -/
+theorem rank_eq_two_dim :
+    PicardVarietyData.Pic0_rank (X := X) =
+      2 * PicardVarietyData.pic0_dim (X := X) :=
+  PicardVarietyData.Pic0_rank_eq
+
+/-- The rank is always even (consequence of `rank = 2 · dim`). -/
+theorem rank_even : Even (PicardVarietyData.Pic0_rank (X := X)) := by
+  refine ⟨PicardVarietyData.pic0_dim (X := X), ?_⟩
+  rw [PicardVarietyData.Pic0_rank_eq]; ring
+
+/-- Zero is an element of `Pic0 X` (it is an additive group). -/
+theorem zero_mem : (0 : PicardVarietyData.Pic0 X) =
+    (0 : PicardVarietyData.Pic0 X) :=
+  rfl
+
+end PicardVarietyData
+
+/-! ### Trivial inhabiting instance for `PicardVarietyData`
+
+A variety with trivial Picard variety (e.g. a rational variety) has
+`Pic^0` reduced to a point, with `pic0_dim = 0` and `Pic0_rank = 0`.
+We model this with `Pic0 := PUnit` and `pic0_dim = Pic0_rank = 0`. -/
+instance trivialPicardVarietyData (X : Type*) : PicardVarietyData X where
+  Pic0 := PUnit
+  pic0_addCommGroup := inferInstance
+  pic0_dim := 0
+  Pic0_rank := 0
+  Pic0_rank_eq := by norm_num
+
 end HodgeReduction.Infrastructure.Cohomology
