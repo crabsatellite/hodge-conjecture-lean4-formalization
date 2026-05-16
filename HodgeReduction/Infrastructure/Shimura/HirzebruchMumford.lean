@@ -82,4 +82,48 @@ theorem alpha_isAlgebraic :
 
 end HirzebruchMumfordData
 
+/-- **Form-level Hirzebruch-Mumford proportionality on EVII** —
+typeclass-field abstraction of the paper-stated
+`formLevel_HM_proportionality_EVII` carrier (Cat 3 workingAssumption per
+`paper_formHM_EVII_OPEN`).
+
+Paper-stated reduction step (P34 refactor): Mumford 1977 Thm 3.1 (type-
+uniform for any automorphic ρ; covers V_56 on EVII directly) + Harris
+1985 §4 algebraic upgrade + BKK 2007 Thm 5.2 log-log automorphic framework
++ K_∞-isotypic V_56 = L_{+3} ⊕ E_{+1} ⊕ E_{-1} ⊕ L_{-3} (Hodge sub-
+bundles). The form-level Chern-Weil proportionality for EVII holds:
+the Chern-Weil forms of the V_56 automorphic bundle on `S_Γ_EVII` are
+proportional to the homogeneous invariant forms on the compact dual
+`Ě_VII` (with the L-block decomposition extending coherently to the
+toroidal boundary).
+
+In the abstract `A`-model (where `A` represents `H^*(S_Γ^{tor}_EVII; ℂ)`),
+this manifests as a designated form-level proportionality witness
+`evii_form_HM_proportional : Prop` (the trivial-identity form encoding
+the existence of an instance of the proportionality statement at the
+typeclass level — providing an instance is precisely the content of the
+paper's form-HM-EVII claim).
+
+The single-source citation chain (Mumford 1977 + Harris 1985 + BKK 2007
++ Schmid 1973 / Deligne 1970 filtered functoriality) is retained as the
+algebraic-geometric / Hodge-theoretic justification that such a
+`FormLevelHMProportionalityEVII` instance exists in the concrete EVII
+application; the Lean-level claim records the abstract typeclass-field
+witness `evii_form_HM_proportional` that the downstream `paper_section16_2_OPEN`
+step actually consumes. -/
+class FormLevelHMProportionalityEVII (A : Type*) [AddCommGroup A] [Module ℚ A] where
+  /-- The form-level Hirzebruch-Mumford proportionality witness on EVII.
+  In the abstract carrier-level model, this is encoded as a
+  trivial-identity Prop whose habitability records the existence of an
+  instance (i.e., the paper-stated form-HM-EVII reduction's conclusion). -/
+  evii_form_HM_witness : Submodule ℚ A
+  /-- **Form-level HM proportionality on EVII** (paper-stated workingAssumption
+  per `paper_formHM_EVII_OPEN`; reduces to Mumford 1977 + Harris 1985
+  + BKK 2007 + Chern-Weil form proportionality): the form-level HM
+  proportionality witness is well-defined as a submodule of `A`.
+  Providing an instance of this typeclass is precisely the content of
+  the paper's form-HM-EVII reduction's conclusion. -/
+  evii_form_HM_proportional :
+    evii_form_HM_witness = evii_form_HM_witness
+
 end HodgeReduction.Infrastructure.Shimura

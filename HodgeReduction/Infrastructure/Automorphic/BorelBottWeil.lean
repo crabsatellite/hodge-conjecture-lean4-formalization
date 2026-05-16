@@ -4,6 +4,9 @@ Released under Apache 2.0 license as described in the file LICENSE.
 -/
 import Mathlib.Algebra.Module.Submodule.Basic
 import Mathlib.Algebra.Order.Field.Rat
+import HodgeReduction.Infrastructure.Cohomology.Basic
+import HodgeReduction.Infrastructure.Cohomology.KaehlerClass
+import HodgeReduction.Infrastructure.Shimura.CompactDual
 
 /-!
 # Bott–Borel–Weil for compact duals
@@ -29,6 +32,11 @@ This file abstracts the **carrier-level data** of BBW.
 
 * `BorelBottWeilData` : a typeclass carrying the bigrading data
   of compact-dual cohomology.
+* `BorelBottWeilDiagonalEVII` : sibling typeclass requiring
+  `CompactDualData A` together with the BBW diagonal-bigrading
+  inclusion `CompactDualData.H8 ≤ BorelBottWeilData.H44` (Bott 1957
+  + Borel-Hirzebruch 1958-60 + Griffiths-Harris 1978 Ch. 1 §3 for
+  the canonical line bundle on `Ě_VII`).
 
 ## Tags
 
@@ -57,5 +65,31 @@ class BorelBottWeilData (A : Type*) [AddCommGroup A] [Module ℚ A] where
   `H^8 ⊆ H^{4,4}`. -/
   H8_in_H44 : True  -- placeholder; concrete content via Hodge-bigrading
                      -- requires graded structure
+
+/-- **Bott-Borel-Weil diagonal bigrading for `Ě_VII`**.
+
+Sibling typeclass requiring the cohomology ring `A` to carry both
+`HodgeReduction.Infrastructure.Shimura.CompactDualData A` (= the
+compact-dual `H^8 = ⟨h^4⟩` data) and `BorelBottWeilData A` (= the
+designated `H^{4,4}`-piece submodule), and asserting the BBW
+**diagonal-bigrading inclusion**
+
+  `CompactDualData.H8 ≤ BorelBottWeilData.H44`.
+
+Mathematically, this is the published Bott 1957 Ann. Math. 66 +
+Borel-Hirzebruch 1958-60 AJM 80 §29-30 + Griffiths-Harris 1978 Ch. 1
+§3 statement specialised to `Ě_VII = E_{7,ℂ}/P_7`: under the canonical
+line bundle on a compact Hermitian symmetric space, the diagonal Hodge
+bigrading places `H^{2p}` entirely in `H^{p,p}`; in particular at
+`p = 4` the entire `H^8(Ě_VII; ℂ) = ⟨h^4⟩` sits in the `(4,4)` piece. -/
+class BorelBottWeilDiagonalEVII (A : Type*) [CommRing A] [Algebra ℚ A]
+    [HodgeReduction.Infrastructure.Cohomology.CohomologyRing A]
+    [HodgeReduction.Infrastructure.Cohomology.KaehlerClass A]
+    [HodgeReduction.Infrastructure.Shimura.CompactDualData A]
+    [BorelBottWeilData A] where
+  /-- BBW diagonal bigrading: `H^8(Ě_VII) ⊆ H^{4,4}(Ě_VII)`. -/
+  H8_le_H44 :
+    HodgeReduction.Infrastructure.Shimura.CompactDualData.H8 (A := A)
+      ≤ BorelBottWeilData.H44 (A := A)
 
 end HodgeReduction.Infrastructure.Automorphic
