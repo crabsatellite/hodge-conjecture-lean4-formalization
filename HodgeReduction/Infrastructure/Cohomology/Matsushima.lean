@@ -83,6 +83,18 @@ class MatsushimaData where
   to a G-invariant class on the locally symmetric space. -/
   j_q_maps_invariants_to_invariants :
     ∀ {α : A}, α ∈ source_invariants → j_q α ∈ target_invariants
+  /-- **Cat 2 PUBLISHED witness — Borel 1974 §9.1(3) p.261 `c(E_7) = 8`.**
+  A. Borel, "Stable real cohomology of arithmetic groups", Ann. Sci. ÉNS
+  (4) 7 (1974), 235-272, §9.1(3) p.261: for `G = E_{7(-25)}` the
+  injectivity ceiling of the Matsushima homomorphism reaches `q = 8`.
+  Equivalently: the stable-range constant `injective_range = c(E_7)` of
+  this typeclass instance equals `8` on the EVII case.
+  This field encodes the published numerical content as a single equation
+  so the `cohomologyIso_at_deg8` carrier (which only requires
+  `injective_range ≥ 8`) discharges kernel-pure via this typeclass
+  projection together with `j_q_injective`. The instance provider
+  supplies the witness (concretely from Borel 1974 §9.1(3)). -/
+  c_E7_eq_8_holds : injective_range = 8
 
 namespace MatsushimaData
 

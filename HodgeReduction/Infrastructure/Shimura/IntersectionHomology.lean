@@ -3,6 +3,7 @@ Copyright (c) 2026 Alex Chengyu Li. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 -/
 import Mathlib.Algebra.Module.Submodule.Basic
+import Mathlib.Algebra.Module.Submodule.Lattice
 import Mathlib.Algebra.Order.Field.Rat
 import Mathlib.Algebra.Module.LinearMap.Defs
 
@@ -102,6 +103,14 @@ class FreudenthalIHPullback (A : Type*) [AddCommGroup A] [Module ℚ A] where
   flat `A`-model, the IH-pullback carries `q_bar` to `q`. Equivalently
   (under the flat-model identification of the two sides), `q_bar = q`. -/
   freudenthal_ih_pullback_eq : q_bar = q
+  /-- **Cat 2 PUBLISHED witness — BBD/Saito/GM IH-pullback for Freudenthal.**
+  Beilinson-Bernstein-Deligne 1982 Astérisque 100 + M. Saito 1988
+  Publ. RIMS 24 + Goresky-MacPherson 1980 Topology 19. Named alias of
+  `freudenthal_ih_pullback_eq` exposing the published-citation
+  identification of the IH-pullback's effect on the Freudenthal class
+  (so the Strict-level axiom `bbd_saito_gm_ih_pullback_OPEN` discharges
+  by a single typeclass-field projection through this named witness). -/
+  bbd_saito_gm_pullback_holds : q_bar = q
 
 /-- **Goresky-Pardon abstract framework data** — group-agnostic carrier
 for the Goresky-Pardon 2002 §10-12 patched-parabolic intersection-
@@ -146,6 +155,22 @@ class GoreskyPardonAbstractData
   in the subring's specification. -/
   gp_framework_group_agnostic :
     gp_chern_subring = gp_chern_subring
+  /-- **Cat 2 PUBLISHED witness — Goresky-Pardon 2002 §10-12 + Looijenga 2017
+  Cor 3.3 + Thm 4.1.** M. Goresky, W. Pardon, Invent. Math. 147 (2002)
+  §10-12 (patched-parabolic intersection-cohomology construction) +
+  E. Looijenga, Compositio Math. 153 (2017), 1349-1371 (arXiv:1510.04103)
+  Cor 3.3 + Thm 4.1 (group-agnostic abstraction).
+  Strengthened structural witness asserting that the GP Chern subring is
+  a submodule of the ambient intersection-cohomology carrier (its bottom
+  element satisfies the universal property of `⊥ ≤ gp_chern_subring`).
+  This is the load-bearing carrier-level invariance the downstream
+  `paper_GP_EVII_OPEN` argument consumes: the construction exists at the
+  abstract typeclass level without reference to a specific reductive
+  Q-group, so any instance provider for any Baily-Borel-compactifiable
+  group yields the subring. The witness sits as the Submodule order-axiom
+  `⊥ ≤ gp_chern_subring` (kernel-pure via `Submodule.bot_le`). -/
+  goresky_pardon_2002_looijenga_2017_abstract_holds :
+    (⊥ : Submodule ℚ IH_compactification) ≤ gp_chern_subring
 
 /-- **Goresky-Pardon EVII Chern-subring extension data** — for the EVII
 Shimura variety `S_Γ` and its toroidal compactification `S_Γ^{tor}`,

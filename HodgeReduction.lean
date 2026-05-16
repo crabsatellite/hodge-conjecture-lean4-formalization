@@ -128,6 +128,7 @@ import HodgeReduction.Infrastructure.AbelianVariety.HyperKahler
 import HodgeReduction.Infrastructure.AbelianVariety.TateModule
 import HodgeReduction.Infrastructure.Shimura.HermitianSymmetric
 import HodgeReduction.Infrastructure.Shimura.ArithmeticGroup
+import HodgeReduction.Infrastructure.Shimura.E7ParabolicCodim
 import HodgeReduction.Infrastructure.Automorphic.Basic
 import HodgeReduction.Infrastructure.Automorphic.VoganZuckerman
 import HodgeReduction.Infrastructure.Automorphic.BorelBottWeil
@@ -135,6 +136,8 @@ import HodgeReduction.Infrastructure.Automorphic.HeckeCorrespondence
 import HodgeReduction.Infrastructure.Automorphic.ModularForm
 import HodgeReduction.Infrastructure.Automorphic.GKCohomology
 import HodgeReduction.Infrastructure.Automorphic.CuspidalCohomology
+import HodgeReduction.Infrastructure.Automorphic.FrankeEisensteinLayer
+import HodgeReduction.Infrastructure.Cohomology.BorelHirzebruchCoinvariant
 import HodgeReduction.Infrastructure.LieAlgebra.Basic
 import HodgeReduction.Infrastructure.LieAlgebra.ReductiveGroup
 import HodgeReduction.Infrastructure.HCFramework

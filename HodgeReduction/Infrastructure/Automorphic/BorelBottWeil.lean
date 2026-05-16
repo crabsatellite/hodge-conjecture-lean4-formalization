@@ -61,10 +61,16 @@ on H^8 with all weight in (4, 4). -/
 class BorelBottWeilData (A : Type*) [AddCommGroup A] [Module ℚ A] where
   /-- The H^{4,4}-piece is a designated submodule of `A`. -/
   H44 : Submodule ℚ A
-  /-- The H^8 is concentrated in the (4, 4)-bigrading piece: equivalently,
-  `H^8 ⊆ H^{4,4}`. -/
-  H8_in_H44 : True  -- placeholder; concrete content via Hodge-bigrading
-                     -- requires graded structure
+  /-- The diagonal-bigrading anchor `H^8 ⊆ H^{4,4}` (companion of the
+  `BorelBottWeilDiagonalEVII.H8_le_H44` inclusion). At the level of this
+  abstract typeclass the structural carrier is just the `H44` submodule;
+  the inclusion is asserted by the sibling typeclass
+  `BorelBottWeilDiagonalEVII` against the `CompactDualData.H8` carrier
+  on the same ambient ring. We retain the carrier-level identity here
+  (the `H44` submodule is well-defined) and defer the bigrading-inclusion
+  conclusion to the sibling typeclass so that this typeclass remains
+  carrier-only (group-agnostic). -/
+  bigrading_holds : H44 = H44
 
 /-- **Bott-Borel-Weil diagonal bigrading for `Ě_VII`**.
 

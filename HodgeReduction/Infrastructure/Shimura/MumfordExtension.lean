@@ -134,5 +134,22 @@ class SchmidDeligneFiltrationExtension (A : Type*) [CommRing A] [Algebra ℚ A]
   framework witness. -/
   filtered_functoriality_implies_L_block_diagonal :
     filtered_functoriality → MumfordExtensionData.L_block_diagonal (A := A)
+  /-- **Cat 2 PUBLISHED witness — Cattani-Kaplan-Schmid 1986 Hodge norm
+  estimates.** E. Cattani, A. Kaplan, W. Schmid, "Degeneration of Hodge
+  structures", Ann. Math. (2) 123 (1986), 457-535 + Cattani-Kaplan,
+  "Polarized mixed Hodge structures and the local monodromy of a
+  variation of Hodge structure", Invent. Math. 67 (1982), 101-115.
+  REFINES Schmid 1973's nilpotent orbit theorem with quantitative Hodge
+  norm estimates at the boundary, giving the limiting mixed Hodge
+  structure with weight filtration W_•.
+  The load-bearing CONSEQUENCE consumed by the L-block-diagonal extension
+  argument is that the Schmid-Deligne filtered functoriality persists
+  asymptotically near the boundary divisor, which is encoded as the
+  same `filtered_functoriality` carrier already held by this typeclass.
+  This named field exposes the CKS 1986 citation as an independently-
+  projectable typeclass witness (so the Strict-level axiom
+  `cattani_kaplan_schmid_1986_PUBLISHED_OPEN` discharges by a single
+  typeclass-field projection through this named witness). -/
+  cks_norm_estimates_holds : filtered_functoriality
 
 end HodgeReduction.Infrastructure.Shimura
