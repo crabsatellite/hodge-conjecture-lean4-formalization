@@ -322,12 +322,12 @@ namespace HodgeDecompositionData.Trivial
 
 /-- The bidegree pieces for the one-point trivial example: `H^{0,0} = ℂ`,
 all others zero. -/
-def HpqTrivial (p q : ℕ) : Submodule ℂ ℂ :=
+noncomputable def HpqTrivial (p q : ℕ) : Submodule ℂ ℂ :=
   if p = 0 ∧ q = 0 then ⊤ else ⊥
 
 /-- The total `k`-th cohomology pieces for the trivial example:
 `H^0 = ℂ`, all others zero. -/
-def HkTrivial (k : ℕ) : Submodule ℂ ℂ :=
+noncomputable def HkTrivial (k : ℕ) : Submodule ℂ ℂ :=
   if k = 0 then ⊤ else ⊥
 
 @[simp]
@@ -360,7 +360,8 @@ theorem HkTrivial_eq_bot_of_pos {k : ℕ} (hk : 0 < k) : HkTrivial k = ⊥ := by
 
 /-- The trivial `HodgeDecompositionData` on `(Unit, ℂ)`: the one-point
 "manifold" with complex dimension `0`. -/
-instance instHodgeDecompositionDataTrivial : HodgeDecompositionData Unit ℂ where
+noncomputable instance instHodgeDecompositionDataTrivial :
+    HodgeDecompositionData Unit ℂ where
   complexDim := 0
   Hpq := HpqTrivial
   Hk := HkTrivial
@@ -372,30 +373,32 @@ instance instHodgeDecompositionDataTrivial : HodgeDecompositionData Unit ℂ whe
       subst hk
       rw [HkTrivial_zero]
       -- `Finset.range 1 = {0}`, so the supremum reduces to `Hpq 0 0 = ⊤`.
-      apply le_antisymm le_top
       have h0 : (0 : ℕ) ∈ Finset.range (0 + 1) := by
         rw [Finset.mem_range]; omega
-      have : HpqTrivial 0 (0 - 0) = ⊤ := by simp
-      calc (⊤ : Submodule ℂ ℂ)
-          = HpqTrivial 0 (0 - 0) := this.symm
-        _ ≤ ⨆ p ∈ Finset.range (0 + 1), HpqTrivial p (0 - p) :=
-            le_iSup_of_le 0 (le_iSup_of_le h0 le_rfl)
+      have htop : HpqTrivial 0 (0 - 0) = ⊤ := by simp
+      have hge : (⊤ : Submodule ℂ ℂ)
+          ≤ ⨆ p ∈ Finset.range (0 + 1), HpqTrivial p (0 - p) :=
+        calc (⊤ : Submodule ℂ ℂ)
+            = HpqTrivial 0 (0 - 0) := htop.symm
+          _ ≤ ⨆ p ∈ Finset.range (0 + 1), HpqTrivial p (0 - p) :=
+              le_iSup_of_le 0 (le_iSup_of_le h0 le_rfl)
+      exact le_antisymm hge le_top
     · -- `k ≥ 1`: LHS = `⊥`, RHS = supremum of `⊥`s = `⊥`.
       rw [HkTrivial_eq_bot_of_pos hk]
       -- Each summand `HpqTrivial p (k - p)` with `p ∈ range (k+1)` and
       -- `p + (k - p) = k ≥ 1` is `⊥` (either `p ≥ 1` or `k - p ≥ 1`).
-      apply le_antisymm bot_le
-      apply iSup_le; intro p
-      apply iSup_le; intro hp_mem
-      rw [Finset.mem_range] at hp_mem
-      -- `p ≤ k` (from `p < k + 1`), and `p + (k - p) = k`.
-      have hp_le : p ≤ k := Nat.lt_succ_iff.mp hp_mem
-      rcases Nat.eq_zero_or_pos p with hp0 | hp_pos
-      · -- `p = 0`: then `k - p = k > 0`, so the summand is `⊥`.
-        subst hp0
-        rw [HpqTrivial_eq_bot_of_q_pos (by omega : 0 < k - 0)]
-      · -- `p ≥ 1`: the summand is `⊥` directly.
-        rw [HpqTrivial_eq_bot_of_p_pos hp_pos]
+      have hle : (⨆ p ∈ Finset.range (k + 1), HpqTrivial p (k - p))
+          ≤ (⊥ : Submodule ℂ ℂ) := by
+        apply iSup_le; intro p
+        apply iSup_le; intro hp_mem
+        rw [Finset.mem_range] at hp_mem
+        rcases Nat.eq_zero_or_pos p with hp0 | hp_pos
+        · -- `p = 0`: then `k - p = k > 0`, so the summand is `⊥`.
+          subst hp0
+          rw [HpqTrivial_eq_bot_of_q_pos (by omega : 0 < k - 0)]
+        · -- `p ≥ 1`: the summand is `⊥` directly.
+          rw [HpqTrivial_eq_bot_of_p_pos hp_pos]
+      exact le_antisymm bot_le hle
   hodge_symmetry_dim := by
     intro p q
     -- We split on whether `(p, q) = (0, 0)`.
@@ -469,9 +472,10 @@ example :
   HodgeDecompositionData.hodgeNumber_symm 0 1
 
 /-- **Sanity check**: the `(2, 0)`-piece of the trivial example
-vanishes by `Hpq_vanishing` (since `0 < 2`). -/
-example : HodgeDecompositionData.Hpq (X := Unit) (A := ℂ) 2 0 = ⊥ :=
-  HodgeDecompositionData.Hpq_vanishing_of_p 2 0 (by omega)
+vanishes by `HpqTrivial_eq_bot_of_p_pos` (since `0 < 2`). -/
+example : HodgeDecompositionData.Hpq (X := Unit) (A := ℂ) 2 0 = ⊥ := by
+  show HpqTrivial 2 0 = ⊥
+  exact HpqTrivial_eq_bot_of_p_pos (by omega)
 
 end HodgeDecompositionData.Trivial
 

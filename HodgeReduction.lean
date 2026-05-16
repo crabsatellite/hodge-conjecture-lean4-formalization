@@ -146,9 +146,15 @@ import HodgeReduction.Infrastructure.AlgebraicGeometry.LineBundle
 import HodgeReduction.Infrastructure.AlgebraicGeometry.PicardGroup
 import HodgeReduction.Infrastructure.AlgebraicGeometry.FirstChernClass
 import HodgeReduction.Infrastructure.AlgebraicGeometry.ExponentialSequence
--- R7 ChowGroup / HodgeDecomposition: temporarily quarantined (multiple
--- elaboration errors per /tmp/r7-build.log; pending fix-up in next round).
--- import HodgeReduction.Infrastructure.AlgebraicGeometry.ChowGroup
--- import HodgeReduction.Infrastructure.AlgebraicGeometry.HodgeDecomposition
+-- R7 ChowGroup / HodgeDecomposition: re-enabled after R7-quarantine-fix
+-- (2026-05-16). ChowGroup: fixed neg_eq_of_add_eq_zero_left → _right;
+-- added Mathlib.RingTheory.Adjoin.Basic; fixed multi-binder ∃; replaced
+-- OfNat-on-CH-Unit with explicit ℤ-cast via let-binding; fixed
+-- cl_intersect / cl_fundamental via Int.cast_mul / Int.cast_one.
+-- HodgeDecomposition: added noncomputable to HpqTrivial/HkTrivial/
+-- instHodgeDecompositionDataTrivial; fixed le_antisymm argument order;
+-- replaced omega-on-complexDim with direct HpqTrivial_eq_bot_of_p_pos.
+import HodgeReduction.Infrastructure.AlgebraicGeometry.ChowGroup
+import HodgeReduction.Infrastructure.AlgebraicGeometry.HodgeDecomposition
 import HodgeReduction.Infrastructure.HCFramework
 import HodgeReduction.Concrete

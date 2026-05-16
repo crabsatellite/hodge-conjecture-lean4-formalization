@@ -5,6 +5,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 import Mathlib.Algebra.Group.Hom.Defs
 import Mathlib.Algebra.Algebra.Subalgebra.Basic
 import Mathlib.Algebra.Order.Field.Rat
+import Mathlib.RingTheory.Adjoin.Basic
 import HodgeReduction.Infrastructure.AlgebraicGeometry.LineBundle
 import HodgeReduction.Infrastructure.AlgebraicGeometry.PicardGroup
 
@@ -243,7 +244,7 @@ theorem intersect_neg_left {p q : ℕ}
     intersect_zero_left γ
   rw [hzero] at h
   -- `0 = intersect α γ + intersect (-α) γ` ⇒ `intersect (-α) γ = -(intersect α γ)`.
-  exact (neg_eq_of_add_eq_zero_left h.symm).symm
+  exact (neg_eq_of_add_eq_zero_right h.symm).symm
 
 /-- `α ∩ (-γ) = -(α ∩ γ)`. -/
 theorem intersect_neg_right {p q : ℕ}
@@ -256,7 +257,7 @@ theorem intersect_neg_right {p q : ℕ}
   have hzero : intersect α (0 : ChowGroupData.CH (X := X) q) = 0 :=
     intersect_zero_right α
   rw [hzero] at h
-  exact (neg_eq_of_add_eq_zero_left h.symm).symm
+  exact (neg_eq_of_add_eq_zero_right h.symm).symm
 
 /-! ### Intersection as a bilinear `AddHom`
 
@@ -356,7 +357,7 @@ only define the subring, not the conjecture's content. -/
 def cycleClassSet (X : Type*) [ChowGroupData X]
     (A : Type*) [CommRing A] [Algebra ℚ A] [CycleClassData X A] :
     Set A :=
-  { x : A | ∃ p (α : ChowGroupData.CH (X := X) p),
+  { x : A | ∃ p, ∃ α : ChowGroupData.CH (X := X) p,
               cl (X := X) (A := A) p α = x }
 
 /-- The **algebraic subring** of `A`: the smallest `ℚ`-subalgebra
@@ -454,7 +455,7 @@ theorem toCH1_inv (e : CH1_iso_Pic X) (L : Pic X) :
     e.toCH1_mul L L⁻¹
   rw [mul_inv_cancel, e.toCH1_one] at h
   -- `0 = e L + e L⁻¹` ⇒ `e L⁻¹ = -(e L)`.
-  exact (neg_eq_of_add_eq_zero_left h.symm).symm
+  exact (neg_eq_of_add_eq_zero_right h.symm).symm
 
 end CH1_iso_Pic
 
@@ -515,14 +516,14 @@ keeps the multiplicative compatibility:
 i.e. `cl` is `Int.castRingHom ℚ` reused for every codim. -/
 instance instCycleClassData : CycleClassData Unit ℚ where
   cl := fun _ => (Int.castRingHom ℚ).toAddMonoidHom
-  cl_intersect := by
-    intro p q α β
-    show ((α * β : ℤ) : ℚ) = ((α : ℤ) : ℚ) * ((β : ℤ) : ℚ)
-    push_cast
-    rfl
+  cl_intersect := fun α β => by
+    -- LHS: cl (p+q) (intersect α β). For Unit, intersect = (· * ·) on ℤ.
+    -- The cl hom is just the int-to-ℚ cast. So both sides reduce to
+    -- Int.cast (α * β) = Int.cast α * Int.cast β, which is Int.cast_mul.
+    exact Int.cast_mul α β
   cl_fundamental := by
-    show ((1 : ℤ) : ℚ) = 1
-    rfl
+    -- LHS: cl 0 (fundamental Unit) = Int.cast (1 : ℤ) = 1 : ℚ.
+    exact Int.cast_one
 
 /-- **Sanity check**: `cl 0 [X] = 1` for the `Unit` instance. -/
 example :
@@ -531,16 +532,16 @@ example :
   CycleClassData.cl_fundamental_eq (X := Unit) (A := ℚ)
 
 /-- **Sanity check**: `cl(α ∩ β) = cl α * cl β` for the `Unit`
-instance. Concretely `cl (3 * 5) = 15 = cl 3 * cl 5`. -/
+instance. Concretely `cl (3 * 5) = 15 = cl 3 * cl 5`. We name the
+two integers `three` and `five` as explicit `ChowGroupData.CH Unit 1`
+values to avoid the OfNat unfolding issue on the abstract carrier. -/
 example :
+    let three : ChowGroupData.CH (X := Unit) 1 := (3 : ℤ)
+    let five : ChowGroupData.CH (X := Unit) 1 := (5 : ℤ)
     CycleClassData.cl (X := Unit) (A := ℚ) (1 + 1)
-        (ChowGroupData.intersect (X := Unit)
-          (3 : ChowGroupData.CH (X := Unit) 1)
-          (5 : ChowGroupData.CH (X := Unit) 1))
-      = CycleClassData.cl (X := Unit) (A := ℚ) 1
-            (3 : ChowGroupData.CH (X := Unit) 1)
-          * CycleClassData.cl (X := Unit) (A := ℚ) 1
-            (5 : ChowGroupData.CH (X := Unit) 1) :=
+        (ChowGroupData.intersect (X := Unit) three five)
+      = CycleClassData.cl (X := Unit) (A := ℚ) 1 three
+          * CycleClassData.cl (X := Unit) (A := ℚ) 1 five :=
   CycleClassData.cl_intersect_eq (X := Unit) (A := ℚ) _ _
 
 /-- **Sanity check**: `1 ∈ algebraicImage Unit ℚ` (the algebraic
