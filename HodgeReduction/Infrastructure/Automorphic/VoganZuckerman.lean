@@ -114,27 +114,14 @@ class VZAqLambdaData where
   salamancaRibaClassification :
     ∀ (q : Label), bottomDegree q < dimCGmodK →
       isTrivial q ∨ isHoloDiscrete q
-  /-- **Vogan-Zuckerman 1984 framework witness** (Compositio Math. 53
-  (1984), 51-90, *Unitary representations with non-zero cohomology*).
-  Cat 2 PUBLISHED witness asserting that the full VZ 1984 framework
-  (theta-stable parabolic classification of unitary `(g, K)`-modules
-  with non-zero cohomology, together with the bottom-degree calculus
-  `R(q) = 2 dim(u ∩ p)`) applies in the abstract setting. The instance
-  provider supplies the witness; downstream proofs project through this
-  field to discharge the Strict-level `vogan_zuckerman_1984_OPEN` (R3
-  S3 closure, mirrors P229/P230/P231/P232 typeclass-parameter shift). -/
-  voganZuckerman_framework : Prop
-  voganZuckerman_framework_holds : voganZuckerman_framework
-  /-- **Knapp-Vogan 1995 cohomological induction framework witness**
-  (PMS-45 *Cohomological Induction and Unitary Representations*, Ch. XII).
-  Cat 2 PUBLISHED witness asserting that the KV 1995 cohomological
-  induction machinery (functor `R^k_q`, unitarity transfer from one-dim
-  characters of the Levi `L`, Ch. XII Thm 9.1 unitarizability theorem)
-  applies in the abstract setting. The instance provider supplies the
-  witness; downstream proofs project through this field to discharge
-  the Strict-level `knapp_vogan_1995_OPEN` (R3 S3 closure, mirrors
-  P229/P230/P231/P232 typeclass-parameter shift). -/
-  knappVogan_induction : Prop
-  knappVogan_induction_holds : knappVogan_induction
+  -- R7 audit B.1 fix (2026-05-16): `voganZuckerman_framework_holds` and
+  -- `knappVogan_induction_holds` removed. They were decorative `Prop`-typed
+  -- framework slots whose only instance set them to `True`, contributing no
+  -- mathematical content. The substantive VZ 1984 / KV 1995 frameworks are
+  -- already encoded by `salamancaRibaClassification`, `holoDiscrete_bottomDegree_eq_dim`,
+  -- and `knappVoganUnitarity` (concrete `decide`-checked claims on the Atlas
+  -- table). The Strict-level theorems `vogan_zuckerman_1984_OPEN` and
+  -- `knapp_vogan_1995_OPEN` now project through those concrete fields directly
+  -- (see Strict.lean).
 
 end HodgeReduction.Infrastructure.Automorphic

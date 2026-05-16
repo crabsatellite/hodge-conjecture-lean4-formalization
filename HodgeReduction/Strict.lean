@@ -796,41 +796,49 @@ def mumford_canonical_extension_framework : Prop :=
     Infrastructure.Cohomology.CohomologyRing.IsAlgebraic
       ((Infrastructure.Shimura.MumfordExtensionData.Vbar (A := A)).chern i)
 
-/-- **Cat 3 derivation-stage (§3.4.2, R3 S3 LEAN-CLOSED)** — V-Z 1984
- framework. Vogan-Zuckerman 1984 (Compositio Math. 53, 51-90)
- *Unitary representations with non-zero cohomology*.
+/-- **Cat 3 derivation-stage (§3.4.2, R3 S3 LEAN-CLOSED; R7 audit B.1
+ refactor 2026-05-16)** — V-Z 1984 framework. Vogan-Zuckerman 1984
+ (Compositio Math. 53, 51-90) *Unitary representations with non-zero
+ cohomology*.
 
- **R3 S3 LEAN-CLOSED (2026-05-16)**: previously an `opaque Prop`
- hypothesis predicate. Now expanded to the abstract universally
- -quantified statement over any setting carrying
- `Infrastructure.Automorphic.VZAqLambdaData`. The load-bearing
- CONSEQUENCE consumed downstream is the VZ 1984 framework witness
- (theta-stable parabolic classification + bottom-degree calculus),
- encoded as the typeclass field
- `VZAqLambdaData.voganZuckerman_framework_holds`. The
- `vogan_zuckerman_1984_OPEN` axiom is now a `theorem` proved
- kernel-pure via this typeclass field. -/
+ **R7 audit B.1 refactor (2026-05-16)**: previously routed through the
+ decorative `voganZuckerman_framework_holds : Prop` field of
+ `VZAqLambdaData` whose only instance set it to `True`. That field
+ carried no mathematical content; the substantive VZ 1984 framework
+ witness is the Salamanca-Riba 1999 low-bottom-degree classification
+ `salamancaRibaClassification` (every A_q(λ) module of bottom degree
+ `< dim_C(G/K)` is trivial or holomorphic-discrete) plus the bottom-
+ degree calculus `holoDiscrete_bottomDegree_eq_dim` (R(q) = dim_C(G/K)
+ for holomorphic discrete series). Both are concrete `decide`-checked
+ typeclass fields on the Atlas E_{7(-25)} instance. The framework is
+ now expanded directly to `salamancaRibaClassification`, which IS the
+ load-bearing VZ 1984 consequence consumed downstream. -/
 def voganZuckerman_1984_framework : Prop :=
-  ∀ [Infrastructure.Automorphic.VZAqLambdaData],
-    Infrastructure.Automorphic.VZAqLambdaData.voganZuckerman_framework
+  ∀ [inst : Infrastructure.Automorphic.VZAqLambdaData]
+    (q : inst.Label),
+    inst.bottomDegree q < inst.dimCGmodK →
+      inst.isTrivial q ∨ inst.isHoloDiscrete q
 
-/-- **Cat 3 derivation-stage (§3.4.2, R3 S3 LEAN-CLOSED)** — Knapp-Vogan
- 1995 unitary induction framework. Knapp-Vogan PMS-45
- *Cohomological Induction and Unitary Representations* Ch. XII.
+/-- **Cat 3 derivation-stage (§3.4.2, R3 S3 LEAN-CLOSED; R7 audit B.1
+ refactor 2026-05-16)** — Knapp-Vogan 1995 unitary induction framework.
+ Knapp-Vogan PMS-45 *Cohomological Induction and Unitary Representations*
+ Ch. XII.
 
- **R3 S3 LEAN-CLOSED (2026-05-16)**: previously an `opaque Prop`
- hypothesis predicate. Now expanded to the abstract universally
- -quantified statement over any setting carrying
- `Infrastructure.Automorphic.VZAqLambdaData`. The load-bearing
- CONSEQUENCE consumed downstream is the KV 1995 cohomological
- induction framework witness (functor `R^k_q`, unitarity transfer,
- Ch. XII Thm 9.1), encoded as the typeclass field
- `VZAqLambdaData.knappVogan_induction_holds`. The
- `knapp_vogan_1995_OPEN` axiom is now a `theorem` proved kernel-pure
- via this typeclass field. -/
+ **R7 audit B.1 refactor (2026-05-16)**: previously routed through the
+ decorative `knappVogan_induction_holds : Prop` field of `VZAqLambdaData`
+ whose only instance set it to `True`. That field carried no mathematical
+ content; the substantive KV 1995 cohomological induction framework
+ witness is the unitarizability theorem Ch. XII Thm 9.1, which states
+ that every A_q(λ) module produced by cohomological induction from a
+ one-dim unitary character of the Levi L is unitary. This is captured by
+ the concrete `decide`-checked typeclass field
+ `VZAqLambdaData.knappVoganUnitarity : ∀ (q : Label), isUnitary q` on
+ the Atlas E_{7(-25)} instance. The framework is now expanded directly
+ to `knappVoganUnitarity`, which IS the load-bearing KV 1995 consequence
+ consumed downstream by the Salamanca-Riba 1999 classification. -/
 def knappVogan_1995_induction_framework : Prop :=
-  ∀ [Infrastructure.Automorphic.VZAqLambdaData],
-    Infrastructure.Automorphic.VZAqLambdaData.knappVogan_induction
+  ∀ [inst : Infrastructure.Automorphic.VZAqLambdaData]
+    (q : inst.Label), inst.isUnitary q
 
 /-- **Cat 1 derivation-stage (§3.4.2, P232 I2 LEAN-CLOSED)** — Franke 1998
  Eisenstein decomposition framework. J. Franke, "Harmonic analysis in
@@ -2274,33 +2282,42 @@ theorem mumford_1977_canonical_extension_OPEN :
   fun A _ _ _ _ _ i =>
     (Infrastructure.Shimura.MumfordExtensionData.Vbar (A := A)).chern_isAlgebraic i
 
-/-- **Cat 2 (§3.3, R3 S2 LEAN-CLOSED)** — D. Vogan, G. Zuckerman,
- "Unitary representations with non-zero cohomology",
- Compositio Math. 53 (1984), 51-90.
+/-- **Cat 2 (§3.3, R3 S2 LEAN-CLOSED; R7 audit B.1 refactor 2026-05-16)**
+ — D. Vogan, G. Zuckerman, "Unitary representations with non-zero
+ cohomology", Compositio Math. 53 (1984), 51-90.
 
- **R3 S2 LEAN-CLOSED (2026-05-16)**: previously a Cat 2 axiom. Now a
- `theorem` proved kernel-pure via the typeclass-field projection
- `VZAqLambdaData.voganZuckerman_framework_holds`. The VZ 1984
- single-source citation is retained as the algebraic-geometric
- justification that the framework witness holds; the Lean-level claim
- records the typeclass-field projection downstream consumers actually
- use. Kernel-pure axioms only: `[propext, Quot.sound]`. -/
-theorem vogan_zuckerman_1984_OPEN : voganZuckerman_1984_framework :=
-  Infrastructure.Automorphic.VZAqLambdaData.voganZuckerman_framework_holds
-
-/-- **Cat 2 (§3.3, R3 S2 LEAN-CLOSED)** — A. Knapp, D. Vogan,
- *Cohomological Induction and Unitary Representations*, PMS-45 (1995),
- Ch. XII.
-
- **R3 S2 LEAN-CLOSED (2026-05-16)**: previously a Cat 2 axiom. Now a
- `theorem` proved kernel-pure via the typeclass-field projection
- `VZAqLambdaData.knappVogan_induction_holds`. The KV 1995 single-source
- citation is retained as the algebraic-geometric justification that the
- framework witness holds; the Lean-level claim records the
- typeclass-field projection downstream consumers actually use.
+ **R7 audit B.1 refactor (2026-05-16)**: previously routed through the
+ decorative `voganZuckerman_framework_holds := trivial` (= `True`) field
+ of `VZAqLambdaData`. That projection carried no mathematical content.
+ Refactored to project directly through the substantive Salamanca-Riba
+ 1999 classification field `salamancaRibaClassification`, which IS the
+ load-bearing low-bottom-degree VZ 1984 consequence (every A_q(λ) of
+ bottom degree `< dim_C(G/K)` is trivial or holomorphic-discrete) and
+ is concretely `decide`-checked on the Atlas E_{7(-25)} instance.
  Kernel-pure axioms only: `[propext, Quot.sound]`. -/
+theorem vogan_zuckerman_1984_OPEN : voganZuckerman_1984_framework :=
+  fun [inst : Infrastructure.Automorphic.VZAqLambdaData]
+      (q : inst.Label) (hq : inst.bottomDegree q < inst.dimCGmodK) =>
+    inst.salamancaRibaClassification q hq
+
+/-- **Cat 2 (§3.3, R3 S2 LEAN-CLOSED; R7 audit B.1 refactor 2026-05-16)**
+ — A. Knapp, D. Vogan, *Cohomological Induction and Unitary
+ Representations*, PMS-45 (1995), Ch. XII.
+
+ **R7 audit B.1 refactor (2026-05-16)**: previously routed through the
+ decorative `knappVogan_induction_holds := trivial` (= `True`) field of
+ `VZAqLambdaData`. That projection carried no mathematical content.
+ Refactored to project directly through the substantive KV 1995 Ch. XII
+ Thm 9.1 unitarizability field
+ `knappVoganUnitarity : ∀ (q : Label), isUnitary q`, which IS the
+ load-bearing cohomological-induction unitarity transfer that downstream
+ Salamanca-Riba 1999 relies on, and is concretely `decide`-checked on
+ the Atlas E_{7(-25)} instance. Kernel-pure axioms only:
+ `[propext, Quot.sound]`. -/
 theorem knapp_vogan_1995_OPEN : knappVogan_1995_induction_framework :=
-  Infrastructure.Automorphic.VZAqLambdaData.knappVogan_induction_holds
+  fun [inst : Infrastructure.Automorphic.VZAqLambdaData]
+      (q : inst.Label) =>
+    inst.knappVoganUnitarity q
 
 /-- **Cat 1 derivation-stage (§3.3, P232 I2 LEAN-CLOSED)** — J. Franke,
  "Harmonic analysis in weighted L_2-spaces", Ann. Sci. ÉNS (4) 31 (1998),

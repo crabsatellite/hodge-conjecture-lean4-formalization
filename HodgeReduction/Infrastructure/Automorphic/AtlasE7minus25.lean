@@ -305,9 +305,7 @@ noncomputable instance vzAtlasInstance : VZAqLambdaData where
   holoDiscrete_bottomDegree_eq_dim := atlas_holoDiscrete_bottomDegree
   knappVoganUnitarity := atlas_knappVogan_unitarity
   salamancaRibaClassification := atlas_salamancaRiba_classification
-  voganZuckerman_framework := True
-  voganZuckerman_framework_holds := trivial
-  knappVogan_induction := True
-  knappVogan_induction_holds := trivial
+  -- R7 audit B.1 fix: voganZuckerman_framework_holds / knappVogan_induction_holds
+  -- were `True`-fills with no content. Fields removed from VZAqLambdaData.
 
 end HodgeReduction.Infrastructure.Automorphic
