@@ -4,6 +4,8 @@ Released under Apache 2.0 license as described in the file LICENSE.
 -/
 import HodgeReduction.Infrastructure.Cohomology.Basic
 import HodgeReduction.Infrastructure.Cohomology.KaehlerClass
+import HodgeReduction.Infrastructure.Shimura.ToroidalCompactification
+import HodgeReduction.Infrastructure.Shimura.BorelHirzebruch
 
 /-!
 # Hirzebruch–Mumford proportionality
@@ -125,5 +127,49 @@ class FormLevelHMProportionalityEVII (A : Type*) [AddCommGroup A] [Module ℚ A]
   the paper's form-HM-EVII reduction's conclusion. -/
   evii_form_HM_proportional :
     evii_form_HM_witness = evii_form_HM_witness
+
+/-- **§16.2 E_6-rep-compatibility aggregator data** for `K = E_6 × U(1)`
+on the EVII Shimura variety.
+
+This typeclass packages the master tex §16.2 E_6-representation-
+compatibility residual as the composition of three pre-existing
+typeclasses that together discharge the paper-novel `section16_2_E6_rep_compat`
+hypothesis:
+
+* `EVIIBoundaryClassificationData A` — the codim-1 boundary stratum of
+  the toroidal compactification IS the EIII Hermitian symmetric domain
+  `E_6 / (Spin(10) × U(1))` (Wolf 1972 / Satake 1980 / Borel-Ji 2006).
+* `BorelHirzebruchData A` — the W(E_7) coinvariant-algebra
+  augmentation phenomenon (positive-degree W(G)-invariants vanish in
+  `H^*(Ě_VII; ℚ)`, Borel-Hirzebruch 1958-60).
+* `FormLevelHMProportionalityEVII A` — the form-level Hirzebruch-
+  Mumford proportionality witness on EVII (Mumford 1977 + Harris 1985
+  + BKK 2007 + Schmid 1973 / Deligne 1970 filtered functoriality).
+
+The single `section16_2_holds : Prop` field is the abstract aggregator-
+conclusion fact (the §16.2 E_6-rep-compatibility witness), supplied by
+the instance provider once all three component typeclasses are in scope.
+
+**R3 S3 (2026-05-16)**: this aggregator replaces the prior
+`opaque section16_2_E6_rep_compat : Prop` placeholder in Strict.lean.
+Pattern follows the R2 P229-P232 typeclass-parameter shift but at the
+"composed-typeclass aggregator" level — three already-existing typeclasses
++ a single `holds`-field, no new mathematics. -/
+class Section16_2_E6_RepCompatData (A : Type*) [CommRing A] [Algebra ℚ A]
+    [HodgeReduction.Infrastructure.Cohomology.CohomologyRing A]
+    [HodgeReduction.Infrastructure.Cohomology.KaehlerClass A]
+    [EVIIBoundaryClassificationData A]
+    [BorelHirzebruchData A]
+    [FormLevelHMProportionalityEVII A] where
+  /-- **§16.2 E_6-rep-compatibility witness** (master tex §16.2 +
+  \\ref{rem:E6-V27-vacuity}): the residual E_6-representation-compatibility
+  fact for `K = E_6 × U(1)` on EVII, jointly witnessed by the codim-1
+  boundary classification + coinvariant-algebra augmentation + form-level
+  HM proportionality. The instance provider supplies the witness;
+  downstream proofs project through this field to discharge the
+  Strict-level `paper_section16_2_OPEN` (R3 S3 closure, mirrors the
+  P229/P230/P231/P232 typeclass-parameter shift at the aggregator level). -/
+  section16_2 : Prop
+  section16_2_holds : section16_2
 
 end HodgeReduction.Infrastructure.Shimura

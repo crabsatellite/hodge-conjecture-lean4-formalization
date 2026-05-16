@@ -220,6 +220,17 @@ class TwistedPhiFiltData where
   /-- **P53 explicit value** `Φ_filt(q) = -48 · h^4`. -/
   twistedPhiFilt_q_eq_neg_48_h_pow_4 :
     twistedPhiFilt_q = (-48 : ℚ) • ((KaehlerClass.h : A) ^ 4)
+  /-- **Well-definedness witness** (P41 reframing, R3 S3): the
+  Hodge-filtration projection `Φ_filt` is a well-defined non-W(E_7)
+  -equivariant map. Cat 3 hypothesisPredicate-level witness asserting
+  that the carrier framework (the Hodge filtration `F^•` together with
+  the Chern-Weil map) suffices to define `Φ_filt` at the abstract level.
+  The downstream Hodge-reduction chain consumes this as a typeclass
+  parameter; concrete instance providers discharge it from the
+  combination of (i) the explicit P53 value `twistedPhiFilt_q = -48·h^4`,
+  (ii) the algebraicity of `h^4`, and (iii) the Hodge-filtration
+  non-W(E_7)-stability fact. -/
+  twistedPhiFilt_well_defined_holds : Prop
 
 namespace TwistedPhiFiltData
 

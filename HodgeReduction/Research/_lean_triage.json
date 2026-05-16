@@ -1,39 +1,6 @@
 [
   {
-    "name": "H8_compactDualEVII_is_44_bigrading",
-    "gap_name": "gap_H8_compactDualEVII_is_44_bigrading",
-    "concrete_def": true,
-    "open_axiom": false,
-    "open_theorem": false,
-    "cat": ".cat3PaperNovel",
-    "sub": ".hypothesisPredicate",
-    "paperSource_short": "paper invocation of Bott-BBW for EVII compact dual",
-    "scope": "H^8(Ě_VII) sits in (4,4) Hodge bigrading"
-  },
-  {
-    "name": "cohomologyIso_at_deg8",
-    "gap_name": "gap_cohomologyIso_at_deg8",
-    "concrete_def": true,
-    "open_axiom": false,
-    "open_theorem": false,
-    "cat": ".cat3PaperNovel",
-    "sub": ".hypothesisPredicate",
-    "paperSource_short": "paper invocation of Borel 1974 stable range for EVII",
-    "scope": "Canonical cohomology iso H^8(S_Γ_EVII) ≅ H^8(Ě_VII)"
-  },
-  {
-    "name": "borelM_E7minus25",
-    "gap_name": "gap_freudenthal_H8_auto_G_invariant",
-    "concrete_def": false,
-    "open_axiom": false,
-    "open_theorem": false,
-    "cat": ".cat3PaperNovel",
-    "sub": ".hypothesisPredicate",
-    "paperSource_short": "paper (P14, P9.d-corrected) Hodge-(4,4) auto-G-inv conclusion",
-    "scope": "Freudenthal H^8 class auto-G-invariant on S_Γ_EVII"
-  },
-  {
-    "name": "H8_compactDualEVII_is_44_bigrading",
+    "name": "formLevel_HM_proportionality_EVII",
     "gap_name": "gap_formLevel_HM_proportionality_EVII",
     "concrete_def": true,
     "open_axiom": false,
@@ -44,53 +11,9 @@
     "scope": "Form-level Hirzebruch-Mumford proportionality for EVII"
   },
   {
-    "name": "cohomologyIso_at_deg8",
-    "gap_name": "gap_freudenthal_realized_by_G_invariant",
-    "concrete_def": true,
-    "open_axiom": false,
-    "open_theorem": false,
-    "cat": ".cat3PaperNovel",
-    "sub": ".hypothesisPredicate",
-    "paperSource_short": "paper (ii.a) conclusion",
-    "scope": "(ii.a) Freudenthal realized by G-invariant cohomology"
-  },
-  {
-    "name": "freudenthal_H8_auto_G_invariant",
-    "gap_name": "gap_ih_pullback_freudenthal",
-    "concrete_def": true,
-    "open_axiom": false,
-    "open_theorem": false,
-    "cat": ".cat3PaperNovel",
-    "sub": ".hypothesisPredicate",
-    "paperSource_short": "BBD/Saito/GM IH-pullback predicate (the (ii.b.1) PUBLISHED step)",
-    "scope": "Canonical IH-to-toroidal pullback for Freudenthal class"
-  },
-  {
-    "name": "formLevel_HM_proportionality_EVII",
-    "gap_name": "gap_freudenthal_extends_compatibly_deg8",
-    "concrete_def": true,
-    "open_axiom": false,
-    "open_theorem": false,
-    "cat": ".cat3PaperNovel",
-    "sub": ".hypothesisPredicate",
-    "paperSource_short": "paper (ii.b) compatibility predicate",
-    "scope": "(ii.b) Freudenthal extends compatibly at deg 8"
-  },
-  {
-    "name": "freudenthal_realized_by_G_invariant",
-    "gap_name": "gap_goreskyPardon_extension_to_EVII",
-    "concrete_def": true,
-    "open_axiom": false,
-    "open_theorem": false,
-    "cat": ".cat3PaperNovel",
-    "sub": ".hypothesisPredicate",
-    "paperSource_short": "paper G-P-EVII Chern-subalgebra extension predicate",
-    "scope": "G-P Chern-subalgebra extends to EVII equal-rank case"
-  },
-  {
-    "name": "ih_pullback_freudenthal",
+    "name": "section16_2_E6_rep_compat",
     "gap_name": "gap_section16_2_E6_rep_compat",
-    "concrete_def": true,
+    "concrete_def": false,
     "open_axiom": false,
     "open_theorem": false,
     "cat": ".cat3PaperNovel",
@@ -99,75 +22,9 @@
     "scope": "§16.2 E_6-rep-compat residual for K = E_6 × U(1)"
   },
   {
-    "name": "freudenthal_extends_compatibly_deg8",
-    "gap_name": "gap_evii_codim1_boundary_is_eiii",
-    "concrete_def": true,
-    "open_axiom": false,
-    "open_theorem": false,
-    "cat": ".cat3PaperNovel",
-    "sub": ".hypothesisPredicate",
-    "paperSource_short": "Wolf 1972 / Satake 1980 / Borel-Ji 2006 boundary classification",
-    "scope": "Codim-1 boundary of EVII is EIII (exceptional E_6 type)"
-  },
-  {
-    "name": "goreskyPardon_extension_to_EVII",
-    "gap_name": "gap_chernV27_generates_BE6",
-    "concrete_def": true,
-    "open_axiom": false,
-    "open_theorem": false,
-    "cat": ".cat3PaperNovel",
-    "sub": ".hypothesisPredicate",
-    "paperSource_short": "paper V_27 Chern generation predicate",
-    "scope": "V_27 Chern classes generate H*(BE_6; ℚ)"
-  },
-  {
-    "name": "section16_2_E6_rep_compat",
-    "gap_name": "gap_chernV56_generates_BE7",
-    "concrete_def": false,
-    "open_axiom": false,
-    "open_theorem": false,
-    "cat": ".cat3PaperNovel",
-    "sub": ".hypothesisPredicate",
-    "paperSource_short": "paper V_56 Chern generation predicate",
-    "scope": "V_56 Chern classes generate H*(BE_7; ℚ)"
-  },
-  {
-    "name": "evii_codim1_boundary_is_eiii",
-    "gap_name": "gap_borelHirzebruch_presentation",
-    "concrete_def": true,
-    "open_axiom": false,
-    "open_theorem": false,
-    "cat": ".cat3PaperNovel",
-    "sub": ".hypothesisPredicate",
-    "paperSource_short": "paper Borel-Hirzebruch presentation predicate",
-    "scope": "H^*(B(E_6 × U(1)); ℚ) polynomial on V_27 Chern classes"
-  },
-  {
-    "name": "chernV27_generates_BE6",
-    "gap_name": "gap_gpAbstract_group_agnostic",
-    "concrete_def": true,
-    "open_axiom": false,
-    "open_theorem": false,
-    "cat": ".cat3PaperNovel",
-    "sub": ".hypothesisPredicate",
-    "paperSource_short": "paper G-P abstract framework predicate",
-    "scope": "G-P §10-12 abstract framework is group-agnostic (per Looijenga 2017)"
-  },
-  {
-    "name": "chernV56_generates_BE7",
-    "gap_name": "gap_mumford_canonical_extension_framework",
-    "concrete_def": true,
-    "open_axiom": false,
-    "open_theorem": false,
-    "cat": ".cat3PaperNovel",
-    "sub": ".hypothesisPredicate",
-    "paperSource_short": "paper Mumford 1977 framework predicate",
-    "scope": "Mumford 1977 canonical extension framework"
-  },
-  {
-    "name": "borelHirzebruch_presentation_E6_times_U1",
+    "name": "voganZuckerman_1984_framework",
     "gap_name": "gap_voganZuckerman_1984_framework",
-    "concrete_def": true,
+    "concrete_def": false,
     "open_axiom": false,
     "open_theorem": false,
     "cat": ".cat3PaperNovel",
@@ -176,9 +33,9 @@
     "scope": "V-Z 1984 A_q(λ) cohomological induction framework"
   },
   {
-    "name": "gpAbstract_group_agnostic",
+    "name": "knappVogan_1995_induction_framework",
     "gap_name": "gap_knappVogan_1995_induction",
-    "concrete_def": true,
+    "concrete_def": false,
     "open_axiom": false,
     "open_theorem": false,
     "cat": ".cat3PaperNovel",
@@ -187,7 +44,7 @@
     "scope": "Knapp-Vogan unitary realization framework"
   },
   {
-    "name": "mumford_canonical_extension_framework",
+    "name": "franke_1998_eisenstein_framework",
     "gap_name": "gap_franke_1998_framework",
     "concrete_def": true,
     "open_axiom": false,
@@ -198,31 +55,9 @@
     "scope": "Franke 1998 Eisenstein decomposition framework"
   },
   {
-    "name": "voganZuckerman_1984_framework",
-    "gap_name": "gap_polynomial_identity_freudenthal",
-    "concrete_def": false,
-    "open_axiom": false,
-    "open_theorem": false,
-    "cat": ".cat3PaperNovel",
-    "sub": ".hypothesisPredicate",
-    "paperSource_short": "paper clause-iii conclusion: [q] = P(c_1,...,c_4). P57 EXPLICIT FORM: P(c_1,c_2,",
-    "scope": "Polynomial identity [q] = -48 c_2² + 96 c_1·c_3 - 96 c_4 holds in H^8(S_Γ^tor; ℚ) (P57 explicit form"
-  },
-  {
-    "name": "franke_1998_eisenstein_framework",
-    "gap_name": "gap_cartan_1929_compact_dual_iso",
-    "concrete_def": false,
-    "open_axiom": false,
-    "open_theorem": false,
-    "cat": ".cat3PaperNovel",
-    "sub": ".hypothesisPredicate",
-    "paperSource_short": "P58: Cartan 1929's compact-dual cohomology iso — for Hermitian symmetric (g, K) ",
-    "scope": "Cartan 1929 trivial-module (g, K)-cohomology iso H^*(g, K; ℂ) = H^*(Ě_VII; ℂ); load-bearing in (ii.a"
-  },
-  {
     "name": "cattani_kaplan_schmid_1986_hodge_norm_estimates",
     "gap_name": "gap_cattani_kaplan_schmid_1986_hodge_norm_estimates",
-    "concrete_def": false,
+    "concrete_def": true,
     "open_axiom": false,
     "open_theorem": false,
     "cat": ".cat3PaperNovel",
@@ -231,29 +66,7 @@
     "scope": "CKS 1986 Hodge norm estimates / limiting mixed Hodge structure; load-bearing for L-block-diagonal ex"
   },
   {
-    "name": "harris_1985_algebraic_upgrade",
-    "gap_name": "gap_J_3_O_cubic_norm_form_zorn_basis",
-    "concrete_def": true,
-    "open_axiom": false,
-    "open_theorem": false,
-    "cat": ".cat3PaperNovel",
-    "sub": ".hypothesisPredicate",
-    "paperSource_short": "P67: exceptional Jordan algebra J_3(O) (dim 27) with cubic norm form N — N(X) = ",
-    "scope": "Tits-Jacobson J_3(O) (dim-27 exceptional Jordan algebra) cubic norm form N(𝟙) = 27; load-bearing in "
-  },
-  {
-    "name": "cattani_kaplan_schmid_1986_hodge_norm_estimates",
-    "gap_name": "gap_freudenthal_triple_product_T",
-    "concrete_def": false,
-    "open_axiom": false,
-    "open_theorem": false,
-    "cat": ".cat3PaperNovel",
-    "sub": ".hypothesisPredicate",
-    "paperSource_short": "P68: Freudenthal triple product T : V_56³ → V_56 making V_56 a Freudenthal tripl",
-    "scope": "Freudenthal triple product T + Sato-Kimura rank stratification; load-bearing in P43-P45 normal-jet c"
-  },
-  {
-    "name": "schlafli_graph_srg_27_10_1_5",
+    "name": "W_E7_invariant_degrees_2_6_8_10_12_14_18",
     "gap_name": "gap_W_E7_invariant_degrees_2_6_8_10_12_14_18",
     "concrete_def": true,
     "open_axiom": false,
@@ -264,9 +77,9 @@
     "scope": "W(E_7) invariant degrees {2,6,8,10,12,14,18}; load-bearing for q|_{t^∨} = c·κ² → augmentation ideal "
   },
   {
-    "name": "J_3_O_cubic_norm_form_zorn_basis",
+    "name": "H8_G_invariant_equals_cuspidal",
     "gap_name": "gap_H8_G_invariant_equals_cuspidal",
-    "concrete_def": true,
+    "concrete_def": false,
     "open_axiom": false,
     "open_theorem": false,
     "cat": ".cat3PaperNovel",
@@ -275,48 +88,15 @@
     "scope": "Intermediate carrier: G-invariant H^8 = cuspidal H^8 (Step A of (ii.a) decomposition, P71)"
   },
   {
-    "name": "freudenthal_triple_product_T",
+    "name": "H8_cuspidal_G_invariant_equals_trivial_module",
     "gap_name": "gap_H8_cuspidal_G_invariant_equals_trivial_module",
-    "concrete_def": true,
+    "concrete_def": false,
     "open_axiom": false,
     "open_theorem": false,
     "cat": ".cat3PaperNovel",
     "sub": ".hypothesisPredicate",
     "paperSource_short": "P71 (Step B intermediate): cuspidal G-invariant H^8 of S_Γ equals trivial-module",
     "scope": "Intermediate carrier: cuspidal G-invariant H^8 = trivial-module Cartan image = ⟨h^4⟩ (Step B of (ii."
-  },
-  {
-    "name": "H8_G_invariant_equals_cuspidal",
-    "gap_name": "gap_HC_for_freudenthal_target",
-    "concrete_def": false,
-    "open_axiom": false,
-    "open_theorem": false,
-    "cat": ".cat3PaperNovel",
-    "sub": ".hypothesisPredicate",
-    "paperSource_short": "paper Main Theorem target",
-    "scope": "HC for Freudenthal [q] on EVII Shimura varieties"
-  },
-  {
-    "name": "H8_cuspidal_G_invariant_equals_trivial_module",
-    "gap_name": "gap_higher_rank_good_metric",
-    "concrete_def": false,
-    "open_axiom": false,
-    "open_theorem": false,
-    "cat": ".cat3PaperNovel",
-    "sub": ".carrier",
-    "paperSource_short": "P13 paper-acknowledged conditional",
-    "scope": "Higher-rank automorphic bundle good metric on EVII"
-  },
-  {
-    "name": "freudenthal_placed_in_chern_subalgebra",
-    "gap_name": "gap_canonical_Phi_lands_in_W_E7_augmentation_ideal",
-    "concrete_def": true,
-    "open_axiom": false,
-    "open_theorem": false,
-    "cat": ".cat3PaperNovel",
-    "sub": ".hypothesisPredicate",
-    "paperSource_short": "P39 → P41-confirmed: RIGOROUSLY ESTABLISHED — q is W(E_7)-invariant, q|_{t^∨} ha",
-    "scope": "Canonical Φ factors through the W(E_7)-augmentation ideal of H^*(Ě_VII); rigorously: q|_{t^∨} = c·κ²"
   },
   {
     "name": "V56_hodge_decomposition_under_E6_U1",
@@ -330,9 +110,9 @@
     "scope": "V_56 decomposes under E_6 × U(1) as the weight-3 Hodge decomposition"
   },
   {
-    "name": "canonical_Phi_lands_in_W_E7_augmentation_ideal",
+    "name": "twisted_Phi_L_well_defined",
     "gap_name": "gap_twisted_Phi_L_well_defined",
-    "concrete_def": true,
+    "concrete_def": false,
     "open_axiom": false,
     "open_theorem": false,
     "cat": ".cat3PaperNovel",
@@ -341,9 +121,9 @@
     "scope": "The Hodge-FILTRATION projection Φ_filt is a well-defined non-W(E_7)-equivariant map (P41-corrected f"
   },
   {
-    "name": "H8_EVII_is_one_dim_spanned_by_h4",
+    "name": "freudenthal_scalar_piece_maps_to_81_h4",
     "gap_name": "gap_freudenthal_scalar_piece_maps_to_81_h4",
-    "concrete_def": true,
+    "concrete_def": false,
     "open_axiom": false,
     "open_theorem": false,
     "cat": ".cat3PaperNovel",
@@ -352,31 +132,9 @@
     "scope": "P45-re-vindicated: (ab)^2 IS the geometrically relevant piece — the leading normal jet of q along Ě_"
   },
   {
-    "name": "freudenthal_scalar_piece_maps_to_81_h4",
-    "gap_name": "gap_E6_compactness_gives_form_proportionality",
-    "concrete_def": false,
-    "open_axiom": false,
-    "open_theorem": false,
-    "cat": ".cat3PaperNovel",
-    "sub": ".hypothesisPredicate",
-    "paperSource_short": "P40: the Levi E_6 ⊂ K is compact, so the Mumford good metric restricts to E_6-in",
-    "scope": "E_6-compactness gives Chern-Weil form proportionality for the rank-27 Hodge sub-bundles E_{±1}"
-  },
-  {
-    "name": "twisted_Phi_L_total_coefficient_nonzero",
-    "gap_name": "gap_schmid_deligne_hodge_filtration_extends",
-    "concrete_def": false,
-    "open_axiom": false,
-    "open_theorem": false,
-    "cat": ".cat3PaperNovel",
-    "sub": ".hypothesisPredicate",
-    "paperSource_short": "P54: Schmid 1973 nilpotent orbit theorem + Deligne 1970 canonical extension — th",
-    "scope": "Schmid 1973 + Deligne 1970: the Hodge filtration and its graded pieces extend canonically to S_Γ^{to"
-  },
-  {
     "name": "eisenstein_franke_layer_decomposition",
     "gap_name": "gap_eisenstein_franke_layer_decomposition",
-    "concrete_def": false,
+    "concrete_def": true,
     "open_axiom": false,
     "open_theorem": false,
     "cat": ".cat3PaperNovel",
@@ -385,7 +143,7 @@
     "scope": "Eisenstein cohomology layer decomposition (Franke 1998 §1.4 + Borel-Wallach Ch. VII + Borel-Serre 19"
   },
   {
-    "name": "E6_compactness_gives_form_proportionality",
+    "name": "E7_proper_Q_parabolic_min_BS_codim",
     "gap_name": "gap_E7_proper_Q_parabolic_min_BS_codim",
     "concrete_def": true,
     "open_axiom": false,
@@ -396,62 +154,40 @@
     "scope": "Every proper ℚ-parabolic of E_{7(-25)} has Borel-Serre stratum codim ≥ 26 (minimum at the E_6 × T_1 "
   },
   {
-    "name": "Hyp_TwistedPhiL_Coefficient_Nonzero_OPEN",
-    "gap_name": "gap_bott_borel_weil",
-    "concrete_def": true,
-    "open_axiom": false,
-    "open_theorem": false,
-    "cat": ".cat2External",
-    "sub": ".notApplicable",
-    "paperSource_short": "Bott 1957 Ann. Math. 66 + Borel-Hirzebruch 1958 AJM 80 §29-30 + Griffiths-Harris",
-    "scope": "Flag-variety diagonal Hodge bigrading specialised to Ě_VII"
-  },
-  {
-    "name": "borel_1974",
-    "gap_name": "gap_borel_1974",
-    "concrete_def": false,
-    "open_axiom": false,
-    "open_theorem": false,
-    "cat": ".cat2External",
-    "sub": ".notApplicable",
-    "paperSource_short": "A. Borel, 'Stable real cohomology of arithmetic groups', Ann. Sci. ÉNS (4) 7 (19",
-    "scope": "Borel 1974 §9.1(3) p.261 PUBLISHED: c(E_7) = 8 (j^q injectivity ceiling); produces the cohomologyIso"
-  },
-  {
-    "name": "bbd_saito_gm",
+    "name": "bbd_saito_gm_ih_pullback_OPEN",
     "gap_name": "gap_bbd_saito_gm",
     "concrete_def": false,
     "open_axiom": false,
-    "open_theorem": false,
+    "open_theorem": true,
     "cat": ".cat2External",
     "sub": ".notApplicable",
     "paperSource_short": "BBD 1982 Astérisque 100 + Saito 1988 Publ. RIMS 24 + Goresky-MacPherson 1980 Top",
     "scope": "Canonical IH-to-toroidal pullback"
   },
   {
-    "name": "bott_borel_weil_diagonal_E7P7_OPEN",
+    "name": "goresky_pardon_2002_looijenga_2017_abstract_OPEN",
     "gap_name": "gap_goresky_pardon_2002_looijenga",
     "concrete_def": false,
-    "open_axiom": true,
-    "open_theorem": false,
+    "open_axiom": false,
+    "open_theorem": true,
     "cat": ".cat2External",
     "sub": ".notApplicable",
     "paperSource_short": "Goresky-Pardon 2002 Invent. Math. 147 §10-12 + Looijenga 2017 Compositio 153 (13",
     "scope": "G-P §10-12 abstract framework group-agnostic"
   },
   {
-    "name": "borel_1974_c_E7_eq_8_PUBLISHED_OPEN",
+    "name": "wolf_satake_borel_ji_2006_evii_boundary_OPEN",
     "gap_name": "gap_wolf_satake_borel_ji",
     "concrete_def": false,
-    "open_axiom": true,
-    "open_theorem": false,
+    "open_axiom": false,
+    "open_theorem": true,
     "cat": ".cat2External",
     "sub": ".notApplicable",
     "paperSource_short": "Wolf 1972 + Satake 1980 + Borel-Ji 2006 §III.4-5",
     "scope": "EVII codim-1 boundary classification = EIII"
   },
   {
-    "name": "bbd_saito_gm_ih_pullback_OPEN",
+    "name": "mumford_1977_canonical_extension_OPEN",
     "gap_name": "gap_mumford_1977",
     "concrete_def": false,
     "open_axiom": false,
@@ -462,29 +198,29 @@
     "scope": "Mumford canonical extension framework, type-uniform"
   },
   {
-    "name": "goresky_pardon_2002_looijenga_2017_abstract_OPEN",
+    "name": "vogan_zuckerman_1984_OPEN",
     "gap_name": "gap_vogan_zuckerman",
     "concrete_def": false,
-    "open_axiom": false,
-    "open_theorem": true,
+    "open_axiom": true,
+    "open_theorem": false,
     "cat": ".cat2External",
     "sub": ".notApplicable",
     "paperSource_short": "Vogan-Zuckerman 1984 Compositio Math. 53 (51-90)",
     "scope": "V-Z 1984 A_q(λ) cohomological induction framework"
   },
   {
-    "name": "wolf_satake_borel_ji_2006_evii_boundary_OPEN",
+    "name": "knapp_vogan_1995_OPEN",
     "gap_name": "gap_knapp_vogan_1995",
     "concrete_def": false,
-    "open_axiom": false,
-    "open_theorem": true,
+    "open_axiom": true,
+    "open_theorem": false,
     "cat": ".cat2External",
     "sub": ".notApplicable",
     "paperSource_short": "Knapp-Vogan 1995 PMS-45 Ch. XII",
     "scope": "Knapp-Vogan unitary realization framework"
   },
   {
-    "name": "mumford_1977_canonical_extension_OPEN",
+    "name": "franke_1998_OPEN",
     "gap_name": "gap_franke_1998",
     "concrete_def": false,
     "open_axiom": false,
@@ -495,40 +231,40 @@
     "scope": "Franke 1998 Eisenstein decomposition framework"
   },
   {
-    "name": "vogan_zuckerman_1984_OPEN",
+    "name": "cartan_1929_PUBLISHED_OPEN",
     "gap_name": "gap_cartan_1929_PUBLISHED",
     "concrete_def": false,
-    "open_axiom": true,
-    "open_theorem": false,
+    "open_axiom": false,
+    "open_theorem": true,
     "cat": ".cat2External",
     "sub": ".notApplicable",
     "paperSource_short": "É. Cartan, 'Sur la détermination d'un système orthogonal complet dans un espace ",
     "scope": "Cat 2 PUBLISHED: Cartan 1929 compact-dual identification of trivial-module (g, K)-cohomology with H^"
   },
   {
-    "name": "knapp_vogan_1995_OPEN",
+    "name": "salamanca_riba_1999_PUBLISHED_OPEN",
     "gap_name": "gap_salamanca_riba_1999_PUBLISHED",
     "concrete_def": false,
-    "open_axiom": true,
-    "open_theorem": false,
+    "open_axiom": false,
+    "open_theorem": true,
     "cat": ".cat2External",
     "sub": ".notApplicable",
     "paperSource_short": "S. Salamanca-Riba, 'On the unitary dual of real reductive Lie groups and the A_g",
     "scope": "Cat 2 PUBLISHED: Salamanca-Riba 1999 low-degree vanishing for A_q(λ) in Hermitian symmetric; load-be"
   },
   {
-    "name": "franke_1998_OPEN",
+    "name": "vz_1984_holo_discrete_lowest_deg_PUBLISHED_OPEN",
     "gap_name": "gap_vz_1984_holo_discrete_lowest_deg_PUBLISHED",
     "concrete_def": false,
-    "open_axiom": true,
-    "open_theorem": false,
+    "open_axiom": false,
+    "open_theorem": true,
     "cat": ".cat2External",
     "sub": ".notApplicable",
     "paperSource_short": "D. Vogan, G. Zuckerman, 'Unitary representations with non-zero cohomology', Comp",
     "scope": "Cat 2 PUBLISHED: V-Z 1984 §5 + Knapp-Wallach 1976 + Borel-Wallach Ch. VI holo-discrete lowest cohomo"
   },
   {
-    "name": "borel_hirzebruch_h_equals_c_1_L_PUBLISHED_OPEN",
+    "name": "cattani_kaplan_schmid_1986_PUBLISHED_OPEN",
     "gap_name": "gap_cattani_kaplan_schmid_1986_PUBLISHED",
     "concrete_def": false,
     "open_axiom": false,
@@ -539,7 +275,7 @@
     "scope": "Cat 2 PUBLISHED: CKS 1986 Hodge norm estimates / limiting mixed Hodge structure; load-bearing in L-b"
   },
   {
-    "name": "burgos_kramer_kuhn_2007_PUBLISHED_OPEN",
+    "name": "schlafli_graph_PUBLISHED_OPEN",
     "gap_name": "gap_schlafli_graph_PUBLISHED",
     "concrete_def": false,
     "open_axiom": false,
@@ -550,7 +286,7 @@
     "scope": "Cat 2 PUBLISHED: Schläfli graph srg(27,10,1,5) on the 27 weights of E_6; load-bearing in P53 finite "
   },
   {
-    "name": "harris_1985_algebraic_upgrade_PUBLISHED_OPEN",
+    "name": "tits_jacobson_J_3_O_PUBLISHED_OPEN",
     "gap_name": "gap_tits_jacobson_J_3_O_PUBLISHED",
     "concrete_def": false,
     "open_axiom": false,
@@ -561,18 +297,18 @@
     "scope": "Cat 2 PUBLISHED: Tits-Jacobson J_3(O) cubic norm form (Freudenthal cubic norm); load-bearing in P51 "
   },
   {
-    "name": "cattani_kaplan_schmid_1986_PUBLISHED_OPEN",
+    "name": "freudenthal_1954_brown_1969_sato_kimura_PUBLISHED_OPEN",
     "gap_name": "gap_freudenthal_1954_brown_1969_sato_kimura_PUBLISHED",
     "concrete_def": false,
-    "open_axiom": true,
-    "open_theorem": false,
+    "open_axiom": false,
+    "open_theorem": true,
     "cat": ".cat2External",
     "sub": ".notApplicable",
     "paperSource_short": "H. Freudenthal, 'Beziehungen der E_7 und E_8 zur Oktavenebene I-V', Indag. Math.",
     "scope": "Cat 2 PUBLISHED: Freudenthal triple product T + Sato-Kimura rank stratification of V_56 of E_7; load"
   },
   {
-    "name": "schlafli_graph_PUBLISHED_OPEN",
+    "name": "bourbaki_E7_W_invariants_PUBLISHED_OPEN",
     "gap_name": "gap_bourbaki_E7_W_invariants_PUBLISHED",
     "concrete_def": false,
     "open_axiom": false,
@@ -583,7 +319,7 @@
     "scope": "Cat 2 PUBLISHED: Bourbaki W(E_7) invariant degrees; load-bearing in P39 q|_{t^∨} = c·κ² augmentation"
   },
   {
-    "name": "tits_jacobson_J_3_O_PUBLISHED_OPEN",
+    "name": "borel_toda_E6_U1_presentation_OPEN",
     "gap_name": "gap_borel_toda_E6_U1",
     "concrete_def": false,
     "open_axiom": false,
@@ -594,7 +330,7 @@
     "scope": "Borel-Hirzebruch presentation of H*(B(E_6 × U(1)); ℚ)"
   },
   {
-    "name": "freudenthal_1954_brown_1969_sato_kimura_PUBLISHED_OPEN",
+    "name": "toda_1975_V27_generates_BE6_OPEN",
     "gap_name": "gap_toda_1975_V27_BE6",
     "concrete_def": false,
     "open_axiom": false,
@@ -605,7 +341,7 @@
     "scope": "V_27 Chern classes generate H*(BE_6; ℚ)"
   },
   {
-    "name": "bourbaki_E7_W_invariants_PUBLISHED_OPEN",
+    "name": "kono_mimura_1976_V56_generates_BE7_OPEN",
     "gap_name": "gap_kono_mimura_1976_V56_BE7",
     "concrete_def": false,
     "open_axiom": false,
@@ -616,29 +352,29 @@
     "scope": "V_56 Chern classes generate H*(BE_7; ℚ)"
   },
   {
-    "name": "toda_1975_V27_generates_BE6_OPEN",
+    "name": "chern_pairing_deg4_PUBLISHED_OPEN",
     "gap_name": "gap_chern_pairing_deg4_PUBLISHED",
     "concrete_def": false,
-    "open_axiom": true,
-    "open_theorem": false,
+    "open_axiom": false,
+    "open_theorem": true,
     "cat": ".cat2External",
     "sub": ".notApplicable",
     "paperSource_short": "Standard Chern-class arithmetic for filtered-trivial bundles: convolution of Che",
     "scope": "Cat 2 PUBLISHED: degree-4 Chern-pairing constraint 2c_4 - 2c_1c_3 + c_2² = h⁴ from V_56^{can} filter"
   },
   {
-    "name": "kono_mimura_1976_V56_generates_BE7_OPEN",
+    "name": "borel_hirzebruch_coinvariant_augmentation_OPEN",
     "gap_name": "gap_borel_hirzebruch_coinvariant_augmentation",
     "concrete_def": false,
-    "open_axiom": true,
-    "open_theorem": false,
+    "open_axiom": false,
+    "open_theorem": true,
     "cat": ".cat2External",
     "sub": ".notApplicable",
     "paperSource_short": "Borel-Hirzebruch 1958-60 Amer. J. Math. 80-82 §29-30: H^*(G_C/P) = Sym(t^∨)^{W(L",
     "scope": "Borel-Hirzebruch coinvariant presentation: positive-degree W(G)-invariants die in H^*(G_C/P)"
   },
   {
-    "name": "chern_pairing_deg4_PUBLISHED_OPEN",
+    "name": "V56_hodge_decomposition_OPEN",
     "gap_name": "gap_V56_hodge_decomposition",
     "concrete_def": false,
     "open_axiom": false,
@@ -649,7 +385,7 @@
     "scope": "V_56 = 1_{+3} ⊕ 27_{+1} ⊕ 27'_{-1} ⊕ 1_{-3} = weight-3 Hodge decomposition"
   },
   {
-    "name": "borel_hirzebruch_coinvariant_augmentation_OPEN",
+    "name": "e6_compactness_form_proportionality_OPEN",
     "gap_name": "gap_e6_compactness_form_proportionality",
     "concrete_def": false,
     "open_axiom": true,
@@ -660,7 +396,7 @@
     "scope": "Compact-group Chern-Weil forms are proportional to homogeneous invariant forms; applied to the compa"
   },
   {
-    "name": "H8_EVII_one_dim_OPEN",
+    "name": "schmid_1973_deligne_1970_OPEN",
     "gap_name": "gap_schmid_1973_deligne_1970",
     "concrete_def": false,
     "open_axiom": false,
@@ -671,7 +407,7 @@
     "scope": "Polarized VHS canonical extension: F^p extends to sub-bundles, Gr_F^p locally free, Gr(extension) = "
   },
   {
-    "name": "V56_hodge_decomposition_OPEN",
+    "name": "borel_serre_1973_franke_1998_eisenstein_layer_OPEN",
     "gap_name": "gap_borel_serre_1973_franke_1998_eisenstein_layer",
     "concrete_def": false,
     "open_axiom": false,
@@ -682,40 +418,18 @@
     "scope": "H^*_Eis(S_Γ; ℂ) decomposes by proper ℚ-parabolic P; each layer is supported at degrees ≥ codim Y_P ("
   },
   {
-    "name": "e6_compactness_form_proportionality_OPEN",
+    "name": "e7_min_parabolic_BS_codim_OPEN",
     "gap_name": "gap_e7_min_parabolic_BS_codim",
     "concrete_def": false,
-    "open_axiom": true,
-    "open_theorem": false,
+    "open_axiom": false,
+    "open_theorem": true,
     "cat": ".cat2External",
     "sub": ".notApplicable",
     "paperSource_short": "Bourbaki, *Groupes et algèbres de Lie*, Ch. IV-VI (1968) + Ch. VII-VIII (1975) E",
     "scope": "Every proper ℚ-parabolic of E_{7(-25)} has Borel-Serre stratum codim ≥ 26; minimum achieved by the E"
   },
   {
-    "name": "schmid_1973_deligne_1970_OPEN",
-    "gap_name": "gap_canonical_Phi_vanishes_by_augmentation",
-    "concrete_def": false,
-    "open_axiom": false,
-    "open_theorem": true,
-    "cat": ".cat3PaperNovel",
-    "sub": ".structuralEquation",
-    "paperSource_short": "P39 → P41-reframed: structural equation — canonical Φ vanishes (rigorously confi",
-    "scope": "Canonical Φ vanishes by W(E_7)-augmentation; the Hodge-FILTRATION projection Φ_filt is the well-defi"
-  },
-  {
-    "name": "borel_serre_1973_franke_1998_eisenstein_layer_OPEN",
-    "gap_name": "gap_paper_twisted_Phi_L_reduction",
-    "concrete_def": false,
-    "open_axiom": true,
-    "open_theorem": false,
-    "cat": ".cat3PaperNovel",
-    "sub": ".workingAssumption",
-    "paperSource_short": "P39 → P41-reframed: the genuine twisted cross-ring map is the Hodge-FILTRATION p",
-    "scope": "paper Hodge-FILTRATION-projection reduction (4-input, P41-corrected); Hyp_CrossRingPhiNonzero ⟸ Hyp_"
-  },
-  {
-    "name": "freudenthal_scalar_piece_computation",
+    "name": "freudenthal_scalar_piece_computation_OPEN",
     "gap_name": "gap_freudenthal_scalar_piece_computation",
     "concrete_def": false,
     "open_axiom": true,
@@ -726,146 +440,14 @@
     "scope": "P45-corrected: q vanishes to order EXACTLY m = 2 along Ě_VII; leading jet q_2 = b^2 = (ab)^2|_{a=1},"
   },
   {
-    "name": "paper_chern_weil_form_L_refinement",
-    "gap_name": "gap_paper_chern_weil_form_L_refinement",
+    "name": "eisenstein_vanishing_at_deg8_via_franke_layer_OPEN",
+    "gap_name": "gap_eisenstein_vanishing_at_deg8_via_franke_layer",
     "concrete_def": false,
     "open_axiom": false,
     "open_theorem": true,
-    "cat": ".cat3PaperNovel",
-    "sub": ".workingAssumption",
-    "paperSource_short": "P40 fundamental new math: the Hodge-refinement of Chern-Weil form proportionalit",
-    "scope": "paper Hodge-refined Chern-Weil form proportionality reduction (4-input); Hyp_ChernWeilForm_Proportio"
-  },
-  {
-    "name": "freudenthal_scalar_piece_computation_OPEN",
-    "gap_name": "gap_mumford_L_block_diagonal_via_schmid",
-    "concrete_def": false,
-    "open_axiom": true,
-    "open_theorem": false,
-    "cat": ".cat3PaperNovel",
-    "sub": ".structuralEquation",
-    "paperSource_short": "P54: the structuralEquation recording 'Schmid 1973 + Deligne 1970 + Mumford 1977",
-    "scope": "Schmid 1973 + Deligne 1970 + V_56 Hodge decomposition + Mumford framework ⟹ Hyp_MumfordExtension_LBl"
-  },
-  {
-    "name": "twisted_Phi_L_coefficient_nonzero_COMPUTED_OPEN",
-    "gap_name": "gap_eisenstein_vanishing_at_deg8_via_franke_layer",
-    "concrete_def": false,
-    "open_axiom": true,
-    "open_theorem": false,
     "cat": ".cat3PaperNovel",
     "sub": ".structuralEquation",
     "paperSource_short": "P55: the structuralEquation recording 'Franke 1998 §1.4 + Borel-Serre 1973 + Bor",
     "scope": "Franke layer decomposition + E_7 codim ≥ 26 ⟹ Hyp_Eisenstein_Vanishing (2-input structural)"
-  },
-  {
-    "name": "paper_chern_weil_form_L_refinement_OPEN",
-    "gap_name": "gap_paper_hodge44",
-    "concrete_def": false,
-    "open_axiom": false,
-    "open_theorem": true,
-    "cat": ".cat3PaperNovel",
-    "sub": ".workingAssumption",
-    "paperSource_short": "Master tex \\\\ref{rem:borel-matsushima} (L3453) Borel-Matsushima descent + \\\\ref{",
-    "scope": "paper Hodge-(4,4) reduction (3-input atomic post-P61; iso + bigrading + j^q-G-equivariance → freuden"
-  },
-  {
-    "name": "mumford_L_block_diagonal_via_schmid_OPEN",
-    "gap_name": "gap_paper_iia",
-    "concrete_def": false,
-    "open_axiom": true,
-    "open_theorem": false,
-    "cat": ".cat3PaperNovel",
-    "sub": ".workingAssumption",
-    "paperSource_short": "Master tex \\\\ref{hyp:ChernWeil-bridge-E7} clause (ii.a) (L11450+) + \\\\ref{rem:bo",
-    "scope": "paper (ii.a) reduction; 3-input atomic (Step C) post-P71; Steps A and B are separate sub-axioms (pap"
-  },
-  {
-    "name": "paper_hodge44_step_OPEN",
-    "gap_name": "gap_paper_iia_step_A_eisenstein_to_cusp",
-    "concrete_def": false,
-    "open_axiom": false,
-    "open_theorem": true,
-    "cat": ".cat3PaperNovel",
-    "sub": ".structuralEquation",
-    "paperSource_short": "P71 STEP A: Eisenstein vanishing + Franke 1998 §1.4 ⟹ H^8_G(S_Γ) = H^8_cusp_G(S_",
-    "scope": "Step A of (ii.a) realization decomposition (P71): Eisenstein vanishing + Franke 1998 ⟹ cusp = G-inv "
-  },
-  {
-    "name": "paper_iia_step_B_cuspidal_to_trivial",
-    "gap_name": "gap_paper_iia_step_B_cuspidal_to_trivial",
-    "concrete_def": false,
-    "open_axiom": true,
-    "open_theorem": false,
-    "cat": ".cat3PaperNovel",
-    "sub": ".structuralEquation",
-    "paperSource_short": "P71 STEP B: V-Z 1984 A_q(λ) decomposition + KV 1995 cohomological induction + Sa",
-    "scope": "Step B of (ii.a) realization decomposition (P71): cuspidal G-invariant H^8 = trivial-module Cartan i"
-  },
-  {
-    "name": "paper_iia_realization_OPEN",
-    "gap_name": "gap_paper_iib",
-    "concrete_def": false,
-    "open_axiom": false,
-    "open_theorem": true,
-    "cat": ".cat3PaperNovel",
-    "sub": ".structuralEquation",
-    "paperSource_short": "Master tex \\\\ref{hyp:ChernWeil-bridge-E7} clause (ii.b) (L11625-11647): paper-st",
-    "scope": "paper (ii.b) compatibility = (ii.b.1) IH-pullback + (ii.b.2) placement"
-  },
-  {
-    "name": "paper_iia_step_A_eisenstein_to_cusp_OPEN",
-    "gap_name": "gap_paper_formHM",
-    "concrete_def": false,
-    "open_axiom": true,
-    "open_theorem": false,
-    "cat": ".cat3PaperNovel",
-    "sub": ".workingAssumption",
-    "paperSource_short": "Master tex \\\\ref{hyp:ChernWeil-bridge-E7} clause (ii.b) framework (L11580-11625)",
-    "scope": "paper form-HM-EVII reduction (2-input atomic post-P34); close target P28"
-  },
-  {
-    "name": "paper_iia_step_B_cuspidal_to_trivial_OPEN",
-    "gap_name": "gap_paper_section16_2",
-    "concrete_def": false,
-    "open_axiom": true,
-    "open_theorem": false,
-    "cat": ".cat3PaperNovel",
-    "sub": ".workingAssumption",
-    "paperSource_short": "Master tex §16.2 E_6-rep-compat residual + \\\\ref{rem:E6-V27-vacuity} (L3063) V_2",
-    "scope": "paper §16.2 E_6-rep-compat reduction; close target P30"
-  },
-  {
-    "name": "paper_formHM_EVII_OPEN",
-    "gap_name": "gap_paper_placement_reduction",
-    "concrete_def": false,
-    "open_axiom": false,
-    "open_theorem": true,
-    "cat": ".cat3PaperNovel",
-    "sub": ".workingAssumption",
-    "paperSource_short": "P35 BREAKTHROUGH: synthesis of Master tex \\\\ref{rem:borel-matsushima} + \\\\ref{re",
-    "scope": "paper placement reduction (4-input atomic, P62); load-bearing step j^8(h^4) = c_1(L̄)^4 now atomical"
-  },
-  {
-    "name": "paper_GP_EVII",
-    "gap_name": "gap_paper_GP_EVII",
-    "concrete_def": false,
-    "open_axiom": true,
-    "open_theorem": false,
-    "cat": ".cat3PaperNovel",
-    "sub": ".workingAssumption",
-    "paperSource_short": "Master tex \\\\ref{hyp:ChernWeil-bridge-E7} (ii.b) G-P-EVII extension + Goresky-Pa",
-    "scope": "paper G-P-EVII Chern-subalgebra extension; close target P29"
-  },
-  {
-    "name": "paper_HC_equals_algebraicity",
-    "gap_name": "gap_paper_HC_equals_algebraicity",
-    "concrete_def": false,
-    "open_axiom": false,
-    "open_theorem": true,
-    "cat": ".cat3PaperNovel",
-    "sub": ".structuralEquation",
-    "paperSource_short": "Master tex \\\\ref{thm:main} (L410) Main Theorem definitional setup: HC for class ",
-    "scope": "paper HC = algebraicity definitional equation (§3.4.3 paper-stated)"
   }
 ]
