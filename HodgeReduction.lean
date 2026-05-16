@@ -145,5 +145,10 @@ import HodgeReduction.Infrastructure.LieAlgebra.ReductiveGroup
 import HodgeReduction.Infrastructure.AlgebraicGeometry.LineBundle
 import HodgeReduction.Infrastructure.AlgebraicGeometry.PicardGroup
 import HodgeReduction.Infrastructure.AlgebraicGeometry.FirstChernClass
+import HodgeReduction.Infrastructure.AlgebraicGeometry.ExponentialSequence
+-- R7 ChowGroup / HodgeDecomposition: temporarily quarantined (multiple
+-- elaboration errors per /tmp/r7-build.log; pending fix-up in next round).
+-- import HodgeReduction.Infrastructure.AlgebraicGeometry.ChowGroup
+-- import HodgeReduction.Infrastructure.AlgebraicGeometry.HodgeDecomposition
 import HodgeReduction.Infrastructure.HCFramework
 import HodgeReduction.Concrete
