@@ -87,6 +87,27 @@ def pieceByFin : Fin 4 → Submodule ℚ HodgeReduction.Infrastructure.V56
 @[simp] theorem pieceByFin_2 : pieceByFin ⟨2, by omega⟩ = Hodge_1_2 := rfl
 @[simp] theorem pieceByFin_3 : pieceByFin ⟨3, by omega⟩ = Hodge_0_3 := rfl
 
+/-- **R140**: the iSup of the four Hodge pieces over `Fin 4` equals the
+whole `V_56`. First half of `PureHodgeStructure V_56 3` proof obligation. -/
+theorem iSup_pieceByFin_eq_top :
+    (⨆ p : Fin 4, pieceByFin p) =
+      (⊤ : Submodule ℚ HodgeReduction.Infrastructure.V56) := by
+  refine le_antisymm le_top ?_
+  intro v _
+  obtain ⟨v30, v21, v12, v03, hsum⟩ := hodge_decomp_exists v
+  rw [hsum]
+  refine Submodule.add_mem _ ?_ ?_
+  · refine Submodule.add_mem _ ?_ ?_
+    · refine Submodule.add_mem _ ?_ ?_
+      · -- v30 ∈ Hodge_3_0 = pieceByFin 0 ≤ ⨆ pieceByFin
+        exact Submodule.mem_iSup_of_mem ⟨0, by omega⟩ v30.2
+      · -- v21 ∈ Hodge_2_1 = pieceByFin 1
+        exact Submodule.mem_iSup_of_mem ⟨1, by omega⟩ v21.2
+    · -- v12 ∈ Hodge_1_2 = pieceByFin 2
+      exact Submodule.mem_iSup_of_mem ⟨2, by omega⟩ v12.2
+  · -- v03 ∈ Hodge_0_3 = pieceByFin 3
+    exact Submodule.mem_iSup_of_mem ⟨3, by omega⟩ v03.2
+
 end V56
 
 /-! ## Abstract `V_56` Hodge-structure refinement axiom package
