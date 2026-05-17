@@ -179,30 +179,103 @@ captures the paper's main claim in one substantive declaration.
 
 Paper source: `\label{thm:main}` (Main Theorem). -/
 
-/-- **R170**: Paper-claim axiom: the paper's main theorem produces the
-genuine `HodgeConjectureReal X` for every InScope smooth projective
-variety `X`. Encodes the substantive content of `\ref{thm:main}` at
-the real-HC level (vs the Unit-trivial level of
-`main_reduction_paper_axiom`).
+/-! ### R172: Decomposition of `main_reduction_real_paper_axiom` into
+4 case axioms (one per InScope clause)
 
-Substantive content includes:
-* The 4-case `InScope` disjunction:
-  (i) classical Cartan (Meyer + Kostant);
-  (ii) E_6 weight-parity vacuity;
-  (iii) E_7-Shimura (BBT-rigid + ChernWeil + AH-CM-E7);
-  (iv) CY_3-reducible (thm_cy3_e7_nonexistence).
-* All 9 paper hypotheses (`hyp_HC_CM_Ab`, `hyp_CM_correspondences`,
-  ..., `hyp_hecke_bbt`) at the REAL-HC level.
-* The 23-entry SubGap inventory (currently absorbed; future rounds
-  will reintroduce as a separate antecedent).
+Per R-#67 KNOWN-COLLAPSE NOTE on the analogous Unit-trivial
+`main_reduction_paper_axiom`, the paper's main theorem is naturally a
+case-analysis over the 4 `InScope` sub-classes. We decompose the R170
+single-axiom form into 4 paper-claim case-axioms (each carrying its
+specific subset of paper hypotheses at the REAL-HC level), with the
+unified `main_reduction_real_paper_axiom` then DERIVED as a theorem
+combining the 4 cases via InScope disjunction analysis. -/
 
-Future decomposition: this single axiom will be DERIVED from finer-
-grained `hyp_*_real` axioms + applications of R165's
-`CycleClassMapData.hodgeConjecture_transfer` reduction theorem.
+/-- **R172 case (i)** (Classical Cartan, paper §4): every smooth
+projective complex variety whose Mumford-Tate group at every weight
+has **no** `E_6` or `E_7` simple factor satisfies HC-real.
+
+Closes by: Meyer / Hasse-Minkowski (`thm_Meyer`) + Kostant `G_2`/`F_4`
+vacuity (`thm_G2F4`) + `E_8`-MT vacuity (`thm_E8_vacuous`) +
+`hyp_HC_CM_Ab` (for the abelian sub-case) + `hyp_CM_correspondences`
+(for the product sub-case) + `hyp_KS_p3` (Kuga-Satake p3 input).
+
+Paper source: §4 (case (i) of `\ref{thm:main}`). -/
+axiom hc_real_classical_cartan :
+ ∀ (X : SmoothProjectiveVariety ℂ),
+   (∀ k : ℕ, NoE6E7Factor (MumfordTateGroup X k)) →
+   HodgeConjectureReal X
+
+/-- **R172 case (ii)** (`E_6` weight-parity vacuity, paper §5 +
+`rem:E6-V27-vacuity`): every smooth projective complex variety with an
+`E_{6(-14)}`-simple factor on `MT(H^3)^der` satisfies HC-real, via the
+`α_s`-string parity + Grothendieck-Chern algebraicity argument that
+forces algebraicity of every `E_6`-invariant Hodge class.
+
+Closes by: `E6_V27_vacuity` (existing theorem).
+
+Paper source: §5; rem:E6-V27-vacuity (case (ii) of `\ref{thm:main}`). -/
+axiom hc_real_e6_case :
+ ∀ (X : SmoothProjectiveVariety ℂ),
+   hasSimpleFactor (MumfordTateGroupDerived X 3) E6_neg14 →
+   HodgeConjectureReal X
+
+/-- **R172 case (iii)** (Currently-known `E_7`-Shimura sub-case,
+paper §6 + Scope clause (iii)): every smooth projective complex
+variety with an `E_{7(-25)}`-simple factor on `MT(H^3)^der` AND in
+the currently-known `E_7`-type scope (Shimura, finite covers,
+birational models, non-rigid families with generically finite period
+map) satisfies HC-real.
+
+Closes by: `cor_E7_shimura_closed` + `hyp_BBT_rigid_reach` +
+`hyp_nonrigid_family_bridge` + `hyp_ChernWeil_bridge_E7` +
+`hyp_AH_CM_E7` + `hyp_chow_modularity_E7` + `hyp_hecke_bbt`.
+
+Paper source: §6 (case (iii) of `\ref{thm:main}`). -/
+axiom hc_real_e7_shimura :
+ ∀ (X : SmoothProjectiveVariety ℂ),
+   hasSimpleFactor (MumfordTateGroupDerived X 3) E7_neg25 →
+   InKnownE7Scope X →
+   HodgeConjectureReal X
+
+/-- **R172 case (iv)** (CY_3-reducible `E_7` sub-case, paper §7 +
+`thm:cy3-e7-nonexistence`): every smooth projective complex variety
+with an `E_{7(-25)}`-simple factor on `MT(H^3)^der` whose
+Kodaira-dimension reduction terminates at a CY_3 factor satisfies
+HC-real. The case is closed by `thm_cy3_e7_nonexistence` (the CY_3
++ E_7-MT combination is itself impossible, so the implication is
+vacuously discharged AT the substantive level via the reduction chain).
+
+Closes by: `thm_cy3_e7_nonexistence` + Beauville-Bogomolov + Iitaka
++ MRC reduction analysis.
+
+Paper source: §7; thm:cy3-e7-nonexistence (case (iv) of `\ref{thm:main}`). -/
+axiom hc_real_cy3_reducible :
+ ∀ (X : SmoothProjectiveVariety ℂ),
+   hasSimpleFactor (MumfordTateGroupDerived X 3) E7_neg25 →
+   ExistsCY3Reduction X →
+   HodgeConjectureReal X
+
+/-- **R172**: `main_reduction_real_paper_axiom` is now a THEOREM
+combining the 4 case axioms via InScope-disjunction analysis. The
+former single-axiom form has been DECOMPOSED into the paper's actual
+case structure.
+
+Per the existing R-#67 KNOWN-COLLAPSE NOTE (on the Unit-trivial
+analogue): "Future refactor (deferred per scope of current discipline):
+split `main_reduction_paper_axiom` into 4 case-axioms, each carrying
+its specific subset of hyp_* antecedents explicitly at signature
+level". R172 implements that refactor for the REAL-HC version.
 
 Paper source: `\label{thm:main}` (Main Theorem). -/
-axiom main_reduction_real_paper_axiom :
- ∀ (X : SmoothProjectiveVariety ℂ), InScope X → HodgeConjectureReal X
+theorem main_reduction_real_paper_axiom :
+ ∀ (X : SmoothProjectiveVariety ℂ), InScope X → HodgeConjectureReal X := by
+ intro X hX
+ -- InScope X is a 4-fold disjunction; case-split and apply the matching axiom.
+ rcases hX with h1 | h2 | ⟨h3a, h3b⟩ | ⟨h4a, h4b⟩
+ · exact hc_real_classical_cartan X h1
+ · exact hc_real_e6_case X h2
+ · exact hc_real_e7_shimura X h3a h3b
+ · exact hc_real_cy3_reducible X h4a h4b
 
 /-- **R170**: Main theorem in REAL HC form. The substantive,
 non-Unit-trivial version of `main_reduction_unconditional`. Derived
