@@ -1649,6 +1649,36 @@ theorem evii_real_dim_eq_54 :
       (A := A_EVII) = 54 :=
   rfl
 
+/-! ### R57 SUBSTANTIVE: `E6CompactnessFormProportionalityData A_EVII`
+
+Closes the P40-Hodge-refinement `compact-Levi E_6 form proportionality`
+typeclass on the EVII model. Mathematical content (per Kobayashi-Nomizu
+Vol. II Ch. XII; Greub-Halperin-Vanstone Vol. III): on the rank-27
+Hodge sub-bundles `𝓔_{±1}` of `V_{56}^{can}`, the `E_6`-invariant
+Chern-Weil forms coincide with the homogeneous invariant forms
+(averaging over compact `E_6` produces proportional forms).
+
+On `A_EVII = Polynomial ℚ`, we realise both submodules as
+`Submodule.span ℚ {X²}` (the degree-2 piece, suggestive of the codim-1
+Chern-Weil form-target). The equality holds by `rfl`. -/
+noncomputable instance evii_e6CompactnessFormProportionalityData :
+    HodgeReduction.Infrastructure.Cohomology.E6CompactnessFormProportionalityData
+      A_EVII where
+  invariantChernForms :=
+    Submodule.span ℚ ({(Polynomial.X : A_EVII) ^ 2} : Set A_EVII)
+  homogeneousInvariantForms :=
+    Submodule.span ℚ ({(Polynomial.X : A_EVII) ^ 2} : Set A_EVII)
+  invariantChernForms_eq_homogeneousInvariantForms := rfl
+
+/-- **Sanity check** (R57): the form-proportionality identity holds on
+`Ě_VII` (both submodules coincide). -/
+theorem evii_compact_levi_form_proportionality :
+    HodgeReduction.Infrastructure.Cohomology.E6CompactnessFormProportionalityData.invariantChernForms
+      (A := A_EVII)
+      = HodgeReduction.Infrastructure.Cohomology.E6CompactnessFormProportionalityData.homogeneousInvariantForms
+          (A := A_EVII) :=
+  HodgeReduction.Infrastructure.Cohomology.E6CompactnessFormProportionalityData.holds
+
 /-! ### R34 SUBSTANTIVE: NefConeData + KodairaEmbeddingData on EVII
 
 Two more `AmpleDivisor.lean` typeclasses get concrete EVII witnesses,
@@ -1831,5 +1861,7 @@ theorem evii_freudenthal_quartic_is_algebraic :
 -- R56 KERNEL-PURITY: FundamentalClassData EVII (top-degree generator X^27).
 #print axioms evii_fundamental_class_ne_zero
 #print axioms evii_real_dim_eq_54
+-- R57 KERNEL-PURITY: E6CompactnessFormProportionalityData EVII (form-proportionality).
+#print axioms evii_compact_levi_form_proportionality
 
 end HodgeReduction.Concrete
