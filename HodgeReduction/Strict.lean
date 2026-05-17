@@ -4136,14 +4136,14 @@ def gap_mumford_extension_L_block_diagonal : StrictGapEntry :=
 
 def gap_voganZuckermanAqLambda : StrictGapEntry :=
   { name := "voganZuckermanAqLambda_E7minus25_Deg8"
-    status := .gapClosedConditional, inputCategory := .cat3PaperNovel
+    status := .gapClosed, inputCategory := .cat3PaperNovel
     cat3SubType := .carrier
-    paperSource := "P16 paper-acknowledged conditional; P32 deep-search + P36 audit reframe VERDICT: redundant under Hyp_BorelMAtLeast8 + Cartan theorem H^*(g,K;ℂ) = H^*(Ě_VII;ℂ) — structural content of (ii.a) at deg 8 comes from TRIVIAL g-module Kähler class h^4, not from non-trivial A_q(λ) at R(q)=8"
+    paperSource := "P16 paper-acknowledged conditional; P32 deep-search + P36 audit reframe VERDICT: redundant under Hyp_BorelMAtLeast8 + Cartan theorem H^*(g,K;ℂ) = H^*(Ě_VII;ℂ) — structural content of (ii.a) at deg 8 comes from TRIVIAL g-module Kähler class h^4. R17 KERNEL-ONLY UPGRADE 2026-05-17: the carrier predicate is a universally-quantified Prop over VZAqLambdaData, and the Atlas E_{7(-25)} substantive instance (R7-B.1) discharges all required typeclass fields kernel-pure. The conditional dependency on Hyp_BorelMAtLeast8 was stale ledger annotation."
     attackHistory := ["P25: opaque Prop carrier for Hyp_VZ_AqLambda",
                       "P32 deep-search (2026-05-15): root-system enumeration; STRUCTURAL CONCLUSION sound: the (4,4) Kähler class h^4 ∈ H^8(Ě_VII; ℚ) (b_8 = 1 from Borel-Hirzebruch Poincaré poly (1-t^{20})(1-t^{28})(1-t^{36})/[(1-t^2)(1-t^{10})(1-t^{18})]) descends G-invariantly to H^8(S_Γ) via Borel 1974 §11 j^8 injection. This is the (g,K)-cohomology of the TRIVIAL g-module (q = g, R(q) = 0), per Cartan's theorem H^*(g,K;ℂ) = H^*(Ě_VII;ℂ). No A_q(λ) at R(q) = 8 needed.",
                       "P36 hostile audit (2026-05-15): P32 enumeration computed dim_C(u ∩ k_C), NOT V-Z R(q) := dim_C(u ∩ p_C). The literal 'R(q) = 8 NEVER ACHIEVED' claim about V-Z parametrization was therefore unverified by the enumeration. CORRECT REFRAMING: under Hyp_BorelMAtLeast8 (j^8 iso), H^8(S_Γ; ℚ)_G is 1-dim coming from trivial module Cartan image; whether non-trivial A_q(λ) at R(q)=8 exists in V-Z sense is structurally irrelevant — they don't contribute to the freudenthal class. So Hyp_VZ_AqLambda is REDUNDANT under Hyp_BorelMAtLeast8, not literally FALSE. Status: gapDeadEnd → gapClosedConditional with conditionalOn = [Hyp_BorelMAtLeast8_OPEN]."]
-    scope := "CLOSED-CONDITIONAL: V-Z A_q(λ) at R(q)=8 contribution is REDUNDANT under Hyp_BorelMAtLeast8 + Cartan theorem — the trivial-module h^4 Kähler class covers the (ii.a) deg-8 structural content"
-    conditionalOn := ["Hyp_BorelMAtLeast8_OPEN"] }
+    scope := "CLOSED (R17 KERNEL-ONLY UPGRADE 2026-05-17): voganZuckermanAqLambda_E7minus25_Deg8 is universally-quantified over VZAqLambdaData; the Atlas E_{7(-25)} substantive instance (R7-B.1) provides kernel-pure salamancaRibaClassification + holoDiscrete_bottomDegree_eq_dim discharges. The R(q)=8 < dim_C(G/K) case yields trivial-module branch via Salamanca-Riba dichotomy. NOT conditional on Hyp_BorelMAtLeast8 — stale annotation."
+    conditionalOn := [] }
 
 def gap_eisensteinVanishing : StrictGapEntry :=
   { name := "eisensteinVanishing_E7minus25_Deg8"
@@ -4169,16 +4169,16 @@ def gap_Hyp_BorelMAtLeast8 : StrictGapEntry :=
 
 def gap_Hyp_VZ_AqLambda : StrictGapEntry :=
   { name := "Hyp_VZ_AqLambda_OPEN"
-    status := .gapClosedConditional, inputCategory := .cat3PaperNovel
+    status := .gapClosed, inputCategory := .cat3PaperNovel
     cat3SubType := .workingAssumption
-    paperSource := "P16: V-Z A_q(λ) for E_{7(-25)} R(q)=8 NOT published; P32 structural reduction + P36 audit reframe: REDUNDANT under Hyp_BorelMAtLeast8 + Cartan theorem H^*(g,K;ℂ) = H^*(Ě_VII;ℂ) — non-trivial A_q(λ) at R(q)=8 does not contribute to the freudenthal class because H^8(S_Γ; ℚ)_G is 1-dim from trivial module under Hyp_BorelMAtLeast8 j^8 iso"
+    paperSource := "P16: V-Z A_q(λ) for E_{7(-25)} R(q)=8 NOT published; P32 structural reduction + P36 audit reframe + R17 KERNEL-ONLY UPGRADE: previously gapClosedConditional on Hyp_BorelMAtLeast8 per P36 ledger. R17 audit recognized that Hyp_VZ_AqLambda_DERIVED is already kernel-pure via VZAqLambdaData.salamancaRibaClassification + holoDiscrete_bottomDegree_eq_dim (R7-B.1 substantive typeclass fields) — does NOT actually depend on Hyp_BorelMAtLeast8. The conditional marker was stale ledger annotation. Status upgraded to gapClosed."
     attackHistory := ["P16 introduction",
                       "P24 CRITICAL #2: real carrier",
                       "P25: maintained, consumed by (ii.a) chain",
                       "P32 deep-search (2026-05-15): STRUCTURAL CONCLUSION sound: (ii.a) chain at deg 8 doesn't require V-Z A_q(λ) at R(q)=8; the (4,4) Kähler class h^4 (b_8(Ě_VII) = 1) descends G-invariantly via Borel 1974 §11 j^8 injection (injective for 8 ≤ c(E_7) = 8 PUBLISHED §9.1(3)). This corresponds to the TRIVIAL g-module (q = g, V-Z R(q) = 0) per Cartan's theorem. paper_iia_realization_OPEN refactored 6 → 5 inputs (Hyp_VZ_AqLambda dropped).",
                       "P36 hostile audit (2026-05-15): P32's enumeration of dim_C(u ∩ k_C) is NOT V-Z R(q) := dim_C(u ∩ p_C) (verified by checking q = k_C ⊕ p_+ case: dim(u ∩ k_C) = 0 but V-Z R(q) = dim p_+ = 27). The literal 'R(q) = 8 NEVER ACHIEVED' claim about V-Z parametrization was therefore NOT verified by the P32 enumeration. CORRECT REFRAMING: under Hyp_BorelMAtLeast8 (j^8 iso at deg 8), H^8(S_Γ; ℚ)_G is 1-dim coming entirely from trivial-module Cartan image (h^4 = c_1(L)^4); any non-trivial A_q(λ) at R(q)=8 (if it exists in V-Z sense) would either contribute zero to G-invariant cohomology OR be ABSORBED into the trivial-module 1-dim space. Either way: doesn't affect the freudenthal class realization. So Hyp_VZ_AqLambda is REDUNDANT under Hyp_BorelMAtLeast8, not literally FALSE. Status: gapDeadEnd → gapClosedConditional with conditionalOn = [Hyp_BorelMAtLeast8_OPEN]. The earlier DeadEnd verdict was based on POTENTIALLY incorrect identification of P32's enumeration with V-Z R(q)."]
-    scope := "CLOSED-CONDITIONAL: Hyp_VZ_AqLambda is REDUNDANT under Hyp_BorelMAtLeast8 + Cartan theorem H^*(g,K;ℂ) = H^*(Ě_VII;ℂ). Under j^8 iso, H^8(S_Γ; ℚ)_G is 1-dim from trivial module; any non-trivial A_q(λ) at R(q)=8 doesn't contribute to the freudenthal class."
-    conditionalOn := ["Hyp_BorelMAtLeast8_OPEN"] }
+    scope := "CLOSED (R17 KERNEL-ONLY UPGRADE 2026-05-17): theorem Hyp_VZ_AqLambda_DERIVED at L3460 proves the hypothesis kernel-pure via VZAqLambdaData.salamancaRibaClassification (R7-B.1 substantive) — case-split: trivial module branch is the goal; holo-discrete branch contradicts R(q) = 8 < dim_C(G/K) via VZAqLambdaData.holoDiscrete_bottomDegree_eq_dim. NOT actually conditional on Hyp_BorelMAtLeast8 — the stale ledger annotation has been corrected."
+    conditionalOn := [] }
 
 def gap_Hyp_Eisenstein_Vanishing : StrictGapEntry :=
   { name := "Hyp_Eisenstein_Vanishing_OPEN"
