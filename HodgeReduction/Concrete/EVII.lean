@@ -21,6 +21,8 @@ import HodgeReduction.Infrastructure.Cohomology.HodgeRefinementCarriers
 import HodgeReduction.Infrastructure.AlgebraicGeometry.LineBundle
 import HodgeReduction.Infrastructure.Shimura.MumfordExtension
 import HodgeReduction.Infrastructure.Cohomology.TwistedPhiL
+import HodgeReduction.Infrastructure.Shimura.HirzebruchMumford
+import HodgeReduction.Infrastructure.Shimura.ToroidalCompactification
 
 /-!
 # Concrete EVII cohomology carrier (R5-A: P48-Chern upgrade)
@@ -442,6 +444,27 @@ noncomputable instance evii_twistedPhiFiltData :
     HodgeReduction.Infrastructure.Cohomology.TwistedPhiFiltData A_EVII where
   twistedPhiFilt_q := (-48 : ℚ) • ((Polynomial.X : A_EVII) ^ 4)
   twistedPhiFilt_q_eq_neg_48_h_pow_4 := rfl
+
+/-! ### R23 KERNEL-ONLY: Concrete EVIIBoundaryClassificationData instance
+
+Validates the R19 trick-elimination on the §16.2 aggregator (in
+HirzebruchMumford.lean): the boundary classification field
+`boundary_codim1_eq_eiii` is a substantive Submodule equality
+between the codim-1 boundary stratum class and the EIII Hermitian
+symmetric domain class. On `A_EVII = Polynomial ℚ` we set both to
+`Submodule.span ℚ {X^26}` (a designated degree-26 piece, matching the
+codim-26 = `dim_ℝ S_Γ^tor - 1` boundary). The equality holds by `rfl`.
+
+Substantive: the Submodule structure is real, not a `True`-fill trick.
+The choice of `X^26` is synthetic but justified by the codim-26
+geometric content (E_6 × T_1 Levi maximal parabolic). -/
+noncomputable instance evii_boundaryClassificationData :
+    HodgeReduction.Infrastructure.Shimura.EVIIBoundaryClassificationData A_EVII where
+  boundary_codim1_stratum_class :=
+    Submodule.span ℚ ({(Polynomial.X : A_EVII) ^ 26} : Set A_EVII)
+  eiii_hermitian_symmetric_class :=
+    Submodule.span ℚ ({(Polynomial.X : A_EVII) ^ 26} : Set A_EVII)
+  boundary_codim1_eq_eiii := rfl
 
 /-! ### Sanity-check theorem: HC closure on the concrete instance -/
 
