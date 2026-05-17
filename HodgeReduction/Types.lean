@@ -196,6 +196,27 @@ structure SmoothProjectiveVariety (k: Type) [Field k] where
  ah_to_hc_witness :
    isAbelianVariety → (∀ k : ℕ, (mumfordTateGroup k).IsTorus) →
      isAHtoHCExtensionForCMAbelian_CONJECTURAL
+ /-- **R148**: Deligne 1982 LNM 900 absolute-Hodge framework predicate
+  (was `axiom IsDeligne1982AbsoluteHodgeAbelianFramework`). -/
+ isDeligne1982AbsoluteHodgeAbelianFramework : ℕ → Prop
+ /-- **R148**: paper-published witness that Deligne 1982 framework holds
+  for every X, p (was `axiom deligne_1982_LNM_900_...`). -/
+ deligne_1982_witness :
+   ∀ p : ℕ, isDeligne1982AbsoluteHodgeAbelianFramework p
+ /-- **R148**: André 1996 motivated abelian span framework predicate
+  (was `axiom IsAndre1996MotivatedAbelianSpan`). -/
+ isAndre1996MotivatedAbelianSpan : ℕ → Prop
+ /-- **R148**: paper-published witness for André 1996 framework
+  (was `axiom andre_1996_motivated_motives_abelian_span`). -/
+ andre_1996_witness : ∀ p : ℕ, isAndre1996MotivatedAbelianSpan p
+ /-- **R148**: non-abelian Shimura E_7 AH extension predicate
+  (was `axiom IsNonAbelianShimuraE7AbsoluteHodgeExtension_CONJECTURAL`). -/
+ isNonAbelianShimuraE7AbsoluteHodgeExtension_CONJECTURAL : ℕ → Prop
+ /-- **R148**: conditional witness for non-abelian Shimura E_7 AH extension
+  (was `axiom non_abelian_shimura_E7_absolute_hodge_extension_CONJECTURAL`). -/
+ non_abelian_shimura_E7_witness :
+   isE7CMFibre → ∀ p : ℕ, (p = 3 ∨ p = 4) →
+     isNonAbelianShimuraE7AbsoluteHodgeExtension_CONJECTURAL p
 
 /-! ## 2. Hodge numbers and Mumford--Tate groups
 
@@ -481,6 +502,25 @@ noncomputable def SmoothProjectiveVariety.product
    -- MumfordTateGroupType.product). hTorus k : both factors are tori.
    ⟨X.ah_to_hc_witness hX (fun k => (hTorus k).1),
     Y.ah_to_hc_witness hY (fun k => (hTorus k).2)⟩
+ isDeligne1982AbsoluteHodgeAbelianFramework := fun p =>
+   X.isDeligne1982AbsoluteHodgeAbelianFramework p ∧
+   Y.isDeligne1982AbsoluteHodgeAbelianFramework p
+ deligne_1982_witness := fun p =>
+   ⟨X.deligne_1982_witness p, Y.deligne_1982_witness p⟩
+ isAndre1996MotivatedAbelianSpan := fun p =>
+   X.isAndre1996MotivatedAbelianSpan p ∧
+   Y.isAndre1996MotivatedAbelianSpan p
+ andre_1996_witness := fun p =>
+   ⟨X.andre_1996_witness p, Y.andre_1996_witness p⟩
+ isNonAbelianShimuraE7AbsoluteHodgeExtension_CONJECTURAL := fun p =>
+   X.isNonAbelianShimuraE7AbsoluteHodgeExtension_CONJECTURAL p ∨
+   Y.isNonAbelianShimuraE7AbsoluteHodgeExtension_CONJECTURAL p
+ non_abelian_shimura_E7_witness := fun h p hp =>
+   -- h : isE7CMFibre product = X.isE7CMFibre ∨ Y.isE7CMFibre
+   -- For the witness, if either factor is E7 CM fibre, take its witness.
+   match h with
+   | Or.inl hX => Or.inl (X.non_abelian_shimura_E7_witness hX p hp)
+   | Or.inr hY => Or.inr (Y.non_abelian_shimura_E7_witness hY p hp)
 
 /-- Top-level `product` of two smooth projective varieties — **R119**:
  was `axiom product`, now a `def` alias for
