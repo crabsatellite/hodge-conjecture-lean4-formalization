@@ -387,6 +387,34 @@ theorem finrank_filt_eq_sum [Module.Finite ℚ V] (p : Fin (n + 1)) :
       hodgeNumber (V := V) i :=
   finrank_filt_eq_sum_aux (n - p.val) p rfl
 
+/-! ### R154: user-friendly corollaries
+
+These theorems extract specific Mathlib-level facts from the
+PureHodgeStructure class, useful for downstream consumers who would
+otherwise have to thread through `IsInternal` manually. -/
+
+/-- **R154**: Hodge pieces are iSupIndep (independent in the lattice). -/
+theorem piece_iSupIndep : iSupIndep (piece (V := V) (n := n)) :=
+  DirectSum.IsInternal.submodule_iSupIndep (isInternal (V := V) (n := n))
+
+/-- **R154**: Hodge pieces span the whole space. -/
+theorem piece_iSup_eq_top :
+    ⨆ p : Fin (n + 1), piece (V := V) p = ⊤ :=
+  DirectSum.IsInternal.submodule_iSup_eq_top (isInternal (V := V) (n := n))
+
+/-- **R154**: distinct Hodge pieces are pairwise disjoint
+(`piece p ⊓ piece q = ⊥` for `p ≠ q`).
+
+Direct consequence of `piece_iSupIndep`: each piece is disjoint from
+the supremum of the others, hence in particular disjoint from any
+single other piece. -/
+theorem piece_disjoint {p q : Fin (n + 1)} (h : p ≠ q) :
+    Disjoint (piece (V := V) p) (piece (V := V) q) := by
+  refine (piece_iSupIndep p).mono_right ?_
+  -- piece q ≤ ⨆ (j : Fin (n+1)) (_ : j ≠ p), piece j
+  refine le_iSup_of_le q (le_iSup_of_le ?_ le_rfl)
+  exact fun h_eq => h h_eq.symm
+
 end PureHodgeStructure
 
 /-! ## Pure Hodge structures via explicit pieces with substantive
