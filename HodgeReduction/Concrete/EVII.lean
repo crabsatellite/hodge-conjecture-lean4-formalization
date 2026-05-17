@@ -2030,6 +2030,33 @@ theorem evii_freudenthal_quartic_is_algebraic :
 -- R60 KERNEL-PURITY: ChernCharacterData Q A_EVII (rational K-theory to cohomology).
 #print axioms evii_chern_character_one
 
+/-! ### R66 SUBSTANTIVE: `CohomologyPicardData EVII_R6.EVII_Space A_EVII`
+
+Provides the cohomology-side Picard data for `Ě_VII`:
+
+* `picTotal := Submodule.span ℚ {X}` — the genuine rational Picard
+  subspace `Pic(Ě_VII) ⊗ ℚ ⊆ H²(Ě_VII; ℚ)`, 1-dimensional generated
+  by the polarisation class `h = X`.
+* `picZero := ⊥` — `Pic⁰(Ě_VII) = 0` since `Ě_VII` is simply connected
+  (`H¹(𝒪) = 0`).
+* `picZero_le_picTotal := bot_le` — ⊥ is in every submodule.
+* `nsDim := 1` — the Néron-Severi rank ρ(Ě_VII) = 1 (matches R32
+  `evii_picard_number_eq_one`). -/
+noncomputable instance evii_cohomologyPicardData :
+    HodgeReduction.Infrastructure.Cohomology.CohomologyPicardData
+      EVII_R6.EVII_Space A_EVII where
+  picTotal := Submodule.span ℚ ({(Polynomial.X : A_EVII)} : Set A_EVII)
+  picZero := ⊥
+  picZero_le_picTotal := bot_le
+  nsDim := 1
+
+/-- **Sanity check** (R66): the Picard number from cohomology-side
+PicardData matches the NS-side `nsRank` (both = 1 for `Ě_VII`). -/
+theorem evii_cohomology_picard_nsDim :
+    HodgeReduction.Infrastructure.Cohomology.CohomologyPicardData.nsDim
+      (X := EVII_R6.EVII_Space) (A := A_EVII) = 1 :=
+  rfl
+
 /-! ### R65 APEX: Comprehensive HC synthesis on E_VII compact dual
 
 A single user-facing theorem combining the 27+ substantive EVII typeclass
@@ -2069,5 +2096,7 @@ theorem evii_apex_synthesis :
 
 -- R65 KERNEL-PURITY: the comprehensive apex synthesis is kernel-pure.
 #print axioms evii_apex_synthesis
+-- R66 KERNEL-PURITY: CohomologyPicardData EVII (cohomology-side Pic data).
+#print axioms evii_cohomology_picard_nsDim
 
 end HodgeReduction.Concrete
