@@ -741,6 +741,23 @@ theorem mul_one.{u} {R : Type u} [CommRing R] (x : Picard R) :
   intro s
   exact Quotient.sound ⟨TensorProduct.rid R s.carrier⟩
 
+/-- **R112**: `Picard R` is a commutative monoid via tensor product.
+
+Mul is tensor of representative invertible modules, one is the class
+[R], associativity / commutativity / unit laws all come from the
+standard Mathlib LinearEquivs (TensorProduct.assoc / .comm / .lid / .rid).
+
+This is the first half of the standard Picard-group structure. R113+
+will add the inverse via dual modules to upgrade to `CommGroup`. -/
+noncomputable instance commMonoid.{u} (R : Type u) [CommRing R] :
+    CommMonoid (Picard R) where
+  mul := mul
+  one := one R
+  mul_assoc := mul_assoc
+  mul_comm := mul_comm
+  one_mul := one_mul
+  mul_one := mul_one
+
 end Picard
 
 /-! ### Mathlib-PR readiness checklist
@@ -827,5 +844,7 @@ axioms or `sorry`. The `#print axioms` lines below verify this. -/
 #print axioms Picard.mul_assoc
 #print axioms Picard.one_mul
 #print axioms Picard.mul_one
+-- R112 Picard CommMonoid instance.
+#print axioms Picard.commMonoid
 
 end HodgeReduction.MathlibCandidates
