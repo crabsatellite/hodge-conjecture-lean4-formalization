@@ -1428,6 +1428,43 @@ structure E7ShimuraTor : Type where
     isThetaStableParabolicOfE725WithRqEquals8_REQUIRED_HYPOTHESIS →
     isDongWongDiracSeriesProgramScope_PUBLISHED →
     isVoganZuckermanAqLambdaComputationFor_E725_Degree8_REQUIRED_HYPOTHESIS
+  /-- **R162**: P9.c — Eisenstein cohomology vanishing for E_{7(-25)} deg 8. -/
+  isEisensteinCohomologyVanishingFor_E725_Degree8_REQUIRED_HYPOTHESIS : Prop
+  /-- **R162**: Hodge weight (3,3) on EVII automatically G-invariant. -/
+  isHodgeWeight33OnEVII_AutomaticallyGInvariant_REQUIRED_HYPOTHESIS : Prop
+  /-- **R162**: Borel stable range for E_{7(-25)} at degree 8. -/
+  isBorelStableRangeForE725AtDegree8_REQUIRED_HYPOTHESIS : Prop
+  /-- **R162**: Borel standard lower bound for E_{7(-25)}. -/
+  isBorelStandardLowerBoundForE725_PUBLISHED : Prop
+  /-- **R162**: Lefschetz-Deligne weight route for E_{7(-25)} deg 8. -/
+  isLefschetzDeligneWeightRouteForE725Degree8_INVENTION_CLASS : Prop
+  /-- **R162**: compact dual EVII Poincaré polynomial. -/
+  isCompactDualEVIIPoincarePolynomial_PUBLISHED : Prop
+  /-- **R162**: compact dual EVII Hodge bigrading diagonal. -/
+  isCompactDualEVIIHodgeBigradingDiagonal_PUBLISHED : Prop
+  /-- **R162**: Eisenstein cohomology witness. -/
+  eisensteinCohomology_witness :
+    isEisensteinCohomologyVanishingFor_E725_Degree8_REQUIRED_HYPOTHESIS
+  /-- **R162**: Hodge weight (3,3) direct witness. -/
+  hodgeWeight33_witness :
+    isHodgeWeight33OnEVII_AutomaticallyGInvariant_REQUIRED_HYPOTHESIS
+  /-- **R162**: Borel stable range witness. -/
+  borelStableRange_witness : isBorelStableRangeForE725AtDegree8_REQUIRED_HYPOTHESIS
+  /-- **R162**: Borel standard lower bound witness. -/
+  borelStandardLowerBound_witness : isBorelStandardLowerBoundForE725_PUBLISHED
+  /-- **R162**: Lefschetz-Deligne weight route witness. -/
+  lefschetzDeligneWeightRoute_witness :
+    isLefschetzDeligneWeightRouteForE725Degree8_INVENTION_CLASS
+  /-- **R162**: compact dual Poincaré polynomial witness. -/
+  compactDualPoincare_witness : isCompactDualEVIIPoincarePolynomial_PUBLISHED
+  /-- **R162**: compact dual Hodge bigrading diagonal witness. -/
+  compactDualHodgeBigrading_witness : isCompactDualEVIIHodgeBigradingDiagonal_PUBLISHED
+  /-- **R162**: P14 bridge — 3 sub-atoms ⟹ Hodge weight (3,3) automatically G-invariant. -/
+  hodge_weight33_from_subatoms_P14 :
+    isBorelStableRangeForE725AtDegree8_REQUIRED_HYPOTHESIS →
+    isCompactDualEVIIPoincarePolynomial_PUBLISHED →
+    isCompactDualEVIIHodgeBigradingDiagonal_PUBLISHED →
+    isHodgeWeight33OnEVII_AutomaticallyGInvariant_REQUIRED_HYPOTHESIS
 
 /-- Canonical inhabitant of `E7ShimuraTor`: the paper constructs
  `S_Γ^tor` as a specific AMRT-Baily-Borel toroidal compactification
@@ -2163,8 +2200,10 @@ theorem is_vogan_zuckerman_aq_lambda_computation_for_E725_degree8_REQUIRED_HYPOT
  (1987), 37-118 (specific GL_2 case).
  paper source: hyp:ChernWeil-bridge-E7 (P9 decomposition sub-atom c —
  Eisenstein vanishing specific to E_{7(-25)} deg 8 REQUIRED). -/
-axiom IsEisensteinCohomologyVanishingFor_E725_Degree8_REQUIRED_HYPOTHESIS :
- E7ShimuraTor → Prop
+-- R162: was `axiom`; now def projecting E7ShimuraTor field.
+def IsEisensteinCohomologyVanishingFor_E725_Degree8_REQUIRED_HYPOTHESIS
+    (S : E7ShimuraTor) : Prop :=
+  S.isEisensteinCohomologyVanishingFor_E725_Degree8_REQUIRED_HYPOTHESIS
 
 /-- **`_REQUIRED_HYPOTHESIS` atom (P9.d, R-#new-P9; P14-CORRECTED)**:
  the Hodge bigrading piece of `H^8(S_Γ; ℂ)` containing the Freudenthal
@@ -2201,8 +2240,10 @@ axiom IsEisensteinCohomologyVanishingFor_E725_Degree8_REQUIRED_HYPOTHESIS :
  Borel-stable-range bound.
  paper source: hyp:ChernWeil-bridge-E7 (P9 decomposition sub-atom d;
  P14 type-confusion correction + Borel-stable-range closure path). -/
-axiom IsHodgeWeight33OnEVII_AutomaticallyGInvariant_REQUIRED_HYPOTHESIS :
- E7ShimuraTor → Prop
+-- R162: was `axiom`; now def projecting E7ShimuraTor field.
+def IsHodgeWeight33OnEVII_AutomaticallyGInvariant_REQUIRED_HYPOTHESIS
+    (S : E7ShimuraTor) : Prop :=
+  S.isHodgeWeight33OnEVII_AutomaticallyGInvariant_REQUIRED_HYPOTHESIS
 
 /-- **`_REQUIRED_HYPOTHESIS` atom (P14.SI-1, R-#new-P14; P15-PATCHED)**:
  the Borel stable range theorem applies at degree 8 for the EVII
@@ -2237,8 +2278,10 @@ axiom IsHodgeWeight33OnEVII_AutomaticallyGInvariant_REQUIRED_HYPOTHESIS :
  paper source: hyp:ChernWeil-bridge-E7 (P14 Hodge-(4,4) decomposition
  SI-1 — Borel stable range bound; P15-PATCHED with failure-asset
  6-degree-gap disclosure). -/
-axiom IsBorelStableRangeForE725AtDegree8_REQUIRED_HYPOTHESIS :
- E7ShimuraTor → Prop
+-- R162: was `axiom`; now def projecting E7ShimuraTor field.
+def IsBorelStableRangeForE725AtDegree8_REQUIRED_HYPOTHESIS
+    (S : E7ShimuraTor) : Prop :=
+  S.isBorelStableRangeForE725AtDegree8_REQUIRED_HYPOTHESIS
 
 /-- **PUBLISHED failure-asset atom (P15.a, R-#new-P15)**: the BEST
  known lower bound for the Borel stable range constant `m(E_{7(-25)})`
@@ -2258,8 +2301,9 @@ axiom IsBorelStableRangeForE725AtDegree8_REQUIRED_HYPOTHESIS :
  paper source: hyp:ChernWeil-bridge-E7 (P15 failure-asset structural
  fact — Borel-stable-range universal lower bound m ≥ 2 for E_{7(-25)};
  6-degree gap from required m ≥ 8). -/
-axiom IsBorelStandardLowerBoundForE725_PUBLISHED :
- E7ShimuraTor → Prop
+-- R162: was `axiom`; now def projecting E7ShimuraTor field.
+def IsBorelStandardLowerBoundForE725_PUBLISHED (S : E7ShimuraTor) : Prop :=
+  S.isBorelStandardLowerBoundForE725_PUBLISHED
 
 /-- **`_INVENTION_CLASS` alternative routing atom (P15.b, R-#new-P15)**:
  Lefschetz hyperplane theorem + Deligne weight argument as ALTERNATIVE
@@ -2285,19 +2329,25 @@ axiom IsBorelStandardLowerBoundForE725_PUBLISHED :
  paper source: hyp:ChernWeil-bridge-E7 (P15 alternative routing —
  Lefschetz + Deligne weight INVENTION_CLASS surfaced per P15 audit
  recommendation as alternative to failed Borel-stable-range route). -/
-axiom IsLefschetzDeligneWeightRouteForE725Degree8_INVENTION_CLASS :
- E7ShimuraTor → Prop
+-- R162: was `axiom`; now def projecting E7ShimuraTor field.
+def IsLefschetzDeligneWeightRouteForE725Degree8_INVENTION_CLASS
+    (S : E7ShimuraTor) : Prop :=
+  S.isLefschetzDeligneWeightRouteForE725Degree8_INVENTION_CLASS
 
 /-- PUBLISHED witness for P15.a (Borel m ≥ 2 universal bound). -/
-axiom is_borel_standard_lower_bound_for_E725_PUBLISHED :
+-- R162: was `axiom`; now theorem via E7ShimuraTor witness field.
+theorem is_borel_standard_lower_bound_for_E725_PUBLISHED :
  ∀ (S : E7ShimuraTor),
-   IsBorelStandardLowerBoundForE725_PUBLISHED S
+   IsBorelStandardLowerBoundForE725_PUBLISHED S :=
+ fun S => S.borelStandardLowerBound_witness
 
 /-- `_INVENTION_CLASS` placeholder witness for P15.b (Lefschetz + Deligne
  alternative routing). NOT discharged. -/
-axiom is_lefschetz_deligne_weight_route_for_E725_degree8_INVENTION_CLASS :
+-- R162: was `axiom`; now theorem via E7ShimuraTor witness field.
+theorem is_lefschetz_deligne_weight_route_for_E725_degree8_INVENTION_CLASS :
  ∀ (S : E7ShimuraTor),
-   IsLefschetzDeligneWeightRouteForE725Degree8_INVENTION_CLASS S
+   IsLefschetzDeligneWeightRouteForE725Degree8_INVENTION_CLASS S :=
+ fun S => S.lefschetzDeligneWeightRoute_witness
 
 /-- **PUBLISHED atom (P14.SI-2, R-#new-P14)**: the integral cohomology
  ring `H^*(Ě_VII; ℤ)` of the compact-dual EVII = `E_7/E_6·SO(2)` has
@@ -2311,8 +2361,9 @@ axiom is_lefschetz_deligne_weight_route_for_E725_degree8_INVENTION_CLASS :
  χ(t) formula for EVII).
  paper source: hyp:ChernWeil-bridge-E7 (P14 Hodge-(4,4) decomposition
  SI-2 — compact-dual Poincaré polynomial PUBLISHED). -/
-axiom IsCompactDualEVIIPoincarePolynomial_PUBLISHED :
- E7ShimuraTor → Prop
+-- R162: was `axiom`; now def projecting E7ShimuraTor field.
+def IsCompactDualEVIIPoincarePolynomial_PUBLISHED (S : E7ShimuraTor) : Prop :=
+  S.isCompactDualEVIIPoincarePolynomial_PUBLISHED
 
 /-- **PUBLISHED atom (P14.SI-3, R-#new-P14)**: for the compact-dual
  EVII = `E_7/E_6·SO(2)` (which is a generalized flag variety /
@@ -2331,23 +2382,30 @@ axiom IsCompactDualEVIIPoincarePolynomial_PUBLISHED :
  have diagonal Hodge bigrading).
  paper source: hyp:ChernWeil-bridge-E7 (P14 Hodge-(4,4) decomposition
  SI-3 — diagonal Hodge bigrading on compact-dual flag variety PUBLISHED). -/
-axiom IsCompactDualEVIIHodgeBigradingDiagonal_PUBLISHED :
- E7ShimuraTor → Prop
+-- R162: was `axiom`; now def projecting E7ShimuraTor field.
+def IsCompactDualEVIIHodgeBigradingDiagonal_PUBLISHED (S : E7ShimuraTor) : Prop :=
+  S.isCompactDualEVIIHodgeBigradingDiagonal_PUBLISHED
 
 /-- `_REQUIRED_HYPOTHESIS` witness for SI-1 (Borel stable range at deg 8). -/
-axiom is_borel_stable_range_for_E725_at_degree8_REQUIRED_HYPOTHESIS :
+-- R162: was `axiom`; now theorem via E7ShimuraTor witness field.
+theorem is_borel_stable_range_for_E725_at_degree8_REQUIRED_HYPOTHESIS :
  ∀ (S : E7ShimuraTor),
-   IsBorelStableRangeForE725AtDegree8_REQUIRED_HYPOTHESIS S
+   IsBorelStableRangeForE725AtDegree8_REQUIRED_HYPOTHESIS S :=
+ fun S => S.borelStableRange_witness
 
 /-- PUBLISHED witness for SI-2 (compact-dual EVII Poincaré polynomial). -/
-axiom is_compact_dual_EVII_poincare_polynomial_PUBLISHED :
+-- R162: was `axiom`; now theorem via E7ShimuraTor witness field.
+theorem is_compact_dual_EVII_poincare_polynomial_PUBLISHED :
  ∀ (S : E7ShimuraTor),
-   IsCompactDualEVIIPoincarePolynomial_PUBLISHED S
+   IsCompactDualEVIIPoincarePolynomial_PUBLISHED S :=
+ fun S => S.compactDualPoincare_witness
 
 /-- PUBLISHED witness for SI-3 (diagonal Hodge bigrading on flag variety). -/
-axiom is_compact_dual_EVII_hodge_bigrading_diagonal_PUBLISHED :
+-- R162: was `axiom`; now theorem via E7ShimuraTor witness field.
+theorem is_compact_dual_EVII_hodge_bigrading_diagonal_PUBLISHED :
  ∀ (S : E7ShimuraTor),
-   IsCompactDualEVIIHodgeBigradingDiagonal_PUBLISHED S
+   IsCompactDualEVIIHodgeBigradingDiagonal_PUBLISHED S :=
+ fun S => S.compactDualHodgeBigrading_witness
 
 /-- **P14 DECOMPOSITION BRIDGE** for Hodge-(4,4) auto-G-invariant
  atom (R-#new-P14, type-confusion correction + Borel stable range
@@ -2371,12 +2429,14 @@ axiom is_compact_dual_EVII_hodge_bigrading_diagonal_PUBLISHED :
  downgraded — the active residual is now just the `m(E_{7(-25)}) ≥ 8`
  Borel stable range bound (a specific computational claim from a
  PUBLISHED framework). -/
-axiom is_hodge_weight33_on_EVII_automatically_G_invariant_from_subatoms_P14 :
+-- R162: was `axiom`; now theorem via E7ShimuraTor P14 bridge field.
+theorem is_hodge_weight33_on_EVII_automatically_G_invariant_from_subatoms_P14 :
  ∀ (S : E7ShimuraTor),
    IsBorelStableRangeForE725AtDegree8_REQUIRED_HYPOTHESIS S →
    IsCompactDualEVIIPoincarePolynomial_PUBLISHED S →
    IsCompactDualEVIIHodgeBigradingDiagonal_PUBLISHED S →
-   IsHodgeWeight33OnEVII_AutomaticallyGInvariant_REQUIRED_HYPOTHESIS S
+   IsHodgeWeight33OnEVII_AutomaticallyGInvariant_REQUIRED_HYPOTHESIS S :=
+ fun S => S.hodge_weight33_from_subatoms_P14
 
 /-- **DERIVED theorem (P14 LOAD-BEARING REWIRE, R-#new-P14)**: the
  Hodge-auto-G-invariant atom is derivable from the P14 bridge applied
@@ -2963,16 +3023,20 @@ theorem is_vogan_zuckerman_aq_lambda_computation_for_E725_degree8_REQUIRED_HYPOT
 
 /-- `_REQUIRED_HYPOTHESIS` placeholder witness for Eisenstein cohomology
  vanishing for `E_{7(-25)}` at degree 8 (P9.c, R-#new-P9). NOT discharged. -/
-axiom is_eisenstein_cohomology_vanishing_for_E725_degree8_REQUIRED_HYPOTHESIS :
+-- R162: was `axiom`; now theorem via E7ShimuraTor witness field.
+theorem is_eisenstein_cohomology_vanishing_for_E725_degree8_REQUIRED_HYPOTHESIS :
  ∀ (S : E7ShimuraTor),
-   IsEisensteinCohomologyVanishingFor_E725_Degree8_REQUIRED_HYPOTHESIS S
+   IsEisensteinCohomologyVanishingFor_E725_Degree8_REQUIRED_HYPOTHESIS S :=
+ fun S => S.eisensteinCohomology_witness
 
 /-- gapBlocked-tier `_REQUIRED_HYPOTHESIS` placeholder witness for
  Hodge-weight-(3,3) automatic G-invariance (P9.d, R-#new-P9 — structural
  barrier). NOT discharged. -/
-axiom is_hodge_weight33_on_EVII_automatically_G_invariant_REQUIRED_HYPOTHESIS :
+-- R162: was `axiom`; now theorem via E7ShimuraTor witness field.
+theorem is_hodge_weight33_on_EVII_automatically_G_invariant_REQUIRED_HYPOTHESIS :
  ∀ (S : E7ShimuraTor),
-   IsHodgeWeight33OnEVII_AutomaticallyGInvariant_REQUIRED_HYPOTHESIS S
+   IsHodgeWeight33OnEVII_AutomaticallyGInvariant_REQUIRED_HYPOTHESIS S :=
+ fun S => S.hodgeWeight33_witness
 
 /-- **P9 DECOMPOSITION BRIDGE** for clause (ii.a) atom (R-#new-P9).
  Per Phase 0 hostile audit, the monolithic
