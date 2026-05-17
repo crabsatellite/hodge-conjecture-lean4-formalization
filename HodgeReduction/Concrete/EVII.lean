@@ -635,12 +635,11 @@ end EVII_R6
 
 /-! ### Diagnostic: axiom dependencies of the concrete-instance closure -/
 
--- Uncomment to inspect axiom dependencies at the concrete-instance level.
+-- R20 KERNEL-PURITY VERIFICATION: uncomment to inspect axiom
+-- dependencies at the concrete-instance level.
 -- Expected: same minimal axiom set as the abstract theorem, i.e.
 --   `[propext, Classical.choice, Quot.sound]` (kernel-pure).
--- #print axioms HC_for_Concrete_EVII
--- #print axioms HC_for_Concrete_EVII_Freudenthal
--- #print axioms EVII_R6.evii_lineBundleData
--- #print axioms EVII_R6.evii_lefschetz_11_via_c1
+#print axioms HC_for_Concrete_EVII
+#print axioms HC_for_Concrete_EVII_Freudenthal
 
 end HodgeReduction.Concrete
