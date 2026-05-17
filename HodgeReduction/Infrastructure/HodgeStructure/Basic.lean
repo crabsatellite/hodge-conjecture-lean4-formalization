@@ -729,6 +729,156 @@ theorem map_filt (f : HodgeStructureMorphism V W n) (p : Fin (n + 1)) :
 
 end HodgeStructureMorphism
 
+/-! ## R165: Cycle class map data + Hodge Conjecture formulated via image
+
+The **cycle class map** `cl: C → W` (with `C` a ℚ-module of "rational
+cycle classes" and `W` a weight-`2k` PHS) is the central object of the
+Hodge Conjecture. It is a ℚ-linear map whose **range is contained in
+Hodge classes** (because cycle classes are intrinsically (p,p)).
+
+The **Hodge Conjecture for this cycle class map** asserts the REVERSE
+inclusion: every Hodge class arises as the cycle class of some
+algebraic cycle, i.e. `hodgeClasses W k ≤ LinearMap.range cl`.
+
+We package this with a bundled data structure `CycleClassMapData` that
+carries (1) the ℚ-linear map and (2) the proof that its range is
+contained in Hodge classes. Then `HodgeConjectureForCycleMap` is a
+clean Prop on this bundle.
+
+This formulation removes the R43 Unit-trivial vacuity at the abstract
+level: the assertion `range = hodgeClasses` is genuinely non-trivial
+content (not vacuously true via `Unit ≃ Unit`).
+
+References: Voisin 2002 II §11.1.1 (cycle class map); Hodge 1950
+(Hodge Conjecture). -/
+
+/-- **R165**: A **cycle class map** from a ℚ-module `C` of "rational
+cycle classes" to a weight-`2k` pure Hodge structure `W`, bundled with
+the proof that its range lies inside `hodgeClasses W k`.
+
+The hypothesis `range_le_hodgeClasses` is the **Hodge-theoretic
+half** of the cycle class story: cycle classes of algebraic
+subvarieties are intrinsically (p, p) (Lefschetz-Hodge; Hodge 1950).
+The conjecture goes the OTHER way: every Hodge class arises as such
+a cycle class. -/
+structure CycleClassMapData (C W : Type*) [AddCommGroup C] [AddCommGroup W]
+    [Module ℚ C] [Module ℚ W] (k : ℕ) [PureHodgeStructure W (2 * k)] where
+  /-- The underlying ℚ-linear map `cl: C →ₗ[ℚ] W`. -/
+  toLinearMap : C →ₗ[ℚ] W
+  /-- Hodge half: the range of `cl` lies in Hodge classes. -/
+  range_le_hodgeClasses :
+    LinearMap.range toLinearMap ≤ PureHodgeStructure.hodgeClasses W k
+
+namespace CycleClassMapData
+
+variable {C W : Type*} [AddCommGroup C] [AddCommGroup W]
+  [Module ℚ C] [Module ℚ W] {k : ℕ} [PureHodgeStructure W (2 * k)]
+
+/-- **R165**: The **Hodge Conjecture** for a specific cycle class map:
+the range of `cl` EQUALS the space of Hodge classes (combining the
+already-proven `range ≤ hodgeClasses` with the conjectural reverse
+inclusion `hodgeClasses ≤ range`).
+
+This is the genuine, non-trivial assertion form of HC at the level of
+a pure Hodge structure + cycle class map. NO Unit trick. -/
+def HodgeConjectureForCycleMap (cl : CycleClassMapData C W k) : Prop :=
+  LinearMap.range cl.toLinearMap = PureHodgeStructure.hodgeClasses W k
+
+/-- **R165**: HC for the cycle class map is equivalent to the reverse
+inclusion `hodgeClasses W k ≤ LinearMap.range cl` (since the forward
+direction is already in the bundle).
+
+This is the form most reductions naturally produce. -/
+theorem hodgeConjectureForCycleMap_iff (cl : CycleClassMapData C W k) :
+    cl.HodgeConjectureForCycleMap ↔
+    PureHodgeStructure.hodgeClasses W k ≤ LinearMap.range cl.toLinearMap := by
+  constructor
+  · intro h
+    rw [h]
+  · intro h
+    exact le_antisymm cl.range_le_hodgeClasses h
+
+/-- **R165**: Symmetric form — HC says every Hodge class is in the
+range, i.e. for every `α : W` with `IsHodgeClass W k α`, there exists
+`z : C` with `cl z = α`. -/
+theorem hodgeConjectureForCycleMap_iff_exists (cl : CycleClassMapData C W k) :
+    cl.HodgeConjectureForCycleMap ↔
+    ∀ α : W, PureHodgeStructure.IsHodgeClass W k α → ∃ z : C, cl.toLinearMap z = α := by
+  rw [hodgeConjectureForCycleMap_iff]
+  constructor
+  · intro h α hα
+    have h' := h hα
+    exact LinearMap.mem_range.mp h'
+  · intro h α hα
+    rw [LinearMap.mem_range]
+    exact h α hα
+
+end CycleClassMapData
+
+/-! ## R165: Reduction theorem — HC transfers across Hodge morphisms
+
+The classical HC reduction strategy: "HC for variety class A implies
+HC for variety class B". We formalise the abstract content:
+
+If we have two cycle class maps `cl_V : C_V → V` and `cl_W : C_W → W`
+related by:
+  * A Hodge morphism `φ : V → W` of weight `2k`
+  * A ℚ-linear "cycle correspondence" `ψ : C_V → C_W`
+  * The compatibility `cl_W ∘ ψ = φ ∘ cl_V` (commutative square)
+  * `φ` is **surjective on Hodge classes**: every Hodge class of `W`
+    is hit by some Hodge class of `V` via `φ`.
+
+Then HC for `cl_V` implies HC for `cl_W`. (Standard correspondence-based
+reduction; Voisin II §11.4.) -/
+
+/-- **R165 REDUCTION THEOREM**: HC transfers from a source cycle class
+map to a target one along a Hodge morphism that surjects on Hodge
+classes.
+
+This is the abstract categorical content of the Mumford-Tate /
+correspondence-based reduction strategy in the paper:
+* `cl_V : C_V → V` is the source cycle class map (HC assumed for this).
+* `cl_W : C_W → W` is the target cycle class map (HC to be derived).
+* `φ : V → W` is a Hodge morphism of weight `2k`.
+* `ψ : C_V → C_W` is the cycle-level correspondence.
+* The square commutes: `cl_W ∘ ψ = φ ∘ cl_V`.
+* `φ` is surjective on Hodge classes:
+  `hodgeClasses W k ≤ Submodule.map φ (hodgeClasses V k)`.
+
+Conclusion: HC for `cl_W` follows from HC for `cl_V`.
+
+Concrete instantiation in the V_56 case: V is the cohomology of a CM
+abelian variety (where HC is known by Deligne 1982), W is the
+cohomology of the V_56-Shimura, φ is the projection induced by the
+Mumford-Tate correspondence, ψ is the correspondence on cycle level. -/
+theorem CycleClassMapData.hodgeConjecture_transfer
+    {C_V C_W V W : Type*}
+    [AddCommGroup C_V] [AddCommGroup C_W] [AddCommGroup V] [AddCommGroup W]
+    [Module ℚ C_V] [Module ℚ C_W] [Module ℚ V] [Module ℚ W]
+    {k : ℕ} [PureHodgeStructure V (2 * k)] [PureHodgeStructure W (2 * k)]
+    (cl_V : CycleClassMapData C_V V k) (cl_W : CycleClassMapData C_W W k)
+    (φ : HodgeStructureMorphism V W (2 * k))
+    (ψ : C_V →ₗ[ℚ] C_W)
+    (h_square : ∀ z : C_V,
+      cl_W.toLinearMap (ψ z) = φ.toLinearMap (cl_V.toLinearMap z))
+    (h_φ_surj : PureHodgeStructure.hodgeClasses W k ≤
+      Submodule.map φ.toLinearMap (PureHodgeStructure.hodgeClasses V k))
+    (hV : cl_V.HodgeConjectureForCycleMap) :
+    cl_W.HodgeConjectureForCycleMap := by
+  rw [hodgeConjectureForCycleMap_iff_exists]
+  intro α hα
+  -- α ∈ hodgeClasses W k; by h_φ_surj, α = φ.toLinearMap v for some v ∈ hodgeClasses V k.
+  have h_α_in : α ∈ PureHodgeStructure.hodgeClasses W k := hα
+  obtain ⟨v, hv_in, hv_eq⟩ := h_φ_surj h_α_in
+  -- v ∈ hodgeClasses V k = range cl_V (by HC for V)
+  have h_range_eq_V : LinearMap.range cl_V.toLinearMap =
+      PureHodgeStructure.hodgeClasses V k := hV
+  rw [← h_range_eq_V] at hv_in
+  obtain ⟨z, hz_eq⟩ := LinearMap.mem_range.mp hv_in
+  -- ψ z gives a preimage in C_W
+  refine ⟨ψ z, ?_⟩
+  rw [h_square, hz_eq, hv_eq]
+
 /-! ## Pure Hodge structures via explicit pieces with substantive
 dimensional, disjointness and span axioms
 
