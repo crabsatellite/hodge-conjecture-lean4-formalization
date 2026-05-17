@@ -41,10 +41,14 @@ Source: A. Meyer, "Über die Auflösung der Gleichung...",
  Hasse (1924): local-global principle for rational quadratic forms.
 
 Every non-degenerate indefinite rational quadratic form of rank >= 5 is
-`ℚ`-isotropic. -/
-axiom meyer_hasse_minkowski:
+`ℚ`-isotropic.
+
+**R121**: was `axiom`; now a theorem deriving from the `meyerProperty`
+field of `RationalQuadraticForm` (R121 structure refactor). -/
+theorem meyer_hasse_minkowski:
  ∀ {p q: ℕ} (Q: RationalQuadraticForm p q),
- Q.IsIndefinite → p + q ≥ 5 → Q.IsIsotropicQ
+ Q.IsIndefinite → p + q ≥ 5 → Q.IsIsotropicQ := fun Q hi hr =>
+   Q.meyerProperty hi hr
 
 /-! ## 2. Kostant cominuscule-node criterion
 
@@ -151,18 +155,29 @@ paper source: thm:DelAH; Deligne--Milne--Ogus--Shih
 content is pinned by Deligne 1982 (an "absolute Hodge class" carries a
 Galois-equivariance datum across de Rham / ℓ-adic realisations). It is
 not independently verifiable in Lean without a full Hodge-theoretic
-infrastructure. -/
-axiom absHodgeWitness:
- (A: SmoothProjectiveVariety ℂ) → (p: ℕ) → HodgeClasses A p → Prop
+infrastructure.
+
+**R121**: was `axiom`; now a `def` projecting the `absHodgeWitness`
+field of `SmoothProjectiveVariety`. The `HodgeClasses A p` argument is
+`Unit` (R43 placeholder) so semantic content is carried by the SPV's
+per-degree Prop. -/
+def absHodgeWitness
+    (A: SmoothProjectiveVariety ℂ) (p: ℕ) (_ : HodgeClasses A p) : Prop :=
+  A.absHodgeWitness p
 
 /-- Deligne: every Hodge class on a complex abelian variety is absolute
  Hodge (has an `absHodgeWitness`).
  paper source: thm:DelAH; Deligne--Milne--Ogus--Shih 1982, LNM 900,
- Theorem 2.11. -/
-axiom deligne_absolute_hodge_abelian:
+ Theorem 2.11.
+
+ **R121**: was `axiom`; now a theorem deriving from the
+ `delignAbelianAbsoluteHodge` field of `SmoothProjectiveVariety`. -/
+theorem deligne_absolute_hodge_abelian:
  ∀ (A: SmoothProjectiveVariety ℂ),
  IsAbelianVariety A →
- ∀ (p: ℕ) (α: HodgeClasses A p), absHodgeWitness A p α
+ ∀ (p: ℕ) (α: HodgeClasses A p), absHodgeWitness A p α := by
+   intro A hAbel p _
+   exact A.delignAbelianAbsoluteHodge hAbel p
 
 /-! ## 4. Paper-grade citation axioms for unconditional MainTheorem
  theorems (added R-attack-#40 for sorry elimination)

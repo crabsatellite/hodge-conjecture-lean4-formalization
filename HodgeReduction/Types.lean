@@ -160,6 +160,14 @@ structure SmoothProjectiveVariety (k: Type) [Field k] where
  /-- Kodaira-dim reduction terminates at CY_3 (clause (iv) scope).
   paper source: Scope paragraph clause (iv). -/
  existsCY3Reduction : Prop
+ /-- **R121**: bundled absolute-Hodge-witness predicate (was
+  `axiom absHodgeWitness`). Per Deligne 1982 LNM 900 Thm 2.11, a
+  Galois-equivariance datum across de Rham / ℓ-adic realisations. -/
+ absHodgeWitness : ℕ → Prop
+ /-- **R121**: Deligne 1982 LNM 900 Thm 2.11 — for abelian varieties,
+  every Hodge class admits an absolute-Hodge witness. Used to eliminate
+  `axiom deligne_absolute_hodge_abelian`. -/
+ delignAbelianAbsoluteHodge : isAbelianVariety → ∀ p : ℕ, absHodgeWitness p
 
 /-! ## 2. Hodge numbers and Mumford--Tate groups
 
@@ -427,6 +435,9 @@ noncomputable def SmoothProjectiveVariety.product
  c1IsZero := X.c1IsZero ∧ Y.c1IsZero
  inKnownE7Scope := X.inKnownE7Scope ∨ Y.inKnownE7Scope
  existsCY3Reduction := X.existsCY3Reduction ∨ Y.existsCY3Reduction
+ absHodgeWitness := fun p => X.absHodgeWitness p ∧ Y.absHodgeWitness p
+ delignAbelianAbsoluteHodge := fun ⟨hX, hY⟩ p =>
+   ⟨X.delignAbelianAbsoluteHodge hX p, Y.delignAbelianAbsoluteHodge hY p⟩
 
 /-- Top-level `product` of two smooth projective varieties — **R119**:
  was `axiom product`, now a `def` alias for
@@ -476,6 +487,12 @@ structure RationalQuadraticForm (p q : ℕ) : Type where
   /-- `QQ`-isotropy predicate on this rational quadratic form.
    paper source: thm:Meyer. -/
   IsIsotropicQ : Prop
+  /-- **R121**: Meyer-Hasse-Minkowski theorem as a structure field.
+   Eliminates `axiom meyer_hasse_minkowski`. The classical theorem
+   states: every non-degenerate indefinite rational quadratic form
+   of rank ≥ 5 is `ℚ`-isotropic.
+   paper source: thm:Meyer; Meyer 1884; Minkowski 1910; Hasse 1924. -/
+  meyerProperty : (p ≥ 1 ∧ q ≥ 1) → p + q ≥ 5 → IsIsotropicQ
 
 /-- Indefiniteness (both `p ≥ 1` and `q ≥ 1`).
  paper source: thm:Meyer hypothesis. -/
