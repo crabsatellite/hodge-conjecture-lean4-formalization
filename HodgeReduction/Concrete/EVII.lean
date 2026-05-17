@@ -28,6 +28,7 @@ import HodgeReduction.Infrastructure.Cohomology.AbelJacobi
 import HodgeReduction.Infrastructure.Cohomology.ChernCharacter
 import HodgeReduction.Infrastructure.Cohomology.StandardConjectures
 import HodgeReduction.Infrastructure.Cohomology.Galois
+import HodgeReduction.Infrastructure.Cohomology.AlgebraicCycle
 import HodgeReduction.Infrastructure.Cohomology.PicardGroup
 import HodgeReduction.Infrastructure.Cohomology.AmpleDivisor
 import HodgeReduction.Infrastructure.Cohomology.CycleClassMap
