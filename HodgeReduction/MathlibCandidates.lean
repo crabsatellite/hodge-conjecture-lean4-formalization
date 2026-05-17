@@ -944,6 +944,31 @@ noncomputable instance commGroup.{u} (R : Type u) [CommRing R] :
   inv_mul_cancel := inv_mul_cancel
   mul_comm := mul_comm
 
+/-- **R126**: `Picard R` is a `CommGroupWithZero`-free structure. The class
+`[R]` of the trivial bundle is the multiplicative identity.
+
+This lemma is the explicit form of the CommGroup's `one_eq_one` for the
+Picard quotient. Convenient as a Mathlib-side simp lemma. -/
+@[simp]
+theorem mk_R_eq_one.{u} {R : Type u} [CommRing R] :
+    mk (R := R) R = one R :=
+  rfl
+
+/-- **R126**: the identity class inverts to itself. Standard CommGroup
+consequence, proved directly from the structural definition. -/
+theorem inv_one.{u} {R : Type u} [CommRing R] :
+    inv (one R) = one R := by
+  -- inv (one R) = inv (mk R) = mk (inverseCarrier R R)
+  -- inverseCarrier R R has iso M ⊗ R ≃ R giving M ≃ R via inverseIso transport.
+  refine Quotient.sound ?_
+  -- Need: IsoRel (Sigma.inverse (Sigma.mk R)) (Sigma.mk R), i.e.,
+  -- Nonempty (inverseCarrier R R ≃ₗ[R] R).
+  -- inverseIso R R gives R ⊗ inverseCarrier R R ≃ R; combine with lid to get
+  -- inverseCarrier R R ≃ R.
+  refine ⟨?_⟩
+  -- inverseCarrier R R ≃ R ⊗ inverseCarrier R R ≃ R
+  exact (TensorProduct.lid R _).symm.trans (Module.IsInvertible.inverseIso R R)
+
 end Picard
 
 /-! ### Project bridge (R123): `LineBundleData` instance for any CommRing
