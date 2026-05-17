@@ -1679,6 +1679,34 @@ theorem evii_compact_levi_form_proportionality :
           (A := A_EVII) :=
   HodgeReduction.Infrastructure.Cohomology.E6CompactnessFormProportionalityData.holds
 
+/-! ### R58 SUBSTANTIVE: `LRefinedChernWeilProportionalityData A_EVII`
+
+Closes the P40-Hodge-refinement L-block Chern-Weil form proportionality
+typeclass on the EVII model — the EVII-specific refinement of R57's
+compact-Levi `E_6` form proportionality, summing over Hodge sub-bundle
+pieces (Mumford 1977 + compact-Levi + BKK 2007 + L-block diagonal).
+
+On `A_EVII = Polynomial ℚ`, we realise both submodules as the same
+`Submodule.span ℚ {X^4}` (degree-4 piece, suggestive of the Freudenthal
+quartic target `q ∈ H^8 = ⟨h^4⟩`). The equality holds by `rfl`. -/
+noncomputable instance evii_lRefinedChernWeilProportionalityData :
+    HodgeReduction.Infrastructure.Cohomology.LRefinedChernWeilProportionalityData
+      A_EVII where
+  LRefinedChernForms :=
+    Submodule.span ℚ ({(Polynomial.X : A_EVII) ^ 4} : Set A_EVII)
+  homogeneousFormsEVII :=
+    Submodule.span ℚ ({(Polynomial.X : A_EVII) ^ 4} : Set A_EVII)
+  LRefinedChernForms_eq_homogeneousFormsEVII := rfl
+
+/-- **Sanity check** (R58): the L-refined Chern-Weil form proportionality
+identity holds on `Ě_VII`. -/
+theorem evii_L_refined_form_proportionality :
+    HodgeReduction.Infrastructure.Cohomology.LRefinedChernWeilProportionalityData.LRefinedChernForms
+      (A := A_EVII)
+      = HodgeReduction.Infrastructure.Cohomology.LRefinedChernWeilProportionalityData.homogeneousFormsEVII
+          (A := A_EVII) :=
+  HodgeReduction.Infrastructure.Cohomology.LRefinedChernWeilProportionalityData.holds
+
 /-! ### R34 SUBSTANTIVE: NefConeData + KodairaEmbeddingData on EVII
 
 Two more `AmpleDivisor.lean` typeclasses get concrete EVII witnesses,
@@ -1863,5 +1891,7 @@ theorem evii_freudenthal_quartic_is_algebraic :
 #print axioms evii_real_dim_eq_54
 -- R57 KERNEL-PURITY: E6CompactnessFormProportionalityData EVII (form-proportionality).
 #print axioms evii_compact_levi_form_proportionality
+-- R58 KERNEL-PURITY: LRefinedChernWeilProportionalityData EVII (L-block proportionality).
+#print axioms evii_L_refined_form_proportionality
 
 end HodgeReduction.Concrete
