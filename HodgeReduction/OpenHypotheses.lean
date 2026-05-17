@@ -1180,6 +1180,42 @@ structure E7ShimuraTor : Type where
   isBorelHirzebruchNonvanishH8 : Prop
   /-- **R124**: pilot field absorbing `axiom IsChernSubringSurjectiveOntoH8_E7P7`. -/
   isChernSubringSurjectiveOntoH8_E7P7 : Prop
+  /-- **R125**: field absorbing `axiom IsMatsushimaDescentToSGamma`. -/
+  isMatsushimaDescentToSGamma : Prop
+  /-- **R125**: field absorbing `axiom IsBorelWallachStableInvariantDescentFramework_E7`. -/
+  isBorelWallachStableInvariantDescentFramework_E7 : Prop
+  /-- **R125**: field absorbing `axiom IsMumfordCanonicalExtensionToTor`. -/
+  isMumfordCanonicalExtensionToTor : Prop
+  /-- **R125**: field absorbing `axiom IsCDKLocusOfHodgeClassesAlgebraic`. -/
+  isCDKLocusOfHodgeClassesAlgebraic : Prop
+  /-- **R125**: field absorbing `axiom IsBBTBKTPeriodMapDefinable`. -/
+  isBBTBKTPeriodMapDefinable : Prop
+  /-- **R125**: field absorbing `axiom IsPSTAndreOortCMDensity`. -/
+  isPSTAndreOortCMDensity : Prop
+  /-- **R125**: field absorbing `axiom IsKudlaMillson1986_1990CohomologicalModularity`. -/
+  isKudlaMillson1986_1990CohomologicalModularity : Prop
+  /-- **R125**: field absorbing `axiom IsBruinierFunke2004OrthogonalChowLift`. -/
+  isBruinierFunke2004OrthogonalChowLift : Prop
+  /-- **R125**: field absorbing `axiom IsHowardMadapusiPera2017ArithKudlaOrthogonal`. -/
+  isHowardMadapusiPera2017ArithKudlaOrthogonal : Prop
+  /-- **R125**: field absorbing `axiom IsExceptionalE7ChowModularityExtension_CONJECTURAL`. -/
+  isExceptionalE7ChowModularityExtension_CONJECTURAL : Prop
+  /-- **R125**: field absorbing `axiom IsVoganZuckermanQQBidegree_E7Minus25`. -/
+  isVoganZuckermanQQBidegree_E7Minus25 : Prop
+  /-- **R125**: field absorbing `axiom IsBorelWallachHeckeEquivariantMatsushima_E7Minus25`. -/
+  isBorelWallachHeckeEquivariantMatsushima_E7Minus25 : Prop
+  /-- **R125**: field absorbing `axiom IsAdamsSelfConjugateLowestKType_E7Minus25`. -/
+  isAdamsSelfConjugateLowestKType_E7Minus25 : Prop
+  /-- **R125**: field absorbing `axiom IsGWParallelPortHermE7Minus25_CONJECTURAL`. -/
+  isGWParallelPortHermE7Minus25_CONJECTURAL : Prop
+  /-- **R125**: field absorbing `axiom IsArchimedeanRank3WhittakerNonvanishSplit_E7`. -/
+  isArchimedeanRank3WhittakerNonvanishSplit_E7 : Prop
+  /-- **R125**: field absorbing `axiom IsBKTHeckeCorrespondencesDefinable_E7Minus25`. -/
+  isBKTHeckeCorrespondencesDefinable_E7Minus25 : Prop
+  /-- **R125**: field absorbing `axiom IsBBTPeriodImageQuasiProjective_E7Minus25`. -/
+  isBBTPeriodImageQuasiProjective_E7Minus25 : Prop
+  /-- **R125**: field absorbing `axiom IsAlgebraicLocusHeckeStable_E7Minus25_CONJECTURAL`. -/
+  isAlgebraicLocusHeckeStable_E7Minus25_CONJECTURAL : Prop
 
 /-- Canonical inhabitant of `E7ShimuraTor`: the paper constructs
  `S_Γ^tor` as a specific AMRT-Baily-Borel toroidal compactification
@@ -1607,7 +1643,9 @@ derived theorems, names kept for downstream stability). -/
  Eisenstein-boundary corrections); the predicate witness is derived via
  the bridge axiom `matsushima_descent_to_SGamma_from_framework_and_realization`.
  paper source: hyp:ChernWeil-bridge-E7 clause (ii.a). -/
-axiom IsMatsushimaDescentToSGamma : E7ShimuraTor → Prop
+-- R125: was `axiom`; now a def projecting the `isMatsushimaDescentToSGamma` field.
+def IsMatsushimaDescentToSGamma (S : E7ShimuraTor) : Prop :=
+  S.isMatsushimaDescentToSGamma
 
 /-- PUBLISHED framework atom of clause (ii.a): the Borel-Wallach `(𝔤,K_∞)`-
  cohomology framework supplies an isomorphism
@@ -1633,7 +1671,9 @@ axiom IsMatsushimaDescentToSGamma : E7ShimuraTor → Prop
  "Harmonic analysis in weighted L_2-spaces", Ann. Sci. ÉNS (4) 31 (1998)
  181-279.
  paper source: hyp:ChernWeil-bridge-E7 clause (ii.a) framework atom. -/
-axiom IsBorelWallachStableInvariantDescentFramework_E7 : E7ShimuraTor → Prop
+-- R125: was `axiom`; now a def projecting the `isBorelWallachStableInvariantDescentFramework_E7` field.
+def IsBorelWallachStableInvariantDescentFramework_E7 (S : E7ShimuraTor) : Prop :=
+  S.isBorelWallachStableInvariantDescentFramework_E7
 
 /-- `_REQUIRED_HYPOTHESIS` conjectural-extension atom of clause (ii.a): the
  specific compact-dual class `[q]_G ∈ H^8(Ě_VII, ℂ)` is in the image of the
@@ -2122,7 +2162,9 @@ theorem is_hodge_weight33_on_EVII_automatically_G_invariant_REQUIRED_HYPOTHESIS_
  paper labels conditional); the predicate witness is derived via the
  bridge axiom `mumford_canonical_extension_to_tor_from_framework_and_compatibility`.
  paper source: hyp:ChernWeil-bridge-E7 clause (ii.b). -/
-axiom IsMumfordCanonicalExtensionToTor : E7ShimuraTor → Prop
+-- R125: was `axiom`; now a def projecting the `isMumfordCanonicalExtensionToTor` field.
+def IsMumfordCanonicalExtensionToTor (S : E7ShimuraTor) : Prop :=
+  S.isMumfordCanonicalExtensionToTor
 
 /-- PUBLISHED framework atom of clause (ii.b): the automorphic bundle
  `𝓥_56` admits a Mumford canonical extension `𝓥_56^can` to the AMRT
@@ -3558,17 +3600,23 @@ series. CDK 1995 JAMS 8 pages 483-506 is the operative range. -/
  on the base of a polarized Z-VHS. Pinned by E. Cattani, P. Deligne,
  A. Kaplan, "On the locus of Hodge classes", JAMS 8 (1995) 483-506.
  paper source: hyp:BBT-rigid-reach framework (a). -/
-axiom IsCDKLocusOfHodgeClassesAlgebraic : E7ShimuraTor → Prop
+-- R125: was `axiom`; now a def projecting the `isCDKLocusOfHodgeClassesAlgebraic` field.
+def IsCDKLocusOfHodgeClassesAlgebraic (S : E7ShimuraTor) : Prop :=
+  S.isCDKLocusOfHodgeClassesAlgebraic
 
 /-- Framework predicate (b): BBT 2023 + BKT 2020 period-map definability
  + Hodge locus algebraicity at the base level.
  paper source: hyp:BBT-rigid-reach framework (b). -/
-axiom IsBBTBKTPeriodMapDefinable : E7ShimuraTor → Prop
+-- R125: was `axiom`; now a def projecting the `isBBTBKTPeriodMapDefinable` field.
+def IsBBTBKTPeriodMapDefinable (S : E7ShimuraTor) : Prop :=
+  S.isBBTBKTPeriodMapDefinable
 
 /-- Framework predicate (c): Pila-Shankar-Tsimerman 2021 Andre-Oort
  canonical-heights CM-density in Shimura components.
  paper source: hyp:BBT-rigid-reach framework (c). -/
-axiom IsPSTAndreOortCMDensity : E7ShimuraTor → Prop
+-- R125: was `axiom`; now a def projecting the `isPSTAndreOortCMDensity` field.
+def IsPSTAndreOortCMDensity (S : E7ShimuraTor) : Prop :=
+  S.isPSTAndreOortCMDensity
 
 /-- **CDK 1995** classical-literature axiom (framework a).
  Source: E. Cattani, P. Deligne, A. Kaplan, "On the locus of Hodge
@@ -3900,17 +3948,23 @@ reach top-level closure; Lean closure follows hyp:hecke-bbt core
 /-- Framework predicate #1: Kudla-Millson 1986/1990 cohomological
  modularity for orthogonal Shimura — unconditional cohomological theta
  transformation law under `Mp_2(ℤ)`. -/
-axiom IsKudlaMillson1986_1990CohomologicalModularity : E7ShimuraTor → Prop
+-- R125: was `axiom`; now a def projecting the `isKudlaMillson1986_1990CohomologicalModularity` field.
+def IsKudlaMillson1986_1990CohomologicalModularity (S : E7ShimuraTor) : Prop :=
+  S.isKudlaMillson1986_1990CohomologicalModularity
 
 /-- Framework predicate #2: Bruinier-Funke 2004 geometric theta lifts on
  orthogonal Shimura varieties — Chow-level (geometric, not just
  cohomological) modularity for orthogonal type. -/
-axiom IsBruinierFunke2004OrthogonalChowLift : E7ShimuraTor → Prop
+-- R125: was `axiom`; now a def projecting the `isBruinierFunke2004OrthogonalChowLift` field.
+def IsBruinierFunke2004OrthogonalChowLift (S : E7ShimuraTor) : Prop :=
+  S.isBruinierFunke2004OrthogonalChowLift
 
 /-- Framework predicate #3: Howard-Madapusi Pera 2017 arithmetic
  Borcherds — orthogonal Chow-level modularity at the arithmetic
  (integral-model) level. -/
-axiom IsHowardMadapusiPera2017ArithKudlaOrthogonal : E7ShimuraTor → Prop
+-- R125: was `axiom`; now a def projecting the `isHowardMadapusiPera2017ArithKudlaOrthogonal` field.
+def IsHowardMadapusiPera2017ArithKudlaOrthogonal (S : E7ShimuraTor) : Prop :=
+  S.isHowardMadapusiPera2017ArithKudlaOrthogonal
 
 /-- **CONJECTURAL-EXTENSION** predicate: exceptional `(PGL_2, F_4) ⊂
  E_7` Chow modularity + real-form descent `E_{7(7)} → E_{7(-25)}` of
@@ -3919,7 +3973,9 @@ axiom IsHowardMadapusiPera2017ArithKudlaOrthogonal : E7ShimuraTor → Prop
  as a single conjectural input. No published source covers this
  exceptional Chow lift; Madapusi-Pera 2016 Compos. Math. 152 covers
  `(n, 2)` Spin Shimura only, does NOT extend to exceptional. -/
-axiom IsExceptionalE7ChowModularityExtension_CONJECTURAL : E7ShimuraTor → Prop
+-- R125: was `axiom`; now a def projecting the `isExceptionalE7ChowModularityExtension_CONJECTURAL` field.
+def IsExceptionalE7ChowModularityExtension_CONJECTURAL (S : E7ShimuraTor) : Prop :=
+  S.isExceptionalE7ChowModularityExtension_CONJECTURAL
 
 /-- **Kudla-Millson 1986 + 1990** classical-literature axiom (framework).
 
@@ -4093,19 +4149,25 @@ technically unpublished** for the Hermitian case." -/
  theorem for `A_q(λ)` cohomological-induction modules on Hermitian
  symmetric spaces. Pinned by VZ 1984.
  paper source: hyp:hecke-bbt clause (a) framework. -/
-axiom IsVoganZuckermanQQBidegree_E7Minus25 : E7ShimuraTor → Prop
+-- R125: was `axiom`; now a def projecting the `isVoganZuckermanQQBidegree_E7Minus25` field.
+def IsVoganZuckermanQQBidegree_E7Minus25 (S : E7ShimuraTor) : Prop :=
+  S.isVoganZuckermanQQBidegree_E7Minus25
 
 /-- Framework predicate (a.2): Borel-Wallach Hecke-equivariant Matsushima
  isomorphism, built-in via geometric correspondences on both sides.
  Pinned by Borel-Wallach 1980/2000.
  paper source: hyp:hecke-bbt clause (a) framework. -/
-axiom IsBorelWallachHeckeEquivariantMatsushima_E7Minus25 : E7ShimuraTor → Prop
+-- R125: was `axiom`; now a def projecting the `isBorelWallachHeckeEquivariantMatsushima_E7Minus25` field.
+def IsBorelWallachHeckeEquivariantMatsushima_E7Minus25 (S : E7ShimuraTor) : Prop :=
+  S.isBorelWallachHeckeEquivariantMatsushima_E7Minus25
 
 /-- Framework predicate (a.3): Adams 2007 lowest `K`-type self-conjugacy
  for minimal unitary representations of exceptional Lie groups. Pinned
  by Adams 2007.
  paper source: hyp:hecke-bbt clause (a) framework. -/
-axiom IsAdamsSelfConjugateLowestKType_E7Minus25 : E7ShimuraTor → Prop
+-- R125: was `axiom`; now a def projecting the `isAdamsSelfConjugateLowestKType_E7Minus25` field.
+def IsAdamsSelfConjugateLowestKType_E7Minus25 (S : E7ShimuraTor) : Prop :=
+  S.isAdamsSelfConjugateLowestKType_E7Minus25
 
 /-- **CONJECTURAL EXTENSION** predicate (a.4): the parallel-port from
  GW 1996 (Crelle 481) quaternionic `E_{7(-5)}` `(g, K)`-cohomology to
@@ -4113,7 +4175,9 @@ axiom IsAdamsSelfConjugateLowestKType_E7Minus25 : E7ShimuraTor → Prop
  acknowledged unpublished by master paper's Gap note on parallel
  transfer.
  paper source: hyp:hecke-bbt clause (a) conjectural-extension. -/
-axiom IsGWParallelPortHermE7Minus25_CONJECTURAL : E7ShimuraTor → Prop
+-- R125: was `axiom`; now a def projecting the `isGWParallelPortHermE7Minus25_CONJECTURAL` field.
+def IsGWParallelPortHermE7Minus25_CONJECTURAL (S : E7ShimuraTor) : Prop :=
+  S.isGWParallelPortHermE7Minus25_CONJECTURAL
 
 /-- **Vogan-Zuckerman 1984** classical-literature axiom.
  Source: D. Vogan, G. Zuckerman, "Unitary representations with non-zero
@@ -4212,7 +4276,9 @@ verified citations and does not propagate these paper-level errors. -/
  published sources (Sahi 1992 + Magaard-Savin 1997 + Kazhdan-Polishchuk
  2004 + Shan 2025 for the split `(PGL_2, F_4) ⊂ E_7` theta).
  paper source: hyp:hecke-bbt clause (b) framework. -/
-axiom IsArchimedeanRank3WhittakerNonvanishSplit_E7 : E7ShimuraTor → Prop
+-- R125: was `axiom`; now a def projecting the `isArchimedeanRank3WhittakerNonvanishSplit_E7` field.
+def IsArchimedeanRank3WhittakerNonvanishSplit_E7 (S : E7ShimuraTor) : Prop :=
+  S.isArchimedeanRank3WhittakerNonvanishSplit_E7
 
 /-- **CONJECTURAL EXTENSION** predicate (b.2): Hermitian parallel-port
  of the split-form archimedean rank-3 Whittaker non-vanishing to
@@ -4304,7 +4370,9 @@ status). -/
  quotient `S_{E_7}` are `R_an`-definable in the BKT 2020 sense.
  Pinned by BKT 2020 Thm 1.1(2).
  paper source: hyp:hecke-bbt clause (d) framework. -/
-axiom IsBKTHeckeCorrespondencesDefinable_E7Minus25 : E7ShimuraTor → Prop
+-- R125: was `axiom`; now a def projecting the `isBKTHeckeCorrespondencesDefinable_E7Minus25` field.
+def IsBKTHeckeCorrespondencesDefinable_E7Minus25 (S : E7ShimuraTor) : Prop :=
+  S.isBKTHeckeCorrespondencesDefinable_E7Minus25
 
 /-- **CONJECTURAL EXTENSION** predicate (d.2): Chow-level Hecke-
  equivariance of the BBT definable-spreading functor on the algebraic
@@ -4685,7 +4753,9 @@ Hecke-stability conjectural-extension piece. -/
  captured via the conjugation of all 4 core-decomposition atoms.
 
  paper source: hyp:hecke-bbt core (framework Part 2). -/
-axiom IsBBTPeriodImageQuasiProjective_E7Minus25 : E7ShimuraTor → Prop
+-- R125: was `axiom`; now a def projecting the `isBBTPeriodImageQuasiProjective_E7Minus25` field.
+def IsBBTPeriodImageQuasiProjective_E7Minus25 (S : E7ShimuraTor) : Prop :=
+  S.isBBTPeriodImageQuasiProjective_E7Minus25
 
 /-- **CONJECTURAL EXTENSION** predicate (core.2): the algebraic locus
  `Alg(V, ω) ⊂ S_{E_7}` is stable under the full Hecke algebra of
@@ -4699,7 +4769,9 @@ axiom IsBBTPeriodImageQuasiProjective_E7Minus25 : E7ShimuraTor → Prop
  CDK 1995 Hodge-locus algebraicity, but not pinned to a single theorem.
 
  paper source: hyp:hecke-bbt core (conjectural-extension Part 1). -/
-axiom IsAlgebraicLocusHeckeStable_E7Minus25_CONJECTURAL : E7ShimuraTor → Prop
+-- R125: was `axiom`; now a def projecting the `isAlgebraicLocusHeckeStable_E7Minus25_CONJECTURAL` field.
+def IsAlgebraicLocusHeckeStable_E7Minus25_CONJECTURAL (S : E7ShimuraTor) : Prop :=
+  S.isAlgebraicLocusHeckeStable_E7Minus25_CONJECTURAL
 
 /-- **BBT 2023** classical-literature axiom.
 
