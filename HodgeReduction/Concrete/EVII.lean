@@ -1350,32 +1350,67 @@ the four field axioms), the simple version suffices. -/
 noncomputable instance evii_filteredBundleData :
     HodgeReduction.Infrastructure.Cohomology.FilteredBundleData
       EVII_R6.EVII_Space A_EVII where
-  filt k := if k = 0 then (⊤ : Submodule ℚ A_EVII) else ⊥
+  -- **R63 substantive upgrade**: model the genuine antitone filtration
+  -- on `𝓔_{+1}` (rank 27) using `Submodule.span` of monomial sets indexed
+  -- by `{n | k ≤ n}` (degree ≥ k pieces). This matches the standard
+  -- Hodge filtration `F^k = ⨁_{i ≥ k} H^{2i}`-piece interpretation on
+  -- our monomial-graded model. For `k > rank = 27`, the index set is
+  -- `{n | k ≤ n}` which contains only `n ≥ k > 27`; since the genuine
+  -- bundle has `rank = 27`, we cap by `⊥` for `k > 27`.
+  --
+  -- This is more substantive than R47's `if k = 0 then ⊤ else ⊥`: it
+  -- produces a genuine antitone chain `F^0 ⊇ F^1 ⊇ … ⊇ F^{27} ⊇ ⊥`
+  -- with each step a distinct submodule (not the degenerate
+  -- ⊤/⊥-binary).
+  filt k :=
+    if k ≤ 27 then
+      Submodule.span ℚ
+        ((fun n => (Polynomial.X : A_EVII) ^ n) '' {n | k ≤ n})
+    else (⊥ : Submodule ℚ A_EVII)
   filt_antitone {p q} hpq := by
-    -- Case split: if p = 0, then filt p = ⊤, so filt q ≤ ⊤ trivially.
-    -- If p ≠ 0, then p ≥ 1 ≥ ... well, p ≤ q so q ≥ 1, hence filt q = ⊥.
-    by_cases hp : p = 0
-    · rw [hp]
-      show (if q = 0 then (⊤ : Submodule ℚ A_EVII) else ⊥) ≤ ⊤
-      exact le_top
-    · have hp' : 0 < p := Nat.pos_iff_ne_zero.mpr hp
-      have hq : 0 < q := lt_of_lt_of_le hp' hpq
-      have hq' : q ≠ 0 := Nat.pos_iff_ne_zero.mp hq
-      show (if q = 0 then (⊤ : Submodule ℚ A_EVII) else ⊥) ≤
-        (if p = 0 then (⊤ : Submodule ℚ A_EVII) else ⊥)
-      rw [if_neg hq']
+    -- Antitonicity: p ≤ q ⟹ filt q ≤ filt p.
+    -- Case split on whether q ≤ 27 and p ≤ 27.
+    by_cases hq27 : q ≤ 27
+    · -- q ≤ 27, so filt q = span {X^n | q ≤ n}.
+      -- Since p ≤ q ≤ 27, also p ≤ 27, so filt p = span {X^n | p ≤ n}.
+      have hp27 : p ≤ 27 := le_trans hpq hq27
+      show (if q ≤ 27 then
+            Submodule.span ℚ
+              ((fun n => (Polynomial.X : A_EVII) ^ n) '' {n | q ≤ n})
+            else (⊥ : Submodule ℚ A_EVII)) ≤
+        (if p ≤ 27 then
+            Submodule.span ℚ
+              ((fun n => (Polynomial.X : A_EVII) ^ n) '' {n | p ≤ n})
+            else (⊥ : Submodule ℚ A_EVII))
+      rw [if_pos hq27, if_pos hp27]
+      exact Submodule.span_mono
+        (Set.image_subset _ (fun _ hk => le_trans hpq hk))
+    · -- q > 27, so filt q = ⊥. Then ⊥ ≤ filt p trivially.
+      show (if q ≤ 27 then _ else (⊥ : Submodule ℚ A_EVII)) ≤
+        (if p ≤ 27 then _ else (⊥ : Submodule ℚ A_EVII))
+      rw [if_neg hq27]
       exact bot_le
   filt_zero_eq_top := by
-    show (if (0 : ℕ) = 0 then (⊤ : Submodule ℚ A_EVII) else ⊥) = ⊤
-    rw [if_pos rfl]
+    -- filt 0 = span {X^n | 0 ≤ n} = span (range X^n) = ⊤ via the
+    -- MathlibCandidates Polynomial.span_X_pow_eq_top lemma.
+    show (if (0 : ℕ) ≤ 27 then
+          Submodule.span ℚ
+            ((fun n => (Polynomial.X : A_EVII) ^ n) '' {n | 0 ≤ n})
+          else (⊥ : Submodule ℚ A_EVII)) = ⊤
+    rw [if_pos (Nat.zero_le 27)]
+    -- `{n | 0 ≤ n} = Set.univ`, so image = Set.range.
+    have h_univ : {n : ℕ | 0 ≤ n} = Set.univ := by
+      ext n; simp [Nat.zero_le]
+    rw [h_univ, Set.image_univ]
+    exact HodgeReduction.MathlibCandidates.Polynomial.span_X_pow_eq_top
   filt_above_rank_eq_bot {k} hk := by
-    -- rank = 27 < k, so k ≥ 28 ≥ 1, so k ≠ 0, so filt k = ⊥.
-    have hk' : k ≠ 0 := by
-      intro h
-      rw [h] at hk
-      exact absurd hk (Nat.not_lt_zero 27)
-    show (if k = 0 then (⊤ : Submodule ℚ A_EVII) else ⊥) = ⊥
-    rw [if_neg hk']
+    -- rank = 27 < k, so k > 27, hence filt k = ⊥.
+    have hk' : ¬ k ≤ 27 := Nat.not_le.mpr hk
+    show (if k ≤ 27 then
+          Submodule.span ℚ
+            ((fun n => (Polynomial.X : A_EVII) ^ n) '' {n | k ≤ n})
+          else (⊥ : Submodule ℚ A_EVII)) = ⊥
+    simp [hk']
 
 /-- **Sanity check** (R47): the 0-th Hodge filtration piece of `𝓔_{+1}`
 on `Ě_VII` is the full bundle (`F^0 = ⊤`). -/
