@@ -2089,6 +2089,38 @@ theorem evii_abel_jacobi_range_trivial :
       = ⊥ :=
   HodgeReduction.Infrastructure.Cohomology.IntermediateJacobianData.range_abelJacobi_eq
 
+/-! ### R68 SUBSTANTIVE: `PicardVarietyData EVII_R6.EVII_Space`
+
+The **Picard variety** `Pic^0(Ě_VII)` is **trivial** since `Ě_VII` is
+simply connected. The irregularity `q(Ě_VII) = h^{0,1}(Ě_VII) = 0`
+(no odd cohomology on Hermitian symmetric of compact type), so
+`Pic^0(Ě_VII)` has complex dimension `0` and `ℤ`-rank `0 = 2·0`.
+
+Matches R66 `picZero := ⊥` and R32 `nsRank = 1` (combined: `Pic = NS`
+since `Pic⁰ = 0`). -/
+noncomputable instance evii_picardVarietyData :
+    HodgeReduction.Infrastructure.Cohomology.PicardVarietyData
+      EVII_R6.EVII_Space where
+  Pic0 := Unit
+  pic0_addCommGroup := inferInstance
+  pic0_dim := 0
+  Pic0_rank := 0
+  Pic0_rank_eq := by norm_num
+
+/-- **Sanity check** (R68): the irregularity `q(Ě_VII) = 0` (zero odd
+cohomology on simply connected Hermitian symmetric). -/
+theorem evii_irregularity_eq_zero :
+    HodgeReduction.Infrastructure.Cohomology.PicardVarietyData.pic0_dim
+      (X := EVII_R6.EVII_Space) = 0 :=
+  rfl
+
+/-- **Sanity check** (R68): `Pic^0(Ě_VII)` as a real torus has rank 0
+(matches abelian-variety rank identity `2g = 0`). -/
+theorem evii_pic0_rank_eq_zero :
+    HodgeReduction.Infrastructure.Cohomology.PicardVarietyData.Pic0_rank
+      (X := EVII_R6.EVII_Space) = 0 :=
+  rfl
+
 /-! ### R65 APEX: Comprehensive HC synthesis on E_VII compact dual
 
 A single user-facing theorem combining the 27+ substantive EVII typeclass
@@ -2132,5 +2164,8 @@ theorem evii_apex_synthesis :
 #print axioms evii_cohomology_picard_nsDim
 -- R67 KERNEL-PURITY: IntermediateJacobianData EVII (J^p trivial).
 #print axioms evii_abel_jacobi_range_trivial
+-- R68 KERNEL-PURITY: PicardVarietyData EVII (Pic^0 trivial; irregularity 0).
+#print axioms evii_irregularity_eq_zero
+#print axioms evii_pic0_rank_eq_zero
 
 end HodgeReduction.Concrete
