@@ -2641,6 +2641,33 @@ theorem evii_X_is_divisor :
           (A := A_EVII) :=
   Submodule.subset_span (Set.mem_singleton _)
 
+/-! ### R93 SUBSTANTIVE: `NeronSeveriData A_EVII` (cohomology-side 1-field form)
+
+Provides the cohomology-side Néron-Severi data on `A_EVII`. This is
+the **abstract NeronSeveriData typeclass** from R31 (pre-NSGeometric
+refactor), which has the simpler 1-field `NS_rat` form. R32 already
+provides the geometric `NSGeometric.NeronSeveriData` (with rank +
+b_2). This R93 instance complements R32 by providing the codim-1 NS
+algebraicity bridge directly.
+
+* `NS_rat := Submodule.span ℚ {X}` (matches R32 `NS` and R92 `divisors`)
+* `NS_rat_le_algebraic`: every `r • X` is algebraic via `isAlgebraic_smul`. -/
+noncomputable instance evii_neronSeveriData_abstract :
+    HodgeReduction.Infrastructure.Cohomology.NeronSeveriData (A := A_EVII) where
+  NS_rat := Submodule.span ℚ ({(Polynomial.X : A_EVII)} : Set A_EVII)
+  NS_rat_le_algebraic := by
+    intro α hα
+    rcases Submodule.mem_span_singleton.mp hα with ⟨r, rfl⟩
+    exact CohomologyRing.isAlgebraic_smul r X_isAlgebraic
+
+/-- **Sanity check** (R93): the abstract `NS_rat` on `Ě_VII` matches
+the polarisation line `span {X}`. -/
+theorem evii_NS_rat_eq_span_X :
+    HodgeReduction.Infrastructure.Cohomology.NeronSeveriData.NS_rat
+      (A := A_EVII)
+      = Submodule.span ℚ ({(Polynomial.X : A_EVII)} : Set A_EVII) :=
+  rfl
+
 /-! ### R89 ATTEMPT NOTE: `CycleClassData EVII` deferred
 
 Attempted in R89 but the AddMonoidHom + intersect/fundamental coordination
@@ -2819,6 +2846,8 @@ theorem evii_apex_synthesis :
 #print axioms evii_CDK_hodge_locus
 -- R92 KERNEL-PURITY: DivisorClassData EVII (codim-1 divisor classes).
 #print axioms evii_X_is_divisor
+-- R93 KERNEL-PURITY: NeronSeveriData EVII (cohomology-side 1-field form).
+#print axioms evii_NS_rat_eq_span_X
 
 /-! ### R73 META-SYNTHESIS: Type-level catalogue of substantive EVII closures
 
