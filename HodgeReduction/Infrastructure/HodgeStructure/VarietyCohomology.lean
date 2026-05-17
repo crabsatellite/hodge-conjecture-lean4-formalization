@@ -419,4 +419,52 @@ theorem MTCorrespondencePackageAt.id
   · -- surjectivity: id-image of hodgeClasses = hodgeClasses
     rw [HodgeStructureMorphism.id_HSM_map_hodgeClasses]
 
+/-- **R179**: **Composition of Mumford-Tate correspondence packages**.
+Given correspondences `X → Y` and `Y → Z`, compose to get `X → Z`.
+
+Witnesses (compose component-wise):
+* `φ_XZ := φ_YZ ∘ φ_XY` (HSM composition).
+* `ψ_XZ := ψ_YZ ∘ₗ ψ_XY` (linear-map composition).
+* Commutative square: combine the two squares.
+* Surjectivity: composition of surjections via diagram chase
+  (hodgeClasses Z ⊆ image φ_YZ ⊆ image (φ_YZ ∘ φ_XY) on hodgeClasses X).
+
+This gives `MTCorrespondencePackageAt` the structure of a (per-p)
+category — together with R178's identity inhabitant, the category
+axioms (id-composition + associativity) hold up to definitional
+equality of the underlying linear maps. -/
+theorem MTCorrespondencePackageAt.comp
+    {X Y Z : VarietyCohomologyData}
+    {A : AlgebraicClassesData X}
+    {B : AlgebraicClassesData Y}
+    {C : AlgebraicClassesData Z}
+    {p : ℕ}
+    (h_XY : MTCorrespondencePackageAt X Y A B p)
+    (h_YZ : MTCorrespondencePackageAt Y Z B C p) :
+    MTCorrespondencePackageAt X Z A C p := by
+  letI _ := X.addCommGroup (2 * p); letI _ := X.module (2 * p)
+  letI _ := X.hodgeStructure (2 * p)
+  letI _ := Y.addCommGroup (2 * p); letI _ := Y.module (2 * p)
+  letI _ := Y.hodgeStructure (2 * p)
+  letI _ := Z.addCommGroup (2 * p); letI _ := Z.module (2 * p)
+  letI _ := Z.hodgeStructure (2 * p)
+  unfold MTCorrespondencePackageAt at h_XY h_YZ
+  obtain ⟨φ_XY, ψ_XY, h_sq_XY, h_surj_XY⟩ := h_XY
+  obtain ⟨φ_YZ, ψ_YZ, h_sq_YZ, h_surj_YZ⟩ := h_YZ
+  unfold MTCorrespondencePackageAt
+  refine ⟨φ_YZ.comp φ_XY, ψ_YZ ∘ₗ ψ_XY, ?_, ?_⟩
+  · -- commutative square: subtype (ψ_YZ (ψ_XY z)) = φ_YZ (φ_XY (subtype z))
+    intro z
+    rw [LinearMap.comp_apply, h_sq_YZ (ψ_XY z), h_sq_XY z]
+    rfl
+  · -- surjectivity: hodgeClasses Z ≤ map (φ_YZ ∘ φ_XY) (hodgeClasses X)
+    intro w hw_HZ
+    -- From h_surj_YZ: w = φ_YZ v_B for some v_B ∈ hodgeClasses Y
+    obtain ⟨v_B, hv_B_HY, hv_B_eq⟩ := h_surj_YZ hw_HZ
+    -- From h_surj_XY: v_B = φ_XY v_A for some v_A ∈ hodgeClasses X
+    obtain ⟨v_A, hv_A_HX, hv_A_eq⟩ := h_surj_XY hv_B_HY
+    -- Conclude w ∈ image of (φ_YZ ∘ φ_XY)
+    refine ⟨v_A, hv_A_HX, ?_⟩
+    rw [HodgeStructureMorphism.comp_toLinearMap_apply, hv_A_eq, hv_B_eq]
+
 end HodgeReduction.Infrastructure.HodgeStructure
