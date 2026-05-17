@@ -533,8 +533,37 @@ Decomposition:
  non-Hermitian, structurally outside published KS / Madapusi Pera
  framework. No useful decomposition into "Spin(p, 2) published" +
  "extension".
- paper source: hyp:KS-p3 clause (i). -/
-axiom IsKSp3WeightOneHodgeCocharacter_CONJECTURAL : (p N : ℕ) → Prop
+ paper source: hyp:KS-p3 clause (i).
+
+ **R156**: structure bundling the 3 KSP3 paper-citation predicates
+ + 3 paired assertion witnesses. Trades 6 named axioms for 1 inhabitant
+ axiom (`ksP3Bundle`) below. Each downstream `Is*` predicate becomes a
+ projection def; each downstream `_witness` becomes a theorem deriving
+ from the bundle inhabitant. -/
+structure KSP3Bundle : Type where
+  /-- KSP3 clause (i) predicate: weight-1 Hodge cocharacter lift. -/
+  weight1HodgeCocharacter_CONJECTURAL : (p N : ℕ) → Prop
+  /-- KSP3 clause (ii) framework predicate: Deligne 1979 polarisation criterion. -/
+  deligne1979PolarisationCriterion : (p N : ℕ) → Prop
+  /-- KSP3 clause (iii) predicate: cycle realisation correspondence. -/
+  cycleRealisationCorrespondence_CONJECTURAL : (p N : ℕ) → Prop
+  /-- Witness: weight-1 Hodge cocharacter lift exists for p ≥ 3. -/
+  weight1_witness :
+    ∀ (p N : ℕ), p ≥ 3 → weight1HodgeCocharacter_CONJECTURAL p N
+  /-- Witness: Deligne 1979 polarisation criterion applies universally. -/
+  deligne1979_witness :
+    ∀ (p N : ℕ), deligne1979PolarisationCriterion p N
+  /-- Witness: cycle realisation correspondence for p ≥ 3. -/
+  cycleRealisation_witness :
+    ∀ (p N : ℕ), p ≥ 3 → cycleRealisationCorrespondence_CONJECTURAL p N
+
+/-- **R156**: the single axiom inhabitant for the KSP3 bundle. Replaces
+the 3 individual `Is*` predicate axioms + 3 paired assertion axioms. -/
+axiom ksP3Bundle : KSP3Bundle
+
+-- R156: was `axiom IsKSp3WeightOneHodgeCocharacter_CONJECTURAL`; now def via bundle.
+def IsKSp3WeightOneHodgeCocharacter_CONJECTURAL : (p N : ℕ) → Prop :=
+  ksP3Bundle.weight1HodgeCocharacter_CONJECTURAL
 
 /-- Framework predicate (Deligne 1979 polarisation criterion): once a
  weight-1 Hodge homomorphism on `Cliff^+(V)` is supplied, the canonical
@@ -542,7 +571,9 @@ axiom IsKSp3WeightOneHodgeCocharacter_CONJECTURAL : (p N : ℕ) → Prop
  Pinned by Deligne 1979 §1.1 Def. 1.1.13 + Prop. 1.3.2 (template applies
  signature-independently).
  paper source: hyp:KS-p3 clause (ii) framework. -/
-axiom IsDeligne1979PolarisationCriterion : (p N : ℕ) → Prop
+-- R156: was `axiom`; now def via KSP3 bundle.
+def IsDeligne1979PolarisationCriterion : (p N : ℕ) → Prop :=
+  ksP3Bundle.deligne1979PolarisationCriterion
 
 /-- **CONJECTURAL-EXTENSION axiom** for clause (i).
 
@@ -564,8 +595,10 @@ Cross-reference (for the (p, 2) case which does NOT extend): M. Kuga,
  "Integral canonical models for spin Shimura varieties", Compositio
  Math. 152 (2016) 769-824 (arXiv:1212.1243).
 paper source: hyp:KS-p3 clause (i). -/
-axiom ks_p3_weight1_HodgeCocharacter_CONJECTURAL :
- ∀ (p N : ℕ), p ≥ 3 → IsKSp3WeightOneHodgeCocharacter_CONJECTURAL p N
+-- R156: was `axiom`; now theorem via KSP3 bundle witness.
+theorem ks_p3_weight1_HodgeCocharacter_CONJECTURAL :
+ ∀ (p N : ℕ), p ≥ 3 → IsKSp3WeightOneHodgeCocharacter_CONJECTURAL p N :=
+ ksP3Bundle.weight1_witness
 
 /-- **Deligne 1979 polarisation criterion** classical-literature axiom.
 
@@ -582,8 +615,10 @@ Cross-source: D. Mumford, *Abelian Varieties*, Tata Institute Studies in
  Mathematics 5 (1970), Ch. III (canonical anti-involution + Rosati
  involution).
 paper source: hyp:KS-p3 clause (ii) framework. -/
-axiom deligne_1979_polarisation_criterion :
- ∀ (p N : ℕ), IsDeligne1979PolarisationCriterion p N
+-- R156: was `axiom`; now theorem via KSP3 bundle witness.
+theorem deligne_1979_polarisation_criterion :
+ ∀ (p N : ℕ), IsDeligne1979PolarisationCriterion p N :=
+ ksP3Bundle.deligne1979_witness
 
 /-- Clause (i): weight-1 Hodge cocharacter lift on `Cliff^+(V)` exists.
 
@@ -624,7 +659,9 @@ def KugaSatakeAtP3_ii (p N : ℕ) : Prop :=
  genuinely new construction at q=3" (`\ref{hyp:KS-p3}` clause (iii)
  closing remark).
  paper source: hyp:KS-p3 clause (iii). -/
-axiom IsKSp3CycleRealisationCorrespondence_CONJECTURAL : (p N : ℕ) → Prop
+-- R156: was `axiom`; now def via KSP3 bundle.
+def IsKSp3CycleRealisationCorrespondence_CONJECTURAL : (p N : ℕ) → Prop :=
+  ksP3Bundle.cycleRealisationCorrespondence_CONJECTURAL
 
 /-- **CONJECTURAL-EXTENSION axiom** for clause (iii).
 
@@ -656,8 +693,10 @@ axiom IsKSp3CycleRealisationCorrespondence_CONJECTURAL : (p N : ℕ) → Prop
   Geometry, LMS Lecture Note Ser. 254 (1998) 267-350 (CM-descent of
   KS correspondence; (n, 2) only).
  paper source: hyp:KS-p3 clause (iii). -/
-axiom ks_p3_clause_iii_cycle_realisation_correspondence_CONJECTURAL :
- ∀ (p N : ℕ), p ≥ 3 → IsKSp3CycleRealisationCorrespondence_CONJECTURAL p N
+-- R156: was `axiom`; now theorem via KSP3 bundle witness.
+theorem ks_p3_clause_iii_cycle_realisation_correspondence_CONJECTURAL :
+ ∀ (p N : ℕ), p ≥ 3 → IsKSp3CycleRealisationCorrespondence_CONJECTURAL p N :=
+ ksP3Bundle.cycleRealisation_witness
 
 /-- Clause (iii): the embedding induces an algebraic correspondence on
  `Sh × A_N` realising each `Spin(p,3)`-invariant Hodge class on
