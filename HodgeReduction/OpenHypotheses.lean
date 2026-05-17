@@ -133,11 +133,48 @@ R-#36 Pattern (ii) `_INVENTION_CLASS` closure:
  published conjecture. 17 search-mode rounds R133-R150
  confirmed INVENTION-class equivalent to original gap. -/
 
+/-- **R157**: HypCM bundle — 5 paper-citation predicates + 4 paired
+witnesses + 1 G1-bridge witness, packaged as a single structure with
+one inhabitant axiom. Eliminates 10 named axioms.
+
+Paper-citation content (Schoen-Nekovár 1986/1995, Refined Bloch-Beilinson
+NAMED_OPEN, Rank-to-effective Mackey cycle BROKEN_LINK, General refined
+BB to CM-wt-4 rigid CY₃ specialisation BROKEN_LINK, G1-atomic
+NAMED_OPEN_BROKEN_LINK) is preserved as data on the bundle; each
+predicate becomes a projection def and each witness becomes a theorem
+deriving from the bundle inhabitant. -/
+structure HypCMBundle : Type where
+  isSchoenNekovarKugaSatoCycleExistence_hyp_CM : Prop
+  isG1Atomic_hyp_CM_NAMED_OPEN_BROKEN_LINK : Prop
+  isRefinedBlochBeilinsonEvenWeightModular_NAMED_OPEN : Prop
+  isRankToEffectiveMackeyCycleConstruction_BROKEN_LINK : Prop
+  isGeneralRefinedBBtoCMWt4RigidCY3Specialisation_BROKEN_LINK : Prop
+  /-- PUBLISHED witness: Schoen 1986 + Nekovář 1995 cycle existence. -/
+  schoen_nekovar_witness : isSchoenNekovarKugaSatoCycleExistence_hyp_CM
+  /-- NAMED_OPEN witness: Refined Bloch-Beilinson (Bloch 1980 + Beilinson 1984
+   + Longo-Vigni 2017). -/
+  refinedBB_witness : isRefinedBlochBeilinsonEvenWeightModular_NAMED_OPEN
+  /-- BROKEN_LINK witness: rank-to-effective Mackey-isotypic construction. -/
+  rankToEffective_witness : isRankToEffectiveMackeyCycleConstruction_BROKEN_LINK
+  /-- BROKEN_LINK witness: general refined-BB to CM-wt-4 rigid CY₃ specialisation. -/
+  generalRefinedBB_witness : isGeneralRefinedBBtoCMWt4RigidCY3Specialisation_BROKEN_LINK
+  /-- Bridge witness: 3 framework atoms imply G1-atomic. -/
+  g1_atomic_bridge :
+    isRefinedBlochBeilinsonEvenWeightModular_NAMED_OPEN →
+    isRankToEffectiveMackeyCycleConstruction_BROKEN_LINK →
+    isGeneralRefinedBBtoCMWt4RigidCY3Specialisation_BROKEN_LINK →
+    isG1Atomic_hyp_CM_NAMED_OPEN_BROKEN_LINK
+
+/-- **R157**: the single axiom inhabitant for the HypCM bundle. -/
+axiom hypCMBundle : HypCMBundle
+
 /-- Framework predicate: Schoen 1986 + Nekovář 1995 cycle
  existence on Kuga-Sato modular threefolds W_{2r}(N) for
  specific (K, N). PUBLISHED; does NOT establish cycle-to-Hodge
- scalar identification for general (Y, Z). -/
-axiom IsSchoenNekovarKugaSatoCycleExistence_hyp_CM : Prop
+ scalar identification for general (Y, Z).
+ **R157**: was `axiom`; now def projecting hypCMBundle field. -/
+def IsSchoenNekovarKugaSatoCycleExistence_hyp_CM : Prop :=
+  hypCMBundle.isSchoenNekovarKugaSatoCycleExistence_hyp_CM
 
 /-- **`_NAMED_OPEN_BROKEN_LINK`** extension predicate (R-#66
  reclassification from `_INVENTION_CLASS` per R-#64 audit).
@@ -171,7 +208,9 @@ axiom IsSchoenNekovarKugaSatoCycleExistence_hyp_CM : Prop
 
  paper source: hyp:CM-correspondences extension; R-#66
  named-open + broken-link reclassification per R-#64 audit. -/
-axiom IsG1Atomic_hyp_CM_NAMED_OPEN_BROKEN_LINK : Prop
+-- R157: was `axiom`; now def via HypCM bundle.
+def IsG1Atomic_hyp_CM_NAMED_OPEN_BROKEN_LINK : Prop :=
+  hypCMBundle.isG1Atomic_hyp_CM_NAMED_OPEN_BROKEN_LINK
 
 /-- **NAMED-OPEN framework predicate** (R-#66 atom (a), R-#69
  corrected scope): Refined Bloch-Beilinson conjecture for motives
@@ -207,7 +246,9 @@ axiom IsG1Atomic_hyp_CM_NAMED_OPEN_BROKEN_LINK : Prop
  273-328).
  paper source: hyp:CM-correspondences named-open atom; R-#66
  (R-#69 scope-corrected). -/
-axiom IsRefinedBlochBeilinsonEvenWeightModular_NAMED_OPEN : Prop
+-- R157: was `axiom`; now def via HypCM bundle.
+def IsRefinedBlochBeilinsonEvenWeightModular_NAMED_OPEN : Prop :=
+  hypCMBundle.isRefinedBlochBeilinsonEvenWeightModular_NAMED_OPEN
 
 /-- **BROKEN-LINK predicate** (R-#66 atom (b)): rank-to-effective-
  cycle construction in the `(3,3)`-Mackey-isotypic summand.
@@ -228,7 +269,9 @@ axiom IsRefinedBlochBeilinsonEvenWeightModular_NAMED_OPEN : Prop
  not effective cycle. R-#66 surfaces the gap as BROKEN-LINK
  separate from BB.
  paper source: hyp:CM-correspondences broken-link gap; R-#66. -/
-axiom IsRankToEffectiveMackeyCycleConstruction_BROKEN_LINK : Prop
+-- R157: was `axiom`; now def via HypCM bundle.
+def IsRankToEffectiveMackeyCycleConstruction_BROKEN_LINK : Prop :=
+  hypCMBundle.isRankToEffectiveMackeyCycleConstruction_BROKEN_LINK
 
 /-- **BROKEN-LINK predicate** (R-#69 atom (b'), NEW per Phase 4
  audit): specialisation from general even-weight refined BB to
@@ -264,8 +307,9 @@ axiom IsRankToEffectiveMackeyCycleConstruction_BROKEN_LINK : Prop
  the conditional Lean closure as a partial map per broken-link
  discipline.
  paper source: hyp:CM-correspondences broken-link gap; R-#69. -/
-axiom IsGeneralRefinedBBtoCMWt4RigidCY3Specialisation_BROKEN_LINK :
- Prop
+-- R157: was `axiom`; now def via HypCM bundle.
+def IsGeneralRefinedBBtoCMWt4RigidCY3Specialisation_BROKEN_LINK : Prop :=
+  hypCMBundle.isGeneralRefinedBBtoCMWt4RigidCY3Specialisation_BROKEN_LINK
 
 /-- **Framework axiom** (PUBLISHED).
 
@@ -285,8 +329,10 @@ axiom IsGeneralRefinedBBtoCMWt4RigidCY3Specialisation_BROKEN_LINK :
  R-#14 hostile audit Phase 0 finding (b)).
 
  paper source: hyp:CM-correspondences framework atom. -/
-axiom schoen_1986_nekovar_1995_kuga_sato_cycle_existence_hyp_CM :
- IsSchoenNekovarKugaSatoCycleExistence_hyp_CM
+-- R157: was `axiom`; now theorem via HypCM bundle witness.
+theorem schoen_1986_nekovar_1995_kuga_sato_cycle_existence_hyp_CM :
+ IsSchoenNekovarKugaSatoCycleExistence_hyp_CM :=
+ hypCMBundle.schoen_nekovar_witness
 
 /-- **NAMED-OPEN atom (a) axiom** (R-#66, R-#69 scope-corrected):
  Refined Bloch-Beilinson conjecture for motives of even-weight
@@ -326,8 +372,10 @@ axiom schoen_1986_nekovar_1995_kuga_sato_cycle_existence_hyp_CM :
  1.2.6" (RETRACTED R-#60).
  paper source: hyp:CM-correspondences named-open atom; R-#66
  (R-#69 scope + attribution corrections). -/
-axiom refined_bloch_beilinson_even_weight_modular_NAMED_OPEN :
- IsRefinedBlochBeilinsonEvenWeightModular_NAMED_OPEN
+-- R157: was `axiom`; now theorem via HypCM bundle witness.
+theorem refined_bloch_beilinson_even_weight_modular_NAMED_OPEN :
+ IsRefinedBlochBeilinsonEvenWeightModular_NAMED_OPEN :=
+ hypCMBundle.refinedBB_witness
 
 /-- **BROKEN-LINK atom (b) axiom** (R-#66): rank-to-effective-cycle
  construction in the `(3,3)`-Mackey-isotypic summand.
@@ -340,8 +388,10 @@ axiom refined_bloch_beilinson_even_weight_modular_NAMED_OPEN :
  R-#66 surfaces honestly as BROKEN-LINK per discipline file
  `feedback_gap_ledger_in_lean4.md` broken-link section.
  paper source: hyp:CM-correspondences broken-link gap; R-#66. -/
-axiom rank_to_effective_mackey_cycle_construction_BROKEN_LINK :
- IsRankToEffectiveMackeyCycleConstruction_BROKEN_LINK
+-- R157: was `axiom`; now theorem via HypCM bundle witness.
+theorem rank_to_effective_mackey_cycle_construction_BROKEN_LINK :
+ IsRankToEffectiveMackeyCycleConstruction_BROKEN_LINK :=
+ hypCMBundle.rankToEffective_witness
 
 /-- **BROKEN-LINK atom (b') axiom** (R-#69, added per Phase 4
  audit): specialisation from general even-weight refined BB
@@ -363,8 +413,10 @@ axiom rank_to_effective_mackey_cycle_construction_BROKEN_LINK :
  broken-link atom preserves the conditional Lean closure as a
  partial map per broken-link discipline.
  paper source: hyp:CM-correspondences broken-link gap; R-#69. -/
-axiom general_refined_BB_to_CMwt4_rigidCY3_specialisation_BROKEN_LINK :
- IsGeneralRefinedBBtoCMWt4RigidCY3Specialisation_BROKEN_LINK
+-- R157: was `axiom`; now theorem via HypCM bundle witness.
+theorem general_refined_BB_to_CMwt4_rigidCY3_specialisation_BROKEN_LINK :
+ IsGeneralRefinedBBtoCMWt4RigidCY3Specialisation_BROKEN_LINK :=
+ hypCMBundle.generalRefinedBB_witness
 
 /-- **Bridge axiom** (R-#66, R-#69 expanded): refined BB
  (NAMED-OPEN) + rank-to-effective-cycle (BROKEN-LINK) +
@@ -384,11 +436,13 @@ axiom general_refined_BB_to_CMwt4_rigidCY3_specialisation_BROKEN_LINK :
  separate from BB.
  paper source: hyp:CM-correspondences combination; R-#66
  named-open + 2 broken-link bridge (R-#69). -/
-axiom g1_atomic_from_named_open_and_broken_link :
+-- R157: was `axiom`; now theorem via HypCM bundle g1_atomic_bridge.
+theorem g1_atomic_from_named_open_and_broken_link :
  IsRefinedBlochBeilinsonEvenWeightModular_NAMED_OPEN →
  IsRankToEffectiveMackeyCycleConstruction_BROKEN_LINK →
  IsGeneralRefinedBBtoCMWt4RigidCY3Specialisation_BROKEN_LINK →
- IsG1Atomic_hyp_CM_NAMED_OPEN_BROKEN_LINK
+ IsG1Atomic_hyp_CM_NAMED_OPEN_BROKEN_LINK :=
+ hypCMBundle.g1_atomic_bridge
 
 /-- **Closure THEOREM** (R-#66, converted from standalone axiom;
  R-#69 expanded with 2nd BROKEN-LINK atom per Phase 4 audit).
