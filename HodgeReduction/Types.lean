@@ -60,6 +60,7 @@ import Mathlib.Algebra.Field.Defs
 import Mathlib.Data.Complex.Basic
 import Mathlib.Data.Rat.Defs
 import Mathlib.Data.Int.Defs
+import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 
 namespace HodgeReduction
 
@@ -344,12 +345,72 @@ Hypothesis 2 (`hyp:CM-correspondences`) quantifies over products `Y × Z`
 in codimension 3. We axiomatize the product construction on varieties to
 avoid a free-RHS existential. -/
 
-/-- Product of two smooth projective varieties over `ℂ`. Opaque: Mathlib
- does not yet have smooth projective variety products in the required
- shape.
+/-- Product of two abstract schemes. **R119 def** (was implicit in
+ `axiom product`): structural product combines smooth/proj/connected as
+ conjunctions, matching paper-standard product-of-schemes
+ properties. -/
+def AbstractScheme.product {k : Type} (S T : AbstractScheme k) :
+    AbstractScheme k where
+ IsSmooth := S.IsSmooth ∧ T.IsSmooth
+ IsProjective := S.IsProjective ∧ T.IsProjective
+ IsConnected := S.IsConnected ∧ T.IsConnected
+
+/-- Product of two Mumford--Tate group types. **R119 def**: structural
+ combination — torus iff both factors are tori; E_6/E_7-type iff either
+ factor has that type. Matches the Künneth-decomposition behaviour of
+ MT(H^k(X × Y)) at the simple-factor predicate level (the predicate
+ fields say whether the simple-factor set is nonempty, and the product
+ union obeys ∨; the torus predicate (semisimple-trivial) obeys ∧).
+ paper-source consistent with §2 Mumford--Tate machinery. -/
+def MumfordTateGroupType.product (G H : MumfordTateGroupType) :
+    MumfordTateGroupType where
+ IsTorus := G.IsTorus ∧ H.IsTorus
+ IsE6Type := G.IsE6Type ∨ H.IsE6Type
+ IsE7Type := G.IsE7Type ∨ H.IsE7Type
+
+/-- Product of two smooth projective varieties over `ℂ`. **R119 def**
+ (was `axiom product`): all structure fields are derived from the
+ standard product-variety formulas:
+
+ * `scheme` — `AbstractScheme.product`
+ * `smooth/proj/connected` — conjunctions inherited from factors
+ * `dim` — `X.dim + Y.dim` (Krull dimension is additive on products)
+ * `hodgeNumber p q` — **Künneth**: ∑_{i+k=p, j+l=q} h^{i,j}(X)·h^{k,l}(Y)
+ * `mumfordTateGroup k` — `(X.mumfordTateGroup k).product (Y.mumfordTateGroup k)`
+ * `mumfordTateGroupDerived k` — analogous
+ * `isAbelianVariety` — `∧` (product of abelian varieties is abelian)
+ * `c1IsZero` — `∧` (`c_1(X×Y) = π_X^* c_1(X) + π_Y^* c_1(Y)`)
+ * `inKnownE7Scope` — `∨` (membership is downward-closed under products)
+ * `existsCY3Reduction` — `∨` (a CY_3 factor in either gives one in product)
+
+ The Hodge-number Künneth formula uses Mathlib's `Finset.sum`. -/
+noncomputable def SmoothProjectiveVariety.product
+    (X Y : SmoothProjectiveVariety ℂ) : SmoothProjectiveVariety ℂ where
+ scheme := X.scheme.product Y.scheme
+ smooth := ⟨X.smooth, Y.smooth⟩
+ proj := ⟨X.proj, Y.proj⟩
+ connected := ⟨X.connected, Y.connected⟩
+ dim := X.dim + Y.dim
+ hodgeNumber := fun p q =>
+   ∑ i ∈ Finset.range (p + 1), ∑ j ∈ Finset.range (q + 1),
+     (X.hodgeNumber i j) * (Y.hodgeNumber (p - i) (q - j))
+ mumfordTateGroup := fun k =>
+   (X.mumfordTateGroup k).product (Y.mumfordTateGroup k)
+ mumfordTateGroupDerived := fun k =>
+   (X.mumfordTateGroupDerived k).product (Y.mumfordTateGroupDerived k)
+ isAbelianVariety := X.isAbelianVariety ∧ Y.isAbelianVariety
+ c1IsZero := X.c1IsZero ∧ Y.c1IsZero
+ inKnownE7Scope := X.inKnownE7Scope ∨ Y.inKnownE7Scope
+ existsCY3Reduction := X.existsCY3Reduction ∨ Y.existsCY3Reduction
+
+/-- Top-level `product` of two smooth projective varieties — **R119**:
+ was `axiom product`, now a `def` alias for
+ `SmoothProjectiveVariety.product` (structurally defined above).
  paper source: hyp:CM-correspondences ("H^6(Y×Z, ℚ)"). -/
-axiom product: SmoothProjectiveVariety ℂ → SmoothProjectiveVariety ℂ →
- SmoothProjectiveVariety ℂ
+noncomputable def product :
+    SmoothProjectiveVariety ℂ → SmoothProjectiveVariety ℂ →
+    SmoothProjectiveVariety ℂ :=
+ SmoothProjectiveVariety.product
 
 /-! ## 6. Calabi--Yau threefolds
 
