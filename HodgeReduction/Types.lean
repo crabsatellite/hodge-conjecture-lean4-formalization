@@ -72,19 +72,26 @@ connectedness, and explicit Krull dimension. Mathlib has
 projective + connected over a field) is not yet a ready-made structure.
 -/
 
-/-- Opaque carrier type for schemes over a field `k`. When Mathlib's
- `AlgebraicGeometry.Scheme` becomes usable in the required shape, this
- can be replaced by a definition. -/
-axiom AbstractScheme: Type → Type
+/-- Carrier `structure` for schemes over a field `k`.
 
-/-- Smoothness predicate on abstract schemes. -/
-axiom AbstractScheme.IsSmooth {k: Type}: AbstractScheme k → Prop
+ **R41 refactor (no-axiom mandate)**: previously a 4-axiom scaffolding
+ (`axiom AbstractScheme : Type → Type` + 3 separate accessor axioms
+ `IsSmooth`, `IsProjective`, `IsConnected`). Refactored to a `structure`
+ with 3 `Prop` fields, eliminating 4 axioms.
 
-/-- Projectivity predicate on abstract schemes. -/
-axiom AbstractScheme.IsProjective {k: Type}: AbstractScheme k → Prop
-
-/-- Connectedness predicate. -/
-axiom AbstractScheme.IsConnected {k: Type}: AbstractScheme k → Prop
+ The structure carries the three opaque Prop fields directly; each
+ `S : AbstractScheme k` is a 3-tuple of paper-defined predicates. When
+ Mathlib's `AlgebraicGeometry.Scheme` becomes usable in the required
+ shape, this `structure` becomes a `def` backed by Mathlib's
+ `AlgebraicGeometry.Scheme` + smoothness/projectivity/connectedness
+ typeclass projections. -/
+structure AbstractScheme (k : Type) : Type where
+  /-- Smoothness predicate on the underlying scheme. -/
+  IsSmooth : Prop
+  /-- Projectivity predicate. -/
+  IsProjective : Prop
+  /-- Connectedness predicate. -/
+  IsConnected : Prop
 
 /-- A smooth projective variety over a field `k`: a scheme carrying
  smoothness, projectivity, connectedness, and a fixed Krull dimension. -/
