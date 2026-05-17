@@ -760,6 +760,59 @@ noncomputable instance commMonoid.{u} (R : Type u) [CommRing R] :
 
 end Picard
 
+/-! ### `Module.IsInvertible` inverse extraction (R113)
+
+Given an invertible R-module M, extract a chosen inverse N as type-level
+data via `Classical.choose` on the existential `exists_inverse`.
+
+The chosen inverse depends on choice but is canonical *up to R-linear
+isomorphism* — a fact (R115) needed to define `Picard.inv` as a
+well-defined operation on quotient classes.
+
+This round provides the type-level extraction; subsequent rounds R114-R115
+prove the chosen inverse is itself invertible (so packageable as a Sigma
+element) and that the choice is unique up to iso. -/
+
+namespace Module.IsInvertible
+
+/-- The type-level inverse module chosen from the `exists_inverse` witness. -/
+noncomputable def inverseCarrier.{u} (R : Type u) [CommRing R]
+    (M : Type u) [AddCommGroup M] [Module R M]
+    [hM : Module.IsInvertible R M] : Type u :=
+  hM.exists_inverse.choose
+
+/-- The `AddCommGroup` structure carried by the chosen inverse. -/
+noncomputable instance inverseAddCommGroup.{u} (R : Type u) [CommRing R]
+    (M : Type u) [AddCommGroup M] [Module R M]
+    [hM : Module.IsInvertible R M] :
+    AddCommGroup (Module.IsInvertible.inverseCarrier R M) :=
+  hM.exists_inverse.choose_spec.choose
+
+/-- The `Module R` structure carried by the chosen inverse. -/
+noncomputable instance inverseModule.{u} (R : Type u) [CommRing R]
+    (M : Type u) [AddCommGroup M] [Module R M]
+    [hM : Module.IsInvertible R M] :
+    Module R (Module.IsInvertible.inverseCarrier R M) :=
+  hM.exists_inverse.choose_spec.choose_spec.choose
+
+/-- The witness iso `M ⊗ inverseCarrier R M ≃ₗ[R] R`. -/
+noncomputable def inverseIso.{u} (R : Type u) [CommRing R]
+    (M : Type u) [AddCommGroup M] [Module R M]
+    [hM : Module.IsInvertible R M] :
+    TensorProduct R M (Module.IsInvertible.inverseCarrier R M) ≃ₗ[R] R :=
+  hM.exists_inverse.choose_spec.choose_spec.choose_spec.some
+
+/-- The chosen inverse is itself invertible (with M as witness, via tensor comm). -/
+noncomputable instance inverseIsInvertible.{u} (R : Type u) [CommRing R]
+    (M : Type u) [AddCommGroup M] [Module R M]
+    [Module.IsInvertible R M] :
+    Module.IsInvertible R (Module.IsInvertible.inverseCarrier R M) where
+  exists_inverse :=
+    ⟨M, inferInstance, inferInstance,
+      ⟨(TensorProduct.comm R _ M).trans (inverseIso R M)⟩⟩
+
+end Module.IsInvertible
+
 /-! ### Mathlib-PR readiness checklist
 
 * Definition is single-purpose, mathematically standard.
@@ -846,5 +899,11 @@ axioms or `sorry`. The `#print axioms` lines below verify this. -/
 #print axioms Picard.mul_one
 -- R112 Picard CommMonoid instance.
 #print axioms Picard.commMonoid
+-- R113 Module.IsInvertible inverse extraction: type-level inverse + invertibility.
+#print axioms Module.IsInvertible.inverseCarrier
+#print axioms Module.IsInvertible.inverseAddCommGroup
+#print axioms Module.IsInvertible.inverseModule
+#print axioms Module.IsInvertible.inverseIso
+#print axioms Module.IsInvertible.inverseIsInvertible
 
 end HodgeReduction.MathlibCandidates
