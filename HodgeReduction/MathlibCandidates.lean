@@ -302,6 +302,31 @@ instance Module.IsInvertible.tensor.{u} {R : Type u} [CommRing R]
     exact (TensorProduct.tensorTensorTensorComm R M M' N₁ N₂).trans
       ((TensorProduct.congr e₁ e₂).trans (TensorProduct.lid R R))
 
+/-! ### `Module.IsInvertible.symm_equiv` (R99): swap of the invertibility equiv
+
+If `M ⊗ N ≃ R` then `N ⊗ M ≃ R` (composing with `TensorProduct.comm`).
+This is the foundation for showing that the inverse relation is
+**symmetric**: if `N` is an inverse to `M`, then `M` is also an inverse
+to `N`. -/
+noncomputable def Module.IsInvertible.symm_equiv.{u} {R : Type u} [CommRing R]
+    {M N : Type u} [AddCommGroup M] [Module R M] [AddCommGroup N] [Module R N]
+    (e : TensorProduct R M N ≃ₗ[R] R) :
+    TensorProduct R N M ≃ₗ[R] R :=
+  (TensorProduct.comm R N M).trans e
+
+/-! ### `Module.IsInvertible.of_inverse` (R99): derived IsInvertible from explicit inverse
+
+Companion constructor: given an explicit linear equivalence
+`M ⊗ N ≃ R`, both `M` and `N` are invertible. Concretely useful when
+the inverse is known by name (rather than just by Prop-level
+existence). -/
+theorem Module.IsInvertible.of_inverse.{u} {R : Type u} [CommRing R]
+    {M N : Type u} [AddCommGroup M] [Module R M] [AddCommGroup N] [Module R N]
+    (e : TensorProduct R M N ≃ₗ[R] R) :
+    Module.IsInvertible R M ∧ Module.IsInvertible R N :=
+  ⟨⟨⟨N, inferInstance, inferInstance, ⟨e⟩⟩⟩,
+   ⟨⟨M, inferInstance, inferInstance, ⟨Module.IsInvertible.symm_equiv e⟩⟩⟩⟩
+
 /-! ### Mathlib-PR readiness checklist
 
 * Definition is single-purpose, mathematically standard.
@@ -346,5 +371,8 @@ axioms or `sorry`. The `#print axioms` lines below verify this. -/
 #print axioms Module.IsInvertible.self
 -- R98 Module.IsInvertible.tensor: tensor product preserves invertibility.
 #print axioms Module.IsInvertible.tensor
+-- R99 Module.IsInvertible.symm_equiv + of_inverse: invertibility is symmetric.
+#print axioms Module.IsInvertible.symm_equiv
+#print axioms Module.IsInvertible.of_inverse
 
 end HodgeReduction.MathlibCandidates
