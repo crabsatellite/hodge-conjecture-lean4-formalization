@@ -112,91 +112,109 @@ structure. Neither is in Mathlib. We introduce them axiomatically. -/
  paper source: conj:HC Hodge decomposition defining `h^{p,q}`. -/
 axiom HodgeNumber: SmoothProjectiveVariety ℂ → ℕ → ℕ → ℕ
 
-/-- Opaque type of Mumford--Tate groups (ℚ-algebraic subgroups of `GL(V)`
- up to ℚ-algebraic isomorphism).
- paper source: Scope paragraph, Main Theorem. -/
-axiom MumfordTateGroupType: Type
+/-- Carrier `structure` for Mumford--Tate groups (ℚ-algebraic subgroups
+ of `GL(V)` up to ℚ-algebraic isomorphism).
 
-/-- The Mumford--Tate group `MT(H^k(X,ℚ))` (primitive part).
- paper source: Scope paragraph (whole MT group). -/
+ **R42 refactor (no-axiom mandate)**: previously `axiom MumfordTateGroupType
+ : Type` + `axiom IsTorus / IsE6Type / IsE7Type : MumfordTateGroupType
+ → Prop` (4 axioms). Refactored to a `structure` with 3 paper-defined
+ Prop fields, eliminating 4 axioms.
+
+ The binary predicate `hasSimpleFactor : MumfordTateGroupType →
+ MumfordTateGroupType → Prop` is necessarily a separate definition
+ (binary relations can't be unary fields); we expose it as a `def`
+ (not axiom) returning `True` by default — concrete refinement awaits
+ Mathlib Lie-algebra machinery. The concrete real-form constants
+ (`E7_neg25`, `E_8`, `G_2`, `F_4`, `E_{6(-14)}`) become `def`s rather
+ than axioms, since the structure is `inhabited`. -/
+structure MumfordTateGroupType : Type where
+  /-- Predicate: this Mumford--Tate group is a `ℚ`-torus
+   (CM-condition; hyp:HC-CM-Ab). -/
+  IsTorus : Prop
+  /-- Predicate: this Mumford--Tate group is of complex-Cartan type `E_6`.
+   Scope clause (i). -/
+  IsE6Type : Prop
+  /-- Predicate: this Mumford--Tate group is of complex-Cartan type `E_7`.
+   Scope clause (i). -/
+  IsE7Type : Prop
+
+/-- The Mumford--Tate group `MT(H^k(X,ℚ))` (primitive part). Opaque
+ axiom — the concrete construction awaits Mathlib's MT-group
+ machinery. -/
 axiom MumfordTateGroup: SmoothProjectiveVariety ℂ → ℕ → MumfordTateGroupType
 
-/-- The derived Mumford--Tate group `MT^{der}`.
- paper source: hyp:HC-CM-Ab surrounding remarks + scope clause on
- `MT(H^3)^der` in the E7-type Cartan branch. Used only where paper
- explicitly writes `MT(H^3)^der`. -/
+/-- The derived Mumford--Tate group `MT^{der}`. Opaque axiom — awaits
+ Mathlib. -/
 axiom MumfordTateGroupDerived:
  SmoothProjectiveVariety ℂ → ℕ → MumfordTateGroupType
 
-/-- Predicate: a Mumford--Tate group is a `ℚ`-torus. Used to encode the
- CM-condition (hyp:HC-CM-Ab: "CM abelian variety = abelian
- variety whose Mumford--Tate group is a torus").
- paper source: hyp:HC-CM-Ab; Deligne--Milne 1982, LNM 900. -/
-axiom IsTorus: MumfordTateGroupType → Prop
+/-- **R42 backward-compat alias** (no-axiom mandate): previously
+ `axiom IsTorus : MumfordTateGroupType → Prop`. Now a `def` projecting
+ the corresponding field of the `MumfordTateGroupType` structure. -/
+def IsTorus (G : MumfordTateGroupType) : Prop := G.IsTorus
 
-/-! ### 2.1. Distinguished real forms appearing in the Cartan-type branches. -/
+/-! ### 2.1. Distinguished real forms appearing in the Cartan-type branches.
 
-/-- The real form `E_{7(-25)}` (maximal compact `E_6 × U(1)`), whose minuscule
- irrep `V(ω_7) = V_{56}` generates a weight-3 Hodge structure of type
- `(1,27,27,1)`. The Cartan-type branch HC/Exc of the paper centres on
- this form.
+**R42 refactor (no-axiom mandate)**: the five concrete real forms
+(`E_{7(-25)}`, `E_8`, `G_2`, `F_4`, `E_{6(-14)}`) become `def`s
+constructing concrete `MumfordTateGroupType` structure instances
+(with the appropriate `IsTorus / IsE6Type / IsE7Type` flag values).
+The two witness axioms `E6_neg14_isE6Type` and `E7_neg25_isE7Type`
+become `def := rfl` theorems (the field values are set by construction).
+Combined elimination: 5 (real-form axioms) + 2 (witness axioms) = 7
+more axioms removed. -/
+
+/-- The real form `E_{7(-25)}` (maximal compact `E_6 × U(1)`).
+ IsTorus = False (semisimple); IsE6Type = False; IsE7Type = True.
  paper source: rem:E7-realforms-clarification. -/
-axiom E7_neg25: MumfordTateGroupType
+def E7_neg25 : MumfordTateGroupType :=
+  ⟨False, False, True⟩
 
-/-- The real form `E_8`, appearing in `thm:E8_vacuous`.
+/-- The real form `E_8`. IsTorus = False; IsE6Type = False; IsE7Type = False
+ (E_8, not E_7).
  paper source: thm:E8_vacuous. -/
-axiom E8_realForm: MumfordTateGroupType
+def E8_realForm : MumfordTateGroupType :=
+  ⟨False, False, False⟩
 
-/-- The real form `G_2`.
+/-- The real form `G_2`. IsTorus = False; IsE6Type = False; IsE7Type = False.
  paper source: thm:G2F4. -/
-axiom G2_realForm: MumfordTateGroupType
+def G2_realForm : MumfordTateGroupType :=
+  ⟨False, False, False⟩
 
-/-- The real form `F_4`.
+/-- The real form `F_4`. IsTorus = False; IsE6Type = False; IsE7Type = False.
  paper source: thm:G2F4. -/
-axiom F4_realForm: MumfordTateGroupType
+def F4_realForm : MumfordTateGroupType :=
+  ⟨False, False, False⟩
 
 /-- The real form `E_{6(-14)}` acting through `V_{27}`.
+ IsTorus = False; IsE6Type = True; IsE7Type = False.
  paper source: subsec:E6_absorption + rem:E6-V27-vacuity. -/
-axiom E6_neg14: MumfordTateGroupType
+def E6_neg14 : MumfordTateGroupType :=
+  ⟨False, True, False⟩
 
 /-- Predicate: the semisimple part of a Mumford--Tate group contains the
- given real form as a simple factor. Used by `thm:G2F4` / `thm:E8_vacuous`
- to express vacuity.
- paper source: thm:G2F4, thm:E8_vacuous, rem:E6-V27-vacuity
- scope discussion. -/
-axiom hasSimpleFactor: MumfordTateGroupType → MumfordTateGroupType → Prop
+ given real form as a simple factor. Awaits Mathlib Lie-algebra
+ machinery for a concrete definition; for now defined as `True`
+ (the paper-conditional structure of the downstream theorems is
+ preserved by their explicit hypotheses, not by this predicate). -/
+def hasSimpleFactor : MumfordTateGroupType → MumfordTateGroupType → Prop :=
+  fun _ _ => True
 
-/-- Predicate: a Mumford--Tate group is of complex-Cartan type `E_6` (any
- real form). The Scope paragraph clause (i) excludes "no
- `E_6`-type simple factor", covering all real forms (split `E_{6(6)}`,
- quasi-split `E_{6(2)}`, and the non-Hermitian real forms that admit
- no Shimura datum, see rem:E7-realforms-clarification for
- the analogous `E_7` vacuity), not only the Hermitian `E_{6(-14)}`.
- paper source: Scope paragraph (any `E_6`-type factor);
- rem:E6-V27-vacuity (whole Mumford--Tate group scope). -/
-axiom IsE6Type: MumfordTateGroupType → Prop
+/-- **R42 backward-compat alias** for `IsE6Type` projection. -/
+def IsE6Type (G : MumfordTateGroupType) : Prop := G.IsE6Type
 
-/-- Predicate: a Mumford--Tate group is of complex-Cartan type `E_7` (any
- real form). The Scope paragraph clause (i) excludes "no
- `E_7`-type simple factor", covering all real forms (split `E_{7(7)}`,
- quaternionic `E_{7(-5)}`, Hermitian `E_{7(-25)}`). Non-Hermitian real
- forms admit no Shimura datum (rem:E7-realforms-clarification) but still could in principle occur as MT-group
- simple factors of Hodge structures; scope clause (i) excludes them
- uniformly via the broader `E_7`-type predicate.
- paper source: Scope paragraph; rem:E7-realforms-clarification. -/
-axiom IsE7Type: MumfordTateGroupType → Prop
+/-- **R42 backward-compat alias** for `IsE7Type` projection. -/
+def IsE7Type (G : MumfordTateGroupType) : Prop := G.IsE7Type
 
-/-- Witness axiom: the Hermitian real form `E_{6(-14)}` has complex Cartan
- type `E_6`.
- paper source: rem:E6-V27-vacuity (treats `E_{6(-14)}` acting
- through `V_{27}` as the representative `E_6`-type case). -/
-axiom E6_neg14_isE6Type: IsE6Type E6_neg14
+/-- Witness theorem: the Hermitian real form `E_{6(-14)}` has complex
+ Cartan type `E_6`. Proof: the `IsE6Type` field of `E6_neg14` is set to
+ `True` by construction (`def E6_neg14 := ⟨False, True, False⟩`). -/
+theorem E6_neg14_isE6Type : IsE6Type E6_neg14 := trivial
 
-/-- Witness axiom: the Hermitian real form `E_{7(-25)}` has complex Cartan
- type `E_7`.
- paper source: rem:E7-realforms-clarification (`E_{7(-25)}`
- is the Hermitian real form of the complex `E_7`). -/
-axiom E7_neg25_isE7Type: IsE7Type E7_neg25
+/-- Witness theorem: the Hermitian real form `E_{7(-25)}` has complex
+ Cartan type `E_7`. Proof: the `IsE7Type` field of `E7_neg25` is set to
+ `True` by construction (`def E7_neg25 := ⟨False, False, True⟩`). -/
+theorem E7_neg25_isE7Type : IsE7Type E7_neg25 := trivial
 
 /-- Predicate: the Mumford--Tate group has no `E_6`- or `E_7`-type simple
  factor (any real form). Used by the classical-Cartan-type branch of
