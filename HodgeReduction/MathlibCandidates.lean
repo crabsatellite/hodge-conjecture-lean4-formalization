@@ -642,6 +642,74 @@ theorem mk_eq_mk_iff.{u} {R : Type u} [CommRing R]
 
 end Picard
 
+/-! ### `Picard` multiplication (R110): tensor product as group operation
+
+The Picard group operation: `[M] · [N] = [M ⊗_R N]`. This requires:
+1. Tensor of two invertible modules is invertible (R98 `Module.IsInvertible.tensor`).
+2. Tensor respects iso-equivalence (functoriality).
+3. The lifted operation is well-defined on quotient classes.
+
+This round introduces the binary operation on Sigma + the lift to Picard. -/
+
+namespace Module.IsInvertible.Sigma
+
+/-- The tensor product of two Sigma elements, packaged as a Sigma element. -/
+noncomputable def tensor.{u} {R : Type u} [CommRing R]
+    (s t : Module.IsInvertible.Sigma R) :
+    Module.IsInvertible.Sigma R :=
+  Module.IsInvertible.Sigma.mk (R := R) (TensorProduct R s.carrier t.carrier)
+
+/-- The carrier of `tensor s t` is `TensorProduct R s.carrier t.carrier`. -/
+theorem tensor_carrier.{u} {R : Type u} [CommRing R]
+    (s t : Module.IsInvertible.Sigma R) :
+    (tensor s t).carrier = TensorProduct R s.carrier t.carrier :=
+  rfl
+
+/-- Tensor respects iso-equivalence on the left. -/
+theorem IsoRel.tensor_left.{u} {R : Type u} [CommRing R]
+    {s₁ s₂ : Module.IsInvertible.Sigma R}
+    (t : Module.IsInvertible.Sigma R) (h : IsoRel s₁ s₂) :
+    IsoRel (tensor s₁ t) (tensor s₂ t) := by
+  obtain ⟨e⟩ := h
+  exact ⟨TensorProduct.congr e (LinearEquiv.refl R _)⟩
+
+/-- Tensor respects iso-equivalence on the right. -/
+theorem IsoRel.tensor_right.{u} {R : Type u} [CommRing R]
+    (s : Module.IsInvertible.Sigma R)
+    {t₁ t₂ : Module.IsInvertible.Sigma R} (h : IsoRel t₁ t₂) :
+    IsoRel (tensor s t₁) (tensor s t₂) := by
+  obtain ⟨e⟩ := h
+  exact ⟨TensorProduct.congr (LinearEquiv.refl R _) e⟩
+
+/-- Tensor respects iso-equivalence (combined left and right). -/
+theorem IsoRel.tensor.{u} {R : Type u} [CommRing R]
+    {s₁ s₂ t₁ t₂ : Module.IsInvertible.Sigma R}
+    (hs : IsoRel s₁ s₂) (ht : IsoRel t₁ t₂) :
+    IsoRel (tensor s₁ t₁) (tensor s₂ t₂) :=
+  IsoRel.trans (tensor_left t₁ hs) (tensor_right s₂ ht)
+
+end Module.IsInvertible.Sigma
+
+namespace Picard
+
+/-- Multiplication on `Picard R` via tensor product of representative modules. -/
+noncomputable def mul.{u} {R : Type u} [CommRing R] (x y : Picard R) : Picard R :=
+  Quotient.liftOn₂ (s₁ := Module.IsInvertible.Sigma.IsoSetoid R)
+    (s₂ := Module.IsInvertible.Sigma.IsoSetoid R)
+    x y
+    (fun s t => Quotient.mk _ (Module.IsInvertible.Sigma.tensor s t))
+    (fun _ _ _ _ hs ht =>
+      Quotient.sound (Module.IsInvertible.Sigma.IsoRel.tensor hs ht))
+
+/-- The multiplication on `Picard R` agrees with tensor on representatives. -/
+theorem mul_mk.{u} {R : Type u} [CommRing R]
+    (M N : Type u) [AddCommGroup M] [Module R M] [Module.IsInvertible R M]
+    [AddCommGroup N] [Module R N] [Module.IsInvertible R N] :
+    mul (mk (R := R) M) (mk (R := R) N) = mk (R := R) (TensorProduct R M N) :=
+  rfl
+
+end Picard
+
 /-! ### Mathlib-PR readiness checklist
 
 * Definition is single-purpose, mathematically standard.
@@ -715,5 +783,11 @@ axioms or `sorry`. The `#print axioms` lines below verify this. -/
 #print axioms Picard.mk
 #print axioms Picard.one
 #print axioms Picard.mk_eq_mk_iff
+-- R110 Picard.mul (tensor lift) + Sigma.tensor + IsoRel functoriality: Picard binary operation.
+#print axioms Module.IsInvertible.Sigma.tensor
+#print axioms Module.IsInvertible.Sigma.tensor_carrier
+#print axioms Module.IsInvertible.Sigma.IsoRel.tensor
+#print axioms Picard.mul
+#print axioms Picard.mul_mk
 
 end HodgeReduction.MathlibCandidates
