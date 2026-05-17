@@ -952,11 +952,46 @@ theorem piece_isSubHodgeStructure (p : Fin (n + 1)) :
   · -- ⨆ q, piece p ⊓ piece q ≤ piece p. Each summand piece p ⊓ piece q ≤ piece p (inf_le_left).
     exact iSup_le (fun _ => inf_le_left)
 
-/- **R166 NOTE on intersection**: The intersection of two sub-Hodge
-structures is also a sub-Hodge structure (Deligne 1971 (2.1.7)).
-The proof requires extracting the unique piece-decomposition of
-elements via the `DirectSum.IsInternal` LinearEquiv — deferred to
-R167+ once that extraction infrastructure is built. -/
+/-! ### R167: Hodge decomposition LinearEquiv
+
+The `DirectSum.IsInternal piece` content gives a **LinearEquiv**
+`V ≃ₗ[ℚ] ⨁ p, piece p`. We package it as `hodgeDecomposeEquiv`,
+providing the canonical entry point for extracting Hodge components.
+
+Full extraction API (component projection + reconstruction
+identity + sub-HS invariance + kernel/range as sub-HS theorems) is
+deferred to a future round — the basic LinearEquiv suffices for
+many downstream uses where `LinearEquiv.symm_apply_apply` and
+similar generic tools are enough. -/
+
+/-- **R167**: The **Hodge decomposition LinearEquiv**:
+`V ≃ₗ[ℚ] ⨁ p, piece p`. Direct consequence of `DirectSum.IsInternal
+piece` (the structure of `PureHodgeStructure`). -/
+noncomputable def hodgeDecomposeEquiv (V : Type*) [AddCommGroup V] [Module ℚ V]
+    {n : ℕ} [PureHodgeStructure V n] :
+    V ≃ₗ[ℚ] DirectSum (Fin (n + 1)) (fun p => ↥(piece (V := V) p)) :=
+  (LinearEquiv.ofBijective
+    (DirectSum.coeLinearMap (fun p => piece (V := V) p))
+    (isInternal (V := V))).symm
+
+/-- **R167**: The inverse of `hodgeDecomposeEquiv` is the canonical
+coercion sum (recovers `v = ∑ p, ↑(component p)`). Unfolds the
+construction. -/
+theorem hodgeDecomposeEquiv_symm_eq (V : Type*) [AddCommGroup V] [Module ℚ V]
+    {n : ℕ} [PureHodgeStructure V n] :
+    (hodgeDecomposeEquiv V).symm =
+      LinearEquiv.ofBijective
+        (DirectSum.coeLinearMap (fun p => PureHodgeStructure.piece (V := V) p))
+        (PureHodgeStructure.isInternal (V := V) (n := n)) := by
+  unfold hodgeDecomposeEquiv
+  exact LinearEquiv.symm_symm _
+
+/- **R166-R167 NOTE on intersection, kernel, range**: The full theorems
+(intersection of sub-HS is sub-HS; kernel and range of HS morphisms are
+sub-HS) require building a component-extraction API on top of
+`hodgeDecomposeEquiv`, then proving the V-uniqueness of the
+decomposition. Deferred to a future round so each round's commits
+preserve build cleanliness. -/
 
 end PureHodgeStructure
 
