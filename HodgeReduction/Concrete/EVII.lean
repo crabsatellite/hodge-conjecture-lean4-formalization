@@ -2193,12 +2193,19 @@ theorem evii_apex_synthesis :
     HodgeReduction.Infrastructure.Cohomology.CycleClassImageData.hodgeConjecture
       (X := EVII_R6.EVII_Space) (A := A_EVII) ∧
     -- (5) Freudenthal class is algebraic
-    CohomologyRing.IsAlgebraic ((-48 : ℚ) • ((Polynomial.X : A_EVII) ^ 4)) :=
+    CohomologyRing.IsAlgebraic ((-48 : ℚ) • ((Polynomial.X : A_EVII) ^ 4)) ∧
+    -- (6) Every power h^n is algebraic (R70)
+    (∀ n : ℕ, CohomologyRing.IsAlgebraic ((Polynomial.X : A_EVII) ^ n)) ∧
+    -- (7) Every scalar multiple r·h^n is algebraic (R70)
+    (∀ (r : ℚ) (n : ℕ),
+      CohomologyRing.IsAlgebraic (r • ((Polynomial.X : A_EVII) ^ n))) :=
   ⟨evii_strong_HodgeConjecture,
    evii_picard_number_eq_one,
    HodgeReduction.Infrastructure.Cohomology.HCCodim1Data.lefschetz_11_eq,
    evii_HodgeConjecture_concrete,
-   evii_freudenthal_quartic_is_algebraic⟩
+   evii_freudenthal_quartic_is_algebraic,
+   evii_h_powers_algebraic,
+   evii_smul_h_powers_algebraic⟩
 
 -- R65 KERNEL-PURITY: the comprehensive apex synthesis is kernel-pure.
 #print axioms evii_apex_synthesis
