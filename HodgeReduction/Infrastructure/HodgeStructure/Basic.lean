@@ -355,6 +355,26 @@ instance pureHodgeWeight_ℚ_0 : PureHodgeStructureWeight ℚ 0 where
     -- Both sides equal `Module.finrank ℚ (⊤ : Submodule ℚ ℚ)`.
     rfl
 
+/-- **R138**: Trivial `PureHodgeStructure ℚ 0` instance parallel to the
+`PureHodgeStructureWeight ℚ 0` instance above. Uses
+`DirectSum.isInternal_submodule_of_iSupIndep_of_iSup_eq_top` with the
+trivial-index iSupIndep + the same `pieces_span` argument. -/
+instance pureHodgeStructure_ℚ_0 : PureHodgeStructure ℚ 0 where
+  piece := piece_ℚ_w0
+  isInternal :=
+    DirectSum.isInternal_submodule_of_iSupIndep_of_iSup_eq_top
+      (by
+        intro p
+        -- For Fin 1, ⨆ (j) (h : j ≠ p), piece j = ⨆ over empty set = ⊥
+        -- so Disjoint piece_p ⊥ which is trivially true.
+        fin_cases p
+        simp [iSupIndep, piece_ℚ_w0])
+      (by
+        apply le_antisymm le_top
+        intro x _
+        refine Submodule.mem_iSup_of_mem ⟨0, by omega⟩ ?_
+        simp [piece_ℚ_w0])
+
 /-- The Hodge filtration of `(ℚ, weight 0)`: `F^0 = ⊤`, `F^1 = ⊥`. -/
 def F_ℚ_w0 : Fin 2 → Submodule ℚ ℚ
   | ⟨0, _⟩ => (⊤ : Submodule ℚ ℚ)
