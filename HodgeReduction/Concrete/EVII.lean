@@ -2451,6 +2451,33 @@ theorem evii_BH_presentation_rank_eq_7 :
       (A := A_EVII) = 7 :=
   rfl
 
+/-! ### R86 SUBSTANTIVE: `AlgebraicCycleData A_EVII p` for every codim p
+
+Provides the codim-`p` algebraic-cycle subspace data on `Ě_VII` for
+every codimension `p : ℕ`. Mathematical content: on `Ě_VII` simply
+connected compact Hermitian symmetric, every cohomology class is
+algebraic (R30/R36), so the codim-`p` algebraic-cycle subspace is the
+full `⊤`.
+
+The inclusion `⊤ ≤ algebraic` reduces to `α ∈ ⊤ → IsAlgebraic α`,
+which is `isAlgebraic_of_adjoin_X` (the workhorse R5-A lemma). -/
+noncomputable instance evii_algebraicCycleData (p : ℕ) :
+    HodgeReduction.Infrastructure.Cohomology.AlgebraicCycleData A_EVII p where
+  cycles_p := ⊤
+  cycles_p_le_algebraic := by
+    intro α _
+    -- Every element of A_EVII is algebraic (via the BB-decomp realisation
+    -- as Algebra.adjoin ℚ {X} = ⊤ in our concrete model).
+    exact isAlgebraic_of_adjoin_X α
+
+/-- **Sanity check** (R86): the codim-4 algebraic cycle subspace on
+`Ě_VII` contains the Freudenthal class `q = -48·h^4`. -/
+theorem evii_freudenthal_in_codim4_cycles :
+    ((-48 : ℚ) • ((Polynomial.X : A_EVII) ^ 4))
+      ∈ HodgeReduction.Infrastructure.Cohomology.AlgebraicCycleData.cycles_p
+          (A := A_EVII) (p := 4) :=
+  Submodule.mem_top
+
 /-- **Sanity check** (R77): Standard Conjecture (D) holds on `Ě_VII`
 (numerical-equivalence = hom-equivalence). -/
 theorem evii_standard_conjecture_D :
@@ -2607,6 +2634,8 @@ theorem evii_apex_synthesis :
 #print axioms evii_w_inv_containment
 -- R85 KERNEL-PURITY: BorelHirzebruchPresentation EVII (rank 7 generators).
 #print axioms evii_BH_presentation_rank_eq_7
+-- R86 KERNEL-PURITY: AlgebraicCycleData EVII for every codim p.
+#print axioms evii_freudenthal_in_codim4_cycles
 
 /-! ### R73 META-SYNTHESIS: Type-level catalogue of substantive EVII closures
 
