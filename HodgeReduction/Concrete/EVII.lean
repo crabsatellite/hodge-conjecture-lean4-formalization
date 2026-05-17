@@ -2367,6 +2367,35 @@ theorem evii_all_classes_galois_invariant (x : A_EVII) :
       (V := A_EVII) :=
   Submodule.mem_top
 
+/-! ### R83 SUBSTANTIVE: `FrobeniusActionData A_EVII` (trivial Frob over ℂ)
+
+Extends `GaloisActionData` (R82) with the designated Frobenius element.
+Since the absolute Galois group of ℂ is `{1}`, the Frobenius element
+is the identity `1 : Unit`, and the Frobenius endomorphism is the
+identity linear map. -/
+noncomputable instance evii_frobeniusActionData :
+    HodgeReduction.Infrastructure.Cohomology.FrobeniusActionData
+      (V := A_EVII) where
+  frob := ()  -- trivial Frobenius element in Unit
+  frobenius_endo := LinearMap.id
+  action_frob_eq_endo := by
+    -- action = 1 (constant identity), so action () = id.
+    show ((1 : Unit →* (A_EVII →ₗ[ℚ] A_EVII)) ())
+      = (LinearMap.id : A_EVII →ₗ[ℚ] A_EVII)
+    rfl
+  frobenius_endo_invariants := by
+    intro x _
+    -- LinearMap.id x = x.
+    rfl
+
+/-- **Sanity check** (R83): the trivial Frobenius endomorphism on `Ě_VII`
+fixes the entire cohomology ring (since the action is trivial). -/
+theorem evii_frobenius_fixes_all (x : A_EVII) :
+    HodgeReduction.Infrastructure.Cohomology.FrobeniusActionData.frobenius_endo
+      (V := A_EVII) x = x :=
+  HodgeReduction.Infrastructure.Cohomology.FrobeniusActionData.frobenius_endo_invariants
+    x Submodule.mem_top
+
 /-- **Sanity check** (R77): Standard Conjecture (D) holds on `Ě_VII`
 (numerical-equivalence = hom-equivalence). -/
 theorem evii_standard_conjecture_D :
@@ -2517,6 +2546,8 @@ theorem evii_apex_synthesis :
 #print axioms evii_shimura_is_EVII
 -- R82 KERNEL-PURITY: GaloisActionData EVII (trivial action over algebraic closure).
 #print axioms evii_all_classes_galois_invariant
+-- R83 KERNEL-PURITY: FrobeniusActionData EVII (trivial Frob over algebraic closure).
+#print axioms evii_frobenius_fixes_all
 
 /-! ### R73 META-SYNTHESIS: Type-level catalogue of substantive EVII closures
 
