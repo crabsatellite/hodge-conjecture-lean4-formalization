@@ -102,6 +102,7 @@ import HodgeReduction.Infrastructure.Cohomology.ComparisonTheorem
 import HodgeReduction.Infrastructure.Shimura.PeriodDomain
 import HodgeReduction.Infrastructure.Shimura.SchubertCells
 import HodgeReduction.Infrastructure.HodgeStructure.Basic
+import HodgeReduction.Infrastructure.HodgeStructure.VarietyCohomology
 import HodgeReduction.Infrastructure.HodgeStructure.Polarised
 import HodgeReduction.Infrastructure.HodgeStructure.MixedHodge
 import HodgeReduction.Infrastructure.HodgeStructure.NilpotentOrbit
