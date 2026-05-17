@@ -2417,7 +2417,18 @@ theorem evii_framework_completeness :
         A_EVII) ∧
     Nonempty
       (HodgeReduction.Infrastructure.Cohomology.LRefinedChernWeilProportionalityData
-        A_EVII) :=
+        A_EVII) ∧
+    -- R74 GRR / Todd class data
+    Nonempty
+      (HodgeReduction.Infrastructure.Cohomology.ToddClassData ℚ A_EVII) ∧
+    -- R75 Hirzebruch splitting principle
+    Nonempty
+      (HodgeReduction.Infrastructure.Cohomology.SplittingPrincipleData A_EVII
+        (HodgeReduction.Infrastructure.Cohomology.AlgebraicVectorBundle A_EVII)) ∧
+    -- R54 axiomatic Chern classes
+    Nonempty
+      (HodgeReduction.Infrastructure.Cohomology.ChernClassesAxiomatic A_EVII
+        (HodgeReduction.Infrastructure.Cohomology.AlgebraicVectorBundle A_EVII)) :=
   ⟨⟨inferInstance⟩, ⟨inferInstance⟩,
    ⟨inferInstance⟩, ⟨inferInstance⟩,
    ⟨inferInstance⟩, ⟨inferInstance⟩,
@@ -2432,7 +2443,9 @@ theorem evii_framework_completeness :
    ⟨inferInstance⟩, ⟨inferInstance⟩,
    ⟨inferInstance⟩, ⟨inferInstance⟩,
    ⟨inferInstance⟩, ⟨inferInstance⟩,
-   ⟨inferInstance⟩⟩
+   ⟨inferInstance⟩,
+   -- R74/R75/R54 additions
+   ⟨inferInstance⟩, ⟨inferInstance⟩, ⟨inferInstance⟩⟩
 
 -- R73 KERNEL-PURITY: the framework-completeness meta-theorem.
 #print axioms evii_framework_completeness
