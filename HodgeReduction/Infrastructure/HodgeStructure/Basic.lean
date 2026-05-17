@@ -879,6 +879,87 @@ theorem CycleClassMapData.hodgeConjecture_transfer
   refine ⟨ψ z, ?_⟩
   rw [h_square, hz_eq, hv_eq]
 
+/-! ## R166: Sub-Hodge structures and closure lemmas
+
+A **sub-Hodge structure** of a pure ℚ-Hodge structure `V` of weight
+`n` is a ℚ-submodule `W ≤ V` such that `W` decomposes through the
+Hodge pieces of `V`: every element of `W` is a sum of elements lying
+in `W ⊓ piece p`.
+
+Equivalently: `W = ⨆ p, W ⊓ piece p` — the lattice formulation we
+use as the definition.
+
+Sub-Hodge structures form a complete lattice under `⊓` and `⊔`. The
+key examples:
+* `⊥` and `⊤` are sub-HS (trivially).
+* Each Hodge piece `piece p` is a sub-HS of `V`.
+* The intersection of two sub-HS is a sub-HS.
+
+Use case in HC programme: the image of a Hodge structure morphism and
+the kernel of a HS morphism are sub-HS — these will be proved in
+R167+ once the direct-sum component-extraction machinery is in place.
+
+References: Deligne 1971 (2.1.7) (sub-Hodge structures and the lattice
+they form); Voisin I (6.13)-(6.14). -/
+
+namespace PureHodgeStructure
+
+variable {V} {n : ℕ} [PureHodgeStructure V n]
+
+/-- **R166**: `IsSubHodgeStructure W` asserts that the ℚ-submodule
+`W ≤ V` is a **sub-Hodge structure**: it decomposes through the Hodge
+pieces of `V`, i.e. `W = ⨆ p, W ⊓ piece p`.
+
+Equivalent characterisations (Deligne 1971 (2.1.7)):
+* `W = ⨆ p, W ⊓ piece p` (lattice form, used here)
+* every `w ∈ W` decomposes uniquely as `w = ∑ w_p` with `w_p ∈ W ⊓ piece p`
+* `W` is stable under each piece projection.
+-/
+def IsSubHodgeStructure (W : Submodule ℚ V) : Prop :=
+  W = ⨆ (p : Fin (n + 1)), W ⊓ piece (V := V) p
+
+/-- **R166**: `⊥` is a sub-Hodge structure (vacuously). -/
+theorem bot_isSubHodgeStructure :
+    IsSubHodgeStructure (V := V) (n := n) (⊥ : Submodule ℚ V) := by
+  unfold IsSubHodgeStructure
+  simp [bot_inf_eq]
+
+/-- **R166**: `⊤` is a sub-Hodge structure (the whole space; the
+decomposition is the Hodge decomposition itself). -/
+theorem top_isSubHodgeStructure :
+    IsSubHodgeStructure (V := V) (n := n) (⊤ : Submodule ℚ V) := by
+  unfold IsSubHodgeStructure
+  apply le_antisymm
+  · -- ⊤ ≤ ⨆ p, ⊤ ⊓ piece p; this is ⨆ p, piece p = ⊤
+    rw [show ((⨆ (p : Fin (n + 1)), (⊤ : Submodule ℚ V) ⊓ piece (V := V) p) =
+      ⨆ p : Fin (n + 1), piece (V := V) p) by
+      congr 1; funext p; rw [top_inf_eq]]
+    rw [piece_iSup_eq_top]
+  · exact le_top
+
+/-- **R166**: Each Hodge piece `piece p` is a sub-Hodge structure of `V`.
+The decomposition of `piece p` through the pieces is trivial: `piece p`
+intersected with `piece q` is `⊥` for `q ≠ p` (pairwise disjointness),
+and equals `piece p` for `q = p`. -/
+theorem piece_isSubHodgeStructure (p : Fin (n + 1)) :
+    IsSubHodgeStructure (V := V) (n := n) (piece (V := V) p) := by
+  unfold IsSubHodgeStructure
+  apply le_antisymm
+  · -- piece p ≤ ⨆ q, piece p ⊓ piece q. Take q = p: piece p ⊓ piece p = piece p.
+    intro v hv
+    refine Submodule.mem_iSup_of_mem p ?_
+    exact Submodule.mem_inf.mpr ⟨hv, hv⟩
+  · -- ⨆ q, piece p ⊓ piece q ≤ piece p. Each summand piece p ⊓ piece q ≤ piece p (inf_le_left).
+    exact iSup_le (fun _ => inf_le_left)
+
+/- **R166 NOTE on intersection**: The intersection of two sub-Hodge
+structures is also a sub-Hodge structure (Deligne 1971 (2.1.7)).
+The proof requires extracting the unique piece-decomposition of
+elements via the `DirectSum.IsInternal` LinearEquiv — deferred to
+R167+ once that extraction infrastructure is built. -/
+
+end PureHodgeStructure
+
 /-! ## Pure Hodge structures via explicit pieces with substantive
 dimensional, disjointness and span axioms
 
