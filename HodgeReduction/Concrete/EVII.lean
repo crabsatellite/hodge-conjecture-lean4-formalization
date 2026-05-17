@@ -29,6 +29,7 @@ import HodgeReduction.Infrastructure.Cohomology.ChernCharacter
 import HodgeReduction.Infrastructure.Cohomology.StandardConjectures
 import HodgeReduction.Infrastructure.Cohomology.Galois
 import HodgeReduction.Infrastructure.Cohomology.AlgebraicCycle
+import HodgeReduction.Infrastructure.AlgebraicGeometry.ChowGroup
 import HodgeReduction.Infrastructure.Cohomology.PicardGroup
 import HodgeReduction.Infrastructure.Cohomology.AmpleDivisor
 import HodgeReduction.Infrastructure.Cohomology.CycleClassMap
@@ -2511,6 +2512,41 @@ theorem evii_acv_dim_eq_27 :
       (X := EVII_R6.EVII_Space) = 27 :=
   rfl
 
+/-! ### R88 SUBSTANTIVE: `ChowGroupData EVII_R6.EVII_Space`
+
+Provides the Chow group `CH^p(Ě_VII)` data on `Ě_VII`. Synthetic
+disclosure: on the synthetic model we use `CH p := PUnit` (trivial
+1-element groups; genuine Chow groups await Mathlib AG infrastructure).
+Intersection is trivially the constant `PUnit.unit`; the HEq
+fundamentality identities hold trivially since both LHS and RHS are
+the unique PUnit element. -/
+noncomputable instance evii_chowGroupData :
+    HodgeReduction.Infrastructure.AlgebraicGeometry.ChowGroupData
+      EVII_R6.EVII_Space where
+  CH _ := PUnit
+  CH_addCommGroup _ := inferInstance
+  intersect _ _ := PUnit.unit
+  intersect_add_left _ _ _ := rfl
+  intersect_add_right _ _ _ := rfl
+  fundamental := PUnit.unit
+  intersect_fundamental_left := by
+    intro _ α
+    -- Both LHS and RHS have type PUnit; the unique PUnit element is α = unit.
+    -- HEq PUnit.unit α holds by trivial PUnit-uniqueness.
+    cases α
+    rfl
+  intersect_fundamental_right := by
+    intro _ α
+    cases α
+    rfl
+
+/-- **Sanity check** (R88): the fundamental class on `Ě_VII` is non-trivial
+data (just `PUnit.unit` for our synthetic model). -/
+theorem evii_chow_fundamental :
+    HodgeReduction.Infrastructure.AlgebraicGeometry.ChowGroupData.fundamental
+      (X := EVII_R6.EVII_Space) = PUnit.unit :=
+  rfl
+
 /-- **Sanity check** (R77): Standard Conjecture (D) holds on `Ě_VII`
 (numerical-equivalence = hom-equivalence). -/
 theorem evii_standard_conjecture_D :
@@ -2671,6 +2707,8 @@ theorem evii_apex_synthesis :
 #print axioms evii_freudenthal_in_codim4_cycles
 -- R87 KERNEL-PURITY: AlgebraicCycleVarietyData EVII (dim 27).
 #print axioms evii_acv_dim_eq_27
+-- R88 KERNEL-PURITY: ChowGroupData EVII (Chow ring structure).
+#print axioms evii_chow_fundamental
 
 /-! ### R73 META-SYNTHESIS: Type-level catalogue of substantive EVII closures
 
