@@ -478,6 +478,32 @@ noncomputable instance evii_boundaryClassificationData :
     Submodule.span ℚ ({(Polynomial.X : A_EVII) ^ 26} : Set A_EVII)
   boundary_codim1_eq_eiii := rfl
 
+/-! ### R25 STRUCTURAL: Concrete SchmidDeligneFiltrationExtension instance
+
+Validates R19 bare-Prop elimination of `SchmidDeligneFiltrationExtension`
+(removed `filtered_functoriality : Prop + holds + implies_L_block + cks`
+4-field bare-Prop chain, replaced with `hodge_subfilt : ℕ → Submodule +
+hodge_subfilt_antitone` substantive structure).
+
+**STRUCTURAL proof of antitonicity** (per user mandate against
+single-case grinding): given `p ≤ q`, the antitonicity `hodge_subfilt q
+≤ hodge_subfilt p` is proved in ONE line via `Submodule.span_mono`
+applied to set inclusion `{X^k | q ≤ k} ⊆ {X^k | p ≤ k}` (which itself
+is a one-line `Set.image_subset` + `Set.setOf_subset_setOf`).
+
+This is a STRUCTURAL move: not case-by-case on each (p, q) pair, but
+ONE general inclusion-of-spans argument from monotone set inclusion. -/
+noncomputable instance evii_schmidDeligneFiltrationExtension :
+    HodgeReduction.Infrastructure.Shimura.SchmidDeligneFiltrationExtension A_EVII where
+  hodge_subfilt := fun n =>
+    Submodule.span ℚ ((fun k => (Polynomial.X : A_EVII) ^ k) '' {k | n ≤ k})
+  hodge_subfilt_antitone := fun p q hpq =>
+    -- STRUCTURAL: span is monotone in its generator set; the generator
+    -- set is contracted as the index bound increases (q ≥ p means
+    -- {k | q ≤ k} ⊆ {k | p ≤ k}).
+    Submodule.span_mono
+      (Set.image_subset _ (fun _ hk => le_trans hpq hk))
+
 /-! ### Sanity-check theorem: HC closure on the concrete instance -/
 
 /-- **Sanity-check theorem**: the abstract universal-quantification form
