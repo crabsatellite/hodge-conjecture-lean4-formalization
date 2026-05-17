@@ -414,6 +414,31 @@ theorem Module.IsInvertible.tensor_assoc_iff.{u} {R : Type u} [CommRing R]
   ⟨fun _ => Module.IsInvertible.of_linearEquiv (TensorProduct.assoc R M N P),
    fun _ => Module.IsInvertible.of_linearEquiv (TensorProduct.assoc R M N P).symm⟩
 
+/-! ### `Module.IsInvertible.iff_linearEquiv` (R104): full bidirectional iso transfer
+
+Strengthens R100 `of_linearEquiv` to a BIDIRECTIONAL iff. Together with
+R97 `self`, this gives a clean characterisation: for any `R`-module
+`M ≃ₗ[R] R`, `M` is invertible.
+
+**Corollary** (sanity check on R97 + R104): any `R`-module isomorphic
+to `R` is invertible. This recovers the geometric intuition that "the
+trivial line bundle on `Spec R` is invertible" in arbitrary equivalent
+form. -/
+theorem Module.IsInvertible.iff_linearEquiv.{u} {R : Type u} [CommRing R]
+    {M M' : Type u} [AddCommGroup M] [Module R M]
+    [AddCommGroup M'] [Module R M']
+    (e : M ≃ₗ[R] M') :
+    Module.IsInvertible R M ↔ Module.IsInvertible R M' :=
+  ⟨fun hM => Module.IsInvertible.of_linearEquiv (hM := hM) e,
+   fun hM' => Module.IsInvertible.of_linearEquiv (hM := hM') e.symm⟩
+
+/-- **Corollary** (R104): any R-module linearly-equivalent to R is invertible
+(the trivial line bundle in disguised form). -/
+theorem Module.IsInvertible.of_equiv_R.{u} {R : Type u} [CommRing R]
+    {M : Type u} [AddCommGroup M] [Module R M] (e : M ≃ₗ[R] R) :
+    Module.IsInvertible R M :=
+  (Module.IsInvertible.iff_linearEquiv e).mpr (Module.IsInvertible.self R)
+
 /-! ### Mathlib-PR readiness checklist
 
 * Definition is single-purpose, mathematically standard.
@@ -468,5 +493,8 @@ axioms or `sorry`. The `#print axioms` lines below verify this. -/
 #print axioms Module.IsInvertible.tensor_R_right
 -- R102 Module.IsInvertible.tensor_assoc_iff: associativity of Pic tensor.
 #print axioms Module.IsInvertible.tensor_assoc_iff
+-- R104 Module.IsInvertible.iff_linearEquiv + of_equiv_R: full bidirectional + R-equiv corollary.
+#print axioms Module.IsInvertible.iff_linearEquiv
+#print axioms Module.IsInvertible.of_equiv_R
 
 end HodgeReduction.MathlibCandidates
