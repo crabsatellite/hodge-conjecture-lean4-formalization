@@ -1568,24 +1568,50 @@ structure E7ShimuraTor : Type where
  of `S_Γ^tor` as AMRT toroidal compactification). -/
 axiom canonicalE7ShimuraTor: E7ShimuraTor
 
-/-- **R171**: The canonical AMRT toroidal compactification `S_Γ^tor`
-of the E_7-Hermitian symmetric domain quotient is **within paper scope**
-(clause (iii) of `InScope`: E_7-Shimura sub-case).
+/-- **R173a**: The canonical AMRT toroidal compactification's
+Mumford-Tate group derived part on weight 3 cohomology has an
+`E_{7(-25)}`-simple factor (clause (iii) first conjunct).
 
-Substantive content (paper Scope paragraph clause (iii) +
-hyp:ChernWeil-bridge-E7):
-* `S_Γ^tor` is a Shimura variety for the real form `E_{7(-25)}` of
-  type `E_7`.
-* Its Mumford-Tate group derived part on weight 3 cohomology has an
-  `E_{7(-25)}`-simple factor.
-* It lies in the currently-known E_7-type scope (Shimura family).
+By construction of `S_Γ^tor` as the AMRT toroidal compactification of
+the `E_{7(-25)}`-Hermitian symmetric domain quotient (Ash-Mumford-
+Rapoport-Tai 1975; Borel 1969), the MT group derived part on
+`H^3(S_Γ^tor, ℚ)` is the simple group of type `E_{7(-25)}`.
 
-These are facts BY CONSTRUCTION of `S_Γ^tor` as the AMRT toroidal
-compactification (Ash-Mumford-Rapoport-Tai 1975; Borel 1969). The
-axiom records them explicitly for direct use in HC-real derivation.
+paper source: Scope paragraph clause (iii) first conjunct;
+hyp:ChernWeil-bridge-E7. -/
+axiom canonical_E7_factor :
+    hasSimpleFactor (MumfordTateGroupDerived canonicalE7ShimuraTor.underlying 3)
+                    E7_neg25
+
+/-- **R173b**: The canonical AMRT toroidal compactification lies in
+the currently-known `E_7`-type scope (clause (iii) second conjunct).
+
+This is the paper's "Shimura, finite covers, birational models,
+non-rigid families with generically finite period map" sub-class
+membership. `S_Γ^tor` is a (compactified) Shimura variety, so it is
+the prototypical inhabitant of this class.
+
+paper source: Scope paragraph clause (iii) second conjunct;
+hyp:ChernWeil-bridge-E7. -/
+axiom canonical_inKnownE7Scope :
+    InKnownE7Scope canonicalE7ShimuraTor.underlying
+
+/-- **R173**: The canonical AMRT toroidal compactification `S_Γ^tor`
+is **within paper scope** (derived from R173a + R173b).
+
+R173 refactor of R171 `canonical_inScope` axiom: was a single axiom
+asserting `InScope`; now derived as a theorem from the 2 finer-grained
+clause-(iii) axioms `canonical_E7_factor` + `canonical_inKnownE7Scope`.
+
+Net: -1 axiom + 2 axioms = +1 axiom, but more structurally honest
+(each new axiom is a single paper fact).
 
 paper source: Scope paragraph clause (iii); hyp:ChernWeil-bridge-E7. -/
-axiom canonical_inScope : InScope canonicalE7ShimuraTor.underlying
+theorem canonical_inScope : InScope canonicalE7ShimuraTor.underlying := by
+  -- InScope unfolds to a 4-disjunction; canonical lies in clause (iii).
+  refine Or.inr (Or.inr (Or.inl ⟨?_, ?_⟩))
+  · exact canonical_E7_factor
+  · exact canonical_inKnownE7Scope
 
 /-- The Freudenthal-quartic cohomology class
  `[q] ∈ H^8(S_Γ^tor, ℚ) = HodgeClasses (underlying S) 4`.

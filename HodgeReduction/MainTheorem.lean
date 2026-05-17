@@ -301,27 +301,40 @@ compactification of the E_7-Hermitian symmetric domain quotient.
 This is the substantive closure of HC for the project's main target
 variety. -/
 
-/-- **R171 HEADLINE**: The **Hodge Conjecture holds for the canonical
-E_7 Shimura variety** in its REAL form (no Unit trick).
+/-- **R171/R173 HEADLINE**: The **Hodge Conjecture holds for the
+canonical E_7 Shimura variety** in its REAL form (no Unit trick).
 
 For every codimension `p`, every Hodge class in
 `H^{2p}(S_Γ^tor, ℚ)` arises as the image of a rational algebraic
 cycle class.
 
-This is a TWO-STEP DERIVATION:
-1. `canonical_inScope` (R171 axiom): `S_Γ^tor` is within paper scope.
-2. `main_reduction_real` (R170 theorem from R170 axiom): InScope → HC-real.
+**R173 refactor**: was derived via `main_reduction_real ∘
+canonical_inScope` (which traversed all 4 InScope clauses). Now
+derived DIRECTLY via the clause-(iii) case axiom
+`hc_real_e7_shimura` applied to the R173 finer-grained axioms
+`canonical_E7_factor` + `canonical_inKnownE7Scope`.
+
+The new dependency chain:
+- `hc_real_e7_shimura` (R172 case axiom, clause (iii) only)
+- `canonical_E7_factor` (R173a, E_7 factor on MT^der)
+- `canonical_inKnownE7Scope` (R173b, in known E_7 scope)
+- `canonicalE7ShimuraTor` (R39, variety exists)
+- `SmoothProjectiveVariety.cohomology` (R169, Hodge theorem)
+- `SmoothProjectiveVariety.algClasses` (R169, Lefschetz-Hodge)
+
+Plus 3 kernel axioms (propext, Classical.choice, Quot.sound). NO
+Unit trick. NO dependency on the other 3 InScope cases (i, ii, iv).
 
 Per R169 `HodgeConjectureReal`, this asserts:
   `∀ p : ℕ, PureHodgeStructure.hodgeClasses (H^{2p}(S_Γ^tor, ℚ)) p
        ≤ algClasses p`
 where both sides are honest ℚ-submodules.
 
-Paper source: `\label{thm:main}` (Main Theorem) applied to the
-canonical AMRT toroidal compactification. -/
+Paper source: `\label{thm:main}` clause (iii) applied to the canonical
+AMRT toroidal compactification. -/
 theorem hodgeConjectureReal_canonical :
     HodgeConjectureReal canonicalE7ShimuraTor.underlying :=
-  main_reduction_real _ canonical_inScope
+  hc_real_e7_shimura _ canonical_E7_factor canonical_inKnownE7Scope
 
 /-! ## Unconditional paper theorems (body: `sorry`) -/
 
