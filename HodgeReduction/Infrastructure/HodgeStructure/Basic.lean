@@ -598,6 +598,137 @@ theorem hodgeConjectureAtWeight_inf (V : Type*) [AddCommGroup V]
     (hB : HodgeConjectureAtWeight V k B) :
     HodgeConjectureAtWeight V k (A ⊓ B) := le_inf hA hB
 
+/-! ## R164: Morphisms of pure Hodge structures + functoriality of Hodge classes
+
+A **morphism of pure ℚ-Hodge structures** of weight `n` is a ℚ-linear
+map `f : V →ₗ[ℚ] W` that **preserves the Hodge decomposition**:
+`f(H^{p,n-p}(V)) ⊆ H^{p,n-p}(W)` for each `p`.
+
+This is the categorical morphism structure on the category `HS_ℚ^n` of
+pure ℚ-Hodge structures of weight `n` (Deligne 1971 §2; Voisin I §6).
+
+Key downstream consumer: the **cycle class map**
+`cl : CH^p(X)_ℚ → H^{2p}(X, ℚ)` is (after composing with the inclusion
+into a weight-2p PHS) a morphism of pure Hodge structures of weight 2p
+whose image lies in `hodgeClasses` — and the Hodge Conjecture is the
+assertion that this image EQUALS `hodgeClasses`.
+
+We package the structural definitions + the key functoriality theorem:
+**morphisms of pure Hodge structures preserve Hodge classes**.
+
+References: Deligne 1971 (2.1.8) (morphisms of Hodge structures);
+Voisin 2002 I (6.13) (morphism preserves bigrading). -/
+
+/-- **R164**: A **morphism of pure ℚ-Hodge structures of weight `n`**
+from `V` to `W` is a ℚ-linear map preserving each Hodge piece.
+
+Concretely, `map_piece` asserts that the image of `H^{p,n-p}(V)` under
+`toLinearMap` lies in `H^{p,n-p}(W)` for every `p ∈ {0, ..., n}`.
+
+This is the data-bearing form (vs a typeclass) appropriate for
+explicit morphism manipulation (composition, identity, image
+factorisation through `hodgeClasses`, etc.). -/
+structure HodgeStructureMorphism (V W : Type*) [AddCommGroup V]
+    [AddCommGroup W] [Module ℚ V] [Module ℚ W] (n : ℕ)
+    [PureHodgeStructure V n] [PureHodgeStructure W n] where
+  /-- The underlying ℚ-linear map. -/
+  toLinearMap : V →ₗ[ℚ] W
+  /-- The map preserves each Hodge piece. -/
+  map_piece : ∀ (p : Fin (n + 1)),
+    Submodule.map toLinearMap (PureHodgeStructure.piece (V := V) p) ≤
+      PureHodgeStructure.piece (V := W) p
+
+namespace HodgeStructureMorphism
+
+variable {V W X : Type*} [AddCommGroup V] [AddCommGroup W] [AddCommGroup X]
+  [Module ℚ V] [Module ℚ W] [Module ℚ X] {n : ℕ}
+  [PureHodgeStructure V n] [PureHodgeStructure W n] [PureHodgeStructure X n]
+
+/-- Apply a Hodge morphism to a vector (function-call coercion). -/
+instance : CoeFun (HodgeStructureMorphism V W n) (fun _ => V → W) where
+  coe f := f.toLinearMap
+
+/-- **R164**: The **identity morphism** of a pure Hodge structure.
+The identity linear map trivially preserves each piece. -/
+def id_HSM : HodgeStructureMorphism V V n where
+  toLinearMap := LinearMap.id
+  map_piece := fun p => by
+    intro x hx
+    simp only [Submodule.mem_map, LinearMap.id_coe, id_eq] at hx
+    obtain ⟨y, hy, hyx⟩ := hx
+    rw [← hyx]
+    exact hy
+
+/-- **R164**: **Composition** of Hodge structure morphisms. The
+composition of two ℚ-linear maps preserving pieces also preserves
+pieces. -/
+def comp (g : HodgeStructureMorphism W X n) (f : HodgeStructureMorphism V W n) :
+    HodgeStructureMorphism V X n where
+  toLinearMap := g.toLinearMap ∘ₗ f.toLinearMap
+  map_piece := fun p => by
+    intro x hx
+    simp only [Submodule.mem_map, LinearMap.coe_comp, Function.comp_apply] at hx
+    obtain ⟨y, hy, hyx⟩ := hx
+    -- y ∈ piece p, so f y ∈ image of piece p under f ≤ piece p in W
+    have hfy : f.toLinearMap y ∈
+        PureHodgeStructure.piece (V := W) p := by
+      have h := f.map_piece p
+      apply h
+      exact ⟨y, hy, rfl⟩
+    -- Now g (f y) ∈ image of piece p under g ≤ piece p in X
+    have hgfy : g.toLinearMap (f.toLinearMap y) ∈
+        PureHodgeStructure.piece (V := X) p := by
+      have h := g.map_piece p
+      apply h
+      exact ⟨f.toLinearMap y, hfy, rfl⟩
+    rw [← hyx]
+    exact hgfy
+
+/-- **R164 KEY FUNCTORIALITY**: a Hodge morphism `f : V → W` of weight
+`2k` maps Hodge classes to Hodge classes:
+`f(hodgeClasses V k) ⊆ hodgeClasses W k`.
+
+Proof: `hodgeClasses V k = piece ⟨k, _⟩` (R163), and `map_piece` for
+`p = ⟨k, _⟩` gives exactly the desired containment.
+
+This is the categorical statement underlying "the cycle class map is
+a morphism of Hodge structures whose image lies in Hdg^{p,p}". -/
+theorem map_hodgeClasses {k : ℕ}
+    [PureHodgeStructure V (2 * k)] [PureHodgeStructure W (2 * k)]
+    (f : HodgeStructureMorphism V W (2 * k)) :
+    Submodule.map f.toLinearMap (PureHodgeStructure.hodgeClasses V k) ≤
+      PureHodgeStructure.hodgeClasses W k := by
+  unfold PureHodgeStructure.hodgeClasses
+  exact f.map_piece ⟨k, by omega⟩
+
+/-- **R164 PRESERVATION**: applying a Hodge morphism to a Hodge class
+yields a Hodge class. Pointwise corollary of `map_hodgeClasses`. -/
+theorem isHodgeClass_map {k : ℕ}
+    [PureHodgeStructure V (2 * k)] [PureHodgeStructure W (2 * k)]
+    (f : HodgeStructureMorphism V W (2 * k)) {v : V}
+    (hv : PureHodgeStructure.IsHodgeClass V k v) :
+    PureHodgeStructure.IsHodgeClass W k (f.toLinearMap v) := by
+  have h := f.map_hodgeClasses (k := k)
+  apply h
+  exact ⟨v, hv, rfl⟩
+
+/-- **R164 FILTRATION PRESERVATION**: a Hodge morphism preserves the
+Hodge filtration: `f(F^p V) ⊆ F^p W`. Direct consequence of
+`map_piece` since `F^p = ⨆ (i ≥ p), piece i` and `map` distributes over
+`⨆` and respects `≤`. -/
+theorem map_filt (f : HodgeStructureMorphism V W n) (p : Fin (n + 1)) :
+    Submodule.map f.toLinearMap (PureHodgeStructure.filt (V := V) p) ≤
+      PureHodgeStructure.filt (V := W) p := by
+  unfold PureHodgeStructure.filt
+  rw [Submodule.map_iSup]
+  refine iSup_le (fun i => ?_)
+  rw [Submodule.map_iSup]
+  refine iSup_le (fun hi => ?_)
+  refine le_iSup_of_le i (le_iSup_of_le hi ?_)
+  exact f.map_piece i
+
+end HodgeStructureMorphism
+
 /-! ## Pure Hodge structures via explicit pieces with substantive
 dimensional, disjointness and span axioms
 
