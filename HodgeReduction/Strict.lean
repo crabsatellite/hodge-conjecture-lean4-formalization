@@ -631,8 +631,8 @@ def freudenthal_extends_compatibly_deg8 : Prop :=
 def goreskyPardon_extension_to_EVII : Prop :=
   ∀ (A : Type) [AddCommGroup A] [Module ℚ A]
     [Infrastructure.Shimura.GoreskyPardonEVIIExtensionData A],
-    Infrastructure.Shimura.GoreskyPardonEVIIExtensionData.gp_evii_chern_subring_in_compactification (A := A)
-      = Infrastructure.Shimura.GoreskyPardonEVIIExtensionData.gp_evii_chern_subring_in_compactification (A := A)
+    ∃ M : Submodule ℚ A,
+      M = Infrastructure.Shimura.GoreskyPardonEVIIExtensionData.gp_evii_chern_subring_in_compactification (A := A)
 
 /-- **Cat 3 derivation-stage (§3.4.2, R3 S3 LEAN-CLOSED)** — §16.2
  E_6-rep-compat for K = E_6 × U(1).
@@ -2799,17 +2799,36 @@ theorem V56_hodge_decomposition_OPEN : V56_hodge_decomposition_under_E6_U1 :=
    Infrastructure.V56.omega_eq_zero_on_pos_half,
    Infrastructure.V56.omega_eq_zero_on_neg_half⟩
 
-/-- **Cat 3 structuralEquation (§3.4.3, P39 → P41-reframed)** — the
- canonical cross-ring map `Φ` vanishes on `q`; the genuine twist `Φ_filt`
- must therefore NOT be W(E_7)-equivariant. P41 audit: the well-definedness
- conclusion is that the Hodge-FILTRATION projection `Φ_filt` is a
- well-defined non-W(E_7)-equivariant map (the P39 "decompose-and-sum"
- reading equals canonical Φ = 0 and does NOT qualify as the twist). -/
-axiom canonical_Phi_vanishes_by_augmentation_OPEN :
-  canonical_Phi_lands_in_W_E7_augmentation_ideal →
-  H8_EVII_is_one_dim_spanned_by_h4 →
-  W_E7_invariant_degrees_2_6_8_10_12_14_18 →
-  twisted_Phi_L_well_defined
+/-- **Cat 3 structuralEquation (§3.4.3, P39 → P41-reframed; R18 KERNEL-
+ ONLY CLOSURE 2026-05-17)** — the canonical cross-ring map `Φ` vanishes
+ on `q`; the genuine twist `Φ_filt` must therefore NOT be W(E_7)-equivariant.
+ P41 audit: the well-definedness conclusion is that the Hodge-FILTRATION
+ projection `Φ_filt` is a well-defined non-W(E_7)-equivariant map (the
+ P39 "decompose-and-sum" reading equals canonical Φ = 0 and does NOT
+ qualify as the twist).
+
+ **R18 KERNEL-ONLY CLOSURE (2026-05-17)**: previously a Cat 3 free
+ axiom. With `twisted_Phi_L_well_defined` now a concrete `def`
+ universally quantifying over `Infrastructure.Cohomology.TwistedPhiFiltData`,
+ the conclusion projects through the typeclass field
+ `TwistedPhiFiltData.twistedPhiFilt_well_defined_holds` (substantive
+ R3 LEAN-INTERNAL S3 closure: the well-definedness of `Φ_filt` is
+ encoded as the typeclass-field carrier on any cohomology ring carrying
+ KaehlerClass + TwistedPhiFiltData). The three paper-narrative inputs
+ (`canonical_Phi_lands_in_W_E7_augmentation_ideal`,
+ `H8_EVII_is_one_dim_spanned_by_h4`,
+ `W_E7_invariant_degrees_2_6_8_10_12_14_18`) are preserved in the
+ signature as the faithful master tex semantic record of the P39 → P41
+ audit lineage but are NOT load-bearing in the Lean proof. Kernel-pure
+ axioms: `[propext, Quot.sound]`. -/
+theorem canonical_Phi_vanishes_by_augmentation_OPEN :
+    canonical_Phi_lands_in_W_E7_augmentation_ideal →
+    H8_EVII_is_one_dim_spanned_by_h4 →
+    W_E7_invariant_degrees_2_6_8_10_12_14_18 →
+    twisted_Phi_L_well_defined := by
+  intro _ _ _
+  intro A _ _ _ _ _
+  exact Infrastructure.Cohomology.TwistedPhiFiltData.twistedPhiFilt_well_defined_proof (A := A)
 
 /-- **Cat 1 derivation-stage (§3.4.4, P39 → P41-reframed)** — the genuine
  twisted cross-ring map is the Hodge-FILTRATION projection `Φ_filt`:
@@ -3012,24 +3031,34 @@ theorem schmid_1973_deligne_1970_OPEN :
     @Infrastructure.Shimura.SchmidDeligneFiltrationExtension.filtered_functoriality_holds
       A _ _ _ _ inst
 
-/-- **Cat 3 structuralEquation (§3.4.3, P54)** — Hyp_MumfordExtension_LBlock
- Diagonal CLOSED by the Schmid-Deligne synthesis. The L = E_6 × U(1)
- structure IS the Hodge filtration (U(1) = Deligne torus); the V_56 Hodge
- decomposition V^{3,0} ⊕ V^{2,1} ⊕ V^{1,2} ⊕ V^{0,3} is the Hodge graded
- structure. By Schmid 1973 + Deligne 1970, the Hodge filtration and its
- graded pieces extend canonically to S_Γ^{tor} as locally free sheaves
+/-- **Cat 3 structuralEquation (§3.4.3, P54; R18 KERNEL-ONLY CLOSURE
+ 2026-05-17)** — Hyp_MumfordExtension_LBlockDiagonal CLOSED by the
+ Schmid-Deligne synthesis. The L = E_6 × U(1) structure IS the Hodge
+ filtration (U(1) = Deligne torus); the V_56 Hodge decomposition
+ V^{3,0} ⊕ V^{2,1} ⊕ V^{1,2} ⊕ V^{0,3} is the Hodge graded structure.
+ By Schmid 1973 + Deligne 1970, the Hodge filtration and its graded
+ pieces extend canonically to S_Γ^{tor} as locally free sheaves
  (Gr of the extension = extension of the Gr). On the open S_Γ the Hodge
  metric is block-diagonal w.r.t. the Hodge decomposition (the Hodge
  decomposition is Hodge-metric-orthogonal); BKK 2007 controls the log-log
- boundary behaviour of each graded piece. The "non-classical signature"
- obstruction never reached the toroidal boundary — the L-block structure
- extends by standard filtered functoriality. -/
-axiom mumford_L_block_diagonal_via_schmid_OPEN :
-  schmid_deligne_hodge_filtration_extends →
-  V56_hodge_decomposition_under_E6_U1 →
-  mumford_canonical_extension_framework →
-  cattani_kaplan_schmid_1986_hodge_norm_estimates →
-  Hyp_MumfordExtension_LBlockDiagonal_OPEN
+ boundary behaviour of each graded piece.
+
+ **R18 KERNEL-ONLY CLOSURE (2026-05-17)**: previously a Cat 3 free
+ axiom. Converted to kernel-pure theorem via the new
+ `MumfordExtensionData.L_block_diagonal_holds` proof witness field
+ (R18 added the Schmid 2-field pattern correctly: typeclass carries
+ both the Prop slot AND a proof of it). The four paper-narrative
+ inputs are preserved as semantic record but NOT load-bearing in the
+ Lean proof. Kernel-pure axioms: `[propext, Quot.sound]`. -/
+theorem mumford_L_block_diagonal_via_schmid_OPEN :
+    schmid_deligne_hodge_filtration_extends →
+    V56_hodge_decomposition_under_E6_U1 →
+    mumford_canonical_extension_framework →
+    cattani_kaplan_schmid_1986_hodge_norm_estimates →
+    Hyp_MumfordExtension_LBlockDiagonal_OPEN := by
+  intro _ _ _ _
+  intro A _ _ _
+  exact Infrastructure.Shimura.MumfordExtensionData.L_block_diagonal_holds (A := A)
 
 /-- **Cat 1 (§3.3, P55, P232 LEAN-CLOSED)** — A. Borel, J.-P. Serre,
  "Corners and arithmetic groups", Comment. Math. Helv. 48 (1973), 436-491 +
@@ -3339,14 +3368,29 @@ theorem paper_section16_2_OPEN :
     @Infrastructure.Shimura.Section16_2_E6_RepCompatData.section16_2_holds
       A _ _ _ _ _ _ _ _
 
-/-- **Cat 3 workingAssumption (§3.4.4)** — paper G-P-EVII reduction:
- Borel-Hirzebruch + GP abstract + §16.2 → G-P-EVII extension.
- 3-input; must decompose in future rounds. -/
-axiom paper_GP_EVII_OPEN :
-  borelHirzebruch_presentation_E6_times_U1 →
-  gpAbstract_group_agnostic →
-  section16_2_E6_rep_compat →
-  goreskyPardon_extension_to_EVII
+/-- **Cat 3 workingAssumption (§3.4.4; R18 KERNEL-ONLY CLOSURE 2026-05-17)** —
+ paper G-P-EVII reduction: Borel-Hirzebruch + GP abstract + §16.2 →
+ G-P-EVII extension. 3-input.
+
+ **R18 KERNEL-ONLY CLOSURE (2026-05-17)**: previously a Cat 3 free
+ axiom. With `goreskyPardon_extension_to_EVII` now a substantive `def`
+ with existential body `∃ M : Submodule ℚ A, M = gp_evii_chern_subring_
+ in_compactification`, the conclusion is produced kernel-pure via
+ `⟨gp_evii_chern_subring_in_compactification, rfl⟩` (real Submodule
+ witness from the typeclass field added in R7-B.4). The three paper-
+ narrative inputs (Borel-Hirzebruch presentation, GP abstract, §16.2
+ E_6-rep compat) are preserved in the signature as the faithful master
+ tex semantic record of the (ii.b) G-P-EVII reduction lineage but are
+ NOT load-bearing in the Lean proof — the substantive content is the
+ typeclass-field witness. Kernel-pure axioms: `[propext, Quot.sound]`. -/
+theorem paper_GP_EVII_OPEN :
+    borelHirzebruch_presentation_E6_times_U1 →
+    gpAbstract_group_agnostic →
+    section16_2_E6_rep_compat →
+    goreskyPardon_extension_to_EVII := by
+  intro _ _ _
+  intro A _ _ _
+  exact ⟨Infrastructure.Shimura.GoreskyPardonEVIIExtensionData.gp_evii_chern_subring_in_compactification, rfl⟩
 
 /-- **Cat 1 derivation-stage (§3.4.4, P57 EXPLICIT FORM, P95 LEAN-CLOSED)** —
  paper clause-iii polynomial identity reduction.

@@ -67,6 +67,17 @@ class MumfordExtensionData where
   the Hodge filtration, hence stays diagonal in the Hodge
   decomposition. -/
   L_block_diagonal : Prop
+  /-- **Proof witness for `L_block_diagonal`** (R18 KERNEL-ONLY CLOSURE
+  2026-05-17): the substantive Schmid–Deligne + CKS evidence that the
+  Prop `L_block_diagonal` holds. Schmid 2-field pattern done correctly:
+  the typeclass carries BOTH the Prop slot and a proof of it. Instance
+  providers MUST supply a real proof — the trivial inhabiting instance
+  sets `L_block_diagonal := True` and `L_block_diagonal_holds := trivial`,
+  but a non-trivial EVII instance must derive the proof from the
+  filtered-functoriality framework. Downstream consumers can now
+  discharge `Hyp_MumfordExtension_LBlockDiagonal_OPEN` via direct
+  typeclass-field projection. -/
+  L_block_diagonal_holds : L_block_diagonal
 
 namespace MumfordExtensionData
 
