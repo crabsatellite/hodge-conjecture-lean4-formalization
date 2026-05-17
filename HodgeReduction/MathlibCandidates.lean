@@ -593,6 +593,55 @@ def IsoSetoid.{u} (R : Type u) [CommRing R] :
 
 end Module.IsInvertible.Sigma
 
+/-! ### `Picard` group (R109): the quotient `Pic R`
+
+**The Picard group of a commutative ring**, defined as the quotient of
+the type of invertible R-modules by isomorphism.
+
+`Picard R := Quotient (Module.IsInvertible.Sigma.IsoSetoid R)`
+
+**Note on naming**: in Mathlib, `Picard` is the algebraic Picard group
+(invertible modules / iso), distinct from the geometric Picard group
+of an algebraic variety (line bundles / iso). They agree for `Spec R`.
+
+This round introduces:
+- `Picard R` quotient type
+- `Picard.mk M` constructor (lifts an invertible R-module)
+- `Picard.mk_R` distinguished element (the class of R itself, group identity)
+- `Picard.mk_eq_mk_iff` characterization of equality
+
+Subsequent rounds (R110+) add multiplication via tensor product, inverse
+via dual module, and the full `CommGroup` structure. -/
+
+/-- The **Picard group** of a commutative ring R: isomorphism classes of
+invertible R-modules under tensor product. -/
+def Picard.{u} (R : Type u) [CommRing R] : Type (u + 1) :=
+  Quotient (Module.IsInvertible.Sigma.IsoSetoid R)
+
+namespace Picard
+
+/-- Lift an invertible R-module to its class in `Picard R`. -/
+def mk.{u} {R : Type u} [CommRing R] (M : Type u) [AddCommGroup M]
+    [Module R M] [Module.IsInvertible R M] : Picard R :=
+  Quotient.mk (Module.IsInvertible.Sigma.IsoSetoid R)
+    (Module.IsInvertible.Sigma.mk (R := R) M)
+
+/-- The distinguished class `[R]` — the identity of the Picard group. -/
+def one.{u} (R : Type u) [CommRing R] : Picard R :=
+  mk (R := R) R
+
+/-- Two invertible R-modules have the same Picard class iff they are
+R-linearly isomorphic. -/
+theorem mk_eq_mk_iff.{u} {R : Type u} [CommRing R]
+    (M M' : Type u) [AddCommGroup M] [Module R M] [Module.IsInvertible R M]
+    [AddCommGroup M'] [Module R M'] [Module.IsInvertible R M'] :
+    mk (R := R) M = mk (R := R) M' ↔ Nonempty (M ≃ₗ[R] M') := by
+  unfold mk
+  rw [Quotient.eq]
+  rfl
+
+end Picard
+
 /-! ### Mathlib-PR readiness checklist
 
 * Definition is single-purpose, mathematically standard.
@@ -662,5 +711,9 @@ axioms or `sorry`. The `#print axioms` lines below verify this. -/
 #print axioms Module.IsInvertible.Sigma.IsoRel.symm
 #print axioms Module.IsInvertible.Sigma.IsoRel.trans
 #print axioms Module.IsInvertible.Sigma.IsoSetoid
+-- R109 Picard quotient type + mk + one + mk_eq_mk_iff: Pic R quotient construction.
+#print axioms Picard.mk
+#print axioms Picard.one
+#print axioms Picard.mk_eq_mk_iff
 
 end HodgeReduction.MathlibCandidates
