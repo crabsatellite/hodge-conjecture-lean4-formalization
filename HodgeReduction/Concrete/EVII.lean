@@ -2427,6 +2427,30 @@ theorem evii_w_inv_containment :
           (A := A_EVII) :=
   HodgeReduction.Infrastructure.Cohomology.CoinvariantAlgebraData.larger_le_smaller
 
+/-! ### R85 SUBSTANTIVE: `BorelHirzebruchPresentation A_EVII`
+
+Explicit polynomial-algebra presentation of `H^*(Ě_VII; ℚ)` per
+Borel-Hirzebruch 1958-60 Part III §29-30:
+
+* `rank = 7`: the **7 polynomial generators** of `H^*(Ě_VII; ℚ)` per
+  the Toda 1975 + Kono-Mimura 1976 generator computation (degrees
+  2, 6, 8, 10, 12, 14, 18).
+* `generatorDegreeLowerBound = 2`: every cohomological generator has
+  degree ≥ 2 (matching `h ∈ H²` being the lowest-degree generator). -/
+noncomputable instance evii_borelHirzebruchPresentation :
+    HodgeReduction.Infrastructure.Cohomology.BorelHirzebruchPresentation A_EVII where
+  rank := 7
+  rank_pos := by norm_num
+  generatorDegreeLowerBound := 2
+  generatorDegreeLowerBound_pos := by norm_num
+
+/-- **Sanity check** (R85): the Borel-Hirzebruch presentation rank for
+`Ě_VII = E_7/(E_6 × U(1))` is **7** (Toda 1975 + Kono-Mimura 1976). -/
+theorem evii_BH_presentation_rank_eq_7 :
+    HodgeReduction.Infrastructure.Cohomology.BorelHirzebruchPresentation.rank
+      (A := A_EVII) = 7 :=
+  rfl
+
 /-- **Sanity check** (R77): Standard Conjecture (D) holds on `Ě_VII`
 (numerical-equivalence = hom-equivalence). -/
 theorem evii_standard_conjecture_D :
@@ -2581,6 +2605,8 @@ theorem evii_apex_synthesis :
 #print axioms evii_frobenius_fixes_all
 -- R84 KERNEL-PURITY: CoinvariantAlgebraData EVII (W(G) <= W(L) containment).
 #print axioms evii_w_inv_containment
+-- R85 KERNEL-PURITY: BorelHirzebruchPresentation EVII (rank 7 generators).
+#print axioms evii_BH_presentation_rank_eq_7
 
 /-! ### R73 META-SYNTHESIS: Type-level catalogue of substantive EVII closures
 
