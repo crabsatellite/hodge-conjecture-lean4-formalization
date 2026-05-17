@@ -1073,6 +1073,56 @@ theorem Module.IsInvertible.baseChange.{u}
     -- Compose and take symm to get the required iso.
     exact (stepA.trans (stepB.trans stepC)).symm
 
+/-! ### `Picard.baseChange` (R128): the induced group hom `Picard R → Picard A`
+
+Lift `Module.IsInvertible.baseChange` (R127) to the quotient: for any
+R-algebra A, base change descends to a `MonoidHom Picard R →* Picard A`.
+
+This is the full Picard-functoriality statement at the group level. -/
+
+namespace Module.IsInvertible.Sigma
+
+/-- Base change at the Sigma level: package `A ⊗_R s.carrier` as a Sigma element. -/
+noncomputable def baseChange.{u}
+    {R : Type u} [CommRing R] (A : Type u) [CommRing A] [Algebra R A]
+    (s : Module.IsInvertible.Sigma R) : Module.IsInvertible.Sigma A :=
+  haveI := Module.IsInvertible.baseChange R A s.carrier
+  Module.IsInvertible.Sigma.mk (R := A) (TensorProduct R A s.carrier)
+
+/-- Base change respects iso-equivalence: if `s ≃ t` over R, then
+`A ⊗_R s ≃ A ⊗_R t` over A. -/
+theorem IsoRel.baseChange.{u}
+    {R : Type u} [CommRing R] (A : Type u) [CommRing A] [Algebra R A]
+    {s t : Module.IsInvertible.Sigma R} (h : IsoRel s t) :
+    IsoRel (baseChange A s) (baseChange A t) := by
+  obtain ⟨e⟩ := h
+  exact ⟨TensorProduct.AlgebraTensorModule.congr (LinearEquiv.refl A A) e⟩
+
+end Module.IsInvertible.Sigma
+
+namespace Picard
+
+/-- `Picard.baseChange A : Picard R → Picard A` — the function lifted from
+`Sigma.baseChange` via the iso-equivalence-respecting Quotient.liftOn. -/
+noncomputable def baseChange.{u}
+    {R : Type u} [CommRing R] (A : Type u) [CommRing A] [Algebra R A]
+    (x : Picard R) : Picard A :=
+  Quotient.liftOn (s := Module.IsInvertible.Sigma.IsoSetoid R) x
+    (fun s => Quotient.mk _ (Module.IsInvertible.Sigma.baseChange A s))
+    (fun _ _ h => Quotient.sound
+      (Module.IsInvertible.Sigma.IsoRel.baseChange A h))
+
+/-- `baseChange` agrees with `TensorProduct R A M` on representatives. -/
+theorem baseChange_mk.{u}
+    {R : Type u} [CommRing R] (A : Type u) [CommRing A] [Algebra R A]
+    (M : Type u) [AddCommGroup M] [Module R M] [Module.IsInvertible R M] :
+    baseChange A (mk (R := R) M) =
+      haveI := Module.IsInvertible.baseChange R A M
+      mk (R := A) (TensorProduct R A M) :=
+  rfl
+
+end Picard
+
 /-! ### Mathlib-PR readiness checklist
 
 * Definition is single-purpose, mathematically standard.
