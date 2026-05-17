@@ -219,6 +219,39 @@ theorem piece_disjoint_filt_succ
   -- Disjointness via mono_right
   exact (h_indep p).mono_right h_filt_le
 
+/-- **R150**: filtration step-wise decomposition.
+
+`filt p = piece p ⊔ filt ⟨p.val + 1⟩` — the current filtration step
+splits as "current Hodge piece" plus "next filtration step".
+
+Combined with R149 (`piece_disjoint_filt_succ`), this exhibits
+`filt p` as an INTERNAL direct sum of `piece p` and `filt ⟨p+1⟩`,
+giving the associated graded iso `filt p / filt ⟨p+1⟩ ≃ piece p`. -/
+theorem filt_eq_piece_sup_filt_succ (p : Fin (n + 1))
+    (hpn : p.val + 1 < n + 1) :
+    filt (V := V) p =
+    piece (V := V) p ⊔ filt (V := V) ⟨p.val + 1, hpn⟩ := by
+  apply le_antisymm
+  · -- filt p ≤ piece p ⊔ filt ⟨p+1⟩
+    unfold filt
+    refine iSup_le (fun i => iSup_le (fun hi => ?_))
+    -- hi : p.val ≤ i.val
+    by_cases heq : i.val = p.val
+    · -- i = p as Fin, so piece i ≤ piece p ≤ left summand
+      have h_iFin : i = p := Fin.ext heq
+      rw [h_iFin]
+      exact le_sup_left
+    · -- i.val > p.val, so i.val ≥ p.val + 1, hence piece i ≤ filt ⟨p+1⟩
+      refine le_sup_of_le_right ?_
+      have h_iv : p.val + 1 ≤ i.val := by omega
+      show piece i ≤ filt (V := V) ⟨p.val + 1, hpn⟩
+      unfold filt
+      exact le_iSup_of_le i (le_iSup_of_le h_iv le_rfl)
+  · -- piece p ⊔ filt ⟨p+1⟩ ≤ filt p
+    refine sup_le ?_ ?_
+    · exact piece_le_filt p
+    · exact filt_antitone (by omega : p.val ≤ p.val + 1)
+
 end PureHodgeStructure
 
 /-! ## Pure Hodge structures via explicit pieces with substantive
