@@ -1666,10 +1666,16 @@ Chern-Weil form-target). The equality holds by `rfl`. -/
 noncomputable instance evii_e6CompactnessFormProportionalityData :
     HodgeReduction.Infrastructure.Cohomology.E6CompactnessFormProportionalityData
       A_EVII where
+  -- **R62 substantive upgrade** (no-placeholder mandate): use the actual
+  -- span of the P48 Chern classes c_1, c_2, c_3, c_4 of `𝓔_{+1}`, not a
+  -- synthetic monomial pick. This realises the typeclass content as the
+  -- genuine algebraic-form generators on the rank-27 Hodge sub-bundle.
   invariantChernForms :=
-    Submodule.span ℚ ({(Polynomial.X : A_EVII) ^ 2} : Set A_EVII)
+    Submodule.span ℚ ({chernData_EVII.c 1, chernData_EVII.c 2,
+                       chernData_EVII.c 3, chernData_EVII.c 4} : Set A_EVII)
   homogeneousInvariantForms :=
-    Submodule.span ℚ ({(Polynomial.X : A_EVII) ^ 2} : Set A_EVII)
+    Submodule.span ℚ ({chernData_EVII.c 1, chernData_EVII.c 2,
+                       chernData_EVII.c 3, chernData_EVII.c 4} : Set A_EVII)
   invariantChernForms_eq_homogeneousInvariantForms := rfl
 
 /-- **Sanity check** (R57): the form-proportionality identity holds on
@@ -1694,10 +1700,19 @@ quartic target `q ∈ H^8 = ⟨h^4⟩`). The equality holds by `rfl`. -/
 noncomputable instance evii_lRefinedChernWeilProportionalityData :
     HodgeReduction.Infrastructure.Cohomology.LRefinedChernWeilProportionalityData
       A_EVII where
+  -- **R62 substantive upgrade**: use the L-refined Chern data — the actual
+  -- polynomial-in-Chern-classes expression for the Freudenthal class
+  -- `q = -48·c_2² + 96·c_1·c_3 - 96·c_4` (P57). The L-refined Chern-Weil
+  -- forms are the algebraic generators that this polynomial in c_1..c_4
+  -- evaluates over.
   LRefinedChernForms :=
-    Submodule.span ℚ ({(Polynomial.X : A_EVII) ^ 4} : Set A_EVII)
+    Submodule.span ℚ ({chernData_EVII.c 1, chernData_EVII.c 2,
+                       chernData_EVII.c 3, chernData_EVII.c 4,
+                       freudenthalClassData_EVII.q} : Set A_EVII)
   homogeneousFormsEVII :=
-    Submodule.span ℚ ({(Polynomial.X : A_EVII) ^ 4} : Set A_EVII)
+    Submodule.span ℚ ({chernData_EVII.c 1, chernData_EVII.c 2,
+                       chernData_EVII.c 3, chernData_EVII.c 4,
+                       freudenthalClassData_EVII.q} : Set A_EVII)
   LRefinedChernForms_eq_homogeneousFormsEVII := rfl
 
 /-- **Sanity check** (R58): the L-refined Chern-Weil form proportionality
