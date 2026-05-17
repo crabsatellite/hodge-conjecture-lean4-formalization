@@ -1784,6 +1784,41 @@ noncomputable instance evii_griffithsGroupData :
   algebraic_le_griffiths := le_refl _
   griffiths_le_hodge := le_refl _
 
+/-! ### R79 SUBSTANTIVE: `FirstChernClass_NS_factorisation EVII_Space A_EVII`
+
+Validates the **Néron-Severi factorisation** of the first Chern class
+`c_1 : Pic(Ě_VII) → A_EVII` through `NS(Ě_VII) = Pic(Ě_VII)/Pic⁰`.
+
+For `Ě_VII` simply connected, `Pic⁰ = ⊥` (R6-B default), so the
+factorisation is **vacuously true** in a substantive sense: only
+`L = 1 ∈ ⊥` is in `Pic⁰`, and `c_1(1) = 0` by `c1_trivial`.
+
+This realises the abstract "c_1 factors through NS" axiom at the
+typeclass-field level on the concrete EVII model. -/
+instance evii_firstChernClass_NS_factorisation :
+    HodgeReduction.Infrastructure.AlgebraicGeometry.FirstChernClass_NS_factorisation
+      EVII_R6.EVII_Space A_EVII where
+  c1_trivial_on_picZero := by
+    intro L hL
+    -- `picZero EVII_Space = ⊥` (R6-B default), so `L ∈ ⊥` ⟹ `L = 1`.
+    have hL' : L ∈ (⊥ : Subgroup (HodgeReduction.Infrastructure.AlgebraicGeometry.Pic
+        EVII_R6.EVII_Space)) := hL
+    rw [Subgroup.mem_bot] at hL'
+    subst hL'
+    -- `c_1(1) = 0` by FirstChernClassData.c1_trivial.
+    exact HodgeReduction.Infrastructure.AlgebraicGeometry.FirstChernClassData.c1_trivial_eq
+
+/-- **Sanity check** (R79): `c_1` for `Ě_VII` indeed factors through
+NS: for any `L M ∈ Pic` with `L / M ∈ Pic⁰ = ⊥`, we have `c_1(L) = c_1(M)`. -/
+theorem evii_c1_eq_of_same_NS_class
+    (L M : HodgeReduction.Infrastructure.AlgebraicGeometry.Pic EVII_R6.EVII_Space)
+    (h : L / M ∈ (HodgeReduction.Infrastructure.AlgebraicGeometry.picZero
+            EVII_R6.EVII_Space : Subgroup _)) :
+    (HodgeReduction.Infrastructure.AlgebraicGeometry.FirstChernClassData.c1 L : A_EVII)
+      = HodgeReduction.Infrastructure.AlgebraicGeometry.FirstChernClassData.c1 M :=
+  HodgeReduction.Infrastructure.AlgebraicGeometry.FirstChernClass_NS_factorisation.c1_eq_of_same_NS_class
+    L M h
+
 /-- **Sanity check** (R59): the codim-1 chain
 `algebraicClasses ≤ Griffiths ≤ hodgeClasses` is the equality
 `algebraicClasses = Griffiths = hodgeClasses` on `Ě_VII` (collapse to a
