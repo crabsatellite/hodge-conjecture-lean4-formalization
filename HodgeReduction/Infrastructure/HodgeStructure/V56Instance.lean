@@ -108,6 +108,164 @@ theorem iSup_pieceByFin_eq_top :
   · -- v03 ∈ Hodge_0_3 = pieceByFin 3
     exact Submodule.mem_iSup_of_mem ⟨3, by omega⟩ v03.2
 
+/-! ### Kernel submodules (R141 helpers)
+
+To prove iSupIndep, we use the fact that each Hodge piece sits in the
+kernel of the projection to the "other" coordinates. Defining these
+kernels as explicit submodules makes the sup argument structural. -/
+
+/-- The submodule of elements with `v.a = 0`. -/
+def kerProjA : Submodule ℚ HodgeReduction.Infrastructure.V56 where
+  carrier := {v | v.a = 0}
+  zero_mem' := rfl
+  add_mem' := fun {x y} hx hy => by
+    show x.a + y.a = 0
+    rw [hx, hy]; ring
+  smul_mem' := fun c {x} hx => by
+    show c * x.a = 0
+    rw [hx]; ring
+
+/-- The submodule of elements with `v.A = 0`. -/
+def kerProjJ_A : Submodule ℚ HodgeReduction.Infrastructure.V56 where
+  carrier := {v | v.A = 0}
+  zero_mem' := rfl
+  add_mem' := fun {x y} hx hy => by
+    show x.A + y.A = 0
+    rw [hx, hy, zero_add]
+  smul_mem' := fun c {x} hx => by
+    show c • x.A = 0
+    rw [hx, smul_zero]
+
+/-- The submodule of elements with `v.B = 0`. -/
+def kerProjJ_B : Submodule ℚ HodgeReduction.Infrastructure.V56 where
+  carrier := {v | v.B = 0}
+  zero_mem' := rfl
+  add_mem' := fun {x y} hx hy => by
+    show x.B + y.B = 0
+    rw [hx, hy, zero_add]
+  smul_mem' := fun c {x} hx => by
+    show c • x.B = 0
+    rw [hx, smul_zero]
+
+/-- The submodule of elements with `v.b = 0`. -/
+def kerProjB : Submodule ℚ HodgeReduction.Infrastructure.V56 where
+  carrier := {v | v.b = 0}
+  zero_mem' := rfl
+  add_mem' := fun {x y} hx hy => by
+    show x.b + y.b = 0
+    rw [hx, hy]; ring
+  smul_mem' := fun c {x} hx => by
+    show c * x.b = 0
+    rw [hx]; ring
+
+/-- The four pieces below the kernel of `projA` (those not containing
+the `a`-direction): Hodge_2_1, Hodge_1_2, Hodge_0_3 each have `v.a = 0`
+by definition. -/
+theorem Hodge_2_1_le_kerProjA : Hodge_2_1 ≤ kerProjA := fun _ ⟨h, _, _⟩ => h
+theorem Hodge_1_2_le_kerProjA : Hodge_1_2 ≤ kerProjA := fun _ ⟨h, _, _⟩ => h
+theorem Hodge_0_3_le_kerProjA : Hodge_0_3 ≤ kerProjA := fun _ ⟨h, _, _⟩ => h
+
+/-- The three pieces ≠ Hodge_2_1 sit in `kerProjJ_A`. -/
+theorem Hodge_3_0_le_kerProjJ_A : Hodge_3_0 ≤ kerProjJ_A := fun _ ⟨h, _, _⟩ => h
+theorem Hodge_1_2_le_kerProjJ_A : Hodge_1_2 ≤ kerProjJ_A := fun _ ⟨_, h, _⟩ => h
+theorem Hodge_0_3_le_kerProjJ_A : Hodge_0_3 ≤ kerProjJ_A := fun _ ⟨_, h, _⟩ => h
+
+/-- The three pieces ≠ Hodge_1_2 sit in `kerProjJ_B`. -/
+theorem Hodge_3_0_le_kerProjJ_B : Hodge_3_0 ≤ kerProjJ_B := fun _ ⟨_, h, _⟩ => h
+theorem Hodge_2_1_le_kerProjJ_B : Hodge_2_1 ≤ kerProjJ_B := fun _ ⟨_, h, _⟩ => h
+theorem Hodge_0_3_le_kerProjJ_B : Hodge_0_3 ≤ kerProjJ_B := fun _ ⟨_, _, h⟩ => h
+
+/-- The three pieces ≠ Hodge_0_3 sit in `kerProjB`. -/
+theorem Hodge_3_0_le_kerProjB : Hodge_3_0 ≤ kerProjB := fun _ ⟨_, _, h⟩ => h
+theorem Hodge_2_1_le_kerProjB : Hodge_2_1 ≤ kerProjB := fun _ ⟨_, _, h⟩ => h
+theorem Hodge_1_2_le_kerProjB : Hodge_1_2 ≤ kerProjB := fun _ ⟨_, _, h⟩ => h
+
+/-- **R141**: the four Hodge pieces are `iSupIndep` — each piece is
+disjoint from the sup of the other three. Second (harder) half of the
+`PureHodgeStructure V_56 3` proof obligation.
+
+Proof structure: case-analyse on `i : Fin 4`. For each i, the sup of the
+other three pieces is contained in `ker (proj_i)` (each of the three
+pieces has the i-th coordinate vanishing), so the intersection with
+pieceByFin i (which has the OTHER three coordinates vanishing) is the
+zero subspace. -/
+theorem iSupIndep_pieceByFin : iSupIndep pieceByFin := by
+  intro i
+  -- For each i, need: Disjoint (pieceByFin i) (⨆ j, ⨆ (_ : j ≠ i), pieceByFin j)
+  fin_cases i
+  · -- i = 0: Hodge_3_0 disjoint from sup of Hodge_2_1 ⊔ Hodge_1_2 ⊔ Hodge_0_3
+    -- All three live in kerProjA; intersect with Hodge_3_0 = {v.A=B=b=0} ∩ {v.a=0} = {0}.
+    refine Submodule.disjoint_def.mpr (fun v hv hSup => ?_)
+    -- hv : v ∈ Hodge_3_0 = pieceByFin ⟨0, _⟩, hSup : v ∈ ⨆ ...
+    have h_sup_le : (⨆ j : Fin 4, ⨆ (_ : j ≠ ⟨0, by omega⟩), pieceByFin j) ≤ kerProjA := by
+      refine iSup_le (fun j => iSup_le (fun hj => ?_))
+      fin_cases j
+      · exact absurd rfl hj
+      · exact Hodge_2_1_le_kerProjA
+      · exact Hodge_1_2_le_kerProjA
+      · exact Hodge_0_3_le_kerProjA
+    have h_a : v.a = 0 := h_sup_le hSup
+    have h_A : v.A = 0 := hv.1
+    have h_B : v.B = 0 := hv.2.1
+    have h_b : v.b = 0 := hv.2.2
+    exact HodgeReduction.Infrastructure.V56.ext h_a h_A h_B h_b
+  · -- i = 1: similar with kerProjJ_A
+    refine Submodule.disjoint_def.mpr (fun v hv hSup => ?_)
+    have h_sup_le : (⨆ j : Fin 4, ⨆ (_ : j ≠ ⟨1, by omega⟩), pieceByFin j) ≤ kerProjJ_A := by
+      refine iSup_le (fun j => iSup_le (fun hj => ?_))
+      fin_cases j
+      · exact Hodge_3_0_le_kerProjJ_A
+      · exact absurd rfl hj
+      · exact Hodge_1_2_le_kerProjJ_A
+      · exact Hodge_0_3_le_kerProjJ_A
+    have h_A : v.A = 0 := h_sup_le hSup
+    have h_a : v.a = 0 := hv.1
+    have h_B : v.B = 0 := hv.2.1
+    have h_b : v.b = 0 := hv.2.2
+    exact HodgeReduction.Infrastructure.V56.ext h_a h_A h_B h_b
+  · -- i = 2: similar with kerProjJ_B
+    refine Submodule.disjoint_def.mpr (fun v hv hSup => ?_)
+    have h_sup_le : (⨆ j : Fin 4, ⨆ (_ : j ≠ ⟨2, by omega⟩), pieceByFin j) ≤ kerProjJ_B := by
+      refine iSup_le (fun j => iSup_le (fun hj => ?_))
+      fin_cases j
+      · exact Hodge_3_0_le_kerProjJ_B
+      · exact Hodge_2_1_le_kerProjJ_B
+      · exact absurd rfl hj
+      · exact Hodge_0_3_le_kerProjJ_B
+    have h_B : v.B = 0 := h_sup_le hSup
+    have h_a : v.a = 0 := hv.1
+    have h_A : v.A = 0 := hv.2.1
+    have h_b : v.b = 0 := hv.2.2
+    exact HodgeReduction.Infrastructure.V56.ext h_a h_A h_B h_b
+  · -- i = 3: similar with kerProjB
+    refine Submodule.disjoint_def.mpr (fun v hv hSup => ?_)
+    have h_sup_le : (⨆ j : Fin 4, ⨆ (_ : j ≠ ⟨3, by omega⟩), pieceByFin j) ≤ kerProjB := by
+      refine iSup_le (fun j => iSup_le (fun hj => ?_))
+      fin_cases j
+      · exact Hodge_3_0_le_kerProjB
+      · exact Hodge_2_1_le_kerProjB
+      · exact Hodge_1_2_le_kerProjB
+      · exact absurd rfl hj
+    have h_b : v.b = 0 := h_sup_le hSup
+    have h_a : v.a = 0 := hv.1
+    have h_A : v.A = 0 := hv.2.1
+    have h_B : v.B = 0 := hv.2.2
+    exact HodgeReduction.Infrastructure.V56.ext h_a h_A h_B h_b
+
+/-- **R141 MILESTONE**: `PureHodgeStructure V_56 3` instance.
+
+Combines R140 `iSup_pieceByFin_eq_top` + R141 `iSupIndep_pieceByFin`
+via Mathlib's `isInternal_submodule_of_iSupIndep_of_iSup_eq_top` to
+provide the canonical Mathlib-form `PureHodgeStructure` instance for
+the 56-dim minuscule E_7-representation. -/
+instance instPureHodgeStructure_V56 :
+    PureHodgeStructure HodgeReduction.Infrastructure.V56 3 where
+  piece := pieceByFin
+  isInternal :=
+    DirectSum.isInternal_submodule_of_iSupIndep_of_iSup_eq_top
+      iSupIndep_pieceByFin
+      iSup_pieceByFin_eq_top
+
 end V56
 
 /-! ## Abstract `V_56` Hodge-structure refinement axiom package
