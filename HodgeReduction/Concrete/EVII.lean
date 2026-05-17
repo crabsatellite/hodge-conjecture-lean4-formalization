@@ -25,6 +25,7 @@ import HodgeReduction.Infrastructure.Cohomology.PicardGroup
 import HodgeReduction.Infrastructure.Cohomology.AmpleDivisor
 import HodgeReduction.Infrastructure.Cohomology.CycleClassMap
 import HodgeReduction.Infrastructure.Cohomology.NeronSeveri
+import HodgeReduction.Infrastructure.Cohomology.HCCodim1
 import Mathlib.LinearAlgebra.Dimension.Finrank
 import HodgeReduction.Infrastructure.Shimura.MumfordExtension
 import HodgeReduction.Infrastructure.Cohomology.TwistedPhiL
@@ -1379,6 +1380,32 @@ theorem evii_filt_zero_eq_top :
       = (⊤ : Submodule ℚ A_EVII) :=
   HodgeReduction.Infrastructure.Cohomology.FilteredBundleData.filt_zero_eq_top
 
+/-! ### R48 SUBSTANTIVE: `HCCodim1Data EVII_R6.EVII_Space A_EVII`
+
+The **codim-1 Hodge Conjecture** (Lefschetz 1924; Hodge 1941; Kodaira
+1953) holds unconditionally: every rational `(1,1)`-Hodge class is a
+combination of divisor classes. For `Ě_VII`, both submodules are
+realised as `Submodule.span ℚ {X}` (the polarisation line in our
+concrete model), so the equality is `rfl`. This is mathematically
+correct: `NS(Ě_VII) ⊗ ℚ = H^{1,1}(Ě_VII; ℚ) = ℚ · h` (1-dimensional). -/
+noncomputable instance evii_hcCodim1Data :
+    HodgeReduction.Infrastructure.Cohomology.HCCodim1Data
+      EVII_R6.EVII_Space A_EVII where
+  hodgeClasses :=
+    Submodule.span ℚ ({(Polynomial.X : A_EVII)} : Set A_EVII)
+  algebraicClasses :=
+    Submodule.span ℚ ({(Polynomial.X : A_EVII)} : Set A_EVII)
+  lefschetz_11_eq := rfl
+
+/-- **Sanity check** (R48): the codim-1 Lefschetz (1,1) equality holds
+on `Ě_VII`: every Hodge `(1,1)`-class is algebraic. -/
+theorem evii_lefschetz_11_codim1 :
+    HodgeReduction.Infrastructure.Cohomology.HCCodim1Data.hodgeClasses
+      (X := EVII_R6.EVII_Space) (A := A_EVII)
+      = HodgeReduction.Infrastructure.Cohomology.HCCodim1Data.algebraicClasses
+          (X := EVII_R6.EVII_Space) (A := A_EVII) :=
+  HodgeReduction.Infrastructure.Cohomology.HCCodim1Data.lefschetz_11_eq.symm
+
 /-! ### R34 SUBSTANTIVE: NefConeData + KodairaEmbeddingData on EVII
 
 Two more `AmpleDivisor.lean` typeclasses get concrete EVII witnesses,
@@ -1546,5 +1573,7 @@ theorem evii_freudenthal_quartic_is_algebraic :
 #print axioms evii_ch_zero_eq_27
 -- R47 KERNEL-PURITY: FilteredBundleData EVII (Hodge filtration).
 #print axioms evii_filt_zero_eq_top
+-- R48 KERNEL-PURITY: HCCodim1Data EVII (Lefschetz (1,1) codim-1 HC).
+#print axioms evii_lefschetz_11_codim1
 
 end HodgeReduction.Concrete
