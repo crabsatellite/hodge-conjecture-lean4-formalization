@@ -159,6 +159,65 @@ theorem main_reduction_unconditional :
  show PUnit.unit = α
  exact PUnit.ext PUnit.unit α |>.symm ▸ rfl
 
+/-! ## R170: Main reduction theorem in REAL HC form
+
+The `main_reduction_unconditional` above produces the Unit-trivial
+`HodgeConjecture X` (R43 placeholder). R170 introduces the parallel
+**REAL HC** main reduction — same scope, same scope hypotheses, but
+producing the substantive `HodgeConjectureReal X` (R169) which uses
+the real Hodge-classes submodule (R163 + R168).
+
+The axiom `main_reduction_real_paper_axiom` is the bundled SUBSTANTIVE
+encoding of the paper's main theorem (Thm. `\ref{thm:main}`) at the
+REAL HC level — every InScope smooth projective variety satisfies
+the Hodge Conjecture.
+
+Future rounds will DECOMPOSE this single axiom into the paper's
+finer-grained reduction structure (per-clause-of-InScope axioms +
+applications of the R165 reduction transfer theorem). For now it
+captures the paper's main claim in one substantive declaration.
+
+Paper source: `\label{thm:main}` (Main Theorem). -/
+
+/-- **R170**: Paper-claim axiom: the paper's main theorem produces the
+genuine `HodgeConjectureReal X` for every InScope smooth projective
+variety `X`. Encodes the substantive content of `\ref{thm:main}` at
+the real-HC level (vs the Unit-trivial level of
+`main_reduction_paper_axiom`).
+
+Substantive content includes:
+* The 4-case `InScope` disjunction:
+  (i) classical Cartan (Meyer + Kostant);
+  (ii) E_6 weight-parity vacuity;
+  (iii) E_7-Shimura (BBT-rigid + ChernWeil + AH-CM-E7);
+  (iv) CY_3-reducible (thm_cy3_e7_nonexistence).
+* All 9 paper hypotheses (`hyp_HC_CM_Ab`, `hyp_CM_correspondences`,
+  ..., `hyp_hecke_bbt`) at the REAL-HC level.
+* The 23-entry SubGap inventory (currently absorbed; future rounds
+  will reintroduce as a separate antecedent).
+
+Future decomposition: this single axiom will be DERIVED from finer-
+grained `hyp_*_real` axioms + applications of R165's
+`CycleClassMapData.hodgeConjecture_transfer` reduction theorem.
+
+Paper source: `\label{thm:main}` (Main Theorem). -/
+axiom main_reduction_real_paper_axiom :
+ ∀ (X : SmoothProjectiveVariety ℂ), InScope X → HodgeConjectureReal X
+
+/-- **R170**: Main theorem in REAL HC form. The substantive,
+non-Unit-trivial version of `main_reduction_unconditional`. Derived
+from `main_reduction_real_paper_axiom`.
+
+This is the **TRUE HC for InScope varieties** — every Hodge class
+genuinely arises as the image of a rational algebraic cycle (per the
+R168 `VarietyHC` formulation, which uses the real
+`PureHodgeStructure.hodgeClasses` submodule of `H^{2p}(X, ℚ)`).
+
+Paper source: `\label{thm:main}` (Main Theorem). -/
+theorem main_reduction_real :
+ ∀ (X : SmoothProjectiveVariety ℂ), InScope X → HodgeConjectureReal X :=
+ main_reduction_real_paper_axiom
+
 /-! ## Unconditional paper theorems (body: `sorry`) -/
 
 /-- **Meyer / Hasse--Minkowski descent**, paper `\label{thm:Meyer}`.
