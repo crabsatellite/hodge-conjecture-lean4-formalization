@@ -122,6 +122,46 @@ theorem Polynomial.disjoint_span_X_pow_of_ne {i j : ℕ} (hij : i ≠ j) :
   have hresult := Polynomial.linearIndependent_X_pow.disjoint_span_image hd
   rwa [Set.image_singleton, Set.image_singleton] at hresult
 
+/-! ## `Polynomial.span_X_pow_eq_top`
+
+The `ℚ`-span of all monomial powers `{X^n | n : ℕ}` in `Polynomial ℚ`
+equals the whole module `⊤`. This is the structural fact that
+**polynomial monomials are a generating set** for the polynomial ring
+as a ℚ-vector space.
+
+**Structural proof** (one-line composition):
+* `Polynomial.basisMonomials ℚ : Basis ℕ ℚ (Polynomial ℚ)` provides a
+  basis indexed by ℕ (Mathlib `Algebra/Polynomial/Basis.lean`).
+* `Basis.span_eq`: every basis spans the whole module.
+* Reindex via `Polynomial.monomial_one_right_eq_X_pow` (Mathlib
+  `Algebra/Polynomial/Basic.lean`).
+
+**Why this is a Mathlib PR candidate**: this is a fundamental fact
+about polynomial rings — used in any structural argument involving
+ℚ-linear combinations of monomial powers (e.g. cohomology-ring
+spanning arguments, polynomial-degree-graded decompositions). It
+would naturally live in `Mathlib.Algebra.Polynomial.Basis` alongside
+`basisMonomials`. -/
+theorem Polynomial.span_X_pow_eq_top :
+    Submodule.span ℚ (Set.range
+      (fun n : ℕ => (Polynomial.X : Polynomial ℚ) ^ n))
+      = (⊤ : Submodule ℚ (Polynomial ℚ)) := by
+  -- The basisMonomials gives `span (range basisMonomials) = ⊤`.
+  -- We then reindex: `basisMonomials n = monomial n 1 = X^n`.
+  have hspan : Submodule.span ℚ (Set.range (Polynomial.basisMonomials ℚ))
+      = ⊤ := (Polynomial.basisMonomials ℚ).span_eq
+  -- Show that `Set.range (basisMonomials ℚ) = Set.range (fun n => X^n)`.
+  have hrange : Set.range (Polynomial.basisMonomials ℚ)
+      = Set.range (fun n : ℕ => (Polynomial.X : Polynomial ℚ) ^ n) := by
+    ext p
+    constructor
+    · rintro ⟨n, rfl⟩
+      exact ⟨n, (Polynomial.monomial_one_right_eq_X_pow n).symm⟩
+    · rintro ⟨n, rfl⟩
+      exact ⟨n, Polynomial.monomial_one_right_eq_X_pow n⟩
+  rw [hrange] at hspan
+  exact hspan
+
 /-! ## Pairwise disjointness via `Fin n`-indexed monomials
 
 Convenience corollary: a `Fin n`-indexed family of monomials `X^i.val`
@@ -139,5 +179,17 @@ theorem Polynomial.disjoint_span_X_pow_fin_of_ne {n : ℕ} {i j : Fin n}
       (Submodule.span ℚ
         ({(Polynomial.X : Polynomial ℚ) ^ j.val} : Set (Polynomial ℚ))) :=
   Polynomial.disjoint_span_X_pow_of_ne (fun h => hij (Fin.ext h))
+
+/-! ## Kernel-purity verification
+
+Each MathlibCandidates lemma should depend only on Mathlib + kernel
+axioms `[propext, Classical.choice, Quot.sound]`, with no project-local
+axioms or `sorry`. The `#print axioms` lines below verify this. -/
+
+-- All three Polynomial lemmas: kernel-pure.
+#print axioms Polynomial.linearIndependent_X_pow
+#print axioms Polynomial.disjoint_span_X_pow_of_ne
+#print axioms Polynomial.disjoint_span_X_pow_fin_of_ne
+#print axioms Polynomial.span_X_pow_eq_top
 
 end HodgeReduction.MathlibCandidates
