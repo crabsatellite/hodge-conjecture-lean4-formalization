@@ -23,6 +23,7 @@ import HodgeReduction.Infrastructure.AlgebraicGeometry.PicardGroup
 import HodgeReduction.Infrastructure.AlgebraicGeometry.FirstChernClass
 import HodgeReduction.Infrastructure.Cohomology.BorelHirzebruchCoinvariant
 import HodgeReduction.Infrastructure.Cohomology.SheafCohomology
+import HodgeReduction.Infrastructure.Cohomology.PoincareDuality
 import HodgeReduction.Infrastructure.Cohomology.PicardGroup
 import HodgeReduction.Infrastructure.Cohomology.AmpleDivisor
 import HodgeReduction.Infrastructure.Cohomology.CycleClassMap
@@ -1618,6 +1619,36 @@ theorem evii_unit_mem_H_00 :
   rw [this]
   exact Submodule.subset_span (Set.mem_singleton _)
 
+/-! ### R56 SUBSTANTIVE: `FundamentalClassData A_EVII`
+
+Provides the fundamental class `[Ě_VII] ∈ A_EVII`. On the synthetic
+carrier with cohomological-degree convention (`degreeOf X = 2`), the
+top cohomological degree is `54 = 2 × 27` and the top piece is
+spanned by `X^27` (polynomial degree 27 ↔ cohomological degree 54).
+
+* `dim := 54` (real dimension of `Ě_VII`)
+* `fundamentalClass := X^27` (top-degree generator)
+* `fundamentalClass_ne_zero := pow_ne_zero 27 Polynomial.X_ne_zero` -/
+noncomputable instance evii_fundamentalClassData :
+    HodgeReduction.Infrastructure.Cohomology.FundamentalClassData A_EVII where
+  dim := 54
+  fundamentalClass := (Polynomial.X : A_EVII) ^ 27
+  fundamentalClass_ne_zero := pow_ne_zero 27 Polynomial.X_ne_zero
+
+/-- **Sanity check** (R56): the fundamental class of `Ě_VII` is non-zero
+in the cohomology ring (Hatcher Thm 3.26(b) p.235 instance for the
+closed orientable connected compact Hermitian symmetric `Ě_VII`). -/
+theorem evii_fundamental_class_ne_zero :
+    HodgeReduction.Infrastructure.Cohomology.FundamentalClassData.fundamentalClass
+      (A := A_EVII) ≠ 0 :=
+  HodgeReduction.Infrastructure.Cohomology.FundamentalClassData.fundamentalClass_ne_zero
+
+/-- **Sanity check** (R56): the real dimension of `Ě_VII` is 54. -/
+theorem evii_real_dim_eq_54 :
+    HodgeReduction.Infrastructure.Cohomology.FundamentalClassData.dim
+      (A := A_EVII) = 54 :=
+  rfl
+
 /-! ### R34 SUBSTANTIVE: NefConeData + KodairaEmbeddingData on EVII
 
 Two more `AmpleDivisor.lean` typeclasses get concrete EVII witnesses,
@@ -1797,5 +1828,8 @@ theorem evii_freudenthal_quartic_is_algebraic :
 #print axioms evii_whitney_with_trivial_complement
 -- R55 KERNEL-PURITY: SheafCohomologyData EVII (monomial bigrading).
 #print axioms evii_unit_mem_H_00
+-- R56 KERNEL-PURITY: FundamentalClassData EVII (top-degree generator X^27).
+#print axioms evii_fundamental_class_ne_zero
+#print axioms evii_real_dim_eq_54
 
 end HodgeReduction.Concrete
