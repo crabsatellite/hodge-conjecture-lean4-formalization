@@ -716,24 +716,34 @@ An instance of the absolute Hodge conjecture for non-abelian Shimura
 varieties of type `E_{7(-25)}`. Not established by Deligne's abelian
 theorem. -/
 
-/-- "`X_b` is a CM fibre of a non-abelian-type `E_7`-VHS" (paper's
- Lemma `lem:CM-E7-algebraicity` setup). Abstracted.
+/-- "`X_b` is a CM fibre of a non-abelian-type `E_7`-VHS" — **R122**:
+ was `axiom IsE7CMFibre`. Now a `def` projecting the `isE7CMFibre` field
+ of `SmoothProjectiveVariety` (R122 structure refactor).
  paper source: hyp:AH-CM-E7. -/
-axiom IsE7CMFibre: SmoothProjectiveVariety ℂ → Prop
+def IsE7CMFibre (X : SmoothProjectiveVariety ℂ) : Prop := X.isE7CMFibre
 
-/-- The `E_7`-invariant subspace of `HodgeClasses X_b p`. Abstracted.
+/-- The `E_7`-invariant subspace of `HodgeClasses X_b p` — **R122**:
+ was `axiom E7InvariantHodgeClasses`. Now a `def` projecting the
+ `e7InvariantHodgeClasses` field of `SmoothProjectiveVariety`. The
+ `HodgeClasses X p` argument is `Unit` (R43 placeholder) so semantic
+ content is carried by the SPV's per-degree Prop.
  paper source: hyp:AH-CM-E7 ("`α ∈ H^{2p}(X_b,ℚ)^{E_7}`"). -/
-axiom E7InvariantHodgeClasses:
- (X: SmoothProjectiveVariety ℂ) → (p: ℕ) → HodgeClasses X p → Prop
+def E7InvariantHodgeClasses
+    (X : SmoothProjectiveVariety ℂ) (p : ℕ) (_ : HodgeClasses X p) : Prop :=
+  X.e7InvariantHodgeClasses p
 
 /-- The `E_6`-invariant subspace of `HodgeClasses X p`. Used in the
  rem:E6-V27-vacuity restatement to restrict the vacuity conclusion
  to the `E_6`-invariant classes (the weight-parity argument only
  kills non-trivial irreducibles; Chern/Lefschetz classes from the
  trivial `E_6`-rep remain).
- paper source: rem:E6-V27-vacuity. -/
-axiom E6InvariantHodgeClasses:
- (X: SmoothProjectiveVariety ℂ) → (p: ℕ) → HodgeClasses X p → Prop
+ paper source: rem:E6-V27-vacuity.
+
+ **R122**: was `axiom`. Same structural reduction as
+ `E7InvariantHodgeClasses` (R122). -/
+def E6InvariantHodgeClasses
+    (X : SmoothProjectiveVariety ℂ) (p : ℕ) (_ : HodgeClasses X p) : Prop :=
+  X.e6InvariantHodgeClasses p
 
 /-! ### Pattern (ii) decomposition.
 
@@ -3494,9 +3504,12 @@ isotypic component. Assume BBT definable GAGA supplies algebraic cycles
 every rigid isolated point `[X] ∈ S`, there exists an algebraic cycle
 `Z_X ∈ CH^p(X)_ℚ` with `cl_X(Z_X) = α`." -/
 
-/-- "`[X]` is a rigid isolated point of the Hodge locus `S`". Abstracted.
+/-- "`[X]` is a rigid isolated point of the Hodge locus `S`" — **R122**:
+ was `axiom IsRigidIsolatedPoint`. Now a `def` projecting the
+ `isRigidIsolatedPoint` field of `SmoothProjectiveVariety`.
  paper source: hyp:BBT-rigid-reach. -/
-axiom IsRigidIsolatedPoint: SmoothProjectiveVariety ℂ → Prop
+def IsRigidIsolatedPoint (X : SmoothProjectiveVariety ℂ) : Prop :=
+  X.isRigidIsolatedPoint
 
 /-- "The Schur bypass has reduced `α` to the `G^der`-trivial isotypic
  component, and BBT supplies algebraic cycles at every CM point of the
@@ -3623,8 +3636,11 @@ projective family `f: X -> B` with positive-dimensional base `B`, a point
 /-- "`X` is non-rigid in the fibre-level sense: `h^1(X, T_X) ≠ 0`."
  Abstracted as a predicate; the `h^1(T_X)` Hodge number is not in
  Mathlib.
- paper source: hyp:nonrigid-family-bridge. -/
-axiom IsFibrewiseNonRigid: SmoothProjectiveVariety ℂ → Prop
+ paper source: hyp:nonrigid-family-bridge.
+
+ **R122**: was `axiom`. Same structural reduction. -/
+def IsFibrewiseNonRigid (X : SmoothProjectiveVariety ℂ) : Prop :=
+  X.isFibrewiseNonRigid
 
 /-- Carrier `structure` for a non-rigid family `f: X -> B` of the kind
  described in hyp:nonrigid-family-bridge: a smooth projective family

@@ -168,6 +168,24 @@ structure SmoothProjectiveVariety (k: Type) [Field k] where
   every Hodge class admits an absolute-Hodge witness. Used to eliminate
   `axiom deligne_absolute_hodge_abelian`. -/
  delignAbelianAbsoluteHodge : isAbelianVariety → ∀ p : ℕ, absHodgeWitness p
+ /-- **R122**: bundled "X_b is a CM fibre of a non-abelian-type E_7-VHS"
+  (was `axiom IsE7CMFibre`). paper source: hyp:AH-CM-E7. -/
+ isE7CMFibre : Prop
+ /-- **R122**: bundled rigid-isolated-point predicate (was
+  `axiom IsRigidIsolatedPoint`). paper source: hyp:BBT-rigid-reach. -/
+ isRigidIsolatedPoint : Prop
+ /-- **R122**: bundled fibrewise non-rigid predicate (was
+  `axiom IsFibrewiseNonRigid`). paper source: hyp:nonrigid-family. -/
+ isFibrewiseNonRigid : Prop
+ /-- **R122**: per-degree E_7-invariant Hodge classes predicate
+  (was `axiom E7InvariantHodgeClasses`). The original axiom took an
+  `HodgeClasses X p` argument that is `Unit` (R43 placeholder), so the
+  field is `ℕ → Prop`. paper source: hyp:AH-CM-E7. -/
+ e7InvariantHodgeClasses : ℕ → Prop
+ /-- **R122**: per-degree E_6-invariant Hodge classes predicate
+  (was `axiom E6InvariantHodgeClasses`). Same structural reduction.
+  paper source: rem:E6-V27-vacuity. -/
+ e6InvariantHodgeClasses : ℕ → Prop
 
 /-! ## 2. Hodge numbers and Mumford--Tate groups
 
@@ -438,6 +456,13 @@ noncomputable def SmoothProjectiveVariety.product
  absHodgeWitness := fun p => X.absHodgeWitness p ∧ Y.absHodgeWitness p
  delignAbelianAbsoluteHodge := fun ⟨hX, hY⟩ p =>
    ⟨X.delignAbelianAbsoluteHodge hX p, Y.delignAbelianAbsoluteHodge hY p⟩
+ isE7CMFibre := X.isE7CMFibre ∨ Y.isE7CMFibre
+ isRigidIsolatedPoint := X.isRigidIsolatedPoint ∧ Y.isRigidIsolatedPoint
+ isFibrewiseNonRigid := X.isFibrewiseNonRigid ∨ Y.isFibrewiseNonRigid
+ e7InvariantHodgeClasses := fun p =>
+   X.e7InvariantHodgeClasses p ∨ Y.e7InvariantHodgeClasses p
+ e6InvariantHodgeClasses := fun p =>
+   X.e6InvariantHodgeClasses p ∨ Y.e6InvariantHodgeClasses p
 
 /-- Top-level `product` of two smooth projective varieties — **R119**:
  was `axiom product`, now a `def` alias for
