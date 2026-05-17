@@ -212,17 +212,31 @@ kernel equals `Pic⁰(X)` and `c_1` factors through an injection
 `NS(X) ↪ H`).
 
 Cf. `Cohomology/PicardGroup.lean` for the rational, post-cycle-class-
-map version of this map (which lands in a `ℚ`-vector space). -/
-class ChernOneData (X : Type*) [LineBundleData X]
+map version of this map (which lands in a `ℚ`-vector space).
+
+**R28 SIGNATURE FIX (no-trick mandate)**: `[PicZeroData X]` is a
+**class parameter**, not a field-internal quantifier. The previous
+signature `c₁_picZero_le_ker : ∀ [PicZeroData X], picZero X ≤ ker c₁`
+was over-quantified — it required the inclusion to hold under ANY
+`PicZeroData X` choice (including `picZero_full = ⊤`), forcing
+`c₁ = 1` (the trivial trick) as the only universally-valid instance.
+By making `PicZeroData X` a top-level class parameter (as
+`FirstChernClass_NS_factorisation` does), each `ChernOneData` instance
+is bound to ONE specific Pic⁰ subgroup; non-trivial geometric `c_1`
+instances become possible (e.g. `evii_chernOneData` in `Concrete/EVII.lean`
+gives the genuine degree map for the simply connected `Ě_VII` where
+`Pic⁰ = ⊥`). -/
+class ChernOneData (X : Type*) [LineBundleData X] [PicZeroData X]
     (H : Type*) [CommGroup H] where
   /-- The first Chern class as a group hom. -/
   c₁ : Pic X →* H
   /-- `c_1` annihilates Pic⁰ (so it factors through NS(X)). -/
-  c₁_picZero_le_ker : ∀ [PicZeroData X], picZero X ≤ MonoidHom.ker c₁
+  c₁_picZero_le_ker : picZero X ≤ MonoidHom.ker c₁
 
 namespace ChernOneData
 
-variable {X : Type*} [LineBundleData X] {H : Type*} [CommGroup H]
+variable {X : Type*} [LineBundleData X] [PicZeroData X]
+variable {H : Type*} [CommGroup H]
 variable [ChernOneData X H]
 
 /-- The first Chern class of any line bundle. -/
@@ -256,13 +270,13 @@ theorem c₁_div (L M : Pic X) :
 
 /-- Given `PicZeroData X`, the first Chern class descends to a
 group hom `NS(X) →* H`. -/
-def descendToNS [PicZeroData X] : NeronSeveri X →* H :=
+def descendToNS : NeronSeveri X →* H :=
   QuotientGroup.lift (picZero X) (c₁ (X := X) (H := H))
     (c₁_picZero_le_ker (X := X) (H := H))
 
 /-- The descended hom commutes with the quotient map. -/
 @[simp]
-theorem descendToNS_mk [PicZeroData X] (L : Pic X) :
+theorem descendToNS_mk (L : Pic X) :
     (descendToNS (X := X) (H := H)) (NeronSeveri.mk X L) = c₁ L :=
   rfl
 
@@ -287,16 +301,28 @@ theorem picZero_trivial_ker_mk_eq_bot (X : Type*) [LineBundleData X] :
   rw [QuotientGroup.ker_mk']
   rfl
 
-/-- **Constant Chern class** (placeholder): every line bundle has
-trivial first Chern class. This is a degenerate but non-vacuous
-witness that `ChernOneData` is inhabited; it satisfies the
-`c₁_picZero_le_ker` condition vacuously since the image of `c₁` is
-`{1}`. Real geometric instances will replace this. -/
-instance chernOne_trivial (X : Type*) [LineBundleData X]
+/-- **Constant Chern class** (degenerate non-vacuity witness): every
+line bundle has trivial first Chern class.
+
+**R28 demotion from `instance` to `def`** (no-trick mandate): this is
+a degenerate placeholder — `c_1` constantly returns `1`, which is
+mathematically nonsense for any non-trivial variety (e.g. on `Ě_VII`,
+the canonical line bundle has `c_1 = h ≠ 0`). Keeping it as a global
+`instance` would have made Lean auto-resolve `ChernOneData X H` to this
+trivial witness for EVERY `X`, masking the absence of genuine Chern
+data and preventing concrete instances from being picked up.
+
+Per the no-trick mandate, this is now a `def` — callers wishing to
+exercise the trivial witness must invoke `chernOne_trivial X H`
+explicitly via `let`/`letI`; concrete `ChernOneData` instances (e.g.
+`evii_chernOneData` in `Concrete/EVII.lean` for the genuine
+degree-valued `c_1 : Pic(Ě_VII) → Multiplicative ℤ`) are picked up by
+normal instance resolution. -/
+def chernOne_trivial (X : Type*) [LineBundleData X] [PicZeroData X]
     (H : Type*) [CommGroup H] : ChernOneData X H where
   c₁ := 1
   c₁_picZero_le_ker := by
-    intro _ L _
+    intro L _
     simp
 
 /-! ## Worked example: `Pic⁰ = ⊤` ⇒ `NS = 1`
