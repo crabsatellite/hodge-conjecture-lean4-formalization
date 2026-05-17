@@ -311,12 +311,16 @@ def WeilDivUnit : Type := PUnit
 instance : AddCommGroup WeilDivUnit :=
   inferInstanceAs (AddCommGroup PUnit)
 
-/-- The universal linear-equivalence relation on `WeilDivUnit`
-(everything related to everything). On a one-point variety there are
-no codim-1 subvarieties, so all divisors are trivially equivalent. -/
-def linEquivUnit : Setoid WeilDivUnit where
-  r _ _ := True
-  iseqv := ⟨fun _ => trivial, fun _ => trivial, fun _ _ => trivial⟩
+/-- **Honest equality** on `WeilDivUnit = PUnit`. On a one-point
+variety there are no codim-1 subvarieties, so the Weil divisor group
+collapses to `PUnit`; the (genuinely) only divisor class is the trivial
+one. Using `Eq` rather than the universal relation is mathematically
+honest: `Cl(Spec k) = 0` because the only divisor is `0`, not because
+we artificially identify all divisors. Since `PUnit` is a subsingleton,
+`Eq` and the universal relation happen to coincide here, but `Eq` is
+the structurally-correct choice (no-trick mandate). -/
+def linEquivUnit : Setoid WeilDivUnit :=
+  ⟨Eq, Eq.refl, Eq.symm, Eq.trans⟩
 
 /-- The trivial `DivisorVarietyData` on `Unit`. -/
 instance instDivisorVarietyDataUnit : DivisorVarietyData Unit where
@@ -324,9 +328,9 @@ instance instDivisorVarietyDataUnit : DivisorVarietyData Unit where
   WeilDiv_addCommGroup := inferInstance
   pureDivisor := fun _ => (0 : WeilDivUnit)
   linEquiv := linEquivUnit
-  linEquiv_trans := fun _ _ => trivial
-  linEquiv_symm := fun _ => trivial
-  linEquiv_zero := trivial
+  linEquiv_trans := fun h₁ h₂ => h₁.trans h₂
+  linEquiv_symm := fun h => h.symm
+  linEquiv_zero := rfl
 
 /-- The trivial `WeilCartierData` on `Unit`: both sides are `PUnit` and
 the Weil-to-Cartier map is the unique `PUnit → PUnit` map. -/
@@ -344,12 +348,16 @@ divisor group `WeilDivUnit` (= `PUnit`). -/
 example : DivisorVarietyData.WeilDiv (X := Unit) = WeilDivUnit := rfl
 
 /-- **Sanity check**: any two divisor classes in `LinClass Unit` are
-equal (= `Cl(point) = 1`). -/
+equal (= `Cl(point) = 1`). With the honest `Eq` setoid the proof
+uses the `PUnit`-level uniqueness of inhabitants (every element is
+`PUnit.unit`) to discharge the equivalence-class equality. -/
 theorem LinClass_Unit_subsingleton :
     ∀ a b : DivisorVarietyData.LinClass Unit, a = b := by
   intro a b
-  refine Quotient.inductionOn₂ a b (fun _ _ => ?_)
-  exact Quotient.sound True.intro
+  refine Quotient.inductionOn₂ a b (fun x y => ?_)
+  -- `x y : WeilDivUnit = PUnit`; both equal `PUnit.unit`, so `Eq` holds.
+  exact Quotient.sound (show x = y from
+    (PUnit.eq_punit x).trans (PUnit.eq_punit y).symm)
 
 /-- **Sanity check**: the trivial class equals the class of the zero
 divisor (`rfl` by construction). -/

@@ -19,6 +19,8 @@ import HodgeReduction.Infrastructure.Cohomology.Lefschetz
 import HodgeReduction.Infrastructure.Cohomology.HodgeCycle
 import HodgeReduction.Infrastructure.Cohomology.HodgeRefinementCarriers
 import HodgeReduction.Infrastructure.AlgebraicGeometry.LineBundle
+import HodgeReduction.Infrastructure.AlgebraicGeometry.PicardGroup
+import HodgeReduction.Infrastructure.AlgebraicGeometry.FirstChernClass
 import HodgeReduction.Infrastructure.Shimura.MumfordExtension
 import HodgeReduction.Infrastructure.Cohomology.TwistedPhiL
 import HodgeReduction.Infrastructure.Shimura.HirzebruchMumford
@@ -693,31 +695,130 @@ with the mathematical content "Ě_VII is simply connected ⟹
 it depends only on R6-B fixing the `PicZeroData` typeclass signature.
 -/
 
-/-! ### Pending R6-C (FirstChernClassData) — TODO
+/-! ### R6-C LIVE: `FirstChernClassData EVII_Space A_EVII`
 
-`FirstChernClassData EVII_Space A_EVII` will, once the typeclass
-lands in `Infrastructure/AlgebraicGeometry/FirstChernClass.lean`,
-package the `c_1` connecting homomorphism for our concrete model.
-The expected shape (which the helpers `c1_evii`, `c1_evii_mem_H2`,
-`c1_evii_isAlgebraic`, `c1_evii_image_eq_H11` above are designed to
-feed directly):
+The `FirstChernClassData` typeclass (lifted to `Pic`-level rather than
+`Carrier`-level) is in
+`HodgeReduction.Infrastructure.AlgebraicGeometry.FirstChernClass`.
 
-```lean
+**Structural descent**. The carrier-level `c1_evii : ℤ → A_EVII` from
+above lifts uniquely to a function `Pic EVII_Space → A_EVII` because
+the iso relation on the carrier `ℤ` is **plain equality** (we set
+`iso.r := Eq` in `evii_lineBundleData`, since `Pic⁰(Ě_VII) = 0`). Thus
+the descent uses `Quotient.liftOn` with the trivial well-definedness
+condition `(n m : ℤ) → n = m → c1_evii n = c1_evii m`, dispatched by
+`congrArg`.
+
+The three Chern-class identities reduce to identities about the integer
+degree:
+* `c_1(L ⊗ M) = c_1(L) + c_1(M)` ↦ `((m+n) : ℚ) • X = m•X + n•X` via
+  `Int.cast_add + add_smul`.
+* `c_1(𝒪_X) = 0` ↦ `((0:ℤ):ℚ) • X = 0` via `Int.cast_zero + zero_smul`.
+* `c_1(L^∨) = -c_1(L)` ↦ `((-n):ℚ) • X = -(n•X)` via
+  `Int.cast_neg + neg_smul`. -/
+
+/-- Degree of a Pic class for our `Ě_VII` model: the integer carrier
+descended through the (discrete-equality) iso quotient. Inverse to
+`LineBundleData.classOf` on the canonical carrier `ℤ`. -/
+noncomputable def evii_degree (L : Pic EVII_Space) : ℤ :=
+  Quotient.liftOn L (fun (n : ℤ) => n) (fun _ _ h => h)
+
+@[simp]
+theorem evii_degree_classOf (n : ℤ) :
+    evii_degree (LineBundleData.classOf (X := EVII_Space) n) = n := rfl
+
+@[simp]
+theorem evii_degree_one : evii_degree (1 : Pic EVII_Space) = 0 := rfl
+
+@[simp]
+theorem evii_degree_mul (L M : Pic EVII_Space) :
+    evii_degree (L * M) = evii_degree L + evii_degree M := by
+  refine Quotient.inductionOn₂ L M (fun m n => ?_)
+  show evii_degree (LineBundleData.classOf (X := EVII_Space) m
+                    * LineBundleData.classOf (X := EVII_Space) n)
+      = evii_degree (LineBundleData.classOf (X := EVII_Space) m)
+        + evii_degree (LineBundleData.classOf (X := EVII_Space) n)
+  rw [LineBundleData.mul_classOf]
+  rfl
+
+@[simp]
+theorem evii_degree_inv (L : Pic EVII_Space) :
+    evii_degree L⁻¹ = - evii_degree L := by
+  refine Quotient.inductionOn L (fun n => ?_)
+  show evii_degree (LineBundleData.classOf (X := EVII_Space) n)⁻¹
+      = - evii_degree (LineBundleData.classOf (X := EVII_Space) n)
+  rw [LineBundleData.inv_classOf]
+  rfl
+
+/-- **Concrete `FirstChernClassData EVII_Space A_EVII`** (R27 STRUCTURAL).
+
+* `H² := Submodule.span ℚ {X}` — the genuine one-dimensional `H^2` of
+  `Ě_VII`.
+* `c_1 L := (evii_degree L : ℚ) • X` — Pic-level Chern class via the
+  integer degree of `L`.
+* The three identities (`c1_tensor`, `c1_trivial`, `c1_dual`) reduce
+  to integer-degree identities and discharge via `add_smul`,
+  `zero_smul`, `neg_smul`. **No case-by-case**: one general descent,
+  three general algebraic identities.
+
+This closes the R6-C TODO and provides the **Pic-level c_1 connecting
+homomorphism** for the concrete EVII instance — every line bundle now
+has a well-defined Chern class living in the `H²` submodule. -/
 noncomputable instance evii_firstChernClassData :
     FirstChernClassData EVII_Space A_EVII where
   H2 := Submodule.span ℚ ({(Polynomial.X : A_EVII)} : Set A_EVII)
-  c1 := c1_evii
-  c1_mem_H2 := c1_evii_mem_H2
-  c1_isAlgebraic := c1_evii_isAlgebraic
-  c1_image_eq_H11 := c1_evii_image_eq_H11
-  -- additional `c1_tensor`, `c1_trivial`, `c1_dual` fields, if
-  -- R6-C exposes them, follow from `smul_add`, `zero_smul`, `neg_smul`
-  -- on `ℚ` acting on `Polynomial ℚ` — kernel-pure one-liners.
-```
+  c1 := fun L => ((evii_degree L : ℤ) : ℚ) • (Polynomial.X : A_EVII)
+  c1_in_H2 := by
+    intro L
+    exact Submodule.smul_mem _ _ (Submodule.subset_span (Set.mem_singleton _))
+  c1_tensor := by
+    intro L M
+    show ((evii_degree (L * M) : ℤ) : ℚ) • (Polynomial.X : A_EVII)
+        = ((evii_degree L : ℤ) : ℚ) • (Polynomial.X : A_EVII)
+          + ((evii_degree M : ℤ) : ℚ) • (Polynomial.X : A_EVII)
+    rw [evii_degree_mul]
+    push_cast
+    rw [add_smul]
+  c1_trivial := by
+    show ((evii_degree (1 : Pic EVII_Space) : ℤ) : ℚ) • (Polynomial.X : A_EVII) = 0
+    rw [evii_degree_one]
+    simp
+  c1_dual := by
+    intro L
+    show ((evii_degree L⁻¹ : ℤ) : ℚ) • (Polynomial.X : A_EVII)
+        = - (((evii_degree L : ℤ) : ℚ) • (Polynomial.X : A_EVII))
+    rw [evii_degree_inv]
+    push_cast
+    rw [neg_smul]
 
-When R6-C lands, this comment block becomes the live instance with no
-new math: every field above is already proved as a theorem in this
-file. -/
+/-- **Sanity check**: `c_1` of the canonical generator (degree 1) is
+the Kähler class `h = X` itself. -/
+theorem evii_c1_canonical :
+    FirstChernClassData.c1 (X := EVII_Space) (A := A_EVII)
+        (LineBundleData.classOf (X := EVII_Space) L_canonical)
+      = (Polynomial.X : A_EVII) := by
+  show ((evii_degree (LineBundleData.classOf (X := EVII_Space) L_canonical) : ℤ) : ℚ)
+        • (Polynomial.X : A_EVII)
+      = (Polynomial.X : A_EVII)
+  rw [evii_degree_classOf]
+  show ((L_canonical : ℤ) : ℚ) • (Polynomial.X : A_EVII)
+      = (Polynomial.X : A_EVII)
+  unfold L_canonical
+  simp
+
+/-- **Pic-level Lefschetz (1,1) surjectivity** (R27 STRUCTURAL): every
+class in `H² = ℚ·X` is in the image of `c_1 : Pic(Ě_VII) ⊗ ℚ → H²`,
+i.e., is a rational scalar multiple of the canonical generator's Chern
+class. This is the **Pic-side Lefschetz (1,1)** statement for `Ě_VII`. -/
+theorem evii_H2_in_c1_image :
+    ∀ α ∈ FirstChernClassData.H2 (X := EVII_Space) (A := A_EVII),
+      ∃ r : ℚ, α = r • FirstChernClassData.c1 (X := EVII_Space) (A := A_EVII)
+                          (LineBundleData.classOf (X := EVII_Space) L_canonical) := by
+  intro α hα
+  -- `H² = Submodule.span ℚ {X}` (from the instance), so membership gives `α = r • X`.
+  rcases Submodule.mem_span_singleton.mp hα with ⟨r, rfl⟩
+  refine ⟨r, ?_⟩
+  rw [evii_c1_canonical]
 
 /-! ### Sanity theorem: H^{1,1} = image of c_1 (Lefschetz-via-Picard form) -/
 
