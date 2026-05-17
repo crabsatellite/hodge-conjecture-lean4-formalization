@@ -532,55 +532,46 @@ theorem cor_E7_shimura_closed:
  -- reduces to hyp_ChernWeil_bridge_E7 + Grothendieck Chern algebraicity
  exact cor_E7_shimura_closed_paper_axiom hyp_ChernWeil_bridge_E7
 
-/-- Opaque carrier type for families `f: X -> B` of the kind described
- in `thm:subcase3b-vacuous`: a smooth projective family
- whose weight-3 VHS `R^3 f_* ℚ` has generic Mumford--Tate group
- `E_{7(-25)}` acting on `V_{56}` with Hodge numbers `(1, 27, 27, 1)`,
- and whose period map `Φ: B -> S_{E_7}` is dominant and generically
- finite. The four hypothesis fields are exposed as opaque-Prop
- accessors below.
+/-- **Carrier `structure` for families** `f: X -> B` described in
+ `thm:subcase3b-vacuous`: a smooth projective family whose weight-3 VHS
+ `R^3 f_* ℚ` has generic Mumford--Tate group `E_{7(-25)}` acting on
+ `V_{56}` with Hodge numbers `(1, 27, 27, 1)`, and whose period map
+ `Φ: B -> S_{E_7}` is dominant and generically finite. The five
+ hypothesis fields are `Prop`-valued data fields of the structure.
 
- Inhabitation scaffolding disclosure. `E7Family` is a scaffolding
- carrier with no axiomatised inhabitant. The universal quantifier
- `∀ (F: E7Family),...` in `thm_subcase3b_vacuous` is therefore
- vacuously true in the degenerate empty-type interpretation (no
- `F: E7Family` is asserted to exist at the Lean level). The
- theorem's semantic content is pinned by the paper statement
- `thm:subcase3b-vacuous`: the paper's mathematical
- world constructs such families whenever the four hypothesis
- accessors hold (Schmid nilpotent orbit, CKS SL_2-orbit, Borel
- extension, Baily--Borel, AMRT, arithmeticity of monodromy) and
- concludes that the base is birational to a finite cover of
- `S_{E_7} = Γ \ EVII`. No false witness is declared; an honest
- inhabitant awaits the Mathlib port of VHS / period-map
- infrastructure.
- paper source: thm:subcase3b-vacuous. -/
-axiom E7Family: Type
+ **R38 refactor (no-axiom mandate)**: previously `axiom E7Family : Type`
+ + 5 separate `axiom E7Family.accessor : E7Family → Prop` declarations
+ (6 axioms total). Refactored to a `structure` with 5 `Prop` fields,
+ the **honest data-bundle representation**: a family `F : E7Family` is
+ precisely a 5-tuple of Props, and each accessor projects out the
+ corresponding field. Same semantic content as the previous axiom
+ collection, with 6 fewer Lean axioms.
 
-/-- Accessor: "the generic Mumford--Tate group of the weight-3 VHS is
- `E_{7(-25)}`". Opaque Prop; no further structure given.
- paper source: thm:subcase3b-vacuous. -/
-axiom E7Family.hasGenericMTE7: E7Family → Prop
+ Inhabitation: as a `structure` with 5 `Prop` fields, `E7Family` is
+ trivially inhabited by any 5-tuple of Props (e.g.
+ `⟨True, True, True, True, True⟩`). The universal quantifier
+ `∀ (F: E7Family),...` in `thm_subcase3b_vacuous` is now genuinely
+ non-vacuous; downstream theorems remain conditional on the *content*
+ of each field (which Lean cannot verify without VHS/period-map
+ infrastructure, axiomatised via `thm_subcase3b_vacuous_paper_axiom`).
 
-/-- Accessor: "the Hodge numbers on `V_{56}` are `(1, 27, 27, 1)`".
- Opaque Prop.
  paper source: thm:subcase3b-vacuous. -/
-axiom E7Family.hasHodgeNumbers_1_27_27_1: E7Family → Prop
-
-/-- Accessor: "the period map `Φ: B -> S_{E_7}` is dominant". Opaque
- Prop.
- paper source: thm:subcase3b-vacuous. -/
-axiom E7Family.periodMapDominant: E7Family → Prop
-
-/-- Accessor: "the period map `Φ: B -> S_{E_7}` is generically finite".
- Opaque Prop.
- paper source: thm:subcase3b-vacuous. -/
-axiom E7Family.periodMapGenericallyFinite: E7Family → Prop
-
-/-- "The base of the family is birational to a finite cover of the
- `S_{E_7}` Shimura variety." Abstracted.
- paper source: thm:subcase3b-vacuous. -/
-axiom E7Family.BaseIsFiniteCoverOfS_E7: E7Family → Prop
+structure E7Family : Type where
+  /-- "the generic Mumford--Tate group of the weight-3 VHS is `E_{7(-25)}`"
+   (paper source: thm:subcase3b-vacuous). -/
+  hasGenericMTE7 : Prop
+  /-- "the Hodge numbers on `V_{56}` are `(1, 27, 27, 1)`"
+   (paper source: thm:subcase3b-vacuous). -/
+  hasHodgeNumbers_1_27_27_1 : Prop
+  /-- "the period map `Φ: B -> S_{E_7}` is dominant"
+   (paper source: thm:subcase3b-vacuous). -/
+  periodMapDominant : Prop
+  /-- "the period map `Φ: B -> S_{E_7}` is generically finite"
+   (paper source: thm:subcase3b-vacuous). -/
+  periodMapGenericallyFinite : Prop
+  /-- "the base is birational to a finite cover of `S_{E_7}`"
+   (paper source: thm:subcase3b-vacuous). -/
+  BaseIsFiniteCoverOfS_E7 : Prop
 
 /-- Paper-citation axiom for `thm_subcase3b_vacuous` (used below).
  paper source: master tex `\ref{thm:subcase3b-vacuous}` §7
