@@ -1121,6 +1121,39 @@ theorem baseChange_mk.{u}
       mk (R := A) (TensorProduct R A M) :=
   rfl
 
+/-- **R129**: `baseChange` preserves the multiplicative identity. The
+identity is `[R]` over R and `[A]` over A; the iso `A ⊗[R] R ≃ A` is
+`AlgebraTensorModule.rid`. -/
+theorem baseChange_one.{u}
+    {R : Type u} [CommRing R] (A : Type u) [CommRing A] [Algebra R A] :
+    baseChange (R := R) A (one R) = one A :=
+  Quotient.sound ⟨TensorProduct.AlgebraTensorModule.rid R A A⟩
+
+/-- **R129**: `baseChange` preserves multiplication. On representatives:
+`baseChange A (mk M ⊗ mk N) = mk (A ⊗_R (M ⊗_R N)) ≃ mk ((A ⊗_R M) ⊗_A (A ⊗_R N))
+= baseChange A (mk M) ⊗ baseChange A (mk N)`.
+The middle iso is `TensorProduct.AlgebraTensorModule.distribBaseChange`. -/
+theorem baseChange_mul.{u}
+    {R : Type u} [CommRing R] (A : Type u) [CommRing A] [Algebra R A]
+    (x y : Picard R) :
+    baseChange A (mul x y) = mul (baseChange A x) (baseChange A y) := by
+  refine Quotient.inductionOn₂
+    (motive := fun a b =>
+      baseChange A (mul a b) = mul (baseChange A a) (baseChange A b)) x y ?_
+  intro s t
+  exact Quotient.sound
+    ⟨TensorProduct.AlgebraTensorModule.distribBaseChange R A s.carrier t.carrier⟩
+
+/-- **R129**: `Picard.baseChange A` as a `MonoidHom Picard R →* Picard A`.
+This is the FULL functoriality statement: the base-change action on
+algebraic Picard groups is a multiplicative monoid hom. -/
+noncomputable def baseChangeHom.{u}
+    (R : Type u) [CommRing R] (A : Type u) [CommRing A] [Algebra R A] :
+    Picard R →* Picard A where
+  toFun := baseChange A
+  map_one' := baseChange_one A
+  map_mul' := baseChange_mul A
+
 end Picard
 
 /-! ### Mathlib-PR readiness checklist
