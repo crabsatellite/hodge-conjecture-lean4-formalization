@@ -24,6 +24,7 @@ import HodgeReduction.Infrastructure.AlgebraicGeometry.FirstChernClass
 import HodgeReduction.Infrastructure.Cohomology.BorelHirzebruchCoinvariant
 import HodgeReduction.Infrastructure.Cohomology.SheafCohomology
 import HodgeReduction.Infrastructure.Cohomology.PoincareDuality
+import HodgeReduction.Infrastructure.Cohomology.AbelJacobi
 import HodgeReduction.Infrastructure.Cohomology.PicardGroup
 import HodgeReduction.Infrastructure.Cohomology.AmpleDivisor
 import HodgeReduction.Infrastructure.Cohomology.CycleClassMap
@@ -1707,6 +1708,33 @@ theorem evii_L_refined_form_proportionality :
           (A := A_EVII) :=
   HodgeReduction.Infrastructure.Cohomology.LRefinedChernWeilProportionalityData.holds
 
+/-! ### R59 SUBSTANTIVE: `GriffithsGroupData EVII_R6.EVII_Space A_EVII`
+
+Closes the Griffiths-group containment chain `algebraicClasses ≤ Griffiths
+≤ hodgeClasses` on `Ě_VII`. By the codim-1 Lefschetz (1,1) classical
+result (R48), `algebraicClasses = hodgeClasses` on `Ě_VII` (both equal
+`Submodule.span ℚ {X}`). The Griffiths subspace then sits between two
+equal submodules, forcing `Griffiths = span ℚ {X}` as well. Both
+inclusions are reflexive. -/
+noncomputable instance evii_griffithsGroupData :
+    HodgeReduction.Infrastructure.Cohomology.GriffithsGroupData
+      EVII_R6.EVII_Space A_EVII where
+  Griffiths :=
+    Submodule.span ℚ ({(Polynomial.X : A_EVII)} : Set A_EVII)
+  algebraic_le_griffiths := le_refl _
+  griffiths_le_hodge := le_refl _
+
+/-- **Sanity check** (R59): the codim-1 chain
+`algebraicClasses ≤ Griffiths ≤ hodgeClasses` is the equality
+`algebraicClasses = Griffiths = hodgeClasses` on `Ě_VII` (collapse to a
+single submodule = polarisation line ℚ·h). -/
+theorem evii_griffiths_chain_collapses :
+    HodgeReduction.Infrastructure.Cohomology.HCCodim1Data.algebraicClasses
+        (X := EVII_R6.EVII_Space) (A := A_EVII)
+      ≤ HodgeReduction.Infrastructure.Cohomology.HCCodim1Data.hodgeClasses
+          (X := EVII_R6.EVII_Space) (A := A_EVII) :=
+  HodgeReduction.Infrastructure.Cohomology.GriffithsGroupData.algebraic_le_hodge_via_griffiths
+
 /-! ### R34 SUBSTANTIVE: NefConeData + KodairaEmbeddingData on EVII
 
 Two more `AmpleDivisor.lean` typeclasses get concrete EVII witnesses,
@@ -1893,5 +1921,7 @@ theorem evii_freudenthal_quartic_is_algebraic :
 #print axioms evii_compact_levi_form_proportionality
 -- R58 KERNEL-PURITY: LRefinedChernWeilProportionalityData EVII (L-block proportionality).
 #print axioms evii_L_refined_form_proportionality
+-- R59 KERNEL-PURITY: GriffithsGroupData EVII (Griffiths chain collapses).
+#print axioms evii_griffiths_chain_collapses
 
 end HodgeReduction.Concrete
