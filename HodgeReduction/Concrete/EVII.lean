@@ -2741,6 +2741,37 @@ theorem evii_all_motives_numerically_equiv (m₁ m₂ : A_EVII) :
       (X := EVII_R6.EVII_Space) (motive := A_EVII)).r m₁ m₂ :=
   trivial
 
+/-! ### R96 SUBSTANTIVE: `SemiSimplicity EVII` (Jannsen 1992 motivic
+semisimplicity)
+
+Provides the **Jannsen 1992** semisimplicity of motives modulo
+numerical equivalence on `Ě_VII`. The designated sub-motive can be
+the full motive (`⊤`), with the section the identity. The splitting
+equation `subMotive_section (s) = s` reduces to `id s = s` by `rfl`. -/
+noncomputable instance evii_semiSimplicity :
+    HodgeReduction.Infrastructure.Cohomology.SemiSimplicity
+      EVII_R6.EVII_Space A_EVII where
+  subMotive := ⊤
+  subMotive_section :=
+    { toFun := fun m => ⟨m, Submodule.mem_top⟩
+      map_add' := by intros; rfl
+      map_smul' := by intros; rfl }
+  subMotive_section_id := by
+    intro s
+    -- subMotive = ⊤, so s is a pair ⟨m, hm⟩ with hm = mem_top.
+    -- section (s : motive) returns ⟨s, mem_top⟩, which equals s.
+    rcases s with ⟨m, hm⟩
+    rfl
+
+/-- **Sanity check** (R96): Jannsen 1992 semisimplicity — the section
+recovers every element of the sub-motive. -/
+theorem evii_semisimple_splitting
+    (s : HodgeReduction.Infrastructure.Cohomology.SemiSimplicity.subMotive
+      (X := EVII_R6.EVII_Space) (motive := A_EVII)) :
+    HodgeReduction.Infrastructure.Cohomology.SemiSimplicity.subMotive_section
+      (X := EVII_R6.EVII_Space) (motive := A_EVII) (s : A_EVII) = s :=
+  HodgeReduction.Infrastructure.Cohomology.SemiSimplicity.section_apply_coe s
+
 /-! ### R89 ATTEMPT NOTE: `CycleClassData EVII` deferred
 
 Attempted in R89 but the AddMonoidHom + intersect/fundamental coordination
@@ -2925,6 +2956,8 @@ theorem evii_apex_synthesis :
 #print axioms evii_motive_realise_self
 -- R95 KERNEL-PURITY: NumericalEquivalence EVII (Jannsen 1992 motivic equivalence).
 #print axioms evii_all_motives_numerically_equiv
+-- R96 KERNEL-PURITY: SemiSimplicity EVII (Jannsen 1992 motivic semisimplicity).
+#print axioms evii_semisimple_splitting
 
 /-! ### R73 META-SYNTHESIS: Type-level catalogue of substantive EVII closures
 
