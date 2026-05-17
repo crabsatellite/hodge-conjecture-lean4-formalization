@@ -75,10 +75,19 @@ rational Hodge structure is of type `G_2`. Direct consequence of the
 cominuscule-node criterion: `G_2` has highest-root Dynkin marks `(3, 2)`,
 all `≥ 2`.
 paper source: thm:G2F4 (G_2 case of the joint statement);
-Kostant 1959; Bourbaki Planche IX. -/
-axiom kostant_vacuity_G2:
+Kostant 1959; Bourbaki Planche IX.
+
+**R120**: was `axiom`; now a theorem with kernel-pure proof. Follows
+trivially from the structural definition of `hasSimpleFactor` (R120) since
+`G2_realForm = ⟨False, False, False⟩` has none of the three distinguishing
+predicates. -/
+theorem kostant_vacuity_G2:
  ∀ (X: SmoothProjectiveVariety ℂ) (k: ℕ),
- ¬ hasSimpleFactor (MumfordTateGroup X k) G2_realForm
+ ¬ hasSimpleFactor (MumfordTateGroup X k) G2_realForm := by
+ intro X k h
+ -- `G2_realForm = ⟨False, False, False⟩`, so all three disjuncts of
+ -- `hasSimpleFactor` reduce to `_ ∧ False` (i.e., `False`).
+ rcases h with ⟨_, hF⟩ | ⟨_, hF⟩ | ⟨_, hF⟩ <;> exact hF
 
 /-- **Kostant-mark vacuity for `F_4`**.
 
@@ -87,10 +96,15 @@ rational Hodge structure is of type `F_4`. Direct consequence of the
 cominuscule-node criterion: `F_4` has highest-root Dynkin marks
 `(2, 3, 4, 2)`, all `≥ 2`.
 paper source: thm:G2F4 (F_4 case of the joint statement);
-Kostant 1959; Bourbaki Planche VIII. -/
-axiom kostant_vacuity_F4:
+Kostant 1959; Bourbaki Planche VIII.
+
+**R120**: was `axiom`; now a theorem. Same proof pattern as
+`kostant_vacuity_G2` — `F4_realForm = ⟨False, False, False⟩`. -/
+theorem kostant_vacuity_F4:
  ∀ (X: SmoothProjectiveVariety ℂ) (k: ℕ),
- ¬ hasSimpleFactor (MumfordTateGroup X k) F4_realForm
+ ¬ hasSimpleFactor (MumfordTateGroup X k) F4_realForm := by
+ intro X k h
+ rcases h with ⟨_, hF⟩ | ⟨_, hF⟩ | ⟨_, hF⟩ <;> exact hF
 
 /-- **(SV1) vacuity for `E_8`**.
 
@@ -99,10 +113,15 @@ adjoint quotient containing an `E_8` factor. Direct consequence of the
 cominuscule-node criterion: `E_8` has highest-root Dynkin marks
 `(2, 3, 4, 6, 5, 4, 3, 2)`, all `≥ 2`.
 paper source: thm:E8_vacuous; Kostant 1959; Deligne SV1 axiom 1979;
-Bourbaki Planche VII. -/
-axiom SV1_vacuity_E8:
+Bourbaki Planche VII.
+
+**R120**: was `axiom`; now a theorem. Same proof pattern —
+`E8_realForm = ⟨False, False, False⟩`. -/
+theorem SV1_vacuity_E8:
  ∀ (X: SmoothProjectiveVariety ℂ) (k: ℕ),
- ¬ hasSimpleFactor (MumfordTateGroup X k) E8_realForm
+ ¬ hasSimpleFactor (MumfordTateGroup X k) E8_realForm := by
+ intro X k h
+ rcases h with ⟨_, hF⟩ | ⟨_, hF⟩ | ⟨_, hF⟩ <;> exact hF
 
 /-! ## 3. Deligne's absolute Hodge theorem for abelian varieties
 

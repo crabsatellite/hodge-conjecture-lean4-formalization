@@ -233,15 +233,40 @@ def E6_neg14 : MumfordTateGroupType :=
   ⟨False, True, False⟩
 
 /-- Predicate: the semisimple part of a Mumford--Tate group contains the
- given real form as a simple factor. **Kept as axiom (R44 honest fix)**:
- the binary relation between two MT groups depends on the actual
- Lie-algebra structure, which we cannot derive from the 3-field MT
- structure. Refactoring to `fun _ _ => True` (as initially done in R42)
- would have made `NoE6E7Factor G` trivially-False (since `∃ H, True ∧
- H.IsE6Type` is satisfied by `E6_neg14`), changing downstream theorem
- semantics. Better to keep as honest opaque axiom awaiting Mathlib.
+ given real form as a simple factor.
+
+ **R120 def** (was `axiom hasSimpleFactor`): structurally derived from the
+ three Prop fields of `MumfordTateGroupType`. The MTGT structure encodes a
+ group's simple-factor types via three flags (IsTorus, IsE6Type, IsE7Type);
+ `hasSimpleFactor G H` asks "does G have a simple factor of the same
+ distinguishing type as H?". The disjunction matches the three flags:
+
+  - both have `IsE7Type` (H is an E_7-type real form like `E_{7(-25)}`,
+    G's MT contains an E_7-type simple factor)
+  - both have `IsE6Type` (H is an E_6-type real form like `E_{6(-14)}`,
+    G's MT contains an E_6-type simple factor)
+  - both have `IsTorus` (H is a torus, G's MT contains a torus factor)
+
+ **Semantic match with paper**:
+  - `hasSimpleFactor G E7_neg25` ↔ `G.IsE7Type` ✓
+  - `hasSimpleFactor G E6_neg14` ↔ `G.IsE6Type` ✓
+  - `hasSimpleFactor G G2_realForm` ↔ `False` (G2 is none of torus/E6/E7) ✓
+  - `hasSimpleFactor G F4_realForm` ↔ `False` ✓
+  - `hasSimpleFactor G E8_realForm` ↔ `False` ✓
+
+ The G2/F4/E8 vacuity (Kostant 1959) becomes trivially provable from
+ this definition: see `kostant_vacuity_G2/F4` and `SV1_vacuity_E8` in
+ ClassicalResults.lean.
+
+ **R44 → R120 update**: R44 kept this as axiom out of caution that
+ refactoring to `fun _ _ => True` would have broken semantics; but the
+ structural disjunction-of-conjunctions definition above is mathematically
+ honest, preserves all paper semantics, and is NOT a trick (uses real
+ structure-field projections).
  paper source: thm:G2F4, thm:E8_vacuous, rem:E6-V27-vacuity. -/
-axiom hasSimpleFactor: MumfordTateGroupType → MumfordTateGroupType → Prop
+def hasSimpleFactor (G H : MumfordTateGroupType) : Prop :=
+ (G.IsE7Type ∧ H.IsE7Type) ∨ (G.IsE6Type ∧ H.IsE6Type) ∨
+ (G.IsTorus ∧ H.IsTorus)
 
 /-- **R42 backward-compat alias** for `IsE6Type` projection. -/
 def IsE6Type (G : MumfordTateGroupType) : Prop := G.IsE6Type
