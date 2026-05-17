@@ -2030,4 +2030,44 @@ theorem evii_freudenthal_quartic_is_algebraic :
 -- R60 KERNEL-PURITY: ChernCharacterData Q A_EVII (rational K-theory to cohomology).
 #print axioms evii_chern_character_one
 
+/-! ### R65 APEX: Comprehensive HC synthesis on E_VII compact dual
+
+A single user-facing theorem combining the 27+ substantive EVII typeclass
+closures (R5-A through R60+) into one **compact-dual HC synthesis**:
+
+* (1) **Strong HC on `Ě_VII`**: every cohomology class is algebraic
+      (R30 + R36, derived from BB decomp + Borel-Hirzebruch).
+* (2) **Picard number** ρ(`Ě_VII`) = 1 (R32; Hermitian symmetric).
+* (3) **Lefschetz (1,1)** on codim 1: algebraicClasses = hodgeClasses (R48).
+* (4) **Hodge Conjecture holds** (R30; algebraicHodge = allHodge).
+* (5) **Freudenthal class is algebraic** (R36; q = -48·h^4 IS algebraic).
+
+This theorem documents the convergent web of substantive closures:
+each clause is a separate instance of the strong-form HC statement on
+`Ě_VII`, applied to a different cohomology-theoretic predicate. -/
+theorem evii_apex_synthesis :
+    -- (1) Strong HC: every class is algebraic
+    (∀ α : A_EVII, CohomologyRing.IsAlgebraic α) ∧
+    -- (2) Picard number = 1
+    (HodgeReduction.Infrastructure.Cohomology.NSGeometric.NeronSeveriData.nsRank
+      (X := EVII_R6.EVII_Space) (A := A_EVII) = 1) ∧
+    -- (3) Lefschetz (1,1) codim 1
+    (HodgeReduction.Infrastructure.Cohomology.HCCodim1Data.algebraicClasses
+        (X := EVII_R6.EVII_Space) (A := A_EVII)
+      = HodgeReduction.Infrastructure.Cohomology.HCCodim1Data.hodgeClasses
+          (X := EVII_R6.EVII_Space) (A := A_EVII)) ∧
+    -- (4) Hodge Conjecture on E_VII
+    HodgeReduction.Infrastructure.Cohomology.CycleClassImageData.hodgeConjecture
+      (X := EVII_R6.EVII_Space) (A := A_EVII) ∧
+    -- (5) Freudenthal class is algebraic
+    CohomologyRing.IsAlgebraic ((-48 : ℚ) • ((Polynomial.X : A_EVII) ^ 4)) :=
+  ⟨evii_strong_HodgeConjecture,
+   evii_picard_number_eq_one,
+   HodgeReduction.Infrastructure.Cohomology.HCCodim1Data.lefschetz_11_eq,
+   evii_HodgeConjecture_concrete,
+   evii_freudenthal_quartic_is_algebraic⟩
+
+-- R65 KERNEL-PURITY: the comprehensive apex synthesis is kernel-pure.
+#print axioms evii_apex_synthesis
+
 end HodgeReduction.Concrete
