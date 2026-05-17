@@ -374,6 +374,24 @@ instance Module.IsInvertible.tensor_R_right.{u} {R : Type u} [CommRing R]
     Module.IsInvertible R (TensorProduct R M R) :=
   Module.IsInvertible.of_linearEquiv (TensorProduct.rid R M).symm
 
+/-! ### `Module.IsInvertible.tensor_assoc` (R102): associativity of Pic tensor
+
+The tensor product of invertible R-modules is associative up to
+linear equivalence (`TensorProduct.assoc`). Combined with R98
+`tensor` (closure under tensor), this gives the FINAL piece of the
+monoidal-structure preservation: `Pic R` is associative under `⊗`.
+
+This is the conceptual completion of the monoidal-structure step:
+together with R97-R101, `Module.IsInvertible` has all the structural
+properties needed to define `Pic R` as a `CommGroup`. -/
+theorem Module.IsInvertible.tensor_assoc_iff.{u} {R : Type u} [CommRing R]
+    {M N P : Type u} [AddCommGroup M] [Module R M]
+    [AddCommGroup N] [Module R N] [AddCommGroup P] [Module R P] :
+    Module.IsInvertible R (TensorProduct R (TensorProduct R M N) P) ↔
+      Module.IsInvertible R (TensorProduct R M (TensorProduct R N P)) :=
+  ⟨fun _ => Module.IsInvertible.of_linearEquiv (TensorProduct.assoc R M N P),
+   fun _ => Module.IsInvertible.of_linearEquiv (TensorProduct.assoc R M N P).symm⟩
+
 /-! ### Mathlib-PR readiness checklist
 
 * Definition is single-purpose, mathematically standard.
@@ -426,5 +444,7 @@ axioms or `sorry`. The `#print axioms` lines below verify this. -/
 -- R101 Module.IsInvertible.tensor_R_left/right: R ⊗ M and M ⊗ R invertible iff M is.
 #print axioms Module.IsInvertible.tensor_R_left
 #print axioms Module.IsInvertible.tensor_R_right
+-- R102 Module.IsInvertible.tensor_assoc_iff: associativity of Pic tensor.
+#print axioms Module.IsInvertible.tensor_assoc_iff
 
 end HodgeReduction.MathlibCandidates
