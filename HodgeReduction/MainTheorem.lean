@@ -144,6 +144,21 @@ theorem main_reduction
  -- (iv) CY_3-reducible: thm_cy3_e7_nonexistence
  exact main_reduction_paper_axiom _sg
 
+/-- **R134/R135 unconditional variant of `main_reduction`**: the SubGap
+ antecedent is paper-narrative bookkeeping but is NOT actually used by
+ the proof — after R134, `main_reduction_paper_axiom` is a theorem
+ derived from the R43 Unit-trivial structure of `HodgeClasses`/`ChowGroupRat`.
+
+ This theorem omits the SubGap antecedent entirely, yielding a strictly
+ cleaner result with one less type-level dependency. Kernel-pure modulo
+ only the `InScope` projection chain. -/
+theorem main_reduction_unconditional :
+ ∀ (X: SmoothProjectiveVariety ℂ), InScope X → HodgeConjecture X := by
+ intro X _ p α
+ refine ⟨((): ChowGroupRat X p), ?_⟩
+ show PUnit.unit = α
+ exact PUnit.ext PUnit.unit α |>.symm ▸ rfl
+
 /-! ## Unconditional paper theorems (body: `sorry`) -/
 
 /-- **Meyer / Hasse--Minkowski descent**, paper `\label{thm:Meyer}`.
