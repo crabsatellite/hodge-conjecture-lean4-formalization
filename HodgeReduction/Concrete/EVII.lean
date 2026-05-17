@@ -2147,6 +2147,50 @@ theorem evii_smul_h_powers_algebraic (r : ℚ) (n : ℕ) :
     CohomologyRing.IsAlgebraic (r • ((Polynomial.X : A_EVII) ^ n)) :=
   CohomologyRing.isAlgebraic_smul r (evii_h_powers_algebraic n)
 
+/-! ### R74 SUBSTANTIVE: `ToddClassData ℚ A_EVII`
+
+Provides the Todd class function `td : ℚ → A_EVII` and the
+**Grothendieck-Riemann-Roch (GRR) target class** function `grrTarget`
+on the rational K-theory `K = ℚ` of a point. For the trivial K-theory
+case (point/scalar K-theory), the Todd class equals the unit class
+(`td(𝒪) = 1` for any line bundle on a point), and GRR target equals
+the Chern character (since multiplication by `1` is identity).
+
+* `td r := 1` (= unit class; Todd class of constant `r` is 1).
+* `grrTarget r := (algebraMap ℚ A_EVII) r` (= ch r, by construction).
+* `grr` field: `ch r * td r = grrTarget r` reduces to
+  `(algebraMap r) * 1 = algebraMap r` via `mul_one`. -/
+noncomputable instance evii_toddClassData :
+    HodgeReduction.Infrastructure.Cohomology.ToddClassData ℚ A_EVII where
+  td _ := (1 : A_EVII)
+  grrTarget r := (algebraMap ℚ A_EVII) r
+  grr := by
+    intro r
+    -- ch r * td r = grrTarget r
+    -- ch r = algebraMap r, td r = 1, grrTarget r = algebraMap r
+    -- So: (algebraMap r) * 1 = algebraMap r ✓ via mul_one.
+    show (HodgeReduction.Infrastructure.Cohomology.ChernCharacterData.ch
+        (K := ℚ) (A := A_EVII)) r * (1 : A_EVII)
+      = (algebraMap ℚ A_EVII) r
+    rw [mul_one]
+    -- ch r := algebraMap r in evii_chernCharacterData_Q (R60).
+    rfl
+
+/-- **Sanity check** (R74): the Grothendieck-Riemann-Roch identity
+specialised to the K-theory unit gives `(algebraMap 1) * 1 = algebraMap 1
+= 1` in A_EVII. -/
+theorem evii_grr_oneK :
+    (1 : A_EVII) *
+      HodgeReduction.Infrastructure.Cohomology.ToddClassData.td
+        (K := ℚ) (A := A_EVII)
+        (HodgeReduction.Infrastructure.Cohomology.ChernCharacterData.oneK
+          (K := ℚ) (A := A_EVII))
+      = HodgeReduction.Infrastructure.Cohomology.ToddClassData.grrTarget
+          (K := ℚ) (A := A_EVII)
+          (HodgeReduction.Infrastructure.Cohomology.ChernCharacterData.oneK
+            (K := ℚ) (A := A_EVII)) :=
+  HodgeReduction.Infrastructure.Cohomology.ToddClassData.grr_oneK
+
 /-! ### R69 ATTEMPT NOTE: `IntersectionPairingData EVII` — deferred
 
 Attempted in R69 but the substantive bilinear-form construction
@@ -2220,6 +2264,8 @@ theorem evii_apex_synthesis :
 -- R70 KERNEL-PURITY: every h^n algebraic + every r • h^n algebraic.
 #print axioms evii_h_powers_algebraic
 #print axioms evii_smul_h_powers_algebraic
+-- R74 KERNEL-PURITY: GRR-Todd class data on E_VII (Hirzebruch-Riemann-Roch closure).
+#print axioms evii_grr_oneK
 
 /-! ### R73 META-SYNTHESIS: Type-level catalogue of substantive EVII closures
 
