@@ -332,4 +332,68 @@ theorem varietyHCAt_transfer
   exact (A_src.toCycleClassMap p).hodgeConjecture_transfer
     (A_tgt.toCycleClassMap p) φ ψ h_square h_φ_surj h_HC_src
 
+/-! ## R177: Bundle the R176 hypotheses as a single `Prop` (correspondence package)
+
+The R176 transfer takes 4 separate hypotheses (φ, ψ, square, surj).
+R177 packages them as a single `Prop` `MTCorrespondencePackageAt`,
+suitable as the conclusion of a Mumford-Tate-correspondence existence
+axiom. Then `varietyHCAt_of_correspondence` unpacks the package and
+applies R176. This is the structural plumbing that lets the R174b
+`mt_correspondence_e7_reduction` axiom be derived from a finer-grained
+"correspondence exists" axiom + R176. -/
+
+/-- **R177**: A **per-codimension Mumford-Tate correspondence package** —
+the Prop asserting existence of `(φ, ψ, square, surj)` witnesses for the
+R165/R176 reduction transfer from variety `X_src` to variety `X_tgt` at
+codimension `p`.
+
+Packages the substantive data of a Mumford-Tate correspondence:
+* Hodge structure morphism on cohomology.
+* `ℚ`-linear cycle-correspondence on algebraic classes.
+* Commutative square (compatibility).
+* Surjectivity on Hodge classes. -/
+def MTCorrespondencePackageAt
+    (X_src X_tgt : VarietyCohomologyData)
+    (A_src : AlgebraicClassesData X_src)
+    (A_tgt : AlgebraicClassesData X_tgt)
+    (p : ℕ) : Prop :=
+  letI _ := X_src.addCommGroup (2 * p)
+  letI _ := X_src.module (2 * p)
+  letI _ := X_src.hodgeStructure (2 * p)
+  letI _ := X_tgt.addCommGroup (2 * p)
+  letI _ := X_tgt.module (2 * p)
+  letI _ := X_tgt.hodgeStructure (2 * p)
+  ∃ (φ : HodgeStructureMorphism (X_src.H (2 * p)) (X_tgt.H (2 * p)) (2 * p))
+    (ψ : ↥(A_src.algClasses p) →ₗ[ℚ] ↥(A_tgt.algClasses p)),
+    (∀ z : ↥(A_src.algClasses p),
+      ((A_tgt.algClasses p).subtype) (ψ z) =
+        φ.toLinearMap (((A_src.algClasses p).subtype) z)) ∧
+    PureHodgeStructure.hodgeClasses (X_tgt.H (2 * p)) p ≤
+      Submodule.map φ.toLinearMap
+        (PureHodgeStructure.hodgeClasses (X_src.H (2 * p)) p)
+
+/-- **R177**: Given an `MTCorrespondencePackageAt` package + HC-real
+for `X_src` at `p`, derive HC-real for `X_tgt` at `p` via R176's
+variety-level reduction transfer.
+
+This unpacks the existential and applies R176. The downstream MT
+reduction theorem (per-p quantification) follows by quantifying. -/
+theorem varietyHCAt_of_correspondence
+    {X_src X_tgt : VarietyCohomologyData}
+    {A_src : AlgebraicClassesData X_src}
+    {A_tgt : AlgebraicClassesData X_tgt}
+    {p : ℕ}
+    (h_pkg : MTCorrespondencePackageAt X_src X_tgt A_src A_tgt p)
+    (h_HC_src : VarietyHCAt X_src A_src p) :
+    VarietyHCAt X_tgt A_tgt p := by
+  letI _ := X_src.addCommGroup (2 * p)
+  letI _ := X_src.module (2 * p)
+  letI _ := X_src.hodgeStructure (2 * p)
+  letI _ := X_tgt.addCommGroup (2 * p)
+  letI _ := X_tgt.module (2 * p)
+  letI _ := X_tgt.hodgeStructure (2 * p)
+  unfold MTCorrespondencePackageAt at h_pkg
+  obtain ⟨φ, ψ, h_square, h_surj⟩ := h_pkg
+  exact varietyHCAt_transfer p φ ψ h_square h_surj h_HC_src
+
 end HodgeReduction.Infrastructure.HodgeStructure

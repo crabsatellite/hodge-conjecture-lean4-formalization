@@ -237,40 +237,58 @@ axiom hyp_HC_CM_Ab_real :
  ∀ (A : SmoothProjectiveVariety ℂ),
    IsCMAbelianVariety A → HodgeConjectureReal A
 
-/-- **R174b** (Mumford-Tate correspondence reduction): for every
-clause-(iii) variety `X` (E_{7(-25)}-MT factor on weight 3 +
-InKnownE7Scope), HC-real(X) follows from HC-real being known for all
-CM abelian varieties (i.e., from `hyp_HC_CM_Ab_real`).
+/-- **R177** (refined Mumford-Tate correspondence existence): for every
+clause-(iii) variety `X`, there exists a CM abelian variety `A` with a
+per-codimension Mumford-Tate correspondence package
+(`MTCorrespondencePackageAt`) supplying the HSM `φ` + cycle map `ψ` +
+commutative square + Hodge-class surjectivity witnesses.
 
-Substantive content (paper §6): the Mumford-Tate machinery applied to
-the V_56 representation of E_7 produces a correspondence (Γ) between
-`X` and a CM abelian variety `A_Γ`, satisfying:
-* `Γ`-induced cohomology map `φ : H^{2p}(A_Γ, ℚ) → H^{2p}(X, ℚ)`
-  is a Hodge structure morphism (preserves bigrading).
-* `Γ`-induced cycle map `ψ : A_Γ`-cycles → `X`-cycles makes the
-  cycle-class-map square commute.
-* The cohomology map is surjective on Hodge classes (this uses the
-  specific V_56-rep structure + Chern-Weil bridge for the
-  Freudenthal class + Hecke-BBT correspondences).
+This is the SUBSTANTIVE content of paper §6 (the MT correspondence
+machinery) packaged as a witness-providing existential axiom. With
+this axiom, the previous R174b bundled `mt_correspondence_e7_reduction`
+axiom becomes a DERIVED theorem applying R177's `varietyHCAt_of_correspondence`
+(which internally uses R176/R165 reduction transfer).
 
-Conclusion: HC-real(A_Γ) implies HC-real(X) at every codimension.
+paper source: §6; hyp:ChernWeil-bridge-E7 + hyp:hecke-bbt; AMRT 1975
+construction of the MT correspondence at variety level. -/
+axiom mt_correspondence_e7_witness_exists :
+ ∀ (X : SmoothProjectiveVariety ℂ),
+   hasSimpleFactor (MumfordTateGroupDerived X 3) E7_neg25 →
+   InKnownE7Scope X →
+   ∃ (A : SmoothProjectiveVariety ℂ), IsCMAbelianVariety A ∧
+     ∀ p : ℕ,
+       Infrastructure.HodgeStructure.MTCorrespondencePackageAt
+         A.cohomology X.cohomology A.algClasses X.algClasses p
 
-This is an abstract statement of R165's `hodgeConjecture_transfer`
-applied to the Mumford-Tate correspondence; we package it as an axiom
-because constructing the correspondence explicitly requires the full
-paper machinery (cor_E7_shimura_closed + hyp_BBT_rigid_reach +
-hyp_nonrigid_family_bridge + hyp_ChernWeil_bridge_E7 + hyp_AH_CM_E7 +
-hyp_chow_modularity_E7 + hyp_hecke_bbt). Future rounds will replace
-this single axiom with the explicit R165-application chain.
+/-- **R174b/R177** (now derived theorem): for every clause-(iii)
+variety `X`, HC-real(X) follows from HC-real being known for all CM
+abelian varieties (i.e., from `hyp_HC_CM_Ab_real`).
+
+**R177 refactor**: was an axiom (R174b); now DERIVED from
+`mt_correspondence_e7_witness_exists` (R177 existence axiom) +
+`varietyHCAt_of_correspondence` (R177 package-unpacking theorem,
+which itself uses R176's variety-level transfer via R175 bridge +
+R165 reduction transfer).
+
+The substantive content split:
+* `mt_correspondence_e7_witness_exists` (axiom): provides the actual
+  φ, ψ, square, surj witnesses per codimension.
+* `varietyHCAt_of_correspondence` (theorem, R177): applies the witnesses
+  via R176 to perform the per-codimension HC transfer.
 
 paper source: §6; hyp:ChernWeil-bridge-E7 + hyp:hecke-bbt. -/
-axiom mt_correspondence_e7_reduction :
+theorem mt_correspondence_e7_reduction :
  ∀ (X : SmoothProjectiveVariety ℂ),
    hasSimpleFactor (MumfordTateGroupDerived X 3) E7_neg25 →
    InKnownE7Scope X →
    (∀ A : SmoothProjectiveVariety ℂ,
      IsCMAbelianVariety A → HodgeConjectureReal A) →
-   HodgeConjectureReal X
+   HodgeConjectureReal X := by
+  intro X h1 h2 hHC
+  obtain ⟨A, hA, h_pkg⟩ := mt_correspondence_e7_witness_exists X h1 h2
+  intro p
+  exact Infrastructure.HodgeStructure.varietyHCAt_of_correspondence
+    (h_pkg p) (hHC A hA p)
 
 /-- **R172 case (iii)** (now R174-derived theorem): every smooth
 projective complex variety with an `E_{7(-25)}`-simple factor on
