@@ -21,6 +21,7 @@ import HodgeReduction.Infrastructure.Cohomology.HodgeRefinementCarriers
 import HodgeReduction.Infrastructure.AlgebraicGeometry.LineBundle
 import HodgeReduction.Infrastructure.AlgebraicGeometry.PicardGroup
 import HodgeReduction.Infrastructure.AlgebraicGeometry.FirstChernClass
+import HodgeReduction.Infrastructure.Cohomology.BorelHirzebruchCoinvariant
 import HodgeReduction.Infrastructure.Cohomology.PicardGroup
 import HodgeReduction.Infrastructure.Cohomology.AmpleDivisor
 import HodgeReduction.Infrastructure.Cohomology.CycleClassMap
@@ -1485,6 +1486,34 @@ theorem evii_grad_comm_is_ordinary_comm (a b : A_EVII) : a * b = b * a := by
   -- Direct: Polynomial ℚ is a commutative ring.
   exact mul_comm a b
 
+/-! ### R52 SUBSTANTIVE: `BorelHirzebruchCoinvariantData A_EVII`
+
+Closes the **Borel-Hirzebruch augmentation-vanishing** axiom chain at
+the typeclass-field level for the EVII model.
+
+* `positive_W_invariants_die : ∀ α ∈ WE7AugIdeal, α = 0`
+
+For our concrete model `WE7AugIdeal := ⊥` (set in `evii_augmentationIdeal`),
+so this is `∀ α ∈ ⊥, α = 0`, which is trivially the Submodule.mem_bot
+characterisation.
+
+**Composes with `CanonicalPhiData.canonicalPhi_q_in_augmentation_ideal`**
+(R33) to discharge `canonical_Phi_lands_in_W_E7_augmentation_ideal` for
+the EVII carrier — eliminates one more Cat 2 paper-axiom dependency
+at the typeclass-projection level. -/
+noncomputable instance evii_borelHirzebruchCoinvariantData :
+    HodgeReduction.Infrastructure.Cohomology.BorelHirzebruchCoinvariantData A_EVII where
+  positive_W_invariants_die := fun α hα => (Submodule.mem_bot ℚ).mp hα
+
+/-- **Sanity check** (R52): the canonical Φ value at q vanishes (= 0)
+in `A_EVII`, derived through the **abstract chain**
+`CanonicalPhiData → AugmentationIdeal → BorelHirzebruchCoinvariantData`. -/
+theorem evii_canonical_Phi_lands_in_aug_ideal_then_zero :
+    HodgeReduction.Infrastructure.Cohomology.CanonicalPhiData.canonicalPhi_q
+      (A := A_EVII) = 0 :=
+  HodgeReduction.Infrastructure.Cohomology.BorelHirzebruchCoinvariantData.positive_W_invariants_die
+    _ HodgeReduction.Infrastructure.Cohomology.CanonicalPhiData.canonicalPhi_q_in_augmentation_ideal
+
 /-! ### R34 SUBSTANTIVE: NefConeData + KodairaEmbeddingData on EVII
 
 Two more `AmpleDivisor.lean` typeclasses get concrete EVII witnesses,
@@ -1658,5 +1687,7 @@ theorem evii_freudenthal_quartic_is_algebraic :
 #print axioms evii_topDim_eq_54
 #print axioms evii_degree_X_eq_two
 #print axioms evii_grad_comm_is_ordinary_comm
+-- R52 KERNEL-PURITY: BorelHirzebruchCoinvariantData EVII (augmentation chain).
+#print axioms evii_canonical_Phi_lands_in_aug_ideal_then_zero
 
 end HodgeReduction.Concrete
