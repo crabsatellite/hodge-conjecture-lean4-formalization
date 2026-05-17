@@ -302,6 +302,65 @@ theorem F_top_inf (i : Fin (k + 2)) :
 
 end HodgeFiltrationStructure
 
+/-! ## R144: Bridge `PureHodgeStructure` → `HodgeFiltrationStructure`
+
+For any `PureHodgeStructure V n`, the standard Hodge filtration is
+
+  F^i V = ⨆_{j ≥ i} H^{j, n-j}
+
+This sits inside the `PureHodgeStructure.filt` definition (indexed by
+Fin (n+1)), but the `HodgeFiltrationStructure` class requires indexing
+by Fin (n+2) with `F^{n+1} = ⊥` as boundary. We extend `filt` by an
+artificial bottom value at index n+1, giving the bridge. -/
+
+namespace PureHodgeStructure
+
+variable {V : Type*} [AddCommGroup V] [Module ℚ V] {n : ℕ}
+  [PureHodgeStructure V n]
+
+/-- **R144**: extended Hodge filtration `F_ext : Fin (n+2) → Submodule ℚ V`
+agreeing with `filt` at indices `0..n` and equal to `⊥` at the boundary
+index `n+1`. -/
+def filt_ext (p : Fin (n + 2)) : Submodule ℚ V :=
+  if h : p.val < n + 1 then filt (V := V) ⟨p.val, h⟩ else (⊥ : Submodule ℚ V)
+
+/-- **R144**: filt_ext at the boundary index `n+1` is `⊥`. -/
+theorem filt_ext_top_eq_bot :
+    filt_ext (V := V) (n := n) ⟨n + 1, by omega⟩ = (⊥ : Submodule ℚ V) := by
+  unfold filt_ext
+  have h : ¬ (n + 1 < n + 1) := lt_irrefl _
+  simp only [dif_neg h]
+
+/-- **R144**: filt_ext is antitone (F^q ≤ F^p when p ≤ q). -/
+theorem filt_ext_antitone {p q : Fin (n + 2)} (h : p.val ≤ q.val) :
+    filt_ext (V := V) q ≤ filt_ext (V := V) p := by
+  unfold filt_ext
+  by_cases hq : q.val < n + 1
+  · -- q < n+1 means p < n+1 too
+    have hp : p.val < n + 1 := lt_of_le_of_lt h hq
+    simp only [dif_pos hq, dif_pos hp]
+    exact filt_antitone h
+  · -- q ≥ n+1; filt_ext q = ⊥ ≤ anything
+    simp only [dif_neg hq]
+    exact bot_le
+
+end PureHodgeStructure
+
+/-- **R144 BRIDGE**: any `PureHodgeStructure V n` induces a
+`HodgeFiltrationStructure V n` via the extended filtration `filt_ext`.
+
+Significance: with this instance, the two formulations are no longer
+independent — `PureHodgeStructure` is the stronger primitive, and
+`HodgeFiltrationStructure` is derived. Any consumer of
+`HodgeFiltrationStructure` now automatically benefits when a
+`PureHodgeStructure` instance is available. -/
+instance PureHodgeStructure.toHodgeFiltrationStructure {V : Type*}
+    [AddCommGroup V] [Module ℚ V] {n : ℕ} [PureHodgeStructure V n] :
+    HodgeFiltrationStructure V n where
+  F := PureHodgeStructure.filt_ext
+  F_antitone := fun _ _ h => PureHodgeStructure.filt_ext_antitone h
+  F_top_eq_bot := PureHodgeStructure.filt_ext_top_eq_bot
+
 /-! ## Trivial reference instances: `(ℚ, weight 0)`
 
 The base field `ℚ` carries the trivial weight-`0` Hodge structure with
