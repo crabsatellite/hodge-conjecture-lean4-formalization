@@ -1061,12 +1061,14 @@ This instance therefore provides a **concrete kernel-pure witness**
 of HC on `Ě_VII`. -/
 noncomputable instance evii_cycleClassImageData :
     HodgeReduction.Infrastructure.Cohomology.CycleClassImageData EVII_R6.EVII_Space A_EVII where
+  -- R36+ refactor: use `Subalgebra.toSubmodule` (Mathlib clean API) instead
+  -- of `Submodule.span ℚ (... : Set _)`. The two are extensionally equal
+  -- when the underlying set is a subalgebra, but `toSubmodule` is the
+  -- canonical structural projection.
   algebraicHodge :=
-    Submodule.span ℚ (Algebra.adjoin ℚ ({(Polynomial.X : A_EVII)} : Set A_EVII) :
-                      Set A_EVII)
+    Subalgebra.toSubmodule (Algebra.adjoin ℚ ({(Polynomial.X : A_EVII)} : Set A_EVII))
   allHodge :=
-    Submodule.span ℚ (Algebra.adjoin ℚ ({(Polynomial.X : A_EVII)} : Set A_EVII) :
-                      Set A_EVII)
+    Subalgebra.toSubmodule (Algebra.adjoin ℚ ({(Polynomial.X : A_EVII)} : Set A_EVII))
   algebraicHodge_le_allHodge := le_refl _
 
 /-- **The Hodge Conjecture for `Ě_VII`** (R30 concrete witness).
