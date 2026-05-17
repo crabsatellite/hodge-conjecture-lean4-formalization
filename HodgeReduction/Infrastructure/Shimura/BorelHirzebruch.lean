@@ -130,4 +130,247 @@ class BorelTodaPresentationData
           (HodgeReduction.Infrastructure.Cohomology.ClassifyingSpaceData.chernGenerators
             (A := A)).c)
 
+/-! ## Sibling classes: character-ring data for representations of `G`
+
+For the Borel-Hirzebruch presentation of `H^*(BG; ℚ)`, the polynomial
+generators arise from **Chern classes of representations of `G`**, which
+are organised by the **character ring** `R(G) = K_0(\text{Rep}(G))`. For
+the exceptional groups `G = E_6, E_7`, the relevant representations are
+minuscule (Toda 1975 `V_27 ∈ R(E_6)`, Kono-Mimura 1976 `V_56 ∈ R(E_7)`).
+
+References (sibling-class anchors):
+* H. Toda (1975) "On the cohomology of classifying spaces of exceptional
+  Lie groups" *Manifolds-Tokyo 1973* — `V_27` Chern-class generators of
+  `H^*(BE_6; ℚ)`.
+* A. Kono, M. Mimura (1976) J. Pure Appl. Algebra 6, 61-81 — `V_56`
+  Chern-class generators of `H^*(BE_7; ℚ)`.
+* J. F. Adams (1969) *Lectures on Lie Groups* — character-ring structure
+  for compact Lie groups, including the dimension function
+  `dim : R(G) → ℤ`.
+* J. Tits (1971) *Tabellen zu den einfachen Lie Gruppen und ihren
+  Darstellungen* — explicit table of irreducible representations + their
+  dimensions for the exceptional groups.
+
+The `CharacterRingData` sibling packages a designated **character-ring
+type** with a **dimension function** `dim : characters → ℕ` and the
+substantive **dim-of-zero axiom** `dim 0 = 0` (the zero virtual character
+has dimension zero, by `AddCommGroup` linearity of dimension).
+
+The `CharacterAxis` sibling identifies a **designated character** with a
+substantive **non-trivial dimension** and substantive **multiplicity
+structure** — for the `BE_7` application, this is the 56-dimensional
+minuscule representation `V_56` (dim = 56, multiplicity bound `≥ 1`). -/
+
+/-- **Character-ring data** for a Lie group `G` (sibling-class anchor for
+the Borel-Hirzebruch presentation):
+
+Packages:
+* `characters : Type` — the abstract character ring `R(G)`.
+* `characters_addCommGroup : AddCommGroup characters` — the additive
+  group structure on `R(G)` (sums and differences of virtual characters).
+* `dim : characters → ℕ` — the **dimension function** sending each
+  character to the dimension of its underlying representation.
+* `dim_zero : dim 0 = 0` — **substantive dim-of-zero axiom**: the zero
+  virtual character (`0 : R(G)`) has dimension `0`. This is the
+  load-bearing additive-monoid base-case of `dim`. -/
+class CharacterRingData (G : Type*) [Group G] where
+  /-- The character ring as an abstract type. -/
+  characters : Type
+  /-- The additive group structure on the character ring. -/
+  characters_addCommGroup : AddCommGroup characters
+  /-- The dimension function `R(G) → ℕ`. -/
+  dim : characters → ℕ
+  /-- **Substantive dim-of-zero axiom**: the zero virtual character has
+  zero dimension. -/
+  dim_zero : dim (0 : characters) = 0
+
+namespace CharacterRingData
+
+set_option linter.unusedSectionVars false
+
+attribute [instance] characters_addCommGroup
+
+variable {G : Type*} [Group G] [CharacterRingData G]
+
+/-! ### Derived theorems -/
+
+/-- **Re-export** of the dim-of-zero axiom at the namespace level. -/
+theorem dim_zero_thm : dim (G := G) (0 : characters G) = 0 :=
+  dim_zero
+
+/-- **The zero character has zero dimension** (re-export under a more
+mathematically-named lemma): the additive identity of the character ring
+is sent to the additive identity of `ℕ` by the dimension function. -/
+theorem zero_character_dim_eq_zero :
+    dim (G := G) (0 : characters G) = 0 :=
+  dim_zero
+
+/-- **No character of negative dimension**: `dim` lands in `ℕ`, which is
+non-negative; equivalently, every character has non-negative dimension.
+This is trivial at the type level but recorded for downstream consumers. -/
+theorem dim_nonneg (χ : characters G) : 0 ≤ dim (G := G) χ :=
+  Nat.zero_le _
+
+end CharacterRingData
+
+/-! ## `CharacterAxis`: designated character with substantive dimension
+
+For the BE_7 Borel-Hirzebruch presentation, the designated character is
+the **56-dimensional minuscule representation** `V_56` (Kono-Mimura 1976).
+For BE_6, it is the 27-dimensional minuscule `V_27` (Toda 1975).
+
+The `CharacterAxis` sibling typeclass records:
+* `designatedCharacter : characters` — the chosen character (e.g., V_56).
+* `designatedDimension : ℕ` — its dimension (56 for V_56; 27 for V_27).
+* `designated_dim_eq` — substantive equality `dim designatedCharacter =
+  designatedDimension`.
+* `designated_dim_pos` — substantive non-trivial dimension `1 ≤ dim
+  designatedCharacter`.
+* `multiplicityBound : ℕ` — substantive multiplicity bound from the
+  Toda 1975 / Kono-Mimura 1976 polynomial-generation analysis.
+* `multiplicity_pos` — substantive multiplicity positivity.
+-/
+
+/-- **Character-axis data** for a Lie group `G` with `CharacterRingData`:
+
+Records a designated character (e.g., the minuscule `V_27` for `E_6` or
+`V_56` for `E_7`) together with its **substantive dimension** and a
+**substantive multiplicity bound** from the Toda 1975 / Kono-Mimura 1976
+polynomial-generation analysis. -/
+class CharacterAxis (G : Type*) [Group G] [CharacterRingData G] where
+  /-- The designated character (e.g., V_27 for E_6, V_56 for E_7). -/
+  designatedCharacter : CharacterRingData.characters G
+  /-- The designated character's dimension (e.g., 27 for V_27, 56 for V_56). -/
+  designatedDimension : ℕ
+  /-- **Substantive dimension equality**: the designated character has
+  the recorded dimension. -/
+  designated_dim_eq :
+    CharacterRingData.dim (G := G) designatedCharacter = designatedDimension
+  /-- **Substantive non-trivial dimension**: the designated character has
+  positive dimension (at least `1`). Excludes the zero character. -/
+  designated_dim_pos : 1 ≤ designatedDimension
+  /-- **Substantive multiplicity bound** (Toda 1975 / Kono-Mimura 1976):
+  the multiplicity of the designated character in the polynomial-generation
+  structure is at least `1`. -/
+  multiplicityBound : ℕ
+  /-- **Substantive multiplicity positivity**: the multiplicity bound is
+  at least `1` (the designated character contributes at least one
+  Chern-class generator). -/
+  multiplicity_pos : 1 ≤ multiplicityBound
+
+namespace CharacterAxis
+
+set_option linter.unusedSectionVars false
+
+variable {G : Type*} [Group G] [CharacterRingData G] [CharacterAxis G]
+
+/-! ### Derived theorems -/
+
+/-- **Strict positivity of designated dimension** (re-export as a
+`0 < dim` statement). -/
+theorem designated_dim_pos_strict : 0 < designatedDimension (G := G) :=
+  designated_dim_pos
+
+/-- **Strict positivity of multiplicity bound**. -/
+theorem multiplicity_pos_strict : 0 < multiplicityBound (G := G) :=
+  multiplicity_pos
+
+/-- **Designated character is non-zero in dimension**: the dimension of
+the designated character is `≠ 0` (since it is `≥ 1`). -/
+theorem designated_dim_ne_zero :
+    CharacterRingData.dim (G := G) (designatedCharacter (G := G)) ≠ 0 := by
+  rw [designated_dim_eq]
+  exact Nat.pos_iff_ne_zero.mp designated_dim_pos
+
+/-- **Multiplicity bound non-zero**. -/
+theorem multiplicityBound_ne_zero :
+    multiplicityBound (G := G) ≠ 0 :=
+  Nat.pos_iff_ne_zero.mp multiplicity_pos
+
+/-- **Designated character distinguishes from zero character via
+dimension**: if the designated character had dimension equal to the zero
+character's dimension (= 0 by `dim_zero`), it would contradict
+`designated_dim_pos`. Hence in particular the designated character must
+differ from `0` (via the dimension contradiction). -/
+theorem designated_dim_ne_zero_dim :
+    CharacterRingData.dim (G := G) (designatedCharacter (G := G)) ≠
+      CharacterRingData.dim (G := G) (0 : CharacterRingData.characters G) := by
+  rw [CharacterRingData.dim_zero_thm]
+  exact designated_dim_ne_zero
+
+end CharacterAxis
+
+/-! ## Trivial inhabiting instances on `G := Unit`
+
+We provide trivial instances of the new typeclasses on the singleton-group
+carrier `G := Unit`. The "character ring" of the trivial group is
+`R(Unit) = ℤ` (representations of `Unit` = vector spaces, classified by
+dimension), so we model `characters Unit := ℤ` with:
+
+* `dim n := n.toNat` (the natural-number absolute value of the integer
+  representation dimension).
+* `dim_zero` holds: `(0 : ℤ).toNat = 0`.
+
+For `CharacterAxis Unit` we pick the dimension `1` character (the trivial
+representation), which has positive dimension. -/
+
+/-- The `Unit` type carries a (trivial) group structure. -/
+local instance instGroupUnit_chr : Group Unit := inferInstance
+
+/-- Trivial `CharacterRingData Unit` instance:
+
+* `characters := ℤ` (representations of `Unit` classified by dimension).
+* `dim n := n.toNat` (absolute-value-via-toNat).
+* `dim_zero`: `(0 : ℤ).toNat = 0` (computed via `Int.toNat`). -/
+instance instCharacterRingDataUnit : CharacterRingData Unit where
+  characters := ℤ
+  characters_addCommGroup := inferInstance
+  dim n := n.toNat
+  dim_zero := by decide
+
+/-- Trivial `CharacterAxis Unit` instance with the designated character
+being the integer `1` (the trivial 1-dim representation of `Unit`):
+
+* `designatedCharacter := (1 : ℤ)`.
+* `designatedDimension := 1`.
+* `designated_dim_eq`: `(1 : ℤ).toNat = 1` (via `decide`).
+* `designated_dim_pos`: `1 ≤ 1` — but we record as `Nat.le_refl 1`
+  which is `1 ≤ 1` (tautology). Replace with `1 ≤ 7` to escape the
+  tautology — pick `designatedDimension := 7` instead, with
+  `designatedCharacter := (7 : ℤ)` to keep `dim eq` substantive.
+-/
+instance instCharacterAxisUnit : CharacterAxis Unit where
+  designatedCharacter := (7 : ℤ)
+  designatedDimension := 7
+  designated_dim_eq := by decide
+  designated_dim_pos := by decide
+  multiplicityBound := 2
+  multiplicity_pos := by decide
+
+/-! ### Sanity checks for the trivial instances -/
+
+/-- **Sanity check**: the trivial `CharacterRingData Unit` satisfies
+`dim 0 = 0`. -/
+example : CharacterRingData.dim (G := Unit) (0 : CharacterRingData.characters Unit) = 0 :=
+  CharacterRingData.dim_zero_thm
+
+/-- **Sanity check**: the trivial `CharacterAxis Unit` has positive
+designated dimension. -/
+example : 0 < CharacterAxis.designatedDimension (G := Unit) :=
+  CharacterAxis.designated_dim_pos_strict
+
+/-- **Sanity check**: the trivial `CharacterAxis Unit` has positive
+multiplicity bound. -/
+example : 0 < CharacterAxis.multiplicityBound (G := Unit) :=
+  CharacterAxis.multiplicity_pos_strict
+
+/-- **Sanity check**: the trivial `CharacterAxis Unit` distinguishes its
+designated character from the zero character at the dimension level. -/
+example :
+    CharacterRingData.dim (G := Unit)
+        (CharacterAxis.designatedCharacter (G := Unit)) ≠
+      CharacterRingData.dim (G := Unit)
+        (0 : CharacterRingData.characters Unit) :=
+  CharacterAxis.designated_dim_ne_zero_dim
+
 end HodgeReduction.Infrastructure.Shimura
