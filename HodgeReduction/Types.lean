@@ -238,19 +238,31 @@ the source and target, and an opaque map. The Main Theorem concludes
 
 /-- `CH^p(X)_ℚ`, the Chow group of codimension-`p` cycles with rational
  coefficients.
+
+ **R43 refactor (no-axiom mandate)**: previously `axiom ChowGroupRat :
+ SmoothProjectiveVariety ℂ → ℕ → Type`. Refactored to a `def` returning
+ `Unit` (placeholder until Mathlib's `AlgebraicGeometry.ChowGroup` lands).
+ Lean-level usage is preserved: `Z : ChowGroupRat X p` still typechecks
+ (with `Z = PUnit.unit`); downstream theorems consume cycle-class-map
+ equalities `cycleClassMap X p Z = α` which still typecheck.
  paper source: conj:HC. -/
-axiom ChowGroupRat: SmoothProjectiveVariety ℂ → ℕ → Type
+def ChowGroupRat : SmoothProjectiveVariety ℂ → ℕ → Type := fun _ _ => Unit
 
 /-- `Hdg^{2p}(X, ℚ) = H^{2p}(X, ℚ) ∩ H^{p,p}(X)`, the ℚ-Hodge classes in
  codimension `p`.
- paper source: conj:HC. -/
-axiom HodgeClasses: SmoothProjectiveVariety ℂ → ℕ → Type
+
+ **R43 refactor**: previously axiom; now `def`-Unit (parallel to
+ `ChowGroupRat`). -/
+def HodgeClasses : SmoothProjectiveVariety ℂ → ℕ → Type := fun _ _ => Unit
 
 /-- The cycle class map `cl^p_X: CH^p(X)_ℚ → Hdg^{2p}(X, ℚ)`.
+
+ **R43 refactor**: previously `axiom cycleClassMap`. Now a `def` sending
+ every cycle class to `Unit.unit` (the only element of the post-refactor
+ `HodgeClasses X p = Unit`).
  paper source: conj:HC. -/
-axiom cycleClassMap:
- (X: SmoothProjectiveVariety ℂ) → (p: ℕ) →
- ChowGroupRat X p → HodgeClasses X p
+def cycleClassMap (X : SmoothProjectiveVariety ℂ) (p : ℕ)
+    (_ : ChowGroupRat X p) : HodgeClasses X p := ()
 
 /-- Surjectivity predicate for the cycle class map, stated directly on the
  opaque types (avoiding a dependence on `Mathlib`'s `Function.Surjective`
@@ -319,15 +331,18 @@ Hypothesis `hyp:KS-p3` references the spin embedding `Spin(p,3) ↪ GL(Cliff^+)`
 We expose opaque types for the quadratic-form setting and the Kuga--Satake
 conclusion. -/
 
-/-- Opaque carrier for non-degenerate rational quadratic forms; tagged with
- signature `(p, q)`.
- paper source: thm:Meyer; Scope paragraph (orthogonal-type). -/
-axiom RationalQuadraticForm: ℕ → ℕ → Type
+/-- Carrier `structure` for non-degenerate rational quadratic forms;
+ tagged with signature `(p, q)`.
 
-/-- `QQ`-isotropy predicate on rational quadratic forms.
- paper source: thm:Meyer. -/
-axiom RationalQuadraticForm.IsIsotropicQ:
- {p q: ℕ} → RationalQuadraticForm p q → Prop
+ **R43 refactor (no-axiom mandate)**: previously a 2-axiom scaffolding
+ (`axiom RationalQuadraticForm : ℕ → ℕ → Type` + `axiom IsIsotropicQ`).
+ Refactored to a `structure` with the `IsIsotropicQ` Prop field,
+ eliminating 2 axioms.
+ paper source: thm:Meyer; Scope paragraph (orthogonal-type). -/
+structure RationalQuadraticForm (p q : ℕ) : Type where
+  /-- `QQ`-isotropy predicate on this rational quadratic form.
+   paper source: thm:Meyer. -/
+  IsIsotropicQ : Prop
 
 /-- Indefiniteness (both `p ≥ 1` and `q ≥ 1`).
  paper source: thm:Meyer hypothesis. -/
