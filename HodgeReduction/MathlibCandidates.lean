@@ -487,6 +487,49 @@ instance Module.IsInvertible.tensor_self.{u} {R : Type u} [CommRing R]
     Module.IsInvertible R (TensorProduct R M M) :=
   Module.IsInvertible.tensor
 
+/-! ### `Module.IsInvertible.Sigma` (R107): the type of invertible R-modules
+
+The **carrier type for the eventual Pic R group**: a Sigma type
+recording an invertible R-module up to type-level data.
+
+`Module.IsInvertible.Sigma R := Σ (M : Type u) (_ : AddCommGroup M)
+  (_ : Module R M) (_ : Module.IsInvertible R M), Unit`
+
+(The trailing `Unit` is a convention to give the dependent product a
+clean Σ-elimination pattern; could equivalently be omitted.)
+
+**Significance**: this is the SOURCE for the eventual `Pic R` quotient
+construction. Equipped with the iso-relation `M ~ M' ↔ Nonempty (M ≃ₗ M')`,
+the quotient gives `Pic R` as a `CommGroup`.
+
+**Skeleton at R107**: provide the type + a constructor + a way to
+extract the module witness. Subsequent rounds add the iso relation and
+the quotient. -/
+def Module.IsInvertible.Sigma.{u} (R : Type u) [CommRing R] : Type (u + 1) :=
+  Σ (M : Type u),
+    Σ (_ : AddCommGroup M), Σ (_ : Module R M), PLift (Module.IsInvertible R M)
+
+namespace Module.IsInvertible.Sigma
+
+/-- Constructor: package an invertible R-module as a Sigma element. -/
+def mk.{u} {R : Type u} [CommRing R] (M : Type u) [hAcg : AddCommGroup M]
+    [hMod : Module R M] [hInv : Module.IsInvertible R M] :
+    Module.IsInvertible.Sigma R :=
+  ⟨M, hAcg, hMod, PLift.up hInv⟩
+
+/-- Extract the underlying module from a Sigma element. -/
+def carrier.{u} {R : Type u} [CommRing R]
+    (s : Module.IsInvertible.Sigma R) : Type u :=
+  s.1
+
+/-- The carrier of `mk M` is `M`. -/
+theorem carrier_mk.{u} (R : Type u) [CommRing R] (M : Type u)
+    [AddCommGroup M] [Module R M] [Module.IsInvertible R M] :
+    carrier (Module.IsInvertible.Sigma.mk (R := R) M) = M :=
+  rfl
+
+end Module.IsInvertible.Sigma
+
 /-! ### Mathlib-PR readiness checklist
 
 * Definition is single-purpose, mathematically standard.
@@ -549,5 +592,7 @@ axioms or `sorry`. The `#print axioms` lines below verify this. -/
 -- R106 Module.IsInvertible.tensor_three + tensor_self: n-fold tensor instances.
 #print axioms Module.IsInvertible.tensor_three
 #print axioms Module.IsInvertible.tensor_self
+-- R107 Module.IsInvertible.Sigma carrier_mk: Sigma type for Pic R quotient construction.
+#print axioms Module.IsInvertible.Sigma.carrier_mk
 
 end HodgeReduction.MathlibCandidates
