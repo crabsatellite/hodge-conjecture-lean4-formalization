@@ -2579,7 +2579,13 @@ theorem evii_framework_completeness :
     -- R54 axiomatic Chern classes
     Nonempty
       (HodgeReduction.Infrastructure.Cohomology.ChernClassesAxiomatic A_EVII
-        (HodgeReduction.Infrastructure.Cohomology.AlgebraicVectorBundle A_EVII)) :=
+        (HodgeReduction.Infrastructure.Cohomology.AlgebraicVectorBundle A_EVII)) ∧
+    -- R77 Standard Conjecture (D)
+    Nonempty
+      (HodgeReduction.Infrastructure.Cohomology.StandardConjectureD_Data A_EVII) ∧
+    -- R80 ShimuraVarietyData
+    Nonempty
+      (HodgeReduction.Infrastructure.Shimura.ShimuraVarietyData A_EVII) :=
   ⟨⟨inferInstance⟩, ⟨inferInstance⟩,
    ⟨inferInstance⟩, ⟨inferInstance⟩,
    ⟨inferInstance⟩, ⟨inferInstance⟩,
@@ -2596,7 +2602,9 @@ theorem evii_framework_completeness :
    ⟨inferInstance⟩, ⟨inferInstance⟩,
    ⟨inferInstance⟩,
    -- R74/R75/R54 additions
-   ⟨inferInstance⟩, ⟨inferInstance⟩, ⟨inferInstance⟩⟩
+   ⟨inferInstance⟩, ⟨inferInstance⟩, ⟨inferInstance⟩,
+   -- R77/R80 additions
+   ⟨inferInstance⟩, ⟨inferInstance⟩⟩
 
 -- R73 KERNEL-PURITY: the framework-completeness meta-theorem.
 #print axioms evii_framework_completeness
