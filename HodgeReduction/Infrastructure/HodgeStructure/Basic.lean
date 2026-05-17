@@ -282,6 +282,39 @@ theorem finrank_filt_succ [Module.Finite ℚ V]
   -- hodgeNumber p := finrank (piece p) (R137 def)
   exact h_dim
 
+/-- **R152**: filtration top-step boundary `filt ⟨n, _⟩ = piece ⟨n, _⟩`.
+
+At the maximal index `p = n`, the filtration step contains only the
+single Hodge piece `H^{n,0}` (the top-degree piece). Used as the base
+case for the closed-form filtration dimension formula. -/
+theorem filt_top : filt (V := V) (n := n) ⟨n, Nat.lt_succ_self n⟩ =
+    piece (V := V) ⟨n, Nat.lt_succ_self n⟩ := by
+  unfold filt
+  apply le_antisymm
+  · -- ⨆ (i : Fin (n+1)) (_ : n ≤ i.val), piece i ≤ piece ⟨n, _⟩
+    refine iSup_le (fun i => iSup_le (fun hi => ?_))
+    -- hi : ⟨n, _⟩.val ≤ i.val, i.e., n ≤ i.val.
+    -- i : Fin (n+1) so i.val < n+1, hence i.val = n.
+    simp only at hi
+    have h_iv : i.val = n := by
+      have h_isLt := i.isLt
+      omega
+    have h_iFin : i = ⟨n, Nat.lt_succ_self n⟩ := Fin.ext h_iv
+    rw [h_iFin]
+  · -- piece ⟨n, _⟩ ≤ ⨆ (i : Fin (n+1)) (_ : n ≤ i.val), piece i
+    refine le_iSup_of_le ⟨n, Nat.lt_succ_self n⟩
+      (le_iSup_of_le ?_ le_rfl)
+    exact Nat.le_refl _
+
+/-- **R152**: `finrank (filt ⟨n, _⟩) = hodgeNumber ⟨n, _⟩` (boundary case
+of the filtration dimension formula). -/
+theorem finrank_filt_top [Module.Finite ℚ V] :
+    Module.finrank ℚ (filt (V := V) (n := n) ⟨n, Nat.lt_succ_self n⟩) =
+    hodgeNumber (V := V) ⟨n, Nat.lt_succ_self n⟩ := by
+  rw [filt_top]
+  -- hodgeNumber p := Module.finrank ℚ (piece p) by R137 def
+  rfl
+
 end PureHodgeStructure
 
 /-! ## Pure Hodge structures via explicit pieces with substantive
