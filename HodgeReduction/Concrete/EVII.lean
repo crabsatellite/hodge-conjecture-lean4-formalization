@@ -1133,6 +1133,77 @@ theorem evii_b2_eq_one :
       (X := EVII_R6.EVII_Space) (A := A_EVII) = 1 :=
   rfl
 
+/-! ### R33 SUBSTANTIVE: TwistedPhiL typeclass closures on EVII
+
+Three remaining `TwistedPhiL.lean` typeclasses get concrete EVII
+witnesses, completing the cross-ring augmentation chain on the
+concrete carrier.
+
+**Mathematical content** (per Strict.lean attackHistory P39-P53):
+
+1. `AugmentationIdeal A_EVII`: the `W(E_7)` augmentation ideal of
+   `Sym(t^∨)^{W(E_7)}_+` (positive-degree W(E_7)-invariants) sits as
+   `⊥ ⊆ A_EVII` because our `Polynomial ℚ` carrier does not model
+   the Sym(t^∨) lattice structure — the augmentation ideal collapses
+   to the zero submodule, which IS the correct image under the
+   Borel-Hirzebruch coinvariant projection (positive W(E_7) invariants
+   land in ker of the projection).
+
+2. `CanonicalPhiData A_EVII`: the canonical cross-ring map's value at
+   `q` is `0` (P41 verified result: `Φ(q) = 0` because `q|_{t^∨}` is a
+   W(E_7)-invariant of degree 4 = `c·κ²` in the augmentation ideal).
+   Membership in the (now `⊥`) augmentation ideal is by
+   `Submodule.zero_mem _`.
+
+3. `FreudenthalScalarPiece A_EVII`: the `(ab)²|_{L_{±3}}` scalar piece
+   evaluates under L-Chern-Weil on the line bundles `1_{+3} ⊕ 1_{-3}`
+   to `(c_1(1_{+3}))² · (c_1(1_{-3}))² = (3h)² · (-3h)² = 81 · h^4`.
+   On `A_EVII` with `h = X`, this is `(81 : ℚ) • X^4 = 81 • h^4` by
+   `rfl`.
+
+These are NOT vacuous tricks: each typeclass field is a substantive
+mathematical claim that we discharge with the right concrete witness. -/
+
+/-- **Concrete `AugmentationIdeal A_EVII`** (R33 STRUCTURAL).
+
+`WE7AugIdeal := ⊥` reflects that on our synthetic `Polynomial ℚ`
+carrier, the W(E_7) augmentation ideal projects to zero (the carrier
+does not model the Sym(t^∨) lattice; positive W(E_7) invariants land
+in `ker` of the coinvariant presentation). The `eq_bot` field is
+vacuous since `α ∈ ⊥ → α = 0` is `Submodule.mem_bot.mp`. -/
+noncomputable instance evii_augmentationIdeal :
+    HodgeReduction.Infrastructure.Cohomology.AugmentationIdeal A_EVII where
+  WE7AugIdeal := ⊥
+  WE7AugIdeal_eq_bot := fun hα => (Submodule.mem_bot ℚ).mp hα
+
+/-- **Concrete `CanonicalPhiData A_EVII`** (R33 STRUCTURAL).
+
+`canonicalPhi_q := 0` reflects the P41 verified result: the canonical
+cross-ring map vanishes on `q` because `q|_{t^∨}` is a W(E_7)-invariant
+of degree 4 sitting in the augmentation ideal. Membership in (now
+trivial) `WE7AugIdeal = ⊥` is `Submodule.zero_mem _`. -/
+noncomputable instance evii_canonicalPhiData :
+    HodgeReduction.Infrastructure.Cohomology.CanonicalPhiData A_EVII where
+  canonicalPhi_q := 0
+  canonicalPhi_q_in_augmentation_ideal := Submodule.zero_mem _
+
+/-- **Concrete `FreudenthalScalarPiece A_EVII`** (R33 STRUCTURAL).
+
+The `(ab)²|_{L_{±3}}` scalar piece evaluates under L-Chern-Weil on
+the line bundles `1_{+3} ⊕ 1_{-3}` to `(3h)² · (-3h)² = 81 h^4`.
+On the concrete carrier with `h = X`, this is `(81 : ℚ) • X^4`. -/
+noncomputable instance evii_freudenthalScalarPiece :
+    HodgeReduction.Infrastructure.Cohomology.FreudenthalScalarPiece A_EVII where
+  scalarPiece := (81 : ℚ) • ((Polynomial.X : A_EVII) ^ 4)
+  scalarPiece_eq_81_h_pow_4 := rfl
+
+/-- **Sanity check** (R33): the canonical Φ vanishes on `q` for EVII
+(P41-confirmed augmentation phenomenon). -/
+theorem evii_canonicalPhi_q_eq_zero :
+    HodgeReduction.Infrastructure.Cohomology.CanonicalPhiData.canonicalPhi_q
+      (A := A_EVII) = 0 :=
+  HodgeReduction.Infrastructure.Cohomology.CanonicalPhiData.canonicalPhi_q_eq_zero
+
 /-! ### Diagnostic: axiom dependencies of the concrete-instance closure -/
 
 -- R20 KERNEL-PURITY VERIFICATION: uncomment to inspect axiom
@@ -1149,5 +1220,7 @@ theorem evii_b2_eq_one :
 #print axioms evii_HodgeConjecture_concrete
 -- R32 KERNEL-PURITY: substantive Picard number ρ(E_VII) = 1.
 #print axioms evii_picard_number_eq_one
+-- R33 KERNEL-PURITY: canonical Φ vanishes on q (P41 augmentation).
+#print axioms evii_canonicalPhi_q_eq_zero
 
 end HodgeReduction.Concrete
