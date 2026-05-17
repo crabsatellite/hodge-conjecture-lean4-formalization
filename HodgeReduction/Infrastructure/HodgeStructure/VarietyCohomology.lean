@@ -250,4 +250,86 @@ theorem varietyHCAt_iff_cycleMapHC
     rw [Submodule.range_subtype] at h_eq'
     rw [← h_eq']
 
+/-! ## R176: Variety-level reduction transfer (R165 lifted)
+
+R165's `CycleClassMapData.hodgeConjecture_transfer` is stated abstractly
+at the cycle-class-map level. R176 lifts it to the variety level via the
+R175 bridge: given two variety cohomology data + algebraic classes data,
+and per-p compatible HSM + cycle correspondence with the standard R165
+hypotheses, HC-real for the source transfers to HC-real for the target.
+
+This is the abstract variety-level reduction theorem that the Mumford-
+Tate correspondence axiom (R174b `mt_correspondence_e7_reduction`)
+encodes. Future rounds can derive that axiom from a finer-grained
+"correspondence exists" axiom by direct application of R176. -/
+
+/-- **R176**: Variety-level HC transfer at codimension `p`. If we have
+* `X_src, X_tgt : VarietyCohomologyData` and corresponding algebraic
+  classes data `A_src, A_tgt`,
+* A Hodge structure morphism `φ` from `X_src.H (2*p)` to `X_tgt.H (2*p)`
+  of weight `2*p`,
+* A `ℚ`-linear cycle-correspondence `ψ : A_src.algClasses p →ₗ[ℚ]
+  A_tgt.algClasses p`,
+* The commutative square `φ ∘ subtype_src = subtype_tgt ∘ ψ`,
+* `φ` is surjective on Hodge classes:
+  `hodgeClassesAtDegree X_tgt p ≤ Submodule.map φ (hodgeClassesAtDegree X_src p)`,
+
+then HC-real for `X_src` at `p` implies HC-real for `X_tgt` at `p`.
+
+Proof: convert both sides via R175 bridge, apply R165's
+`hodgeConjecture_transfer`, convert back. -/
+theorem varietyHCAt_transfer
+    {X_src X_tgt : VarietyCohomologyData}
+    {A_src : AlgebraicClassesData X_src}
+    {A_tgt : AlgebraicClassesData X_tgt}
+    (p : ℕ)
+    (φ :
+      letI _ := X_src.addCommGroup (2 * p)
+      letI _ := X_src.module (2 * p)
+      letI _ := X_src.hodgeStructure (2 * p)
+      letI _ := X_tgt.addCommGroup (2 * p)
+      letI _ := X_tgt.module (2 * p)
+      letI _ := X_tgt.hodgeStructure (2 * p)
+      HodgeStructureMorphism (X_src.H (2 * p)) (X_tgt.H (2 * p)) (2 * p))
+    (ψ :
+      letI _ := X_src.addCommGroup (2 * p)
+      letI _ := X_src.module (2 * p)
+      letI _ := X_tgt.addCommGroup (2 * p)
+      letI _ := X_tgt.module (2 * p)
+      ↥(A_src.algClasses p) →ₗ[ℚ] ↥(A_tgt.algClasses p))
+    (h_square :
+      letI _ := X_src.addCommGroup (2 * p)
+      letI _ := X_src.module (2 * p)
+      letI _ := X_src.hodgeStructure (2 * p)
+      letI _ := X_tgt.addCommGroup (2 * p)
+      letI _ := X_tgt.module (2 * p)
+      letI _ := X_tgt.hodgeStructure (2 * p)
+      ∀ z : ↥(A_src.algClasses p),
+        ((A_tgt.algClasses p).subtype) (ψ z) =
+          φ.toLinearMap (((A_src.algClasses p).subtype) z))
+    (h_φ_surj :
+      letI _ := X_src.addCommGroup (2 * p)
+      letI _ := X_src.module (2 * p)
+      letI _ := X_src.hodgeStructure (2 * p)
+      letI _ := X_tgt.addCommGroup (2 * p)
+      letI _ := X_tgt.module (2 * p)
+      letI _ := X_tgt.hodgeStructure (2 * p)
+      PureHodgeStructure.hodgeClasses (X_tgt.H (2 * p)) p ≤
+        Submodule.map φ.toLinearMap
+          (PureHodgeStructure.hodgeClasses (X_src.H (2 * p)) p))
+    (h_HC_src : VarietyHCAt X_src A_src p) :
+    VarietyHCAt X_tgt A_tgt p := by
+  letI _ := X_src.addCommGroup (2 * p)
+  letI _ := X_src.module (2 * p)
+  letI _ := X_src.hodgeStructure (2 * p)
+  letI _ := X_tgt.addCommGroup (2 * p)
+  letI _ := X_tgt.module (2 * p)
+  letI _ := X_tgt.hodgeStructure (2 * p)
+  -- Convert both to CycleClassMapData HC form via R175 bridge
+  rw [varietyHCAt_iff_cycleMapHC] at h_HC_src
+  rw [varietyHCAt_iff_cycleMapHC]
+  -- Apply R165 reduction transfer
+  exact (A_src.toCycleClassMap p).hodgeConjecture_transfer
+    (A_tgt.toCycleClassMap p) φ ψ h_square h_φ_surj h_HC_src
+
 end HodgeReduction.Infrastructure.HodgeStructure
