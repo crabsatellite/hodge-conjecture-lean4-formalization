@@ -811,6 +811,68 @@ noncomputable instance inverseIsInvertible.{u} (R : Type u) [CommRing R]
     ⟨M, inferInstance, inferInstance,
       ⟨(TensorProduct.comm R _ M).trans (inverseIso R M)⟩⟩
 
+/-- **R114: inverse-up-to-iso uniqueness lemma**.
+
+If two invertible R-modules M, M' are R-linearly isomorphic, then their
+chosen inverses are also R-linearly isomorphic.
+
+This is the **key step** for the well-definedness of `Picard.inv`:
+since the inverse module is canonical only up to iso, we need to show
+the iso class of the inverse is determined by the iso class of the
+original module.
+
+**Proof sketch** (Hartshorne II.6.12 / Bourbaki AC II §5):
+```
+inverseCarrier M
+≃ R ⊗ inverseCarrier M            -- lid.symm
+≃ (M' ⊗ inverseCarrier M') ⊗ inverseCarrier M  -- (inverseIso M').symm
+≃ M' ⊗ (inverseCarrier M' ⊗ inverseCarrier M)  -- assoc
+≃ M ⊗ (inverseCarrier M' ⊗ inverseCarrier M)   -- e.symm
+≃ M ⊗ (inverseCarrier M ⊗ inverseCarrier M')   -- comm on second factor
+≃ (M ⊗ inverseCarrier M) ⊗ inverseCarrier M'   -- assoc.symm
+≃ R ⊗ inverseCarrier M'           -- inverseIso M
+≃ inverseCarrier M'               -- lid
+```
+-/
+noncomputable def inverseCarrier_iso_of_iso.{u} (R : Type u) [CommRing R]
+    {M M' : Type u} [AddCommGroup M] [Module R M] [Module.IsInvertible R M]
+    [AddCommGroup M'] [Module R M'] [Module.IsInvertible R M']
+    (e : M ≃ₗ[R] M') :
+    Module.IsInvertible.inverseCarrier R M ≃ₗ[R]
+      Module.IsInvertible.inverseCarrier R M' :=
+  let N := Module.IsInvertible.inverseCarrier R M
+  let N' := Module.IsInvertible.inverseCarrier R M'
+  let eM : TensorProduct R M N ≃ₗ[R] R := Module.IsInvertible.inverseIso R M
+  let eM' : TensorProduct R M' N' ≃ₗ[R] R := Module.IsInvertible.inverseIso R M'
+  -- N ≃ R ⊗ N
+  let step1 : N ≃ₗ[R] TensorProduct R R N := (TensorProduct.lid R N).symm
+  -- R ⊗ N ≃ (M' ⊗ N') ⊗ N
+  let step2 : TensorProduct R R N ≃ₗ[R] TensorProduct R (TensorProduct R M' N') N :=
+    TensorProduct.congr eM'.symm (LinearEquiv.refl R N)
+  -- (M' ⊗ N') ⊗ N ≃ M' ⊗ (N' ⊗ N)
+  let step3 : TensorProduct R (TensorProduct R M' N') N ≃ₗ[R]
+      TensorProduct R M' (TensorProduct R N' N) := TensorProduct.assoc R M' N' N
+  -- M' ⊗ (N' ⊗ N) ≃ M ⊗ (N' ⊗ N)
+  let step4 : TensorProduct R M' (TensorProduct R N' N) ≃ₗ[R]
+      TensorProduct R M (TensorProduct R N' N) :=
+    TensorProduct.congr e.symm (LinearEquiv.refl R _)
+  -- M ⊗ (N' ⊗ N) ≃ M ⊗ (N ⊗ N')
+  let step5 : TensorProduct R M (TensorProduct R N' N) ≃ₗ[R]
+      TensorProduct R M (TensorProduct R N N') :=
+    TensorProduct.congr (LinearEquiv.refl R M) (TensorProduct.comm R N' N)
+  -- M ⊗ (N ⊗ N') ≃ (M ⊗ N) ⊗ N'
+  let step6 : TensorProduct R M (TensorProduct R N N') ≃ₗ[R]
+      TensorProduct R (TensorProduct R M N) N' :=
+    (TensorProduct.assoc R M N N').symm
+  -- (M ⊗ N) ⊗ N' ≃ R ⊗ N'
+  let step7 : TensorProduct R (TensorProduct R M N) N' ≃ₗ[R]
+      TensorProduct R R N' :=
+    TensorProduct.congr eM (LinearEquiv.refl R N')
+  -- R ⊗ N' ≃ N'
+  let step8 : TensorProduct R R N' ≃ₗ[R] N' := TensorProduct.lid R N'
+  step1.trans (step2.trans (step3.trans (step4.trans
+    (step5.trans (step6.trans (step7.trans step8))))))
+
 end Module.IsInvertible
 
 /-! ### Mathlib-PR readiness checklist
@@ -905,5 +967,7 @@ axioms or `sorry`. The `#print axioms` lines below verify this. -/
 #print axioms Module.IsInvertible.inverseModule
 #print axioms Module.IsInvertible.inverseIso
 #print axioms Module.IsInvertible.inverseIsInvertible
+-- R114 inverseCarrier_iso_of_iso: inverse is unique up to iso (key uniqueness lemma).
+#print axioms Module.IsInvertible.inverseCarrier_iso_of_iso
 
 end HodgeReduction.MathlibCandidates
