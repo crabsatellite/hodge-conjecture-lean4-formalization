@@ -1233,6 +1233,25 @@ instance subsingleton_of_field.{u} {K : Type u} [Field K] : Subsingleton (Picard
 
 end Picard
 
+/-! ### R132: Picard ≃ LineBundleData.IsoClass for any CommRing
+
+For any commutative ring `R`, the R123 bridge `LineBundleData_for_CommRing R`
+makes `LineBundleData.IsoClass R = Picard R` as types (both are the quotient
+of the same `Module.IsInvertible.Sigma.IsoSetoid R`). The two `CommGroup`
+instances also agree on representatives, giving a group equality. -/
+
+namespace ProjectBridge
+
+/-- The carrier-level equality: for any CommRing R, the project's
+`LineBundleData.IsoClass R` and the Mathlib-side `Picard R` are
+definitionally the same quotient. -/
+theorem LineBundleData_IsoClass_eq_Picard.{u} (R : Type u) [CommRing R] :
+    HodgeReduction.Infrastructure.AlgebraicGeometry.LineBundleData.IsoClass R =
+      Picard R :=
+  rfl
+
+end ProjectBridge
+
 /-! ### Mathlib-PR readiness checklist
 
 * Definition is single-purpose, mathematically standard.
