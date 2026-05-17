@@ -178,4 +178,76 @@ theorem VarietyHC.mono {X : VarietyCohomologyData} {A B : AlgebraicClassesData X
     (hAB : ∀ p, A.algClasses p ≤ B.algClasses p) (hA : VarietyHC X A) :
     VarietyHC X B := fun p => (hA p).trans (hAB p)
 
+/-! ## R175: Bridge to R165 — variety HC as CycleClassMapData HC
+
+R168's `VarietyHCAt` is stated as a submodule containment; R165's
+`CycleClassMapData.HodgeConjectureForCycleMap` is stated as a `LinearMap`
+range equality. R175 builds the bridge:
+
+* `AlgebraicClassesData.toCycleClassMap`: views the inclusion
+  `algClasses p ↪ H^{2p}(X, ℚ)` as a `CycleClassMapData`.
+* `varietyHCAt_iff_cycleMapHC`: the two HC formulations are equivalent.
+
+With this bridge, R165's `hodgeConjecture_transfer` reduction theorem
+(Hodge-morphism + cycle-correspondence transfer) becomes applicable to
+variety-level HC reductions. Specifically, the Mumford-Tate
+correspondence reduction (R174b `mt_correspondence_e7_reduction`)
+becomes structurally derivable from explicit MT-correspondence
+witnesses via this bridge + R165 reduction transfer. -/
+
+/-- **R175**: Build the `CycleClassMapData` from an `AlgebraicClassesData`
+at codimension `p`. The underlying `ℚ`-linear map is the subtype
+inclusion `algClasses p →ₗ[ℚ] H^{2p}(X, ℚ)`; the range-le-hodgeClasses
+hypothesis is the Hodge half of the bundle (`algClasses_le_hodgeClasses`). -/
+noncomputable def AlgebraicClassesData.toCycleClassMap
+    {X : VarietyCohomologyData} (A : AlgebraicClassesData X) (p : ℕ) :
+    letI _i_acg := X.addCommGroup (2 * p)
+    letI _i_mod := X.module (2 * p)
+    letI _i_phs := X.hodgeStructure (2 * p)
+    CycleClassMapData ↥(A.algClasses p) (X.H (2 * p)) p := by
+  letI _i_acg := X.addCommGroup (2 * p)
+  letI _i_mod := X.module (2 * p)
+  letI _i_phs := X.hodgeStructure (2 * p)
+  exact {
+    toLinearMap := (A.algClasses p).subtype
+    range_le_hodgeClasses := by
+      rw [Submodule.range_subtype]
+      exact A.algClasses_le_hodgeClasses p
+  }
+
+/-- **R175 BRIDGE**: variety HC at codimension `p` is equivalent to
+the R165 `HodgeConjectureForCycleMap` formulation applied to the
+inclusion `algClasses p ↪ H^{2p}(X, ℚ)`.
+
+Forward: VarietyHCAt gives `hodgeClasses ≤ algClasses`; combined with
+the Hodge half (`algClasses_le_hodgeClasses`), this gives equality,
+hence `range subtype = algClasses = hodgeClasses`.
+
+Backward: HodgeConjectureForCycleMap gives `range subtype = hodgeClasses`;
+since `range subtype = algClasses`, this gives `algClasses = hodgeClasses`,
+hence `hodgeClasses ≤ algClasses` (= VarietyHCAt). -/
+theorem varietyHCAt_iff_cycleMapHC
+    {X : VarietyCohomologyData} (A : AlgebraicClassesData X) (p : ℕ) :
+    letI _i_acg := X.addCommGroup (2 * p)
+    letI _i_mod := X.module (2 * p)
+    letI _i_phs := X.hodgeStructure (2 * p)
+    VarietyHCAt X A p ↔ (A.toCycleClassMap p).HodgeConjectureForCycleMap := by
+  letI _i_acg := X.addCommGroup (2 * p)
+  letI _i_mod := X.module (2 * p)
+  letI _i_phs := X.hodgeStructure (2 * p)
+  unfold VarietyHCAt VarietyCohomologyData.hodgeClassesAtDegree
+        CycleClassMapData.HodgeConjectureForCycleMap
+        AlgebraicClassesData.toCycleClassMap
+  constructor
+  · intro h_le
+    show LinearMap.range (A.algClasses p).subtype = _
+    rw [Submodule.range_subtype]
+    exact le_antisymm (A.algClasses_le_hodgeClasses p) h_le
+  · intro h_eq
+    show _ ≤ A.algClasses p
+    have h_eq' : LinearMap.range (A.algClasses p).subtype =
+        PureHodgeStructure.hodgeClasses (X.H (2 * p)) p := h_eq
+    rw [Submodule.range_subtype] at h_eq'
+    rw [← h_eq']
+
 end HodgeReduction.Infrastructure.HodgeStructure
