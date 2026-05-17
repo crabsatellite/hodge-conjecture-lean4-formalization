@@ -268,6 +268,40 @@ instance Module.IsInvertible.self (R : Type*) [CommRing R] :
   exists_inverse :=
     ⟨R, inferInstance, inferInstance, ⟨TensorProduct.lid R R⟩⟩
 
+/-! ### `Module.IsInvertible.tensor` (R98): invertibility preserved by tensor product
+
+**Mathematical content** (Hartshorne II §6, Bourbaki II §5): the tensor
+product of two invertible modules is invertible. This is the
+**multiplicative structure** of the Picard group: `Pic R` is closed
+under `⊗_R`.
+
+**Proof structure** (purely composing Mathlib primitives, no
+case-by-case):
+
+Given `e₁ : M ⊗ N₁ ≃ R` and `e₂ : M' ⊗ N₂ ≃ R`, construct
+`e : (M ⊗ M') ⊗ (N₁ ⊗ N₂) ≃ R` via:
+
+1. `TensorProduct.tensorTensorTensorComm R M M' N₁ N₂` :
+   `(M ⊗ M') ⊗ (N₁ ⊗ N₂) ≃ (M ⊗ N₁) ⊗ (M' ⊗ N₂)`.
+2. `TensorProduct.congr e₁ e₂` :
+   `(M ⊗ N₁) ⊗ (M' ⊗ N₂) ≃ R ⊗ R`.
+3. `TensorProduct.lid R R` :
+   `R ⊗ R ≃ R`.
+
+Composition gives the desired equivalence. -/
+instance Module.IsInvertible.tensor.{u} {R : Type u} [CommRing R]
+    {M : Type u} [AddCommGroup M] [Module R M] [hM : Module.IsInvertible R M]
+    {M' : Type u} [AddCommGroup M'] [Module R M'] [hM' : Module.IsInvertible R M'] :
+    Module.IsInvertible R (TensorProduct R M M') where
+  exists_inverse := by
+    obtain ⟨N₁, instAcg₁, instMod₁, ⟨e₁⟩⟩ := hM.exists_inverse
+    obtain ⟨N₂, instAcg₂, instMod₂, ⟨e₂⟩⟩ := hM'.exists_inverse
+    -- The inverse module is N₁ ⊗ N₂.
+    refine ⟨TensorProduct R N₁ N₂, inferInstance, inferInstance, ⟨?_⟩⟩
+    -- Compose the three equivs.
+    exact (TensorProduct.tensorTensorTensorComm R M M' N₁ N₂).trans
+      ((TensorProduct.congr e₁ e₂).trans (TensorProduct.lid R R))
+
 /-! ### Mathlib-PR readiness checklist
 
 * Definition is single-purpose, mathematically standard.
@@ -310,5 +344,7 @@ axioms or `sorry`. The `#print axioms` lines below verify this. -/
 #print axioms Polynomial.X_pow_ne_zero
 -- R97 Module.IsInvertible class + trivial witness: kernel-pure.
 #print axioms Module.IsInvertible.self
+-- R98 Module.IsInvertible.tensor: tensor product preserves invertibility.
+#print axioms Module.IsInvertible.tensor
 
 end HodgeReduction.MathlibCandidates
