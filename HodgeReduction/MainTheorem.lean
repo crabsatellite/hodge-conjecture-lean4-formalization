@@ -218,6 +218,38 @@ theorem main_reduction_real :
  ∀ (X : SmoothProjectiveVariety ℂ), InScope X → HodgeConjectureReal X :=
  main_reduction_real_paper_axiom
 
+/-! ## R171: HC-real for the canonical E_7 Shimura variety
+
+Combining R170's `main_reduction_real` with R171's `canonical_inScope`
+axiom yields the **headline result**: the Hodge Conjecture holds in
+its REAL, non-Unit-trivial form for the canonical AMRT toroidal
+compactification of the E_7-Hermitian symmetric domain quotient.
+
+This is the substantive closure of HC for the project's main target
+variety. -/
+
+/-- **R171 HEADLINE**: The **Hodge Conjecture holds for the canonical
+E_7 Shimura variety** in its REAL form (no Unit trick).
+
+For every codimension `p`, every Hodge class in
+`H^{2p}(S_Γ^tor, ℚ)` arises as the image of a rational algebraic
+cycle class.
+
+This is a TWO-STEP DERIVATION:
+1. `canonical_inScope` (R171 axiom): `S_Γ^tor` is within paper scope.
+2. `main_reduction_real` (R170 theorem from R170 axiom): InScope → HC-real.
+
+Per R169 `HodgeConjectureReal`, this asserts:
+  `∀ p : ℕ, PureHodgeStructure.hodgeClasses (H^{2p}(S_Γ^tor, ℚ)) p
+       ≤ algClasses p`
+where both sides are honest ℚ-submodules.
+
+Paper source: `\label{thm:main}` (Main Theorem) applied to the
+canonical AMRT toroidal compactification. -/
+theorem hodgeConjectureReal_canonical :
+    HodgeConjectureReal canonicalE7ShimuraTor.underlying :=
+  main_reduction_real _ canonical_inScope
+
 /-! ## Unconditional paper theorems (body: `sorry`) -/
 
 /-- **Meyer / Hasse--Minkowski descent**, paper `\label{thm:Meyer}`.

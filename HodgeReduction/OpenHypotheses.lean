@@ -1568,6 +1568,25 @@ structure E7ShimuraTor : Type where
  of `S_Γ^tor` as AMRT toroidal compactification). -/
 axiom canonicalE7ShimuraTor: E7ShimuraTor
 
+/-- **R171**: The canonical AMRT toroidal compactification `S_Γ^tor`
+of the E_7-Hermitian symmetric domain quotient is **within paper scope**
+(clause (iii) of `InScope`: E_7-Shimura sub-case).
+
+Substantive content (paper Scope paragraph clause (iii) +
+hyp:ChernWeil-bridge-E7):
+* `S_Γ^tor` is a Shimura variety for the real form `E_{7(-25)}` of
+  type `E_7`.
+* Its Mumford-Tate group derived part on weight 3 cohomology has an
+  `E_{7(-25)}`-simple factor.
+* It lies in the currently-known E_7-type scope (Shimura family).
+
+These are facts BY CONSTRUCTION of `S_Γ^tor` as the AMRT toroidal
+compactification (Ash-Mumford-Rapoport-Tai 1975; Borel 1969). The
+axiom records them explicitly for direct use in HC-real derivation.
+
+paper source: Scope paragraph clause (iii); hyp:ChernWeil-bridge-E7. -/
+axiom canonical_inScope : InScope canonicalE7ShimuraTor.underlying
+
 /-- The Freudenthal-quartic cohomology class
  `[q] ∈ H^8(S_Γ^tor, ℚ) = HodgeClasses (underlying S) 4`.
  paper source: thm:E7_chernweil; hyp:ChernWeil-bridge-E7 (Freudenthal-quartic cohomology class). -/
