@@ -1154,6 +1154,30 @@ noncomputable def baseChangeHom.{u}
   map_one' := baseChange_one A
   map_mul' := baseChange_mul A
 
+/-- **R130: functor identity law** `baseChange R = id` on `Picard R`.
+For each [M] ∈ Picard R, `R ⊗_R M ≃ M` via `TensorProduct.lid`. -/
+theorem baseChange_self.{u} {R : Type u} [CommRing R] (x : Picard R) :
+    baseChange (R := R) R x = x := by
+  refine Quotient.inductionOn
+    (motive := fun a => baseChange (R := R) R a = a) x ?_
+  intro s
+  exact Quotient.sound ⟨TensorProduct.lid R s.carrier⟩
+
+/-- **R130: functor composition law** `baseChange B ∘ baseChange A = baseChange B`
+over a tower of rings `R → A → B`. The proof uses Mathlib's
+`AlgebraTensorModule.cancelBaseChange : B ⊗[A] (A ⊗[R] N) ≃ₗ[B] B ⊗[R] N`. -/
+theorem baseChange_comp.{u}
+    {R : Type u} [CommRing R]
+    {A : Type u} [CommRing A] [Algebra R A]
+    {B : Type u} [CommRing B] [Algebra R B] [Algebra A B] [IsScalarTower R A B]
+    (x : Picard R) :
+    baseChange B (baseChange A x) = baseChange B x := by
+  refine Quotient.inductionOn
+    (motive := fun a => baseChange B (baseChange A a) = baseChange B a) x ?_
+  intro s
+  exact Quotient.sound
+    ⟨TensorProduct.AlgebraTensorModule.cancelBaseChange R A B B s.carrier⟩
+
 end Picard
 
 /-! ### Mathlib-PR readiness checklist
