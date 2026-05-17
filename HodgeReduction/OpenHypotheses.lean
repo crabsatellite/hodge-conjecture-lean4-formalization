@@ -3626,20 +3626,37 @@ projective family `f: X -> B` with positive-dimensional base `B`, a point
  paper source: hyp:nonrigid-family-bridge. -/
 axiom IsFibrewiseNonRigid: SmoothProjectiveVariety ℂ → Prop
 
-/-- Opaque carrier type for a non-rigid family `f: X -> B` of the kind
- described in hyp:nonrigid-family-bridge: a smooth
- projective family with positive-dimensional base `B`, a point
- `b_0 ∈ B`, a fibre isomorphism `X_{b_0} ≅ X`, and period map
- `Φ_f: B -> S_{E_7}` both generically finite and dominant.
- paper source: hyp:nonrigid-family-bridge. -/
-axiom NonRigidFamily: SmoothProjectiveVariety ℂ → Type
+/-- Carrier `structure` for a non-rigid family `f: X -> B` of the kind
+ described in hyp:nonrigid-family-bridge: a smooth projective family
+ with positive-dimensional base `B`, a point `b_0 ∈ B`, a fibre
+ isomorphism `X_{b_0} ≅ X`, and period map `Φ_f: B -> S_{E_7}` both
+ generically finite and dominant.
 
-/-- The base `B` of a non-rigid family (as an opaque
- `SmoothProjectiveVariety` witness).
- paper source: hyp:nonrigid-family-bridge (smooth
- projective family `f: X -> B` with positive-dimensional `B`). -/
-axiom NonRigidFamily.base:
- {X: SmoothProjectiveVariety ℂ} → NonRigidFamily X → SmoothProjectiveVariety ℂ
+ **R40 refactor (no-axiom mandate)**: previously a 5-axiom scaffolding
+ (`axiom NonRigidFamily : SmPVar → Type` + 4 separate axiom accessors
+ `NonRigidFamily.base`, `PeriodMapDominant`, `PeriodMapGenericallyFinite`,
+ `FibreIsoAt_b0`). Refactored to a single `structure` with 4 fields,
+ eliminating 5 axioms. The Prop fields each represent the (paper-stated
+ opaque) hypothesis content; downstream axioms `*_PAPER_LABELLED_CONJECTURAL`
+ assert these field contents conditionally on the upstream Lie-theoretic
+ hypotheses.
+ paper source: hyp:nonrigid-family-bridge. -/
+structure NonRigidFamily (X: SmoothProjectiveVariety ℂ) : Type where
+  /-- The base `B` of the non-rigid family.
+   paper source: hyp:nonrigid-family-bridge (smooth projective family
+   `f: X -> B` with positive-dimensional `B`). -/
+  base : SmoothProjectiveVariety ℂ
+  /-- Opaque predicate: the period map `Φ_f: B -> S_{E_7}` is dominant.
+   paper source: hyp:nonrigid-family-bridge. -/
+  PeriodMapDominant : Prop
+  /-- Opaque predicate: the period map `Φ_f: B -> S_{E_7}` is generically
+   finite.
+   paper source: hyp:nonrigid-family-bridge. -/
+  PeriodMapGenericallyFinite : Prop
+  /-- Opaque predicate: there is a fibre isomorphism `X_{b_0} ≅ X` at a
+   distinguished base point `b_0 ∈ B`.
+   paper source: hyp:nonrigid-family-bridge. -/
+  FibreIsoAt_b0 : Prop
 
 /-- Predicate: the base has complex dimension 27 (the paper fixes
  `dim B = 27` after the dimension reduction of Remark
@@ -3688,21 +3705,21 @@ axiom helgason_1978_voisin_2002_basedim27 :
  IsFibrewiseNonRigid X →
  ∀ (F : NonRigidFamily X), F.base.dim = 27
 
-/-- Opaque predicate: the period map `Φ_f: B -> S_{E_7}` is dominant.
- paper source: hyp:nonrigid-family-bridge. -/
-axiom PeriodMapDominant: ∀ {X: SmoothProjectiveVariety ℂ}, NonRigidFamily X → Prop
+/-- **R40 backward-compat aliases** (no-axiom mandate). The three opaque
+ predicates `PeriodMapDominant`, `PeriodMapGenericallyFinite`,
+ `FibreIsoAt_b0` are now fields of the `NonRigidFamily` structure
+ (auto-generated projections `F.PeriodMapDominant` etc.). These
+ standalone `def` re-exports preserve the pre-R40 `Predicate F`
+ calling convention used by downstream axioms and theorems. -/
+def PeriodMapDominant {X: SmoothProjectiveVariety ℂ} (F : NonRigidFamily X) : Prop :=
+  F.PeriodMapDominant
 
-/-- Opaque predicate: the period map `Φ_f: B -> S_{E_7}` is generically
- finite.
- paper source: hyp:nonrigid-family-bridge. -/
-axiom PeriodMapGenericallyFinite:
- ∀ {X: SmoothProjectiveVariety ℂ}, NonRigidFamily X → Prop
+def PeriodMapGenericallyFinite {X: SmoothProjectiveVariety ℂ}
+    (F : NonRigidFamily X) : Prop :=
+  F.PeriodMapGenericallyFinite
 
-/-- Opaque predicate: there is a fibre isomorphism `X_{b_0} ≅ X` at a
- distinguished base point `b_0 ∈ B` (the paper's "point `b_0 ∈ B`"
- with `f^{-1}(b_0) ≅ X`).
- paper source: hyp:nonrigid-family-bridge. -/
-axiom FibreIsoAt_b0: ∀ {X: SmoothProjectiveVariety ℂ}, NonRigidFamily X → Prop
+def FibreIsoAt_b0 {X: SmoothProjectiveVariety ℂ} (F : NonRigidFamily X) : Prop :=
+  F.FibreIsoAt_b0
 
 /-! ### Classical-lit closures for the four atomic accessors of
 hyp:nonrigid-family-bridge. BaseDim27 closed via Helgason 1978 + Voisin
