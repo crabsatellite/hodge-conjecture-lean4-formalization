@@ -31,6 +31,7 @@ import HodgeReduction.Infrastructure.Cohomology.Galois
 import HodgeReduction.Infrastructure.Cohomology.AlgebraicCycle
 import HodgeReduction.Infrastructure.AlgebraicGeometry.ChowGroup
 import HodgeReduction.Infrastructure.Cohomology.DivisorClass
+import HodgeReduction.Infrastructure.Cohomology.Motive
 import HodgeReduction.Infrastructure.Cohomology.PicardGroup
 import HodgeReduction.Infrastructure.Cohomology.AmpleDivisor
 import HodgeReduction.Infrastructure.Cohomology.CycleClassMap
@@ -2668,6 +2669,43 @@ theorem evii_NS_rat_eq_span_X :
       = Submodule.span ℚ ({(Polynomial.X : A_EVII)} : Set A_EVII) :=
   rfl
 
+/-! ### R94 SUBSTANTIVE: `MotiveData EVII_R6.EVII_Space A_EVII` (trivial-motive model)
+
+Provides the **Grothendieck/Manin 1968 motive** structure for `Ě_VII`
+realised as `motive := A_EVII`. The realisation functor sends every
+motive class to `0 : A` in the target ℚ-module (trivial natural
+transformation), making the diagonal endomorphism `id_diag := 0` and
+satisfying idempotence trivially.
+
+**Synthetic disclosure**: this is the trivial-motive model on the
+synthetic `Polynomial ℚ` carrier; a genuine MotiveData would have
+non-trivial realisations into different cohomology theories (Betti,
+de Rham, ℓ-adic, etc.). For our purposes the trivial natural
+transformation suffices to satisfy the typeclass-field axioms. -/
+noncomputable instance evii_motiveData :
+    HodgeReduction.Infrastructure.Cohomology.MotiveData
+      EVII_R6.EVII_Space A_EVII where
+  realisation := 0
+  id_diag := 0
+  realisation_self_eq_id_diag := by
+    intro m
+    show (0 : A_EVII →ₗ[ℚ] A_EVII) m = (0 : A_EVII →ₗ[ℚ] A_EVII) m
+    rfl
+  id_diag_idempotent := by
+    intro m
+    show (0 : A_EVII →ₗ[ℚ] A_EVII) ((0 : A_EVII →ₗ[ℚ] A_EVII) m)
+      = (0 : A_EVII →ₗ[ℚ] A_EVII) m
+    simp
+
+/-- **Sanity check** (R94): the self-realisation diagonal on `Ě_VII`
+motives equals the designated `id_diag` (both are the zero map). -/
+theorem evii_motive_realise_self (m : A_EVII) :
+    (HodgeReduction.Infrastructure.Cohomology.MotiveData.realise
+      (X := EVII_R6.EVII_Space) (A := A_EVII) m : A_EVII) =
+        HodgeReduction.Infrastructure.Cohomology.MotiveData.id_diag
+          (X := EVII_R6.EVII_Space) m :=
+  HodgeReduction.Infrastructure.Cohomology.MotiveData.realise_self m
+
 /-! ### R89 ATTEMPT NOTE: `CycleClassData EVII` deferred
 
 Attempted in R89 but the AddMonoidHom + intersect/fundamental coordination
@@ -2848,6 +2886,8 @@ theorem evii_apex_synthesis :
 #print axioms evii_X_is_divisor
 -- R93 KERNEL-PURITY: NeronSeveriData EVII (cohomology-side 1-field form).
 #print axioms evii_NS_rat_eq_span_X
+-- R94 KERNEL-PURITY: MotiveData EVII (trivial-motive Grothendieck/Manin structure).
+#print axioms evii_motive_realise_self
 
 /-! ### R73 META-SYNTHESIS: Type-level catalogue of substantive EVII closures
 
