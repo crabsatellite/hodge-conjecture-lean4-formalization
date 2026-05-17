@@ -193,12 +193,15 @@ def E6_neg14 : MumfordTateGroupType :=
   ⟨False, True, False⟩
 
 /-- Predicate: the semisimple part of a Mumford--Tate group contains the
- given real form as a simple factor. Awaits Mathlib Lie-algebra
- machinery for a concrete definition; for now defined as `True`
- (the paper-conditional structure of the downstream theorems is
- preserved by their explicit hypotheses, not by this predicate). -/
-def hasSimpleFactor : MumfordTateGroupType → MumfordTateGroupType → Prop :=
-  fun _ _ => True
+ given real form as a simple factor. **Kept as axiom (R44 honest fix)**:
+ the binary relation between two MT groups depends on the actual
+ Lie-algebra structure, which we cannot derive from the 3-field MT
+ structure. Refactoring to `fun _ _ => True` (as initially done in R42)
+ would have made `NoE6E7Factor G` trivially-False (since `∃ H, True ∧
+ H.IsE6Type` is satisfied by `E6_neg14`), changing downstream theorem
+ semantics. Better to keep as honest opaque axiom awaiting Mathlib.
+ paper source: thm:G2F4, thm:E8_vacuous, rem:E6-V27-vacuity. -/
+axiom hasSimpleFactor: MumfordTateGroupType → MumfordTateGroupType → Prop
 
 /-- **R42 backward-compat alias** for `IsE6Type` projection. -/
 def IsE6Type (G : MumfordTateGroupType) : Prop := G.IsE6Type
