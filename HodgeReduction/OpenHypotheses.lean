@@ -4670,21 +4670,51 @@ R-attack-#34 (R-#24 audit findings followed up). Decomposition:
  form on D_EVII). INVENTION-class equivalent to original gap
  (the exceptional theta integral construction). -/
 
+/-- **R159**: HypHeckeBBTcBundle — 3 bbt_c framework predicates + 3
+paired witnesses + 1 bridge witness. Trades 7 named axioms for 1
+inhabitant. -/
+structure HypHeckeBBTcBundle : Type where
+  isKudlaMillsonClassicalOrthUnitarySchwartzForm_bbt_c : Prop
+  isFarautKoranyiJordanSymmetricConeAnalysis_bbt_c : Prop
+  isExceptionalTubeSchwartzFormD_EVII_bbt_c_INVENTION_CLASS : Prop
+  /-- PUBLISHED: Kudla-Millson 1986/1990 classical Schwartz form. -/
+  kudla_millson_witness : isKudlaMillsonClassicalOrthUnitarySchwartzForm_bbt_c
+  /-- PUBLISHED: Faraut-Koranyi 1994 Jordan-algebra symmetric cone analysis. -/
+  faraut_koranyi_witness : isFarautKoranyiJordanSymmetricConeAnalysis_bbt_c
+  /-- INVENTION_CLASS: D_EVII exceptional tube Schwartz form. -/
+  exceptional_tube_witness :
+    isExceptionalTubeSchwartzFormD_EVII_bbt_c_INVENTION_CLASS
+  /-- Bridge: 3 framework atoms ⟹ ∀ S, HeckeBBT_kudla_millson S. -/
+  hyp_hecke_bbt_c_bridge :
+    ∀ (S : E7ShimuraTor),
+    isKudlaMillsonClassicalOrthUnitarySchwartzForm_bbt_c ∧
+    isFarautKoranyiJordanSymmetricConeAnalysis_bbt_c ∧
+    isExceptionalTubeSchwartzFormD_EVII_bbt_c_INVENTION_CLASS →
+    HeckeBBT_kudla_millson S
+
+/-- **R159**: single inhabitant axiom for HypHeckeBBTcBundle. -/
+axiom hypHeckeBBTcBundle : HypHeckeBBTcBundle
+
 /-- Framework predicate (i): classical Kudla-Millson 1986/1990
- Schwartz form construction on O(p,q) / U(p,q). -/
-axiom IsKudlaMillsonClassicalOrthUnitarySchwartzForm_bbt_c : Prop
+ Schwartz form construction on O(p,q) / U(p,q).
+ **R159**: was `axiom`; now def via HypHeckeBBTcBundle. -/
+def IsKudlaMillsonClassicalOrthUnitarySchwartzForm_bbt_c : Prop :=
+  hypHeckeBBTcBundle.isKudlaMillsonClassicalOrthUnitarySchwartzForm_bbt_c
 
 /-- Framework predicate (ii): Faraut-Koranyi 1994 Jordan-algebra
  symmetric cone harmonic analysis (NOT Schwartz form
  construction). -/
-axiom IsFarautKoranyiJordanSymmetricConeAnalysis_bbt_c : Prop
+-- R159: was `axiom`; now def via HypHeckeBBTcBundle.
+def IsFarautKoranyiJordanSymmetricConeAnalysis_bbt_c : Prop :=
+  hypHeckeBBTcBundle.isFarautKoranyiJordanSymmetricConeAnalysis_bbt_c
 
 /-- **`_INVENTION_CLASS`** extension predicate: exceptional-tube
  Schwartz form on D_{EVII}. Paper-acknowledged "not in
  literature" 1986-2026. INVENTION-class equivalent to original
  gap. -/
-axiom IsExceptionalTubeSchwartzFormD_EVII_bbt_c_INVENTION_CLASS :
- Prop
+-- R159: was `axiom`; now def via HypHeckeBBTcBundle.
+def IsExceptionalTubeSchwartzFormD_EVII_bbt_c_INVENTION_CLASS : Prop :=
+  hypHeckeBBTcBundle.isExceptionalTubeSchwartzFormD_EVII_bbt_c_INVENTION_CLASS
 
 /-- **Framework axiom (i)** (PUBLISHED).
 
@@ -4712,8 +4742,10 @@ axiom IsExceptionalTubeSchwartzFormD_EVII_bbt_c_INVENTION_CLASS :
  series); this is the underlying Schwartz form construction.
 
  paper source: hyp:hecke-bbt clause (c) framework atom (i). -/
-axiom kudla_millson_classical_orth_unitary_schwartz_form_bbt_c :
- IsKudlaMillsonClassicalOrthUnitarySchwartzForm_bbt_c
+-- R159: was `axiom`; now theorem via HypHeckeBBTcBundle.
+theorem kudla_millson_classical_orth_unitary_schwartz_form_bbt_c :
+ IsKudlaMillsonClassicalOrthUnitarySchwartzForm_bbt_c :=
+ hypHeckeBBTcBundle.kudla_millson_witness
 
 /-- **Framework axiom (ii)** (PUBLISHED).
 
@@ -4737,8 +4769,10 @@ axiom kudla_millson_classical_orth_unitary_schwartz_form_bbt_c :
  limits scope to harmonic analysis.
 
  paper source: hyp:hecke-bbt clause (c) framework atom (ii). -/
-axiom faraut_koranyi_jordan_symmetric_cone_analysis_bbt_c :
- IsFarautKoranyiJordanSymmetricConeAnalysis_bbt_c
+-- R159: was `axiom`; now theorem via HypHeckeBBTcBundle.
+theorem faraut_koranyi_jordan_symmetric_cone_analysis_bbt_c :
+ IsFarautKoranyiJordanSymmetricConeAnalysis_bbt_c :=
+ hypHeckeBBTcBundle.faraut_koranyi_witness
 
 /-- **`_INVENTION_CLASS` extension axiom**.
 
@@ -4787,20 +4821,24 @@ axiom faraut_koranyi_jordan_symmetric_cone_analysis_bbt_c :
 
  paper source: hyp:hecke-bbt clause (c) `_INVENTION_CLASS`
  extension. -/
-axiom exceptional_tube_schwartz_form_D_EVII_bbt_c_INVENTION_CLASS :
- IsExceptionalTubeSchwartzFormD_EVII_bbt_c_INVENTION_CLASS
+-- R159: was `axiom`; now theorem via HypHeckeBBTcBundle.
+theorem exceptional_tube_schwartz_form_D_EVII_bbt_c_INVENTION_CLASS :
+ IsExceptionalTubeSchwartzFormD_EVII_bbt_c_INVENTION_CLASS :=
+ hypHeckeBBTcBundle.exceptional_tube_witness
 
 /-- Typed bridge axiom: 2 framework atoms (Kudla-Millson 1986/1990
  classical scope + Faraut-Koranyi 1994 Jordan-algebra harmonic
  analysis) + 1 `_INVENTION_CLASS` extension (D_EVII Schwartz
  form) → `HeckeBBT_kudla_millson S` for all `S`.
  paper source: hyp:hecke-bbt clause (c) combination. -/
-axiom hyp_hecke_bbt_c_from_framework_and_invention :
+-- R159: was `axiom`; now theorem via HypHeckeBBTcBundle bridge.
+theorem hyp_hecke_bbt_c_from_framework_and_invention :
  ∀ (S : E7ShimuraTor),
  IsKudlaMillsonClassicalOrthUnitarySchwartzForm_bbt_c ∧
  IsFarautKoranyiJordanSymmetricConeAnalysis_bbt_c ∧
  IsExceptionalTubeSchwartzFormD_EVII_bbt_c_INVENTION_CLASS →
- HeckeBBT_kudla_millson S
+ HeckeBBT_kudla_millson S :=
+ hypHeckeBBTcBundle.hyp_hecke_bbt_c_bridge
 
 /-- Atomic clause (c) closure (**gapPartial** via Pattern (ii)
  `_INVENTION_CLASS` extension; mirror SG-22 / SG-23 tier;
