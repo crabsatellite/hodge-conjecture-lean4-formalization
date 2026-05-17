@@ -875,6 +875,45 @@ noncomputable def inverseCarrier_iso_of_iso.{u} (R : Type u) [CommRing R]
 
 end Module.IsInvertible
 
+/-! ### `Picard.inv` (R115): the Picard inverse via chosen-inverse extraction
+
+The Picard inverse operation: `[M]⁻¹ = [inverseCarrier R M]`. Lifted
+from the Sigma-level inverse using R114 inverse-up-to-iso uniqueness
+for well-definedness. -/
+
+namespace Module.IsInvertible.Sigma
+
+/-- The Sigma-level inverse: package `inverseCarrier R s.carrier` as a Sigma element. -/
+noncomputable def inverse.{u} {R : Type u} [CommRing R]
+    (s : Module.IsInvertible.Sigma R) : Module.IsInvertible.Sigma R :=
+  Module.IsInvertible.Sigma.mk (R := R)
+    (Module.IsInvertible.inverseCarrier R s.carrier)
+
+/-- Inverse respects iso-equivalence (uses R114 uniqueness lemma). -/
+theorem IsoRel.inverse.{u} {R : Type u} [CommRing R]
+    {s t : Module.IsInvertible.Sigma R} (h : IsoRel s t) :
+    IsoRel (inverse s) (inverse t) := by
+  obtain ⟨e⟩ := h
+  exact ⟨Module.IsInvertible.inverseCarrier_iso_of_iso R e⟩
+
+end Module.IsInvertible.Sigma
+
+namespace Picard
+
+/-- The Picard inverse: `[M]⁻¹ = [inverseCarrier R M]`. -/
+noncomputable def inv.{u} {R : Type u} [CommRing R] (x : Picard R) : Picard R :=
+  Quotient.liftOn (s := Module.IsInvertible.Sigma.IsoSetoid R) x
+    (fun s => Quotient.mk _ (Module.IsInvertible.Sigma.inverse s))
+    (fun _ _ h => Quotient.sound (Module.IsInvertible.Sigma.IsoRel.inverse h))
+
+/-- `inv` agrees with `inverseCarrier` on representatives. -/
+theorem inv_mk.{u} {R : Type u} [CommRing R]
+    (M : Type u) [AddCommGroup M] [Module R M] [Module.IsInvertible R M] :
+    inv (mk (R := R) M) = mk (R := R) (Module.IsInvertible.inverseCarrier R M) :=
+  rfl
+
+end Picard
+
 /-! ### Mathlib-PR readiness checklist
 
 * Definition is single-purpose, mathematically standard.
@@ -969,5 +1008,10 @@ axioms or `sorry`. The `#print axioms` lines below verify this. -/
 #print axioms Module.IsInvertible.inverseIsInvertible
 -- R114 inverseCarrier_iso_of_iso: inverse is unique up to iso (key uniqueness lemma).
 #print axioms Module.IsInvertible.inverseCarrier_iso_of_iso
+-- R115 Sigma.inverse + Picard.inv: Picard inverse via Quotient lift.
+#print axioms Module.IsInvertible.Sigma.inverse
+#print axioms Module.IsInvertible.Sigma.IsoRel.inverse
+#print axioms Picard.inv
+#print axioms Picard.inv_mk
 
 end HodgeReduction.MathlibCandidates
