@@ -157,4 +157,5 @@ import HodgeReduction.Infrastructure.AlgebraicGeometry.ExponentialSequence
 import HodgeReduction.Infrastructure.AlgebraicGeometry.ChowGroup
 import HodgeReduction.Infrastructure.AlgebraicGeometry.HodgeDecomposition
 import HodgeReduction.Infrastructure.HCFramework
+import HodgeReduction.MathlibCandidates
 import HodgeReduction.Concrete

@@ -24,6 +24,7 @@ import HodgeReduction.Infrastructure.Cohomology.TwistedPhiL
 import HodgeReduction.Infrastructure.Shimura.HirzebruchMumford
 import HodgeReduction.Infrastructure.Shimura.ToroidalCompactification
 import Mathlib.Algebra.Polynomial.Basis
+import HodgeReduction.MathlibCandidates
 
 /-!
 # Concrete EVII cohomology carrier (R5-A: P48-Chern upgrade)
@@ -377,43 +378,19 @@ The proof is **real math**, not a trick: it uses the fact that
 distinct-degree monomials are linearly independent over ℚ (a fundamental
 property of polynomial rings). -/
 
-/-- **Monomial-span disjointness lemma** (R21+R23-structural KERNEL-ONLY
-foundational, R23-revision via Mathlib structural lemmas).
+/-- **Monomial-span disjointness lemma** — re-exported from
+`HodgeReduction.MathlibCandidates` (R26 KERNEL-ONLY extraction for
+Mathlib-PR preparation).
 
 For distinct `i, j : ℕ`, the one-dimensional ℚ-spans of `X^i` and
-`X^j` in `Polynomial ℚ` are disjoint.
-
-**Structural proof** (replaces R21's case-by-case coefficient comparison):
-chain two general Mathlib structural facts:
-
-* `Polynomial.basisMonomials` (Mathlib `Polynomial/Basis.lean`):
-  the monomials form a `Basis ℕ ℚ ℚ[X]`, hence are linearly
-  independent (`Basis.linearIndependent`).
-* `LinearIndependent.disjoint_span_image` (Mathlib
-  `LinearAlgebra/LinearIndependent.lean` L531): for a linearly
-  independent family `v : ι → M` and disjoint subsets `s, t ⊆ ι`, the
-  spans `span R (v '' s)` and `span R (v '' t)` are disjoint.
-
-Specialising to singletons `s = {i}, t = {j}` with `i ≠ j` (which makes
-the sets disjoint via `Set.disjoint_singleton`) yields the result.
-This is a Mathlib-PR candidate as a 4-line `Polynomial.disjoint_span_X_pow_of_ne`. -/
+`X^j` in `A_EVII = Polynomial ℚ` are disjoint. Substantive structural
+proof in `MathlibCandidates.lean` via `LinearIndependent.disjoint_span_image
++ Polynomial.basisMonomials`. -/
 theorem disjoint_span_X_pow_of_ne {i j : ℕ} (hij : i ≠ j) :
     Disjoint
       (Submodule.span ℚ ({(Polynomial.X : A_EVII) ^ i} : Set A_EVII))
-      (Submodule.span ℚ ({(Polynomial.X : A_EVII) ^ j} : Set A_EVII)) := by
-  -- STRUCTURAL: monomials form a basis ⟹ linearly independent ⟹
-  -- pairwise singleton spans are disjoint (no case analysis).
-  have hli : LinearIndependent ℚ (fun n : ℕ => (Polynomial.X : A_EVII) ^ n) := by
-    have h := (Polynomial.basisMonomials ℚ).linearIndependent
-    -- `coe_basisMonomials` gives `(basisMonomials ℚ : ℕ → ℚ[X]) =
-    -- fun s => monomial s 1`; `monomial_one_eq_X_pow` converts to `X^s`.
-    convert h using 1
-    funext s
-    exact (Polynomial.monomial_one_right_eq_X_pow s).symm
-  have hd : Disjoint ({i} : Set ℕ) ({j} : Set ℕ) :=
-    Set.disjoint_singleton.mpr hij
-  have hresult := hli.disjoint_span_image hd
-  rwa [Set.image_singleton, Set.image_singleton] at hresult
+      (Submodule.span ℚ ({(Polynomial.X : A_EVII) ^ j} : Set A_EVII)) :=
+  HodgeReduction.MathlibCandidates.Polynomial.disjoint_span_X_pow_of_ne hij
 
 /-- **Concrete `MumfordExtensionData A_EVII`** (R21 KERNEL-ONLY).
 
