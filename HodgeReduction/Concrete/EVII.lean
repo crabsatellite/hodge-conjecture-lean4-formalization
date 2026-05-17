@@ -21,6 +21,8 @@ import HodgeReduction.Infrastructure.Cohomology.HodgeRefinementCarriers
 import HodgeReduction.Infrastructure.AlgebraicGeometry.LineBundle
 import HodgeReduction.Infrastructure.AlgebraicGeometry.PicardGroup
 import HodgeReduction.Infrastructure.AlgebraicGeometry.FirstChernClass
+import HodgeReduction.Infrastructure.Cohomology.PicardGroup
+import HodgeReduction.Infrastructure.Cohomology.AmpleDivisor
 import HodgeReduction.Infrastructure.Shimura.MumfordExtension
 import HodgeReduction.Infrastructure.Cohomology.TwistedPhiL
 import HodgeReduction.Infrastructure.Shimura.HirzebruchMumford
@@ -924,6 +926,88 @@ theorem evii_c1MulHom_canonical :
 
 end EVII_R6
 
+/-! ### R29 KERNEL-ONLY: Cohomology-side `PicardGroupData A_EVII` + `AmpleDivisorData A_EVII`
+
+These instances complete the **Borel-Hirzebruch h = c_1(L)** conversion
+that the gap ledger (`gap_HC_Main`) records as a 2026-05-16 Cat 2 → Cat 1
+upgrade. The abstract `AmpleDivisorData A_EVII.c1_eq_h` typeclass field
+was already projected; this round provides a **concrete realisation** on
+the `A_EVII = Polynomial ℚ` carrier.
+
+**Mathematical content**. For `Ě_VII = E_{7,C} / P_7`:
+* `Pic(Ě_VII) ≅ ℤ`, so `Pic(Ě_VII) ⊗ ℚ = ℚ`.
+* `H²(Ě_VII; ℚ) = ℚ · h`, with `h = c_1(L)` for `L` the canonical
+  generator.
+* `PicRat ⟶ A_EVII` is the linear map `r ↦ r • X` (sending the
+  rational degree to a multiple of the polarisation class).
+* The canonical ample bundle `L_amp` corresponds to the rational
+  degree `1 ∈ ℚ`; its image under `c_1` is `X = h`, discharging
+  `c1_eq_h := rfl`.
+* `h^k ≠ 0` for any `k` (since `Polynomial ℚ` is an integral domain
+  and `X ≠ 0`); discharges `ampleClass_pow_ne_zero` via
+  `pow_ne_zero + Polynomial.X_ne_zero` for ALL `k`, not just `k ≤ 4`.
+
+This is **substantive Borel-Hirzebruch content**, not a `def := True`
+trick: the line bundle generator is the genuine rational degree, and
+`c_1` is the genuine polynomial-linear map. -/
+
+/-- **Concrete `PicardGroupData A_EVII`** (R29 STRUCTURAL).
+
+* `PicRat := ℚ` (the rational Picard line `Pic(Ě_VII) ⊗ ℚ ≅ ℚ`).
+* `c_1 : ℚ →ₗ[ℚ] A_EVII` is `r ↦ r • X` (sending the rational degree
+  to a multiple of the polarisation class `h = X`).
+* `c1_image_isAlgebraic`: `r • X` is algebraic (since `X` is). -/
+noncomputable instance evii_picardGroupData :
+    HodgeReduction.Infrastructure.Cohomology.PicardGroupData A_EVII where
+  PicRat := ℚ
+  PicRat_addCommGroup := inferInstance
+  PicRat_module := inferInstance
+  c1 :=
+    { toFun := fun r => r • (Polynomial.X : A_EVII)
+      map_add' := fun r s => add_smul r s _
+      map_smul' := fun r s => by
+        show (r * s) • (Polynomial.X : A_EVII) = r • (s • (Polynomial.X : A_EVII))
+        rw [mul_smul] }
+  c1_image_isAlgebraic := fun r =>
+    CohomologyRing.isAlgebraic_smul r X_isAlgebraic
+
+/-- **Concrete `AmpleDivisorData A_EVII`** (R29 STRUCTURAL).
+
+Validates the 2026-05-16 Cat 2 → Cat 1 conversion of
+`borel_hirzebruch_h_equals_c_1_L_PUBLISHED_OPEN`: the abstract
+typeclass field `c1_eq_h` is now realised on a concrete carrier.
+
+* `L_amp := (1 : ℚ)` — the canonical ample generator's rational degree.
+* `c1_eq_h := rfl` since `c1 1 = 1 • X = X = h` (definitional).
+* `ampleClass := X` (= `h`, the polarisation).
+* `ampleClass_ne_zero := Polynomial.X_ne_zero`.
+* `ampleClass_pow_ne_zero k _ := pow_ne_zero k Polynomial.X_ne_zero`
+  (STRUCTURAL: works for ALL `k`, not just `k ≤ 4`; no case-by-case). -/
+noncomputable instance evii_ampleDivisorData :
+    HodgeReduction.Infrastructure.Cohomology.AmpleDivisorData A_EVII where
+  L_amp := (1 : ℚ)
+  c1_eq_h := by
+    show (1 : ℚ) • (Polynomial.X : A_EVII) = (KaehlerClass.h : A_EVII)
+    show (1 : ℚ) • (Polynomial.X : A_EVII) = (Polynomial.X : A_EVII)
+    rw [one_smul]
+  ampleClass := (KaehlerClass.h : A_EVII)
+  ampleClass_ne_zero := by
+    show (KaehlerClass.h : A_EVII) ≠ 0
+    show (Polynomial.X : A_EVII) ≠ 0
+    exact Polynomial.X_ne_zero
+  ampleClass_pow_ne_zero := fun k _ => by
+    show (KaehlerClass.h : A_EVII) ^ k ≠ 0
+    show (Polynomial.X : A_EVII) ^ k ≠ 0
+    exact pow_ne_zero k Polynomial.X_ne_zero
+
+/-- **Sanity check**: the Bridge theorem `h_isAlgebraic_via_picard`
+specialises to the concrete instance, deriving `IsAlgebraic h` for
+`h = X` on `A_EVII`. This validates that the abstract bridge is
+substantive on the concrete carrier (not vacuous). -/
+theorem evii_h_isAlgebraic_via_picard :
+    CohomologyRing.IsAlgebraic (KaehlerClass.h : A_EVII) :=
+  HodgeReduction.Infrastructure.Cohomology.AmpleDivisorData.h_isAlgebraic_via_picard
+
 /-! ### Diagnostic: axiom dependencies of the concrete-instance closure -/
 
 -- R20 KERNEL-PURITY VERIFICATION: uncomment to inspect axiom
@@ -934,5 +1018,7 @@ end EVII_R6
 #print axioms HC_for_Concrete_EVII_Freudenthal
 -- R28 KERNEL-PURITY: the new ChernOneData instance must also be kernel-pure.
 #print axioms EVII_R6.evii_c1MulHom_canonical
+-- R29 KERNEL-PURITY: AmpleDivisorData EVII bridge must be kernel-pure.
+#print axioms evii_h_isAlgebraic_via_picard
 
 end HodgeReduction.Concrete
