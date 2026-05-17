@@ -2057,6 +2057,38 @@ theorem evii_cohomology_picard_nsDim :
       (X := EVII_R6.EVII_Space) (A := A_EVII) = 1 :=
   rfl
 
+/-! ### R67 SUBSTANTIVE: `IntermediateJacobianData EVII_R6.EVII_Space A_EVII`
+
+The **intermediate Jacobian** `J^p(Ě_VII)` is **trivial** for `Ě_VII`
+simply connected compact Hermitian symmetric (all odd cohomology
+vanishes, so `H^{2p-1}` is zero for all p, hence the intermediate
+Jacobian J^p = H^{2p-1}/Hodge-filt-image = 0).
+
+* `J := Unit` (the trivial group; intermediate Jacobian = 0).
+* `J_addCommGroup := PUnit.instAddCommGroup`.
+* `dim := 0` (codimension parameter; trivial since J^p = 0 for all p).
+* `abelJacobi := 0` (the zero linear map; no non-trivial AJ on Ě_VII).
+* `ajRange := ⊥`.
+* `range_abelJacobi_eq : LinearMap.range 0 = ⊥` (Mathlib direct). -/
+noncomputable instance evii_intermediateJacobianData :
+    HodgeReduction.Infrastructure.Cohomology.IntermediateJacobianData
+      EVII_R6.EVII_Space A_EVII where
+  J := Unit
+  J_addCommGroup := inferInstance
+  dim := 0
+  abelJacobi := 0
+  ajRange := ⊥
+  range_abelJacobi_eq := LinearMap.range_zero
+
+/-- **Sanity check** (R67): the intermediate Jacobian J^p(Ě_VII) is
+trivial (range of Abel-Jacobi map = ⊥). -/
+theorem evii_abel_jacobi_range_trivial :
+    LinearMap.range
+      (HodgeReduction.Infrastructure.Cohomology.IntermediateJacobianData.abelJacobi
+        (X := EVII_R6.EVII_Space) (A := A_EVII))
+      = ⊥ :=
+  HodgeReduction.Infrastructure.Cohomology.IntermediateJacobianData.range_abelJacobi_eq
+
 /-! ### R65 APEX: Comprehensive HC synthesis on E_VII compact dual
 
 A single user-facing theorem combining the 27+ substantive EVII typeclass
@@ -2098,5 +2130,7 @@ theorem evii_apex_synthesis :
 #print axioms evii_apex_synthesis
 -- R66 KERNEL-PURITY: CohomologyPicardData EVII (cohomology-side Pic data).
 #print axioms evii_cohomology_picard_nsDim
+-- R67 KERNEL-PURITY: IntermediateJacobianData EVII (J^p trivial).
+#print axioms evii_abel_jacobi_range_trivial
 
 end HodgeReduction.Concrete
