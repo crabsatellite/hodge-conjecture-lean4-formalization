@@ -912,6 +912,37 @@ theorem inv_mk.{u} {R : Type u} [CommRing R]
     inv (mk (R := R) M) = mk (R := R) (Module.IsInvertible.inverseCarrier R M) :=
   rfl
 
+/-- **R116**: left multiplicative inverse law (`x⁻¹ * x = 1` in Picard).
+The witness iso is `inverseCarrier R M ⊗ M ≃ M ⊗ inverseCarrier R M ≃ R`. -/
+theorem inv_mul_cancel.{u} {R : Type u} [CommRing R] (x : Picard R) :
+    mul (inv x) x = one R := by
+  refine Quotient.inductionOn
+    (motive := fun a => mul (inv a) a = one R) x ?_
+  intro s
+  refine Quotient.sound ⟨?_⟩
+  -- Need: TensorProduct R (inverseCarrier R s.carrier) s.carrier ≃ₗ[R] R
+  exact (TensorProduct.comm R _ s.carrier).trans
+    (Module.IsInvertible.inverseIso R s.carrier)
+
+/-- **R116**: right multiplicative inverse law (`x * x⁻¹ = 1` in Picard). -/
+theorem mul_inv_cancel.{u} {R : Type u} [CommRing R] (x : Picard R) :
+    mul x (inv x) = one R := by
+  rw [mul_comm]
+  exact inv_mul_cancel x
+
+/-- **R117**: `Picard R` is a commutative group.
+
+Bundling commMonoid (R112) + inv (R115) + inv_mul_cancel / mul_inv_cancel
+(R116) into the full Mathlib `CommGroup` type-class. This completes the
+20-round (R97-R117) standalone construction of the algebraic Picard
+group, kernel-pure modulo Mathlib. -/
+noncomputable instance commGroup.{u} (R : Type u) [CommRing R] :
+    CommGroup (Picard R) where
+  __ := commMonoid R
+  inv := inv
+  inv_mul_cancel := inv_mul_cancel
+  mul_comm := mul_comm
+
 end Picard
 
 /-! ### Mathlib-PR readiness checklist
@@ -1013,5 +1044,9 @@ axioms or `sorry`. The `#print axioms` lines below verify this. -/
 #print axioms Module.IsInvertible.Sigma.IsoRel.inverse
 #print axioms Picard.inv
 #print axioms Picard.inv_mk
+-- R116-R117 Picard CommGroup: inv_mul_cancel + mul_inv_cancel + CommGroup instance.
+#print axioms Picard.inv_mul_cancel
+#print axioms Picard.mul_inv_cancel
+#print axioms Picard.commGroup
 
 end HodgeReduction.MathlibCandidates
