@@ -439,6 +439,29 @@ theorem Module.IsInvertible.of_equiv_R.{u} {R : Type u} [CommRing R]
     Module.IsInvertible R M :=
   (Module.IsInvertible.iff_linearEquiv e).mpr (Module.IsInvertible.self R)
 
+/-! ### `Module.IsInvertible.tensor_prod_of_iso_R` (R105): combinator for chained iso
+
+**Mathematical content**: if `M ⊗ M' ≃ R` (via some explicit iso), then
+both `M` and `M'` are invertible (via R99 `of_inverse`), AND their
+tensor product is invertible (the trivial invertibility of `R`, via
+R104 `of_equiv_R`).
+
+This is the **cleanest combinator** for proving invertibility of
+concrete tensor products: if you can exhibit `M ⊗ M' ≃ R`, the
+whole chain (M invertible + M' invertible + M ⊗ M' invertible) follows
+automatically. Particularly useful for proving invertibility of
+specific line bundles via explicit dualities.
+
+**Proof structure**: just package the three derived `IsInvertible`s. -/
+theorem Module.IsInvertible.chain_of_iso_R.{u} {R : Type u} [CommRing R]
+    {M M' : Type u} [AddCommGroup M] [Module R M]
+    [AddCommGroup M'] [Module R M']
+    (e : TensorProduct R M M' ≃ₗ[R] R) :
+    Module.IsInvertible R M ∧ Module.IsInvertible R M' ∧
+      Module.IsInvertible R (TensorProduct R M M') := by
+  obtain ⟨hM, hM'⟩ := Module.IsInvertible.of_inverse e
+  exact ⟨hM, hM', Module.IsInvertible.of_equiv_R e⟩
+
 /-! ### Mathlib-PR readiness checklist
 
 * Definition is single-purpose, mathematically standard.
@@ -496,5 +519,7 @@ axioms or `sorry`. The `#print axioms` lines below verify this. -/
 -- R104 Module.IsInvertible.iff_linearEquiv + of_equiv_R: full bidirectional + R-equiv corollary.
 #print axioms Module.IsInvertible.iff_linearEquiv
 #print axioms Module.IsInvertible.of_equiv_R
+-- R105 Module.IsInvertible.chain_of_iso_R: derive 3 invertibility facts from one tensor iso.
+#print axioms Module.IsInvertible.chain_of_iso_R
 
 end HodgeReduction.MathlibCandidates
