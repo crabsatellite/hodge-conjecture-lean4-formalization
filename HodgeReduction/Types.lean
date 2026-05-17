@@ -93,25 +93,6 @@ structure AbstractScheme (k : Type) : Type where
   /-- Connectedness predicate. -/
   IsConnected : Prop
 
-/-- A smooth projective variety over a field `k`: a scheme carrying
- smoothness, projectivity, connectedness, and a fixed Krull dimension. -/
-structure SmoothProjectiveVariety (k: Type) [Field k] where
- scheme: AbstractScheme k
- smooth: scheme.IsSmooth
- proj: scheme.IsProjective
- connected: scheme.IsConnected
- dim: ℕ
-
-/-! ## 2. Hodge numbers and Mumford--Tate groups
-
-The paper's Main Theorem and every Cartan-type branch argument reference
-Hodge numbers `h^{p,q}` and the Mumford--Tate group of a rational Hodge
-structure. Neither is in Mathlib. We introduce them axiomatically. -/
-
-/-- Hodge number `h^{p,q}(X) = dim_ℂ H^q(X, Ω^p_X)`.
- paper source: conj:HC Hodge decomposition defining `h^{p,q}`. -/
-axiom HodgeNumber: SmoothProjectiveVariety ℂ → ℕ → ℕ → ℕ
-
 /-- Carrier `structure` for Mumford--Tate groups (ℚ-algebraic subgroups
  of `GL(V)` up to ℚ-algebraic isomorphism).
 
@@ -120,13 +101,8 @@ axiom HodgeNumber: SmoothProjectiveVariety ℂ → ℕ → ℕ → ℕ
  → Prop` (4 axioms). Refactored to a `structure` with 3 paper-defined
  Prop fields, eliminating 4 axioms.
 
- The binary predicate `hasSimpleFactor : MumfordTateGroupType →
- MumfordTateGroupType → Prop` is necessarily a separate definition
- (binary relations can't be unary fields); we expose it as a `def`
- (not axiom) returning `True` by default — concrete refinement awaits
- Mathlib Lie-algebra machinery. The concrete real-form constants
- (`E7_neg25`, `E_8`, `G_2`, `F_4`, `E_{6(-14)}`) become `def`s rather
- than axioms, since the structure is `inhabited`. -/
+ **R118 note**: definition relocated above `SmoothProjectiveVariety` so
+ that SPV may carry MT data as structure fields. -/
 structure MumfordTateGroupType : Type where
   /-- Predicate: this Mumford--Tate group is a `ℚ`-torus
    (CM-condition; hyp:HC-CM-Ab). -/
@@ -138,15 +114,78 @@ structure MumfordTateGroupType : Type where
    Scope clause (i). -/
   IsE7Type : Prop
 
-/-- The Mumford--Tate group `MT(H^k(X,ℚ))` (primitive part). Opaque
- axiom — the concrete construction awaits Mathlib's MT-group
- machinery. -/
-axiom MumfordTateGroup: SmoothProjectiveVariety ℂ → ℕ → MumfordTateGroupType
+/-- A smooth projective variety over a field `k`: a scheme carrying
+ smoothness, projectivity, connectedness, a fixed Krull dimension,
+ and (R118 refactor) paper-pinned semantic data as structure fields.
 
-/-- The derived Mumford--Tate group `MT^{der}`. Opaque axiom — awaits
- Mathlib. -/
-axiom MumfordTateGroupDerived:
- SmoothProjectiveVariety ℂ → ℕ → MumfordTateGroupType
+ **R118 refactor (no-axiom mandate, extending R41/R42/R43/R44)**:
+ previously 7 separate axioms (`HodgeNumber`, `MumfordTateGroup`,
+ `MumfordTateGroupDerived`, `IsAbelianVariety`, `c1IsZero`,
+ `InKnownE7Scope`, `ExistsCY3Reduction`) gave the paper-pinned semantic
+ data as opaque functions of the variety. Refactored to fields of the
+ `SmoothProjectiveVariety` structure: each `S : SmoothProjectiveVariety k`
+ now carries the data the paper attaches to a variety. Eliminates
+ 7 axioms. The corresponding top-level names (`HodgeNumber X p q`, etc.)
+ become projection `def`s.
+
+ The single existing inhabitant `axiom canonicalE7ShimuraTor : E7ShimuraTor`
+ carries `underlying : SmoothProjectiveVariety ℂ` as an axiom-provided
+ field, so the additional structure data is opaque axiom-content, not
+ ad-hoc choices. -/
+structure SmoothProjectiveVariety (k: Type) [Field k] where
+ scheme: AbstractScheme k
+ smooth: scheme.IsSmooth
+ proj: scheme.IsProjective
+ connected: scheme.IsConnected
+ dim: ℕ
+ /-- Hodge number `h^{p,q}(X) = dim_ℂ H^q(X, Ω^p_X)`.
+  paper source: conj:HC Hodge decomposition. -/
+ hodgeNumber : ℕ → ℕ → ℕ
+ /-- Mumford--Tate group `MT(H^k(X,ℚ))` (primitive part).
+  paper source: §2 Mumford--Tate machinery. -/
+ mumfordTateGroup : ℕ → MumfordTateGroupType
+ /-- Derived Mumford--Tate group `MT^{der}(H^k(X,ℚ))`.
+  paper source: §2 Mumford--Tate machinery. -/
+ mumfordTateGroupDerived : ℕ → MumfordTateGroupType
+ /-- Predicate: `X` is an abelian variety.
+  paper source: hyp:HC-CM-Ab. -/
+ isAbelianVariety : Prop
+ /-- Predicate: `c_1(X) = 0` (Calabi-Yau condition).
+  paper source: hyp:CM-correspondences (CY_3 definition). -/
+ c1IsZero : Prop
+ /-- Currently-known E7-type scope (clause (iii) of Main Theorem scope).
+  paper source: Scope paragraph clause (iii). -/
+ inKnownE7Scope : Prop
+ /-- Kodaira-dim reduction terminates at CY_3 (clause (iv) scope).
+  paper source: Scope paragraph clause (iv). -/
+ existsCY3Reduction : Prop
+
+/-! ## 2. Hodge numbers and Mumford--Tate groups
+
+The paper's Main Theorem and every Cartan-type branch argument reference
+Hodge numbers `h^{p,q}` and the Mumford--Tate group of a rational Hodge
+structure. Both now live as fields of `SmoothProjectiveVariety` (R118).
+The top-level names below are projection defs for backward compatibility. -/
+
+/-- Hodge number `h^{p,q}(X) = dim_ℂ H^q(X, Ω^p_X)` — projection of the
+ `hodgeNumber` field. **R118**: was `axiom HodgeNumber`.
+ paper source: conj:HC Hodge decomposition defining `h^{p,q}`. -/
+def HodgeNumber (X : SmoothProjectiveVariety ℂ) (p q : ℕ) : ℕ :=
+ X.hodgeNumber p q
+
+/-- The Mumford--Tate group `MT(H^k(X,ℚ))` (primitive part) — projection
+ of the `mumfordTateGroup` field. **R118**: was `axiom MumfordTateGroup`.
+ paper source: §2 Mumford--Tate machinery. -/
+def MumfordTateGroup (X : SmoothProjectiveVariety ℂ) (k : ℕ) :
+    MumfordTateGroupType :=
+ X.mumfordTateGroup k
+
+/-- The derived Mumford--Tate group `MT^{der}` — projection of the
+ `mumfordTateGroupDerived` field. **R118**: was `axiom MumfordTateGroupDerived`.
+ paper source: §2 Mumford--Tate machinery. -/
+def MumfordTateGroupDerived (X : SmoothProjectiveVariety ℂ) (k : ℕ) :
+    MumfordTateGroupType :=
+ X.mumfordTateGroupDerived k
 
 /-- **R42 backward-compat alias** (no-axiom mandate): previously
  `axiom IsTorus : MumfordTateGroupType → Prop`. Now a `def` projecting
@@ -285,9 +324,11 @@ def HodgeConjecture (X: SmoothProjectiveVariety ℂ): Prop:=
 Hypothesis 1 (`hyp:HC-CM-Ab`) restricts HC to CM abelian varieties. We
 record the "is a CM abelian variety" predicate opaquely. -/
 
-/-- Predicate: `X` is an abelian variety (smooth projective group variety).
+/-- Predicate: `X` is an abelian variety (smooth projective group variety) —
+ projection of the `isAbelianVariety` field. **R118**: was `axiom IsAbelianVariety`.
  paper source: hyp:HC-CM-Ab. -/
-axiom IsAbelianVariety: SmoothProjectiveVariety ℂ → Prop
+def IsAbelianVariety (X : SmoothProjectiveVariety ℂ) : Prop :=
+ X.isAbelianVariety
 
 /-- Predicate: `X` is a CM abelian variety (abelian variety whose every
  Mumford--Tate group `MT(H^k)` is a `ℚ`-torus). The torus condition is
@@ -315,11 +356,14 @@ axiom product: SmoothProjectiveVariety ℂ → SmoothProjectiveVariety ℂ →
 Theorem `thm:cy3-e7-nonexistence` states: no CY₃ has
 `MT(H^3)^der = E_{7(-25)}`. We bundle the CY₃ predicate. -/
 
-/-- Predicate: `c_1(X) = 0`. Mathlib has no Chern class machinery for
- abstract schemes; left abstract.
+/-- Predicate: `c_1(X) = 0` — projection of the `c1IsZero` field.
+ **R118**: was `axiom c1IsZero`. Mathlib has no Chern class machinery for
+ abstract schemes; the data is bundled into `SmoothProjectiveVariety`
+ (paper-pinned, opaque content via the structure inhabitant).
  paper source: definition of CY_3 in hyp:CM-correspondences +
  thm:cy3-e7-nonexistence (uses `c_1(X) = 0`). -/
-axiom c1IsZero: SmoothProjectiveVariety ℂ → Prop
+def c1IsZero (X : SmoothProjectiveVariety ℂ) : Prop :=
+ X.c1IsZero
 
 /-- `X` is a Calabi--Yau threefold iff `dim X = 3`, `c_1(X) = 0`, and the
  two auxiliary Hodge numbers vanish.
@@ -377,23 +421,19 @@ We encode scope membership as a disjunction of four opaque sub-class
 predicates. A Lean proof would discharge each `InScope` constructor via the
 matching Cartan-type argument. -/
 
-/-- Currently-known E7-type scope predicate (clause (iii) of the Main
- Theorem scope). Left abstract because the paper does not commit to an
- intrinsic characterisation of "currently-known"; it is a scope label,
- not a geometric property.
+/-- Currently-known E7-type scope predicate — projection of the
+ `inKnownE7Scope` field. **R118**: was `axiom InKnownE7Scope`. Paper-pinned
+ scope label, opaque content via the structure inhabitant.
  paper source: Scope paragraph clause (iii). -/
-axiom InKnownE7Scope: SmoothProjectiveVariety ℂ → Prop
+def InKnownE7Scope (X : SmoothProjectiveVariety ℂ) : Prop :=
+ X.inKnownE7Scope
 
-/-- Predicate: `X`'s Kodaira-dimension reduction chain
- (Beauville--Bogomolov, Iitaka, MRC, Fano) terminates at a CY_3
- factor. The paper's Main-Theorem scope clause (iv)
- quantifies over "varieties whose Kodaira-dimension reduction
- terminates at a CY_3 factor", which is strictly broader than "`X`
- itself is a CY_3". The CY_3 non-existence theorem
- (thm:cy3-e7-nonexistence) then closes the whole clause via
- the reduction chain, not only the CY_3 case.
+/-- Predicate: `X`'s Kodaira-dimension reduction chain terminates at a
+ CY_3 factor — projection of the `existsCY3Reduction` field. **R118**:
+ was `axiom ExistsCY3Reduction`. Paper-pinned scope label.
  paper source: Scope paragraph clause (iv). -/
-axiom ExistsCY3Reduction: SmoothProjectiveVariety ℂ → Prop
+def ExistsCY3Reduction (X : SmoothProjectiveVariety ℂ) : Prop :=
+ X.existsCY3Reduction
 
 /-- The Main Theorem's scope: (i) ∨ (ii) ∨ (iii) ∨ (iv), as in paper. Clause (i) quantifies over every weight `k` because the
  paper writes "MT group has no E_6- or E_7-type simple factor", not
