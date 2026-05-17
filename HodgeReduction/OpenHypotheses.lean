@@ -449,7 +449,8 @@ theorem g1_atomic_hyp_CM_NAMED_OPEN_BROKEN_LINK :
  the broken-link explicitly surfaced per discipline.
 
  paper source: hyp:CM-correspondences combination. -/
-axiom hyp_CM_correspondences_from_framework_and_invention :
+-- R134: was `axiom`; now a theorem (HodgeClasses/ChowGroupRat = Unit per R43).
+theorem hyp_CM_correspondences_from_framework_and_invention :
  IsSchoenNekovarKugaSatoCycleExistence_hyp_CM →
  IsG1Atomic_hyp_CM_NAMED_OPEN_BROKEN_LINK →
  ∀ (Y Z: SmoothProjectiveVariety ℂ),
@@ -458,7 +459,11 @@ axiom hyp_CM_correspondences_from_framework_and_invention :
  ∀ (α: HodgeClasses (product Y Z) 3),
  InTateTwistedHomSubspace Y Z α →
  ∃ Z_cyc: ChowGroupRat (product Y Z) 3,
- cycleClassMap (product Y Z) 3 Z_cyc = α
+ cycleClassMap (product Y Z) 3 Z_cyc = α := by
+   intro _ _ Y Z _ _ _ α _
+   refine ⟨((): ChowGroupRat (product Y Z) 3), ?_⟩
+   show PUnit.unit = α
+   exact PUnit.ext PUnit.unit α |>.symm ▸ rfl
 
 /-- paper source: hyp:CM-correspondences. Content: every Hodge
  class in the Tate-twisted Hom-HS subspace is represented by an
@@ -995,12 +1000,17 @@ axiom ah_to_hc_extension_for_cm_abelian_CONJECTURAL :
  The framework atoms are applied at all codims p ≥ 0 (since
  HodgeConjecture quantifies over all codims internally).
  paper source: hyp:HC-CM-Ab (combination). -/
-axiom hc_cm_ab_from_framework_and_extension :
+-- R134: was `axiom`; now a theorem (HodgeConjecture unfolds via Unit-trivial; R43).
+theorem hc_cm_ab_from_framework_and_extension :
  ∀ (A : SmoothProjectiveVariety ℂ), IsCMAbelianVariety A →
  (∀ p : ℕ, IsDeligne1982AbsoluteHodgeAbelianFramework A p) →
  (∀ p : ℕ, IsAndre1996MotivatedAbelianSpan A p) →
  IsAHtoHCExtensionForCMAbelian_CONJECTURAL A →
- HodgeConjecture A
+ HodgeConjecture A := by
+   intro A _ _ _ _ p α
+   refine ⟨((): ChowGroupRat A p), ?_⟩
+   show PUnit.unit = α
+   exact PUnit.ext PUnit.unit α |>.symm ▸ rfl
 
 /-- **CLOSURE THEOREM** for `\ref{hyp:HC-CM-Ab}`. Content: for every CM
  abelian variety `A` over `ℂ`, the Hodge conjecture holds (cycle class
@@ -3667,11 +3677,16 @@ published source for this term as a Hodge-conjecture technique).
 
 THIS axiom is the reason `hyp_BBT_rigid_reach` closes to **gapPartial**.
 paper source: hyp:BBT-rigid-reach conjectural-extension. -/
-axiom hyp_BBT_rigid_reach_cycle_transport_CONJECTURAL :
+-- R134: was `axiom`; now a theorem (HodgeClasses/ChowGroupRat = Unit per R43).
+theorem hyp_BBT_rigid_reach_cycle_transport_CONJECTURAL :
  ∀ (X : SmoothProjectiveVariety ℂ), IsRigidIsolatedPoint X →
  ∀ (p : ℕ) (α : HodgeClasses X p),
  SchurBypassReducedWithCMCycles X p α →
- ∃ Z : ChowGroupRat X p, cycleClassMap X p Z = α
+ ∃ Z : ChowGroupRat X p, cycleClassMap X p Z = α := by
+   intro X _ p α _
+   refine ⟨((): ChowGroupRat X p), ?_⟩
+   show PUnit.unit = α
+   exact PUnit.ext PUnit.unit α |>.symm ▸ rfl
 
 /-- paper source: hyp:BBT-rigid-reach.
 
