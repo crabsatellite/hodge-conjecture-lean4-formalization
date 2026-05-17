@@ -310,6 +310,110 @@ theorem hodgeNumber_V56_0_3 :
   rw [pieceByFin_3]
   exact HodgeReduction.Infrastructure.V56.finrank_Hodge_0_3
 
+/-! ### R143: V_56 Hodge filtration as a HodgeFiltrationStructure instance
+
+The Hodge filtration F^p V_56 in our pieceByFin indexing convention:
+  F^0 = ⊤                                       (all 4 pieces)
+  F^1 = Hodge_2_1 ⊔ Hodge_1_2 ⊔ Hodge_0_3       (pieces 1, 2, 3)
+  F^2 = Hodge_1_2 ⊔ Hodge_0_3                   (pieces 2, 3)
+  F^3 = Hodge_0_3                               (piece 3)
+  F^4 = ⊥                                       (boundary)
+
+This is antitone (F^p decreasing in p) and terminates at ⊥ past index k=3,
+matching the HodgeFiltrationStructure V k axioms. -/
+
+/-- Explicit Hodge filtration for V_56. -/
+def F_V56 : Fin 5 → Submodule ℚ HodgeReduction.Infrastructure.V56
+  | ⟨0, _⟩ => ⊤
+  | ⟨1, _⟩ => Hodge_2_1 ⊔ Hodge_1_2 ⊔ Hodge_0_3
+  | ⟨2, _⟩ => Hodge_1_2 ⊔ Hodge_0_3
+  | ⟨3, _⟩ => Hodge_0_3
+  | ⟨4, _⟩ => ⊥
+  | ⟨n + 5, h⟩ => absurd h (by omega)
+
+@[simp] theorem F_V56_0 : F_V56 ⟨0, by omega⟩ =
+    (⊤ : Submodule ℚ HodgeReduction.Infrastructure.V56) := rfl
+@[simp] theorem F_V56_1 : F_V56 ⟨1, by omega⟩ =
+    (Hodge_2_1 ⊔ Hodge_1_2 ⊔ Hodge_0_3) := rfl
+@[simp] theorem F_V56_2 : F_V56 ⟨2, by omega⟩ = (Hodge_1_2 ⊔ Hodge_0_3) := rfl
+@[simp] theorem F_V56_3 : F_V56 ⟨3, by omega⟩ = Hodge_0_3 := rfl
+@[simp] theorem F_V56_4 : F_V56 ⟨4, by omega⟩ =
+    (⊥ : Submodule ℚ HodgeReduction.Infrastructure.V56) := rfl
+
+/-- Helper for R143: F^p_(p+1) ≤ F^p, i.e., dropping the smallest piece
+gives a contained submodule. -/
+private theorem F_V56_step (p : ℕ) (hp : p < 4) :
+    F_V56 ⟨p + 1, by omega⟩ ≤ F_V56 ⟨p, by omega⟩ := by
+  interval_cases p
+  · -- F^1 ≤ F^0 = ⊤
+    exact le_top
+  · -- F^2 = H_1_2 ⊔ H_0_3 ≤ F^1 = H_2_1 ⊔ H_1_2 ⊔ H_0_3
+    show Hodge_1_2 ⊔ Hodge_0_3 ≤ Hodge_2_1 ⊔ Hodge_1_2 ⊔ Hodge_0_3
+    rw [sup_assoc]
+    exact le_sup_right
+  · -- F^3 = H_0_3 ≤ F^2 = H_1_2 ⊔ H_0_3
+    exact le_sup_right
+  · -- F^4 = ⊥ ≤ F^3
+    exact bot_le
+
+/-- **R143**: V_56 Hodge filtration is antitone (F^i ⊇ F^j for i ≤ j).
+
+Direct 25-case analysis via fin_cases. -/
+theorem F_V56_antitone (i j : Fin 5) (h : i.val ≤ j.val) :
+    F_V56 j ≤ F_V56 i := by
+  fin_cases i <;> fin_cases j
+  -- i = 0 cases (F^0 = ⊤): F j ≤ ⊤ always
+  · exact le_refl _
+  · exact le_top
+  · exact le_top
+  · exact le_top
+  · exact le_top
+  -- i = 1: 5 cases for j
+  · exact absurd h (by decide) -- j = 0, but i = 1 > 0
+  · exact le_refl _ -- j = 1
+  · -- j = 2: F^2 = H_1_2 ⊔ H_0_3 ≤ F^1 = H_2_1 ⊔ H_1_2 ⊔ H_0_3
+    show Hodge_1_2 ⊔ Hodge_0_3 ≤ Hodge_2_1 ⊔ Hodge_1_2 ⊔ Hodge_0_3
+    rw [sup_assoc]; exact le_sup_right
+  · -- j = 3: F^3 = H_0_3 ≤ F^1
+    show Hodge_0_3 ≤ Hodge_2_1 ⊔ Hodge_1_2 ⊔ Hodge_0_3
+    exact le_sup_right
+  · -- j = 4: F^4 = ⊥ ≤ F^1
+    show (⊥ : Submodule ℚ HodgeReduction.Infrastructure.V56) ≤ _
+    exact bot_le
+  -- i = 2 cases
+  · exact absurd h (by decide)
+  · exact absurd h (by decide)
+  · exact le_refl _
+  · -- j = 3: F^3 = H_0_3 ≤ F^2 = H_1_2 ⊔ H_0_3
+    show Hodge_0_3 ≤ Hodge_1_2 ⊔ Hodge_0_3
+    exact le_sup_right
+  · show (⊥ : Submodule ℚ HodgeReduction.Infrastructure.V56) ≤ _
+    exact bot_le
+  -- i = 3 cases
+  · exact absurd h (by decide)
+  · exact absurd h (by decide)
+  · exact absurd h (by decide)
+  · exact le_refl _
+  · show (⊥ : Submodule ℚ HodgeReduction.Infrastructure.V56) ≤ _
+    exact bot_le
+  -- i = 4 cases
+  · exact absurd h (by decide)
+  · exact absurd h (by decide)
+  · exact absurd h (by decide)
+  · exact absurd h (by decide)
+  · exact le_refl _
+
+/-- **R143**: V_56 Hodge filtration terminates at ⊥. -/
+theorem F_V56_top_eq_bot : F_V56 ⟨3 + 1, by omega⟩ =
+    (⊥ : Submodule ℚ HodgeReduction.Infrastructure.V56) := rfl
+
+/-- **R143**: HodgeFiltrationStructure V_56 3 instance. -/
+instance instHodgeFiltrationStructure_V56 :
+    HodgeFiltrationStructure HodgeReduction.Infrastructure.V56 3 where
+  F := F_V56
+  F_antitone := F_V56_antitone
+  F_top_eq_bot := F_V56_top_eq_bot
+
 end V56
 
 /-! ## Abstract `V_56` Hodge-structure refinement axiom package
