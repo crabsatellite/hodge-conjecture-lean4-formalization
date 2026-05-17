@@ -462,6 +462,31 @@ theorem Module.IsInvertible.chain_of_iso_R.{u} {R : Type u} [CommRing R]
   obtain ⟨hM, hM'⟩ := Module.IsInvertible.of_inverse e
   exact ⟨hM, hM', Module.IsInvertible.of_equiv_R e⟩
 
+/-! ### `Module.IsInvertible.tensor_three` (R106): triple-tensor invertibility
+
+Composition of R98 `tensor` with itself: if `M`, `M'`, `M''` are all
+invertible, so is `M ⊗ M' ⊗ M''`. This is a useful explicit form;
+auto-derived from R98 but stating it as a named lemma helps
+downstream proofs avoid manual instance-resolution traces. -/
+instance Module.IsInvertible.tensor_three.{u} {R : Type u} [CommRing R]
+    {M M' M'' : Type u}
+    [AddCommGroup M] [Module R M] [Module.IsInvertible R M]
+    [AddCommGroup M'] [Module R M'] [Module.IsInvertible R M']
+    [AddCommGroup M''] [Module R M''] [Module.IsInvertible R M''] :
+    Module.IsInvertible R (TensorProduct R M (TensorProduct R M' M'')) :=
+  Module.IsInvertible.tensor
+
+/-! ### `Module.IsInvertible.tensor_self_n` (R106): n-fold self-tensor
+
+If `M` is invertible, so are `M ⊗ M`, `M ⊗ (M ⊗ M)`, etc. The
+specific case `M ⊗ M` is geometrically the "self-tensor of a line
+bundle", which under the standard identification `M ⊗ M ≃ M^{⊗2}`
+gives the **square** of `[M]` in `Pic R`. -/
+instance Module.IsInvertible.tensor_self.{u} {R : Type u} [CommRing R]
+    {M : Type u} [AddCommGroup M] [Module R M] [Module.IsInvertible R M] :
+    Module.IsInvertible R (TensorProduct R M M) :=
+  Module.IsInvertible.tensor
+
 /-! ### Mathlib-PR readiness checklist
 
 * Definition is single-purpose, mathematically standard.
@@ -521,5 +546,8 @@ axioms or `sorry`. The `#print axioms` lines below verify this. -/
 #print axioms Module.IsInvertible.of_equiv_R
 -- R105 Module.IsInvertible.chain_of_iso_R: derive 3 invertibility facts from one tensor iso.
 #print axioms Module.IsInvertible.chain_of_iso_R
+-- R106 Module.IsInvertible.tensor_three + tensor_self: n-fold tensor instances.
+#print axioms Module.IsInvertible.tensor_three
+#print axioms Module.IsInvertible.tensor_self
 
 end HodgeReduction.MathlibCandidates
