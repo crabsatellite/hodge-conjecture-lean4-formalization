@@ -315,6 +315,78 @@ theorem finrank_filt_top [Module.Finite ℚ V] :
   -- hodgeNumber p := Module.finrank ℚ (piece p) by R137 def
   rfl
 
+/-- Auxiliary for R153: parametrize on `k = n - p.val` for downward induction. -/
+private theorem finrank_filt_eq_sum_aux [Module.Finite ℚ V] (k : ℕ) :
+    ∀ p : Fin (n + 1), n - p.val = k →
+    Module.finrank ℚ (filt (V := V) p) =
+    ∑ i ∈ Finset.univ.filter (fun (i : Fin (n + 1)) => p.val ≤ i.val),
+      hodgeNumber (V := V) i := by
+  induction k with
+  | zero =>
+    intro p hk
+    -- p.val = n (since n - p.val = 0 and p.val ≤ n)
+    have h_pn : p.val = n := by
+      have hp := p.isLt
+      omega
+    have h_pFin : p = ⟨n, Nat.lt_succ_self n⟩ := Fin.ext h_pn
+    rw [h_pFin, finrank_filt_top]
+    -- filter (n ≤ i.val) = {⟨n, _⟩}
+    have h_filter : Finset.univ.filter
+        (fun (i : Fin (n + 1)) => n ≤ i.val) = {⟨n, Nat.lt_succ_self n⟩} := by
+      ext i
+      simp only [Finset.mem_filter, Finset.mem_univ, true_and, Finset.mem_singleton]
+      constructor
+      · intro hi
+        have h_isLt := i.isLt
+        exact Fin.ext (by omega)
+      · intro hi
+        rw [hi]
+    rw [h_filter, Finset.sum_singleton]
+  | succ k ih =>
+    intro p hk
+    -- n - p.val = k + 1, so p.val + 1 < n + 1
+    have hpn : p.val + 1 < n + 1 := by omega
+    rw [finrank_filt_succ p hpn]
+    -- IH at ⟨p.val + 1, hpn⟩
+    have h_k : n - (⟨p.val + 1, hpn⟩ : Fin (n + 1)).val = k := by
+      show n - (p.val + 1) = k
+      omega
+    rw [ih ⟨p.val + 1, hpn⟩ h_k]
+    -- Goal: hodgeNumber p + ∑ (i ≥ p+1), hN i = ∑ (i ≥ p), hN i
+    -- Strategy: insert p into the (i ≥ p+1) filter to get (i ≥ p)
+    have h_p_not_mem : p ∉ Finset.univ.filter
+        (fun (i : Fin (n + 1)) => p.val + 1 ≤ i.val) := by
+      simp only [Finset.mem_filter, Finset.mem_univ, true_and]
+      omega
+    rw [← Finset.sum_insert h_p_not_mem]
+    congr 1
+    -- {p} ∪ (filter ≥ p+1) = filter ≥ p
+    ext i
+    simp only [Finset.mem_insert, Finset.mem_filter, Finset.mem_univ, true_and]
+    constructor
+    · rintro (rfl | h)
+      · exact Nat.le_refl _
+      · omega
+    · intro h
+      by_cases heq : i = p
+      · left; exact heq
+      · right
+        have h_iv_ne : i.val ≠ p.val := fun h_eq => heq (Fin.ext h_eq)
+        omega
+
+/-- **R153: closed-form filtration dimension formula**.
+
+`finrank (filt p) = ∑ i ∈ Finset.univ.filter (p.val ≤ i.val), hodgeNumber i`
+
+This is the standard formula `dim F^p V = ∑_{i ≥ p} h^{i, n-i}` for
+the Hodge filtration. Proof: downward induction on `p` from `p = n`
+(base R152) using the recursive step R151. -/
+theorem finrank_filt_eq_sum [Module.Finite ℚ V] (p : Fin (n + 1)) :
+    Module.finrank ℚ (filt (V := V) p) =
+    ∑ i ∈ Finset.univ.filter (fun (i : Fin (n + 1)) => p.val ≤ i.val),
+      hodgeNumber (V := V) i :=
+  finrank_filt_eq_sum_aux (n - p.val) p rfl
+
 end PureHodgeStructure
 
 /-! ## Pure Hodge structures via explicit pieces with substantive
