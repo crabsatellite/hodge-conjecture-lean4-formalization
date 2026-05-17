@@ -202,12 +202,18 @@ theorem mem_algebraicHodge_of_hodgeConjecture
 
 end CycleClassImageData
 
-/-! ### Trivial inhabiting instance for `CycleClassImageData`
+/-! ### Trivial inhabiting `def` for `CycleClassImageData`
 
 The trivial case (e.g. a point variety): both submodules are `⊥`,
 so the easy direction holds by `le_refl` and the Hodge conjecture
-holds trivially (= equality of two zero submodules). -/
-instance trivialCycleClassImageData (X : Type*) (A : Type*)
+holds trivially (= equality of two zero submodules).
+
+**R30+ demotion from `instance` to `def`** (no-trick mandate): keeping
+this as a global `instance` made Lean auto-resolve
+`CycleClassImageData X A` to both-submodules-bottom for EVERY `X A`,
+masking the absence of genuine cycle-class data and competing with
+substantive concrete instances. As a `def` it is opt-in only. -/
+def trivialCycleClassImageData (X : Type*) (A : Type*)
     [AddCommGroup A] [Module ℚ A] : CycleClassImageData X A where
   algebraicHodge := ⊥
   allHodge := ⊥
@@ -291,14 +297,18 @@ theorem pushforward_zero_algebraic :
 
 end CycleClassFunctoriality
 
-/-! ### Trivial inhabiting instance for `CycleClassFunctoriality`
+/-! ### Trivial inhabiting `def` for `CycleClassFunctoriality`
 
-A trivial inhabiting instance: zero linear maps in both directions.
+A trivial inhabiting def: zero linear maps in both directions.
 This is well-defined regardless of which `CycleClassImageData`
 instances are in scope: the preservation hypotheses follow because
 `(0 : A →ₗ[ℚ] B)` sends every input to `0`, which lies in every
-submodule by `Submodule.zero_mem`. -/
-instance trivialCycleClassFunctoriality (X : Type*) (Y : Type*)
+submodule by `Submodule.zero_mem`.
+
+**R31 demotion from `instance` to `def`** (no-trick mandate): zero
+pull/push linear maps for ALL morphisms `X → Y` would be a degenerate
+default masking the absence of real cycle-class functoriality data. -/
+def trivialCycleClassFunctoriality (X : Type*) (Y : Type*)
     (A : Type*) (B : Type*)
     [AddCommGroup A] [Module ℚ A]
     [AddCommGroup B] [Module ℚ B]

@@ -178,13 +178,15 @@ theorem add_in_picTotal_of_both_picZero {α β : A}
 
 end CohomologyPicardData
 
-/-! ### Trivial inhabiting instance for `CohomologyPicardData`
+/-! ### Trivial inhabiting `def` for `CohomologyPicardData`
 
 Any rational vector space `A` carries a trivial Picard datum where
 both `picTotal` and `picZero` are the bottom submodule `⊥` and the
 Néron-Severi rank is `0`. This is the cohomology-Picard datum of a
-variety with trivial Picard group (e.g. a point). -/
-instance trivialCohomologyPicardData (X : Type*) (A : Type*)
+variety with trivial Picard group (e.g. a point).
+
+**R31 demotion from `instance` to `def`** (no-trick mandate). -/
+def trivialCohomologyPicardData (X : Type*) (A : Type*)
     [AddCommGroup A] [Module ℚ A] : CohomologyPicardData X A where
   picTotal := ⊥
   picZero := ⊥
@@ -246,12 +248,14 @@ theorem zero_mem : (0 : PicardVarietyData.Pic0 X) =
 
 end PicardVarietyData
 
-/-! ### Trivial inhabiting instance for `PicardVarietyData`
+/-! ### Trivial inhabiting `def` for `PicardVarietyData`
 
 A variety with trivial Picard variety (e.g. a rational variety) has
 `Pic^0` reduced to a point, with `pic0_dim = 0` and `Pic0_rank = 0`.
-We model this with `Pic0 := PUnit` and `pic0_dim = Pic0_rank = 0`. -/
-instance trivialPicardVarietyData (X : Type*) : PicardVarietyData X where
+We model this with `Pic0 := PUnit` and `pic0_dim = Pic0_rank = 0`.
+
+**R31 demotion from `instance` to `def`** (no-trick mandate). -/
+def trivialPicardVarietyData (X : Type*) : PicardVarietyData X where
   Pic0 := PUnit
   pic0_addCommGroup := inferInstance
   pic0_dim := 0

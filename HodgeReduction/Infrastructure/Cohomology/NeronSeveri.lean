@@ -188,13 +188,18 @@ theorem neg_mem_NS {α : A}
 
 end NeronSeveriData
 
-/-! ### Trivial inhabiting instance for the geometric Néron-Severi data
+/-! ### Trivial inhabiting `def` for the geometric Néron-Severi data
 
 Take `NS := ⊥`, `nsRank := 0` (consistent with `finrank_bot`),
 `b2 := 0`.  Then `0 ≤ 0` is the Lefschetz bound.  Witnesses
-consistency of the axioms. -/
+consistency of the axioms.
 
-instance trivialNeronSeveriData (X : Type*) (A : Type*)
+**R31 demotion from `instance` to `def`** (no-trick mandate): keeping
+this as a global `instance` made Lean auto-resolve `NeronSeveriData X A`
+to `(NS := ⊥, nsRank := 0)` for every `X A`, masking the absence of
+real Néron-Severi data. As a `def` it is opt-in only. -/
+
+def trivialNeronSeveriData (X : Type*) (A : Type*)
     [AddCommGroup A] [Module ℚ A] :
     NeronSeveriData X A where
   NS := ⊥
@@ -322,22 +327,26 @@ theorem pair_smul_right (r : ℚ) (α β : A) :
 
 end IntersectionPairingData
 
-/-! ### Trivial inhabiting instance for `IntersectionPairingData`
+/-! ### Trivial inhabiting `def` for `IntersectionPairingData`
 
 With the trivial `NeronSeveriData` (`NS = ⊥`), the zero bilinear form
 witnesses the axioms: every `α ∈ ⊥` is `α = 0`, so the non-degeneracy
-premise is vacuous (or trivially yields `α = 0`). -/
+premise is vacuous (or trivially yields `α = 0`).
 
-instance trivialIntersectionPairingData (X : Type*) (A : Type*)
+**R31 demotion from `instance` to `def`** (no-trick mandate). -/
+
+def trivialIntersectionPairingData (X : Type*) (A : Type*)
     [AddCommGroup A] [Module ℚ A] :
-    @IntersectionPairingData X A _ _ (trivialNeronSeveriData X A) where
-  pair := 0
-  pair_symm := by intro α β; simp
-  pair_nondegenerate_on_NS := by
-    intro α hα _
-    -- With the trivial NS = ⊥, every `α ∈ NS` satisfies `α = 0`.
-    -- `hα : α ∈ (⊥ : Submodule ℚ A)` for the trivial instance.
-    exact (Submodule.mem_bot ℚ).mp hα
+    letI : NeronSeveriData X A := trivialNeronSeveriData X A
+    IntersectionPairingData X A :=
+  letI : NeronSeveriData X A := trivialNeronSeveriData X A
+  { pair := 0
+    pair_symm := by intro α β; simp
+    pair_nondegenerate_on_NS := by
+      intro α hα _
+      -- With the trivial NS = ⊥, every `α ∈ NS` satisfies `α = 0`.
+      -- `hα : α ∈ (⊥ : Submodule ℚ A)` for the trivial instance.
+      exact (Submodule.mem_bot ℚ).mp hα }
 
 end NSGeometric
 
