@@ -34,13 +34,35 @@ infrastructure. This file is the first concrete step: ISOLATE the
 project-local structural lemmas that COULD live in Mathlib, so they
 can be reviewed for upstream submission as the project matures.
 
-## Current contents
+## Current contents (R26 through R102)
 
+### Polynomial lemmas (R26, R35, R61, R71)
+* `Polynomial.linearIndependent_X_pow` : the family `n ↦ X^n` is
+  linearly independent in `Polynomial ℚ`. (R35)
 * `Polynomial.disjoint_span_X_pow_of_ne` : for distinct `i, j : ℕ`,
-  the ℚ-spans `span ℚ {X^i}` and `span ℚ {X^j}` in `Polynomial ℚ` are
-  disjoint. Used by `Concrete.EVII` for the `MumfordExtensionData
-  L_block_disjoint` field. Mathlib target namespace:
-  `Mathlib.Algebra.Polynomial.Basis`.
+  the ℚ-spans `span ℚ {X^i}` and `span ℚ {X^j}` are disjoint. (R26)
+* `Polynomial.disjoint_span_X_pow_fin_of_ne` : Fin-indexed variant. (R26)
+* `Polynomial.span_X_pow_eq_top` : `Submodule.span ℚ (range X^n) = ⊤`. (R61)
+* `Polynomial.X_pow_ne_zero` : `X^n ≠ 0` for n in integral domains. (R71)
+
+### `Module.IsInvertible` Mathlib infrastructure (R97-R102)
+The substantial Mathlib-PR-quality skeleton for line-bundle / Picard
+group infrastructure (currently absent from Mathlib):
+
+* `class Module.IsInvertible R M` : M is invertible iff some N has
+  `M ⊗_R N ≃ R`. (R97)
+* `instance Module.IsInvertible.self` : R itself is invertible
+  (trivial line bundle `𝒪_X`). (R97)
+* `instance Module.IsInvertible.tensor` : tensor product preserves
+  invertibility (multiplicative closure of Pic). (R98)
+* `def Module.IsInvertible.symm_equiv` + `of_inverse` : invertibility
+  is symmetric (commutativity of Pic). (R99)
+* `theorem Module.IsInvertible.of_linearEquiv` : invertibility transfers
+  across linear iso (foundation for Pic quotient). (R100)
+* `instance Module.IsInvertible.tensor_R_left/right` : R-tensor unit
+  laws (identity element of Pic = R = `𝒪_X`). (R101)
+* `theorem Module.IsInvertible.tensor_assoc_iff` : associativity of
+  Pic tensor structure. (R102)
 
 ## Style
 
