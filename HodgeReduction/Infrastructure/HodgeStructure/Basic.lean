@@ -150,6 +150,30 @@ holds at the dimension level for Hodge-Tate / polarisable structures
 noncomputable def hodgeNumber (p : Fin (n + 1)) : ℕ :=
   Module.finrank ℚ (piece (V := V) p)
 
+/-- **R146**: rank decomposition for ANY finite-dim PureHodgeStructure.
+
+For any pure ℚ-Hodge structure on a finite-dim ℚ-vector space V,
+the dimension equals the sum of Hodge numbers:
+`finrank V = ∑ p, h^{p, n-p}(V)`.
+
+Proof: the IsInternal direct-sum decomposition gives a LinearEquiv
+`V ≃ ⨁ p, piece p`; LinearEquiv preserves finrank; finrank of a
+direct sum over Fintype is the sum of finranks (Mathlib's
+`Module.finrank_directSum`). -/
+theorem finrank_eq_sum_hodgeNumber [Module.Finite ℚ V] :
+    Module.finrank ℚ V = ∑ p : Fin (n + 1), hodgeNumber (V := V) p := by
+  -- Get the LinearEquiv V ≃ₗ ⨁ piece
+  have e := LinearEquiv.ofBijective
+    (DirectSum.coeLinearMap (piece (V := V)))
+    (isInternal (V := V) (n := n))
+  -- Use LinearEquiv to transfer finrank
+  rw [← LinearEquiv.finrank_eq e]
+  -- finrank of direct sum = sum of finranks (Module.finrank_directSum
+  -- requires Module.Finite + Module.Free for each piece; both auto)
+  rw [Module.finrank_directSum]
+  -- ∑ i, finrank ℚ (piece i) = ∑ p, hodgeNumber p (defEq via hodgeNumber def)
+  rfl
+
 end PureHodgeStructure
 
 /-! ## Pure Hodge structures via explicit pieces with substantive
