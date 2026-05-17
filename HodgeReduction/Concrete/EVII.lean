@@ -2121,6 +2121,32 @@ theorem evii_pic0_rank_eq_zero :
       (X := EVII_R6.EVII_Space) = 0 :=
   rfl
 
+/-! ### R70 SUBSTANTIVE: Every power `h^n` is algebraic on `Ě_VII`
+
+A non-trivial corollary of the substantive `KaehlerClass A_EVII` +
+`CohomologyRing A_EVII` instances: every natural-number power of the
+polarisation class `h = X` is algebraic in the cohomology ring.
+
+**Proof structure**:
+* `X_isAlgebraic : IsAlgebraic X` (R5-A, via `Algebra.subset_adjoin`).
+* `CohomologyRing.isAlgebraic_pow : IsAlgebraic α → IsAlgebraic (α^n)`
+  (Mathlib-quality `Subalgebra.pow_mem`).
+* Composition: `IsAlgebraic (X^n)` for any `n : ℕ`.
+
+This is a substantive derivation chain — not a vacuous `rfl` —
+threading through the genuine algebra-subalgebra structure on
+`A_EVII = Polynomial ℚ`. -/
+theorem evii_h_powers_algebraic (n : ℕ) :
+    CohomologyRing.IsAlgebraic ((Polynomial.X : A_EVII) ^ n) :=
+  CohomologyRing.isAlgebraic_pow X_isAlgebraic n
+
+/-- **Refined corollary**: every scalar multiple of every power of `h`
+is algebraic. Uses `isAlgebraic_smul` composed with R70's
+`evii_h_powers_algebraic`. -/
+theorem evii_smul_h_powers_algebraic (r : ℚ) (n : ℕ) :
+    CohomologyRing.IsAlgebraic (r • ((Polynomial.X : A_EVII) ^ n)) :=
+  CohomologyRing.isAlgebraic_smul r (evii_h_powers_algebraic n)
+
 /-! ### R69 ATTEMPT NOTE: `IntersectionPairingData EVII` — deferred
 
 Attempted in R69 but the substantive bilinear-form construction
@@ -2184,5 +2210,8 @@ theorem evii_apex_synthesis :
 #print axioms evii_irregularity_eq_zero
 #print axioms evii_pic0_rank_eq_zero
 -- R69 attempted IntersectionPairingData deferred (Mathlib API obstacle); see TODO note above.
+-- R70 KERNEL-PURITY: every h^n algebraic + every r • h^n algebraic.
+#print axioms evii_h_powers_algebraic
+#print axioms evii_smul_h_powers_algebraic
 
 end HodgeReduction.Concrete
