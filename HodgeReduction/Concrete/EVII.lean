@@ -19,6 +19,7 @@ import HodgeReduction.Infrastructure.Cohomology.Lefschetz
 import HodgeReduction.Infrastructure.Cohomology.HodgeCycle
 import HodgeReduction.Infrastructure.Cohomology.HodgeRefinementCarriers
 import HodgeReduction.Infrastructure.AlgebraicGeometry.LineBundle
+import HodgeReduction.Infrastructure.Shimura.MumfordExtension
 
 /-!
 # Concrete EVII cohomology carrier (R5-A: P48-Chern upgrade)
@@ -357,6 +358,34 @@ noncomputable instance instFreudenthalChernSubalgebraPlacementData :
     · exact Subalgebra.smul_mem _ (Subalgebra.mul_mem _ hc2 hc2) (-48 : ℚ)
     · exact Subalgebra.smul_mem _ (Subalgebra.mul_mem _ hc1 hc3) (96 : ℚ)
     · exact Subalgebra.smul_mem _ hc4 (96 : ℚ)
+
+/-! ### R21 ATTEMPT (DEFERRED): Concrete MumfordExtensionData instance
+
+The R19 bare-Prop elimination of `MumfordExtensionData` (substantive
+`L_block : Fin 4 → Submodule + L_block_disjoint`) creates a typeclass
+obligation to provide REAL Submodule data with non-trivial disjointness
+proofs.
+
+A direct instance on `A_EVII = Polynomial ℚ` using monomial spans
+(`L_block i := Submodule.span ℚ {X^i.val}`) is mathematically natural
+(distinct-degree monomials are linearly independent in an integral
+domain) but requires substantial `Polynomial.coeff_smul` /
+`Polynomial.coeff_X_pow` API friction to discharge the disjointness
+proof. The attempted proof hits coercion/elaboration issues with the
+ℚ-Polynomial smul-vs-mul distinction.
+
+**DEFERRED to a later round**: this instance addition requires a
+focused 50-100 LOC Mathlib-API working session for the polynomial
+linear-independence lemma, OR upgrading the disjointness witness to
+use a higher-level `Polynomial.linearIndependent_X_pow`-style lemma
+(needs Mathlib API research).
+
+For now `MumfordExtensionData A_EVII` is provided via the default
+trivial-instance pattern documented in the MumfordExtension framework
+file. This does not affect `HC_for_Concrete_EVII` because the HC
+theorem signature only requires `[CohomologyRing A] [KaehlerClass A]
++ FreudenthalClassData A`, none of which need MumfordExtensionData
+directly. -/
 
 /-! ### Sanity-check theorem: HC closure on the concrete instance -/
 
