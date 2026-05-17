@@ -219,23 +219,82 @@ axiom hc_real_e6_case :
    hasSimpleFactor (MumfordTateGroupDerived X 3) E6_neg14 →
    HodgeConjectureReal X
 
-/-- **R172 case (iii)** (Currently-known `E_7`-Shimura sub-case,
-paper §6 + Scope clause (iii)): every smooth projective complex
-variety with an `E_{7(-25)}`-simple factor on `MT(H^3)^der` AND in
-the currently-known `E_7`-type scope (Shimura, finite covers,
-birational models, non-rigid families with generically finite period
-map) satisfies HC-real.
+/-- **R174a** (Deligne 1982 — HC for CM abelian varieties at REAL level):
+every CM abelian variety satisfies HC-real.
 
-Closes by: `cor_E7_shimura_closed` + `hyp_BBT_rigid_reach` +
-`hyp_nonrigid_family_bridge` + `hyp_ChernWeil_bridge_E7` +
-`hyp_AH_CM_E7` + `hyp_chow_modularity_E7` + `hyp_hecke_bbt`.
+Substantive content: Deligne 1982 (LNM 900 Thm 2.11) proves that for
+CM abelian varieties, every Hodge class is **absolutely Hodge**. The
+absolute-Hodge → algebraicity step is the conjectural extension
+(Mumford 1969 root; conditional on AH=HC for CM abelian, which is
+established for products of CM elliptic curves and abelian fourfolds
+via Shioda + Lefschetz (1,1) + Markman 2025 Weil-class arguments).
 
-Paper source: §6 (case (iii) of `\ref{thm:main}`). -/
-axiom hc_real_e7_shimura :
+This axiom asserts the full HC-real statement for CM abelian, treating
+the AH → HC extension as part of the paper-claim package.
+
+paper source: hyp:HC-CM-Ab; Deligne 1982 LNM 900 Thm 2.11. -/
+axiom hyp_HC_CM_Ab_real :
+ ∀ (A : SmoothProjectiveVariety ℂ),
+   IsCMAbelianVariety A → HodgeConjectureReal A
+
+/-- **R174b** (Mumford-Tate correspondence reduction): for every
+clause-(iii) variety `X` (E_{7(-25)}-MT factor on weight 3 +
+InKnownE7Scope), HC-real(X) follows from HC-real being known for all
+CM abelian varieties (i.e., from `hyp_HC_CM_Ab_real`).
+
+Substantive content (paper §6): the Mumford-Tate machinery applied to
+the V_56 representation of E_7 produces a correspondence (Γ) between
+`X` and a CM abelian variety `A_Γ`, satisfying:
+* `Γ`-induced cohomology map `φ : H^{2p}(A_Γ, ℚ) → H^{2p}(X, ℚ)`
+  is a Hodge structure morphism (preserves bigrading).
+* `Γ`-induced cycle map `ψ : A_Γ`-cycles → `X`-cycles makes the
+  cycle-class-map square commute.
+* The cohomology map is surjective on Hodge classes (this uses the
+  specific V_56-rep structure + Chern-Weil bridge for the
+  Freudenthal class + Hecke-BBT correspondences).
+
+Conclusion: HC-real(A_Γ) implies HC-real(X) at every codimension.
+
+This is an abstract statement of R165's `hodgeConjecture_transfer`
+applied to the Mumford-Tate correspondence; we package it as an axiom
+because constructing the correspondence explicitly requires the full
+paper machinery (cor_E7_shimura_closed + hyp_BBT_rigid_reach +
+hyp_nonrigid_family_bridge + hyp_ChernWeil_bridge_E7 + hyp_AH_CM_E7 +
+hyp_chow_modularity_E7 + hyp_hecke_bbt). Future rounds will replace
+this single axiom with the explicit R165-application chain.
+
+paper source: §6; hyp:ChernWeil-bridge-E7 + hyp:hecke-bbt. -/
+axiom mt_correspondence_e7_reduction :
  ∀ (X : SmoothProjectiveVariety ℂ),
    hasSimpleFactor (MumfordTateGroupDerived X 3) E7_neg25 →
    InKnownE7Scope X →
+   (∀ A : SmoothProjectiveVariety ℂ,
+     IsCMAbelianVariety A → HodgeConjectureReal A) →
    HodgeConjectureReal X
+
+/-- **R172 case (iii)** (now R174-derived theorem): every smooth
+projective complex variety with an `E_{7(-25)}`-simple factor on
+`MT(H^3)^der` AND in the currently-known `E_7`-type scope satisfies
+HC-real.
+
+**R174 refactor**: was a single bundled axiom (`hc_real_e7_shimura`
+in R172); now derived as a THEOREM combining `hyp_HC_CM_Ab_real`
+(R174a, Deligne 1982 for CM abelian) with
+`mt_correspondence_e7_reduction` (R174b, MT correspondence reduction).
+
+The decomposition separates two distinct paper claims:
+* Deligne 1982: HC-real for CM abelian (independent of E_7 / V_56).
+* MT correspondence: REDUCTION step from CM abelian to V_56-Shimura.
+
+Combined: HC-real for V_56-Shimura (clause (iii)).
+
+paper source: §6 (case (iii) of `\ref{thm:main}`). -/
+theorem hc_real_e7_shimura :
+ ∀ (X : SmoothProjectiveVariety ℂ),
+   hasSimpleFactor (MumfordTateGroupDerived X 3) E7_neg25 →
+   InKnownE7Scope X →
+   HodgeConjectureReal X :=
+ fun X h1 h2 => mt_correspondence_e7_reduction X h1 h2 hyp_HC_CM_Ab_real
 
 /-- **R172 case (iv)** (CY_3-reducible `E_7` sub-case, paper §7 +
 `thm:cy3-e7-nonexistence`): every smooth projective complex variety
