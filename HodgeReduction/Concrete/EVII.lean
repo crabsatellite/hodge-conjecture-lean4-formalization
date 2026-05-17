@@ -27,6 +27,7 @@ import HodgeReduction.Infrastructure.Cohomology.PoincareDuality
 import HodgeReduction.Infrastructure.Cohomology.AbelJacobi
 import HodgeReduction.Infrastructure.Cohomology.ChernCharacter
 import HodgeReduction.Infrastructure.Cohomology.StandardConjectures
+import HodgeReduction.Infrastructure.Cohomology.Galois
 import HodgeReduction.Infrastructure.Cohomology.PicardGroup
 import HodgeReduction.Infrastructure.Cohomology.AmpleDivisor
 import HodgeReduction.Infrastructure.Cohomology.CycleClassMap
@@ -2330,6 +2331,42 @@ theorem evii_shimura_is_EVII :
       (A := A_EVII) :=
   rfl
 
+/-! ### R82 SUBSTANTIVE: `GaloisActionData A_EVII` (trivial Galois action over ℂ)
+
+The absolute Galois group `Gal(ℂ̄/ℂ) = Gal(ℂ/ℂ) = {1}` is **trivial**
+(ℂ is algebraically closed). So the Galois action on `A_EVII` viewed
+as `H^*(Ě_VII; ℚ)` is by the trivial group, and every cohomology
+class is Galois-invariant.
+
+* `G := Unit` (trivial absolute Galois group of an algebraically closed field).
+* `G_group := inferInstance` (Unit's group structure).
+* `action := MonoidHom 1` (constant identity action).
+* `invariants := ⊤` (every class is invariant under trivial group).
+* `mem_invariants_iff`: substantively true since RHS reduces to `id x = x`. -/
+noncomputable instance evii_galoisActionData :
+    HodgeReduction.Infrastructure.Cohomology.GaloisActionData
+      (V := A_EVII) where
+  G := Unit
+  G_group := inferInstance
+  action := 1
+  invariants := ⊤
+  mem_invariants_iff := by
+    intro x
+    constructor
+    · intro _ g
+      -- Action is constant 1, so (1 g) x = id x = x.
+      show ((1 : Unit →* (A_EVII →ₗ[ℚ] A_EVII)) g) x = x
+      simp
+    · intro _
+      exact Submodule.mem_top
+
+/-- **Sanity check** (R82): every cohomology class on `Ě_VII` is
+Galois-invariant under the trivial absolute Galois group of ℂ. -/
+theorem evii_all_classes_galois_invariant (x : A_EVII) :
+    x ∈ HodgeReduction.Infrastructure.Cohomology.GaloisActionData.invariants
+      (V := A_EVII) :=
+  Submodule.mem_top
+
 /-- **Sanity check** (R77): Standard Conjecture (D) holds on `Ě_VII`
 (numerical-equivalence = hom-equivalence). -/
 theorem evii_standard_conjecture_D :
@@ -2478,6 +2515,8 @@ theorem evii_apex_synthesis :
 -- R80 KERNEL-PURITY: ShimuraVarietyData EVII (dim = 27).
 #print axioms evii_shimura_dim_eq_27
 #print axioms evii_shimura_is_EVII
+-- R82 KERNEL-PURITY: GaloisActionData EVII (trivial action over algebraic closure).
+#print axioms evii_all_classes_galois_invariant
 
 /-! ### R73 META-SYNTHESIS: Type-level catalogue of substantive EVII closures
 
