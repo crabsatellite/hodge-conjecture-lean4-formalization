@@ -1283,6 +1283,36 @@ theorem LineBundleData_IsoClass_eq_Picard.{u} (R : Type u) [CommRing R] :
       Picard R :=
   rfl
 
+/-- **R139**: the project's `trivialClass` (identity of `IsoClass`) agrees
+with the Mathlib-side `Picard.one` on representatives.
+
+Since `LineBundleData_for_CommRing.trivial = Module.IsInvertible.Sigma.mk R`
+and `Picard.one R = Quotient.mk _ (Sigma.mk R)`, the two are definitionally
+equal as elements of the shared quotient type. -/
+theorem trivialClass_eq_one.{u} (R : Type u) [CommRing R] :
+    @HodgeReduction.Infrastructure.AlgebraicGeometry.LineBundleData.trivialClass R _ =
+      Picard.one R :=
+  rfl
+
+/-- **R139**: the project's `tensorClass` (binary op on `IsoClass`) agrees
+with the Mathlib-side `Picard.mul` on representatives.
+
+Both lift `Sigma.tensor` through the `IsoSetoid` quotient. The Quotient
+machinery makes them def eq. -/
+theorem tensorClass_eq_mul.{u} (R : Type u) [CommRing R]
+    (x y : Picard R) :
+    @HodgeReduction.Infrastructure.AlgebraicGeometry.LineBundleData.tensorClass R _ x y =
+      Picard.mul x y :=
+  rfl
+
+/-- **R139**: the project's `dualClass` (unary op on `IsoClass`) agrees
+with the Mathlib-side `Picard.inv` on representatives. -/
+theorem dualClass_eq_inv.{u} (R : Type u) [CommRing R]
+    (x : Picard R) :
+    @HodgeReduction.Infrastructure.AlgebraicGeometry.LineBundleData.dualClass R _ x =
+      Picard.inv x :=
+  rfl
+
 end ProjectBridge
 
 /-! ### Mathlib-PR readiness checklist
