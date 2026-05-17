@@ -2121,6 +2121,22 @@ theorem evii_pic0_rank_eq_zero :
       (X := EVII_R6.EVII_Space) = 0 :=
   rfl
 
+/-! ### R69 ATTEMPT NOTE: `IntersectionPairingData EVII` — deferred
+
+Attempted in R69 but the substantive bilinear-form construction
+required careful Mathlib polynomial-coefficient API usage
+(`Polynomial.coeff_X_self`, `Polynomial.coeff_smul`) that didn't
+elaborate cleanly within the LinearMap.BilinForm framework. Deferred
+to a follow-up round; the typeclass is currently NOT instantiated for
+EVII at the IntersectionPairingData level.
+
+The honest mathematical content is well-known (`<h, h> = 1` for the
+polarisation class on Ě_VII compact dual, positivity of the
+Hodge-index form on NS), but the formalisation requires more careful
+Mathlib LinearMap/BilinForm composition than the simple cases of R66/R67/R68.
+
+Not committing the failed attempt — kept as TODO note. -/
+
 /-! ### R65 APEX: Comprehensive HC synthesis on E_VII compact dual
 
 A single user-facing theorem combining the 27+ substantive EVII typeclass
@@ -2167,5 +2183,6 @@ theorem evii_apex_synthesis :
 -- R68 KERNEL-PURITY: PicardVarietyData EVII (Pic^0 trivial; irregularity 0).
 #print axioms evii_irregularity_eq_zero
 #print axioms evii_pic0_rank_eq_zero
+-- R69 attempted IntersectionPairingData deferred (Mathlib API obstacle); see TODO note above.
 
 end HodgeReduction.Concrete
