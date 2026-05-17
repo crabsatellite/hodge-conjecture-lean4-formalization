@@ -11,6 +11,7 @@ import Mathlib.LinearAlgebra.Basis.Basic
 import Mathlib.LinearAlgebra.TensorProduct.Basic
 import Mathlib.Order.Disjoint
 import Mathlib.Algebra.Order.Field.Rat
+import HodgeReduction.Infrastructure.AlgebraicGeometry.LineBundle
 
 /-!
 # Mathlib-candidate structural lemmas for the Hodge Conjecture project
@@ -944,6 +945,60 @@ noncomputable instance commGroup.{u} (R : Type u) [CommRing R] :
   mul_comm := mul_comm
 
 end Picard
+
+/-! ### Project bridge (R123): `LineBundleData` instance for any CommRing
+
+The project's `LineBundleData X` typeclass (HodgeReduction/Infrastructure/
+AlgebraicGeometry/LineBundle.lean) packages the carrier-level data of
+line bundles on `X` as a quotient-ready abstract framework.
+
+For an affine scheme `X = Spec R`, line bundles ARE invertible R-modules
+(Hartshorne II.6.12 / Bourbaki AC II §5), and the algebraic Picard group
+agrees with the geometric Picard group `Pic(Spec R) = H^1(Spec R, 𝒪*)`.
+
+Given the R97-R117 Picard construction is complete, we can now provide a
+`LineBundleData R` instance for ANY commutative ring R, using:
+- `Carrier := Module.IsInvertible.Sigma R`
+- `trivial := mk R` (the algebraic structure sheaf is R itself)
+- `tensor := Sigma.tensor` (R110)
+- `dual := Sigma.inverse` (R115)
+- `iso := IsoSetoid R` (R108)
+- congruences/laws from R110+R114+R111+R116 (already proven)
+
+This bridges 20 layers of Mathlib infrastructure into a load-bearing
+project-side typeclass instance, removing the project's dependence on
+its own opaque framework when the underlying ring is commutative. -/
+
+namespace ProjectBridge
+
+open Module.IsInvertible.Sigma in
+/-- R123 bridge: `LineBundleData R` for any commutative ring R, using
+the R97-R117 Picard construction. `X := R` (the ring itself stands in
+for the affine scheme `Spec R`). -/
+noncomputable instance LineBundleData_for_CommRing.{u}
+    (R : Type u) [CommRing R] :
+    HodgeReduction.Infrastructure.AlgebraicGeometry.LineBundleData R where
+  Carrier := Module.IsInvertible.Sigma R
+  trivial := Module.IsInvertible.Sigma.mk (R := R) R
+  tensor := Module.IsInvertible.Sigma.tensor
+  dual := Module.IsInvertible.Sigma.inverse
+  iso := Module.IsInvertible.Sigma.IsoSetoid R
+  tensor_respects_iso := IsoRel.tensor
+  dual_respects_iso := IsoRel.inverse
+  tensor_trivial_left := fun s => by
+    -- need: IsoRel (tensor (mk R) s) s
+    -- i.e., Nonempty (TensorProduct R R s.carrier ≃ₗ[R] s.carrier)
+    exact ⟨TensorProduct.lid R s.carrier⟩
+  tensor_dual_right := fun s => by
+    -- need: IsoRel (tensor s (inverse s)) (mk R)
+    -- i.e., Nonempty (TensorProduct R s.carrier (inverseCarrier R s.carrier) ≃ₗ[R] R)
+    exact ⟨Module.IsInvertible.inverseIso R s.carrier⟩
+  tensor_comm := fun s t => by
+    exact ⟨TensorProduct.comm R s.carrier t.carrier⟩
+  tensor_assoc := fun s t u => by
+    exact ⟨TensorProduct.assoc R s.carrier t.carrier u.carrier⟩
+
+end ProjectBridge
 
 /-! ### Mathlib-PR readiness checklist
 
