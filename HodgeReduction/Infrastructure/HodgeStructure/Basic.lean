@@ -174,6 +174,16 @@ theorem finrank_eq_sum_hodgeNumber [Module.Finite ℚ V] :
   -- ∑ i, finrank ℚ (piece i) = ∑ p, hodgeNumber p (defEq via hodgeNumber def)
   rfl
 
+/-- **R147**: the bottom step `F^0` of the Hodge filtration has the same
+finrank as the ambient `V` (since `filt 0 = ⊤`, by R137 `filt_zero_eq_top`).
+
+Corollary of R137 + Mathlib's `Submodule.finrank_top`. -/
+theorem finrank_filt_zero :
+    Module.finrank ℚ (filt (V := V) (n := n) ⟨0, by omega⟩) =
+    Module.finrank ℚ V := by
+  rw [filt_zero_eq_top]
+  exact finrank_top ℚ V
+
 end PureHodgeStructure
 
 /-! ## Pure Hodge structures via explicit pieces with substantive
