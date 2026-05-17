@@ -220,32 +220,22 @@ class TwistedPhiFiltData where
   /-- **P53 explicit value** `Φ_filt(q) = -48 · h^4`. -/
   twistedPhiFilt_q_eq_neg_48_h_pow_4 :
     twistedPhiFilt_q = (-48 : ℚ) • ((KaehlerClass.h : A) ^ 4)
-  /-- **Well-definedness witness** (P41 reframing, R3 S3): the
-  Hodge-filtration projection `Φ_filt` is a well-defined non-W(E_7)
-  -equivariant map. Cat 3 hypothesisPredicate-level witness asserting
-  that the carrier framework (the Hodge filtration `F^•` together with
-  the Chern-Weil map) suffices to define `Φ_filt` at the abstract level.
-  The downstream Hodge-reduction chain consumes this as a typeclass
-  parameter; concrete instance providers discharge it from the
-  combination of (i) the explicit P53 value `twistedPhiFilt_q = -48·h^4`,
-  (ii) the algebraicity of `h^4`, and (iii) the Hodge-filtration
-  non-W(E_7)-stability fact. -/
-  twistedPhiFilt_well_defined_holds : Prop
-  /-- **Proof witness for `twistedPhiFilt_well_defined_holds`** (R18
-  KERNEL-ONLY CLOSURE 2026-05-17): the substantive evidence that the
-  Prop `twistedPhiFilt_well_defined_holds` actually holds. Schmid 2-field
-  pattern done correctly. Instance providers MUST supply a real proof —
-  the trivial inhabiting instance sets the Prop to `True` and the proof
-  to `trivial`, but non-trivial instances derive the proof from the
-  P53 explicit value + Borel-Hirzebruch non-degeneracy + Hodge-filtration
-  framework. Downstream consumers can now discharge
-  `canonical_Phi_vanishes_by_augmentation_OPEN` via direct typeclass-
-  field projection. -/
-  twistedPhiFilt_well_defined_proof : twistedPhiFilt_well_defined_holds
+  -- R19 KERNEL-ONLY ELIMINATION OF BARE-PROP FIELD (2026-05-17):
+  -- removed `twistedPhiFilt_well_defined_holds : Prop` + `_proof` pair.
+  -- Substantive content of well-definedness is encoded as
+  -- `twistedPhiFilt_q ≠ 0` (the P53 value is non-zero) via the
+  -- backward-compat aliases below. Proof discharges kernel-pure via
+  -- `twistedPhiFilt_q_eq_neg_48_h_pow_4` + KaehlerClass non-degeneracy.
 
 namespace TwistedPhiFiltData
 
 variable {A} [TwistedPhiFiltData A]
+
+/-- **Backward-compat alias for the well-definedness predicate** (R19
+KERNEL-ONLY): the substantive content of "Φ_filt is well-defined" is the
+non-vanishing of `twistedPhiFilt_q`. -/
+abbrev twistedPhiFilt_well_defined_holds : Prop :=
+  twistedPhiFilt_q (A := A) ≠ 0
 
 /-- **Algebraicity** of `Φ_filt(q)`: the twisted value `-48 · h^4` is
 algebraic, by `KaehlerClass.h_pow_4_isAlgebraic` (= subalgebra closure

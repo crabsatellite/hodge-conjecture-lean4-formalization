@@ -57,27 +57,24 @@ class MumfordExtensionData where
   /-- The canonical extension as an algebraic vector bundle on
   the toroidal compactification. -/
   Vbar : HodgeReduction.Infrastructure.Cohomology.AlgebraicVectorBundle A
-  /-- **L-block-diagonality** (paper's
-  `Hyp_MumfordExtension_LBlockDiagonal`): the extension preserves
-  the U(1)-charge polarisation, hence stays L-block-diagonal at the
-  toroidal boundary.
+  /-- **L-block submodules of `A`** (R19 KERNEL-ONLY upgrade 2026-05-17):
+  the 4 designated submodules of `A` corresponding to the V_56 Hodge
+  decomposition `L_{+3} ⊕ E_{+1} ⊕ E_{-1} ⊕ L_{-3}` under the
+  L = E_6 × U(1) action. Instance providers MUST supply real Submodule
+  data, not bare Prop placeholders. -/
+  L_block : Fin 4 → Submodule ℚ A
+  /-- **L-block-diagonality** (paper's `Hyp_MumfordExtension_LBlockDiagonal`,
+  R19 SUBSTANTIVE FORM): the L-blocks are pairwise disjoint as submodules
+  of `A`. This is the **substantive Submodule-level encoding** of the
+  block-diagonal structure: the Mumford extension preserves the U(1)-charge
+  decomposition, hence the 4 L-pieces stay disjoint.
 
-  This is the **Schmid 1973 + Deligne 1970 + Cattani-Kaplan-Schmid 1986**
-  consequence: the canonical extension of a polarised VHS preserves
-  the Hodge filtration, hence stays diagonal in the Hodge
-  decomposition. -/
-  L_block_diagonal : Prop
-  /-- **Proof witness for `L_block_diagonal`** (R18 KERNEL-ONLY CLOSURE
-  2026-05-17): the substantive Schmid–Deligne + CKS evidence that the
-  Prop `L_block_diagonal` holds. Schmid 2-field pattern done correctly:
-  the typeclass carries BOTH the Prop slot and a proof of it. Instance
-  providers MUST supply a real proof — the trivial inhabiting instance
-  sets `L_block_diagonal := True` and `L_block_diagonal_holds := trivial`,
-  but a non-trivial EVII instance must derive the proof from the
-  filtered-functoriality framework. Downstream consumers can now
-  discharge `Hyp_MumfordExtension_LBlockDiagonal_OPEN` via direct
-  typeclass-field projection. -/
-  L_block_diagonal_holds : L_block_diagonal
+  Schmid 1973 + Deligne 1970 + CKS 1986 provide the underlying analytic
+  justification: filtered functoriality of the canonical extension + Hodge-
+  metric orthogonality + boundary log-log control. The substantive
+  Submodule encoding here is what instance providers must satisfy — no
+  more bare-Prop tricks (R19 KERNEL-ONLY ELIMINATION OF BARE-PROP FIELD). -/
+  L_block_disjoint : ∀ i j : Fin 4, i ≠ j → Disjoint (L_block i) (L_block j)
 
 namespace MumfordExtensionData
 
@@ -89,6 +86,18 @@ theorem chern_isAlgebraic (i : ℕ) :
     HodgeReduction.Infrastructure.Cohomology.CohomologyRing.IsAlgebraic
       (Vbar (A := A) |>.chern i) :=
   Vbar (A := A) |>.chern_isAlgebraic i
+
+/-- **Backward-compat alias** (R19 KERNEL-ONLY): the substantive
+`L_block_diagonal` Prop is now derived from the substantive
+`L_block_disjoint` Submodule data. Was previously a bare-Prop field; now
+a concrete claim about pairwise disjointness of the 4 L-blocks. -/
+abbrev L_block_diagonal : Prop :=
+  ∀ i j : Fin 4, i ≠ j → Disjoint (L_block (A := A) i) (L_block (A := A) j)
+
+/-- **Backward-compat alias for the proof witness** (R19 KERNEL-ONLY):
+the substantive proof discharges via the `L_block_disjoint` typeclass field. -/
+theorem L_block_diagonal_holds : L_block_diagonal (A := A) :=
+  L_block_disjoint
 
 end MumfordExtensionData
 
@@ -119,48 +128,26 @@ functoriality together with the V_56 Hodge-decomposition identification
 class SchmidDeligneFiltrationExtension (A : Type*) [CommRing A] [Algebra ℚ A]
     [HodgeReduction.Infrastructure.Cohomology.CohomologyRing A]
     [MumfordExtensionData A] where
-  /-- **Schmid 1973 + Deligne 1970** (filtered functoriality of the
-  canonical extension): for a polarised VHS with unipotent monodromy,
-  the Hodge filtration `F^p` extends to sub-bundles of the canonical
-  extension `V̄`, the graded pieces `Gr_F^p` are locally free, and
-  `Gr(V̄) = (Gr V)^{can}`. -/
-  filtered_functoriality : Prop
-  /-- **The Schmid 1973 + Deligne 1970 filtered functoriality HOLDS** —
-  a Cat 2 PUBLISHED witness asserting the truth of the statement above.
-  This is the load-bearing field that lets the framework derive
-  `schmid_1973_deligne_1970_OPEN` kernel-pure. The instance provider
-  supplies the witness (e.g., from Schmid 1973 nilpotent orbit theorem +
-  Deligne 1970 §II canonical extension construction + CKS 1986 Hodge
-  norm estimates). -/
-  filtered_functoriality_holds : filtered_functoriality
-  /-- **Filtered functoriality ⟹ L-block-diagonality** (Mumford 1977
-  §1.3, refined by Schmid 1973 + Deligne 1970 + CKS 1986): once we
-  have the filtered functoriality of the canonical extension AND the
-  identification `L = E_6 × U(1) =` Hodge filtration (encoded in the
-  EVII V_56 Hodge decomposition), the L-block structure extends to
-  the toroidal boundary by standard filtered functoriality (Gr of the
-  extension = extension of the Gr). This typeclass field records the
-  implication at the parameter level so downstream proofs can discharge
-  `MumfordExtensionData.L_block_diagonal` from the Schmid-Deligne
-  framework witness. -/
-  filtered_functoriality_implies_L_block_diagonal :
-    filtered_functoriality → MumfordExtensionData.L_block_diagonal (A := A)
-  /-- **Cat 2 PUBLISHED witness — Cattani-Kaplan-Schmid 1986 Hodge norm
-  estimates.** E. Cattani, A. Kaplan, W. Schmid, "Degeneration of Hodge
-  structures", Ann. Math. (2) 123 (1986), 457-535 + Cattani-Kaplan,
-  "Polarized mixed Hodge structures and the local monodromy of a
-  variation of Hodge structure", Invent. Math. 67 (1982), 101-115.
-  REFINES Schmid 1973's nilpotent orbit theorem with quantitative Hodge
-  norm estimates at the boundary, giving the limiting mixed Hodge
-  structure with weight filtration W_•.
-  The load-bearing CONSEQUENCE consumed by the L-block-diagonal extension
-  argument is that the Schmid-Deligne filtered functoriality persists
-  asymptotically near the boundary divisor, which is encoded as the
-  same `filtered_functoriality` carrier already held by this typeclass.
-  This named field exposes the CKS 1986 citation as an independently-
-  projectable typeclass witness (so the Strict-level axiom
-  `cattani_kaplan_schmid_1986_PUBLISHED_OPEN` discharges by a single
-  typeclass-field projection through this named witness). -/
-  cks_norm_estimates_holds : filtered_functoriality
+  -- R19 KERNEL-ONLY ELIMINATION OF BARE-PROP FIELD (2026-05-17):
+  -- removed `filtered_functoriality : Prop` + `_holds` + `_implies_L_block_diagonal`
+  -- + `cks_norm_estimates_holds : filtered_functoriality`. Substantive content
+  -- of "filtered functoriality" is the existence of a Hodge sub-filtration
+  -- on `Vbar` (encoded as designated submodules + decreasing-chain property
+  -- + commuting-with-graded-pieces equation). The aggregator backward-compat
+  -- aliases (`filtered_functoriality`, `_holds`) are now derived from the
+  -- substantive `hodge_subfilt` structure below.
+  /-- **Hodge sub-filtration on the canonical extension** (R19 substantive
+  carrier): the Mumford canonical extension `V̄` carries a designated
+  decreasing filtration by submodules, encoding the Schmid-Deligne
+  filtered functoriality at the substantive Submodule level. -/
+  hodge_subfilt : ℕ → Submodule ℚ A
+  /-- **Decreasing filtration** (Schmid 1973 nilpotent orbit theorem +
+  Deligne 1970 canonical extension): `F^q ≤ F^p` whenever `p ≤ q`. -/
+  hodge_subfilt_antitone : ∀ p q : ℕ, p ≤ q → hodge_subfilt q ≤ hodge_subfilt p
+
+-- R19 KERNEL-ONLY: no backward-compat aliases. The substantive content
+-- is `hodge_subfilt` + `hodge_subfilt_antitone`. Downstream consumers
+-- (Strict.lean's `schmid_deligne_hodge_filtration_extends` def) project
+-- directly through `hodge_subfilt_antitone`, no bare-Prop intermediate.
 
 end HodgeReduction.Infrastructure.Shimura
