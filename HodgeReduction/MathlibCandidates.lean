@@ -1231,6 +1231,39 @@ theorem eq_one_of_field.{u} {K : Type u} [Field K] (x : Picard K) :
 instance subsingleton_of_field.{u} {K : Type u} [Field K] : Subsingleton (Picard K) :=
   ⟨fun a b => by rw [eq_one_of_field a, eq_one_of_field b]⟩
 
+/-- **R133**: `baseChange` preserves inverses. Follows from `MonoidHom.map_inv`
+applied to `baseChangeHom`, but stated explicitly as a useful corollary. -/
+theorem baseChange_inv.{u}
+    {R : Type u} [CommRing R] (A : Type u) [CommRing A] [Algebra R A]
+    (x : Picard R) :
+    baseChange A (inv x) = inv (baseChange A x) := by
+  show baseChangeHom R A x⁻¹ = (baseChangeHom R A x)⁻¹
+  exact (baseChangeHom R A).map_inv x
+
+/-- **R133**: ring isomorphism gives Picard isomorphism (functoriality on isos).
+
+For any commutative-ring isomorphism `R ≃+* A` (which provides mutually inverse
+`Algebra` structures + scalar-tower compatibility), the induced base-change
+MonoidHom `Picard R →* Picard A` is a `MulEquiv`. The inverse is `baseChange R`
+(via the inverse algebra). Functoriality (R130 `baseChange_self`+`baseChange_comp`)
+ensures the composites are identity.
+
+This is the strongest categorical statement: `Picard` carries ring isomorphisms
+to group isomorphisms (i.e., `Picard` factors through the core groupoid). -/
+noncomputable def baseChangeMulEquiv.{u}
+    (R A : Type u) [CommRing R] [CommRing A]
+    [Algebra R A] [Algebra A R] [IsScalarTower R A R] [IsScalarTower A R A] :
+    Picard R ≃* Picard A where
+  toFun := baseChange A
+  invFun := baseChange R
+  left_inv := fun x => by
+    have h := baseChange_comp (R := R) (A := A) (B := R) x
+    rw [h, baseChange_self]
+  right_inv := fun x => by
+    have h := baseChange_comp (R := A) (A := R) (B := A) x
+    rw [h, baseChange_self]
+  map_mul' := baseChange_mul A
+
 end Picard
 
 /-! ### R132: Picard ≃ LineBundleData.IsoClass for any CommRing
