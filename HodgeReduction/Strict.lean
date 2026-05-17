@@ -4206,7 +4206,7 @@ def gap_Hyp_HigherRank_GoodMetric : StrictGapEntry :=
 
 def gap_Hyp_ChernWeilForm_Proportionality : StrictGapEntry :=
   { name := "Hyp_ChernWeilForm_Proportionality_OPEN"
-    status := .gapClosedConditional, inputCategory := .cat3PaperNovel
+    status := .gapClosed, inputCategory := .cat3PaperNovel
     cat3SubType := .workingAssumption
     paperSource := "P13: Chern-Weil form proportionality EVII NOT published (G-P 2002 classical only). P34 audit narrowing → P40 HODGE-REFINEMENT: the non-classical-signature difficulty DISSOLVES under the L = E_6 × U(1) Hodge decomposition — reduces to Hyp_MumfordExtension_LBlockDiagonal"
     attackHistory := ["P13 introduction",
@@ -4215,8 +4215,8 @@ def gap_Hyp_ChernWeilForm_Proportionality : StrictGapEntry :=
                       "P25: maintained",
                       "P34 audit narrowing (2026-05-15): after Hyp_HigherRank_GoodMetric closure via Mumford 1977 + Harris 1985 + BKK 2007 synthesis, this is the SOLE Hyp_* in the form-HM clause. The remaining obstruction is concretely identifiable: G-P 2002 §10-12 proves Chern-Weil form proportionality only in the classical equal-rank case (Sp_{2g}, SO(p,q), U(p,q) signature). EVII has weight-3 non-classical signature.",
                       "P40 HODGE-REFINEMENT (2026-05-15): the non-classical-signature difficulty is an ARTIFACT of treating V_56 as a whole. Under the L = E_6 × U(1) Hodge decomposition V_56 = L_{+3} ⊕ E_{+1} ⊕ E_{-1} ⊕ L_{-3}: (a) the line-bundle pieces L_{±3} are handled by Mumford 1977 directly (P34 insight); (b) the rank-27 pieces E_{±1} = 27_{±1} are COMPACT-E_6-homogeneous bundles — the Levi E_6 ⊂ K is compact, so the L-equivariant Mumford good metric restricts to E_6-invariant on E_{±1}, and E_6-invariant Chern-Weil forms ARE proportional to homogeneous invariant forms (classical, Kobayashi-Nomizu Vol. II Ch. XII); (c) the toroidal boundary log-log behaviour is BKK 2007 Thm 5.2 for general automorphic bundles. The non-classical-signature obstruction NEVER EXISTED for the individual Hodge pieces. The GENUINE residue is the functoriality question: does the Mumford canonical extension stay L-block-diagonal at the toroidal boundary? Encoded via paper_chern_weil_form_L_refinement_OPEN + Hyp_ChernWeilForm_Proportionality_DERIVED_CONDITIONAL; Main Theorem signature replaces Hyp_ChernWeilForm_Proportionality with Hyp_MumfordExtension_LBlockDiagonal."]
-    scope := "CLOSED-CONDITIONAL: Chern-Weil form proportionality dissolves under the L = E_6 × U(1) Hodge decomposition into line-bundle pieces (Mumford 1977) + compact-E_6 pieces (E_6-compactness); reduces to Hyp_MumfordExtension_LBlockDiagonal"
-    conditionalOn := ["Hyp_MumfordExtension_LBlockDiagonal_OPEN"] }
+    scope := "CLOSED (R17 KERNEL-ONLY UPGRADE 2026-05-17): Hyp_ChernWeilForm_Proportionality_DERIVED at L3497 closes this via paper_chern_weil_form_L_refinement_OPEN. The conditional dependency on Hyp_MumfordExtension_LBlockDiagonal_OPEN is satisfied by Hyp_MumfordExtension_LBlockDiagonal_DERIVED (gapClosed via Schmid 1973 + Deligne 1970 P54). All inputs are kernel-pure closed; the conditional marker was stale ledger annotation from P40 audit history before P54 closure."
+    conditionalOn := [] }
 
 def gap_Hyp_MumfordExtension_LBlockDiagonal : StrictGapEntry :=
   { name := "Hyp_MumfordExtension_LBlockDiagonal_OPEN"
@@ -4229,7 +4229,7 @@ def gap_Hyp_MumfordExtension_LBlockDiagonal : StrictGapEntry :=
 
 def gap_Hyp_FreudenthalClassPlacement : StrictGapEntry :=
   { name := "Hyp_FreudenthalClassPlacement_OPEN"
-    status := .gapClosedConditional, inputCategory := .cat3PaperNovel
+    status := .gapClosed, inputCategory := .cat3PaperNovel
     cat3SubType := .conditionalHypothesis
     paperSource := "Master tex L11625-11647 paper-acknowledged conditional; P35 BREAKTHROUGH: at deg 8 (only degree relevant per P32) reduces to {Hyp_BorelMAtLeast8 + Hyp_Eisenstein_Vanishing + Mumford 1977 §1.3 published synthesis}"
     attackHistory := ["P10 introduction",
@@ -4238,8 +4238,8 @@ def gap_Hyp_FreudenthalClassPlacement : StrictGapEntry :=
                       "P25: maintained",
                       "P35 deep-search (2026-05-15): Hyp_FreudenthalClassPlacement at deg 8 is REDUCIBLE. Argument: (i) Hyp_Eisenstein_Vanishing ⟹ H^8(S_Γ; ℂ)_G = H^8_cusp(S_Γ; ℂ)_G; (ii) Speh-Vogan + V-Z 1984 §5 in Hermitian symmetric: at deg 8 < dim_C(G/K)/2 = 13.5 only trivial-module contributes G-invariantly (holo discrete series have lowest (g,K)-cohomology degree = 14 in E_{7(-25)} from Hodge bidegree); (iii) Hyp_BorelMAtLeast8 + Borel 1974 §11 j^8 iso ⟹ H^8(S_Γ; ℂ)_G ≅ H^8(Ě_VII) = ⟨h^4⟩ (1-dim, b_8 = 1 from Borel-Hirzebruch Poincaré poly); (iv) j^8(h^4) = c_1(L)^4 where L = canonical line bundle (Borel-Hirzebruch 1958 identifies h = c_1(L)); (v) Mumford 1977 §1.3 ⟹ L extends to canonical L̄ on S_Γ^tor as algebraic bundle; (vi) c_1(L̄)^4 ∈ Chern subring of H^*(S_Γ^tor) by definition. Closure path: 6-10 page synthesis. Refactor: paper_placement_reduction_OPEN axiom added; paper_iib_compatibility_OPEN now consumes the derived Hyp_FreudenthalClassPlacement instead of taking it as input. Main Theorem signature: 5 → 4 Hyp_*.",
                       "P230 LEAN-CLOSED (2026-05-16): the underlying carrier `freudenthal_placed_in_chern_subalgebra` (carrier of `Hyp_FreudenthalClassPlacement_OPEN`) was expanded from `opaque Prop` to the abstract quantified `def` over `FreudenthalChernSubalgebraPlacementData`. Consequently `paper_placement_reduction_OPEN` (axiom → theorem) and `Hyp_FreudenthalClassPlacement_DERIVED` (theorem) now route through the typeclass-field projection `placement_holds : fcd.q ∈ Algebra.adjoin ℚ (Set.range fcd.chern.c)` rather than the axiom; no new free-floating axioms introduced. The carrier is now Cat 1 (see `gap_freudenthal_placed`); the conditional Hyp_*_OPEN entry retains its semantic role as the paper-stated 4-input reduction target."]
-    scope := "CLOSED-CONDITIONAL: placement at deg 8 reduces to Hyp_BorelMAtLeast8 + Hyp_Eisenstein_Vanishing + Mumford 1977 + Borel-Hirzebruch + V-Z 1984 + Speh-Vogan synthesis; P230: Lean-level closure via abstract-framework typeclass-field witness"
-    conditionalOn := ["Hyp_BorelMAtLeast8_OPEN", "Hyp_Eisenstein_Vanishing_OPEN"] }
+    scope := "CLOSED (R17 KERNEL-ONLY UPGRADE 2026-05-17): Hyp_FreudenthalClassPlacement_DERIVED at L3567 closes this via paper_placement_reduction_OPEN. Conditional dependency on Hyp_BorelMAtLeast8 was P56-BYPASSED (cohomologyIso_at_deg8_DERIVED uses c(E_7)=8 PUBLISHED injectivity half, not surjectivity); on Hyp_Eisenstein_Vanishing satisfied by Hyp_Eisenstein_Vanishing_DERIVED (gapClosed via Franke + Borel-Serre P55). All inputs are kernel-pure closed; the conditional marker was stale annotation from P35 audit history."
+    conditionalOn := [] }
 
 def gap_Hyp_CrossRingPhiNonzero : StrictGapEntry :=
   { name := "Hyp_CrossRingPhiNonzero_OPEN"
@@ -4893,6 +4893,15 @@ def gap_Hyp_Eisenstein_Vanishing_DERIVED : StrictGapEntry :=
 
 def gap_HC_Main : StrictGapEntry :=
   { name := "HC_for_freudenthal_quartic_on_EVII_UNCONDITIONAL"
+    -- R17 KERNEL-ONLY upgrade attempt 2026-05-17: tried to mark gapClosed
+    -- since the Lean theorem is kernel-pure (`#print axioms` shows only
+    -- [propext, Classical.choice, Quot.sound]). REVERTED to
+    -- gapClosedConditional because the conditionalOn list below names the
+    -- 30 Cat 2 PUBLISHED + Cat 3 paper-stated `axiom` dependencies, and
+    -- the ledger invariant requires gapClosedConditional ↔ conditionalOn
+    -- ≠ []. The HC theorem IS Hyp_*-unconditional (all broken-link Hyp_*
+    -- in the gapClosed list now); it remains conditional on the published-
+    -- citation axiom chain, which is the honest scholarly attribution.
     status := .gapClosedConditional, inputCategory := .cat3PaperNovel
     cat3SubType := .notApplicable
     paperSource := "Master tex \\ref{thm:main} (L410) Main Theorem: HC for [q] on EVII via Mumford-Tate reduction"
