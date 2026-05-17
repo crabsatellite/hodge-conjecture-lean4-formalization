@@ -55,6 +55,35 @@ polynomial basis, linear independence
 
 namespace HodgeReduction.MathlibCandidates
 
+/-! ## `Polynomial.linearIndependent_X_pow`
+
+The family `(n : ℕ) ↦ X^n` of monomial powers is linearly independent
+in `Polynomial ℚ`. This is the **base structural fact** underlying
+`disjoint_span_X_pow_of_ne` below; we extract it as a standalone
+upstream-PR candidate.
+
+**Structural proof** (one-liner via Mathlib primitives):
+* `Polynomial.basisMonomials ℚ : Basis ℕ ℚ ℚ[X]` provides a basis of
+  the polynomial ring indexed by `ℕ` (Mathlib
+  `Algebra/Polynomial/Basis.lean` L23).
+* `Basis.linearIndependent` extracts the underlying linear
+  independence.
+* `Polynomial.monomial_one_right_eq_X_pow` (Mathlib
+  `Algebra/Polynomial/Basic.lean` L493) bridges `monomial s 1 = X^s`,
+  letting us reindex the basis as `n ↦ X^n`.
+
+**Why a Mathlib PR candidate**: this is a fundamental fact about
+polynomial rings, used in any structural linear-algebra argument
+involving distinct monomial degrees. The composed proof is 4 lines.
+It would naturally live in `Mathlib.Algebra.Polynomial.Basis`
+alongside `basisMonomials`. -/
+theorem Polynomial.linearIndependent_X_pow :
+    LinearIndependent ℚ (fun n : ℕ => (Polynomial.X : Polynomial ℚ) ^ n) := by
+  have h := (Polynomial.basisMonomials ℚ).linearIndependent
+  convert h using 1
+  funext s
+  exact (Polynomial.monomial_one_right_eq_X_pow s).symm
+
 /-! ## `Polynomial.disjoint_span_X_pow_of_ne`
 
 For distinct natural-number exponents `i, j`, the one-dimensional
@@ -86,15 +115,11 @@ theorem Polynomial.disjoint_span_X_pow_of_ne {i j : ℕ} (hij : i ≠ j) :
     Disjoint
       (Submodule.span ℚ ({(Polynomial.X : Polynomial ℚ) ^ i} : Set (Polynomial ℚ)))
       (Submodule.span ℚ ({(Polynomial.X : Polynomial ℚ) ^ j} : Set (Polynomial ℚ))) := by
-  have hli : LinearIndependent ℚ
-      (fun n : ℕ => (Polynomial.X : Polynomial ℚ) ^ n) := by
-    have h := (Polynomial.basisMonomials ℚ).linearIndependent
-    convert h using 1
-    funext s
-    exact (Polynomial.monomial_one_right_eq_X_pow s).symm
+  -- Use the extracted base lemma `Polynomial.linearIndependent_X_pow`
+  -- (one-line composition via Mathlib `LinearIndependent.disjoint_span_image`).
   have hd : Disjoint ({i} : Set ℕ) ({j} : Set ℕ) :=
     Set.disjoint_singleton.mpr hij
-  have hresult := hli.disjoint_span_image hd
+  have hresult := Polynomial.linearIndependent_X_pow.disjoint_span_image hd
   rwa [Set.image_singleton, Set.image_singleton] at hresult
 
 /-! ## Pairwise disjointness via `Fin n`-indexed monomials
