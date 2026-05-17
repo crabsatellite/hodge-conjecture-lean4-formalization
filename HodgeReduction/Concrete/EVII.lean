@@ -1248,6 +1248,71 @@ theorem evii_holomorphicBundle_c1 :
       = HodgeReduction.CrossRingArithmetic.c1 • (Polynomial.X : A_EVII) :=
   rfl
 
+/-! ### R46 SUBSTANTIVE: `ChernCharacterRelationData EVII_R6.EVII_Space A_EVII`
+
+Validates the Chern-character relation chain on `Ě_VII` for the rank-27
+Hodge sub-bundle `𝓔_{+1}` with the P48 explicit Chern values.
+
+**Chern-character computation** for `𝓔_{+1}`:
+* `ch_0 = rank = 27`
+* `ch_1 = c_1 = -9 h`
+* `ch_2 = (c_1² - 2 c_2) / 2 = ((-9h)² - 2(41h²))/2 = (81 - 82) h² / 2 = -h²/2`
+
+  Verification via the relation `2 · ch_2 = c_1² - 2 c_2`:
+  `2 · (-h²/2) = -h² = 81 h² - 82 h² = (-9h)² - 2(41 h²)`. ✓ -/
+noncomputable instance evii_chernCharacterRelationData :
+    HodgeReduction.Infrastructure.Cohomology.ChernCharacterRelationData
+      EVII_R6.EVII_Space A_EVII where
+  ch
+    | 0 => (algebraMap ℚ A_EVII) ((27 : ℚ))
+    | 1 => HodgeReduction.CrossRingArithmetic.c1 • (Polynomial.X : A_EVII)
+    | 2 => ((-1 : ℚ) / 2) • ((Polynomial.X : A_EVII) ^ 2)
+    | _ + 3 => 0
+  ch_zero_eq_rank := by
+    -- `ch 0 = algebraMap (27 : Q)` and `rank = 27`, so this is the same
+    -- value cast. Discharged by `rfl` (both sides reduce to `algebraMap`
+    -- of the literal `27` cast to ℚ).
+    rfl
+  ch_one_eq_c_one := by
+    -- `ch 1 = c1 • X = HolomorphicBundleData.chern 1` by definition of
+    -- the EVII holomorphic-bundle instance. Discharged by `rfl`.
+    rfl
+  ch_two_relation := by
+    -- Goal: `2 • ((-1/2 : ℚ) • X^2) = (c1 • X)² - 2 • (c2 • X²)`.
+    -- LHS: `2 · (-1/2) • X² = -X²`
+    -- RHS: `(c1)² • X² - (2 c2) • X² = (c1² - 2 c2) • X²`
+    --   = (81 - 82) • X² = (-1) • X² = -X²
+    -- Both sides equal `-X²`; closed by ring + norm_num on the scalar
+    -- equation `2 · (-1/2) = -1 = (-9)² - 2 · 41`.
+    show (2 : ℚ) • (((-1 : ℚ) / 2) • ((Polynomial.X : A_EVII) ^ 2))
+      = (HodgeReduction.CrossRingArithmetic.c1 • (Polynomial.X : A_EVII)) *
+          (HodgeReduction.CrossRingArithmetic.c1 • (Polynomial.X : A_EVII))
+        - (2 : ℚ) • (HodgeReduction.CrossRingArithmetic.c2 • ((Polynomial.X : A_EVII) ^ 2))
+    -- Collapse the smul-mul / smul-smul chain into scalar identities.
+    simp only [smul_smul, smul_mul_smul_comm]
+    -- Goal: ((2 : ℚ) * ((-1 : ℚ) / 2)) • X² = (c1 * c1) • (X * X) - (2 * c2) • X²
+    have hX2 : (Polynomial.X : A_EVII) * (Polynomial.X : A_EVII)
+        = (Polynomial.X : A_EVII) ^ 2 := by ring
+    rw [hX2, ← sub_smul]
+    -- Goal: ((2 : ℚ) * ((-1 : ℚ) / 2)) • X² = (c1 * c1 - 2 * c2) • X²
+    congr 1
+    -- Scalar identity: 2 * (-1/2) = c1² - 2 c2 = (-9)² - 2·41 = 81 - 82 = -1
+    show (2 : ℚ) * ((-1 : ℚ) / 2)
+      = HodgeReduction.CrossRingArithmetic.c1 *
+          HodgeReduction.CrossRingArithmetic.c1
+        - (2 : ℚ) * HodgeReduction.CrossRingArithmetic.c2
+    unfold HodgeReduction.CrossRingArithmetic.c1
+           HodgeReduction.CrossRingArithmetic.c2
+    norm_num
+
+/-- **Sanity check** (R46): the 0-th Chern character of the rank-27
+bundle equals 27 (the rank, as an element of `A_EVII` via `algebraMap`). -/
+theorem evii_ch_zero_eq_27 :
+    HodgeReduction.Infrastructure.Cohomology.ChernCharacterRelationData.ch
+      (X := EVII_R6.EVII_Space) (A := A_EVII) 0
+      = (algebraMap ℚ A_EVII) ((27 : ℚ)) :=
+  rfl
+
 /-! ### R34 SUBSTANTIVE: NefConeData + KodairaEmbeddingData on EVII
 
 Two more `AmpleDivisor.lean` typeclasses get concrete EVII witnesses,
@@ -1411,5 +1476,7 @@ theorem evii_freudenthal_quartic_is_algebraic :
 -- R45 KERNEL-PURITY: HolomorphicBundleData EVII (rank 27 bundle witness).
 #print axioms evii_holomorphicBundle_rank
 #print axioms evii_holomorphicBundle_c1
+-- R46 KERNEL-PURITY: ChernCharacterRelationData EVII (Chern character chain).
+#print axioms evii_ch_zero_eq_27
 
 end HodgeReduction.Concrete
