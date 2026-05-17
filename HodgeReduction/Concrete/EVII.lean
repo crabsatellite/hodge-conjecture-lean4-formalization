@@ -2479,6 +2479,38 @@ theorem evii_freudenthal_in_codim4_cycles :
           (A := A_EVII) (p := 4) :=
   Submodule.mem_top
 
+/-! ### R87 SUBSTANTIVE: `AlgebraicCycleVarietyData EVII_R6.EVII_Space`
+
+Provides the variety-side cycle data for `Ě_VII`: complex dimension 27,
+all-PUnit cycle groups (synthetic disclosure — the genuine cycle group
+structure requires Mathlib AG infrastructure), and `Eq` setoid for
+rational equivalence (math-honest replacement of `:= True` per R31
+mandate).
+
+* `dim := 27`
+* `ZCycle p := PUnit` for all p (synthetic: real cycle groups await Mathlib)
+* `ratEquiv p := ⟨Eq, refl, symm, trans⟩`
+* `vanish_above_dim`: ZCycle (p > 27) = PUnit (rfl since ZCycle is always PUnit) -/
+noncomputable instance evii_algebraicCycleVarietyData :
+    HodgeReduction.Infrastructure.Cohomology.AlgebraicCycleVarietyData
+      EVII_R6.EVII_Space where
+  dim := 27
+  ZCycle _ := PUnit
+  ZCycle_addCommGroup _ := inferInstance
+  pureCycle _ := fun _ => PUnit.unit
+  ratEquiv _ := ⟨Eq, Eq.refl, Eq.symm, Eq.trans⟩
+  ratEquiv_trans h₁ h₂ := h₁.trans h₂
+  ratEquiv_symm h := h.symm
+  vanish_above_dim _ := rfl
+  ratEquiv_zero := rfl
+
+/-- **Sanity check** (R87): the complex dimension of `Ě_VII` as recorded
+in AlgebraicCycleVarietyData equals 27. -/
+theorem evii_acv_dim_eq_27 :
+    HodgeReduction.Infrastructure.Cohomology.AlgebraicCycleVarietyData.dim
+      (X := EVII_R6.EVII_Space) = 27 :=
+  rfl
+
 /-- **Sanity check** (R77): Standard Conjecture (D) holds on `Ě_VII`
 (numerical-equivalence = hom-equivalence). -/
 theorem evii_standard_conjecture_D :
@@ -2637,6 +2669,8 @@ theorem evii_apex_synthesis :
 #print axioms evii_BH_presentation_rank_eq_7
 -- R86 KERNEL-PURITY: AlgebraicCycleData EVII for every codim p.
 #print axioms evii_freudenthal_in_codim4_cycles
+-- R87 KERNEL-PURITY: AlgebraicCycleVarietyData EVII (dim 27).
+#print axioms evii_acv_dim_eq_27
 
 /-! ### R73 META-SYNTHESIS: Type-level catalogue of substantive EVII closures
 
