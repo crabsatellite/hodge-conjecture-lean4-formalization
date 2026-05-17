@@ -252,6 +252,36 @@ theorem filt_eq_piece_sup_filt_succ (p : Fin (n + 1))
     · exact piece_le_filt p
     · exact filt_antitone (by omega : p.val ≤ p.val + 1)
 
+/-- **R151: recursive filtration dimension formula**.
+
+`finrank (filt p) = hodgeNumber p + finrank (filt ⟨p+1⟩)`.
+
+Direct consequence of R149 (Hodge transversality) + R150 (filtration
+step decomposition) + Mathlib's `Submodule.finrank_sup_add_finrank_inf_eq`.
+
+Together with the boundary `filt ⟨n+1⟩ = 0` (in the extended filtration),
+this gives the full dimension formula `finrank (filt p) =
+∑ (i ≥ p), hodgeNumber i` via downward induction. -/
+theorem finrank_filt_succ [Module.Finite ℚ V]
+    (p : Fin (n + 1)) (hpn : p.val + 1 < n + 1) :
+    Module.finrank ℚ (filt (V := V) p) =
+    hodgeNumber (V := V) p +
+    Module.finrank ℚ (filt (V := V) ⟨p.val + 1, hpn⟩) := by
+  -- filt p = piece p ⊔ filt ⟨p+1⟩ (R150)
+  rw [filt_eq_piece_sup_filt_succ p hpn]
+  -- Disjointness from R149
+  have h_disj : Disjoint (piece (V := V) p)
+      (filt (V := V) ⟨p.val + 1, hpn⟩) :=
+    piece_disjoint_filt_succ p hpn
+  -- Use Submodule.finrank_sup_add_finrank_inf_eq
+  have h_dim := Submodule.finrank_sup_add_finrank_inf_eq
+    (piece (V := V) p) (filt (V := V) ⟨p.val + 1, hpn⟩)
+  -- Disjoint ⟹ inf = ⊥ ⟹ finrank inf = 0
+  rw [h_disj.eq_bot, finrank_bot, Nat.add_zero] at h_dim
+  -- h_dim : finrank (piece p ⊔ filt ⟨p+1⟩) = finrank (piece p) + finrank (filt ⟨p+1⟩)
+  -- hodgeNumber p := finrank (piece p) (R137 def)
+  exact h_dim
+
 end PureHodgeStructure
 
 /-! ## Pure Hodge structures via explicit pieces with substantive
