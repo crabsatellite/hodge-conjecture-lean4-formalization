@@ -2706,6 +2706,41 @@ theorem evii_motive_realise_self (m : A_EVII) :
           (X := EVII_R6.EVII_Space) m :=
   HodgeReduction.Infrastructure.Cohomology.MotiveData.realise_self m
 
+/-! ### R95 SUBSTANTIVE: `NumericalEquivalence EVII_R6.EVII_Space A_EVII`
+
+Extends R94 `MotiveData` with the **Jannsen 1992 numerical-equivalence
+Setoid** on motives. Since the realisation functor is trivial (zero), all
+self-realisations agree (= 0), so the Setoid is the universal relation
+"everything equivalent". This is mathematically consistent with the
+trivial-motive model: every pair of motives has identical (zero)
+realisation. -/
+noncomputable instance evii_numericalEquivalence :
+    HodgeReduction.Infrastructure.Cohomology.NumericalEquivalence
+      EVII_R6.EVII_Space A_EVII where
+  numericalSetoid := ⟨fun _ _ => True, fun _ => trivial,
+                       fun _ => trivial, fun _ _ => trivial⟩
+  equiv_iff_realisation_agrees := by
+    intro m₁ m₂
+    constructor
+    · intro _
+      -- Both realisations are 0 in the trivial-motive model.
+      show HodgeReduction.Infrastructure.Cohomology.MotiveData.realise
+            (X := EVII_R6.EVII_Space) (A := A_EVII) m₁
+        = HodgeReduction.Infrastructure.Cohomology.MotiveData.realise
+            (X := EVII_R6.EVII_Space) (A := A_EVII) m₂
+      -- Realise = (0 : A_EVII →ₗ[ℚ] A_EVII), so both sides = 0.
+      show (0 : A_EVII →ₗ[ℚ] A_EVII) m₁ = (0 : A_EVII →ₗ[ℚ] A_EVII) m₂
+      simp
+    · intro _
+      trivial
+
+/-- **Sanity check** (R95): every pair of EVII motives is numerically
+equivalent under the trivial-motive model. -/
+theorem evii_all_motives_numerically_equiv (m₁ m₂ : A_EVII) :
+    (HodgeReduction.Infrastructure.Cohomology.NumericalEquivalence.numericalSetoid
+      (X := EVII_R6.EVII_Space) (motive := A_EVII)).r m₁ m₂ :=
+  trivial
+
 /-! ### R89 ATTEMPT NOTE: `CycleClassData EVII` deferred
 
 Attempted in R89 but the AddMonoidHom + intersect/fundamental coordination
@@ -2888,6 +2923,8 @@ theorem evii_apex_synthesis :
 #print axioms evii_NS_rat_eq_span_X
 -- R94 KERNEL-PURITY: MotiveData EVII (trivial-motive Grothendieck/Manin structure).
 #print axioms evii_motive_realise_self
+-- R95 KERNEL-PURITY: NumericalEquivalence EVII (Jannsen 1992 motivic equivalence).
+#print axioms evii_all_motives_numerically_equiv
 
 /-! ### R73 META-SYNTHESIS: Type-level catalogue of substantive EVII closures
 
