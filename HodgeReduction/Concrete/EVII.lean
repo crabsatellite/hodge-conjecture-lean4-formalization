@@ -1425,31 +1425,65 @@ All four fields discharged via Mathlib lemmas, no case-by-case.
 delegating directly to Mathlib's polynomial-degree API. -/
 noncomputable instance evii_gradedCohomologyData :
     HodgeReduction.Infrastructure.Cohomology.GradedCohomologyData A_EVII where
-  degreeOf := Polynomial.natDegree
+  -- **R51 fix**: use `2 * natDegree` to match cohomological convention
+  -- (`h = X` has H²-degree 2, not polynomial-degree 1). This makes
+  -- `topDim = 54` consistent with `degreeOf X = 2`. Also ensures
+  -- `degreeOf a * degreeOf b` is always even, which is required for
+  -- graded commutativity (R51) to hold on `Polynomial ℚ` (which is
+  -- ordinarily-commutative).
+  degreeOf p := 2 * p.natDegree
   topDim := 54
-  degreeOf_zero := Polynomial.natDegree_zero
-  degreeOf_mul a b ha hb := Polynomial.natDegree_mul ha hb
+  degreeOf_zero := by
+    show 2 * (0 : A_EVII).natDegree = 0
+    rw [Polynomial.natDegree_zero, Nat.mul_zero]
+  degreeOf_mul a b ha hb := by
+    show 2 * (a * b).natDegree = 2 * a.natDegree + 2 * b.natDegree
+    rw [Polynomial.natDegree_mul ha hb, Nat.mul_add]
 
-/-- **Sanity check** (R50): the top dimension of `Ě_VII` cohomology is 54
+/-- **Sanity check** (R51): the top dimension of `Ě_VII` cohomology is 54
 (= 2 × complex-dim 27). -/
 theorem evii_topDim_eq_54 :
     HodgeReduction.Infrastructure.Cohomology.GradedCohomologyData.topDim
       (A := A_EVII) = 54 :=
   rfl
 
-/-- **Sanity check** (R50): the degree of the polarisation class `h = X`
-is 2 (cohomological-degree convention: `h ∈ H²(Ě_VII; ℚ)`).
-
-Wait, in the synthetic `Polynomial`-degree convention `degreeOf X = 1`,
-not 2. The factor-of-2 discrepancy between cohomological degree and
-polynomial degree is part of the synthetic-carrier disclosure: in the
-faithful model, `X` represents the Kähler class with `H²`-degree 2,
-but on `Polynomial ℚ` its polynomial degree is 1. Each polynomial
-exponent `k` corresponds to cohomological degree `2k`. -/
-theorem evii_degree_X_eq_one :
+/-- **Sanity check** (R51): the cohomological degree of the polarisation
+class `h = X` is 2 (matching `h ∈ H²(Ě_VII; ℚ)` convention via the
+factor-of-2 lift `degreeOf := 2 * natDegree`). -/
+theorem evii_degree_X_eq_two :
     HodgeReduction.Infrastructure.Cohomology.GradedCohomologyData.degreeOf
-      (A := A_EVII) (Polynomial.X : A_EVII) = 1 :=
-  Polynomial.natDegree_X
+      (A := A_EVII) (Polynomial.X : A_EVII) = 2 := by
+  show 2 * (Polynomial.X : A_EVII).natDegree = 2
+  rw [Polynomial.natDegree_X]
+
+/-! ### R51 SUBSTANTIVE: `GradedCommutativityData A_EVII`
+
+With `degreeOf := 2 * natDegree` (factor-of-2 cohomological lift),
+the product `degreeOf a * degreeOf b = 4 * (natDegree a * natDegree b)`
+is always EVEN. Therefore `(-1)^(degreeOf a * degreeOf b) = 1` always,
+and graded commutativity reduces to ordinary `Polynomial ℚ` commutativity
+`a * b = b * a`. This is mathematically correct: on `Ě_VII`'s even-only
+cohomology, graded commutativity IS ordinary commutativity. -/
+noncomputable instance evii_gradedCommutativityData :
+    HodgeReduction.Infrastructure.Cohomology.GradedCommutativityData A_EVII where
+  graded_commutativity a b := by
+    -- `degreeOf a = 2 * a.natDegree`, `degreeOf b = 2 * b.natDegree`,
+    -- so `degreeOf a * degreeOf b = 4 * (a.natDegree * b.natDegree)`, which is
+    -- always even. Hence `(-1)^(even) = 1` in any commutative ring.
+    show a * b = ((-1 : A_EVII) ^ ((2 * a.natDegree) * (2 * b.natDegree))) * (b * a)
+    have hmul : (2 * a.natDegree) * (2 * b.natDegree)
+        = 2 * (2 * (a.natDegree * b.natDegree)) := by ring
+    rw [hmul, pow_mul]
+    -- `(-1)^2 = 1`, then `1^k = 1`, then `1 * (b * a) = b * a = a * b`.
+    have hsq : ((-1 : A_EVII)) ^ 2 = 1 := by ring
+    rw [hsq, one_pow, one_mul]
+    exact mul_comm a b
+
+/-- **Sanity check** (R51): graded commutativity on `A_EVII` IS ordinary
+commutativity (since degrees are even and (-1)^(even) = 1). -/
+theorem evii_grad_comm_is_ordinary_comm (a b : A_EVII) : a * b = b * a := by
+  -- Direct: Polynomial ℚ is a commutative ring.
+  exact mul_comm a b
 
 /-! ### R34 SUBSTANTIVE: NefConeData + KodairaEmbeddingData on EVII
 
@@ -1620,8 +1654,9 @@ theorem evii_freudenthal_quartic_is_algebraic :
 #print axioms evii_filt_zero_eq_top
 -- R48 KERNEL-PURITY: HCCodim1Data EVII (Lefschetz (1,1) codim-1 HC).
 #print axioms evii_lefschetz_11_codim1
--- R50 KERNEL-PURITY: GradedCohomologyData EVII (degree via Polynomial.natDegree).
+-- R50/R51 KERNEL-PURITY: GradedCohomologyData + GradedCommutativityData EVII.
 #print axioms evii_topDim_eq_54
-#print axioms evii_degree_X_eq_one
+#print axioms evii_degree_X_eq_two
+#print axioms evii_grad_comm_is_ordinary_comm
 
 end HodgeReduction.Concrete
