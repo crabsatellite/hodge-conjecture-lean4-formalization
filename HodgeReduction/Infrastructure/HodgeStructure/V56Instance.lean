@@ -436,6 +436,51 @@ theorem finrank_V56_eq_sum_hodgeNumber :
   -- Goal: Module.finrank ℚ V56 = 1 + 27 + 27 + 1 = 56
   rw [HodgeReduction.Infrastructure.V56.finrank]
 
+/-- **R155**: concrete Hodge filtration dimensions for V_56.
+
+Using R151 (recursive step) + R152 (boundary), compute the dim of each
+filtration step of V_56:
+
+  F^0 = V_56,                 dim 56  (= 1+27+27+1)
+  F^1 = H_2_1 ⊔ H_1_2 ⊔ H_0_3, dim 55 (= 27+27+1)
+  F^2 = H_1_2 ⊔ H_0_3,         dim 28 (= 27+1)
+  F^3 = H_0_3,                 dim 1
+
+These specialize R153's general closed-form for the V_56 case. -/
+theorem finrank_filt_V56_3 :
+    Module.finrank ℚ (PureHodgeStructure.filt
+      (V := HodgeReduction.Infrastructure.V56) (n := 3)
+      ⟨3, Nat.lt_succ_self 3⟩) = 1 := by
+  rw [PureHodgeStructure.finrank_filt_top]
+  exact hodgeNumber_V56_0_3
+
+theorem finrank_filt_V56_2 :
+    Module.finrank ℚ (PureHodgeStructure.filt
+      (V := HodgeReduction.Infrastructure.V56) (n := 3)
+      ⟨2, by decide⟩) = 28 := by
+  rw [PureHodgeStructure.finrank_filt_succ
+        (V := HodgeReduction.Infrastructure.V56) (n := 3)
+        ⟨2, by decide⟩ (by decide), hodgeNumber_V56_1_2,
+      finrank_filt_V56_3]
+
+theorem finrank_filt_V56_1 :
+    Module.finrank ℚ (PureHodgeStructure.filt
+      (V := HodgeReduction.Infrastructure.V56) (n := 3)
+      ⟨1, by decide⟩) = 55 := by
+  rw [PureHodgeStructure.finrank_filt_succ
+        (V := HodgeReduction.Infrastructure.V56) (n := 3)
+        ⟨1, by decide⟩ (by decide), hodgeNumber_V56_2_1,
+      finrank_filt_V56_2]
+
+theorem finrank_filt_V56_0 :
+    Module.finrank ℚ (PureHodgeStructure.filt
+      (V := HodgeReduction.Infrastructure.V56) (n := 3)
+      ⟨0, by decide⟩) = 56 := by
+  rw [PureHodgeStructure.finrank_filt_succ
+        (V := HodgeReduction.Infrastructure.V56) (n := 3)
+        ⟨0, by decide⟩ (by decide), hodgeNumber_V56_3_0,
+      finrank_filt_V56_1]
+
 /-- **R145**: Hodge conjugation symmetry for V_56 at the dimension level.
 
 `h^{p, 3-p}(V_56) = h^{3-p, p}(V_56)` — the standard Hodge symmetry
