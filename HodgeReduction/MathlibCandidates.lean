@@ -708,6 +708,39 @@ theorem mul_mk.{u} {R : Type u} [CommRing R]
     mul (mk (R := R) M) (mk (R := R) N) = mk (R := R) (TensorProduct R M N) :=
   rfl
 
+/-- **R111**: commutativity of the Picard product. Lifted from
+`TensorProduct.comm`. -/
+theorem mul_comm.{u} {R : Type u} [CommRing R] (x y : Picard R) :
+    mul x y = mul y x := by
+  refine Quotient.inductionOn₂ (motive := fun a b => mul a b = mul b a) x y ?_
+  intro s t
+  exact Quotient.sound ⟨TensorProduct.comm R s.carrier t.carrier⟩
+
+/-- **R111**: associativity of the Picard product. Lifted from
+`TensorProduct.assoc`. -/
+theorem mul_assoc.{u} {R : Type u} [CommRing R] (x y z : Picard R) :
+    mul (mul x y) z = mul x (mul y z) := by
+  refine Quotient.inductionOn₃
+    (motive := fun a b c => mul (mul a b) c = mul a (mul b c)) x y z ?_
+  intro s t u
+  exact Quotient.sound ⟨TensorProduct.assoc R s.carrier t.carrier u.carrier⟩
+
+/-- **R111**: left identity for the Picard product (`[R] · x = x`).
+Lifted from `TensorProduct.lid`. -/
+theorem one_mul.{u} {R : Type u} [CommRing R] (x : Picard R) :
+    mul (one R) x = x := by
+  refine Quotient.inductionOn (motive := fun a => mul (one R) a = a) x ?_
+  intro s
+  exact Quotient.sound ⟨TensorProduct.lid R s.carrier⟩
+
+/-- **R111**: right identity for the Picard product (`x · [R] = x`).
+Lifted from `TensorProduct.rid`. -/
+theorem mul_one.{u} {R : Type u} [CommRing R] (x : Picard R) :
+    mul x (one R) = x := by
+  refine Quotient.inductionOn (motive := fun a => mul a (one R) = a) x ?_
+  intro s
+  exact Quotient.sound ⟨TensorProduct.rid R s.carrier⟩
+
 end Picard
 
 /-! ### Mathlib-PR readiness checklist
@@ -789,5 +822,10 @@ axioms or `sorry`. The `#print axioms` lines below verify this. -/
 #print axioms Module.IsInvertible.Sigma.IsoRel.tensor
 #print axioms Picard.mul
 #print axioms Picard.mul_mk
+-- R111 Picard CommMonoid laws: mul_comm + mul_assoc + one_mul + mul_one.
+#print axioms Picard.mul_comm
+#print axioms Picard.mul_assoc
+#print axioms Picard.one_mul
+#print axioms Picard.mul_one
 
 end HodgeReduction.MathlibCandidates
