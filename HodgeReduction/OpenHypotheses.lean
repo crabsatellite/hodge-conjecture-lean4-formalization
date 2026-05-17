@@ -1399,6 +1399,35 @@ structure E7ShimuraTor : Type where
     isChernSubringSurjectiveOntoH8_E7P7 →
     isCrossRingBridgeNonzeroOnFreudenthalQuartic_E7P7_INVENTION_CLASS →
     isBorelHirzebruchNonvanishH8
+  /-- **R161**: P16.a — Vogan-Zuckerman 1984 general framework PUBLISHED. -/
+  isVoganZuckerman1984GeneralFramework_PUBLISHED : Prop
+  /-- **R161**: P16.b — Knapp-Vogan 1995 cohomological induction PUBLISHED. -/
+  isKnappVogan1995CohomologicalInduction_PUBLISHED : Prop
+  /-- **R161**: P16.c — θ-stable parabolic of E_{7(-25)} with R(q) = 8 REQUIRED. -/
+  isThetaStableParabolicOfE725WithRqEquals8_REQUIRED_HYPOTHESIS : Prop
+  /-- **R161**: P16.d — Dong-Wong Dirac series program scope PUBLISHED. -/
+  isDongWongDiracSeriesProgramScope_PUBLISHED : Prop
+  /-- **R161**: P9.b / P16 conclusion — VZ A_q(λ) computation for E_{7(-25)} degree 8. -/
+  isVoganZuckermanAqLambdaComputationFor_E725_Degree8_REQUIRED_HYPOTHESIS : Prop
+  /-- **R161**: P16.a witness. -/
+  voganZuckerman1984_witness : isVoganZuckerman1984GeneralFramework_PUBLISHED
+  /-- **R161**: P16.b witness. -/
+  knappVogan1995_witness : isKnappVogan1995CohomologicalInduction_PUBLISHED
+  /-- **R161**: P16.c witness. -/
+  thetaStableParabolic_witness :
+    isThetaStableParabolicOfE725WithRqEquals8_REQUIRED_HYPOTHESIS
+  /-- **R161**: P16.d witness. -/
+  dongWong_witness : isDongWongDiracSeriesProgramScope_PUBLISHED
+  /-- **R161**: VZ A_q(λ) direct witness. -/
+  voganZuckermanAqLambda_witness :
+    isVoganZuckermanAqLambdaComputationFor_E725_Degree8_REQUIRED_HYPOTHESIS
+  /-- **R161**: P16 bridge — 4 sub-atoms ⟹ VZ A_q(λ) for E_{7(-25)} degree 8. -/
+  vogan_zuckerman_aq_lambda_from_subatoms_P16 :
+    isVoganZuckerman1984GeneralFramework_PUBLISHED →
+    isKnappVogan1995CohomologicalInduction_PUBLISHED →
+    isThetaStableParabolicOfE725WithRqEquals8_REQUIRED_HYPOTHESIS →
+    isDongWongDiracSeriesProgramScope_PUBLISHED →
+    isVoganZuckermanAqLambdaComputationFor_E725_Degree8_REQUIRED_HYPOTHESIS
 
 /-- Canonical inhabitant of `E7ShimuraTor`: the paper constructs
  `S_Γ^tor` as a specific AMRT-Baily-Borel toroidal compactification
@@ -1963,8 +1992,10 @@ axiom IsWatanabe1975IntegralCohomologyRingEVII_PUBLISHED :
  (related but different — Dirac cohomology not (g,K)-cohomology).
  paper source: hyp:ChernWeil-bridge-E7 (P9 decomposition sub-atom b —
  V-Z A_q(λ) specific computation REQUIRED). -/
-axiom IsVoganZuckermanAqLambdaComputationFor_E725_Degree8_REQUIRED_HYPOTHESIS :
- E7ShimuraTor → Prop
+-- R161: was `axiom`; now def projecting E7ShimuraTor field.
+def IsVoganZuckermanAqLambdaComputationFor_E725_Degree8_REQUIRED_HYPOTHESIS
+    (S : E7ShimuraTor) : Prop :=
+  S.isVoganZuckermanAqLambdaComputationFor_E725_Degree8_REQUIRED_HYPOTHESIS
 
 /-- **PUBLISHED atom (P16.a, R-#new-P16)**: Vogan-Zuckerman 1984
  GENERAL FRAMEWORK for A_q(λ) modules with non-trivial (𝔤, K_∞)-
@@ -1978,8 +2009,9 @@ axiom IsVoganZuckermanAqLambdaComputationFor_E725_Degree8_REQUIRED_HYPOTHESIS :
  cohomology", Compositio Math. 53 (1984), 51-90.
  paper source: hyp:ChernWeil-bridge-E7 (P16 V-Z A_q(λ) decomposition
  sub-atom a — V-Z 1984 general framework PUBLISHED). -/
-axiom IsVoganZuckerman1984GeneralFramework_PUBLISHED :
- E7ShimuraTor → Prop
+-- R161: was `axiom`; now def projecting E7ShimuraTor field.
+def IsVoganZuckerman1984GeneralFramework_PUBLISHED (S : E7ShimuraTor) : Prop :=
+  S.isVoganZuckerman1984GeneralFramework_PUBLISHED
 
 /-- **PUBLISHED atom (P16.b, R-#new-P16)**: Knapp-Vogan 1995 cohomological
  induction framework for unitary representations of real reductive
@@ -1991,8 +2023,9 @@ axiom IsVoganZuckerman1984GeneralFramework_PUBLISHED :
  (unitary realization theorem).
  paper source: hyp:ChernWeil-bridge-E7 (P16 V-Z A_q(λ) decomposition
  sub-atom b — Knapp-Vogan 1995 cohomological induction PUBLISHED). -/
-axiom IsKnappVogan1995CohomologicalInduction_PUBLISHED :
- E7ShimuraTor → Prop
+-- R161: was `axiom`; now def projecting E7ShimuraTor field.
+def IsKnappVogan1995CohomologicalInduction_PUBLISHED (S : E7ShimuraTor) : Prop :=
+  S.isKnappVogan1995CohomologicalInduction_PUBLISHED
 
 /-- **`_REQUIRED_HYPOTHESIS` atom (P16.c, R-#new-P16; ATLAS-COMPUTABLE)**:
  there exists a θ-stable parabolic `q ⊂ 𝔢_{7(-25)}^ℂ` with
@@ -2015,8 +2048,10 @@ axiom IsKnappVogan1995CohomologicalInduction_PUBLISHED :
  Atlas of Lie Groups software documentation at liegroups.org.
  paper source: hyp:ChernWeil-bridge-E7 (P16 V-Z A_q(λ) decomposition
  sub-atom c — atlas-computable θ-stable parabolic enumeration). -/
-axiom IsThetaStableParabolicOfE725WithRqEquals8_REQUIRED_HYPOTHESIS :
- E7ShimuraTor → Prop
+-- R161: was `axiom`; now def projecting E7ShimuraTor field.
+def IsThetaStableParabolicOfE725WithRqEquals8_REQUIRED_HYPOTHESIS
+    (S : E7ShimuraTor) : Prop :=
+  S.isThetaStableParabolicOfE725WithRqEquals8_REQUIRED_HYPOTHESIS
 
 /-- **PUBLISHED structural-fact atom (P16.d, R-#new-P16)**: the
  Dong-Wong "Dirac series" program (2018-2024 arXiv papers) covers
@@ -2035,29 +2070,38 @@ axiom IsThetaStableParabolicOfE725WithRqEquals8_REQUIRED_HYPOTHESIS :
  and Wallach modules" covers `E_{7(-25)}` Wallach but not full A_q(λ).
  paper source: hyp:ChernWeil-bridge-E7 (P16 V-Z A_q(λ) decomposition
  sub-atom d — Dong-Wong program scope structural fact PUBLISHED). -/
-axiom IsDongWongDiracSeriesProgramScope_PUBLISHED :
- E7ShimuraTor → Prop
+-- R161: was `axiom`; now def projecting E7ShimuraTor field.
+def IsDongWongDiracSeriesProgramScope_PUBLISHED (S : E7ShimuraTor) : Prop :=
+  S.isDongWongDiracSeriesProgramScope_PUBLISHED
 
 /-- PUBLISHED witness for V-Z 1984 framework (P16.a). -/
-axiom is_vogan_zuckerman_1984_general_framework_PUBLISHED :
+-- R161: was `axiom`; now theorem via E7ShimuraTor witness field.
+theorem is_vogan_zuckerman_1984_general_framework_PUBLISHED :
  ∀ (S : E7ShimuraTor),
-   IsVoganZuckerman1984GeneralFramework_PUBLISHED S
+   IsVoganZuckerman1984GeneralFramework_PUBLISHED S :=
+ fun S => S.voganZuckerman1984_witness
 
 /-- PUBLISHED witness for Knapp-Vogan 1995 cohomological induction (P16.b). -/
-axiom is_knapp_vogan_1995_cohomological_induction_PUBLISHED :
+-- R161: was `axiom`; now theorem via E7ShimuraTor witness field.
+theorem is_knapp_vogan_1995_cohomological_induction_PUBLISHED :
  ∀ (S : E7ShimuraTor),
-   IsKnappVogan1995CohomologicalInduction_PUBLISHED S
+   IsKnappVogan1995CohomologicalInduction_PUBLISHED S :=
+ fun S => S.knappVogan1995_witness
 
 /-- `_REQUIRED_HYPOTHESIS` placeholder witness for θ-stable parabolic
  with R(q) = 8 (P16.c). NOT discharged; atlas-software-computable. -/
-axiom is_theta_stable_parabolic_of_E725_with_Rq_equals_8_REQUIRED_HYPOTHESIS :
+-- R161: was `axiom`; now theorem via E7ShimuraTor witness field.
+theorem is_theta_stable_parabolic_of_E725_with_Rq_equals_8_REQUIRED_HYPOTHESIS :
  ∀ (S : E7ShimuraTor),
-   IsThetaStableParabolicOfE725WithRqEquals8_REQUIRED_HYPOTHESIS S
+   IsThetaStableParabolicOfE725WithRqEquals8_REQUIRED_HYPOTHESIS S :=
+ fun S => S.thetaStableParabolic_witness
 
 /-- PUBLISHED witness for Dong-Wong program scope (P16.d). -/
-axiom is_dong_wong_dirac_series_program_scope_PUBLISHED :
+-- R161: was `axiom`; now theorem via E7ShimuraTor witness field.
+theorem is_dong_wong_dirac_series_program_scope_PUBLISHED :
  ∀ (S : E7ShimuraTor),
-   IsDongWongDiracSeriesProgramScope_PUBLISHED S
+   IsDongWongDiracSeriesProgramScope_PUBLISHED S :=
+ fun S => S.dongWong_witness
 
 /-- **P16 DECOMPOSITION BRIDGE** for V-Z A_q(λ) atom (R-#new-P16).
  Per Phase 0 hostile audit, the monolithic
@@ -2075,13 +2119,15 @@ axiom is_dong_wong_dirac_series_program_scope_PUBLISHED :
  of θ-stable parabolics with R(q) = 8 — distinct from the structural
  gapBlocked barriers (form-HM-EVII, §16.2-E_6-rep, Borel-stable-range)
  which are genuinely literature-open. -/
-axiom is_vogan_zuckerman_aq_lambda_computation_for_E725_degree8_from_subatoms_P16 :
+-- R161: was `axiom`; now theorem via E7ShimuraTor bridge field.
+theorem is_vogan_zuckerman_aq_lambda_computation_for_E725_degree8_from_subatoms_P16 :
  ∀ (S : E7ShimuraTor),
    IsVoganZuckerman1984GeneralFramework_PUBLISHED S →
    IsKnappVogan1995CohomologicalInduction_PUBLISHED S →
    IsThetaStableParabolicOfE725WithRqEquals8_REQUIRED_HYPOTHESIS S →
    IsDongWongDiracSeriesProgramScope_PUBLISHED S →
-   IsVoganZuckermanAqLambdaComputationFor_E725_Degree8_REQUIRED_HYPOTHESIS S
+   IsVoganZuckermanAqLambdaComputationFor_E725_Degree8_REQUIRED_HYPOTHESIS S :=
+ fun S => S.vogan_zuckerman_aq_lambda_from_subatoms_P16
 
 /-- **DERIVED theorem (P16 LOAD-BEARING REWIRE, R-#new-P16, same round)**:
  V-Z A_q(λ) atom now derivable from P16 bridge applied to 4 P16
@@ -2909,9 +2955,11 @@ axiom is_watanabe_1975_integral_cohomology_ring_EVII_PUBLISHED :
 
 /-- `_REQUIRED_HYPOTHESIS` placeholder witness for V-Z A_q(λ) computation
  for `E_{7(-25)}` at degree 8 (P9.b, R-#new-P9). NOT discharged. -/
-axiom is_vogan_zuckerman_aq_lambda_computation_for_E725_degree8_REQUIRED_HYPOTHESIS :
+-- R161: was `axiom`; now theorem via E7ShimuraTor direct witness field.
+theorem is_vogan_zuckerman_aq_lambda_computation_for_E725_degree8_REQUIRED_HYPOTHESIS :
  ∀ (S : E7ShimuraTor),
-   IsVoganZuckermanAqLambdaComputationFor_E725_Degree8_REQUIRED_HYPOTHESIS S
+   IsVoganZuckermanAqLambdaComputationFor_E725_Degree8_REQUIRED_HYPOTHESIS S :=
+ fun S => S.voganZuckermanAqLambda_witness
 
 /-- `_REQUIRED_HYPOTHESIS` placeholder witness for Eisenstein cohomology
  vanishing for `E_{7(-25)}` at degree 8 (P9.c, R-#new-P9). NOT discharged. -/
