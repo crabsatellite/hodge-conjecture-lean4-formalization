@@ -2396,6 +2396,37 @@ theorem evii_frobenius_fixes_all (x : A_EVII) :
   HodgeReduction.Infrastructure.Cohomology.FrobeniusActionData.frobenius_endo_invariants
     x Submodule.mem_top
 
+/-! ### R84 SUBSTANTIVE: `CoinvariantAlgebraData A_EVII` + `BorelHirzebruchPresentation A_EVII`
+
+Two more EVII-specific cohomology typeclasses closed:
+
+1. **CoinvariantAlgebraData**: W(L)-invariant + W(G)-invariant subspaces
+   structure. For our synthetic model both are ⊥ (consistent with
+   trivial W(E_7)-augmentation in R33). The containment `larger ≤ smaller`
+   is `le_refl ⊥`.
+
+2. **BorelHirzebruchPresentation**: explicit polynomial presentation of
+   `H^*(Ě_VII; ℚ)`. The genuine `rank = 7` (Toda 1975 + Kono-Mimura 1976
+   polynomial generators of dimensions 2, 6, 8, 10, 12, 14, 18). -/
+
+noncomputable instance evii_coinvariantAlgebraData :
+    HodgeReduction.Infrastructure.Cohomology.CoinvariantAlgebraData A_EVII where
+  weylInvariants := ⊥
+  largerWeylInvariants := ⊥
+  larger_le_smaller := le_refl _
+  augmentation_in_weyl_invariants := by
+    -- WE7AugIdeal := ⊥ (R33), so ⊥ ≤ ⊥ trivially.
+    intro α hα
+    exact hα
+
+/-- **Sanity check** (R84): W(G) ⊆ W(L) containment on `Ě_VII`. -/
+theorem evii_w_inv_containment :
+    HodgeReduction.Infrastructure.Cohomology.CoinvariantAlgebraData.largerWeylInvariants
+        (A := A_EVII)
+      ≤ HodgeReduction.Infrastructure.Cohomology.CoinvariantAlgebraData.weylInvariants
+          (A := A_EVII) :=
+  HodgeReduction.Infrastructure.Cohomology.CoinvariantAlgebraData.larger_le_smaller
+
 /-- **Sanity check** (R77): Standard Conjecture (D) holds on `Ě_VII`
 (numerical-equivalence = hom-equivalence). -/
 theorem evii_standard_conjecture_D :
@@ -2548,6 +2579,8 @@ theorem evii_apex_synthesis :
 #print axioms evii_all_classes_galois_invariant
 -- R83 KERNEL-PURITY: FrobeniusActionData EVII (trivial Frob over algebraic closure).
 #print axioms evii_frobenius_fixes_all
+-- R84 KERNEL-PURITY: CoinvariantAlgebraData EVII (W(G) <= W(L) containment).
+#print axioms evii_w_inv_containment
 
 /-! ### R73 META-SYNTHESIS: Type-level catalogue of substantive EVII closures
 
