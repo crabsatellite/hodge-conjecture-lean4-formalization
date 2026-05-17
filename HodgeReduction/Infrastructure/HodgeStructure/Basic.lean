@@ -978,6 +978,17 @@ theorem piece_isSubHodgeStructure (p : Fin (n + 1)) :
   · -- ⨆ q, piece p ⊓ piece q ≤ piece p. Each summand piece p ⊓ piece q ≤ piece p (inf_le_left).
     exact iSup_le (fun _ => inf_le_left)
 
+/-- **R180**: The space of Hodge classes `hodgeClasses V k` is a
+sub-Hodge structure of `V` (corollary of R166 `piece_isSubHodgeStructure`
+applied at index `⟨k, _⟩` for the weight-2k Hodge structure). -/
+theorem hodgeClasses_isSubHodgeStructure
+    {V : Type*} [AddCommGroup V] [Module ℚ V] (k : ℕ)
+    [PureHodgeStructure V (2 * k)] :
+    IsSubHodgeStructure (V := V) (n := 2 * k)
+      (PureHodgeStructure.hodgeClasses V k) := by
+  unfold PureHodgeStructure.hodgeClasses
+  exact piece_isSubHodgeStructure ⟨k, by omega⟩
+
 /-! ### R167: Hodge decomposition LinearEquiv
 
 The `DirectSum.IsInternal piece` content gives a **LinearEquiv**
