@@ -184,6 +184,41 @@ theorem finrank_filt_zero :
   rw [filt_zero_eq_top]
   exact finrank_top ℚ V
 
+/-- **R149: Hodge transversality**.
+
+For `[PureHodgeStructure V n]`, the (p, n-p)-Hodge piece is disjoint
+from the next filtration step `F^{p+1}`. Concretely: `piece p ⊓
+filt ⟨p.val + 1, _⟩ = ⊥`.
+
+This is the cornerstone of the "associated graded" identification
+`F^p / F^{p+1} ≃ piece p` (Deligne 1971; Voisin I (6.10)): the
+quotient by the next step is naturally isomorphic to the current piece.
+
+Proof: `iSupIndep piece` (from `IsInternal`) gives that `piece p` is
+disjoint from `⨆ (j) (h : j ≠ p), piece j`. The filtration step
+`F^{p+1} = ⨆ (i ≥ p+1) piece i` is a sub-iSup over `{j : j > p}`,
+which is contained in `{j : j ≠ p}`; hence `F^{p+1} ⊆ ⨆ (j ≠ p) piece j`,
+and `piece p ⊓ F^{p+1} ⊆ piece p ⊓ ⨆ (j ≠ p) = ⊥`. -/
+theorem piece_disjoint_filt_succ
+    (p : Fin (n + 1)) (hpn : p.val + 1 < n + 1) :
+    Disjoint (piece (V := V) p)
+             (filt (V := V) ⟨p.val + 1, hpn⟩) := by
+  -- iSupIndep piece (from isInternal): piece p disjoint from ⨆ (j ≠ p) piece j
+  have h_indep : iSupIndep (piece (V := V) (n := n)) :=
+    (DirectSum.IsInternal.submodule_iSupIndep (isInternal (V := V) (n := n)))
+  -- filt ⟨p+1⟩ ≤ ⨆ (j ≠ p) piece j
+  have h_filt_le : filt (V := V) ⟨p.val + 1, hpn⟩ ≤
+      ⨆ (j : Fin (n + 1)) (_ : j ≠ p), piece (V := V) j := by
+    unfold filt
+    refine iSup_le (fun i => iSup_le (fun hi => ?_))
+    -- i.val ≥ p.val + 1, so i ≠ p
+    refine le_iSup_of_le i (le_iSup_of_le ?_ le_rfl)
+    intro h_eq
+    -- if i = p then i.val = p.val, but hi : p.val + 1 ≤ i.val
+    exact absurd (by rw [h_eq] at hi; exact hi : p.val + 1 ≤ p.val) (by omega)
+  -- Disjointness via mono_right
+  exact (h_indep p).mono_right h_filt_le
+
 end PureHodgeStructure
 
 /-! ## Pure Hodge structures via explicit pieces with substantive
