@@ -10,6 +10,10 @@ import Mathlib.LinearAlgebra.Span.Basic
 import Mathlib.LinearAlgebra.Basis.Basic
 import Mathlib.LinearAlgebra.TensorProduct.Basic
 import Mathlib.LinearAlgebra.TensorProduct.Tower
+import Mathlib.LinearAlgebra.Basis.VectorSpace
+import Mathlib.LinearAlgebra.Dimension.Constructions
+import Mathlib.LinearAlgebra.Dimension.Free
+import Mathlib.LinearAlgebra.Dimension.FreeAndStrongRankCondition
 import Mathlib.Order.Disjoint
 import Mathlib.Algebra.Order.Field.Rat
 import HodgeReduction.Infrastructure.AlgebraicGeometry.LineBundle
@@ -1177,6 +1181,55 @@ theorem baseChange_comp.{u}
   intro s
   exact Quotient.sound
     ⟨TensorProduct.AlgebraTensorModule.cancelBaseChange R A B B s.carrier⟩
+
+/-- **R131: Picard of a field is trivial** (Bourbaki AC II §5; Hartshorne II.6).
+
+For any field K, every invertible K-module is K-linearly isomorphic to K
+itself (since K-vector spaces have well-defined dimension; the tensor
+product equation `M ⊗ N ≃ K` forces `dim M = dim N = 1`, hence
+`M ≃ K`). Therefore `Picard K` has a unique element, namely `[K] = one K`.
+
+This is a major concrete corollary of the R97-R117 Picard construction,
+showing that the abstract Picard group recovers the classical fact
+`Pic(field) = trivial`. -/
+theorem eq_one_of_field.{u} {K : Type u} [Field K] (x : Picard K) :
+    x = one K := by
+  refine Quotient.inductionOn (motive := fun a => a = one K) x ?_
+  intro s
+  -- Extract the invertibility witness e : TensorProduct K s.carrier N ≃ₗ K
+  obtain ⟨N, instAcgN, instModN, ⟨e⟩⟩ :=
+    (Module.IsInvertible.Sigma.carrierIsInvertible s).exists_inverse
+  -- Step 1: rank K K = 1
+  have hRankK : Module.rank K K = 1 := Module.rank_self K
+  -- Step 2: rank K (M ⊗ N) = 1 (via the iso e)
+  have hRankTensor : Module.rank K (TensorProduct K s.carrier N) = 1 := by
+    rw [e.rank_eq]; exact hRankK
+  -- Step 3: rank M * rank N = 1 (Mathlib rank_tensorProduct')
+  have hRankProd : Module.rank K s.carrier * Module.rank K N = 1 := by
+    rw [← rank_tensorProduct']; exact hRankTensor
+  -- Step 4: rank M ≠ 0 and rank N ≠ 0 (otherwise product = 0, not 1)
+  have hRankM_ne : Module.rank K s.carrier ≠ 0 := fun h => by
+    simp [h] at hRankProd
+  have hRankN_ne : Module.rank K N ≠ 0 := fun h => by
+    simp [h] at hRankProd
+  -- Step 5: 1 ≤ rank M and 1 ≤ rank N
+  have hOneLe_M : (1 : Cardinal) ≤ Module.rank K s.carrier :=
+    Cardinal.one_le_iff_ne_zero.mpr hRankM_ne
+  have hOneLe_N : (1 : Cardinal) ≤ Module.rank K N :=
+    Cardinal.one_le_iff_ne_zero.mpr hRankN_ne
+  -- Step 6: rank M = 1 from mul_eq_one_iff_of_one_le
+  have hRankM : Module.rank K s.carrier = 1 :=
+    ((mul_eq_one_iff_of_one_le hOneLe_M hOneLe_N).mp hRankProd).1
+  -- Step 7: finrank K s.carrier = 1
+  have hFinrankM : Module.finrank K s.carrier = 1 :=
+    Module.rank_eq_one_iff_finrank_eq_one.mp hRankM
+  -- Step 8: get Basis Unit, lift to iso M ≃ₗ K via funUnique
+  let b : Basis Unit K s.carrier := Module.basisUnique Unit hFinrankM
+  refine Quotient.sound ⟨b.equivFun.trans (LinearEquiv.funUnique Unit K K)⟩
+
+/-- **R131**: `Picard K` is the trivial group for any field K (Subsingleton). -/
+instance subsingleton_of_field.{u} {K : Type u} [Field K] : Subsingleton (Picard K) :=
+  ⟨fun a b => by rw [eq_one_of_field a, eq_one_of_field b]⟩
 
 end Picard
 
