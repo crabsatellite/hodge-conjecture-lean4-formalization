@@ -522,11 +522,74 @@ def carrier.{u} {R : Type u} [CommRing R]
     (s : Module.IsInvertible.Sigma R) : Type u :=
   s.1
 
+/-- The `AddCommGroup` instance carried by a Sigma element. -/
+instance carrierAddCommGroup.{u} {R : Type u} [CommRing R]
+    (s : Module.IsInvertible.Sigma R) : AddCommGroup s.carrier :=
+  s.2.1
+
+/-- The `Module` instance carried by a Sigma element. -/
+instance carrierModule.{u} {R : Type u} [CommRing R]
+    (s : Module.IsInvertible.Sigma R) : Module R s.carrier :=
+  s.2.2.1
+
+/-- The carrier of a Sigma element is itself an invertible module. -/
+instance carrierIsInvertible.{u} {R : Type u} [CommRing R]
+    (s : Module.IsInvertible.Sigma R) : Module.IsInvertible R s.carrier :=
+  s.2.2.2.down
+
 /-- The carrier of `mk M` is `M`. -/
 theorem carrier_mk.{u} (R : Type u) [CommRing R] (M : Type u)
     [AddCommGroup M] [Module R M] [Module.IsInvertible R M] :
     carrier (Module.IsInvertible.Sigma.mk (R := R) M) = M :=
   rfl
+
+end Module.IsInvertible.Sigma
+
+/-! ### `Module.IsInvertible.Sigma.IsoRel` (R108): iso-equivalence relation
+
+The **equivalence relation underlying the Pic R quotient**: two invertible
+R-modules are equivalent iff they are R-linearly isomorphic.
+
+`s ~ t : Module.IsInvertible.Sigma.IsoRel s t :=
+  Nonempty (s.carrier ≃ₗ[R] t.carrier)`
+
+**Significance**: `Pic R := Quotient (Module.IsInvertible.Sigma.IsoSetoid R)`
+will give the Picard group. The relation is reflexive (refl iso),
+symmetric (LinearEquiv.symm), transitive (LinearEquiv.trans), hence a
+`Setoid`.
+
+Phase 2 of the Pic R construction: equivalence relation + Setoid. -/
+
+/-- Iso-equivalence relation on `Module.IsInvertible.Sigma R`. -/
+def Module.IsInvertible.Sigma.IsoRel.{u} {R : Type u} [CommRing R]
+    (s t : Module.IsInvertible.Sigma R) : Prop :=
+  Nonempty (Module.IsInvertible.Sigma.carrier s ≃ₗ[R]
+            Module.IsInvertible.Sigma.carrier t)
+
+namespace Module.IsInvertible.Sigma
+
+theorem IsoRel.refl.{u} {R : Type u} [CommRing R]
+    (s : Module.IsInvertible.Sigma R) : IsoRel s s :=
+  ⟨LinearEquiv.refl R _⟩
+
+theorem IsoRel.symm.{u} {R : Type u} [CommRing R]
+    {s t : Module.IsInvertible.Sigma R} (h : IsoRel s t) : IsoRel t s := by
+  obtain ⟨e⟩ := h
+  exact ⟨e.symm⟩
+
+theorem IsoRel.trans.{u} {R : Type u} [CommRing R]
+    {s t u : Module.IsInvertible.Sigma R}
+    (h₁ : IsoRel s t) (h₂ : IsoRel t u) : IsoRel s u := by
+  obtain ⟨e₁⟩ := h₁
+  obtain ⟨e₂⟩ := h₂
+  exact ⟨e₁.trans e₂⟩
+
+/-- The Setoid structure on `Module.IsInvertible.Sigma R` whose quotient
+will be `Pic R`. -/
+def IsoSetoid.{u} (R : Type u) [CommRing R] :
+    Setoid (Module.IsInvertible.Sigma R) where
+  r := IsoRel
+  iseqv := ⟨IsoRel.refl, IsoRel.symm, IsoRel.trans⟩
 
 end Module.IsInvertible.Sigma
 
@@ -594,5 +657,10 @@ axioms or `sorry`. The `#print axioms` lines below verify this. -/
 #print axioms Module.IsInvertible.tensor_self
 -- R107 Module.IsInvertible.Sigma carrier_mk: Sigma type for Pic R quotient construction.
 #print axioms Module.IsInvertible.Sigma.carrier_mk
+-- R108 Module.IsInvertible.Sigma.IsoRel + IsoSetoid: iso-equivalence Setoid for Pic R quotient.
+#print axioms Module.IsInvertible.Sigma.IsoRel.refl
+#print axioms Module.IsInvertible.Sigma.IsoRel.symm
+#print axioms Module.IsInvertible.Sigma.IsoRel.trans
+#print axioms Module.IsInvertible.Sigma.IsoSetoid
 
 end HodgeReduction.MathlibCandidates
