@@ -2310,6 +2310,26 @@ noncomputable instance evii_standardConjectureD :
   numClasses := ⊥
   num_eq_hom := rfl
 
+/-! ### R80 SUBSTANTIVE: `ShimuraVarietyData A_EVII`
+
+Records the minimal Shimura-variety carrier data on `A_EVII`: just
+the complex dimension `dim = 27` (matching `dim_ℂ Ě_VII = 27`). -/
+noncomputable instance evii_shimuraVarietyData :
+    HodgeReduction.Infrastructure.Shimura.ShimuraVarietyData A_EVII where
+  dim := 27
+
+/-- **Sanity check** (R80): the EVII Shimura variety has complex dim 27. -/
+theorem evii_shimura_dim_eq_27 :
+    HodgeReduction.Infrastructure.Shimura.ShimuraVarietyData.dim
+      (A := A_EVII) = 27 :=
+  rfl
+
+/-- **Sanity check** (R80): the EVII Shimura variety tag `IsEVII` holds. -/
+theorem evii_shimura_is_EVII :
+    HodgeReduction.Infrastructure.Shimura.ShimuraVarietyData.IsEVII
+      (A := A_EVII) :=
+  rfl
+
 /-- **Sanity check** (R77): Standard Conjecture (D) holds on `Ě_VII`
 (numerical-equivalence = hom-equivalence). -/
 theorem evii_standard_conjecture_D :
@@ -2455,6 +2475,9 @@ theorem evii_apex_synthesis :
 #print axioms evii_splitting_top_chern
 -- R77 KERNEL-PURITY: Standard Conjecture (D) on E_VII (Kleiman 1994).
 #print axioms evii_standard_conjecture_D
+-- R80 KERNEL-PURITY: ShimuraVarietyData EVII (dim = 27).
+#print axioms evii_shimura_dim_eq_27
+#print axioms evii_shimura_is_EVII
 
 /-! ### R73 META-SYNTHESIS: Type-level catalogue of substantive EVII closures
 
