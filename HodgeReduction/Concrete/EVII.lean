@@ -1204,6 +1204,82 @@ theorem evii_canonicalPhi_q_eq_zero :
       (A := A_EVII) = 0 :=
   HodgeReduction.Infrastructure.Cohomology.CanonicalPhiData.canonicalPhi_q_eq_zero
 
+/-! ### R34 SUBSTANTIVE: NefConeData + KodairaEmbeddingData on EVII
+
+Two more `AmpleDivisor.lean` typeclasses get concrete EVII witnesses,
+exhausting the AmpleDivisor → cone-theory → Kodaira-embedding chain.
+
+**Mathematical content** (for `Ě_VII = E_{7,C}/P_7`):
+
+1. `NefConeData A_EVII`: the rational nef cone and ample cone of
+   `Ě_VII` are both `Submodule.span ℚ {h, h², h³, ..., h^k, ...}` for
+   `k ≥ 1` — i.e., positive-degree ℚ-multiples of `h` and its powers.
+   The compact Hermitian symmetric structure forces these cones to
+   coincide (the nef cone equals the ample cone since `h` is the
+   unique generator of `Pic_ℝ`). On `A_EVII = Polynomial ℚ` we
+   realise both as `Submodule.span ℚ ({X^n | n ≥ 1} : Set A_EVII)`,
+   which contains the polarisation `X = h` itself.
+
+2. `KodairaEmbeddingData A_EVII`: the canonical line bundle `L` on
+   `Ě_VII` (Borel-Hirzebruch generator) is very ample with
+   `embeddingPower := 1` — i.e., the linear system `|L|` already
+   embeds `Ě_VII` into projective space. The Kodaira separates-points
+   and separates-tangents axioms reduce to non-vanishing of `h^1` and
+   `h^2`, both proved via `pow_ne_zero + Polynomial.X_ne_zero`. -/
+
+/-- **Concrete `NefConeData A_EVII`** (R34 STRUCTURAL).
+
+Ample cone = nef cone = `Submodule.span ℚ {X}` (the polarisation line).
+Per `c1_eq_h` on `AmpleDivisorData`, the ample class is `X = h`, which
+lies in `span ℚ {X}` by `Submodule.subset_span` on the singleton. -/
+noncomputable instance evii_nefConeData :
+    HodgeReduction.Infrastructure.Cohomology.NefConeData A_EVII where
+  ampleCone := Submodule.span ℚ ({(Polynomial.X : A_EVII)} : Set A_EVII)
+  nefCone := Submodule.span ℚ ({(Polynomial.X : A_EVII)} : Set A_EVII)
+  ample_le_nef := le_refl _
+  ampleClass_mem_ampleCone := by
+    -- `ampleClass = h = X` lies in `span ℚ {X}`.
+    show (KaehlerClass.h : A_EVII)
+      ∈ Submodule.span ℚ ({(Polynomial.X : A_EVII)} : Set A_EVII)
+    show (Polynomial.X : A_EVII)
+      ∈ Submodule.span ℚ ({(Polynomial.X : A_EVII)} : Set A_EVII)
+    exact Submodule.subset_span (Set.mem_singleton _)
+
+/-- **Concrete `KodairaEmbeddingData A_EVII`** (R34 STRUCTURAL).
+
+`embeddingPower := 1` (the canonical line bundle `L` is already very
+ample on `Ě_VII` — Borel-Hirzebruch). The separates-points and
+separates-tangents fields reduce to non-vanishing of `h^1 = X` and
+`h^2 = X²`, dispatched by `pow_ne_zero + Polynomial.X_ne_zero`. -/
+noncomputable instance evii_kodairaEmbeddingData :
+    HodgeReduction.Infrastructure.Cohomology.KodairaEmbeddingData A_EVII where
+  embeddingPower := 1
+  embeddingPower_pos := le_refl 1
+  separates_points := by
+    -- `(PicardGroupData.c1 L_amp) ^ 1 ≠ 0`. On the EVII instance,
+    -- `PicardGroupData.c1 L_amp = c1 (1 : ℚ) = 1 • X = X ≠ 0`.
+    show HodgeReduction.Infrastructure.Cohomology.PicardGroupData.c1
+        (HodgeReduction.Infrastructure.Cohomology.AmpleDivisorData.L_amp
+          (A := A_EVII)) ^ 1 ≠ 0
+    -- `c1 1 = 1 • X = X` definitionally from evii_picardGroupData + L_amp := 1
+    show ((1 : ℚ) • (Polynomial.X : A_EVII)) ^ 1 ≠ 0
+    rw [one_smul, pow_one]
+    exact Polynomial.X_ne_zero
+  separates_tangents := by
+    -- `h ^ 2 ≠ 0` on A_EVII via pow_ne_zero + Polynomial.X_ne_zero.
+    show (KaehlerClass.h : A_EVII) ^ (1 + 1) ≠ 0
+    show (Polynomial.X : A_EVII) ^ 2 ≠ 0
+    exact pow_ne_zero 2 Polynomial.X_ne_zero
+
+/-- **Sanity check** (R34): the ample class on `Ě_VII` is nef
+(structurally derived from the abstract `NefConeData.ampleClass_mem_nefCone`
+applied to the concrete EVII instance). -/
+theorem evii_ampleClass_is_nef :
+    (HodgeReduction.Infrastructure.Cohomology.AmpleDivisorData.ampleClass
+        : A_EVII) ∈
+      HodgeReduction.Infrastructure.Cohomology.NefConeData.nefCone (A := A_EVII) :=
+  HodgeReduction.Infrastructure.Cohomology.NefConeData.ampleClass_mem_nefCone
+
 /-! ### Diagnostic: axiom dependencies of the concrete-instance closure -/
 
 -- R20 KERNEL-PURITY VERIFICATION: uncomment to inspect axiom
@@ -1222,5 +1298,7 @@ theorem evii_canonicalPhi_q_eq_zero :
 #print axioms evii_picard_number_eq_one
 -- R33 KERNEL-PURITY: canonical Φ vanishes on q (P41 augmentation).
 #print axioms evii_canonicalPhi_q_eq_zero
+-- R34 KERNEL-PURITY: ample class is nef on E_VII (cone theory closure).
+#print axioms evii_ampleClass_is_nef
 
 end HodgeReduction.Concrete
