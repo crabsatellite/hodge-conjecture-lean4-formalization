@@ -266,6 +266,50 @@ instance instPureHodgeStructure_V56 :
       iSupIndep_pieceByFin
       iSup_pieceByFin_eq_top
 
+/-! ### R142: V_56 concrete Hodge numbers (1, 27, 27, 1)
+
+With the `PureHodgeStructure V_56 3` instance from R141, the abstract
+`PureHodgeStructure.hodgeNumber` def from R137 reduces to the concrete
+`finrank_Hodge_*` values established in V56HodgeRank.lean. This gives
+the standard Hodge diamond of V_56 over E_7:
+
+    h^{3,0} = 1   (highest-weight line, charge +3)
+    h^{2,1} = 27  (J_3(O), charge +1)
+    h^{1,2} = 27  (J_3(O), charge -1)
+    h^{0,3} = 1   (lowest-weight line, charge -3)
+
+These four equations witness that the abstract Hodge theory infrastructure
+(R137 hodgeNumber + R141 V_56 instance) reproduces the standard
+Freudenthal numbers via a concrete computation. -/
+
+theorem hodgeNumber_V56_3_0 :
+    PureHodgeStructure.hodgeNumber (V := HodgeReduction.Infrastructure.V56)
+      (n := 3) ⟨0, by omega⟩ = 1 := by
+  show Module.finrank ℚ (pieceByFin ⟨0, by omega⟩) = 1
+  rw [pieceByFin_0]
+  exact HodgeReduction.Infrastructure.V56.finrank_Hodge_3_0
+
+theorem hodgeNumber_V56_2_1 :
+    PureHodgeStructure.hodgeNumber (V := HodgeReduction.Infrastructure.V56)
+      (n := 3) ⟨1, by omega⟩ = 27 := by
+  show Module.finrank ℚ (pieceByFin ⟨1, by omega⟩) = 27
+  rw [pieceByFin_1]
+  exact HodgeReduction.Infrastructure.V56.finrank_Hodge_2_1
+
+theorem hodgeNumber_V56_1_2 :
+    PureHodgeStructure.hodgeNumber (V := HodgeReduction.Infrastructure.V56)
+      (n := 3) ⟨2, by omega⟩ = 27 := by
+  show Module.finrank ℚ (pieceByFin ⟨2, by omega⟩) = 27
+  rw [pieceByFin_2]
+  exact HodgeReduction.Infrastructure.V56.finrank_Hodge_1_2
+
+theorem hodgeNumber_V56_0_3 :
+    PureHodgeStructure.hodgeNumber (V := HodgeReduction.Infrastructure.V56)
+      (n := 3) ⟨3, by omega⟩ = 1 := by
+  show Module.finrank ℚ (pieceByFin ⟨3, by omega⟩) = 1
+  rw [pieceByFin_3]
+  exact HodgeReduction.Infrastructure.V56.finrank_Hodge_0_3
+
 end V56
 
 /-! ## Abstract `V_56` Hodge-structure refinement axiom package
