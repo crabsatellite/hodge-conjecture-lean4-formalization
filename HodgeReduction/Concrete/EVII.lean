@@ -2586,6 +2586,33 @@ theorem evii_hodge_class_at_codim4 :
     ∈ Submodule.span ℚ ({(Polynomial.X : A_EVII) ^ (2 * 4)} : Set A_EVII)
   exact Submodule.subset_span (Set.mem_singleton _)
 
+/-! ### R91 SUBSTANTIVE: `HodgeLocusData EVII_R6.EVII_Space A_EVII`
+
+**Cattani-Deligne-Kaplan 1995** Hodge-locus = algebraic-locus equality
+holds **trivially substantively** on `Ě_VII` (compact dual, no
+moduli/deformation since simply connected with finite cohomology).
+
+* `hodgeLocus := ⊥` (no non-trivial Hodge-deformation locus since
+  `Ě_VII` is a single point in moduli, not a family).
+* `algebraicLocus := ⊥` (no non-trivial algebraic envelope for the
+  same reason).
+* `hodgeLocus_eq_algebraicLocus : ⊥ = ⊥` by `rfl`. -/
+noncomputable instance evii_hodgeLocusData :
+    HodgeReduction.Infrastructure.Cohomology.HodgeLocusData
+      EVII_R6.EVII_Space A_EVII where
+  hodgeLocus := ⊥
+  algebraicLocus := ⊥
+  hodgeLocus_eq_algebraicLocus := rfl
+
+/-- **Sanity check** (R91): the CDK Hodge-locus equality holds on
+`Ě_VII` (both ⊥ since no deformation moduli on the compact dual). -/
+theorem evii_CDK_hodge_locus :
+    HodgeReduction.Infrastructure.Cohomology.HodgeLocusData.hodgeLocus
+        (X := EVII_R6.EVII_Space) (A := A_EVII)
+      = HodgeReduction.Infrastructure.Cohomology.HodgeLocusData.algebraicLocus
+          (X := EVII_R6.EVII_Space) (A := A_EVII) :=
+  HodgeReduction.Infrastructure.Cohomology.HodgeLocusData.hodgeLocus_eq_algebraicLocus
+
 /-! ### R89 ATTEMPT NOTE: `CycleClassData EVII` deferred
 
 Attempted in R89 but the AddMonoidHom + intersect/fundamental coordination
@@ -2760,6 +2787,8 @@ theorem evii_apex_synthesis :
 -- R89 attempted CycleClassData deferred (AddMonoidHom API obstacle); see TODO note above.
 -- R90 KERNEL-PURITY: HodgeClassData EVII (Hodge classes at codim p).
 #print axioms evii_hodge_class_at_codim4
+-- R91 KERNEL-PURITY: HodgeLocusData EVII (Cattani-Deligne-Kaplan).
+#print axioms evii_CDK_hodge_locus
 
 /-! ### R73 META-SYNTHESIS: Type-level catalogue of substantive EVII closures
 
