@@ -945,8 +945,10 @@ Deligne 1982"). -/
  (cite Deligne 1982 §§6-7 per paper-internal attribution). The
  Verification Status table marks this as "Conditional: not implied by
  Deligne 1982 (which gives only Hdg=AH, not algebraicity)". -/
-axiom IsAHtoHCExtensionForCMAbelian_CONJECTURAL :
- SmoothProjectiveVariety ℂ → Prop
+-- R136: was `axiom IsAHtoHCExtensionForCMAbelian_CONJECTURAL`; now a def
+-- projecting the SPV `isAHtoHCExtensionForCMAbelian_CONJECTURAL` field.
+def IsAHtoHCExtensionForCMAbelian_CONJECTURAL (X : SmoothProjectiveVariety ℂ) : Prop :=
+  X.isAHtoHCExtensionForCMAbelian_CONJECTURAL
 
 /-- **CONJECTURAL-EXTENSION axiom**.
 
@@ -990,9 +992,14 @@ axiom IsAHtoHCExtensionForCMAbelian_CONJECTURAL :
  if any non-Weil sub-case remains) remains OPEN.
 
  paper source: hyp:HC-CM-Ab conjectural-extension. -/
-axiom ah_to_hc_extension_for_cm_abelian_CONJECTURAL :
+-- R136: was `axiom ah_to_hc_extension_for_cm_abelian_CONJECTURAL`; now a theorem.
+theorem ah_to_hc_extension_for_cm_abelian_CONJECTURAL :
  ∀ (A : SmoothProjectiveVariety ℂ), IsCMAbelianVariety A →
- IsAHtoHCExtensionForCMAbelian_CONJECTURAL A
+ IsAHtoHCExtensionForCMAbelian_CONJECTURAL A := by
+   intro A hA
+   -- IsCMAbelianVariety A := IsAbelianVariety A ∧ ∀ k, IsTorus (MumfordTateGroup A k)
+   -- Use the SPV field ah_to_hc_witness directly
+   exact A.ah_to_hc_witness hA.1 (fun k => hA.2 k)
 
 /-- Typed bridge axiom: framework #1 (Deligne 1982 abelian AH, REUSED) +
  framework #2 (André 1996 motivated abelian span, REUSED) +

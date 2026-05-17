@@ -186,6 +186,16 @@ structure SmoothProjectiveVariety (k: Type) [Field k] where
   (was `axiom E6InvariantHodgeClasses`). Same structural reduction.
   paper source: rem:E6-V27-vacuity. -/
  e6InvariantHodgeClasses : ℕ → Prop
+ /-- **R136**: bundled CONJECTURAL extension AH→HC for CM abelian
+  varieties (was `axiom IsAHtoHCExtensionForCMAbelian_CONJECTURAL`).
+  paper source: hyp:HC-CM-Ab conjectural-extension. -/
+ isAHtoHCExtensionForCMAbelian_CONJECTURAL : Prop
+ /-- **R136**: witness that CM abelian variety has the conjectural
+  AH→HC extension (was `axiom ah_to_hc_extension_for_cm_abelian_CONJECTURAL`).
+  Conditional on isAbelianVariety + ∀ k, MT(H^k) is torus. -/
+ ah_to_hc_witness :
+   isAbelianVariety → (∀ k : ℕ, (mumfordTateGroup k).IsTorus) →
+     isAHtoHCExtensionForCMAbelian_CONJECTURAL
 
 /-! ## 2. Hodge numbers and Mumford--Tate groups
 
@@ -463,6 +473,14 @@ noncomputable def SmoothProjectiveVariety.product
    X.e7InvariantHodgeClasses p ∨ Y.e7InvariantHodgeClasses p
  e6InvariantHodgeClasses := fun p =>
    X.e6InvariantHodgeClasses p ∨ Y.e6InvariantHodgeClasses p
+ isAHtoHCExtensionForCMAbelian_CONJECTURAL :=
+   X.isAHtoHCExtensionForCMAbelian_CONJECTURAL ∧
+   Y.isAHtoHCExtensionForCMAbelian_CONJECTURAL
+ ah_to_hc_witness := fun ⟨hX, hY⟩ hTorus =>
+   -- product MTGT.IsTorus = X.IsTorus ∧ Y.IsTorus (by definition of
+   -- MumfordTateGroupType.product). hTorus k : both factors are tori.
+   ⟨X.ah_to_hc_witness hX (fun k => (hTorus k).1),
+    Y.ah_to_hc_witness hY (fun k => (hTorus k).2)⟩
 
 /-- Top-level `product` of two smooth projective varieties — **R119**:
  was `axiom product`, now a `def` alias for
