@@ -327,6 +327,32 @@ theorem Module.IsInvertible.of_inverse.{u} {R : Type u} [CommRing R]
   ⟨⟨⟨N, inferInstance, inferInstance, ⟨e⟩⟩⟩,
    ⟨⟨M, inferInstance, inferInstance, ⟨Module.IsInvertible.symm_equiv e⟩⟩⟩⟩
 
+/-! ### `Module.IsInvertible.of_linearEquiv` (R100): invertibility transfers across iso
+
+**Mathematical content**: invertibility is a property of the *iso class*
+of an R-module, not of the underlying type. If `M ≃ₗ[R] M'` and `M` is
+invertible, then `M'` is also invertible (with the same inverse,
+post-composed with the equiv).
+
+**Significance for Pic group construction**: this is the substantive
+content of "Pic = iso classes of invertible modules" — two
+linearly-equivalent invertible modules represent the **same** class in
+`Pic R`. The lemma is the foundation step before defining the Pic
+quotient.
+
+**Proof structure** (one-line composition):
+* The inverse `N` of `M` is also the inverse of `M'` via the chain:
+  `M' ⊗ N ≃ M ⊗ N` (using `e.symm.rTensor N`) `≃ R` (by `IsInvertible R M`). -/
+theorem Module.IsInvertible.of_linearEquiv.{u} {R : Type u} [CommRing R]
+    {M M' : Type u} [AddCommGroup M] [Module R M]
+    [AddCommGroup M'] [Module R M']
+    [hM : Module.IsInvertible R M] (e : M ≃ₗ[R] M') :
+    Module.IsInvertible R M' := by
+  obtain ⟨N, instAcg, instMod, ⟨eqN⟩⟩ := hM.exists_inverse
+  refine ⟨⟨N, instAcg, instMod, ⟨?_⟩⟩⟩
+  -- M' ⊗ N ≃ M ⊗ N via the equiv e.symm; then ≃ R via eqN.
+  exact (TensorProduct.congr e.symm (LinearEquiv.refl R N)).trans eqN
+
 /-! ### Mathlib-PR readiness checklist
 
 * Definition is single-purpose, mathematically standard.
@@ -374,5 +400,7 @@ axioms or `sorry`. The `#print axioms` lines below verify this. -/
 -- R99 Module.IsInvertible.symm_equiv + of_inverse: invertibility is symmetric.
 #print axioms Module.IsInvertible.symm_equiv
 #print axioms Module.IsInvertible.of_inverse
+-- R100 Module.IsInvertible.of_linearEquiv: invertibility transfers across iso.
+#print axioms Module.IsInvertible.of_linearEquiv
 
 end HodgeReduction.MathlibCandidates
