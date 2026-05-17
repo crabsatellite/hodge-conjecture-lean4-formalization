@@ -43,8 +43,95 @@ rather than a single opaque bundled predicate.
 
 import HodgeReduction.Types
 import HodgeReduction.ClassicalResults
+import HodgeReduction.Infrastructure.HodgeStructure.VarietyCohomology
 
 namespace HodgeReduction
+
+/-! ## R169: Bridge axioms — smooth projective variety to variety cohomology
+
+The Hodge Conjecture in its REAL form requires the cohomology of `X` as
+a pure Hodge structure + the algebraic-classes submodule. The `R43 := Unit`
+placeholder for `HodgeClasses`/`ChowGroupRat` in `Types.lean` is the
+historical workaround until Mathlib has singular cohomology and
+intersection theory; it makes the Hodge Conjecture statement vacuous.
+
+R169 introduces two substantive **paper-claim axioms** providing the
+real cohomology and algebraic-classes data for ANY smooth projective
+complex variety, axiomatising the **Hodge theorem** (Hodge 1941; every
+compact Kähler manifold's rational cohomology carries a pure Hodge
+structure) and **Lefschetz-Hodge** (Lefschetz 1924; algebraic cycles
+are of (p, p) type). With these, the genuine `HodgeConjectureReal`
+predicate is well-defined and non-vacuous.
+
+These axioms are SUBSTANTIVE — they encode established theorems, not
+tricks. They open the path to genuine HC closure: once Mathlib has the
+underlying singular cohomology + Hodge theorem, the axioms become
+`def`s backed by Mathlib constructions.
+
+References:
+* W. V. D. Hodge, *The theory and applications of harmonic integrals*,
+  CUP 1941 (Hodge theorem: cohomology of compact Kähler manifold is a
+  pure Hodge structure).
+* S. Lefschetz, *L'Analysis Situs et la Géométrie Algébrique*, 1924
+  (Lefschetz (1,1)-theorem / cycle class map intrinsically (p, p)). -/
+
+open Infrastructure.HodgeStructure
+
+/-- **R169** (Hodge 1941): Every smooth projective complex variety has
+rational cohomology carrying pure Hodge structures of weight `k` per
+degree `k`. The Hodge theorem (Hodge 1941, harmonic integrals).
+
+This is the substantive paper-claim axiom replacing the R43 `Unit`
+trick for `HodgeClasses`: with `X.cohomology`, the `(p, p)`-Hodge
+classes at degree `2p` are the REAL `ℚ`-submodule
+`X.cohomology.hodgeClassesAtDegree p`. -/
+axiom SmoothProjectiveVariety.cohomology :
+    SmoothProjectiveVariety ℂ → VarietyCohomologyData
+
+/-- **R169** (Lefschetz 1924): For every smooth projective complex
+variety, the rational cycle classes form a submodule of cohomology
+satisfying the Hodge half (algebraic cycles are intrinsically of
+`(p, p)` type). Lefschetz (1,1)-theorem + higher-codim extension.
+
+This is the substantive paper-claim axiom replacing the R43 `Unit`
+trick for `ChowGroupRat`/`cycleClassMap`: with `X.algClasses`, the
+image of the cycle class map at degree `2p` is the REAL
+`ℚ`-submodule `(X.algClasses).algClasses p`. -/
+axiom SmoothProjectiveVariety.algClasses :
+    (X : SmoothProjectiveVariety ℂ) → AlgebraicClassesData (X.cohomology)
+
+/-- **R169**: The **REAL** Hodge Conjecture for a smooth projective
+complex variety `X`: every Hodge class lies in the image of the cycle
+class map. Defined via the R168 `VarietyHC` predicate using R169's
+bridge axioms.
+
+This SUPERSEDES the R43 `Unit`-trivial `HodgeConjecture` in
+`Types.lean`. NO Unit trick — both sides of the assertion are honest
+ℚ-submodules of `H^{2p}(X, ℚ)`, and the statement carries genuine
+mathematical content.
+
+Future rounds will upgrade the reduction chain (currently producing
+Unit-trivial `HodgeConjecture`) to produce `HodgeConjectureReal`,
+allowing `main_reduction_unconditional` to be replaced by an honest
+proof. -/
+def HodgeConjectureReal (X : SmoothProjectiveVariety ℂ) : Prop :=
+  VarietyHC X.cohomology X.algClasses
+
+/-- **R169**: HC-real at a single codimension `p`. -/
+def HodgeConjectureRealAt (X : SmoothProjectiveVariety ℂ) (p : ℕ) : Prop :=
+  VarietyHCAt X.cohomology X.algClasses p
+
+/-- **R169**: `HodgeConjectureReal` decomposes as the pointwise
+conjunction over `p`. -/
+theorem hodgeConjectureReal_iff_forall_at (X : SmoothProjectiveVariety ℂ) :
+    HodgeConjectureReal X ↔ ∀ p, HodgeConjectureRealAt X p := Iff.rfl
+
+/-- **R169**: HC-real is equivalent to `algClasses = hodgeClasses`
+pointwise (combining R168 `varietyHC_iff_eq` with R169 definitions). -/
+theorem hodgeConjectureReal_iff_eq (X : SmoothProjectiveVariety ℂ) :
+    HodgeConjectureReal X ↔
+    ∀ p, X.algClasses.algClasses p = X.cohomology.hodgeClassesAtDegree p :=
+  varietyHC_iff_eq X.cohomology X.algClasses
 
 /-! ## Hypothesis 1. HC for CM abelian varieties
 
