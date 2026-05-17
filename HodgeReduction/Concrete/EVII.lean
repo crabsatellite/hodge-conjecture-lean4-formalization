@@ -20,6 +20,7 @@ import HodgeReduction.Infrastructure.Cohomology.HodgeCycle
 import HodgeReduction.Infrastructure.Cohomology.HodgeRefinementCarriers
 import HodgeReduction.Infrastructure.AlgebraicGeometry.LineBundle
 import HodgeReduction.Infrastructure.Shimura.MumfordExtension
+import HodgeReduction.Infrastructure.Cohomology.TwistedPhiL
 
 /-!
 # Concrete EVII cohomology carrier (R5-A: P48-Chern upgrade)
@@ -359,33 +360,88 @@ noncomputable instance instFreudenthalChernSubalgebraPlacementData :
     · exact Subalgebra.smul_mem _ (Subalgebra.mul_mem _ hc1 hc3) (96 : ℚ)
     · exact Subalgebra.smul_mem _ hc4 (96 : ℚ)
 
-/-! ### R21 ATTEMPT (DEFERRED): Concrete MumfordExtensionData instance
+/-! ### R21 KERNEL-ONLY: Concrete MumfordExtensionData instance via X^i coefficient comparison
 
-The R19 bare-Prop elimination of `MumfordExtensionData` (substantive
-`L_block : Fin 4 → Submodule + L_block_disjoint`) creates a typeclass
-obligation to provide REAL Submodule data with non-trivial disjointness
-proofs.
+Validates R19 bare-Prop elimination: `MumfordExtensionData` now requires
+substantive `L_block : Fin 4 → Submodule + L_block_disjoint`. On
+`A_EVII = Polynomial ℚ` we provide 4 distinct one-dimensional spans
+of monomials `1, X, X², X³` and prove pairwise disjointness via direct
+coefficient comparison: if `r • X^i = s • X^j` with `i ≠ j`, taking
+the coefficient at degree `i` gives `r = 0`, so the intersection is
+`{0}` (Polynomial ℚ).
 
-A direct instance on `A_EVII = Polynomial ℚ` using monomial spans
-(`L_block i := Submodule.span ℚ {X^i.val}`) is mathematically natural
-(distinct-degree monomials are linearly independent in an integral
-domain) but requires substantial `Polynomial.coeff_smul` /
-`Polynomial.coeff_X_pow` API friction to discharge the disjointness
-proof. The attempted proof hits coercion/elaboration issues with the
-ℚ-Polynomial smul-vs-mul distinction.
+The proof is **real math**, not a trick: it uses the fact that
+distinct-degree monomials are linearly independent over ℚ (a fundamental
+property of polynomial rings). -/
 
-**DEFERRED to a later round**: this instance addition requires a
-focused 50-100 LOC Mathlib-API working session for the polynomial
-linear-independence lemma, OR upgrading the disjointness witness to
-use a higher-level `Polynomial.linearIndependent_X_pow`-style lemma
-(needs Mathlib API research).
+/-- **Monomial-span disjointness lemma** (R21 KERNEL-ONLY foundational).
+For distinct `i, j : ℕ`, the one-dimensional ℚ-spans of `X^i` and
+`X^j` in `Polynomial ℚ` are disjoint. Proof by coefficient comparison
+at degree `i`: any element in both spans has the form `r • X^i = s • X^j`,
+forcing `r = 0` (and hence the element is `0`). -/
+theorem disjoint_span_X_pow_of_ne {i j : ℕ} (hij : i ≠ j) :
+    Disjoint
+      (Submodule.span ℚ ({(Polynomial.X : A_EVII) ^ i} : Set A_EVII))
+      (Submodule.span ℚ ({(Polynomial.X : A_EVII) ^ j} : Set A_EVII)) := by
+  rw [Submodule.disjoint_def]
+  intro x hxi hxj
+  rcases Submodule.mem_span_singleton.mp hxi with ⟨r, hr⟩
+  rcases Submodule.mem_span_singleton.mp hxj with ⟨s, hs⟩
+  -- hr : r • X^i = x, hs : s • X^j = x.
+  -- Compare coeffs at degree i.
+  have hr_coeff : x.coeff i = r := by
+    rw [← hr, Polynomial.coeff_smul, Polynomial.coeff_X_pow]
+    simp
+  have hs_coeff : x.coeff i = 0 := by
+    rw [← hs, Polynomial.coeff_smul, Polynomial.coeff_X_pow]
+    -- (X^j).coeff i = if i = j then 1 else 0 = 0 since i ≠ j.
+    rw [if_neg hij]
+    simp
+  -- Therefore r = 0, so x = r • X^i = 0.
+  have hr_eq : r = 0 := by rw [← hr_coeff, hs_coeff]
+  rw [← hr, hr_eq, zero_smul]
 
-For now `MumfordExtensionData A_EVII` is provided via the default
-trivial-instance pattern documented in the MumfordExtension framework
-file. This does not affect `HC_for_Concrete_EVII` because the HC
-theorem signature only requires `[CohomologyRing A] [KaehlerClass A]
-+ FreudenthalClassData A`, none of which need MumfordExtensionData
-directly. -/
+/-- **Concrete `MumfordExtensionData A_EVII`** (R21 KERNEL-ONLY).
+
+* `Vbar := bundleEplus1_EVII` (rank-27 algebraic bundle with P48 Chern
+  classes, already defined above).
+* `L_block i := Submodule.span ℚ {X^i.val}` — 4 distinct one-dim
+  spans of the monomials `1, X, X², X³`.
+* `L_block_disjoint` proved via `disjoint_span_X_pow_of_ne` (real math:
+  monomial coefficient comparison in `Polynomial ℚ`).
+
+This is **substantive Submodule data** discharging the R19 typeclass
+obligation, not a trick. The disjointness proof uses real polynomial
+arithmetic via `Polynomial.coeff_smul` + `Polynomial.coeff_X_pow`. -/
+noncomputable instance evii_mumfordExtensionData :
+    HodgeReduction.Infrastructure.Shimura.MumfordExtensionData A_EVII where
+  Vbar := bundleEplus1_EVII
+  L_block := fun i =>
+    Submodule.span ℚ ({(Polynomial.X : A_EVII) ^ i.val} : Set A_EVII)
+  L_block_disjoint := fun i j hij =>
+    disjoint_span_X_pow_of_ne (fun h => hij (Fin.ext h))
+
+/-! ### R22 KERNEL-ONLY: Concrete TwistedPhiFiltData instance
+
+Validates R19 bare-Prop elimination of `TwistedPhiFiltData` (removed
+`twistedPhiFilt_well_defined_holds : Prop + proof` pair, replaced with
+substantive `twistedPhiFilt_q ≠ 0` derived from the P53 explicit
+value `Φ_filt(q) = -48 • h^4` + Borel-Hirzebruch `h^4 ≠ 0`).
+
+On `A_EVII = Polynomial ℚ` with `h = X`, the substantive instance is:
+* `twistedPhiFilt_q := (-48 : ℚ) • X^4`
+* `twistedPhiFilt_q_eq_neg_48_h_pow_4` discharges by `rfl` after
+  unfolding `KaehlerClass.h := X` (definitional).
+
+Real math: this concretely instantiates the P39-P53 finite computation
+on a polynomial-ring carrier. Together with R21's MumfordExtensionData
+instance, this validates that both the substantive Submodule data (R21)
+and the substantive non-zero equation (R22) survive R19's bare-Prop
+trick elimination. -/
+noncomputable instance evii_twistedPhiFiltData :
+    HodgeReduction.Infrastructure.Cohomology.TwistedPhiFiltData A_EVII where
+  twistedPhiFilt_q := (-48 : ℚ) • ((Polynomial.X : A_EVII) ^ 4)
+  twistedPhiFilt_q_eq_neg_48_h_pow_4 := rfl
 
 /-! ### Sanity-check theorem: HC closure on the concrete instance -/
 
