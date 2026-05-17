@@ -3,6 +3,8 @@ Copyright (c) 2026 Alex Chengyu Li. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 -/
 import Mathlib.Algebra.Polynomial.Basis
+import Mathlib.Algebra.Polynomial.Basic
+import Mathlib.Algebra.Polynomial.Degree.Domain
 import Mathlib.LinearAlgebra.LinearIndependent
 import Mathlib.LinearAlgebra.Span.Basic
 import Mathlib.LinearAlgebra.Basis.Basic
@@ -180,16 +182,40 @@ theorem Polynomial.disjoint_span_X_pow_fin_of_ne {n : ℕ} {i j : Fin n}
         ({(Polynomial.X : Polynomial ℚ) ^ j.val} : Set (Polynomial ℚ))) :=
   Polynomial.disjoint_span_X_pow_of_ne (fun h => hij (Fin.ext h))
 
+/-! ## `Polynomial.X_pow_ne_zero`
+
+The monomial `X^n` is non-zero in `Polynomial R` when `R` is an
+**integral domain** (`CommRing R + IsDomain R`).
+
+**Structural proof** (one-line composition):
+* `Polynomial.X_ne_zero : (X : Polynomial R) ≠ 0` (Mathlib direct,
+  requires `[Nontrivial R]`).
+* `pow_ne_zero : a ≠ 0 → a^n ≠ 0` (Mathlib; requires
+  `[NoZeroDivisors]` on the ambient type, satisfied by
+  `Polynomial R` when `R` is a domain via
+  `Polynomial.instNoZeroDivisors`).
+
+**Why this is a Mathlib PR candidate**: composition shortcut that's
+not directly available in Mathlib (verified by `grep` 2026-05-17).
+Used in any structural argument requiring monomial-power non-vanishing
+(e.g. Hard Lefschetz on polynomial-graded models, non-vanishing of
+the Kähler-class polarisation powers `h^k` on compact Kähler manifolds). -/
+theorem Polynomial.X_pow_ne_zero {R : Type*} [CommSemiring R] [Nontrivial R]
+    [NoZeroDivisors R] (n : ℕ) :
+    ((Polynomial.X : Polynomial R)) ^ n ≠ 0 :=
+  pow_ne_zero n Polynomial.X_ne_zero
+
 /-! ## Kernel-purity verification
 
 Each MathlibCandidates lemma should depend only on Mathlib + kernel
 axioms `[propext, Classical.choice, Quot.sound]`, with no project-local
 axioms or `sorry`. The `#print axioms` lines below verify this. -/
 
--- All three Polynomial lemmas: kernel-pure.
+-- All five Polynomial lemmas: kernel-pure.
 #print axioms Polynomial.linearIndependent_X_pow
 #print axioms Polynomial.disjoint_span_X_pow_of_ne
 #print axioms Polynomial.disjoint_span_X_pow_fin_of_ne
 #print axioms Polynomial.span_X_pow_eq_top
+#print axioms Polynomial.X_pow_ne_zero
 
 end HodgeReduction.MathlibCandidates
