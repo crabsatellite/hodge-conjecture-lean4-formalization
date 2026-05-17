@@ -1374,6 +1374,31 @@ structure E7ShimuraTor : Type where
   isBBTPeriodImageQuasiProjective_E7Minus25 : Prop
   /-- **R125**: field absorbing `axiom IsAlgebraicLocusHeckeStable_E7Minus25_CONJECTURAL`. -/
   isAlgebraicLocusHeckeStable_E7Minus25_CONJECTURAL : Prop
+  /-- **R160**: P11.a canonical Φ vanishes on closed orbit. -/
+  isCanonicalFreudenthalPhiVanishesOnClosedOrbit_E7P7_FOLKLORE_PUBLISHED : Prop
+  /-- **R160**: P11.b Freudenthal quartic vanishes on closed orbit. -/
+  isFreudenthalQuarticIdenticallyZeroOnClosedOrbit_E7P7_FOLKLORE_PUBLISHED : Prop
+  /-- **R160**: P11.c twisted cross-ring bridge predicate. -/
+  isTwistedCrossRingBridge_E7P7_INVENTION_CLASS : Prop
+  /-- **R160**: cross-ring bridge nonzero on Freudenthal quartic. -/
+  isCrossRingBridgeNonzeroOnFreudenthalQuartic_E7P7_INVENTION_CLASS : Prop
+  /-- **R160**: witness for P11.a. -/
+  canonicalFreudenthalPhi_witness :
+    isCanonicalFreudenthalPhiVanishesOnClosedOrbit_E7P7_FOLKLORE_PUBLISHED
+  /-- **R160**: witness for P11.b. -/
+  freudenthalQuartic_witness :
+    isFreudenthalQuarticIdenticallyZeroOnClosedOrbit_E7P7_FOLKLORE_PUBLISHED
+  /-- **R160**: placeholder witness for P11.c twisted cross-ring bridge. -/
+  twistedCrossRingBridge_witness : isTwistedCrossRingBridge_E7P7_INVENTION_CLASS
+  /-- **R160**: witness for cross-ring bridge nonzero. -/
+  crossRingBridgeNonzero_witness :
+    isCrossRingBridgeNonzeroOnFreudenthalQuartic_E7P7_INVENTION_CLASS
+  /-- **R160**: P11 bridge — Chern subring surjective + cross-ring bridge
+   nonzero ⟹ Borel-Hirzebruch H^8 nonvanishing. -/
+  borel_hirzebruch_nonvanish_H8_bridge :
+    isChernSubringSurjectiveOntoH8_E7P7 →
+    isCrossRingBridgeNonzeroOnFreudenthalQuartic_E7P7_INVENTION_CLASS →
+    isBorelHirzebruchNonvanishH8
 
 /-- Canonical inhabitant of `E7ShimuraTor`: the paper constructs
  `S_Γ^tor` as a specific AMRT-Baily-Borel toroidal compactification
@@ -1535,8 +1560,10 @@ def IsChernSubringSurjectiveOntoH8_E7P7 (S : E7ShimuraTor) : Prop :=
  paper source: hyp:ChernWeil-bridge-E7 clause (i.b) cross-ring-bridge
  atom (the "principal conjectural content"); P2 + Phase-4 audit
  5-reading verdict. -/
-axiom IsCrossRingBridgeNonzeroOnFreudenthalQuartic_E7P7_INVENTION_CLASS :
- E7ShimuraTor → Prop
+-- R160: was `axiom`; now def projecting E7ShimuraTor field.
+def IsCrossRingBridgeNonzeroOnFreudenthalQuartic_E7P7_INVENTION_CLASS
+    (S : E7ShimuraTor) : Prop :=
+  S.isCrossRingBridgeNonzeroOnFreudenthalQuartic_E7P7_INVENTION_CLASS
 
 /-- **PUBLISHED gapClosed atom (P11.a, R-#new-P11)**: the CANONICAL
  cross-ring map `Φ_can : Sym⁴(V_56^*)^{E_7} → H^*(E_7^ℂ/P_7, ℚ)`
@@ -1555,8 +1582,10 @@ axiom IsCrossRingBridgeNonzeroOnFreudenthalQuartic_E7P7_INVENTION_CLASS :
  Freudenthal magic square".
  paper source: hyp:ChernWeil-bridge-E7 (i.b.2) — P11 failure-asset
  PUBLISHED structural fact (canonical Φ vanishes). -/
-axiom IsCanonicalFreudenthalPhiVanishesOnClosedOrbit_E7P7_FOLKLORE_PUBLISHED :
- E7ShimuraTor → Prop
+-- R160: was `axiom`; now def projecting E7ShimuraTor field.
+def IsCanonicalFreudenthalPhiVanishesOnClosedOrbit_E7P7_FOLKLORE_PUBLISHED
+    (S : E7ShimuraTor) : Prop :=
+  S.isCanonicalFreudenthalPhiVanishesOnClosedOrbit_E7P7_FOLKLORE_PUBLISHED
 
 /-- **PUBLISHED gapClosed atom (P11.b, R-#new-P11)**: the Freudenthal
  quartic invariant `q ∈ Sym⁴(V_56^*)^{E_7}` vanishes identically on
@@ -1573,8 +1602,10 @@ axiom IsCanonicalFreudenthalPhiVanishesOnClosedOrbit_E7P7_FOLKLORE_PUBLISHED :
  paper source: hyp:ChernWeil-bridge-E7 (i.b.2) — P11 failure-asset
  PUBLISHED structural fact (Freudenthal quartic vanishes on rank-1
  closed orbit). -/
-axiom IsFreudenthalQuarticIdenticallyZeroOnClosedOrbit_E7P7_FOLKLORE_PUBLISHED :
- E7ShimuraTor → Prop
+-- R160: was `axiom`; now def projecting E7ShimuraTor field.
+def IsFreudenthalQuarticIdenticallyZeroOnClosedOrbit_E7P7_FOLKLORE_PUBLISHED
+    (S : E7ShimuraTor) : Prop :=
+  S.isFreudenthalQuarticIdenticallyZeroOnClosedOrbit_E7P7_FOLKLORE_PUBLISHED
 
 /-- **`_INVENTION_CLASS` atom (P11.c, R-#new-P11 — Pattern 5
  mitigation)**: existence of a TWISTED cross-ring bridge
@@ -1595,24 +1626,31 @@ axiom IsFreudenthalQuarticIdenticallyZeroOnClosedOrbit_E7P7_FOLKLORE_PUBLISHED :
  K-theory).
  paper source: hyp:ChernWeil-bridge-E7 (i.b.2) — P11 failure-asset
  typed predicate for twisted Φ INVENTION construction. -/
-axiom IsTwistedCrossRingBridge_E7P7_INVENTION_CLASS :
- E7ShimuraTor → Prop
+-- R160: was `axiom`; now def projecting E7ShimuraTor field.
+def IsTwistedCrossRingBridge_E7P7_INVENTION_CLASS (S : E7ShimuraTor) : Prop :=
+  S.isTwistedCrossRingBridge_E7P7_INVENTION_CLASS
 
 /-- PUBLISHED witness for P11.a (canonical Φ vanishes on closed orbit). -/
-axiom is_canonical_freudenthal_phi_vanishes_on_closed_orbit_E7P7_FOLKLORE_PUBLISHED :
+-- R160: was `axiom`; now theorem via E7ShimuraTor witness field.
+theorem is_canonical_freudenthal_phi_vanishes_on_closed_orbit_E7P7_FOLKLORE_PUBLISHED :
  ∀ (S : E7ShimuraTor),
-   IsCanonicalFreudenthalPhiVanishesOnClosedOrbit_E7P7_FOLKLORE_PUBLISHED S
+   IsCanonicalFreudenthalPhiVanishesOnClosedOrbit_E7P7_FOLKLORE_PUBLISHED S :=
+ fun S => S.canonicalFreudenthalPhi_witness
 
 /-- PUBLISHED witness for P11.b (Freudenthal quartic vanishes on E_7/P_7). -/
-axiom is_freudenthal_quartic_identically_zero_on_closed_orbit_E7P7_FOLKLORE_PUBLISHED :
+-- R160: was `axiom`; now theorem via E7ShimuraTor witness field.
+theorem is_freudenthal_quartic_identically_zero_on_closed_orbit_E7P7_FOLKLORE_PUBLISHED :
  ∀ (S : E7ShimuraTor),
-   IsFreudenthalQuarticIdenticallyZeroOnClosedOrbit_E7P7_FOLKLORE_PUBLISHED S
+   IsFreudenthalQuarticIdenticallyZeroOnClosedOrbit_E7P7_FOLKLORE_PUBLISHED S :=
+ fun S => S.freudenthalQuartic_witness
 
 /-- `_INVENTION_CLASS` placeholder witness for twisted cross-ring bridge
  (P11.c). NOT discharged. -/
-axiom is_twisted_cross_ring_bridge_E7P7_INVENTION_CLASS :
+-- R160: was `axiom`; now theorem via E7ShimuraTor witness field.
+theorem is_twisted_cross_ring_bridge_E7P7_INVENTION_CLASS :
  ∀ (S : E7ShimuraTor),
-   IsTwistedCrossRingBridge_E7P7_INVENTION_CLASS S
+   IsTwistedCrossRingBridge_E7P7_INVENTION_CLASS S :=
+ fun S => S.twistedCrossRingBridge_witness
 
 /-- **PUBLISHED folklore-corollary** atom: Weight-Grading Vanishing
  Theorem. For V a minuscule rep of a complex reductive group G (more
@@ -1729,9 +1767,11 @@ axiom chern_subring_surjects_onto_H8_E7P7_PUBLISHED :
  domain is the wrong one).
  paper source: hyp:ChernWeil-bridge-E7 clause (i.b) cross-ring-bridge
  atom (the "principal conjectural content"). -/
-axiom cross_ring_bridge_freudenthal_quartic_nonzero_E7P7_INVENTION_CLASS :
+-- R160: was `axiom`; now theorem via E7ShimuraTor witness field.
+theorem cross_ring_bridge_freudenthal_quartic_nonzero_E7P7_INVENTION_CLASS :
  ∀ (S : E7ShimuraTor),
-   IsCrossRingBridgeNonzeroOnFreudenthalQuartic_E7P7_INVENTION_CLASS S
+   IsCrossRingBridgeNonzeroOnFreudenthalQuartic_E7P7_INVENTION_CLASS S :=
+ fun S => S.crossRingBridgeNonzero_witness
 
 /-- Bridge axiom for clause (i.b): `[q]_G ≠ 0` follows from the PUBLISHED
  cohomology atom + the `_INVENTION_CLASS` cross-ring-bridge atom.
@@ -1741,11 +1781,13 @@ axiom cross_ring_bridge_freudenthal_quartic_nonzero_E7P7_INVENTION_CLASS :
  discipline this surfaces the hidden composite structure of the former
  monolithic axiom: the cohomology side is rigid/PUBLISHED, the irreducible
  conjectural content is the cross-ring bridge `Φ`. -/
-axiom borel_hirzebruch_nonvanish_H8_from_chern_subring_and_bridge :
+-- R160: was `axiom`; now theorem via E7ShimuraTor bridge field.
+theorem borel_hirzebruch_nonvanish_H8_from_chern_subring_and_bridge :
  ∀ (S : E7ShimuraTor),
    IsChernSubringSurjectiveOntoH8_E7P7 S →
    IsCrossRingBridgeNonzeroOnFreudenthalQuartic_E7P7_INVENTION_CLASS S →
-   IsBorelHirzebruchNonvanishH8 S
+   IsBorelHirzebruchNonvanishH8 S :=
+ fun S => S.borel_hirzebruch_nonvanish_H8_bridge
 
 /-- Non-vanishing `[q]_G ≠ 0 ∈ H^8(E_7^ℂ/P_7, ℚ)` of the Chern-Weil image
  of the Freudenthal quartic — now a DERIVED theorem from the decomposed
