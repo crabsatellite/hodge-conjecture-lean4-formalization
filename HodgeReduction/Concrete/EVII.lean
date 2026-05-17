@@ -30,6 +30,7 @@ import HodgeReduction.Infrastructure.Cohomology.StandardConjectures
 import HodgeReduction.Infrastructure.Cohomology.Galois
 import HodgeReduction.Infrastructure.Cohomology.AlgebraicCycle
 import HodgeReduction.Infrastructure.AlgebraicGeometry.ChowGroup
+import HodgeReduction.Infrastructure.Cohomology.DivisorClass
 import HodgeReduction.Infrastructure.Cohomology.PicardGroup
 import HodgeReduction.Infrastructure.Cohomology.AmpleDivisor
 import HodgeReduction.Infrastructure.Cohomology.CycleClassMap
@@ -2613,6 +2614,33 @@ theorem evii_CDK_hodge_locus :
           (X := EVII_R6.EVII_Space) (A := A_EVII) :=
   HodgeReduction.Infrastructure.Cohomology.HodgeLocusData.hodgeLocus_eq_algebraicLocus
 
+/-! ### R92 SUBSTANTIVE: `DivisorClassData A_EVII`
+
+Provides the codim-1 divisor classes on `Ě_VII`. Following R32
+`evii_neronSeveriData` which sets `NS = Submodule.span ℚ {X}`, the
+divisor classes coincide with NS on `Ě_VII` (since Pic⁰ = ⊥).
+
+* `divisors := Submodule.span ℚ {X}` (matches NS = ℚ·h)
+* `divisor_isAlgebraic`: every `r • X ∈ span {X}` is algebraic via
+  `evii_h_powers_algebraic` 1 (= `X` is algebraic) + `isAlgebraic_smul`. -/
+noncomputable instance evii_divisorClassData :
+    HodgeReduction.Infrastructure.Cohomology.DivisorClassData A_EVII where
+  divisors := Submodule.span ℚ ({(Polynomial.X : A_EVII)} : Set A_EVII)
+  divisor_isAlgebraic := by
+    intro α hα
+    -- α ∈ span ℚ {X}, so α = r • X for some r : ℚ.
+    rcases Submodule.mem_span_singleton.mp hα with ⟨r, rfl⟩
+    -- r • X is algebraic via isAlgebraic_smul + X_isAlgebraic.
+    exact CohomologyRing.isAlgebraic_smul r X_isAlgebraic
+
+/-- **Sanity check** (R92): the polarisation class `h = X` is a divisor
+class on `Ě_VII`. -/
+theorem evii_X_is_divisor :
+    (Polynomial.X : A_EVII)
+      ∈ HodgeReduction.Infrastructure.Cohomology.DivisorClassData.divisors
+          (A := A_EVII) :=
+  Submodule.subset_span (Set.mem_singleton _)
+
 /-! ### R89 ATTEMPT NOTE: `CycleClassData EVII` deferred
 
 Attempted in R89 but the AddMonoidHom + intersect/fundamental coordination
@@ -2789,6 +2817,8 @@ theorem evii_apex_synthesis :
 #print axioms evii_hodge_class_at_codim4
 -- R91 KERNEL-PURITY: HodgeLocusData EVII (Cattani-Deligne-Kaplan).
 #print axioms evii_CDK_hodge_locus
+-- R92 KERNEL-PURITY: DivisorClassData EVII (codim-1 divisor classes).
+#print axioms evii_X_is_divisor
 
 /-! ### R73 META-SYNTHESIS: Type-level catalogue of substantive EVII closures
 
