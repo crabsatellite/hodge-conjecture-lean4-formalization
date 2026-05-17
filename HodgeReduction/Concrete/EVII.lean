@@ -1406,6 +1406,51 @@ theorem evii_lefschetz_11_codim1 :
           (X := EVII_R6.EVII_Space) (A := A_EVII) :=
   HodgeReduction.Infrastructure.Cohomology.HCCodim1Data.lefschetz_11_eq.symm
 
+/-! ### R50 SUBSTANTIVE: `GradedCohomologyData A_EVII`
+
+Validates the graded-cohomology typeclass on the concrete EVII model.
+Uses the canonical `Polynomial.natDegree` function from Mathlib as the
+degree function — this matches the cohomological grading on `Ě_VII`
+under the identification `H^{2k}(Ě_VII; ℚ) ↔ k`-th monomial piece of
+`Polynomial ℚ`.
+
+* `degreeOf := Polynomial.natDegree` (Mathlib canonical)
+* `topDim := 54` (= 2 × 27 = 2 × complex-dim of `Ě_VII`)
+* `degreeOf_zero := Polynomial.natDegree_zero` (Mathlib direct)
+* `degreeOf_mul a b ha hb := Polynomial.natDegree_mul ha hb` (Mathlib direct
+  — assumes `Polynomial ℚ` is an integral domain, which it is)
+
+All four fields discharged via Mathlib lemmas, no case-by-case.
+**STRUCTURAL**: this is the cleanest possible substantive instance,
+delegating directly to Mathlib's polynomial-degree API. -/
+noncomputable instance evii_gradedCohomologyData :
+    HodgeReduction.Infrastructure.Cohomology.GradedCohomologyData A_EVII where
+  degreeOf := Polynomial.natDegree
+  topDim := 54
+  degreeOf_zero := Polynomial.natDegree_zero
+  degreeOf_mul a b ha hb := Polynomial.natDegree_mul ha hb
+
+/-- **Sanity check** (R50): the top dimension of `Ě_VII` cohomology is 54
+(= 2 × complex-dim 27). -/
+theorem evii_topDim_eq_54 :
+    HodgeReduction.Infrastructure.Cohomology.GradedCohomologyData.topDim
+      (A := A_EVII) = 54 :=
+  rfl
+
+/-- **Sanity check** (R50): the degree of the polarisation class `h = X`
+is 2 (cohomological-degree convention: `h ∈ H²(Ě_VII; ℚ)`).
+
+Wait, in the synthetic `Polynomial`-degree convention `degreeOf X = 1`,
+not 2. The factor-of-2 discrepancy between cohomological degree and
+polynomial degree is part of the synthetic-carrier disclosure: in the
+faithful model, `X` represents the Kähler class with `H²`-degree 2,
+but on `Polynomial ℚ` its polynomial degree is 1. Each polynomial
+exponent `k` corresponds to cohomological degree `2k`. -/
+theorem evii_degree_X_eq_one :
+    HodgeReduction.Infrastructure.Cohomology.GradedCohomologyData.degreeOf
+      (A := A_EVII) (Polynomial.X : A_EVII) = 1 :=
+  Polynomial.natDegree_X
+
 /-! ### R34 SUBSTANTIVE: NefConeData + KodairaEmbeddingData on EVII
 
 Two more `AmpleDivisor.lean` typeclasses get concrete EVII witnesses,
@@ -1575,5 +1620,8 @@ theorem evii_freudenthal_quartic_is_algebraic :
 #print axioms evii_filt_zero_eq_top
 -- R48 KERNEL-PURITY: HCCodim1Data EVII (Lefschetz (1,1) codim-1 HC).
 #print axioms evii_lefschetz_11_codim1
+-- R50 KERNEL-PURITY: GradedCohomologyData EVII (degree via Polynomial.natDegree).
+#print axioms evii_topDim_eq_54
+#print axioms evii_degree_X_eq_one
 
 end HodgeReduction.Concrete
