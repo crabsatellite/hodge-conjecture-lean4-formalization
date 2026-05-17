@@ -2547,6 +2547,45 @@ theorem evii_chow_fundamental :
       (X := EVII_R6.EVII_Space) = PUnit.unit :=
   rfl
 
+/-! ### R90 SUBSTANTIVE: `HodgeClassData EVII_R6.EVII_Space A_EVII`
+
+Provides the **Hodge classes** of bidegree `(p,p)` data on `Ě_VII`.
+Mathematical content: on `Ě_VII` simply connected compact Hermitian
+symmetric, every cohomology class is Hodge of pure type `(k,k)` at
+the right degree, so `hodgeClassesAt p = Hpq p p` (both reduce to a
+single monomial span on our synthetic carrier).
+
+* `Hpq p q := Submodule.span ℚ {X^(p+q)}` (matches R55 SheafCohomology).
+* `hodgeClassesAt p := Hpq p p := Submodule.span ℚ {X^(2p)}` (the
+  pure-type `(p,p)` piece, matching the cohomological-degree-2p
+  realisation on `Ě_VII`).
+* `hodgeClasses_pure` discharges via `le_refl _` (the two submodules
+  are identical: `hodgeClassesAt p = span {X^(2p)} = Hpq p p`). -/
+noncomputable instance evii_hodgeClassData :
+    HodgeReduction.Infrastructure.Cohomology.HodgeClassData
+      EVII_R6.EVII_Space A_EVII where
+  Hpq p q := Submodule.span ℚ ({(Polynomial.X : A_EVII) ^ (p + q)} : Set A_EVII)
+  hodgeClassesAt p := Submodule.span ℚ ({(Polynomial.X : A_EVII) ^ (2 * p)} : Set A_EVII)
+  hodgeClasses_pure := by
+    intro p
+    -- hodgeClassesAt p = span {X^(2p)}; Hpq p p = span {X^(p+p)} = span {X^(2p)}.
+    -- They are the same submodule (since 2p = p+p), so le_refl.
+    show Submodule.span ℚ ({(Polynomial.X : A_EVII) ^ (2 * p)} : Set A_EVII)
+      ≤ Submodule.span ℚ ({(Polynomial.X : A_EVII) ^ (p + p)} : Set A_EVII)
+    -- 2 * p = p + p, so the two spans are literally equal.
+    have h : 2 * p = p + p := by ring
+    rw [h]
+
+/-- **Sanity check** (R90): the Hodge classes at codim 4 on `Ě_VII`
+contain `X^8` (= the cohomological `H^8` realisation of `h^4`). -/
+theorem evii_hodge_class_at_codim4 :
+    ((Polynomial.X : A_EVII) ^ 8)
+      ∈ HodgeReduction.Infrastructure.Cohomology.HodgeClassData.hodgeClassesAt
+          (X := EVII_R6.EVII_Space) (A := A_EVII) 4 := by
+  show (Polynomial.X : A_EVII) ^ 8
+    ∈ Submodule.span ℚ ({(Polynomial.X : A_EVII) ^ (2 * 4)} : Set A_EVII)
+  exact Submodule.subset_span (Set.mem_singleton _)
+
 /-! ### R89 ATTEMPT NOTE: `CycleClassData EVII` deferred
 
 Attempted in R89 but the AddMonoidHom + intersect/fundamental coordination
@@ -2719,6 +2758,8 @@ theorem evii_apex_synthesis :
 -- R88 KERNEL-PURITY: ChowGroupData EVII (Chow ring structure).
 #print axioms evii_chow_fundamental
 -- R89 attempted CycleClassData deferred (AddMonoidHom API obstacle); see TODO note above.
+-- R90 KERNEL-PURITY: HodgeClassData EVII (Hodge classes at codim p).
+#print axioms evii_hodge_class_at_codim4
 
 /-! ### R73 META-SYNTHESIS: Type-level catalogue of substantive EVII closures
 
