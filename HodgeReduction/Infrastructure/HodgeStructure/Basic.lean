@@ -115,6 +115,41 @@ theorem piece_le_filt (p : Fin (n + 1)) :
   refine le_iSup_of_le ?_ le_rfl
   exact Nat.le_refl _
 
+/-- **R137: Hodge filtration is antitone (decreasing in p)**.
+
+For `p ≤ q`, the Hodge filtration step `F^q V` is contained in `F^p V`.
+This is the standard antitone property of the Hodge filtration
+(Deligne 1971 (2.1.13); Voisin I (6.4)). -/
+theorem filt_antitone {p q : Fin (n + 1)} (h : p.val ≤ q.val) :
+    filt (V := V) q ≤ filt (V := V) p := by
+  unfold filt
+  refine iSup_le (fun i => ?_)
+  refine iSup_le (fun hqi => ?_)
+  exact le_iSup_of_le i (le_iSup_of_le (h.trans hqi) le_rfl)
+
+/-- **R137: Hodge filtration at `p = 0`** equals the whole space.
+
+`F^0 V = ⨆ piece i = V`. The supremum equals top because every vector is
+in some piece (DirectSum.IsInternal forces span = top). -/
+theorem filt_zero_eq_top :
+    filt (V := V) (n := n) ⟨0, Nat.zero_lt_succ n⟩ = ⊤ := by
+  unfold filt
+  apply le_antisymm le_top
+  have h_span : ⨆ i : Fin (n + 1), piece (V := V) i = ⊤ :=
+    DirectSum.IsInternal.submodule_iSup_eq_top isInternal
+  rw [← h_span]
+  refine iSup_le (fun i => ?_)
+  exact le_iSup_of_le i (le_iSup_of_le (Nat.zero_le _) le_rfl)
+
+/-- **R137: Hodge numbers** `h^{p, n-p}(V) := dim_ℚ H^{p, n-p}`.
+
+This is the dimension of the (p, n-p)-Hodge piece, a key invariant of
+the pure Hodge structure. The classical Hodge symmetry `h^{p,q} = h^{q,p}`
+holds at the dimension level for Hodge-Tate / polarisable structures
+(captured separately in `PureHodgeStructureWeight.finrank_conj`). -/
+noncomputable def hodgeNumber (p : Fin (n + 1)) : ℕ :=
+  Module.finrank ℚ (piece (V := V) p)
+
 end PureHodgeStructure
 
 /-! ## Pure Hodge structures via explicit pieces with substantive
