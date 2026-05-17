@@ -1206,6 +1206,48 @@ theorem evii_canonicalPhi_q_eq_zero :
       (A := A_EVII) = 0 :=
   HodgeReduction.Infrastructure.Cohomology.CanonicalPhiData.canonicalPhi_q_eq_zero
 
+/-! ### R45 SUBSTANTIVE: `HolomorphicBundleData EVII_R6.EVII_Space A_EVII`
+
+Validates the holomorphic-bundle typeclass on `Ě_VII` via the rank-27
+Hodge sub-bundle `𝓔_{+1}` with the P48 explicit Chern data
+(c₁ = -9 h, c₂ = 41 h², c₃ = -125 h³, c₄ = 285 h⁴).
+
+* `rank := 27` (matches the V₅₆ = 1₍₊₃₎ ⊕ 27₍₊₁₎ ⊕ 27'₍₋₁₎ ⊕ 1₍₋₃₎
+  decomposition; the rank-27 piece `𝓔_{+1}` carries the load-bearing
+  Chern data).
+* `chern := chernData_EVII.c` (the P48 Chern function).
+* `chern_zero := chernData_EVII_c0` (= rfl).
+* `vanish k hk`: for `k > 27`, the pattern-match branch `_ + 5 ⇒ 0` of
+  `chernData_EVII.c` applies (any `k > 27` is in particular `k ≥ 5`),
+  so `chernData_EVII.c k = 0`. STRUCTURAL: one obtain + rfl, no
+  case-by-case enumeration. -/
+noncomputable instance evii_holomorphicBundleData :
+    HodgeReduction.Infrastructure.Cohomology.HolomorphicBundleData
+      EVII_R6.EVII_Space A_EVII where
+  rank := 27
+  chern := chernData_EVII.c
+  chern_zero := chernData_EVII_c0
+  vanish := by
+    intro k hk
+    -- `k > 27 ⟹ k ≥ 5`, so `k = m + 5` for some `m`, and the pattern
+    -- branch `_ + 5 => 0` applies. STRUCTURAL one-line discharge.
+    obtain ⟨m, rfl⟩ : ∃ m, k = m + 5 := ⟨k - 5, by omega⟩
+    rfl
+
+/-- **Sanity check** (R45): the rank of the EVII Hodge sub-bundle is
+27 (= dim ℂ of `𝓔_{+1}` = dim ℂ of the 27 representation of E₆). -/
+theorem evii_holomorphicBundle_rank :
+    HodgeReduction.Infrastructure.Cohomology.HolomorphicBundleData.rank
+      (X := EVII_R6.EVII_Space) (A := A_EVII) = 27 :=
+  rfl
+
+/-- **Sanity check** (R45): the first Chern class `c_1(𝓔_{+1}) = -9 h`. -/
+theorem evii_holomorphicBundle_c1 :
+    HodgeReduction.Infrastructure.Cohomology.HolomorphicBundleData.chern
+      (X := EVII_R6.EVII_Space) (A := A_EVII) 1
+      = HodgeReduction.CrossRingArithmetic.c1 • (Polynomial.X : A_EVII) :=
+  rfl
+
 /-! ### R34 SUBSTANTIVE: NefConeData + KodairaEmbeddingData on EVII
 
 Two more `AmpleDivisor.lean` typeclasses get concrete EVII witnesses,
@@ -1366,5 +1408,8 @@ theorem evii_freudenthal_quartic_is_algebraic :
 -- R36 KERNEL-PURITY: strong-form HC on E_VII compact dual.
 #print axioms evii_strong_HodgeConjecture
 #print axioms evii_freudenthal_quartic_is_algebraic
+-- R45 KERNEL-PURITY: HolomorphicBundleData EVII (rank 27 bundle witness).
+#print axioms evii_holomorphicBundle_rank
+#print axioms evii_holomorphicBundle_c1
 
 end HodgeReduction.Concrete
