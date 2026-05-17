@@ -2547,6 +2547,15 @@ theorem evii_chow_fundamental :
       (X := EVII_R6.EVII_Space) = PUnit.unit :=
   rfl
 
+/-! ### R89 ATTEMPT NOTE: `CycleClassData EVII` deferred
+
+Attempted in R89 but the AddMonoidHom + intersect/fundamental coordination
+across `cl_intersect : cl(p+q)(α∩β) = cl(p)(α) * cl(q)(β)` (heterogeneous
+indices) required more careful Mathlib AddMonoidHom API composition than
+fits cleanly with the synthetic PUnit-everywhere model. Same pattern as
+R69 IntersectionPairing — Mathlib API obstacle on AddMonoidHom-valued
+field. Deferred as honest TODO note. -/
+
 /-- **Sanity check** (R77): Standard Conjecture (D) holds on `Ě_VII`
 (numerical-equivalence = hom-equivalence). -/
 theorem evii_standard_conjecture_D :
@@ -2709,6 +2718,7 @@ theorem evii_apex_synthesis :
 #print axioms evii_acv_dim_eq_27
 -- R88 KERNEL-PURITY: ChowGroupData EVII (Chow ring structure).
 #print axioms evii_chow_fundamental
+-- R89 attempted CycleClassData deferred (AddMonoidHom API obstacle); see TODO note above.
 
 /-! ### R73 META-SYNTHESIS: Type-level catalogue of substantive EVII closures
 
