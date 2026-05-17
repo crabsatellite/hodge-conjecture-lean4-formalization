@@ -353,6 +353,27 @@ theorem Module.IsInvertible.of_linearEquiv.{u} {R : Type u} [CommRing R]
   -- M' ⊗ N ≃ M ⊗ N via the equiv e.symm; then ≃ R via eqN.
   exact (TensorProduct.congr e.symm (LinearEquiv.refl R N)).trans eqN
 
+/-! ### `Module.IsInvertible` unit laws (R101): invertibility of R ⊗ M and M ⊗ R
+
+For any R-module M, M is invertible iff `R ⊗_R M` is invertible
+(both directions via `TensorProduct.lid`); similarly for `M ⊗_R R`
+via `TensorProduct.rid`. These are the **left/right unit laws**
+of the Pic group's monoidal structure.
+
+Single-line corollaries of R100 `of_linearEquiv` + Mathlib's
+`TensorProduct.lid`/`rid`. Useful when simplifying Pic-side
+calculations (the identity element of `Pic R` acts trivially). -/
+
+instance Module.IsInvertible.tensor_R_left.{u} {R : Type u} [CommRing R]
+    {M : Type u} [AddCommGroup M] [Module R M] [Module.IsInvertible R M] :
+    Module.IsInvertible R (TensorProduct R R M) :=
+  Module.IsInvertible.of_linearEquiv (TensorProduct.lid R M).symm
+
+instance Module.IsInvertible.tensor_R_right.{u} {R : Type u} [CommRing R]
+    {M : Type u} [AddCommGroup M] [Module R M] [Module.IsInvertible R M] :
+    Module.IsInvertible R (TensorProduct R M R) :=
+  Module.IsInvertible.of_linearEquiv (TensorProduct.rid R M).symm
+
 /-! ### Mathlib-PR readiness checklist
 
 * Definition is single-purpose, mathematically standard.
@@ -402,5 +423,8 @@ axioms or `sorry`. The `#print axioms` lines below verify this. -/
 #print axioms Module.IsInvertible.of_inverse
 -- R100 Module.IsInvertible.of_linearEquiv: invertibility transfers across iso.
 #print axioms Module.IsInvertible.of_linearEquiv
+-- R101 Module.IsInvertible.tensor_R_left/right: R ⊗ M and M ⊗ R invertible iff M is.
+#print axioms Module.IsInvertible.tensor_R_left
+#print axioms Module.IsInvertible.tensor_R_right
 
 end HodgeReduction.MathlibCandidates
