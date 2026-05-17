@@ -181,7 +181,13 @@ vacuously. -/
 
 /-- **Trivial Bott-vanishing model**: one regular weight, the cohomology
 is `⊤`. The Bott vanishing axiom holds vacuously (no non-regular
-weight). -/
+weight).
+
+**R53 NOTE**: same downstream-coupling situation as R49 — demoting
+this `instance` to `def` would break `trivialIrreducibleWeightData ℚ`
+(L260) which depends on auto-synthesis of `BorelBottWeilCohomologyData ℚ`.
+Kept as `instance` for honest scoping (BBW typeclass isn't currently
+consumed by the HC chain). -/
 noncomputable instance trivialBorelBottWeilCohomologyData
     (V : Type*) [AddCommGroup V] [Module ℚ V] :
     BorelBottWeilCohomologyData V where
