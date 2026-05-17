@@ -25,6 +25,7 @@ import HodgeReduction.Infrastructure.Cohomology.BorelHirzebruchCoinvariant
 import HodgeReduction.Infrastructure.Cohomology.SheafCohomology
 import HodgeReduction.Infrastructure.Cohomology.PoincareDuality
 import HodgeReduction.Infrastructure.Cohomology.AbelJacobi
+import HodgeReduction.Infrastructure.Cohomology.ChernCharacter
 import HodgeReduction.Infrastructure.Cohomology.PicardGroup
 import HodgeReduction.Infrastructure.Cohomology.AmpleDivisor
 import HodgeReduction.Infrastructure.Cohomology.CycleClassMap
@@ -1735,6 +1736,51 @@ theorem evii_griffiths_chain_collapses :
           (X := EVII_R6.EVII_Space) (A := A_EVII) :=
   HodgeReduction.Infrastructure.Cohomology.GriffithsGroupData.algebraic_le_hodge_via_griffiths
 
+/-! ### R60 SUBSTANTIVE: `ChernCharacterData ℚ A_EVII`
+
+Provides the Chern character `ch : ℚ →ₗ[ℚ] A_EVII` from rational
+K-theory of a point into EVII cohomology. The K-theory K = ℚ
+corresponds to rank-valued data; ch sends a rank `r : ℚ` to the
+cohomology class `algebraMap ℚ A_EVII r` (= constant polynomial r).
+
+Fields:
+* `mul x y := x * y` (K-theory multiplication = rational multiplication)
+* `oneK := (1 : ℚ)` (unit K-class)
+* `ch := Algebra.linearMap ℚ A_EVII` (rank → constant polynomial)
+* `ch_one`: `ch 1 = algebraMap 1 = 1` (algebra-map unit identity)
+* `ch_mul`: `ch (x*y) = ch x * ch y` (algebra-map multiplicativity)
+
+STRUCTURAL: all fields discharged via Mathlib's `Algebra.linearMap`
+multiplicativity, no case-by-case. -/
+noncomputable instance evii_chernCharacterData_Q :
+    HodgeReduction.Infrastructure.Cohomology.ChernCharacterData ℚ A_EVII where
+  mul x y := x * y
+  oneK := (1 : ℚ)
+  ch :=
+    { toFun := fun r => (algebraMap ℚ A_EVII) r
+      map_add' := map_add (algebraMap ℚ A_EVII)
+      map_smul' := by
+        intro r x
+        show (algebraMap ℚ A_EVII) (r * x) = r • (algebraMap ℚ A_EVII) x
+        rw [map_mul, Algebra.smul_def] }
+  ch_one := by
+    show (algebraMap ℚ A_EVII) (1 : ℚ) = (1 : A_EVII)
+    exact map_one (algebraMap ℚ A_EVII)
+  ch_mul x y := by
+    show (algebraMap ℚ A_EVII) (x * y)
+      = (algebraMap ℚ A_EVII) x * (algebraMap ℚ A_EVII) y
+    exact map_mul (algebraMap ℚ A_EVII) x y
+
+/-- **Sanity check** (R60): the Chern character of the K-unit equals
+the cohomology unit on `Ě_VII`. -/
+theorem evii_chern_character_one :
+    HodgeReduction.Infrastructure.Cohomology.ChernCharacterData.ch
+      (K := ℚ) (A := A_EVII)
+      (HodgeReduction.Infrastructure.Cohomology.ChernCharacterData.oneK
+        (K := ℚ) (A := A_EVII))
+      = (1 : A_EVII) :=
+  HodgeReduction.Infrastructure.Cohomology.ChernCharacterData.ch_oneK_eq_one (K := ℚ) (A := A_EVII)
+
 /-! ### R34 SUBSTANTIVE: NefConeData + KodairaEmbeddingData on EVII
 
 Two more `AmpleDivisor.lean` typeclasses get concrete EVII witnesses,
@@ -1923,5 +1969,7 @@ theorem evii_freudenthal_quartic_is_algebraic :
 #print axioms evii_L_refined_form_proportionality
 -- R59 KERNEL-PURITY: GriffithsGroupData EVII (Griffiths chain collapses).
 #print axioms evii_griffiths_chain_collapses
+-- R60 KERNEL-PURITY: ChernCharacterData Q A_EVII (rational K-theory to cohomology).
+#print axioms evii_chern_character_one
 
 end HodgeReduction.Concrete
