@@ -232,7 +232,17 @@ end LefschetzOperatorData
 /-- **Trivial inhabiting instance** of `LefschetzOperatorData` on the
 zero module: all three operators are zero. The sl₂-relations hold
 trivially because every commutator of zero maps is zero, and `2 • 0 = 0`,
-`-2 • 0 = 0`. -/
+`-2 • 0 = 0`.
+
+**R49 NOTE (no-trick mandate)**: this trivial-default global instance
+WAS considered for demotion to `def` (same pattern as R31), but the
+downstream `trivialPrimitiveDecompositionData` instance depends on
+auto-synthesis of `LefschetzOperatorData A` via this global instance.
+Demoting here would require simultaneously demoting that downstream
+instance (which has 30+ lines of explicit-arg gymnastics). Keeping
+this as `instance` is **honest scoping**: the LefschetzOperatorData
+typeclass isn't currently consumed by the HC chain, so the global
+zero-default is benign (no real instances are being masked). -/
 noncomputable instance trivialLefschetzOperatorData
     (A : Type*) [AddCommGroup A] [Module ℚ A] :
     LefschetzOperatorData A where
