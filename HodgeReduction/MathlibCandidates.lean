@@ -9,6 +9,7 @@ import Mathlib.LinearAlgebra.LinearIndependent
 import Mathlib.LinearAlgebra.Span.Basic
 import Mathlib.LinearAlgebra.Basis.Basic
 import Mathlib.LinearAlgebra.TensorProduct.Basic
+import Mathlib.LinearAlgebra.TensorProduct.Tower
 import Mathlib.Order.Disjoint
 import Mathlib.Algebra.Order.Field.Rat
 import HodgeReduction.Infrastructure.AlgebraicGeometry.LineBundle
@@ -1024,6 +1025,53 @@ noncomputable instance LineBundleData_for_CommRing.{u}
     exact ⟨TensorProduct.assoc R s.carrier t.carrier u.carrier⟩
 
 end ProjectBridge
+
+/-! ### `Module.IsInvertible.baseChange` (R127): Picard functoriality first step
+
+For any ring hom `R → A` (encoded as `[Algebra R A]`), the base change
+`M ↦ A ⊗[R] M` sends invertible R-modules to invertible A-modules. This
+is the first piece of the functoriality of `Picard : CommRing → CommGroup`.
+
+**Mathematical content** (Bourbaki AC II §5, EGA II §1):
+If `M ⊗_R N ≃ R`, then taking `A ⊗_R (·)` of both sides and using base-change
+distributivity gives `(A ⊗_R M) ⊗_A (A ⊗_R N) ≃ A ⊗_R R ≃ A`. Hence
+`A ⊗_R M` is A-invertible with witness `A ⊗_R N`.
+
+**Mathlib infra used**:
+- `TensorProduct.AlgebraTensorModule.cancelBaseChange`: standard base-change
+  cancellation `M ⊗[A] (A ⊗[R] N) ≃ₗ[B] M ⊗[R] N`
+- `TensorProduct.AlgebraTensorModule.assoc`: associativity in the tower
+- `TensorProduct.congr` + `TensorProduct.rid`: standard tensor manipulation
+
+**Significance**: with `baseChange`, the Picard construction R97-R117 becomes
+**functorial**, opening the door to Picard.{u} as a `Functor : CommRingCat ⥤ CommGroupCat`. -/
+
+theorem Module.IsInvertible.baseChange.{u}
+    (R : Type u) [CommRing R]
+    (A : Type u) [CommRing A] [Algebra R A]
+    (M : Type u) [AddCommGroup M] [Module R M]
+    [hM : Module.IsInvertible R M] :
+    Module.IsInvertible A (TensorProduct R A M) where
+  exists_inverse := by
+    obtain ⟨N, instAcgN, instModN, ⟨eM⟩⟩ := hM.exists_inverse
+    refine ⟨TensorProduct R A N, inferInstance, inferInstance, ⟨?_⟩⟩
+    -- Goal: TensorProduct A (TensorProduct R A M) (TensorProduct R A N) ≃ₗ[A] A
+    -- Chain (right-to-left): A ≃ A ⊗[R] R ≃ A ⊗[R] (M ⊗[R] N) ≃
+    --   (A ⊗[R] M) ⊗[A] (A ⊗[R] N)
+    -- Build the inverse-direction chain and take symm.
+    -- Step a: A ≃ₗ[A] A ⊗[R] R   via TensorProduct.AlgebraTensorModule.rid.symm
+    let stepA : A ≃ₗ[A] TensorProduct R A R :=
+      (TensorProduct.AlgebraTensorModule.rid R A A).symm
+    -- Step b: A ⊗[R] R ≃ₗ[A] A ⊗[R] (M ⊗[R] N)  via congr refl eM.symm
+    let stepB : TensorProduct R A R ≃ₗ[A] TensorProduct R A (TensorProduct R M N) :=
+      TensorProduct.AlgebraTensorModule.congr (LinearEquiv.refl A A) eM.symm
+    -- Step c: A ⊗[R] (M ⊗[R] N) ≃ₗ[A] (A ⊗[R] M) ⊗[A] (A ⊗[R] N)
+    --   via TensorProduct.AlgebraTensorModule.distribBaseChange
+    let stepC : TensorProduct R A (TensorProduct R M N) ≃ₗ[A]
+        TensorProduct A (TensorProduct R A M) (TensorProduct R A N) :=
+      TensorProduct.AlgebraTensorModule.distribBaseChange R A M N
+    -- Compose and take symm to get the required iso.
+    exact (stepA.trans (stepB.trans stepC)).symm
 
 /-! ### Mathlib-PR readiness checklist
 
