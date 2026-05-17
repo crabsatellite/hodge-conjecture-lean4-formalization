@@ -396,4 +396,27 @@ theorem varietyHCAt_of_correspondence
   obtain ⟨φ, ψ, h_square, h_surj⟩ := h_pkg
   exact varietyHCAt_transfer p φ ψ h_square h_surj h_HC_src
 
+/-- **R178**: The **identity Mumford-Tate correspondence** package: any
+variety has an MT correspondence package to itself at every codimension.
+This is the sanity-check inhabitant showing `MTCorrespondencePackageAt`
+is non-vacuously definable.
+
+Witnesses:
+* `φ := id_HSM` (identity Hodge morphism on `X.H (2*p)`).
+* `ψ := LinearMap.id` (identity on `A.algClasses p`).
+* Commutative square: trivial.
+* Surjectivity: identity surjects everywhere. -/
+theorem MTCorrespondencePackageAt.id
+    {X : VarietyCohomologyData} {A : AlgebraicClassesData X} (p : ℕ) :
+    MTCorrespondencePackageAt X X A A p := by
+  letI _ := X.addCommGroup (2 * p)
+  letI _ := X.module (2 * p)
+  letI _ := X.hodgeStructure (2 * p)
+  unfold MTCorrespondencePackageAt
+  refine ⟨HodgeStructureMorphism.id_HSM, LinearMap.id, ?_, ?_⟩
+  · -- commutative square: ψ = id and φ = id, so subtype ∘ id = id ∘ subtype.
+    intro z; rfl
+  · -- surjectivity: id-image of hodgeClasses = hodgeClasses
+    rw [HodgeStructureMorphism.id_HSM_map_hodgeClasses]
+
 end HodgeReduction.Infrastructure.HodgeStructure

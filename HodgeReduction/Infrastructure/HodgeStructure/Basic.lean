@@ -727,6 +727,32 @@ theorem map_filt (f : HodgeStructureMorphism V W n) (p : Fin (n + 1)) :
   refine le_iSup_of_le i (le_iSup_of_le hi ?_)
   exact f.map_piece i
 
+/-! ### R178: Basic functoriality lemmas for HodgeStructureMorphism
+
+The category-theoretic core: identity preserves vectors, composition
+preserves application, identity preserves Hodge classes (trivially).
+These are the categorical structure axioms for the category of pure
+Hodge structures of weight `n`. -/
+
+/-- **R178**: The identity Hodge morphism acts as the identity on vectors. -/
+@[simp] theorem id_HSM_toLinearMap_apply (v : V) :
+    (id_HSM (n := n)).toLinearMap v = v := rfl
+
+/-- **R178**: Composition of Hodge morphisms applies functionally. -/
+@[simp] theorem comp_toLinearMap_apply
+    (g : HodgeStructureMorphism W X n) (f : HodgeStructureMorphism V W n) (v : V) :
+    (g.comp f).toLinearMap v = g.toLinearMap (f.toLinearMap v) := rfl
+
+/-- **R178**: The identity Hodge morphism maps `hodgeClasses` to itself
+(submodule-level statement of `id` preservation). -/
+theorem id_HSM_map_hodgeClasses {k : ℕ}
+    [PureHodgeStructure V (2 * k)] :
+    Submodule.map (id_HSM (V := V) (n := 2 * k)).toLinearMap
+        (PureHodgeStructure.hodgeClasses V k) =
+      PureHodgeStructure.hodgeClasses V k := by
+  unfold id_HSM
+  simp [Submodule.map_id]
+
 end HodgeStructureMorphism
 
 /-! ## R165: Cycle class map data + Hodge Conjecture formulated via image
