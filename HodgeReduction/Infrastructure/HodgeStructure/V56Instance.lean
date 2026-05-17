@@ -414,6 +414,59 @@ instance instHodgeFiltrationStructure_V56 :
   F_antitone := F_V56_antitone
   F_top_eq_bot := F_V56_top_eq_bot
 
+/-- **R145**: rank decomposition for V_56.
+
+The Freudenthal numbers (1, 27, 27, 1) sum to 56, matching the
+ambient V_56 dimension. This is the concrete-case version of the
+general theorem `finrank V = ∑ hodgeNumber V p` for any
+PureHodgeStructure with finite-dimensional carrier — established
+here by direct computation using the V_56 instance (R141, R142). -/
+theorem finrank_V56_eq_sum_hodgeNumber :
+    Module.finrank ℚ HodgeReduction.Infrastructure.V56 =
+      PureHodgeStructure.hodgeNumber (V := HodgeReduction.Infrastructure.V56)
+        (n := 3) ⟨0, by omega⟩ +
+      PureHodgeStructure.hodgeNumber (V := HodgeReduction.Infrastructure.V56)
+        (n := 3) ⟨1, by omega⟩ +
+      PureHodgeStructure.hodgeNumber (V := HodgeReduction.Infrastructure.V56)
+        (n := 3) ⟨2, by omega⟩ +
+      PureHodgeStructure.hodgeNumber (V := HodgeReduction.Infrastructure.V56)
+        (n := 3) ⟨3, by omega⟩ := by
+  rw [hodgeNumber_V56_3_0, hodgeNumber_V56_2_1,
+      hodgeNumber_V56_1_2, hodgeNumber_V56_0_3]
+  -- Goal: Module.finrank ℚ V56 = 1 + 27 + 27 + 1 = 56
+  rw [HodgeReduction.Infrastructure.V56.finrank]
+
+/-- **R145**: Hodge conjugation symmetry for V_56 at the dimension level.
+
+`h^{p, 3-p}(V_56) = h^{3-p, p}(V_56)` — the standard Hodge symmetry
+holds because V_56's Hodge numbers (1, 27, 27, 1) are symmetric across
+the diagonal. Concretely: h^{3,0} = h^{0,3} = 1 and h^{2,1} = h^{1,2} = 27.
+
+This is the dimension-level shadow of complex conjugation
+`V^{p,q} ↔ V^{q,p}` (Deligne 1971 (2.1.14); Voisin I (6.5)). -/
+theorem hodgeNumber_V56_symm (p : Fin 4) :
+    PureHodgeStructure.hodgeNumber (V := HodgeReduction.Infrastructure.V56)
+      (n := 3) p =
+    PureHodgeStructure.hodgeNumber (V := HodgeReduction.Infrastructure.V56)
+      (n := 3) ⟨3 - p.val, by omega⟩ := by
+  fin_cases p
+  · -- p = 0: h^{3,0} = h^{0,3} = 1
+    rw [hodgeNumber_V56_3_0]
+    show 1 = PureHodgeStructure.hodgeNumber ⟨3, by omega⟩
+    rw [hodgeNumber_V56_0_3]
+  · -- p = 1: h^{2,1} = h^{1,2} = 27
+    rw [hodgeNumber_V56_2_1]
+    show 27 = PureHodgeStructure.hodgeNumber ⟨2, by omega⟩
+    rw [hodgeNumber_V56_1_2]
+  · -- p = 2: h^{1,2} = h^{2,1} = 27
+    rw [hodgeNumber_V56_1_2]
+    show 27 = PureHodgeStructure.hodgeNumber ⟨1, by omega⟩
+    rw [hodgeNumber_V56_2_1]
+  · -- p = 3: h^{0,3} = h^{3,0} = 1
+    rw [hodgeNumber_V56_0_3]
+    show 1 = PureHodgeStructure.hodgeNumber ⟨0, by omega⟩
+    rw [hodgeNumber_V56_3_0]
+
 end V56
 
 /-! ## Abstract `V_56` Hodge-structure refinement axiom package
