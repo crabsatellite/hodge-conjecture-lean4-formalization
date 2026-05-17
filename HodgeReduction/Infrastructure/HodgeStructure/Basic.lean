@@ -415,7 +415,188 @@ theorem piece_disjoint {p q : Fin (n + 1)} (h : p ≠ q) :
   refine le_iSup_of_le q (le_iSup_of_le ?_ le_rfl)
   exact fun h_eq => h h_eq.symm
 
+/-! ### R163: Hodge classes — the (p, p) component for weight 2p
+
+The **space of Hodge classes** `Hdg^k(V) := H^{k,k}(V) ∩ V_ℚ` in a pure
+ℚ-Hodge structure of weight `2k` is the foundational target of the
+**Hodge Conjecture**: every Hodge class should be a ℚ-linear combination
+of classes of algebraic cycles.
+
+In the "split with rational pieces" convention used by this typeclass
+(suitable for Hodge-Tate structures where the bigrading descends to ℚ),
+the Hodge classes at degree `k` are precisely the rational `(k, k)`
+piece. We give them a named definition with API (membership, finrank,
+disjointness from other pieces) for downstream consumers.
+
+This is the direct REAL-math replacement for the `R43` `Unit` placeholder
+that previously made the `HodgeConjecture` statement vacuous at the level
+of pure Hodge structures.
+
+References:
+* Deligne 1971, "Théorie de Hodge II", (2.1.10)-(2.1.14).
+* Voisin 2002 I, §11 (Hodge classes, cycle class map, Hodge Conjecture).
+* Griffiths-Harris 1978, Ch. 0.7 (Hodge decomposition).
+-/
+
+/-- **R163**: The submodule of **Hodge classes** of bidegree `(k, k)` in
+a pure ℚ-Hodge structure of weight `2k`. Concretely, these are the
+rational vectors lying in the middle Hodge piece `H^{k,k}` — the
+natural target of the cycle class map and the subject of the **Hodge
+Conjecture** (every such class should be a ℚ-linear combination of
+algebraic cycle classes).
+
+Defined as `piece ⟨k, _⟩` for a `PureHodgeStructure V (2*k)`; this is
+the standard identification under the split-rational-pieces convention
+(Hodge-Tate hypothesis, satisfied by CM abelian varieties and the
+V_56-Shimura case relevant to this project).
+
+This REPLACES the historical `R43 := Unit` placeholder for
+`HodgeClasses` at the pure-Hodge-structure level. The variety-level
+`HodgeClasses X p` upgrade depends on adding cohomology data to
+`SmoothProjectiveVariety` (Mathlib infra work, multi-stage).
+
+References: Deligne 1971 (2.1.10); Voisin II §11.1.1; Griffiths-Harris
+Ch. 0.7. -/
+def hodgeClasses (V : Type*) [AddCommGroup V] [Module ℚ V] (k : ℕ)
+    [PureHodgeStructure V (2 * k)] : Submodule ℚ V :=
+  piece (V := V) (n := 2 * k) ⟨k, by omega⟩
+
+/-- **R163**: `IsHodgeClass V k v` asserts that `v : V` is a Hodge class
+of degree `k`, i.e. lies in the middle piece `H^{k,k}` of a pure
+ℚ-Hodge structure of weight `2k`. -/
+def IsHodgeClass (V : Type*) [AddCommGroup V] [Module ℚ V] (k : ℕ)
+    [PureHodgeStructure V (2 * k)] (v : V) : Prop :=
+  v ∈ hodgeClasses V k
+
+/-- **R163**: The defining identity `hodgeClasses V k = piece ⟨k, _⟩`
+(unfolds the definition for downstream rewriting). -/
+@[simp] theorem hodgeClasses_eq_piece (V : Type*) [AddCommGroup V]
+    [Module ℚ V] (k : ℕ) [PureHodgeStructure V (2 * k)] :
+    hodgeClasses V k = piece (V := V) (n := 2 * k) ⟨k, by omega⟩ := rfl
+
+/-- **R163**: Membership in `hodgeClasses` is the same as `IsHodgeClass`. -/
+theorem mem_hodgeClasses_iff_isHodgeClass (V : Type*) [AddCommGroup V]
+    [Module ℚ V] {k : ℕ} [PureHodgeStructure V (2 * k)] (v : V) :
+    v ∈ hodgeClasses V k ↔ IsHodgeClass V k v := Iff.rfl
+
+/-- **R163**: The `ℚ`-dimension of the space of Hodge classes equals the
+Hodge number `h^{k,k}(V)`. This is the standard dimensional formula and
+a direct corollary of `hodgeClasses_eq_piece` + the definition of
+`hodgeNumber`. -/
+theorem finrank_hodgeClasses (V : Type*) [AddCommGroup V] [Module ℚ V]
+    {k : ℕ} [PureHodgeStructure V (2 * k)] :
+    Module.finrank ℚ (hodgeClasses V k) =
+      hodgeNumber (V := V) (n := 2 * k) ⟨k, by omega⟩ := rfl
+
+/-- **R163**: The space of Hodge classes is disjoint from any OTHER
+Hodge piece. Direct corollary of `piece_disjoint` (R154) applied at
+index `⟨k, _⟩` vs. an arbitrary distinct index. -/
+theorem hodgeClasses_disjoint_other_piece (V : Type*) [AddCommGroup V]
+    [Module ℚ V] {k : ℕ} [PureHodgeStructure V (2 * k)]
+    (j : Fin (2 * k + 1)) (h : j ≠ ⟨k, by omega⟩) :
+    Disjoint (hodgeClasses V k) (piece (V := V) (n := 2 * k) j) := by
+  unfold hodgeClasses
+  exact piece_disjoint (h.symm)
+
+/-- **R163**: Zero is always a Hodge class (trivially, since
+`hodgeClasses` is a submodule). -/
+theorem zero_isHodgeClass (V : Type*) [AddCommGroup V] [Module ℚ V]
+    {k : ℕ} [PureHodgeStructure V (2 * k)] :
+    IsHodgeClass V k (0 : V) := (hodgeClasses V k).zero_mem
+
+/-- **R163**: Hodge classes are closed under addition. -/
+theorem IsHodgeClass.add {V : Type*} [AddCommGroup V] [Module ℚ V]
+    {k : ℕ} [PureHodgeStructure V (2 * k)] {u v : V}
+    (hu : IsHodgeClass V k u) (hv : IsHodgeClass V k v) :
+    IsHodgeClass V k (u + v) := (hodgeClasses V k).add_mem hu hv
+
+/-- **R163**: Hodge classes are closed under ℚ-scalar multiplication. -/
+theorem IsHodgeClass.smul {V : Type*} [AddCommGroup V] [Module ℚ V]
+    {k : ℕ} [PureHodgeStructure V (2 * k)] (c : ℚ) {v : V}
+    (hv : IsHodgeClass V k v) :
+    IsHodgeClass V k (c • v) := (hodgeClasses V k).smul_mem c hv
+
+/-- **R163**: Hodge classes are closed under negation. -/
+theorem IsHodgeClass.neg {V : Type*} [AddCommGroup V] [Module ℚ V]
+    {k : ℕ} [PureHodgeStructure V (2 * k)] {v : V}
+    (hv : IsHodgeClass V k v) :
+    IsHodgeClass V k (-v) := (hodgeClasses V k).neg_mem hv
+
 end PureHodgeStructure
+
+/-! ## R163: The Hodge Conjecture as a predicate on pure Hodge structures
+
+We now give the abstract REAL-math formulation of the Hodge Conjecture
+at the level of a pure ℚ-Hodge structure of weight `2k`, parametrised by
+a submodule of "algebraic classes" (which a concrete instance must
+supply). This removes the Unit-trivial vacuity at the pure-Hodge-structure
+level: `HodgeConjectureAtWeight` is a genuine assertion about
+submodule containment.
+
+The Hodge Conjecture statement at degree `k`:
+
+**Every Hodge class is algebraic.**
+
+Equivalently: `hodgeClasses V k ≤ algClasses`, where `algClasses` is
+the submodule of algebraic classes — those that arise as ℚ-linear
+combinations of cycle classes `[Z]` of algebraic subvarieties.
+
+Defining `algClasses` substantively requires intersection theory
+(Chow groups + cycle class map), which is not yet in Mathlib. For now
+we package the conjecture as parametrised by an arbitrary
+`algClasses : Submodule ℚ V` and prove basic forms (it is a Prop, it
+is reflexive when `algClasses = hodgeClasses`, etc.). Concrete
+applications will instantiate `algClasses` from the cycle class map
+once that infrastructure is available. -/
+
+/-- **R163**: The **Hodge Conjecture at weight `2k`** for a pure ℚ-Hodge
+structure `V`, parametrised by a submodule `algClasses` of algebraic
+classes: every Hodge class lies in `algClasses`.
+
+This is the abstract, substantive formulation. With `algClasses := ⊤`
+the conjecture is trivially true (every class is "algebraic"); with
+`algClasses := PureHodgeStructure.hodgeClasses V k` it is the
+statement "Hodge classes are their own image under inclusion", also
+trivially true. The substantive non-trivial cases are when
+`algClasses` arises from a cycle class map and may strictly contain
+or be contained in `hodgeClasses` a priori.
+
+References: Voisin 2002 II §11.1.1; Hodge 1950. -/
+def HodgeConjectureAtWeight (V : Type*) [AddCommGroup V] [Module ℚ V]
+    (k : ℕ) [PureHodgeStructure V (2 * k)]
+    (algClasses : Submodule ℚ V) : Prop :=
+  PureHodgeStructure.hodgeClasses V k ≤ algClasses
+
+/-- **R163**: HC trivially holds when `algClasses = ⊤` (any class is
+"algebraic" in the maximal sense — no information). -/
+theorem hodgeConjectureAtWeight_top (V : Type*) [AddCommGroup V]
+    [Module ℚ V] (k : ℕ) [PureHodgeStructure V (2 * k)] :
+    HodgeConjectureAtWeight V k (⊤ : Submodule ℚ V) := le_top
+
+/-- **R163**: HC trivially holds when `algClasses = hodgeClasses V k`
+(reflexivity). -/
+theorem hodgeConjectureAtWeight_self (V : Type*) [AddCommGroup V]
+    [Module ℚ V] (k : ℕ) [PureHodgeStructure V (2 * k)] :
+    HodgeConjectureAtWeight V k (PureHodgeStructure.hodgeClasses V k) :=
+  le_refl _
+
+/-- **R163**: HC is monotone in `algClasses`: a larger algebraic-classes
+submodule makes HC easier to satisfy. -/
+theorem hodgeConjectureAtWeight_mono (V : Type*) [AddCommGroup V]
+    [Module ℚ V] (k : ℕ) [PureHodgeStructure V (2 * k)]
+    {A B : Submodule ℚ V} (hAB : A ≤ B)
+    (hA : HodgeConjectureAtWeight V k A) :
+    HodgeConjectureAtWeight V k B := hA.trans hAB
+
+/-- **R163**: HC is preserved under intersection with a containing
+algebraic-classes submodule. (If HC holds for `A` and `B ≥ hodgeClasses`,
+then HC holds for `A ⊓ B`.) -/
+theorem hodgeConjectureAtWeight_inf (V : Type*) [AddCommGroup V]
+    [Module ℚ V] (k : ℕ) [PureHodgeStructure V (2 * k)]
+    {A B : Submodule ℚ V}
+    (hA : HodgeConjectureAtWeight V k A)
+    (hB : HodgeConjectureAtWeight V k B) :
+    HodgeConjectureAtWeight V k (A ⊓ B) := le_inf hA hB
 
 /-! ## Pure Hodge structures via explicit pieces with substantive
 dimensional, disjointness and span axioms
