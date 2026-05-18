@@ -1323,6 +1323,37 @@ theorem ker_isSubHodgeStructure
         PureHodgeStructure.hodgeComponentV_zero]
   · exact iSup_le (fun _ => inf_le_left)
 
+/-- **R184**: The **image of an HSM restricted to a sub-Hodge structure
+is a sub-Hodge structure**. Generalizes R182 `range_isSubHodgeStructure`
+(which is the case `A = ⊤`).
+
+Proof: for `w ∈ Submodule.map f A`, get `a ∈ A` with `f a = w`. Decompose
+`a = ∑ p, hodgeComponentV p a`. Each `hodgeComponentV p a ∈ piece V p`
+(R181) AND ∈ A (by R181 `hodgeComponentV_mem_of_isSubHodgeStructure` on
+`hA`). So `f(hodgeComponentV p a) ∈ piece W p` (via `f.map_piece`) AND
+∈ `Submodule.map f A` (image of element of A). Summing reconstructs w. -/
+theorem map_isSubHodgeStructure
+    (f : HodgeStructureMorphism V W n) {A : Submodule ℚ V}
+    (hA : PureHodgeStructure.IsSubHodgeStructure (V := V) (n := n) A) :
+    PureHodgeStructure.IsSubHodgeStructure (V := W) (n := n)
+      (Submodule.map f.toLinearMap A) := by
+  unfold PureHodgeStructure.IsSubHodgeStructure
+  apply le_antisymm
+  · intro w hw
+    obtain ⟨a, ha_A, ha_eq⟩ := Submodule.mem_map.mp hw
+    rw [← ha_eq, ← PureHodgeStructure.sum_hodgeComponentV (V := V) (n := n) a, map_sum]
+    refine Submodule.sum_mem _ (fun p _ => ?_)
+    refine Submodule.mem_iSup_of_mem p ?_
+    have h_comp_in_A :
+        PureHodgeStructure.hodgeComponentV (V := V) p a ∈ A :=
+      PureHodgeStructure.hodgeComponentV_mem_of_isSubHodgeStructure hA ha_A p
+    refine Submodule.mem_inf.mpr ⟨?_, ?_⟩
+    · -- f(hodgeComponentV p a) ∈ Submodule.map f A
+      exact Submodule.mem_map.mpr ⟨_, h_comp_in_A, rfl⟩
+    · -- f(hodgeComponentV p a) ∈ piece W p
+      exact f.map_piece p ⟨_, PureHodgeStructure.hodgeComponentV_mem_piece p a, rfl⟩
+  · exact iSup_le (fun _ => inf_le_left)
+
 end HodgeStructureMorphism
 
 /-! ## Pure Hodge structures via explicit pieces with substantive
