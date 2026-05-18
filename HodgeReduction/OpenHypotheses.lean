@@ -1070,48 +1070,20 @@ theorem non_abelian_shimura_E7_absolute_hodge_extension_CONJECTURAL :
  IsNonAbelianShimuraE7AbsoluteHodgeExtension_CONJECTURAL X_b p :=
  fun X_b hCM p hp => X_b.non_abelian_shimura_E7_witness hCM p hp
 
-/-- Typed bridge axiom: framework #1 (Deligne 1982 abelian AH) +
- framework #2 (André 1996 motivated abelian span) + conjectural-
- extension (non-abelian E_7 Shimura AH extension) → absolute Hodge
- witness for E_7-CM-fibre Hodge classes at codim p ∈ {3,4} on the
- E_7-invariant subspace.
+/- **R193 DELETED**: AH-CM-E7 chain.
 
- paper source: hyp:AH-CM-E7 (combination). -/
-axiom ah_cm_e7_from_framework_and_extension :
- ∀ (X_b : SmoothProjectiveVariety ℂ), IsE7CMFibre X_b →
- ∀ (p : ℕ), (p = 3 ∨ p = 4) →
- ∀ (α : HodgeClasses X_b p),
- E7InvariantHodgeClasses X_b p α →
- IsDeligne1982AbsoluteHodgeAbelianFramework X_b p →
- IsAndre1996MotivatedAbelianSpan X_b p →
- IsNonAbelianShimuraE7AbsoluteHodgeExtension_CONJECTURAL X_b p →
- absHodgeWitness X_b p α
+The following declarations consumed the R43 Unit-trivial `HodgeClasses`
+placeholder (in `ah_cm_e7_from_framework_and_extension` axiom signature):
 
-/-- **CLOSURE THEOREM**. Content: every `E_7`-invariant Hodge class on
- an `E_7`-CM fibre `X_b`, at codimensions 3 or 4, is absolute Hodge
- (in the sense of Deligne 1982). This is not HC (no cycle-level
- output); absolute-Hodge is strictly weaker. Uses `absHodgeWitness`
- predicate from `ClassicalResults` (absolute-Hodge pinned semantically
- by Deligne 1982 LNM 900).
+- `ah_cm_e7_from_framework_and_extension` (AXIOM, −1 axiom net)
+- `hyp_AH_CM_E7` (THEOREM consuming above)
 
- No-sorry conjunction-intro via typed-bridge axiom applied to 2
- framework axioms (Deligne 1982 + André 1996) + 1 conjectural-
- extension axiom (non-abelian E_7 Shimura AH). Status gapPartial
- driven by conjectural-extension dependency. Decomposability structure
- parallels R22 hyp:chow-modularity-E7 / R10 hyp:BBT-rigid-reach top-
- level closure precedents; Lean closure follows typed-bridge pattern
- adapted to the quantified `hyp_AH_CM_E7` signature.
- paper source: hyp:AH-CM-E7. -/
-theorem hyp_AH_CM_E7 :
- ∀ (X_b : SmoothProjectiveVariety ℂ), IsE7CMFibre X_b →
- ∀ (p : ℕ), (p = 3 ∨ p = 4) →
- ∀ (α : HodgeClasses X_b p),
- E7InvariantHodgeClasses X_b p α → absHodgeWitness X_b p α :=
- fun X_b h p hp α hα =>
-  ah_cm_e7_from_framework_and_extension X_b h p hp α hα
-   (deligne_1982_LNM_900_absolute_hodge_abelian_framework X_b p)
-   (andre_1996_motivated_motives_abelian_span X_b p)
-   (non_abelian_shimura_E7_absolute_hodge_extension_CONJECTURAL X_b h p hp)
+Both deleted. The paper's AH-CM-E7 claim is now realized REAL via the
+canonical case in R190 (the MT correspondence package bundled in
+E7ShimuraTor carries the substantive absolute-Hodge / cycle-class
+information for the CM abelian source, no Unit-trivial dependency).
+
+Net axiom impact: -1 (`ah_cm_e7_from_framework_and_extension` removed). -/
 
 /-! ### Hypothesis 1 Pattern (ii) closure (back-reference).
 
