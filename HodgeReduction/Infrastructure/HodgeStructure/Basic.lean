@@ -1227,14 +1227,103 @@ theorem HodgeStructureMorphism.range_isSubHodgeStructure
       exact f.map_piece p ⟨_, h_v_in, rfl⟩
   · exact iSup_le (fun _ => inf_le_left)
 
-/- **R166-R181-R182 STATUS**: The R166-deferred theorems are RESOLVED:
-* `IsSubHodgeStructure.inf` (R181)
-* `HodgeStructureMorphism.range_isSubHodgeStructure` (R182)
-The kernel-as-sub-HS analog requires the commutation lemma
-`f ∘ hodgeComponentV p = hodgeComponentV p ∘ f` (using uniqueness in W),
-which is also available via R181 machinery in a future round. -/
+/-- **R183 UNIQUENESS**: For any `(x_p : Fin (n+1) → V)` with each
+`x_p p ∈ piece p`, the q-th Hodge component of `∑ p, x_p p` is `x_p q`.
+
+This is the V-uniqueness of the Hodge decomposition: any decomposition
+of an element into pieces is the canonical hodgeDecomposeEquiv one.
+
+Proof: by linearity, `hodgeComponentV q (∑ p, x_p p) = ∑ p, hodgeComponentV q (x_p p)`.
+For each `p`, `x_p p ∈ piece p` gives by R181 `hodgeComponentV_of_mem_piece`:
+`hodgeComponentV q (x_p p) = if q = p then x_p p else 0`. The sum
+collapses via `Finset.sum_ite_eq'` to `x_p q`. -/
+theorem hodgeComponentV_sum_of_pieces
+    {V : Type*} [AddCommGroup V] [Module ℚ V] {n : ℕ}
+    [PureHodgeStructure V n] (x : Fin (n + 1) → V)
+    (h_mem : ∀ p, x p ∈ piece (V := V) p) (q : Fin (n + 1)) :
+    hodgeComponentV (V := V) q (∑ p, x p) = x q := by
+  -- Distribute hodgeComponentV over the sum (linearity)
+  have h_linear : hodgeComponentV (V := V) q (∑ p, x p) =
+      ∑ p, hodgeComponentV (V := V) q (x p) := by
+    induction Finset.univ (α := Fin (n + 1)) using Finset.induction_on with
+    | empty => simp
+    | insert hs_notin ih =>
+      rename_i a s
+      rw [Finset.sum_insert hs_notin, hodgeComponentV_add, ih,
+          Finset.sum_insert hs_notin]
+  rw [h_linear]
+  -- Reduce: hodgeComponentV q (x p) = if q = p then x p else 0
+  have h_eq : ∀ p, hodgeComponentV (V := V) q (x p) = if q = p then x p else 0 := by
+    intro p
+    rw [hodgeComponentV_of_mem_piece p (h_mem p) q]
+  simp_rw [h_eq]
+  rw [Finset.sum_ite_eq Finset.univ q (fun p => x p)]
+  simp
 
 end PureHodgeStructure
+
+namespace HodgeStructureMorphism
+
+variable {V W X : Type*} [AddCommGroup V] [AddCommGroup W] [AddCommGroup X]
+  [Module ℚ V] [Module ℚ W] [Module ℚ X] {n : ℕ}
+  [PureHodgeStructure V n] [PureHodgeStructure W n] [PureHodgeStructure X n]
+
+/-- **R183 COMMUTATION**: a Hodge morphism `f` commutes with the
+component-extraction operator: `f (hodgeComponentV p v) = hodgeComponentV p (f v)`.
+
+Proof: by `sum_hodgeComponentV` and linearity, `f v = ∑ q, f(hodgeComponentV q v)`,
+with each `f(hodgeComponentV q v) ∈ piece W q` (via `map_piece`). By
+R183 uniqueness (`hodgeComponentV_sum_of_pieces`), the q-component of
+this sum at `p` is `f(hodgeComponentV p v)`. -/
+theorem hodgeComponentV_commute
+    (f : HodgeStructureMorphism V W n) (p : Fin (n + 1)) (v : V) :
+    f.toLinearMap (PureHodgeStructure.hodgeComponentV p v) =
+      PureHodgeStructure.hodgeComponentV p (f.toLinearMap v) := by
+  -- Strategy: build the decomposition f v = ∑ q, f(hodgeComponentV q v) explicitly,
+  -- then apply uniqueness to project at p.
+  have h_pieces : ∀ q,
+      f.toLinearMap (PureHodgeStructure.hodgeComponentV q v) ∈
+        PureHodgeStructure.piece (V := W) q := fun q =>
+    f.map_piece q ⟨_, PureHodgeStructure.hodgeComponentV_mem_piece q v, rfl⟩
+  have h_fv_eq : f.toLinearMap v =
+      ∑ q : Fin (n + 1), f.toLinearMap (PureHodgeStructure.hodgeComponentV q v) := by
+    conv_lhs => rw [← PureHodgeStructure.sum_hodgeComponentV (V := V) (n := n) v]
+    rw [map_sum]
+  -- RHS = hodgeComponentV p (f v) = hodgeComponentV p (∑ q, ...) = (by uniqueness) p-th = f(hodgeComponentV p v)
+  calc f.toLinearMap (PureHodgeStructure.hodgeComponentV p v)
+      = (fun q => f.toLinearMap (PureHodgeStructure.hodgeComponentV q v)) p := rfl
+    _ = PureHodgeStructure.hodgeComponentV p
+          (∑ q : Fin (n + 1), f.toLinearMap (PureHodgeStructure.hodgeComponentV q v)) := by
+        rw [PureHodgeStructure.hodgeComponentV_sum_of_pieces
+          (fun q => f.toLinearMap (PureHodgeStructure.hodgeComponentV q v)) h_pieces p]
+    _ = PureHodgeStructure.hodgeComponentV p (f.toLinearMap v) := by rw [← h_fv_eq]
+
+/-- **R183 KERNEL**: the **kernel of a Hodge morphism is a sub-Hodge
+structure** of the source. Companion to R182 `range_isSubHodgeStructure`.
+
+Proof: for `v ∈ ker f`, decompose `v = ∑ p, hodgeComponentV p v` via R181.
+Each `hodgeComponentV p v ∈ piece V p`. By R183 commutation,
+`f (hodgeComponentV p v) = hodgeComponentV p (f v) = hodgeComponentV p 0 = 0`,
+so `hodgeComponentV p v ∈ ker f`. Combined: each summand is in
+`(ker f) ⊓ piece p`, hence `v ∈ ⨆ p, (ker f) ⊓ piece p`. -/
+theorem ker_isSubHodgeStructure
+    (f : HodgeStructureMorphism V W n) :
+    PureHodgeStructure.IsSubHodgeStructure (V := V) (n := n)
+      (LinearMap.ker f.toLinearMap) := by
+  unfold PureHodgeStructure.IsSubHodgeStructure
+  apply le_antisymm
+  · intro v hv
+    rw [LinearMap.mem_ker] at hv
+    rw [← PureHodgeStructure.sum_hodgeComponentV (V := V) (n := n) v]
+    refine Submodule.sum_mem _ (fun p _ => ?_)
+    refine Submodule.mem_iSup_of_mem p ?_
+    refine Submodule.mem_inf.mpr ⟨?_, PureHodgeStructure.hodgeComponentV_mem_piece p v⟩
+    -- Show hodgeComponentV p v ∈ ker f
+    rw [LinearMap.mem_ker, f.hodgeComponentV_commute p v, hv,
+        PureHodgeStructure.hodgeComponentV_zero]
+  · exact iSup_le (fun _ => inf_le_left)
+
+end HodgeStructureMorphism
 
 /-! ## Pure Hodge structures via explicit pieces with substantive
 dimensional, disjointness and span axioms
