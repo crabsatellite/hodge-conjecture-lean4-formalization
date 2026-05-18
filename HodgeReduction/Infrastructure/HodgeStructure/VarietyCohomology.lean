@@ -396,6 +396,45 @@ theorem varietyHCAt_of_correspondence
   obtain ⟨φ, ψ, h_square, h_surj⟩ := h_pkg
   exact varietyHCAt_transfer p φ ψ h_square h_surj h_HC_src
 
+/-- **R185**: The submodule of **algebraic classes** is automatically a
+sub-Hodge structure of `H^{2p}(X, ℚ)`, since it is contained in a single
+Hodge piece (the `(p, p)` piece = `hodgeClassesAtDegree X p`).
+
+This is a structural corollary: `algClasses p ≤ hodgeClassesAtDegree X p =
+piece ⟨p, _⟩`. Any submodule contained in a single piece is automatically
+a sub-Hodge structure (since `⨆ q, M ⊓ piece q ≥ M ⊓ piece p = M`).
+
+Significance: under the Hodge Conjecture (`VarietyHCAt`), `algClasses p =
+hodgeClassesAtDegree X p`. Without HC, `algClasses p` is generally a
+strict sub-HS of `hodgeClassesAtDegree X p`. This theorem confirms the
+sub-HS structure unconditionally. -/
+theorem AlgebraicClassesData.algClasses_isSubHodgeStructure
+    {X : VarietyCohomologyData} (A : AlgebraicClassesData X) (p : ℕ) :
+    letI _ := X.addCommGroup (2 * p)
+    letI _ := X.module (2 * p)
+    letI _ := X.hodgeStructure (2 * p)
+    PureHodgeStructure.IsSubHodgeStructure (V := X.H (2 * p)) (n := 2 * p)
+      (A.algClasses p) := by
+  letI _ := X.addCommGroup (2 * p)
+  letI _ := X.module (2 * p)
+  letI _ := X.hodgeStructure (2 * p)
+  unfold PureHodgeStructure.IsSubHodgeStructure
+  apply le_antisymm
+  · -- algClasses p ≤ ⨆ q, algClasses p ⊓ piece q.
+    -- Use that algClasses p ≤ hodgeClassesAtDegree p = piece ⟨p, _⟩.
+    intro α hα
+    refine Submodule.mem_iSup_of_mem ⟨p, by omega⟩ ?_
+    refine Submodule.mem_inf.mpr ⟨hα, ?_⟩
+    -- α ∈ algClasses p ≤ hodgeClassesAtDegree p = piece ⟨p, _⟩
+    have h_in_hodge : α ∈ X.hodgeClassesAtDegree p :=
+      A.algClasses_le_hodgeClasses p hα
+    -- Unfold hodgeClassesAtDegree
+    unfold VarietyCohomologyData.hodgeClassesAtDegree at h_in_hodge
+    -- hodgeClasses = piece ⟨p, _⟩
+    rw [PureHodgeStructure.hodgeClasses_eq_piece] at h_in_hodge
+    exact h_in_hodge
+  · exact iSup_le (fun _ => inf_le_left)
+
 /-- **R178**: The **identity Mumford-Tate correspondence** package: any
 variety has an MT correspondence package to itself at every codimension.
 This is the sanity-check inhabitant showing `MTCorrespondencePackageAt`
