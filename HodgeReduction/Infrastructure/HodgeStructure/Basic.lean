@@ -1168,6 +1168,43 @@ theorem hodgeComponentV_mem_of_isSubHodgeStructure
     rw [hodgeComponentV_add]
     exact Submodule.add_mem _ hu hu'
 
+/-- **R186**: The **sum (join) of two sub-Hodge structures is a sub-Hodge
+structure**, completing the lattice closure of `IsSubHodgeStructure`
+together with R181 `inf`.
+
+Proof: for `x ∈ W₁ ⊔ W₂`, write `x = w₁ + w₂` with `w₁ ∈ W₁, w₂ ∈ W₂`.
+Each `hodgeComponentV p wᵢ ∈ Wᵢ` by R181 extraction. By linearity,
+`hodgeComponentV p x = hodgeComponentV p w₁ + hodgeComponentV p w₂
+∈ W₁ + W₂ = W₁ ⊔ W₂`. Also `∈ piece p`. So `hodgeComponentV p x ∈
+(W₁ ⊔ W₂) ⊓ piece p`. Summing reconstructs `x` via R181
+`sum_hodgeComponentV`. -/
+theorem IsSubHodgeStructure.sup
+    {V : Type*} [AddCommGroup V] [Module ℚ V] {n : ℕ}
+    [PureHodgeStructure V n] {W₁ W₂ : Submodule ℚ V}
+    (h₁ : IsSubHodgeStructure (V := V) (n := n) W₁)
+    (h₂ : IsSubHodgeStructure (V := V) (n := n) W₂) :
+    IsSubHodgeStructure (V := V) (n := n) (W₁ ⊔ W₂) := by
+  unfold IsSubHodgeStructure
+  apply le_antisymm
+  · intro x hx
+    -- x ∈ W₁ ⊔ W₂; express x = w₁ + w₂ via Submodule.mem_sup
+    rw [Submodule.mem_sup] at hx
+    obtain ⟨w₁, hw₁, w₂, hw₂, hx_eq⟩ := hx
+    -- Reconstruct x = ∑ p, hodgeComponentV p x via R181
+    rw [← hx_eq, ← sum_hodgeComponentV (V := V) (n := n) (w₁ + w₂)]
+    refine Submodule.sum_mem _ (fun p _ => ?_)
+    refine Submodule.mem_iSup_of_mem p ?_
+    refine Submodule.mem_inf.mpr ⟨?_, ?_⟩
+    · -- hodgeComponentV p (w₁ + w₂) ∈ W₁ ⊔ W₂
+      rw [hodgeComponentV_add]
+      refine Submodule.add_mem _ ?_ ?_
+      · exact Submodule.mem_sup_left
+          (hodgeComponentV_mem_of_isSubHodgeStructure h₁ hw₁ p)
+      · exact Submodule.mem_sup_right
+          (hodgeComponentV_mem_of_isSubHodgeStructure h₂ hw₂ p)
+    · exact hodgeComponentV_mem_piece p (w₁ + w₂)
+  · exact iSup_le (fun _ => inf_le_left)
+
 /-- **R181 R166-DEFERRED RESOLVED**: The intersection of two sub-Hodge
 structures is itself a sub-Hodge structure (Deligne 1971 (2.1.7)).
 
