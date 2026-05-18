@@ -1193,45 +1193,12 @@ theorem ah_to_hc_extension_for_cm_abelian_CONJECTURAL :
    -- Use the SPV field ah_to_hc_witness directly
    exact A.ah_to_hc_witness hA.1 (fun k => hA.2 k)
 
-/-- Typed bridge axiom: framework #1 (Deligne 1982 abelian AH, REUSED) +
- framework #2 (André 1996 motivated abelian span, REUSED) +
- conjectural-extension (AH → HC for CM abelian) → HodgeConjecture A.
- The framework atoms are applied at all codims p ≥ 0 (since
- HodgeConjecture quantifies over all codims internally).
- paper source: hyp:HC-CM-Ab (combination). -/
--- R134: was `axiom`; now a theorem (HodgeConjecture unfolds via Unit-trivial; R43).
-theorem hc_cm_ab_from_framework_and_extension :
- ∀ (A : SmoothProjectiveVariety ℂ), IsCMAbelianVariety A →
- (∀ p : ℕ, IsDeligne1982AbsoluteHodgeAbelianFramework A p) →
- (∀ p : ℕ, IsAndre1996MotivatedAbelianSpan A p) →
- IsAHtoHCExtensionForCMAbelian_CONJECTURAL A →
- HodgeConjecture A := by
-   intro A _ _ _ _ p α
-   refine ⟨((): ChowGroupRat A p), ?_⟩
-   show PUnit.unit = α
-   exact PUnit.ext PUnit.unit α |>.symm ▸ rfl
-
-/-- **CLOSURE THEOREM** for `\ref{hyp:HC-CM-Ab}`. Content: for every CM
- abelian variety `A` over `ℂ`, the Hodge conjecture holds (cycle class
- map is surjective at all codimensions). Refactored from `axiom` to
- `theorem` via typed-bridge application of REUSED framework atoms
- (Deligne 1982 + André 1996) + conjectural-extension (AH → HC
- for CM abelian).
-
- No-sorry conjunction-intro adapted to quantified signature. Status
- gapPartial driven by conjectural-extension dependency (the AH → HC
- gap is exactly Mumford 1969 root content). Decomposability structure
- parallels `\ref{hyp:chow-modularity-E7}` / `\ref{hyp:AH-CM-E7}` top-
- level closures; Lean closure follows typed-bridge pattern adapted to
- the quantified `hyp_HC_CM_Ab` signature.
- paper source: hyp:HC-CM-Ab. -/
-theorem hyp_HC_CM_Ab :
- ∀ (A : SmoothProjectiveVariety ℂ), IsCMAbelianVariety A → HodgeConjecture A :=
- fun A hA =>
-  hc_cm_ab_from_framework_and_extension A hA
-   (fun p => deligne_1982_LNM_900_absolute_hodge_abelian_framework A p)
-   (fun p => andre_1996_motivated_motives_abelian_span A p)
-   (ah_to_hc_extension_for_cm_abelian_CONJECTURAL A hA)
+/- **R192 DELETED**: `hc_cm_ab_from_framework_and_extension` and
+`hyp_HC_CM_Ab`. Both consumed the R43 Unit-trivial placeholder
+(`HodgeConjecture` unfolds via Unit). Superseded by the REAL chain
+`hyp_HC_CM_Ab_real` (R174a, axiom; bundled into the canonical's
+mtCorrespondencePackage in R190) producing the substantive
+`HodgeConjectureReal A` instead of the Unit-trivial `HodgeConjecture A`. -/
 
 /-! ### hyp_HC_CM_Ab dim ≤ 4 alternate closure route via
 Moonen-Zarhin 1999 + Markman 2025 Weil classes

@@ -376,70 +376,13 @@ theorem thm_E8_vacuous:
  -- closed via SV1_vacuity_E8 axiom (R-attack-#39)
  exact SV1_vacuity_E8
 
-/-- Paper-citation axiom for `E6_V27_vacuity` (used below).
- paper source: master tex `\ref{rem:E6-V27-vacuity}` (stated as
- theorem); paper §6 (alpha_s-string parity argument + Grothendieck
- algebraicity of Chern/Lefschetz classes). Placed in MainTheorem.lean
- because it depends on `E6InvariantHodgeClasses` (OpenHypotheses
- predicate).
-
- **R134**: was `axiom`; now a theorem. The conclusion
- `∃ Z, cycleClassMap X p Z = α` is trivially provable because both
- `HodgeClasses X p` and `ChowGroupRat X p` are `Unit` (R43 placeholder
- in `Types.lean`), so any Z and α are equal to `()`.  -/
-theorem e6_v27_vacuity_paper_axiom:
- ∀ (X: SmoothProjectiveVariety ℂ),
- hasSimpleFactor (MumfordTateGroupDerived X 3) E6_neg14 →
- ∀ (p: ℕ),
- ∀ (α: HodgeClasses X p),
- E6InvariantHodgeClasses X p α →
- ∃ Z: ChowGroupRat X p, cycleClassMap X p Z = α := by
-   intro X _ p α _
-   -- HodgeClasses X p = Unit (R43 placeholder), so α must be ().
-   -- ChowGroupRat X p = Unit, so Z = (). cycleClassMap def returns ().
-   refine ⟨((): ChowGroupRat X p), ?_⟩
-   show ((): HodgeClasses X p) = α
-   -- Both sides have type HodgeClasses X p = Unit; all values are ().
-   show PUnit.unit = α
-   exact PUnit.ext PUnit.unit α |>.symm ▸ rfl
-
-/-- **`E_6` / `V_{27}` weight-parity vacuity**, paper
- `\label{rem:E6-V27-vacuity}`, stated as a theorem.
-
-Unconditional. For every smooth projective variety `X` whose
-Mumford--Tate group has an `E_{6(-14)}` simple factor acting through
-`V_{27}`, the `E_6`-invariant Hodge classes on `X` arise only from the
-trivial `E_6`-representation (Chern / Lefschetz classes of Hodge bundles)
-and are therefore algebraic by Grothendieck's theorem. Consequently
-input `(H-bundle)(b)` is vacuously satisfied on the `E_6`-type branch.
-
-The precise content: every non-trivial irreducible `E_6`-representation
-contains an `α_s`-string of length >= 1, forcing
-mixed `U(1)`-parity in the `K`-type decomposition
-`V_{27} = V_1(+4) ⊕ V_{10}(-2) ⊕ V_{16}(+1)`. Mixed parity prevents the
-representation from fitting into a single pure `H^n(X, ℚ)`.
-
-The paper's argument is weight-agnostic: the parity
-obstruction argues about any single pure `H^n(X, ℚ)`, not only
-`H^6(X, ℚ)`. The codim-3 specialisation is the instance that feeds
-into the Main-Theorem scope clause (ii) (`MT(H^3)^der` having an
-`E_6` simple factor), but the vacuity theorem itself holds at every
-Hodge degree `p`.
-
-Conclusion restricted to `E_6`-invariant Hodge classes (per paper:
-"only surviving `E_6`-invariant Hodge classes are Chern/Lefschetz, which
-are algebraic"). A claim of surjectivity of the full cycle-class map
-would overclaim — the paper argues only about the `E_6`-invariant part. -/
-theorem E6_V27_vacuity:
- ∀ (X: SmoothProjectiveVariety ℂ),
- hasSimpleFactor (MumfordTateGroupDerived X 3) E6_neg14 →
- ∀ (p: ℕ),
- ∀ (α: HodgeClasses X p),
- E6InvariantHodgeClasses X p α →
- ∃ Z: ChowGroupRat X p, cycleClassMap X p Z = α:= by
- -- closed via e6_v27_vacuity_paper_axiom (R-attack-#40)
- -- alpha_s-string parity + Grothendieck Chern algebraicity per paper §6
- exact e6_v27_vacuity_paper_axiom
+/- **R192 DELETED**: `e6_v27_vacuity_paper_axiom` and `E6_V27_vacuity`.
+Both used the R43 Unit-trivial placeholder for `HodgeClasses`/`ChowGroupRat`
+in their proofs (forbidden by user mandate). The paper's E_6/V_27 vacuity
+argument (rem:E6-V27-vacuity) would need REAL formalization via the
+PureHodgeStructure infrastructure (R163+) to be re-stated; this is a
+multi-month formalization deferred until needed by a downstream
+real-HC theorem. -/
 
 /-- **CY_3 non-existence with `MT = E_{7(-25)}`**, paper
  `\label{thm:cy3-e7-nonexistence}`.
@@ -671,88 +614,13 @@ is itself unconditional within the stated Shimura scope". The theorem is
 therefore unconditional; the `hyp:ChernWeil-bridge-E7` / `hyp:AH-CM-E7`
 inputs enter the downstream corollary `cor:hc-conditional-nonrigid-e7`, not this theorem. -/
 
-/-- Paper-citation axiom for `cor_E7_shimura_closed`. paper source:
- master tex `\ref{cor:E7_shimura_closed}` corollary of
- `\ref{thm:E7_chernweil}` (under Hypothesis ChernWeil-bridge-E7);
- reduction from `hyp_ChernWeil_bridge_E7` 3-clause structure + Grothendieck
- algebraicity of Chern classes of Mumford canonical extension `V_56^can`
- in every codimension. R-attack-#41 sorry-elimination citation axiom.
-
- R-#67 ANTECEDENT FIX: the paper states cor:E7_shimura_closed as
- "Under Hypothesis~\ref{hyp:ChernWeil-bridge-E7}, ...". The
- pre-R-#67 axiom signature silently dropped this antecedent,
- matching the R-#48 Abundance NEF-dropping pattern caught in
- R-#61 Phase 4 audit. Per `feedback_gap_ledger_in_lean4.md`
- broken-link discipline + R-#63 MAJOR finding, the paper's
- conditionality is surfaced as an explicit antecedent of type
- `∀ S, ChernWeilBridge_E7_i S ∧ ChernWeilBridge_E7_ii S ∧
- ChernWeilBridge_E7_iii S` (matching the type of theorem
- `hyp_ChernWeil_bridge_E7` in `OpenHypotheses.lean`). The
- conditional Lean closure is preserved: `cor_E7_shimura_closed`
- theorem body discharges the antecedent by applying
- `hyp_ChernWeil_bridge_E7` (itself a Lean theorem derived from
- the 4 PAPER-LABELLED-CONJECTURAL classical-lit axioms +
- Schwarz published).
-
- **R134**: was `axiom`; now a theorem (R43 placeholder argument:
- `HodgeClasses` and `ChowGroupRat` are both `Unit`). -/
-theorem cor_E7_shimura_closed_paper_axiom:
- (∀ (S : E7ShimuraTor),
-   ChernWeilBridge_E7_i S ∧
-   ChernWeilBridge_E7_ii S ∧
-   ChernWeilBridge_E7_iii S) →
- ∀ (S: E7ShimuraTor),
- ∀ (p: ℕ),
- ∀ (α: HodgeClasses (S.underlying) p),
- E7InvariantHodgeClasses (S.underlying) p α →
- ∃ Z: ChowGroupRat (S.underlying) p,
- cycleClassMap (S.underlying) p Z = α := by
-   intro _ S p α _
-   refine ⟨((): ChowGroupRat S.underlying p), ?_⟩
-   show ((): HodgeClasses S.underlying p) = α
-   show PUnit.unit = α
-   exact PUnit.ext PUnit.unit α |>.symm ▸ rfl
-
-/-- **`E_7` Shimura closure (HC for `E_7`-invariant Hodge classes on
- EVII Shimura varieties)**, paper `\label{cor:E7_shimura_closed}`.
-
-Conditional on `hyp:ChernWeil-bridge-E7` (the corollary is stated
-"Under Hypothesis~\ref{hyp:ChernWeil-bridge-E7}").
-
-For `S_Γ = Γ \ EVII` a locally symmetric variety for `E_{7(-25)}` with
-smooth toroidal compactification `S_Γ^tor`, and `V_{56}^can` the
-Mumford canonical extension to `S_Γ^tor` of the automorphic bundle
-attached to `V_{ω_7}`: every `E_7`-invariant rational Hodge class on
-`S_Γ^tor` in every codimension is algebraic.
-
-Name-vs-content clarification. The Lean statement matches the paper's
-corollary `cor:E7_shimura_closed`, whose faithful reading
-carries NO codimension restriction: the Hodge Conjecture holds for
-ALL `E_7`-invariant Hodge classes on EVII Shimura varieties, without
-any input from HC/Ab. The Freudenthal quartic lives in codim 4
-(`H^8`), but `E_7`-invariant classes decompose as ℚ-polynomials in
-Chern classes of the Mumford canonical extension `V_{56}^can`
-(invariant theory), and Chern classes are algebraic in every
-codimension, so the corollary extends to every `p`.
-
-This statement is distinct from the full paper theorem
-`thm:E7_chernweil` whose conclusion is the
-more restrictive "every `E_7`-invariant Hodge class *generated by the
-Freudenthal quartic* is a ℚ-polynomial in Chern classes of
-`V_{56}^can`". The Lean name is therefore `cor_E7_shimura_closed`,
-not `thm_E7_chernweil`, to keep the name and the statement consistent
-with the paper. -/
-theorem cor_E7_shimura_closed:
- ∀ (S: E7ShimuraTor),
- ∀ (p: ℕ),
- ∀ (α: HodgeClasses (S.underlying) p),
- E7InvariantHodgeClasses (S.underlying) p α →
- ∃ Z: ChowGroupRat (S.underlying) p,
- cycleClassMap (S.underlying) p Z = α:= by
- -- closed via cor_E7_shimura_closed_paper_axiom (R-attack-#41;
- -- R-#67 antecedent fix surfaces hyp_ChernWeil_bridge_E7 conditionality)
- -- reduces to hyp_ChernWeil_bridge_E7 + Grothendieck Chern algebraicity
- exact cor_E7_shimura_closed_paper_axiom hyp_ChernWeil_bridge_E7
+/- **R192 DELETED**: `cor_E7_shimura_closed_paper_axiom` and
+`cor_E7_shimura_closed`. Both used the R43 Unit-trivial placeholder
+in their proofs (forbidden). The paper's E_7 Shimura closure
+(cor:E7_shimura_closed) is now realized via the REAL chain through
+`hodgeConjectureReal_canonical` (R190), which provides HC for the
+canonical AMRT compactification via the bundled E7ShimuraTor structure
+without Unit-trivial tricks. -/
 
 /-- **Carrier `structure` for families** `f: X -> B` described in
  `thm:subcase3b-vacuous`: a smooth projective family whose weight-3 VHS
