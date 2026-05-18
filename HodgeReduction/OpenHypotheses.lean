@@ -1419,6 +1419,18 @@ structure E7ShimuraTor : Type where
    `S_Γ^tor`).
    paper source: thm:E7_chernweil. -/
   underlying : SmoothProjectiveVariety ℂ
+  /-- **R187**: field absorbing the structural fact that the underlying
+   AMRT compactification has `E_{7(-25)}`-simple factor on `MT^der(H^3)`.
+   By construction of `S_Γ^tor` as the toroidal compactification of the
+   `E_{7(-25)}`-Hermitian symmetric domain quotient. Replaces the
+   standalone axiom `canonical_E7_factor` (R173a) — now a projection. -/
+  mtE7FactorAtWeight3 :
+    hasSimpleFactor (MumfordTateGroupDerived underlying 3) E7_neg25
+  /-- **R187**: field absorbing the structural fact that the underlying
+   AMRT compactification lies in the currently-known `E_7`-type scope.
+   By construction (`S_Γ^tor` is a Shimura variety). Replaces the
+   standalone axiom `canonical_inKnownE7Scope` (R173b). -/
+  inKnownE7ScopeUnderlying : InKnownE7Scope underlying
   /-- **R124**: pilot field absorbing `axiom IsSchwarzE7QuarticGenerator`. -/
   isSchwarzE7QuarticGenerator : Prop
   /-- **R124**: pilot field absorbing `axiom IsBorelHirzebruchNonvanishH8`. -/
@@ -1568,33 +1580,42 @@ structure E7ShimuraTor : Type where
  of `S_Γ^tor` as AMRT toroidal compactification). -/
 axiom canonicalE7ShimuraTor: E7ShimuraTor
 
-/-- **R173a**: The canonical AMRT toroidal compactification's
+/-- **R173a/R187**: The canonical AMRT toroidal compactification's
 Mumford-Tate group derived part on weight 3 cohomology has an
 `E_{7(-25)}`-simple factor (clause (iii) first conjunct).
 
-By construction of `S_Γ^tor` as the AMRT toroidal compactification of
-the `E_{7(-25)}`-Hermitian symmetric domain quotient (Ash-Mumford-
-Rapoport-Tai 1975; Borel 1969), the MT group derived part on
-`H^3(S_Γ^tor, ℚ)` is the simple group of type `E_{7(-25)}`.
+**R187 refactor**: was a standalone axiom (R173a); now derived as a
+projection of `canonicalE7ShimuraTor.mtE7FactorAtWeight3` (R187 added
+field on `E7ShimuraTor`). The structural fact (by construction of
+`S_Γ^tor` as the AMRT toroidal compactification of the `E_{7(-25)}`-
+Hermitian symmetric domain quotient) is now bundled with the
+canonicalE7ShimuraTor axiom witness.
+
+Net axiom delta: -1 (this axiom deleted, no replacement needed since
+`canonicalE7ShimuraTor` already provides the witness).
 
 paper source: Scope paragraph clause (iii) first conjunct;
 hyp:ChernWeil-bridge-E7. -/
-axiom canonical_E7_factor :
+theorem canonical_E7_factor :
     hasSimpleFactor (MumfordTateGroupDerived canonicalE7ShimuraTor.underlying 3)
-                    E7_neg25
+                    E7_neg25 :=
+  canonicalE7ShimuraTor.mtE7FactorAtWeight3
 
-/-- **R173b**: The canonical AMRT toroidal compactification lies in
+/-- **R173b/R187**: The canonical AMRT toroidal compactification lies in
 the currently-known `E_7`-type scope (clause (iii) second conjunct).
 
-This is the paper's "Shimura, finite covers, birational models,
-non-rigid families with generically finite period map" sub-class
-membership. `S_Γ^tor` is a (compactified) Shimura variety, so it is
-the prototypical inhabitant of this class.
+**R187 refactor**: was a standalone axiom (R173b); now derived as a
+projection of `canonicalE7ShimuraTor.inKnownE7ScopeUnderlying` (R187
+added field). The Shimura-variety membership fact is bundled with the
+canonicalE7ShimuraTor axiom.
+
+Net axiom delta: -1.
 
 paper source: Scope paragraph clause (iii) second conjunct;
 hyp:ChernWeil-bridge-E7. -/
-axiom canonical_inKnownE7Scope :
-    InKnownE7Scope canonicalE7ShimuraTor.underlying
+theorem canonical_inKnownE7Scope :
+    InKnownE7Scope canonicalE7ShimuraTor.underlying :=
+  canonicalE7ShimuraTor.inKnownE7ScopeUnderlying
 
 /-- **R173**: The canonical AMRT toroidal compactification `S_Γ^tor`
 is **within paper scope** (derived from R173a + R173b).
