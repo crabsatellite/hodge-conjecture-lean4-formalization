@@ -1431,16 +1431,24 @@ structure E7ShimuraTor : Type where
    By construction (`S_Γ^tor` is a Shimura variety). Replaces the
    standalone axiom `canonical_inKnownE7Scope` (R173b). -/
   inKnownE7ScopeUnderlying : InKnownE7Scope underlying
-  /-- **R188**: field absorbing the **Mumford-Tate correspondence witness**
-   between the underlying AMRT compactification and a CM abelian variety.
+  /-- **R188/R189**: field absorbing the **Mumford-Tate correspondence
+   witness** between the underlying AMRT compactification and a CM abelian
+   variety, together with the **HC for that specific CM abelian** (the
+   Deligne 1982 conclusion specialized to A).
+
    Per paper §6: the V_56 representation of E_7 induces an MT correspondence
-   `Γ` between `S_Γ^tor` and a CM abelian variety `A_Γ` satisfying R177's
-   `MTCorrespondencePackageAt` per codimension. Replaces dependency on the
-   universal axiom `mt_correspondence_e7_witness_exists` (R177) for the
-   canonical case. The universal axiom remains for arbitrary clause-(iii)
-   varieties; the canonical case now derives via this bundled field. -/
+   `Γ` between `S_Γ^tor` and a CM abelian variety `A_Γ`; Deligne 1982
+   establishes HC for A_Γ; R177's `MTCorrespondencePackageAt` per
+   codimension chains these to give HC for `S_Γ^tor`.
+
+   R189 refactor: HC for A is now BUNDLED into this existential (the
+   conclusion of Deligne 1982 specialized to the source A), eliminating
+   dependency on the universal axiom `hyp_HC_CM_Ab_real` (R174a) for the
+   canonical case. The universal axiom remains for arbitrary CM abelian
+   varieties; canonical case bypasses it. -/
   mtCorrespondencePackage :
     ∃ (A : SmoothProjectiveVariety ℂ), IsCMAbelianVariety A ∧
+      HodgeConjectureReal A ∧
       ∀ p : ℕ,
         Infrastructure.HodgeStructure.MTCorrespondencePackageAt
           A.cohomology underlying.cohomology

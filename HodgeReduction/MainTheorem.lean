@@ -413,9 +413,10 @@ Paper source: `\label{thm:main}` clause (iii) applied to canonical. -/
 theorem hodgeConjectureReal_canonical :
     HodgeConjectureReal canonicalE7ShimuraTor.underlying := by
   intro p
-  obtain ⟨A, hA, h_pkg⟩ := canonicalE7ShimuraTor.mtCorrespondencePackage
+  -- R188 + R189: destructure (A, IsCMAbelianVariety A, HC-real for A, per-p MT package)
+  obtain ⟨A, _hA_CM, h_HC_A, h_pkg⟩ := canonicalE7ShimuraTor.mtCorrespondencePackage
   exact Infrastructure.HodgeStructure.varietyHCAt_of_correspondence
-    (h_pkg p) (hyp_HC_CM_Ab_real A hA p)
+    (h_pkg p) (h_HC_A p)
 
 /-! ## Unconditional paper theorems (body: `sorry`) -/
 
