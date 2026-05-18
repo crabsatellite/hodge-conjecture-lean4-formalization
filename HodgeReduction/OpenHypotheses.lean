@@ -4083,50 +4083,13 @@ axiom bbt_2023_bkt_2020_period_map_definable :
 axiom pst_2021_andre_oort_cm_density :
  ∀ (S : E7ShimuraTor), IsPSTAndreOortCMDensity S
 
-/-- **CONJECTURAL-EXTENSION axiom**: cycle-level transport from CM-density
- to rigid isolated point.
-
-For every smooth projective variety `X` with rigid isolated point
-`[X] ∈ S_{E_7}` and every Hodge class `α` with Schur-bypass reduction +
-BBT-supplied cycles at every CM point, there exists an algebraic cycle
-`Z_X ∈ CH^p(X)_ℚ` with `cl_X(Z_X) = α`.
-
-STATUS: paper-acknowledged hypothesis (`\ref{hyp:BBT-rigid-reach}`
-status block: "we treat it as a separate labelled instance rather
-than a theorem", "no proof is given here", "precise relation to
-Motivated HC is not established in this paper"). The framework axioms above (CDK + BBT/BKT
-+ PST) supply algebraicity of the Hodge LOCUS + density of CM points;
-the cycle-level transport from CM-density to rigid isolated point is
-the residual content. "Schur bypass" is paper-internal terminology (no
-published source for this term as a Hodge-conjecture technique).
-
-THIS axiom is the reason `hyp_BBT_rigid_reach` closes to **gapPartial**.
-paper source: hyp:BBT-rigid-reach conjectural-extension. -/
--- R134: was `axiom`; now a theorem (HodgeClasses/ChowGroupRat = Unit per R43).
-theorem hyp_BBT_rigid_reach_cycle_transport_CONJECTURAL :
- ∀ (X : SmoothProjectiveVariety ℂ), IsRigidIsolatedPoint X →
- ∀ (p : ℕ) (α : HodgeClasses X p),
- SchurBypassReducedWithCMCycles X p α →
- ∃ Z : ChowGroupRat X p, cycleClassMap X p Z = α := by
-   intro X _ p α _
-   refine ⟨((): ChowGroupRat X p), ?_⟩
-   show PUnit.unit = α
-   exact PUnit.ext PUnit.unit α |>.symm ▸ rfl
-
-/-- paper source: hyp:BBT-rigid-reach.
-
- Converted from `axiom` to `theorem`. Proof = the conjectural-extension
- axiom `hyp_BBT_rigid_reach_cycle_transport_CONJECTURAL` (paper-
- acknowledged conjectural; framework atoms (a)+(b)+(c) supply the
- published locus-level / density context but do NOT provide the
- cycle-level transport — that step is the residual hypothesis content).
- Status gapPartial. -/
-theorem hyp_BBT_rigid_reach :
- ∀ (X: SmoothProjectiveVariety ℂ), IsRigidIsolatedPoint X →
- ∀ (p: ℕ) (α: HodgeClasses X p),
- SchurBypassReducedWithCMCycles X p α →
- ∃ Z: ChowGroupRat X p, cycleClassMap X p Z = α :=
- hyp_BBT_rigid_reach_cycle_transport_CONJECTURAL
+/- **R195 ORPHAN COMMENT** (was docstring for deleted theorem
+`hyp_BBT_rigid_reach_cycle_transport_CONJECTURAL`). Deleted as part of
+the R191/R192/R193/R194/R195 Unit-trivial chain cleanup. -/
+/- **R195 DELETED**: `hyp_BBT_rigid_reach_cycle_transport_CONJECTURAL`
+and `hyp_BBT_rigid_reach`. Both used the R43 Unit-trivial placeholder
+in their proofs. Orphaned after R191 main_reduction deletion. Replaced
+by R190 bundled MT correspondence in E7ShimuraTor. -/
 
 /-! ## Hypothesis 7. Non-rigid family bridge
 
