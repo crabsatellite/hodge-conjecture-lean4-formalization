@@ -411,10 +411,13 @@ both sides honest ℚ-submodules. NO Unit trick.
 
 Paper source: `\label{thm:main}` clause (iii) applied to canonical. -/
 theorem hodgeConjectureReal_canonical :
-    HodgeConjectureReal canonicalE7ShimuraTor.underlying := by
+    Infrastructure.HodgeStructure.VarietyHC
+      canonicalE7ShimuraTor.cohomologyOfUnderlying
+      canonicalE7ShimuraTor.algClassesOfUnderlying := by
   intro p
-  -- R188 + R189: destructure (A, IsCMAbelianVariety A, HC-real for A, per-p MT package)
-  obtain ⟨A, _hA_CM, h_HC_A, h_pkg⟩ := canonicalE7ShimuraTor.mtCorrespondencePackage
+  -- R188+R189+R190: destructure (A, A_cohData, A_algData, IsCMAb, HC-real for A, per-p MT package)
+  obtain ⟨_A, _A_cohData, _A_algData, _hA_CM, h_HC_A, h_pkg⟩ :=
+    canonicalE7ShimuraTor.mtCorrespondencePackage
   exact Infrastructure.HodgeStructure.varietyHCAt_of_correspondence
     (h_pkg p) (h_HC_A p)
 
