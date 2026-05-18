@@ -431,90 +431,13 @@ theorem hyp_ChernWeil_bridge_E7_i_closed :
  ⟨schwarz_1978_E7_quartic_generator S,
  borel_hirzebruch_1958_freudenthal_nonvanish_H8_PAPER_LABELLED_CONJECTURAL S⟩
 
-/-- **`hyp:nonrigid-family-bridge` BaseDim27 accessor — CLOSED** via
- Helgason 1978 + Voisin 2002.
-
- Closure structure:
- - `BaseDim27 F` is a concrete `def` unfolding to `F.base.dim = 27`
- (a natural-number equality);
- - `helgason_1978_voisin_2002_basedim27` (classical-lit axiom in
- `OpenHypotheses.lean`) directly asserts `F.base.dim = 27`;
- - this theorem rebinds the assertion to the `BaseDim27 F` name via
- definitional equality — `sorry`-free.
-
- paper source: hyp:nonrigid-family-bridge BaseDim27. -/
-theorem hyp_nonrigid_family_basedim27_closed :
- ∀ {X : SmoothProjectiveVariety ℂ},
- hasSimpleFactor (MumfordTateGroupDerived X 3) E7_neg25 →
- IsFibrewiseNonRigid X →
- ∀ (F : NonRigidFamily X),
- BaseDim27 F := fun h1 h2 F => helgason_1978_voisin_2002_basedim27 h1 h2 F
-
-/-- **`hyp:nonrigid-family-bridge` PeriodMapDominant accessor —
- STANDALONE PARTIAL CLOSURE**.
-
- Closure structure:
- - `PeriodMapDominant F` is an opaque `axiom ... → Prop`.
- - `schmid_1973_period_map_dominant_PAPER_LABELLED_CONJECTURAL`
- asserts the predicate.
- - This theorem is a defeq rebinding (`sorry`-free).
-
- Status: paper-labelled-conjectural. Schmid 1973 analyses asymptotic
- behavior of an already-given period map but does NOT establish
- dominance from non-rigidity hypothesis; paper labels this as
- LABELLED INPUT (`\\ref{hyp:nonrigid-family-bridge}`). The
- standalone closure theorem here preserves the Lean chain structure;
- the status reflects the paper-labelled-conjectural content.
-
- paper source: hyp:nonrigid-family-bridge PeriodMapDominant. -/
-theorem hyp_nonrigid_family_periodmapdominant_closed :
- ∀ {X : SmoothProjectiveVariety ℂ},
- hasSimpleFactor (MumfordTateGroupDerived X 3) E7_neg25 →
- IsFibrewiseNonRigid X →
- ∀ (F : NonRigidFamily X),
- PeriodMapDominant F := fun h1 h2 F =>
- schmid_1973_period_map_dominant_PAPER_LABELLED_CONJECTURAL h1 h2 F
-
-/-- **`hyp:nonrigid-family-bridge` PeriodMapGenericallyFinite accessor
- — STANDALONE PARTIAL CLOSURE**.
-
- Closure structure:
- - `PeriodMapGenericallyFinite F` opaque axiom predicate.
- - `griffiths_1968_period_map_generically_finite_PAPER_LABELLED_CONJECTURAL`
- asserts the predicate.
- - This theorem is a defeq rebinding (`sorry`-free).
-
- Status: paper-labelled-conjectural. Griffiths 1968 local Torelli
- is a CONDITION on a VHS, NOT automatic from non-rigidity
- hypothesis; paper labels this as LABELLED INPUT.
-
- paper source: hyp:nonrigid-family-bridge PeriodMapGenericallyFinite. -/
-theorem hyp_nonrigid_family_periodmapgenericallyfinite_closed :
- ∀ {X : SmoothProjectiveVariety ℂ},
- hasSimpleFactor (MumfordTateGroupDerived X 3) E7_neg25 →
- IsFibrewiseNonRigid X →
- ∀ (F : NonRigidFamily X),
- PeriodMapGenericallyFinite F := fun h1 h2 F =>
- griffiths_1968_period_map_generically_finite_PAPER_LABELLED_CONJECTURAL h1 h2 F
-
-/-- **`hyp:nonrigid-family-bridge` FibreIsoAt_b0 accessor —
- STANDALONE CLOSURE** (retained gapClosed since Kodaira-Spencer
- versal-deformation fibre identification is classical and
- unconditional).
-
- Closure structure:
- - `FibreIsoAt_b0 F` opaque axiom predicate.
- - `kodaira_spencer_1958_fibre_iso_b0` (classical-lit axiom).
- - This theorem is a defeq rebinding (`sorry`-free).
-
- paper source: hyp:nonrigid-family-bridge FibreIsoAt_b0. -/
-theorem hyp_nonrigid_family_fibreisoatb0_closed :
- ∀ {X : SmoothProjectiveVariety ℂ},
- hasSimpleFactor (MumfordTateGroupDerived X 3) E7_neg25 →
- IsFibrewiseNonRigid X →
- ∀ (F : NonRigidFamily X),
- FibreIsoAt_b0 F := fun h1 h2 F =>
- kodaira_spencer_1958_fibre_iso_b0 h1 h2 F
+/- **R197 ORPHAN COMMENT** (was docstring for deleted theorem
+hyp_nonrigid_family_basedim27_closed). -/
+/- **R197 DELETED**: 4 nonrigid-family accessor closure theorems
+(hyp_nonrigid_family_{basedim27,periodmapdominant,periodmapgenericallyfinite,fibreisoatb0}_closed).
+All consumed orphaned axioms (helgason_1978_voisin_2002_basedim27,
+schmid_1973_*, griffiths_1968_*, kodaira_spencer_1958_fibre_iso_b0)
+from the hyp_nonrigid_family_bridge chain (deleted in this round). -/
 
 /-- **`hyp:ChernWeil-bridge-E7` clause (ii) — CLOSED** via
  Matsushima 1962/1967 + Mumford 1977 (AMRT 1975).

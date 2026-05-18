@@ -4139,7 +4139,7 @@ structure NonRigidFamily (X: SmoothProjectiveVariety ℂ) : Type where
 def BaseDim27 {X : SmoothProjectiveVariety ℂ} (F : NonRigidFamily X) : Prop :=
  F.base.dim = 27
 
-/-- **Helgason 1978 + Voisin 2002** classical-literature axiom.
+/- **R197 ORPHAN COMMENT** (was docstring for deleted axiom helgason_1978_voisin_2002_basedim27): **Helgason 1978 + Voisin 2002** classical-literature axiom.
 
 For every non-rigid family `F : NonRigidFamily X`, the base `F.base` has
 complex dimension 27. Equivalently, `F.base.dim = 27` as a natural
@@ -4169,11 +4169,9 @@ Lean status: classical-lit axiom; semantic content pinned by Helgason
  1978; awaits Mathlib classification of Hermitian symmetric spaces for
  a fully Lean-deductive replacement.
 paper source: hyp:nonrigid-family-bridge BaseDim27. -/
-axiom helgason_1978_voisin_2002_basedim27 :
- ∀ {X : SmoothProjectiveVariety ℂ},
- hasSimpleFactor (MumfordTateGroupDerived X 3) E7_neg25 →
- IsFibrewiseNonRigid X →
- ∀ (F : NonRigidFamily X), F.base.dim = 27
+/- **R197 DELETED AXIOM** (−1): `helgason_1978_voisin_2002_basedim27`.
+Was consumed only by `hyp_nonrigid_family_basedim27_closed` (R197 deleted)
+and `hyp_nonrigid_family_bridge` (R197 deleted below). -/
 
 /-- **R40 backward-compat aliases** (no-axiom mandate). The three opaque
  predicates `PeriodMapDominant`, `PeriodMapGenericallyFinite`,
@@ -4199,12 +4197,10 @@ FibreIsoAt_b0) closed via Schmid 1973 + Griffiths 1968 + Kodaira-Spencer
 closures + a witness for the existence of `NonRigidFamily X` given the
 paper's antecedents. -/
 
-/-- **Kodaira-Spencer 1958** witness axiom: existence of a `NonRigidFamily X`
+/- **R197 ORPHAN COMMENT** (was docstring for deleted axiom
+kodaira_spencer_1958_nonrigid_family_existence): **Kodaira-Spencer 1958** witness axiom: existence of a `NonRigidFamily X`
  given the paper's antecedents (`E_{7(-25)}`-type MT factor on `H^3` +
- `IsFibrewiseNonRigid`). The witness is constructed via Kodaira-Spencer
- deformation theory: a non-rigid `X` (with `h^1(T_X) ≠ 0`) admits a
- versal deformation `f : X → B` with `B` smooth and positive-dimensional,
- fibre `X_{b_0} ≅ X` at a chosen base point.
+ `IsFibrewiseNonRigid`).
  Source: K. Kodaira, D. Spencer, "On deformations of complex analytic
  structures, I/II/III", Ann. Math. 67/67/71 (1958-1960).
  Cross-source: M. Kuranishi, "New proof for the existence of locally
@@ -4213,103 +4209,31 @@ paper's antecedents. -/
  kompakte komplexe Räume", Invent. Math. 25 (1974) 107-142 (algebraic
  case via Grauert's universal deformation).
  paper source: hyp:nonrigid-family-bridge. -/
-axiom kodaira_spencer_1958_nonrigid_family_existence :
- ∀ (X : SmoothProjectiveVariety ℂ),
- hasSimpleFactor (MumfordTateGroupDerived X 3) E7_neg25 →
- IsFibrewiseNonRigid X →
- NonRigidFamily X
+/- **R197 DELETED AXIOM** (−1): `kodaira_spencer_1958_nonrigid_family_existence`.
+Was consumed only by `hyp_nonrigid_family_bridge` (deleted in this round). -/
 
-/-- **Schmid 1973** classical-literature axiom: the period map of an
- `E_{7(-25)}`-type non-rigid family is **dominant** onto `S_{E_7}`
- (after the dimension reduction of `rem:generic-finiteness-reduction`).
- Source: W. Schmid, "Variation of Hodge structure: the singularities of
- the period mapping", Invent. Math. 22 (1973) 211-319 (Theorem 4.9
- nilpotent orbit; period-map asymptotic behaviour). Combined with local
- surjectivity of the differential `dΦ` (Griffiths transversality at
- generic point) + dim count from `BaseDim27` (R2 closure), the image
- has dim `= dim S_{E_7} = 27`, so `Φ` is dominant.
- Cross-source: P. Griffiths, "Periods of integrals on algebraic
- manifolds, III", IHES Publ. Math. 38 (1970) 125-180 (period domain
- analysis); E. Cattani, A. Kaplan, W. Schmid, "Degeneration of Hodge
- structures", Ann. Math. 123 (1986) 457-535 (SL_2-orbit theorem).
- Lean status: classical-lit axiom; semantic content pinned by Schmid
- 1973; awaits Mathlib period-map / VHS port.
+/- **R197 ORPHAN COMMENT** (was docstring for deleted axiom
+schmid_1973_period_map_dominant_PAPER_LABELLED_CONJECTURAL):
+ **Schmid 1973** classical-literature axiom: the period map of an
+ `E_{7(-25)}`-type non-rigid family is **dominant**.
  paper source: hyp:nonrigid-family-bridge. -/
-axiom schmid_1973_period_map_dominant_PAPER_LABELLED_CONJECTURAL :
- ∀ {X : SmoothProjectiveVariety ℂ},
- hasSimpleFactor (MumfordTateGroupDerived X 3) E7_neg25 →
- IsFibrewiseNonRigid X →
- ∀ (F : NonRigidFamily X),
- PeriodMapDominant F
+/- **R197 DELETED AXIOM** (−1): `schmid_1973_period_map_dominant_PAPER_LABELLED_CONJECTURAL`.
+Was consumed only by orphaned hyp_nonrigid_family chain. -/
 
-/-- **Griffiths 1968** classical-literature axiom: the period map of an
- `E_{7(-25)}`-type non-rigid family is **generically finite** (= local
- Torelli, the differential `dΦ` is injective at a generic point of `B`).
- Source: P. Griffiths, "Periods of integrals on algebraic manifolds:
- Summary of main results and discussion of open problems", Bull. AMS
- 76 (1970) 228-296 (Griffiths transversality + local Torelli for
- Hermitian symmetric VHS); idem, "Periods of integrals on algebraic
- manifolds, I/II", Amer. J. Math. 90 (1968) 568-626 / 805-865 (the
- original period-map machinery).
- Cross-source: C. Voisin, *Hodge Theory and Complex Algebraic Geometry
- II*, Cambridge 2002, Ch. 10 §10.2 (local Torelli for various VHS
- types); J. Carlson, S. Müller-Stach, C. Peters, *Period Mappings and
- Period Domains*, Cambridge 2003.
- Lean status: classical-lit axiom; semantic content pinned by Griffiths
- 1968; awaits Mathlib VHS infrastructure.
- paper source: hyp:nonrigid-family-bridge. -/
-axiom griffiths_1968_period_map_generically_finite_PAPER_LABELLED_CONJECTURAL :
- ∀ {X : SmoothProjectiveVariety ℂ},
- hasSimpleFactor (MumfordTateGroupDerived X 3) E7_neg25 →
- IsFibrewiseNonRigid X →
- ∀ (F : NonRigidFamily X),
- PeriodMapGenericallyFinite F
+/- **R197 ORPHAN COMMENT** (was docstring for deleted axiom
+griffiths_1968_period_map_generically_finite_PAPER_LABELLED_CONJECTURAL). -/
+/- **R197 DELETED AXIOM** (−1): `griffiths_1968_period_map_generically_finite_PAPER_LABELLED_CONJECTURAL`.
+Was consumed only by orphaned hyp_nonrigid_family chain. -/
 
-/-- **Kodaira-Spencer 1958** classical-literature axiom: the fibre of the
- versal deformation at a chosen base point `b_0` is isomorphic to the
- original variety `X`. This is the defining property of the versal /
- Kuranishi family.
- Source: K. Kodaira, D. Spencer, "On deformations of complex analytic
- structures, I/II", Ann. Math. 67 (1958) 328-466 (definition of
- versal deformation; fibre at base point = original variety).
- Cross-source: M. Kuranishi 1964 (universal local deformation
- construction); R. Hartshorne, *Deformation Theory*, GTM 257 (2010).
- Lean status: classical-lit axiom; semantic content pinned by
- Kodaira-Spencer 1958.
- paper source: hyp:nonrigid-family-bridge. -/
-axiom kodaira_spencer_1958_fibre_iso_b0 :
- ∀ {X : SmoothProjectiveVariety ℂ},
- hasSimpleFactor (MumfordTateGroupDerived X 3) E7_neg25 →
- IsFibrewiseNonRigid X →
- ∀ (F : NonRigidFamily X),
- FibreIsoAt_b0 F
+/- **R197 ORPHAN COMMENT** (was docstring for deleted axiom
+kodaira_spencer_1958_fibre_iso_b0). -/
+/- **R197 DELETED AXIOM** (−1): `kodaira_spencer_1958_fibre_iso_b0`.
+Was consumed only by orphaned hyp_nonrigid_family chain. -/
 
-/-- paper source: hyp:nonrigid-family-bridge.
-
- Converted from `axiom` (paper hypothesis) to `theorem` (CLOSED via 4
- classical-literature axioms: Kodaira-Spencer 1958 (versal-deformation
- existence + fibre at base point), Schmid 1973 (period-map dominance),
- Griffiths 1968 (generic finiteness), Helgason 1978 + Voisin 2002 from
- R2 closure (`BaseDim27`)). With all 4 atomic accessor clauses closed,
- the bundled hypothesis is now a Lean theorem with `sorry`-free proof.
-
- Status: gapPartial. The 4 atomic accessors split into PUBLISHED
- (BaseDim27 Lie-theoretic; FibreIsoAt_b0 versal-deformation) +
- PAPER-LABELLED-CONJECTURAL (PeriodMapDominant; PeriodMapGenericallyFinite)
- per paper L11635-11685 "LABELLED INPUT" framing. -/
-theorem hyp_nonrigid_family_bridge :
- ∀ (X: SmoothProjectiveVariety ℂ),
- hasSimpleFactor (MumfordTateGroupDerived X 3) E7_neg25 →
- IsFibrewiseNonRigid X →
- ∃ F: NonRigidFamily X,
- BaseDim27 F ∧ PeriodMapDominant F ∧
- PeriodMapGenericallyFinite F ∧ FibreIsoAt_b0 F := fun X h1 h2 =>
- let F := kodaira_spencer_1958_nonrigid_family_existence X h1 h2
- ⟨F,
- helgason_1978_voisin_2002_basedim27 h1 h2 F,
- schmid_1973_period_map_dominant_PAPER_LABELLED_CONJECTURAL h1 h2 F,
- griffiths_1968_period_map_generically_finite_PAPER_LABELLED_CONJECTURAL h1 h2 F,
- kodaira_spencer_1958_fibre_iso_b0 h1 h2 F⟩
+/- **R197 ORPHAN COMMENT** (was docstring for deleted theorem hyp_nonrigid_family_bridge). -/
+/- **R197 DELETED THEOREM**: `hyp_nonrigid_family_bridge`. Consumed
+5 axioms (all deleted above). Orphaned after R191 main_reduction
+deletion. -/
 
 /-! ## Hypothesis 8. Chow-class modularity of the `E_7` theta series
 
