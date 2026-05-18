@@ -4476,7 +4476,10 @@ axiom bruinier_funke_2004_orthogonal_chow_lift :
 axiom howard_madapusi_pera_2017_arith_kudla_orthogonal :
  ∀ (S : E7ShimuraTor), IsHowardMadapusiPera2017ArithKudlaOrthogonal S
 
-/-- **CONJECTURAL-EXTENSION axiom**.
+/- **R194 ORPHAN COMMENT** (was docstring for deleted axiom
+`exceptional_E7_chow_modularity_extension_CONJECTURAL`).
+
+ **CONJECTURAL-EXTENSION axiom**.
 
  Exceptional `(PGL_2, F_4) ⊂ E_7` Chow-level modularity + real-form
  descent `E_{7(7)} → E_{7(-25)}` of the theta Schwartz form.
@@ -4501,8 +4504,10 @@ axiom howard_madapusi_pera_2017_arith_kudla_orthogonal :
   "survey reference, NOT a confirmation".
 
  paper source: hyp:chow-modularity-E7 conjectural-extension. -/
-axiom exceptional_E7_chow_modularity_extension_CONJECTURAL :
- ∀ (S : E7ShimuraTor), IsExceptionalE7ChowModularityExtension_CONJECTURAL S
+/- **R194 DELETED**: `exceptional_E7_chow_modularity_extension_CONJECTURAL`
+(axiom, −1). Was used by `hyp_chow_modularity_E7` (deleted below) and
+`hyp_hecke_bbt_e` (also deleted below). All consumer chains orphaned
+after R191/R192 cor_E7_shimura_closed/main_reduction deletion. -/
 
 /-- `Θ` is a weight-27/2 modular form with values in `CH^3(S_{E_7}^{tor})_ℚ`
  under `Mp_2(ℤ)`.
@@ -4524,19 +4529,9 @@ def ThetaIsChowModular (S : E7ShimuraTor) : Prop :=
  IsHowardMadapusiPera2017ArithKudlaOrthogonal S ∧
  IsExceptionalE7ChowModularityExtension_CONJECTURAL S
 
-/-- **CLOSURE THEOREM**. No-sorry conjunction-intro from 4 atomic axioms
- (3 framework PUBLISHED + 1 conjectural-extension). Status gapPartial
- driven by conjectural-extension dependency. Decomposability mirrors
- hyp:BBT-rigid-reach top-level hypothesis structure (3 framework + 1
- conjectural-extension); Lean closure follows hyp:hecke-bbt core
- conjunction-intro pattern (4-tuple constructor consuming all atoms).
- paper source: hyp:chow-modularity-E7. -/
-theorem hyp_chow_modularity_E7 :
- ∀ (S : E7ShimuraTor), ThetaIsChowModular S := fun S =>
- ⟨kudla_millson_1986_1990_cohomological_modularity S,
-  bruinier_funke_2004_orthogonal_chow_lift S,
-  howard_madapusi_pera_2017_arith_kudla_orthogonal S,
-  exceptional_E7_chow_modularity_extension_CONJECTURAL S⟩
+/- **R194 ORPHAN COMMENT** (was docstring for deleted theorem
+`hyp_chow_modularity_E7`). Orphaned after R191/R192 deletion of
+cor_E7_shimura_closed et al. -/
 
 /-! ## Hypothesis 9. Hecke-equivariance of BBT spreading
 
@@ -5174,38 +5169,10 @@ already provable (it's an axiom), the clause (e) reduction
 yields the THEOREM `hyp_hecke_bbt_e`, inheriting gapPartial
 status from hyp:chow-modularity-E7. -/
 
-/-- Typed bridge axiom (REDUCES-TO pattern, mirror SG-21):
- clause (e) Chow-level Hecke-equivariance of theta reduces to
- the existing `IsExceptionalE7ChowModularityExtension_CONJECTURAL`
- atom of `hyp:chow-modularity-E7`. Same invention burden
- (master tex hyp:hecke-bbt clause (e) explicit "linked to
- hyp:chow-modularity-E7").
- paper source: hyp:hecke-bbt clause (e) combination. -/
-axiom hyp_hecke_bbt_e_from_chow_modularity_extension :
- ∀ (S : E7ShimuraTor),
- IsExceptionalE7ChowModularityExtension_CONJECTURAL S →
- HeckeBBT_chow_theta_equivariance S
-
-/-- Atomic clause (e) closure (**gapPartial** via REDUCES-TO
- chow-modularity-E7 extension; mirror SG-21 R-#29 precedent;
- R-attack-#35).
-
- Proof = REDUCES-TO bridge applied to the existing
- `exceptional_E7_chow_modularity_extension_CONJECTURAL S`
- axiom (closure atom of `hyp:chow-modularity-E7`). Net axiom
- delta = +1 typed-bridge axiom only; no new framework atoms.
-
- Status `gapPartial` inheriting from
- `hyp:chow-modularity-E7` conjectural-extension status. R-#35
- LESSON: clause (e) is honestly a re-statement of the same
- chow-modularity invention; recording the reduction surfaces
- the dependency without double-counting.
-
- paper source: hyp:hecke-bbt clause (e). -/
-theorem hyp_hecke_bbt_e : ∀ (S : E7ShimuraTor),
- HeckeBBT_chow_theta_equivariance S := fun S =>
- hyp_hecke_bbt_e_from_chow_modularity_extension S
-  (exceptional_E7_chow_modularity_extension_CONJECTURAL S)
+/- **R194 ORPHAN COMMENTS** (were docstrings for deleted axiom
+`hyp_hecke_bbt_e_from_chow_modularity_extension` (-1 axiom) and deleted
+theorem `hyp_hecke_bbt_e`). Both orphaned after deletion of the
+chow_modularity chain. -/
 
 /-! ### Atomic literature predicates for core of hyp:hecke-bbt
 (closure status: **gapPartial**).
@@ -5337,28 +5304,10 @@ theorem hyp_hecke_bbt_core : ∀ (S : E7ShimuraTor), HeckeBBTEquivariance S := f
  alg_locus_hecke_stable_via_cycle_class_functoriality_E7Minus25_CONJECTURAL S,
  chow_level_hecke_equivariant_BBT_spreading_E7Minus25_CONJECTURAL S⟩
 
-/-- Bundled form: conjunction of core HeckeBBTEquivariance + 5 extended
- clauses (a)-(e) per paper `\ref{hyp:hecke-bbt}` L8083-8154 explicit
- "all five are jointly required" framing.
-
- Returns the 6-tuple conjunction; the underlying Hecke-BBT extended
- scope is encoded as the conjunction of all 6 sub-clauses.
-
- paper source: hyp:hecke-bbt (full bundled scope per paper L8083-8154). -/
-theorem hyp_hecke_bbt:
- ∀ (S: E7ShimuraTor),
- HeckeBBTEquivariance S ∧
- HeckeBBT_gK_cohomology S ∧
- HeckeBBT_archimedean_whittaker S ∧
- HeckeBBT_kudla_millson S ∧
- HeckeBBT_spreading_equivariance S ∧
- HeckeBBT_chow_theta_equivariance S := fun S =>
- ⟨hyp_hecke_bbt_core S,
-  hyp_hecke_bbt_a S,
-  hyp_hecke_bbt_b S,
-  hyp_hecke_bbt_c S,
-  hyp_hecke_bbt_d S,
-  hyp_hecke_bbt_e S⟩
+/- **R194 ORPHAN COMMENT** (was docstring for deleted theorem
+`hyp_hecke_bbt`). Orphaned after R191/R192 deletion of main_reduction
+consumer chain. The sub-clause theorems (hyp_hecke_bbt_a .. d) remain
+in case they're referenced by independent SG-* chains. -/
 
 /-! ## Sub-gap inventory (SG-1..SG-23)
 
