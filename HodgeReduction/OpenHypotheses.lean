@@ -4053,35 +4053,20 @@ def IsBBTBKTPeriodMapDefinable (S : E7ShimuraTor) : Prop :=
 def IsPSTAndreOortCMDensity (S : E7ShimuraTor) : Prop :=
   S.isPSTAndreOortCMDensity
 
-/-- **CDK 1995** classical-literature axiom (framework a).
- Source: E. Cattani, P. Deligne, A. Kaplan, "On the locus of Hodge
- classes", J. Amer. Math. Soc. 8 (1995) 483-506. The Hodge locus
- (the set of pairs `(s, u)` with `u` remaining `(p,p)` at `s`) is an
- algebraic subvariety over the base of a polarized `ℤ`-VHS.
- paper source: hyp:BBT-rigid-reach framework (a). -/
-axiom cdk_1995_locus_of_hodge_classes_algebraic :
- ∀ (S : E7ShimuraTor), IsCDKLocusOfHodgeClassesAlgebraic S
+/- **R196 DELETED AXIOM** (−1): `cdk_1995_locus_of_hodge_classes_algebraic`.
+Orphaned: was a framework axiom for hyp_BBT_rigid_reach (deleted R195).
+No value-level references remain. The CDK 1995 paper-citation is
+preserved as documentation. -/
 
-/-- **BBT 2023 + BKT 2020** classical-literature axiom (framework b).
- Source: B. Bakker, Y. Brunebarbe, J. Tsimerman, "o-minimal GAGA and a
- conjecture of Griffiths", Invent. Math. 232 (2023) 163-228 (period map
- definable; quasi-projectivity of period-map image); B. Bakker, B.
- Klingler, J. Tsimerman, "Tame topology of arithmetic quotients and
- algebraicity of Hodge loci", JAMS 33 (2020) 917-939 (Hodge locus is
- countable union of algebraic subvarieties of the base).
- Cross-source: B. Klingler, "Hodge loci and atypical intersections:
- conjectures", arXiv:1711.09387 (conjectures framework).
- paper source: hyp:BBT-rigid-reach framework (b). -/
-axiom bbt_2023_bkt_2020_period_map_definable :
- ∀ (S : E7ShimuraTor), IsBBTBKTPeriodMapDefinable S
+/- **R196 ORPHAN COMMENT** (was docstring for deleted axiom
+bbt_2023_bkt_2020_period_map_definable): **BBT 2023 + BKT 2020**. -/
+/- **R196 DELETED AXIOM** (−1): `bbt_2023_bkt_2020_period_map_definable`.
+Orphaned after R195. -/
 
-/-- **Pila-Shankar-Tsimerman 2021** classical-literature axiom (framework c).
- Source: J. Pila, A. Shankar, J. Tsimerman, "Canonical heights on
- Shimura varieties and the André-Oort conjecture", arXiv:2109.08788
- (CM-density in Shimura components via canonical-heights André-Oort).
- paper source: hyp:BBT-rigid-reach framework (c). -/
-axiom pst_2021_andre_oort_cm_density :
- ∀ (S : E7ShimuraTor), IsPSTAndreOortCMDensity S
+/- **R196 ORPHAN COMMENT** (was docstring for deleted axiom
+pst_2021_andre_oort_cm_density): **Pila-Shankar-Tsimerman 2021**. -/
+/- **R196 DELETED AXIOM** (−1): `pst_2021_andre_oort_cm_density`.
+Orphaned after R195. -/
 
 /- **R195 ORPHAN COMMENT** (was docstring for deleted theorem
 `hyp_BBT_rigid_reach_cycle_transport_CONJECTURAL`). Deleted as part of
@@ -4380,40 +4365,23 @@ def IsHowardMadapusiPera2017ArithKudlaOrthogonal (S : E7ShimuraTor) : Prop :=
 def IsExceptionalE7ChowModularityExtension_CONJECTURAL (S : E7ShimuraTor) : Prop :=
   S.isExceptionalE7ChowModularityExtension_CONJECTURAL
 
-/-- **Kudla-Millson 1986 + 1990** classical-literature axiom (framework).
+/- **R196 ORPHAN COMMENT** (was docstring for deleted axiom
+kudla_millson_1986_1990_cohomological_modularity): **Kudla-Millson 1986+1990**. -/
+/- **R196 DELETED AXIOM** (−1): `kudla_millson_1986_1990_cohomological_modularity`.
+Orphaned after R194 hyp_chow_modularity_E7 deletion. -/
 
- Sources:
- - S. Kudla, J. Millson, "The theta correspondence and harmonic forms.
-  I", Math. Ann. 274 (1986) 353-378.
- - S. Kudla, J. Millson, "Intersection numbers of cycles on locally
-  symmetric spaces and Fourier coefficients of holomorphic modular
-  forms in several complex variables", Publ. Math. IHÉS 71 (1990)
-  121-172.
-
- Theorem: the generating series of cohomology classes of special cycles
- on orthogonal Shimura varieties transforms as a holomorphic modular
- form under the metaplectic cover. Cohomological level (not yet Chow
- level). Unconditional.
-
- paper source: hyp:chow-modularity-E7 framework #1 (cohomological). -/
-axiom kudla_millson_1986_1990_cohomological_modularity :
- ∀ (S : E7ShimuraTor), IsKudlaMillson1986_1990CohomologicalModularity S
-
-/-- **Bruinier-Funke 2004** classical-literature axiom (framework).
+/- **R196 ORPHAN COMMENT** (was docstring for deleted axiom
+bruinier_funke_2004_orthogonal_chow_lift):
+ **Bruinier-Funke 2004** classical-literature axiom (framework).
 
  Source: J.H. Bruinier, J. Funke, "On two geometric theta lifts",
- Duke Math. J. 125 (2004) no. 1, 45-90.
+ Duke Math. J. 125 (2004) no. 1, 45-90. -/
+/- **R196 DELETED AXIOM** (−1): `bruinier_funke_2004_orthogonal_chow_lift`.
+Orphaned after R194 hyp_chow_modularity_E7 deletion. -/
 
- Theorem: Chow-level (geometric) theta lifts on orthogonal Shimura
- varieties extending Kudla-Millson cohomological modularity to a
- generating series valued in Chow groups of special cycles. Orthogonal
- type only; does NOT extend to exceptional `(PGL_2, F_4) ⊂ E_7`.
-
- paper source: hyp:chow-modularity-E7 framework #2 (orthogonal Chow). -/
-axiom bruinier_funke_2004_orthogonal_chow_lift :
- ∀ (S : E7ShimuraTor), IsBruinierFunke2004OrthogonalChowLift S
-
-/-- **Andreatta-Goren-Howard-Madapusi Pera 2017** classical-literature
+/- **R196 ORPHAN COMMENT** (was docstring for deleted axiom
+howard_madapusi_pera_2017_arith_kudla_orthogonal):
+ **Andreatta-Goren-Howard-Madapusi Pera 2017** classical-literature
  axiom (framework).
 
  Source: F. Andreatta, E. Goren, B. Howard, K. Madapusi Pera,
@@ -4436,8 +4404,8 @@ axiom bruinier_funke_2004_orthogonal_chow_lift :
 
  paper source: hyp:chow-modularity-E7 framework #3 (orthogonal arith-
  metic Chow). -/
-axiom howard_madapusi_pera_2017_arith_kudla_orthogonal :
- ∀ (S : E7ShimuraTor), IsHowardMadapusiPera2017ArithKudlaOrthogonal S
+/- **R196 DELETED AXIOM** (−1): `howard_madapusi_pera_2017_arith_kudla_orthogonal`.
+Orphaned after R194 hyp_chow_modularity_E7 deletion. -/
 
 /- **R194 ORPHAN COMMENT** (was docstring for deleted axiom
 `exceptional_E7_chow_modularity_extension_CONJECTURAL`).
