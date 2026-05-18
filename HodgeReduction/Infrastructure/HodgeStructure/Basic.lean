@@ -1023,12 +1023,186 @@ theorem hodgeDecomposeEquiv_symm_eq (V : Type*) [AddCommGroup V] [Module ℚ V]
   unfold hodgeDecomposeEquiv
   exact LinearEquiv.symm_symm _
 
-/- **R166-R167 NOTE on intersection, kernel, range**: The full theorems
-(intersection of sub-HS is sub-HS; kernel and range of HS morphisms are
-sub-HS) require building a component-extraction API on top of
-`hodgeDecomposeEquiv`, then proving the V-uniqueness of the
-decomposition. Deferred to a future round so each round's commits
-preserve build cleanliness. -/
+/-- **R181**: The p-th Hodge component of `v`, as an element of
+`piece p` (subtype). Built from R167 `hodgeDecomposeEquiv`. -/
+noncomputable def hodgeComponent
+    {V : Type*} [AddCommGroup V] [Module ℚ V] {n : ℕ}
+    [PureHodgeStructure V n] (p : Fin (n + 1)) (v : V) :
+    ↥(PureHodgeStructure.piece (V := V) p) :=
+  (PureHodgeStructure.hodgeDecomposeEquiv V v) p
+
+/-- **R181**: The p-th Hodge component of `v`, as an element of `V`
+via subtype coercion. -/
+noncomputable def hodgeComponentV
+    {V : Type*} [AddCommGroup V] [Module ℚ V] {n : ℕ}
+    [PureHodgeStructure V n] (p : Fin (n + 1)) (v : V) : V :=
+  ↑(hodgeComponent (V := V) p v)
+
+/-- **R181**: Each Hodge component lies in the corresponding piece. -/
+theorem hodgeComponentV_mem_piece
+    {V : Type*} [AddCommGroup V] [Module ℚ V] {n : ℕ}
+    [PureHodgeStructure V n] (p : Fin (n + 1)) (v : V) :
+    hodgeComponentV (V := V) p v ∈ PureHodgeStructure.piece (V := V) p :=
+  (hodgeComponent p v).property
+
+/-- **R181**: `hodgeComponentV p (u + v) = hodgeComponentV p u + hodgeComponentV p v`.
+ℚ-linearity, inherited from `hodgeDecomposeEquiv` LinearEquiv. -/
+theorem hodgeComponentV_add
+    {V : Type*} [AddCommGroup V] [Module ℚ V] {n : ℕ}
+    [PureHodgeStructure V n] (p : Fin (n + 1)) (u v : V) :
+    hodgeComponentV p (u + v) = hodgeComponentV p u + hodgeComponentV p v := by
+  unfold hodgeComponentV hodgeComponent
+  rw [map_add]
+  rfl
+
+/-- **R181**: `hodgeComponentV p 0 = 0`. -/
+@[simp] theorem hodgeComponentV_zero
+    {V : Type*} [AddCommGroup V] [Module ℚ V] {n : ℕ}
+    [PureHodgeStructure V n] (p : Fin (n + 1)) :
+    hodgeComponentV (V := V) p 0 = 0 := by
+  unfold hodgeComponentV hodgeComponent
+  rw [map_zero]
+  rfl
+
+/-- **R181 KEY**: Unique-decomposition identity. If `v ∈ piece q`, then
+`hodgeComponentV p v = v` when `p = q` and `= 0` otherwise.
+
+Proof: `hodgeDecomposeEquiv v` is uniquely determined by being the
+DirectSum representation of `v`. For `v ∈ piece q`, the trivial
+decomposition `DirectSum.of _ q ⟨v, hv⟩` works (only one non-zero
+component at index `q`). Both representations have the same image
+under `(hodgeDecomposeEquiv).symm = coeLinearMap`, so by LinearEquiv
+injectivity, they're equal. Then projecting at `p` gives the result. -/
+theorem hodgeComponentV_of_mem_piece
+    {V : Type*} [AddCommGroup V] [Module ℚ V] {n : ℕ}
+    [PureHodgeStructure V n] (q : Fin (n + 1)) {v : V}
+    (hv : v ∈ PureHodgeStructure.piece (V := V) q) (p : Fin (n + 1)) :
+    hodgeComponentV (V := V) p v = if p = q then v else 0 := by
+  -- Compute hodgeDecomposeEquiv v = DirectSum.of _ q ⟨v, hv⟩ via uniqueness
+  have h_decomp : PureHodgeStructure.hodgeDecomposeEquiv V v =
+      DirectSum.of (fun i => ↥(PureHodgeStructure.piece (V := V) i)) q ⟨v, hv⟩ := by
+    apply (PureHodgeStructure.hodgeDecomposeEquiv V).symm.injective
+    rw [LinearEquiv.symm_apply_apply,
+        PureHodgeStructure.hodgeDecomposeEquiv_symm_eq,
+        LinearEquiv.ofBijective_apply,
+        DirectSum.coeLinearMap_of]
+  -- Project at p
+  unfold hodgeComponentV hodgeComponent
+  rw [h_decomp]
+  by_cases hpq : p = q
+  · subst hpq
+    simp
+  · have h_ne : (DirectSum.of (fun i => ↥(PureHodgeStructure.piece (V := V) i)) q ⟨v, hv⟩) p
+        = 0 := DirectSum.of_eq_of_ne _ _ _ (Ne.symm hpq)
+    rw [h_ne]
+    simp [hpq]
+
+/-- **R181 RECONSTRUCTION**: `v = ∑ p, hodgeComponentV p v`. The sum
+of Hodge components recovers the original vector. Direct consequence
+of R167's `hodgeDecomposeEquiv` LinearEquiv structure +
+`DirectSum.coeLinearMap` + Mathlib's `DFinsupp.sum_eq_sum_fintype`. -/
+theorem sum_hodgeComponentV
+    {V : Type*} [AddCommGroup V] [Module ℚ V] {n : ℕ}
+    [PureHodgeStructure V n] (v : V) :
+    ∑ p : Fin (n + 1), hodgeComponentV (V := V) p v = v := by
+  -- Fix the LinearEquiv as a let-binding to avoid typeclass synth issues.
+  let e := hodgeDecomposeEquiv (V := V) (n := n)
+  have h_inv : e.symm (e v) = v := LinearEquiv.symm_apply_apply e v
+  have h_symm_eq : e.symm = LinearEquiv.ofBijective
+        (DirectSum.coeLinearMap (fun (p : Fin (n + 1)) => piece (V := V) p))
+        (isInternal (V := V) (n := n)) := hodgeDecomposeEquiv_symm_eq V
+  rw [h_symm_eq, LinearEquiv.ofBijective_apply] at h_inv
+  -- h_inv : coeLinearMap (e v) = v
+  -- Calc chain to avoid rw-both-sides issue.
+  classical
+  calc ∑ p : Fin (n + 1), hodgeComponentV (V := V) p v
+      = ∑ p : Fin (n + 1), (↑((e v) p) : V) := by
+        apply Finset.sum_congr rfl
+        intro p _; rfl
+    _ = ∑ p : Fin (n + 1), (↑(DFinsupp.equivFunOnFintype (e v) p) : V) := by
+        apply Finset.sum_congr rfl
+        intro p _; rfl
+    _ = DFinsupp.sum (e v) (fun (_ : Fin (n + 1)) (y : ↥(piece (V := V) _)) => (↑y : V)) := by
+        rw [DFinsupp.sum_eq_sum_fintype _ (fun _ => rfl)]
+    _ = (DirectSum.coeLinearMap (fun p => piece (V := V) p)) (e v) := by
+        rw [DirectSum.coeLinearMap_eq_dfinsupp_sum]
+    _ = v := h_inv
+
+/-- **R181 KEY**: if `W ≤ V` is a sub-Hodge structure and `v ∈ W`,
+then every V-component `hodgeComponentV p v` lies in `W`.
+
+Proof: `v ∈ W = ⨆ q, W ⊓ piece q` by `IsSubHodgeStructure`. Apply
+`Submodule.iSup_induction`: for `w ∈ W ⊓ piece q`, the V-component at
+`p` is either `w` (if `p = q`, gives `∈ W`) or `0` (otherwise, also
+`∈ W`). For `0`, the component is `0 ∈ W`. For sums, use linearity. -/
+theorem hodgeComponentV_mem_of_isSubHodgeStructure
+    {V : Type*} [AddCommGroup V] [Module ℚ V] {n : ℕ}
+    [PureHodgeStructure V n] {W : Submodule ℚ V}
+    (hW : IsSubHodgeStructure (V := V) (n := n) W)
+    {v : V} (hv : v ∈ W) (p : Fin (n + 1)) :
+    hodgeComponentV (V := V) p v ∈ W := by
+  unfold IsSubHodgeStructure at hW
+  rw [hW] at hv
+  -- Apply Submodule.iSup_induction. The `C` parameter (motive) needs explicit hint
+  -- because Lean doesn't infer it from the position-only motive.
+  refine Submodule.iSup_induction
+    (C := fun u => hodgeComponentV (V := V) p u ∈ W)
+    (fun q : Fin (n + 1) => W ⊓ piece (V := V) q)
+    hv
+    (fun q w hw => ?_)
+    ?_
+    (fun u u' hu hu' => ?_)
+  · -- mem case: w ∈ W ⊓ piece q
+    obtain ⟨hw_W, hw_q⟩ := hw
+    show hodgeComponentV p w ∈ W
+    rw [hodgeComponentV_of_mem_piece q hw_q p]
+    by_cases hpq : p = q
+    · rw [if_pos hpq]; exact hw_W
+    · rw [if_neg hpq]; exact Submodule.zero_mem _
+  · -- zero case
+    show hodgeComponentV p 0 ∈ W
+    rw [hodgeComponentV_zero]
+    exact Submodule.zero_mem _
+  · -- add case
+    show hodgeComponentV p (u + u') ∈ W
+    rw [hodgeComponentV_add]
+    exact Submodule.add_mem _ hu hu'
+
+/-- **R181 R166-DEFERRED RESOLVED**: The intersection of two sub-Hodge
+structures is itself a sub-Hodge structure (Deligne 1971 (2.1.7)).
+
+Proof: for `v ∈ W₁ ⊓ W₂`, each V-component `hodgeComponentV p v` lies
+in both `W₁` (by R181 extraction on `W₁`) and `W₂` (by R181 extraction
+on `W₂`), hence in `W₁ ⊓ W₂`. Each component also lies in `piece p`
+(R181 `hodgeComponentV_mem_piece`). Summing via R181 `sum_hodgeComponentV`
+gives `v ∈ ⨆ p, (W₁ ⊓ W₂) ⊓ piece p`. -/
+theorem IsSubHodgeStructure.inf
+    {V : Type*} [AddCommGroup V] [Module ℚ V] {n : ℕ}
+    [PureHodgeStructure V n] {W₁ W₂ : Submodule ℚ V}
+    (h₁ : IsSubHodgeStructure (V := V) (n := n) W₁)
+    (h₂ : IsSubHodgeStructure (V := V) (n := n) W₂) :
+    IsSubHodgeStructure (V := V) (n := n) (W₁ ⊓ W₂) := by
+  unfold IsSubHodgeStructure
+  apply le_antisymm
+  · intro v hv
+    obtain ⟨hv₁, hv₂⟩ := hv
+    -- Express v = ∑ p, hodgeComponentV p v
+    rw [← sum_hodgeComponentV (V := V) (n := n) v]
+    -- Each summand is in (W₁ ⊓ W₂) ⊓ piece p, hence the sum is in ⨆ p, ...
+    refine Submodule.sum_mem _ (fun p _ => ?_)
+    refine Submodule.mem_iSup_of_mem p ?_
+    refine Submodule.mem_inf.mpr ⟨?_, ?_⟩
+    · refine Submodule.mem_inf.mpr ⟨?_, ?_⟩
+      · exact hodgeComponentV_mem_of_isSubHodgeStructure h₁ hv₁ p
+      · exact hodgeComponentV_mem_of_isSubHodgeStructure h₂ hv₂ p
+    · exact hodgeComponentV_mem_piece p v
+  · exact iSup_le (fun _ => inf_le_left)
+
+/- **R166-R181 STATUS**: The R166-deferred intersection theorem
+`IsSubHodgeStructure.inf` is RESOLVED above (R181). The kernel and
+range of HS morphisms as sub-HS remain available for future rounds
+via direct applications of `hodgeComponentV_mem_of_isSubHodgeStructure`
+to the kernel/range submodules. -/
 
 end PureHodgeStructure
 
