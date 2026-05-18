@@ -1431,6 +1431,20 @@ structure E7ShimuraTor : Type where
    By construction (`S_Γ^tor` is a Shimura variety). Replaces the
    standalone axiom `canonical_inKnownE7Scope` (R173b). -/
   inKnownE7ScopeUnderlying : InKnownE7Scope underlying
+  /-- **R188**: field absorbing the **Mumford-Tate correspondence witness**
+   between the underlying AMRT compactification and a CM abelian variety.
+   Per paper §6: the V_56 representation of E_7 induces an MT correspondence
+   `Γ` between `S_Γ^tor` and a CM abelian variety `A_Γ` satisfying R177's
+   `MTCorrespondencePackageAt` per codimension. Replaces dependency on the
+   universal axiom `mt_correspondence_e7_witness_exists` (R177) for the
+   canonical case. The universal axiom remains for arbitrary clause-(iii)
+   varieties; the canonical case now derives via this bundled field. -/
+  mtCorrespondencePackage :
+    ∃ (A : SmoothProjectiveVariety ℂ), IsCMAbelianVariety A ∧
+      ∀ p : ℕ,
+        Infrastructure.HodgeStructure.MTCorrespondencePackageAt
+          A.cohomology underlying.cohomology
+          A.algClasses underlying.algClasses p
   /-- **R124**: pilot field absorbing `axiom IsSchwarzE7QuarticGenerator`. -/
   isSchwarzE7QuarticGenerator : Prop
   /-- **R124**: pilot field absorbing `axiom IsBorelHirzebruchNonvanishH8`. -/

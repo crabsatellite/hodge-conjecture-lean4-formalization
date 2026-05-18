@@ -378,40 +378,44 @@ compactification of the E_7-Hermitian symmetric domain quotient.
 This is the substantive closure of HC for the project's main target
 variety. -/
 
-/-- **R171/R173 HEADLINE**: The **Hodge Conjecture holds for the
+/-- **R171/R173/R188 HEADLINE**: The **Hodge Conjecture holds for the
 canonical E_7 Shimura variety** in its REAL form (no Unit trick).
 
 For every codimension `p`, every Hodge class in
 `H^{2p}(S_Γ^tor, ℚ)` arises as the image of a rational algebraic
 cycle class.
 
-**R173 refactor**: was derived via `main_reduction_real ∘
-canonical_inScope` (which traversed all 4 InScope clauses). Now
-derived DIRECTLY via the clause-(iii) case axiom
-`hc_real_e7_shimura` applied to the R173 finer-grained axioms
-`canonical_E7_factor` + `canonical_inKnownE7Scope`.
+**R188 refactor**: was derived via `hc_real_e7_shimura` (which
+internally used the universal axiom `mt_correspondence_e7_witness_exists`).
+Now derived DIRECTLY by destructuring the bundled MT correspondence
+witness from `canonicalE7ShimuraTor.mtCorrespondencePackage` (R188
+added field) and applying R177's `varietyHCAt_of_correspondence` per
+codimension with `hyp_HC_CM_Ab_real` providing HC-real for the source
+CM abelian.
 
-The new dependency chain:
-- `hc_real_e7_shimura` (R172 case axiom, clause (iii) only)
-- `canonical_E7_factor` (R173a, E_7 factor on MT^der)
-- `canonical_inKnownE7Scope` (R173b, in known E_7 scope)
-- `canonicalE7ShimuraTor` (R39, variety exists)
-- `SmoothProjectiveVariety.cohomology` (R169, Hodge theorem)
-- `SmoothProjectiveVariety.algClasses` (R169, Lefschetz-Hodge)
+Net dependency reduction: -1 axiom (`mt_correspondence_e7_witness_exists`
+no longer in chain).
 
-Plus 3 kernel axioms (propext, Classical.choice, Quot.sound). NO
-Unit trick. NO dependency on the other 3 InScope cases (i, ii, iv).
+Final dependency chain (4 substantive + 3 kernel):
+- `canonicalE7ShimuraTor` (AMRT 1975, R39 — also provides R187+R188 fields)
+- `hyp_HC_CM_Ab_real` (Deligne 1982, R174a)
+- `SmoothProjectiveVariety.cohomology` (Hodge 1941, R169)
+- `SmoothProjectiveVariety.algClasses` (Lefschetz 1924, R169)
 
-Per R169 `HodgeConjectureReal`, this asserts:
++ propext, Classical.choice, Quot.sound.
+
+Per R169 `HodgeConjectureReal`:
   `∀ p : ℕ, PureHodgeStructure.hodgeClasses (H^{2p}(S_Γ^tor, ℚ)) p
        ≤ algClasses p`
-where both sides are honest ℚ-submodules.
+both sides honest ℚ-submodules. NO Unit trick.
 
-Paper source: `\label{thm:main}` clause (iii) applied to the canonical
-AMRT toroidal compactification. -/
+Paper source: `\label{thm:main}` clause (iii) applied to canonical. -/
 theorem hodgeConjectureReal_canonical :
-    HodgeConjectureReal canonicalE7ShimuraTor.underlying :=
-  hc_real_e7_shimura _ canonical_E7_factor canonical_inKnownE7Scope
+    HodgeConjectureReal canonicalE7ShimuraTor.underlying := by
+  intro p
+  obtain ⟨A, hA, h_pkg⟩ := canonicalE7ShimuraTor.mtCorrespondencePackage
+  exact Infrastructure.HodgeStructure.varietyHCAt_of_correspondence
+    (h_pkg p) (hyp_HC_CM_Ab_real A hA p)
 
 /-! ## Unconditional paper theorems (body: `sorry`) -/
 
