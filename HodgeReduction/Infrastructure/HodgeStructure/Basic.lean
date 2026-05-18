@@ -1198,11 +1198,41 @@ theorem IsSubHodgeStructure.inf
     · exact hodgeComponentV_mem_piece p v
   · exact iSup_le (fun _ => inf_le_left)
 
-/- **R166-R181 STATUS**: The R166-deferred intersection theorem
-`IsSubHodgeStructure.inf` is RESOLVED above (R181). The kernel and
-range of HS morphisms as sub-HS remain available for future rounds
-via direct applications of `hodgeComponentV_mem_of_isSubHodgeStructure`
-to the kernel/range submodules. -/
+/-- **R182**: The **range of a Hodge morphism is a sub-Hodge structure**
+of the target. For `f : V → W` an HSM of weight `n`,
+`LinearMap.range f.toLinearMap ≤ W` decomposes through the W-pieces.
+
+Proof: for `w ∈ range f`, write `w = f v` and decompose
+`v = ∑ p, hodgeComponentV p v` via R181. Then `w = ∑ p, f(hodgeComponentV p v)`
+with each `f(hodgeComponentV p v)` in `piece W p` (by `map_piece` applied
+to `hodgeComponentV p v ∈ piece V p`) AND in `range f`. So
+`w ∈ ⨆ p, range f ⊓ piece W p`. -/
+theorem HodgeStructureMorphism.range_isSubHodgeStructure
+    {V W : Type*} [AddCommGroup V] [AddCommGroup W]
+    [Module ℚ V] [Module ℚ W] {n : ℕ}
+    [PureHodgeStructure V n] [PureHodgeStructure W n]
+    (f : HodgeStructureMorphism V W n) :
+    IsSubHodgeStructure (V := W) (n := n) (LinearMap.range f.toLinearMap) := by
+  unfold IsSubHodgeStructure
+  apply le_antisymm
+  · intro w hw
+    obtain ⟨v, hv_eq⟩ := LinearMap.mem_range.mp hw
+    rw [← hv_eq, ← sum_hodgeComponentV (V := V) (n := n) v, map_sum]
+    refine Submodule.sum_mem _ (fun p _ => ?_)
+    refine Submodule.mem_iSup_of_mem p ?_
+    refine Submodule.mem_inf.mpr ⟨?_, ?_⟩
+    · exact LinearMap.mem_range.mpr ⟨_, rfl⟩
+    · have h_v_in : hodgeComponentV (V := V) p v ∈ piece (V := V) p :=
+        hodgeComponentV_mem_piece p v
+      exact f.map_piece p ⟨_, h_v_in, rfl⟩
+  · exact iSup_le (fun _ => inf_le_left)
+
+/- **R166-R181-R182 STATUS**: The R166-deferred theorems are RESOLVED:
+* `IsSubHodgeStructure.inf` (R181)
+* `HodgeStructureMorphism.range_isSubHodgeStructure` (R182)
+The kernel-as-sub-HS analog requires the commutation lemma
+`f ∘ hodgeComponentV p = hodgeComponentV p ∘ f` (using uniqueness in W),
+which is also available via R181 machinery in a future round. -/
 
 end PureHodgeStructure
 
