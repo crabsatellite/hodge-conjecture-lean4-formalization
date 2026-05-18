@@ -413,23 +413,9 @@ literature axioms. The `theorem` body is a proper Lean proof referencing
 classical-lit axioms in `OpenHypotheses.lean` (the axioms are flagged as
 "awaits Mathlib port" but assert genuinely published statements). -/
 
-/-- **`hyp:ChernWeil-bridge-E7` clause (i) — CLOSED** via Schwarz 1978 +
- Borel-Hirzebruch 1958.
-
- Closure structure:
- - paper's clause (i) statement `ChernWeilBridge_E7_i S` is the
- conjunction `IsSchwarzE7QuarticGenerator S ∧ IsBorelHirzebruchNonvanishH8 S`
- (concrete `def` in `OpenHypotheses.lean`);
- - each conjunct is asserted by a single classical-literature axiom in
- `OpenHypotheses.lean`: `schwarz_1978_E7_quartic_generator` and
- `borel_hirzebruch_1958_freudenthal_nonvanish_H8_PAPER_LABELLED_CONJECTURAL`;
- - this theorem is conjunction-intro on those two axioms — `sorry`-free.
-
- paper source: hyp:ChernWeil-bridge-E7 clause (i). -/
-theorem hyp_ChernWeil_bridge_E7_i_closed :
- ∀ (S : E7ShimuraTor), ChernWeilBridge_E7_i S := fun S =>
- ⟨schwarz_1978_E7_quartic_generator S,
- borel_hirzebruch_1958_freudenthal_nonvanish_H8_PAPER_LABELLED_CONJECTURAL S⟩
+/- **R198 ORPHAN COMMENT** (was docstring for deleted theorem hyp_ChernWeil_bridge_E7_i_closed). -/
+/- **R198 DELETED**: `hyp_ChernWeil_bridge_E7_i_closed` (theorem).
+Orphaned after R191/R192 cor_E7_shimura_closed deletion. -/
 
 /- **R197 ORPHAN COMMENT** (was docstring for deleted theorem
 hyp_nonrigid_family_basedim27_closed). -/
@@ -439,23 +425,9 @@ All consumed orphaned axioms (helgason_1978_voisin_2002_basedim27,
 schmid_1973_*, griffiths_1968_*, kodaira_spencer_1958_fibre_iso_b0)
 from the hyp_nonrigid_family_bridge chain (deleted in this round). -/
 
-/-- **`hyp:ChernWeil-bridge-E7` clause (ii) — CLOSED** via
- Matsushima 1962/1967 + Mumford 1977 (AMRT 1975).
-
- Closure structure:
- - paper's clause (ii) statement `ChernWeilBridge_E7_ii S` is the
- conjunction `IsMatsushimaDescentToSGamma S ∧ IsMumfordCanonicalExtensionToTor S`
- (concrete `def` in `OpenHypotheses.lean`);
- - each conjunct is asserted by a single classical-literature axiom in
- `OpenHypotheses.lean`: `matsushima_1962_descent_to_SGamma` and
- `mumford_1977_canonical_extension_to_tor_PAPER_LABELLED_CONJECTURAL`;
- - this theorem is conjunction-intro on those two axioms — `sorry`-free.
-
- paper source: hyp:ChernWeil-bridge-E7 clause (ii). -/
-theorem hyp_ChernWeil_bridge_E7_ii_closed :
- ∀ (S : E7ShimuraTor), ChernWeilBridge_E7_ii S := fun S =>
- ⟨matsushima_borel_wallach_descent_to_SGamma_PAPER_LABELLED_CONJECTURAL S,
- mumford_1977_canonical_extension_to_tor_PAPER_LABELLED_CONJECTURAL S⟩
+/- **R198 ORPHAN COMMENT** (was docstring for deleted theorem hyp_ChernWeil_bridge_E7_ii_closed). -/
+/- **R198 DELETED**: `hyp_ChernWeil_bridge_E7_ii_closed` (theorem).
+Orphaned after R191/R192. -/
 
 /-- Atomic clause (i) of hyp:KS-p3 closure (**gapPartial**).
 
@@ -498,25 +470,9 @@ theorem hyp_KS_p3_clause_iii_closed :
  ∀ (p N : ℕ), p ≥ 3 → KugaSatakeAtP3_iii p N :=
  ks_p3_clause_iii_cycle_realisation_correspondence_CONJECTURAL
 
-/-- **`hyp:ChernWeil-bridge-E7` clause (iii) — CLOSED** via Borel-Hirzebruch
- 1958 + Schwarz 1978 (deg-4 invariant subspace 1-dim ⇒ polynomial identity
- exists).
-
- Closure structure:
- - `ChernWeilBridge_E7_iii S` is a concrete `def` unfolding to
- `IsPolynomialInCanonicalChernClasses S (freudenthalQuartic S)`;
- - `borel_hirzebruch_schwarz_polynomial_identity_E7_iii_PAPER_LABELLED_CONJECTURAL` (classical-lit
- axiom in `OpenHypotheses.lean`) directly asserts this for every `S`;
- - this theorem rebinds via definitional equality — `sorry`-free.
-
- With clauses (i), (ii), (iii) all CLOSED, the entire `hyp:ChernWeil-bridge-E7`
- hypothesis (bundled parent `hyp_ChernWeil_bridge_E7` in `OpenHypotheses.lean`)
- is also CLOSED.
-
- paper source: hyp:ChernWeil-bridge-E7 clause (iii). -/
-theorem hyp_ChernWeil_bridge_E7_iii_closed :
- ∀ (S : E7ShimuraTor), ChernWeilBridge_E7_iii S :=
- borel_hirzebruch_schwarz_polynomial_identity_E7_iii_PAPER_LABELLED_CONJECTURAL
+/- **R198 ORPHAN COMMENT** (was docstring for deleted theorem hyp_ChernWeil_bridge_E7_iii_closed). -/
+/- **R198 DELETED**: `hyp_ChernWeil_bridge_E7_iii_closed` (theorem).
+Orphaned after R191/R192. -/
 
 /-! ## Conditional paper theorems
 
