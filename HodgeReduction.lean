@@ -181,4 +181,5 @@ import HodgeReduction.HCGapL4.ShiftedCorrespondenceSHSM2Bridge
 import HodgeReduction.HCGapL4.SHSM2MultiStep
 import HodgeReduction.HCGapL4.GenericCycleAction
 import HodgeReduction.HCGapL4.GenericCycleActionMultiStep
+import HodgeReduction.HCGapL4.InternalCycleActionWithProductCycle
 import HodgeReduction.Concrete
