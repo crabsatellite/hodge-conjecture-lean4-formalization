@@ -167,4 +167,5 @@ import HodgeReduction.HCGapL4.HodgeMorphism
 import HodgeReduction.HCGapL4.NontrivialCorrespondence
 import HodgeReduction.HCGapL4.CycleClassPresentation
 import HodgeReduction.HCGapL4.ACDReconciliation
+import HodgeReduction.HCGapL4.ProductCohomology
 import HodgeReduction.Concrete
