@@ -184,4 +184,5 @@ import HodgeReduction.HCGapL4.GenericCycleActionMultiStep
 import HodgeReduction.HCGapL4.InternalCycleActionWithProductCycle
 import HodgeReduction.HCGapL4.ProductCohomologyPointProjectiveLine
 import HodgeReduction.HCGapL4.PtToProjectiveLineProductCycleFactory
+import HodgeReduction.HCGapL4.ProductCycleFactoryLifter
 import HodgeReduction.Concrete

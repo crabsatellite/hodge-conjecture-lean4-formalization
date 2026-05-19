@@ -1,0 +1,18 @@
+import HodgeReduction.HCGapL4.ProductCycleFactoryLifter
+import HodgeReduction.MainTheorem
+
+open HodgeReduction.HCGapL4.ProductCycleFactoryLifter
+open HodgeReduction.HCGapL4.InternalCycleActionWithProductCycle
+open HodgeReduction
+
+#print axioms InternalCycleActionData_SHSM_WithProductCycle.ofFields
+#print axioms ProductCycleFactory_to_SHSM2
+#print axioms VarietyHCAt_of_productCycleFactory
+#print axioms VarietyHCAt_of_productCycleFactory_composed3
+#print axioms VarietyHCAt_ellipticCurve_codim1_via_productCycleFactory_lifter
+#print axioms VarietyHCAt_projectiveLine_codim1_via_productCycleFactory_lifter
+#print axioms R225_does_not_close_mtCorrespondencePackage
+#print axioms R225_does_not_implement_true_chow_functoriality
+#print axioms R225_does_not_prove_cycle_induces_action
+#print axioms R225_only_abstracts_product_cycle_factory_lifter
+#print axioms hodgeConjectureReal_canonical
