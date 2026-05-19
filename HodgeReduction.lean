@@ -171,4 +171,5 @@ import HodgeReduction.HCGapL4.ProductCohomology
 import HodgeReduction.HCGapL4.CycleInducedCorrespondence
 import HodgeReduction.HCGapL4.CycleInducedCodim1
 import HodgeReduction.HCGapL4.ShiftedCorrespondence
+import HodgeReduction.HCGapL4.ShiftedCorrespondenceSHSM
 import HodgeReduction.Concrete
