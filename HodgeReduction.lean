@@ -177,4 +177,5 @@ import HodgeReduction.HCGapL4.ShiftedCorrespondenceComposition
 import HodgeReduction.HCGapL4.SHSMComposition
 import HodgeReduction.HCGapL4.SHSMCompositionGeneral
 import HodgeReduction.HCGapL4.ShiftedCorrespondenceSHSM2
+import HodgeReduction.HCGapL4.ShiftedCorrespondenceSHSM2Bridge
 import HodgeReduction.Concrete
