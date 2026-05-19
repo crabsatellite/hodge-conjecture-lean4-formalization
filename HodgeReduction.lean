@@ -197,4 +197,5 @@ import HodgeReduction.HCGapL4.E7ShimuraToyV56Skeleton
 import HodgeReduction.HCGapL4.E7ShimuraToyV56HodgeSkeleton
 import HodgeReduction.HCGapL4.E7ShimuraToyMumfordTateCocharacter
 import HodgeReduction.HCGapL4.E7ShimuraToyDeligneTorusSkeleton
+import HodgeReduction.HCGapL4.E7ShimuraDatumToySkeleton
 import HodgeReduction.Concrete
