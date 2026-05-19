@@ -159,4 +159,6 @@ import HodgeReduction.Infrastructure.AlgebraicGeometry.ChowGroup
 import HodgeReduction.Infrastructure.AlgebraicGeometry.HodgeDecomposition
 import HodgeReduction.Infrastructure.HCFramework
 import HodgeReduction.MathlibCandidates
+import HodgeReduction.HCGapRegistry
+import HodgeReduction.HCGapL2.TrivialPoint
 import HodgeReduction.Concrete
