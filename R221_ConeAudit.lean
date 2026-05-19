@@ -1,0 +1,17 @@
+import HodgeReduction.HCGapL4.GenericCycleAction
+import HodgeReduction.MainTheorem
+
+open HodgeReduction.HCGapL4.GenericCycleAction
+open HodgeReduction
+
+#print axioms InternalCycleActionData.to_R212_raw
+#print axioms InternalCycleActionData_SHSM.to_SHSM2
+#print axioms internalCycleActionData_SHSM_point_to_ellipticCurve
+#print axioms SHSM2_point_to_E_from_internalCycleAction
+#print axioms VarietyHCAt_ellipticCurve_codim1_via_internalCycleAction
+#print axioms R221_does_not_close_mtCorrespondencePackage
+#print axioms R221_does_not_implement_real_chow
+#print axioms R221_does_not_implement_true_scheme_product
+#print axioms R221_does_not_enforce_product_cycle_provenance
+#print axioms R221_only_abstracts_internal_cycle_action_factory
+#print axioms hodgeConjectureReal_canonical
