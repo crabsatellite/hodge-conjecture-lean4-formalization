@@ -1,0 +1,19 @@
+import HodgeReduction.HCGapL4.SHSMCompositionGeneral
+import HodgeReduction.MainTheorem
+
+open HodgeReduction.HCGapL4.SHSMCompositionGeneral
+open HodgeReduction
+
+#print axioms nat_add_assoc_index
+#print axioms two_mul_nat_add_assoc
+#print axioms H_cast_add_assoc
+#print axioms ShiftedMTCorrespondencePackageAt_SHSM_compose_at_zero
+#print axioms ShiftedMTCorrespondencePackageAt_SHSM_compose_at_one
+#print axioms ShiftedMTCorrespondencePackageAt_SHSM_point_to_ellipticCurve_via_compose_at_one
+#print axioms VarietyHCAt_ellipticCurve_codim1_via_general_SHSM_compose_at_one
+#print axioms R217_general_SHSM_compose_variable_q2_blocked
+#print axioms R217_does_not_close_mtCorrespondencePackage
+#print axioms R217_does_not_close_general_SHSM_compose_variable_q2
+#print axioms R217_does_not_implement_real_chow_composition
+#print axioms R217_does_not_develop_full_cast_coherence_theory
+#print axioms hodgeConjectureReal_canonical
