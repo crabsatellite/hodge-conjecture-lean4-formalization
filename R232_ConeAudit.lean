@@ -1,0 +1,16 @@
+import HodgeReduction.HCGapL4.E7ShimuraToyMumfordTateCocharacter
+import HodgeReduction.MainTheorem
+
+open HodgeReduction.HCGapL4.E7ShimuraToyMumfordTateCocharacter
+open HodgeReduction
+
+#print axioms V56Toy_MumfordTateCocharacterSkeleton
+#print axioms E7ShimuraToy_WithV56MTCocharacterSkeleton
+#print axioms VarietyHCAt_E7ShimuraToyWithV56MTCocharacterSkeleton_codim1_via_productCycleFactory
+#print axioms R232_does_not_close_canonicalE7ShimuraTor
+#print axioms R232_does_not_implement_real_mumford_tate
+#print axioms R232_does_not_implement_deligne_torus
+#print axioms R232_does_not_implement_real_E7_action
+#print axioms R232_does_not_implement_freudenthal_triple
+#print axioms R232_does_not_identify_toy_with_real_E7Shimura
+#print axioms hodgeConjectureReal_canonical
