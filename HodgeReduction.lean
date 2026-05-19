@@ -182,4 +182,6 @@ import HodgeReduction.HCGapL4.SHSM2MultiStep
 import HodgeReduction.HCGapL4.GenericCycleAction
 import HodgeReduction.HCGapL4.GenericCycleActionMultiStep
 import HodgeReduction.HCGapL4.InternalCycleActionWithProductCycle
+import HodgeReduction.HCGapL4.ProductCohomologyPointProjectiveLine
+import HodgeReduction.HCGapL4.PtToProjectiveLineProductCycleFactory
 import HodgeReduction.Concrete
