@@ -1,0 +1,16 @@
+import HodgeReduction.HCGapL4.ProductCycleFactoryComposition
+import HodgeReduction.MainTheorem
+
+open HodgeReduction.HCGapL4.ProductCycleFactoryComposition
+open HodgeReduction
+
+#print axioms ProductCycleFactory_compose_to_SHSM2
+#print axioms VarietyHCAt_of_productCycleFactory_compose
+#print axioms identity_InternalCycleActionData_SHSM_WithProductCycle
+#print axioms SHSM2_point_to_E_via_identity_factory_then_R223
+#print axioms VarietyHCAt_ellipticCurve_codim1_via_factory_chain_identity_pt_R223
+#print axioms R226_does_not_close_mtCorrespondencePackage
+#print axioms R226_does_not_implement_cycle_level_composition
+#print axioms R226_does_not_prove_cycles_induce_actions
+#print axioms R226_only_SHSM2_composition_of_factory_packages
+#print axioms hodgeConjectureReal_canonical
