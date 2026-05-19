@@ -1,0 +1,20 @@
+import HodgeReduction.HCGapL4.E7ShimuraToyV56HodgeSkeleton
+import HodgeReduction.MainTheorem
+
+open HodgeReduction.HCGapL4.E7ShimuraToyV56HodgeSkeleton
+open HodgeReduction
+
+#print axioms piece_V56Toy_weight3
+#print axioms iSupIndep_piece_V56Toy_weight3
+#print axioms iSup_piece_V56Toy_weight3_eq_top
+#print axioms pureHodgeStructure_V56Toy_weight3
+#print axioms E7ShimuraToy_V56HodgeSkeleton
+#print axioms E7ShimuraToy_WithV56HodgeSkeleton
+#print axioms VarietyHCAt_E7ShimuraToyWithV56HodgeSkeleton_codim1_via_productCycleFactory
+#print axioms R231_does_not_close_canonicalE7ShimuraTor
+#print axioms R231_does_not_implement_real_V56
+#print axioms R231_does_not_implement_true_mumford_tate
+#print axioms R231_does_not_implement_real_E7_action
+#print axioms R231_does_not_implement_freudenthal_triple
+#print axioms R231_does_not_identify_toy_with_real_E7Shimura
+#print axioms hodgeConjectureReal_canonical

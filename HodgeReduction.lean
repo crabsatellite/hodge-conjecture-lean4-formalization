@@ -194,4 +194,5 @@ import HodgeReduction.HCGapL4.E7ShimuraToyCarrier
 import HodgeReduction.HCGapL4.ProductCohomologyPointTimesE7ShimuraToy
 import HodgeReduction.HCGapL4.E7ShimuraToyProductCycleFactory
 import HodgeReduction.HCGapL4.E7ShimuraToyV56Skeleton
+import HodgeReduction.HCGapL4.E7ShimuraToyV56HodgeSkeleton
 import HodgeReduction.Concrete
