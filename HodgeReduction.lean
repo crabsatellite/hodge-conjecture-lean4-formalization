@@ -176,4 +176,5 @@ import HodgeReduction.HCGapL4.InducedAlgClassMap
 import HodgeReduction.HCGapL4.ShiftedCorrespondenceComposition
 import HodgeReduction.HCGapL4.SHSMComposition
 import HodgeReduction.HCGapL4.SHSMCompositionGeneral
+import HodgeReduction.HCGapL4.ShiftedCorrespondenceSHSM2
 import HodgeReduction.Concrete
