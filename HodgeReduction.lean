@@ -161,4 +161,5 @@ import HodgeReduction.Infrastructure.HCFramework
 import HodgeReduction.MathlibCandidates
 import HodgeReduction.HCGapRegistry
 import HodgeReduction.HCGapL2.TrivialPoint
+import HodgeReduction.HCGapL2.ProjectiveLine
 import HodgeReduction.Concrete
