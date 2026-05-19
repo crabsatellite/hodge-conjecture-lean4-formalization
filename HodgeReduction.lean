@@ -165,4 +165,5 @@ import HodgeReduction.HCGapL2.ProjectiveLine
 import HodgeReduction.HCGapL2.EllipticCurve
 import HodgeReduction.HCGapL4.HodgeMorphism
 import HodgeReduction.HCGapL4.NontrivialCorrespondence
+import HodgeReduction.HCGapL4.CycleClassPresentation
 import HodgeReduction.Concrete
