@@ -429,46 +429,11 @@ from the hyp_nonrigid_family_bridge chain (deleted in this round). -/
 /- **R198 DELETED**: `hyp_ChernWeil_bridge_E7_ii_closed` (theorem).
 Orphaned after R191/R192. -/
 
-/-- Atomic clause (i) of hyp:KS-p3 closure (**gapPartial**).
-
- Proof = conjectural-extension axiom (no framework decomposition is
- honest: SO(p, 3) is non-Hermitian, structurally outside published KS
- / Madapusi Pera (n, 2) framework). Status gapPartial because of the
- conjectural-extension dependency.
- paper source: hyp:KS-p3 clause (i). -/
-theorem hyp_KS_p3_clause_i_closed :
- ∀ (p N : ℕ), p ≥ 3 → KugaSatakeAtP3_i p N :=
- ks_p3_weight1_HodgeCocharacter_CONJECTURAL
-
-/-- Atomic clause (ii) of hyp:KS-p3 closure (**gapPartial**).
-
- Proof = conjunction-intro from clause (i) conjectural-extension +
- Deligne 1979 polarisation criterion (classical-lit framework). Typed
- bridge: (ii) follows from (i) via Deligne's signature-independent
- template, reducing the Lean axiom count by 1. Status gapPartial
- inherited from clause (i) dependency.
- paper source: hyp:KS-p3 clause (ii). -/
-theorem hyp_KS_p3_clause_ii_closed :
- ∀ (p N : ℕ), p ≥ 3 → KugaSatakeAtP3_ii p N := fun p N hp =>
- ⟨ks_p3_weight1_HodgeCocharacter_CONJECTURAL p N hp,
- deligne_1979_polarisation_criterion p N⟩
-
-/-- Atomic clause (iii) of hyp:KS-p3 closure (**gapPartial**).
-
- Proof = single conjectural-extension axiom
- (`ks_p3_clause_iii_cycle_realisation_correspondence_CONJECTURAL`). No
- framework decomposition is honest: `\ref{hyp:KS-p3}` clause (iii)
- statement + caveat + circularity disclosure show clause (iii) is
- at-least-as-strong-as HC|Sh(Spin(p,3),D) restricted to Spin-invariant
- subspace (combined with HC|A_N pullback component). Madapusi Pera
- 2016 Compositio 152 Thm 4.17 + Moonen 1998 establish the (n,2)
- analogue; the (p,3) case is non-Hermitian and requires "a genuinely
- new construction at q=3" (`\ref{hyp:KS-p3}` closing remark). Mirror
- of R8 clause (i) single-conjectural-extension-axiom pattern.
- paper source: hyp:KS-p3 clause (iii). -/
-theorem hyp_KS_p3_clause_iii_closed :
- ∀ (p N : ℕ), p ≥ 3 → KugaSatakeAtP3_iii p N :=
- ks_p3_clause_iii_cycle_realisation_correspondence_CONJECTURAL
+/- **R200 DELETED**: 3 KS-p3 accessor closures
+(hyp_KS_p3_clause_i_closed, hyp_KS_p3_clause_ii_closed,
+hyp_KS_p3_clause_iii_closed). All consumed KS-p3 chain declarations
+(deleted in OpenHypotheses.lean in this round). Orphaned after R191
+main_reduction deletion. -/
 
 /- **R198 ORPHAN COMMENT** (was docstring for deleted theorem hyp_ChernWeil_bridge_E7_iii_closed). -/
 /- **R198 DELETED**: `hyp_ChernWeil_bridge_E7_iii_closed` (theorem).

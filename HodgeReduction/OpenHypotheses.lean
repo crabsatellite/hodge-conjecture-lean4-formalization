@@ -213,264 +213,22 @@ Net axiom delta in this block: −1 (hypCMBundle).
 Net axiom delta total for R199: −3 (combined with deletions above). -/
 
 
-/-! ## Hypothesis 3. Kuga--Satake at signature `(p, 3)`
+/- **R200 DELETED** (entire hyp_KS_p3 chain — Hypothesis 3):
+1 axiom (ksP3Bundle) + 1 structure (KSP3Bundle) + 5 def predicates
+(KugaSatakeAtP3, KugaSatakeAtP3_i, KugaSatakeAtP3_ii, KugaSatakeAtP3_iii,
+IsKSp3WeightOneHodgeCocharacter_CONJECTURAL,
+IsKSp3CycleRealisationCorrespondence_CONJECTURAL) + 4 theorems
+(ks_p3_weight1_HodgeCocharacter_CONJECTURAL, deligne_1979_polarisation_criterion,
+ks_p3_clause_iii_cycle_realisation_correspondence_CONJECTURAL, hyp_KS_p3).
 
-Paper: `\label{hyp:KS-p3}`.
+Orphaned after R191/R192 main_reduction deletion. The substantive
+content (Kuga–Satake (p,3) cycle correspondence) is preserved inside
+R190 canonicalE7ShimuraTor.mtCorrespondencePackage — canonical case
+uses E_7-specific MT correspondence, which encompasses any KS-style
+cycle output the paper's reduction chain would have required.
 
-Statement: "For every `p ≥ 3`, the spin embedding
-`Spin(p, 3) ↪ GL(Cliff^+(V))` extends to a Hodge homomorphism into a Siegel
-datum `(GSp_{2N}, H_N)` for some `N`, realising `Sh(Spin(p,3), D)` as a
-special subvariety of `A_N`." Three clauses:
- (i) weight-1 Hodge cocharacter on `Cliff^+(V)`;
- (ii) polarisation by the canonical anti-involution;
- (iii) algebraic correspondence realising each invariant Hodge class
- on `Sh(Spin(p,3), D)` as pullback of a Hodge class on `A_N`. -/
+Net axiom delta in this block: −1 (ksP3Bundle). -/
 
-/-! ### Atomic literature predicates for clauses (i) and (ii) of hyp:KS-p3
-(closure status: **gapPartial** for both clauses).
-
-CRITICAL STRUCTURAL OBSTRUCTION: Kuga-Satake 1967 + Deligne 1972/1979 +
-Madapusi Pera 2015/2016 cover **only signature `(n, 2)`** (Type IV
-Hermitian symmetric domain `SO(n, 2)`). Signature `(p, 3)` lives outside
-this framework — `SO(p, 3)` has **non-Hermitian** symmetric domain
-(Cartan classification: Type IV requires `q = 2`). Deligne 1979 §1.3
-explicitly blocks the spin route at `q ≠ 2` (half-integer weight
-obstruction; weight-lattice non-preservation). No published source
-covers signature `(p, 3)` KS construction; `\ref{hyp:KS-p3}`
-explicitly self-declares this as a CONJECTURAL hypothesis.
-
-Decomposition:
-- Clause (i) = single conjectural-extension predicate. NO useful
- framework decomposition (published `(p, 2)` does NOT contribute to
- `(p, 3)` structurally).
-- Clause (ii) = clause (i) ∧ Deligne 1979 polarisation criterion. The
- polarisation TEMPLATE (Deligne 1979 §1.1 Def. 1.1.13) is classical
- and applies signature-independently once the Hodge homomorphism of
- (i) is in place; hence (ii) is a typed bridge from (i) + 1 classical-
- lit framework axiom, reducing the Lean axiom count by 1. -/
-
-/-- **CONJECTURAL EXTENSION** predicate (clause i): for every `p ≥ 3`,
- there exists `N` such that the spin embedding
- `Spin(p, 3) ↪ GL(Cliff^+(V))` extends to a weight-1 Hodge cocharacter
- on `Cliff^+(V)` lifting the Spin Hodge structure.
-
- `\ref{hyp:KS-p3}` self-declared conjectural; SO(p, 3)
- non-Hermitian, structurally outside published KS / Madapusi Pera
- framework. No useful decomposition into "Spin(p, 2) published" +
- "extension".
- paper source: hyp:KS-p3 clause (i).
-
- **R156**: structure bundling the 3 KSP3 paper-citation predicates
- + 3 paired assertion witnesses. Trades 6 named axioms for 1 inhabitant
- axiom (`ksP3Bundle`) below. Each downstream `Is*` predicate becomes a
- projection def; each downstream `_witness` becomes a theorem deriving
- from the bundle inhabitant. -/
-structure KSP3Bundle : Type where
-  /-- KSP3 clause (i) predicate: weight-1 Hodge cocharacter lift. -/
-  weight1HodgeCocharacter_CONJECTURAL : (p N : ℕ) → Prop
-  /-- KSP3 clause (ii) framework predicate: Deligne 1979 polarisation criterion. -/
-  deligne1979PolarisationCriterion : (p N : ℕ) → Prop
-  /-- KSP3 clause (iii) predicate: cycle realisation correspondence. -/
-  cycleRealisationCorrespondence_CONJECTURAL : (p N : ℕ) → Prop
-  /-- Witness: weight-1 Hodge cocharacter lift exists for p ≥ 3. -/
-  weight1_witness :
-    ∀ (p N : ℕ), p ≥ 3 → weight1HodgeCocharacter_CONJECTURAL p N
-  /-- Witness: Deligne 1979 polarisation criterion applies universally. -/
-  deligne1979_witness :
-    ∀ (p N : ℕ), deligne1979PolarisationCriterion p N
-  /-- Witness: cycle realisation correspondence for p ≥ 3. -/
-  cycleRealisation_witness :
-    ∀ (p N : ℕ), p ≥ 3 → cycleRealisationCorrespondence_CONJECTURAL p N
-
-/-- **R156**: the single axiom inhabitant for the KSP3 bundle. Replaces
-the 3 individual `Is*` predicate axioms + 3 paired assertion axioms. -/
-axiom ksP3Bundle : KSP3Bundle
-
--- R156: was `axiom IsKSp3WeightOneHodgeCocharacter_CONJECTURAL`; now def via bundle.
-def IsKSp3WeightOneHodgeCocharacter_CONJECTURAL : (p N : ℕ) → Prop :=
-  ksP3Bundle.weight1HodgeCocharacter_CONJECTURAL
-
-/-- Framework predicate (Deligne 1979 polarisation criterion): once a
- weight-1 Hodge homomorphism on `Cliff^+(V)` is supplied, the canonical
- anti-involution `*` of the Clifford algebra furnishes a polarisation.
- Pinned by Deligne 1979 §1.1 Def. 1.1.13 + Prop. 1.3.2 (template applies
- signature-independently).
- paper source: hyp:KS-p3 clause (ii) framework. -/
--- R156: was `axiom`; now def via KSP3 bundle.
-def IsDeligne1979PolarisationCriterion : (p N : ℕ) → Prop :=
-  ksP3Bundle.deligne1979PolarisationCriterion
-
-/-- **CONJECTURAL-EXTENSION axiom** for clause (i).
-
-For every `p ≥ 3` and every `N`, the conjectural weight-1 Hodge
-cocharacter on `Cliff^+(V)` at signature `(p, 3)` holds.
-
-STATUS: paper-acknowledged hypothesis (`\ref{hyp:KS-p3}` clause (i)
-statement). Madapusi Pera 2015 Invent. Math. 201 / 2016 Compositio
-Math. 152 cover signature `(n, 2)` ONLY. SO(p, 3) symmetric domain is
-non-Hermitian (Cartan Type IV requires q = 2), so the published
-Kuga-Satake / Deligne / Madapusi Pera apparatus DOES NOT extend. Deligne
-1979 §1.3 explicitly blocks `q ≠ 2`.
-
-Source: master proof self-declared conjectural at hyp:KS-p3.
-Cross-reference (for the (p, 2) case which does NOT extend): M. Kuga,
- I. Satake, "Abelian varieties attached to polarized K_3 surfaces",
- Math. Ann. 169 (1967) 239-242; P. Deligne, "La conjecture de Weil pour
- les surfaces K3", Invent. Math. 15 (1972) 206-226; K. Madapusi Pera,
- "Integral canonical models for spin Shimura varieties", Compositio
- Math. 152 (2016) 769-824 (arXiv:1212.1243).
-paper source: hyp:KS-p3 clause (i). -/
--- R156: was `axiom`; now theorem via KSP3 bundle witness.
-theorem ks_p3_weight1_HodgeCocharacter_CONJECTURAL :
- ∀ (p N : ℕ), p ≥ 3 → IsKSp3WeightOneHodgeCocharacter_CONJECTURAL p N :=
- ksP3Bundle.weight1_witness
-
-/-- **Deligne 1979 polarisation criterion** classical-literature axiom.
-
-For every `p ≥ 3` and every `N`, the Deligne 1979 polarisation
-criterion (signature-independent template) applies.
-
-Source: P. Deligne, "Variétés de Shimura: interprétation modulaire, et
- techniques de construction de modèles canoniques", Proc. Symp. Pure
- Math. 33 (1979) Part 2, 247-289; §1.1 Def. 1.1.13 (polarisation
- criterion: any abelian-type Hodge representation with positive-definite
- invariant form yields a polarisation); §1.3 Prop. 1.3.2 (positivity for
- anti-involution polarisation template).
-Cross-source: D. Mumford, *Abelian Varieties*, Tata Institute Studies in
- Mathematics 5 (1970), Ch. III (canonical anti-involution + Rosati
- involution).
-paper source: hyp:KS-p3 clause (ii) framework. -/
--- R156: was `axiom`; now theorem via KSP3 bundle witness.
-theorem deligne_1979_polarisation_criterion :
- ∀ (p N : ℕ), IsDeligne1979PolarisationCriterion p N :=
- ksP3Bundle.deligne1979_witness
-
-/-- Clause (i): weight-1 Hodge cocharacter lift on `Cliff^+(V)` exists.
-
- Concrete `def` equal to the conjectural-extension predicate. No
- framework decomposition is honest (see section header for the
- structural obstruction). Closure status: **gapPartial** (single
- conjectural-extension axiom).
- paper source: hyp:KS-p3 clause (i). -/
-def KugaSatakeAtP3_i (p N : ℕ) : Prop :=
- IsKSp3WeightOneHodgeCocharacter_CONJECTURAL p N
-
-/-- Clause (ii): canonical anti-involution furnishes polarisation
- compatible with the Hodge cocharacter of (i).
-
- Concrete `def` = conjunction of clause (i) (conjectural-extension)
- and Deligne 1979 polarisation criterion (classical-lit framework).
- Typed bridge: clause (ii) follows from (i) via Deligne's
- signature-independent template. Closure status: **gapPartial**
- (depends on clause (i) conjectural-extension).
- paper source: hyp:KS-p3 clause (ii). -/
-def KugaSatakeAtP3_ii (p N : ℕ) : Prop :=
- IsKSp3WeightOneHodgeCocharacter_CONJECTURAL p N ∧
- IsDeligne1979PolarisationCriterion p N
-
-/-- **CONJECTURAL-EXTENSION** predicate (clause iii): existence of an
- algebraic correspondence on `Sh(Spin(p,3), D) × A_N` realising each
- Spin(p,3)-invariant Hodge class on the Shimura variety as the pullback
- of a Hodge class on the Kuga-Satake target `A_N`. `\ref{hyp:KS-p3}`
- clause (iii) statement; explicit caveat (strictly stronger than
- clauses (i)-(ii), cycle-realisation at level of invariant subspaces).
-
- CIRCULARITY DISCLOSURE: `\ref{hyp:KS-p3}` explicitly states clause
- (iii) is at-least-as-strong-as HC for Sh(Spin(p,3), D) restricted to
- the Spin-invariant subspace (combined with the cycle-realisation half
- of HC|A_N). The (n,2) analogue is ESTABLISHED via Madapusi Pera 2016
- Compositio 152 Thm 4.17 + Moonen 1998 (descent at CM fibres); the
- (p,3) extension is NOT in published literature and "would require a
- genuinely new construction at q=3" (`\ref{hyp:KS-p3}` clause (iii)
- closing remark).
- paper source: hyp:KS-p3 clause (iii). -/
--- R156: was `axiom`; now def via KSP3 bundle.
-def IsKSp3CycleRealisationCorrespondence_CONJECTURAL : (p N : ℕ) → Prop :=
-  ksP3Bundle.cycleRealisationCorrespondence_CONJECTURAL
-
-/-- **CONJECTURAL-EXTENSION axiom** for clause (iii).
-
- For every `p ≥ 3` and every `N`, the conjectural algebraic
- correspondence on `Sh(Spin(p,3), D) × A_N` realises each Spin(p,3)-
- invariant Hodge class on the Shimura variety as the pullback of a
- Hodge class on `A_N`.
-
- STATUS: paper-acknowledged hypothesis (`\ref{hyp:KS-p3}` clause
- (iii) statement + caveat + circularity disclosure). Madapusi Pera
- 2016 Compositio Math. 152 (arXiv:1212.1243) Thm 4.17 + Moonen 1998
- establish the analogous cycle-realisation at signature (n, 2)
- (Hermitian symmetric SO(n-2, 2)); the (p, 3) case is non-Hermitian
- (Cartan Type IV requires q = 2) and the published apparatus DOES NOT
- extend. `\ref{hyp:KS-p3}` closing remark: "would require a genuinely
- new construction at q=3".
-
- The Lean closure of this axiom is honest bookkeeping of the paper's
- self-declared circularity (clause (iii) ≥ HC|Sh|invariant + HC|A_N
- pullback), NOT a new mathematical reduction. Single-conjectural-
- extension-axiom pattern, matching the pattern used for clause (i).
-
- Source: master proof self-declared conjectural at hyp:KS-p3 clause (iii).
- Cross-reference: K. Madapusi Pera, "Integral canonical models for spin
-  Shimura varieties", Compositio Math. 152 (2016) 769-824
-  (arXiv:1212.1243), Thm 4.17 (signature (n, 2) case — DOES NOT extend
-  to (p, 3)); B. Moonen, "Models of Shimura varieties in mixed
-  characteristics", in Galois Representations in Arithmetic Algebraic
-  Geometry, LMS Lecture Note Ser. 254 (1998) 267-350 (CM-descent of
-  KS correspondence; (n, 2) only).
- paper source: hyp:KS-p3 clause (iii). -/
--- R156: was `axiom`; now theorem via KSP3 bundle witness.
-theorem ks_p3_clause_iii_cycle_realisation_correspondence_CONJECTURAL :
- ∀ (p N : ℕ), p ≥ 3 → IsKSp3CycleRealisationCorrespondence_CONJECTURAL p N :=
- ksP3Bundle.cycleRealisation_witness
-
-/-- Clause (iii): the embedding induces an algebraic correspondence on
- `Sh × A_N` realising each `Spin(p,3)`-invariant Hodge class on
- `Sh(Spin(p,3), D)` as pullback of a Hodge class on `A_N`.
-
- Concrete `def` equal to the conjectural-extension predicate. No
- framework decomposition is honest: the (p, 3) cycle-realisation has
- no published source, and decomposing into "HC|Sh + HC|A_N → (iii)"
- would split one open into two opens (Millennium-target HC instances
- themselves), violating the spirit of `feedback_lean_axiom_decomposition`
- (decomposition should produce single-step typed bridges to ESTABLISHED
- lemmas, not to other opens). Closure status: **gapPartial** (single
- conjectural-extension axiom mirroring R8 clause (i) pattern).
- paper source: hyp:KS-p3 clause (iii). -/
-def KugaSatakeAtP3_iii (p N : ℕ) : Prop :=
- IsKSp3CycleRealisationCorrespondence_CONJECTURAL p N
-
-/-- The full `hyp:KS-p3` bundles (i), (ii), (iii). We keep this as a
- convenience conjunction, but the atomic clause predicates above are
- the primitive content. Atomic decomposition is retained at the
- *predicate* level (`KugaSatakeAtP3_i/ii/iii`), but the paper's
- statement uses a single existential quantifier ("for
- some `N`") binding all three clauses jointly. We therefore provide
- only the bundled `hyp_KS_p3` axiom (common-N quantifier);
- standalone atomic axioms with independent `∃ N` would overclaim
- relative to the paper (three free Ns instead of one common N).
- paper source: hyp:KS-p3. -/
-def KugaSatakeAtP3 (p: ℕ) (N: ℕ): Prop:=
- KugaSatakeAtP3_i p N ∧ KugaSatakeAtP3_ii p N ∧ KugaSatakeAtP3_iii p N
-
-/-- Bundled hypothesis: for every `p ≥ 3`, there is a single common
- `N` satisfying all three clauses (i), (ii), (iii) jointly.
-
- Since each clause closure is universally quantified in N (`∀ p N,
- p ≥ 3 → KugaSatakeAtP3_<i/ii/iii> p N`), any single N — taking N := 0
- — provides a common witness. Proof = conjunction-intro on 3
- conjectural-extension axioms (i: `ks_p3_weight1_HodgeCocharacter_CONJECTURAL`,
- ii: same + `deligne_1979_polarisation_criterion`, iii:
- `ks_p3_clause_iii_cycle_realisation_correspondence_CONJECTURAL`) plus
- N := 0 existential witness. Status gapPartial (inherits from the 3
- clause conjectural-extension dependencies).
- paper source: hyp:KS-p3. -/
-theorem hyp_KS_p3:
- ∀ (p: ℕ), p ≥ 3 → ∃ N: ℕ, KugaSatakeAtP3 p N := fun p hp =>
- ⟨0,
-  ks_p3_weight1_HodgeCocharacter_CONJECTURAL p 0 hp,
-  ⟨ks_p3_weight1_HodgeCocharacter_CONJECTURAL p 0 hp,
-   deligne_1979_polarisation_criterion p 0⟩,
-  ks_p3_clause_iii_cycle_realisation_correspondence_CONJECTURAL p 0 hp⟩
 
 /-! ## Hypothesis 4. Absolute Hodge for `E_7`-type CM fibres
 
@@ -2166,36 +1924,11 @@ def IsMumfordCanonicalExtensionToTor (S : E7ShimuraTor) : Prop :=
 axiom IsMumfordCanonicalExtensionFramework_E7 :
  E7ShimuraTor → Prop
 
-/-- `_REQUIRED_HYPOTHESIS` atom: the Goresky-Pardon 2002 (Invent. Math.
- 147) Chern-subalgebra theorem extends from the classical types
- (`Sp_n(ℝ), U(p,q), SO(2n), SO(2,p)`, per G-P §1.3 Thm 16.4) to the
- equal-rank EVII case. G-P §1.6 explicitly notes this extension is
- NOT known. Specifically: the canonical Chern subalgebra of
- `H^*(S_Γ^tor, ℚ)` generated by `c_i(𝓥_56^can)` is well-defined
- (independent of toroidal-compactification choice) AND surjects onto
- the compact-dual Chern subalgebra via the proportionality / pullback
- map. Without this hypothesis, the (iii) ring-hom transport along the
- extension to `S_Γ^tor` is not literally established for EVII.
- Tier: `_REQUIRED_HYPOTHESIS` (paper-acknowledged conditional input;
- G-P's classical-type theorem is the published framework, but the EVII
- extension is the conjectural piece). Discharges only the EVII-specific
- part of the (iii) ring-hom atom; the Mumford-1977-only part (Chern
- NUMBER proportionality + `𝓥^can` existence) is PUBLISHED unconditionally.
- paper source: hyp:ChernWeil-bridge-E7 (ii)/(iii) — surfaced per R-#106b
- audit (Defect #1: G-P scope misattributed to cover EVII).
- P7 STRUCTURAL DECOMPOSITION (R-#new Phase 0+1 hostile audit):
- this monolithic atom is honestly decomposed into 2 PUBLISHED +
- 1 narrower `_REQUIRED_HYPOTHESIS` + 1 INVENTION_CLASS via
- `goresky_pardon_chern_subalgebra_extension_to_EVII_from_subatoms`
- below. The genuine residual content is the E_6-representation-
- theoretic compatibility of G-P §16.2 (NOT the abstract §10-12
- controlled-form framework, which Looijenga 2017 verifies is
- group-agnostic). G-P 2002 §1.6 verified verbatim: "We do not know
- whether the results on Chern classes which are described in this
- paper for Hermitian symmetric spaces may be extended to the 'equal
- rank' case (when the real rank of G and of K coincide)." -/
-axiom IsGoreskyPardonChernSubalgebraExtensionToEVII_REQUIRED_HYPOTHESIS :
- E7ShimuraTor → Prop
+/- **R200 CASCADE DELETED (−1 Prop axiom)**:
+ `IsGoreskyPardonChernSubalgebraExtensionToEVII_REQUIRED_HYPOTHESIS`.
+ Orphan after R200 P8 + degree-8 bridge deletions: all witnesses and
+ bridges that produced this Prop have been removed in Waves 1A/1B,
+ leaving zero value-level consumers. -/
 
 /-- **PUBLISHED folklore-corollary sub-atom of G-P-EVII decomposition**
  (P7, R-#new; tier-downgraded per P7 Phase 4 audit):
@@ -2251,359 +1984,47 @@ axiom IsBorelHirzebruchClassifyingSpacePresentationFor_E6timesU1_FOLKLORE_PUBLIS
 axiom IsGPAbstractParabolicConnectionFramework_GroupAgnostic_PUBLISHED :
  E7ShimuraTor → Prop
 
-/-- **`_REQUIRED_HYPOTHESIS` sub-atom (narrower residual)** (P7, R-#new;
- P8-AUDIT-DISCLOSED: this atom is itself a COMPOSITE; P8 decomposes
- it further into 4 typed sub-atoms via `is_E6_representation_compatibility_of_section_16dot2_from_subatoms_P8`
- below):
- the specific representation-theoretic check that G-P 2002 §16.2's
- surjection argument (Chern subring of `H^*(BK; ℂ)` surjects onto
- `H^*(D̆; ℂ)` via Borel's theorem applied to product-of-classical-K
- decomposition) carries through when `K = E_6 × U(1)` with `E_6` as
- a single irreducible factor and the automorphic bundle is the
- minuscule rep `V_27` (resp. `V_56` of the ambient E_7). G-P §16.2
- ARGUMENT specifically uses each `K_i` factor being `U(n_i)`,
- `O(2k_i+1)`, or `SO(2)` so that the Chern-Weil generators come
- from K-restricted representations of well-studied subgroups; the
- same step for `E_6 × U(1)` requires verifying:
-   (a) Hirzebruch-Mumford proportionality lifts to the level of
-       differential forms in degrees relevant to the Freudenthal
-       quartic (degree 8), in the equal-rank case where boundary
-       strata are E_6-type rather than U(n)/SO-type;
-   (b) the K-restricted representation argument carries through
-       with `E_6` (rather than `U(n)`) as the K-factor.
- Tier: `_REQUIRED_HYPOTHESIS` (this is the genuine narrower residual
- content of the G-P-EVII extension, per Phase 0 hostile audit
- R-#new: the bottleneck is at G-P §16.2 representation-theoretic
- compatibility, NOT at the abstract §10-12 framework which is
- group-agnostic per Looijenga 2017). Literature 2002-2026 confirmed
- silent on this specific check (Looijenga 2017 only verifies the
- abstract framework for Sp; Esnault-Harris 2018 restricts to
- Hodge-type Shimura — EVII excluded as non-abelian-type;
- Burgos-Wildeshaus 2004 gives MHM degeneration but not the
- surjection statement).
- P8 STRUCTURAL DECOMPOSITION (R-#new-P8): per the P8 Phase 0 audit,
- this atom decomposes into:
-   (P8.1) PUBLISHED `IsEVIIBoundaryStrataClassification_codim1_is_EIII_PUBLISHED`
-          (codim-1 boundary stratum = EIII = E_6/Spin(10)·U(1), itself
-          EXCEPTIONAL not classical — Wolf 1972 / Satake 1980).
-   (P8.2) gapBlocked `IsHirzebruchMumfordProportionalityFormsForEVII_REQUIRED_HYPOTHESIS`
-          (form-level HM proportionality for EVII; Mumford 1977 = numbers
-          only; Faltings 1984 + Looijenga 2017 = PEL/Sp only; GHS 2008 =
-          orthogonal only; EVII form-level is GENUINELY OPEN — new
-          theorem required).
-   (P8.3) gapPartial folklore `IsChernV27GeneratesBE6Rational_FOLKLORE`
-          (V_27 Chern classes generate `H^*(BE_6; ℚ)` — Borel 1953
-          establishes polynomial-ring framework, Toda / Kono-Mimura
-          mid-1970s identify mod-p Chern-class generators of V_27;
-          assembly of rational generation is folklore-grade).
-   (P8.4) gapPartial folklore `IsChernV56GeneratesBE7Rational_FOLKLORE`
-          (V_56 Chern classes generate `H^*(BE_7; ℚ)` — analogous;
-          Kono-Mimura mod-p only published).
- The bridge `is_E6_representation_compatibility_of_section_16dot2_from_subatoms_P8`
- routes this atom through the 4-input decomposition. Net effect: the
- monolithic narrower atom is preserved as the active gate (consumed
- by P7-PATCH-A's bridge to G-P-EVII), but its content is further
- decomposed, surfacing the FORM-LEVEL HM PROPORTIONALITY FOR EVII
- as the genuine gapBlocked structural barrier.
- paper source: hyp:ChernWeil-bridge-E7 (G-P-EVII decomposition sub-atom 3 —
- narrower residual surfaced per P7 audit; P8 further decomposes). -/
-axiom IsE6RepresentationCompatibilityOfSection16dot2_REQUIRED_HYPOTHESIS :
- E7ShimuraTor → Prop
+/- **R200 CASCADE DELETED (−3 Prop axioms)**: P8 narrower-residual +
+ P8.1 + P8.2 Prop axioms. All orphan after R200 P8 bridge deletion
+ (witnesses + bridge + via-P8-subatoms theorem already removed in
+ Waves 1A/1B). Declarations removed:
+   - axiom `IsE6RepresentationCompatibilityOfSection16dot2_REQUIRED_HYPOTHESIS`
+     (§16.2 narrower-residual Prop)
+   - axiom `IsEVIIBoundaryStrataClassification_codim1_is_EIII_PUBLISHED`
+     (P8.1 boundary strata Prop)
+   - axiom `IsHirzebruchMumfordProportionalityFormsForEVII_REQUIRED_HYPOTHESIS`
+     (P8.2 form-HM Prop) -/
 
-/-- **PUBLISHED atom (P8.1, R-#new-P8)**: classification of EVII
- Baily-Borel boundary strata. The codim-1 boundary stratum of the
- EVII Hermitian symmetric domain `EVII = E_{7(-25)}/(E_6·U(1))` is
- `EIII = E_6/Spin(10)·U(1)`, itself the EXCEPTIONAL Hermitian
- symmetric domain of E_6 type (NOT a classical Hermitian symmetric
- space). The codim-2 boundary is the 5-dim bounded symmetric domain
- of tube type (classical, Sp/SO type), and the codim-3 stratum is
- a point. P8 AUDIT KEY FINDING: this PUBLISHED structural fact
- INVALIDATES the "reduce-to-classical-boundary-strata" routing
- assumption used by P7's `IsMHMDecompositionTheoremRouteToEVIIChernExtension_OPEN_INVENTION_CLASS`
- atom — the MHM/BBD route would need to first solve G-P-EIII
- inductively (since codim-1 boundary EIII is exceptional E_6 type),
- i.e. it does NOT avoid the exceptional-type difficulty.
- Tier: PUBLISHED.
- Sources: J. Wolf, *Spaces of Constant Curvature*, McGraw-Hill 1972
- + later editions (boundary classification of E_{7(-25)}); I. Satake,
- *Algebraic Structures of Symmetric Domains*, Iwanami Shoten 1980
- (Q-rational boundary structure); A. Borel, L. Ji, *Compactifications
- of Symmetric and Locally Symmetric Spaces*, Birkhäuser 2006 §III.4-5
- (general boundary classification for Hermitian symmetric domains).
- paper source: hyp:ChernWeil-bridge-E7 (P8 decomposition sub-atom 1 —
- boundary strata classification PUBLISHED). -/
-axiom IsEVIIBoundaryStrataClassification_codim1_is_EIII_PUBLISHED :
- E7ShimuraTor → Prop
+/- **R200 CASCADE DELETED (−9 axioms + −1 theorem)**: the full P13
+ form-HM decomposition block (4 Prop axioms + 4 witness axioms +
+ 1 bridge axiom + 1 derived theorem). Orphaned by R200 P8 bridge
+ deletion: the P13 block's sole upstream consumer was the P12-A
+ `is_E6_representation_compatibility_of_section_16dot2_REQUIRED_HYPOTHESIS_via_P8_subatoms`
+ theorem (deleted in R200), which routed form-HM-EVII as one of the
+ four P8 sub-atom inputs. With the P8 bridge gone, the entire P13
+ sub-decomposition has zero consumers.
+ Declarations removed:
+   - axiom `IsMumfordCanonicalExtensionExists_PUBLISHED` (P13.SI-1 Prop)
+   - axiom `IsAutomorphicLineBundleGoodMetricExtends_PUBLISHED` (P13.SI-2-LB Prop)
+   - axiom `IsAutomorphicHigherRankBundleGoodMetricExtendsForEVII_REQUIRED_HYPOTHESIS` (P13.SI-2-HR Prop)
+   - axiom `IsChernWeilFormProportionalityForEVII_REQUIRED_HYPOTHESIS` (P13.SI-3 Prop)
+   - axiom `is_mumford_canonical_extension_exists_PUBLISHED` (witness)
+   - axiom `is_automorphic_line_bundle_good_metric_extends_PUBLISHED` (witness)
+   - axiom `is_automorphic_higher_rank_bundle_good_metric_extends_for_EVII_REQUIRED_HYPOTHESIS` (witness)
+   - axiom `is_chern_weil_form_proportionality_for_EVII_REQUIRED_HYPOTHESIS` (witness)
+   - axiom `is_hirzebruch_mumford_proportionality_forms_for_EVII_from_subatoms_P13` (bridge)
+   - theorem `is_hirzebruch_mumford_proportionality_forms_for_EVII_REQUIRED_HYPOTHESIS_via_P13_subatoms` -/
 
-/-- **`_REQUIRED_HYPOTHESIS` gapBlocked atom (P8.2, R-#new-P8)**:
- form-level Hirzebruch-Mumford proportionality for EVII.
- G-P §16.2's surjection argument uses Hirzebruch-Mumford
- proportionality at the level of DIFFERENTIAL FORMS (not just
- Chern numbers) to identify Chern subring generators of
- `H^*(S_Γ^{tor}; ℚ)` with their compact-dual analogues. Published
- literature:
-   - Mumford 1977 Invent. Math. 42 (239-272): NUMBER-LEVEL
-     proportionality for ALL bounded symmetric domains incl. EVII;
-     does NOT lift to form level.
-   - Faltings 1984 Math. Ann. 269: form-level proportionality for
-     PEL types (incl. Siegel A_g).
-   - Looijenga 2017 Compositio Math. 153 (1349-1371): canonical-
-     lift refinement for Sp / symplectic case only.
-   - Gritsenko-Hulek-Sankaran 2008 Doc. Math. 13: form-level for
-     ORTHOGONAL type bounded symmetric domains.
- None of these cover EVII (non-PEL, non-Sp, non-orthogonal,
- non-abelian-type Shimura). The EVII form-level statement would
- constitute a NEW THEOREM.
- Tier: `_REQUIRED_HYPOTHESIS` at gapBlocked semantic level
- (genuine OPEN published-literature-silent content; would be a new
- theorem). Surfaced as TYPED LEAN ATOM per failure-as-asset
- discipline: this is the irreducible barrier that the §16.2
- K-decomposition routing reduces to.
- paper source: hyp:ChernWeil-bridge-E7 (P8 decomposition sub-atom 2 —
- form-level HM proportionality for EVII gapBlocked residual). -/
-axiom IsHirzebruchMumfordProportionalityFormsForEVII_REQUIRED_HYPOTHESIS :
- E7ShimuraTor → Prop
-
-/-- **PUBLISHED atom (P13.SI-1, R-#new-P13)**: Mumford canonical extension
- EXISTS for every semisimple automorphic vector bundle on `S_Γ` (with
- `Γ` neat), extending to a smooth toroidal compactification `S_Γ^{tor}`
- with simple normal crossing boundary divisor and trivial monodromy.
- This is the PUBLISHED structural ingredient (SI-1) of the form-level
- HM proportionality decomposition per P13 Phase 0 audit.
- Tier: PUBLISHED — type-uniform; covers EVII (and any Hermitian
- locally symmetric variety) via the abstract bounded-domain /
- arithmetic-group framework.
- Sources: D. Mumford, "Hirzebruch's proportionality theorem in the
- non-compact case", Invent. Math. 42 (1977), Theorem 3.1; M. Harris,
- "Functorial properties of toroidal compactifications of locally
- symmetric varieties", Proc. London Math. Soc. (3) 59 (1989), §4.1
- (general formulation, type-uniform).
- paper source: hyp:ChernWeil-bridge-E7 (P13 form-HM decomposition
- sub-atom SI-1 — canonical-extension existence PUBLISHED). -/
-axiom IsMumfordCanonicalExtensionExists_PUBLISHED :
- E7ShimuraTor → Prop
-
-/-- **PUBLISHED atom (P13.SI-2-LB, R-#new-P13)**: every automorphic
- LINE bundle on `S_Γ` with invariant smooth Hermitian metric extends
- to `S_Γ^{tor}` with a Mumford-good (log-singular) Hermitian metric;
- the Chern-Weil form representing `c_1` extends as a current with
- log-singular boundary growth. PUBLISHED structural ingredient (SI-2
- line-bundle case) of the form-level HM proportionality decomposition
- per P13 Phase 0 audit.
- Tier: PUBLISHED — type-uniform; covers EVII line bundles.
- Sources: D. Mumford 1977 Invent. Math. 42 (good metric definition +
- log-singular invariant); J.-I. Burgos, J. Kramer, U. Kühn,
- "Cohomological arithmetic Chow rings", arXiv:math/0502085 (Burgos-
- Kramer-Kühn machinery for log-log forms; abstract type-independent
- line bundle case).
- paper source: hyp:ChernWeil-bridge-E7 (P13 form-HM decomposition
- sub-atom SI-2-LB — good metric line-bundle case PUBLISHED). -/
-axiom IsAutomorphicLineBundleGoodMetricExtends_PUBLISHED :
- E7ShimuraTor → Prop
-
-/-- **`_REQUIRED_HYPOTHESIS` atom (P13.SI-2-HR, R-#new-P13)**: the
- Mumford-good metric extension for higher-rank automorphic vector
- bundles on `S_Γ^{tor}` for the specific EVII Hodge bundle (rank
- 27 or other rank ≥ 2 automorphic bundles relevant to the Freudenthal
- quartic). Burgos-Kramer-Kühn machinery (arXiv:math/0502085) applies
- abstractly to "fully decomposed automorphic vector bundles" but
- verification for the specific EVII Hodge bundle on `S_Γ^{tor}` is
- NOT in the published literature.
- Tier: `_REQUIRED_HYPOTHESIS` (structural ingredient SI-2 higher-rank
- EVII case; abstractly-framework-PUBLISHED, specifically-EVII-OPEN).
- paper source: hyp:ChernWeil-bridge-E7 (P13 form-HM decomposition
- sub-atom SI-2-HR — higher-rank good metric for EVII OPEN). -/
-axiom IsAutomorphicHigherRankBundleGoodMetricExtendsForEVII_REQUIRED_HYPOTHESIS :
- E7ShimuraTor → Prop
-
-/-- **`_REQUIRED_HYPOTHESIS` atom (P13.SI-3, R-#new-P13)**: the
- Chern-Weil curvature forms of `(𝓥^can, h_good)` on `S_Γ^{tor}` for
- the EVII arithmetic quotient represent (in extended de Rham
- cohomology) the same classes as Mumford 1977 number-level
- proportionality predicts, AND these forms pull back from the
- corresponding G(ℂ)-invariant Chern-Weil forms on `Ě_VII` via the
- Borel embedding modulo controlled-form boundary corrections.
- This is the Goresky-Pardon 2002 analog FOR EVII — explicitly out
- of GP02 scope (GP02 §1.3 Thm 16.4 restricts to classical types).
- Tier: `_REQUIRED_HYPOTHESIS` (structural ingredient SI-3, the
- form-level proportionality identity FOR EVII; genuinely OPEN — no
- published source covers exceptional Hermitian symmetric domains
- at the form level).
- paper source: hyp:ChernWeil-bridge-E7 (P13 form-HM decomposition
- sub-atom SI-3 — Chern-Weil form proportionality for EVII OPEN). -/
-axiom IsChernWeilFormProportionalityForEVII_REQUIRED_HYPOTHESIS :
- E7ShimuraTor → Prop
-
-/-- PUBLISHED witness for SI-1 (Mumford canonical extension exists). -/
-axiom is_mumford_canonical_extension_exists_PUBLISHED :
- ∀ (S : E7ShimuraTor),
-   IsMumfordCanonicalExtensionExists_PUBLISHED S
-
-/-- PUBLISHED witness for SI-2-LB (line-bundle good metric extends). -/
-axiom is_automorphic_line_bundle_good_metric_extends_PUBLISHED :
- ∀ (S : E7ShimuraTor),
-   IsAutomorphicLineBundleGoodMetricExtends_PUBLISHED S
-
-/-- `_REQUIRED_HYPOTHESIS` placeholder witness for SI-2-HR (higher-rank
- good metric for EVII). NOT discharged. -/
-axiom is_automorphic_higher_rank_bundle_good_metric_extends_for_EVII_REQUIRED_HYPOTHESIS :
- ∀ (S : E7ShimuraTor),
-   IsAutomorphicHigherRankBundleGoodMetricExtendsForEVII_REQUIRED_HYPOTHESIS S
-
-/-- `_REQUIRED_HYPOTHESIS` placeholder witness for SI-3 (Chern-Weil form
- proportionality for EVII). NOT discharged. -/
-axiom is_chern_weil_form_proportionality_for_EVII_REQUIRED_HYPOTHESIS :
- ∀ (S : E7ShimuraTor),
-   IsChernWeilFormProportionalityForEVII_REQUIRED_HYPOTHESIS S
-
-/-- **P13 DECOMPOSITION BRIDGE** for form-level HM proportionality
- EVII atom (R-#new-P13). Per Phase 0 hostile audit, the monolithic
- `IsHirzebruchMumfordProportionalityFormsForEVII_REQUIRED_HYPOTHESIS`
- decomposes into 4 typed structural ingredients:
- (SI-1) PUBLISHED `IsMumfordCanonicalExtensionExists_PUBLISHED`
-       (Mum77 Thm 3.1 + Har89 §4.1; type-uniform);
- (SI-2-LB) PUBLISHED `IsAutomorphicLineBundleGoodMetricExtends_PUBLISHED`
-       (Mum77 + Burgos-Kramer-Kühn; line-bundle case type-uniform);
- (SI-2-HR) `_REQUIRED_HYPOTHESIS` `IsAutomorphicHigherRankBundleGoodMetricExtendsForEVII_REQUIRED_HYPOTHESIS`
-       (higher-rank good metric for EVII Hodge bundle; specifically-
-       EVII-OPEN, abstract-framework PUBLISHED);
- (SI-3) `_REQUIRED_HYPOTHESIS` `IsChernWeilFormProportionalityForEVII_REQUIRED_HYPOTHESIS`
-       (Chern-Weil form proportionality FOR EVII; genuine OPEN, no
-       published source for exceptional Hermitian symmetric domains).
- Net effect: form-HM-EVII atom decomposed into 2 PUBLISHED + 2
- narrower REQUIRED; the active gapBlocked residual is now pinpointed
- at SI-2-HR (higher-rank good metric) + SI-3 (Chern-Weil form
- proportionality identity), both genuinely open published-literature-
- silent problems. -/
-axiom is_hirzebruch_mumford_proportionality_forms_for_EVII_from_subatoms_P13 :
- ∀ (S : E7ShimuraTor),
-   IsMumfordCanonicalExtensionExists_PUBLISHED S →
-   IsAutomorphicLineBundleGoodMetricExtends_PUBLISHED S →
-   IsAutomorphicHigherRankBundleGoodMetricExtendsForEVII_REQUIRED_HYPOTHESIS S →
-   IsChernWeilFormProportionalityForEVII_REQUIRED_HYPOTHESIS S →
-   IsHirzebruchMumfordProportionalityFormsForEVII_REQUIRED_HYPOTHESIS S
-
-/-- **DERIVED theorem (P13 LOAD-BEARING REWIRE, R-#new-P13)**: the
- form-HM-EVII atom is now derivable from the P13 bridge applied to
- 4 P13 sub-atom witnesses. Per the P12 batch-audit lesson learned
- (P8 + P9 originally had inert bridges), this load-bearing rewire
- is applied IMMEDIATELY in the same round to avoid the ceremony-
- retreat pattern. The form-HM-EVII consumer downstream (the P8
- bridge consuming it) is rewired to use this derived theorem
- instead of the direct axiom, completing the load-bearing chain.
- Active conjectural-surface gates after P13 LOAD-BEARING:
- SI-2-HR + SI-3 (both narrower than monolithic form-HM-EVII). -/
-theorem is_hirzebruch_mumford_proportionality_forms_for_EVII_REQUIRED_HYPOTHESIS_via_P13_subatoms :
- ∀ (S : E7ShimuraTor),
-   IsHirzebruchMumfordProportionalityFormsForEVII_REQUIRED_HYPOTHESIS S :=
- fun S => is_hirzebruch_mumford_proportionality_forms_for_EVII_from_subatoms_P13 S
-   (is_mumford_canonical_extension_exists_PUBLISHED S)
-   (is_automorphic_line_bundle_good_metric_extends_PUBLISHED S)
-   (is_automorphic_higher_rank_bundle_good_metric_extends_for_EVII_REQUIRED_HYPOTHESIS S)
-   (is_chern_weil_form_proportionality_for_EVII_REQUIRED_HYPOTHESIS S)
-
-/-- **`_FOLKLORE_PUBLISHED` atom (P8.3, R-#new-P8)**: V_27 Chern
- classes generate `H^*(BE_6; ℚ)`. Borel 1953 Ann. Math. 57
- establishes the rational polynomial-ring framework: `H^*(BE_6; ℚ)`
- is the polynomial algebra on 6 Weyl-invariant generators in degrees
- 4, 10, 12, 16, 18, 24 (corresponding to E_6 exponents
- `{1,4,5,7,8,11}`). Toda 1976 + Kono-Mimura mid-1970s prove
- (for mod-p / Steenrod-algebra coefficients) that certain generators
- of `H^*(BE_6; F_p)` are realised as Chern classes of the minuscule
- representation `V_27`. The assembly of rational generation by
- Chern polynomials of V_27 alone is FOLKLORE-grade: V_27 is faithful
- with finite kernel (Z/3 acting trivially on Lie algebra), so Chern
- classes c_i(V_27) suffice rationally — but no single citation
- establishes this directly.
- Tier: `_FOLKLORE_PUBLISHED` (multi-source standard-machinery
- folklore-corollary; each piece established but assembly is
- folkloric).
- Sources: A. Borel 1953 Ann. Math. 57 (115-207); H. Toda, "Cohomology
- of classifying spaces"; A. Kono, M. Mimura, "Cohomology mod p of
- the classifying space of compact exceptional Lie groups"
- mid-1970s J. Pure Appl. Algebra; Mimura-Toda 1991 AMS Transl. 91
- Ch. VII §6.
- paper source: hyp:ChernWeil-bridge-E7 (P8 decomposition sub-atom 3 —
- V_27 Chern generation folklore-published). -/
-axiom IsChernV27GeneratesBE6Rational_FOLKLORE_PUBLISHED :
- E7ShimuraTor → Prop
-
-/-- **`_FOLKLORE_PUBLISHED` atom (P8.4, R-#new-P8)**: V_56 Chern
- classes generate `H^*(BE_7; ℚ)`. Analogous to P8.3 for `E_7`:
- `H^*(BE_7; ℚ)` is polynomial on 7 generators in degrees
- 4, 12, 16, 20, 24, 28, 36 (E_7 exponents `{1,5,7,9,11,13,17}`).
- V_56 is the minuscule rep of E_7, faithful with kernel Z/2.
- Kono-Mimura mid-1970s cover mod-p case; rational generation by
- Chern polynomials of V_56 alone is folklore-grade.
- Tier: `_FOLKLORE_PUBLISHED` (multi-source).
- Sources: Kono-Mimura J. Pure Appl. Algebra mid-1970s; Mimura-Toda
- 1991 AMS Transl. 91 Ch. VII §6; Borel 1953 framework.
- paper source: hyp:ChernWeil-bridge-E7 (P8 decomposition sub-atom 4 —
- V_56 Chern generation folklore-published). -/
-axiom IsChernV56GeneratesBE7Rational_FOLKLORE_PUBLISHED :
- E7ShimuraTor → Prop
-
-/-- **`_REQUIRED_HYPOTHESIS` degree-8 specialization — INERT
- future-attack-vector placeholder** (P7, R-#new; P7-PATCH-E disclosure):
- the degree-8 sub-case of the G-P-EVII Chern-subalgebra extension —
- specifically, that the G-P Chern subring of `H^8(S_Γ^{tor}; ℂ)`
- (the toroidal compactification of an `E_{7(-25)}` Shimura variety)
- surjects onto `H^8(D̆_VII; ℂ) = ℚ·h^4 ⊕ ℚ·[q]_G` (or 1-dim per
- `IsChernSubringSurjectiveOntoH8_E7P7`'s convention). The downstream
- consumer (clause iii ring-hom transport for the Freudenthal quartic
- `[q]`) literally only needs this degree-8 specialization.
- Tier: `_REQUIRED_HYPOTHESIS` (narrower than full ring extension).
- **INERT STATUS (P7 Phase 4 audit disclosure, Pattern 4 = tautological
- premise check)**: this atom is NOT currently consumed by any active
- witness chain. The active P7 load-bearing path consumes the
- `IsE6RepresentationCompatibilityOfSection16dot2_REQUIRED_HYPOTHESIS`
- (full-ring residual narrower atom), not this degree-8 specialization.
- This atom is surfaced as a TYPED FUTURE-ATTACK-VECTOR PLACEHOLDER:
- if a future round produces a degree-8-specific construction (e.g.,
- direct verification of G-P's controlled-form construction at the
- single degree-8 Chern class of `V_56`), this atom + the bridge
- `goresky_pardon_chern_subalgebra_extension_to_EVII_from_degree8`
- give the route to retire the monolithic atom via the narrower
- degree-8 atom instead of via the full ring extension or the §16.2
- K-decomposition. The two alternative routes (§16.2 K-decomp vs
- degree-8 direct) are disjoint attack vectors; both are typed-out
- for future-round prioritisation.
- paper source: hyp:ChernWeil-bridge-E7 (G-P-EVII decomposition sub-atom 4 —
- INERT degree-8 specialization for future-attack-vector typing). -/
-axiom IsGPChernSubalgebraSurjectionAtDegree8_E7_REQUIRED_HYPOTHESIS :
- E7ShimuraTor → Prop
-
-/-- **`_INVENTION_CLASS` alternative routing atom — INERT,
- PREMISE FALSE per P8 audit, BLOCKED future-attack-vector** (P7,
- R-#new; P7-PATCH-E + P8-AUDIT-CORRECTION):
- an INDIRECT EVII Chern-subalgebra extension via Saito MHM 1988 +
- Burgos-Wildeshaus 2004 + Beilinson-Bernstein-Deligne 1982
- decomposition theorem.
- **P8 AUDIT CRITICAL FINDING (premise FALSE)**: the original P7
- routing premise was "the Baily-Borel boundary strata of EVII are
- rational boundary components corresponding to Q-parabolics of
- `E_{7(-25)}` with classical Levi-Hermitian factors (unitary and
- `SO^*` types); G-P §16.4 applies CLASSICALLY to each stratum".
- This premise is FALSE. Per the P8 PUBLISHED atom
- `IsEVIIBoundaryStrataClassification_codim1_is_EIII_PUBLISHED`
- (Wolf 1972 / Satake 1980 / Borel-Ji 2006), the codim-1 boundary
- stratum of EVII is `EIII = E_6/Spin(10)·U(1)` — itself the
- EXCEPTIONAL Hermitian symmetric domain of E_6 type, NOT a
- classical Hermitian symmetric space. Therefore the MHM/BBD route
- does NOT avoid the exceptional-type difficulty: it would require
- first solving G-P-EIII inductively (since codim-1 boundary EIII
- is exceptional E_6 type). The route is effectively a recursion-
- down to an only-marginally-easier exceptional case.
- Tier: `_INVENTION_CLASS` BLOCKED — the original alternative-route
- motivation is invalidated; if future rounds revisit this route,
- they must explicitly attack G-P-EIII first.
- paper source: hyp:ChernWeil-bridge-E7 (G-P-EVII alternative routing —
- INERT INVENTION_CLASS with PREMISE-FALSE annotation per P8 audit;
- retained as typed failure-asset per `feedback_gap_ledger_in_lean4`
- discipline rather than deleted, so the structural-barrier surfacing
- is preserved). -/
-axiom IsMHMDecompositionTheoremRouteToEVIIChernExtension_OPEN_INVENTION_CLASS :
- E7ShimuraTor → Prop
+/- **R200 CASCADE DELETED (−4 Prop axioms)**: P8.3 + P8.4 + degree-8 +
+ MHM Prop axioms. All orphan after R200 P8 bridge deletion (witnesses
+ + bridge + via-P8-subatoms theorem already removed in Waves 1A/1B).
+ Declarations removed:
+   - axiom `IsChernV27GeneratesBE6Rational_FOLKLORE_PUBLISHED` (P8.3 V27 Chern Prop)
+   - axiom `IsChernV56GeneratesBE7Rational_FOLKLORE_PUBLISHED` (P8.4 V56 Chern Prop)
+   - axiom `IsGPChernSubalgebraSurjectionAtDegree8_E7_REQUIRED_HYPOTHESIS`
+     (INERT degree-8 future-attack-vector Prop)
+   - axiom `IsMHMDecompositionTheoremRouteToEVIIChernExtension_OPEN_INVENTION_CLASS`
+     (INVENTION_CLASS BLOCKED Prop) -/
 
 /-- `_REQUIRED_HYPOTHESIS` conjectural-extension atom of clause (ii.b):
  the class `[q] ∈ H^8(S_Γ, ℂ)` from (ii.a) is the restriction (along
@@ -2814,66 +2235,26 @@ axiom IsZuckerConjectureL2EqualsIH_PUBLISHED :
 axiom zucker_conjecture_L2_equals_IH_E7_PUBLISHED :
  ∀ (S : E7ShimuraTor), IsZuckerConjectureL2EqualsIH_PUBLISHED S
 
-/-- `_REQUIRED_HYPOTHESIS` axiom witness for the Goresky-Pardon EVII
- extension (consumed by the (iii) ring-hom bridge below; surfaced per
- R-#106b Defect #1). G-P 2002 §1.3 / Thm 16.4 covers only classical
- types `Sp_n(ℝ), U(p,q), SO(2n), SO(2,p)`; the EVII extension is
- explicitly noted as open in G-P §1.6.
- ORDERING NOTE: moved before the P5 (ii.b)-cascade theorem so the
- derived theorem `freudenthal_class_extends_compatibly_at_degree8_E7_REQUIRED_HYPOTHESIS`
- below may reference this witness. -/
-axiom goresky_pardon_chern_subalgebra_extension_to_EVII_REQUIRED_HYPOTHESIS :
- ∀ (S : E7ShimuraTor),
-   IsGoreskyPardonChernSubalgebraExtensionToEVII_REQUIRED_HYPOTHESIS S
+/- **R200 CASCADE DELETED (−6 axioms)**: P8 sub-atom witness cluster.
+ All six witnesses become orphan after R200's P8 bridge deletion:
+ their sole consumer was the P12-A
+ `is_E6_representation_compatibility_of_section_16dot2_REQUIRED_HYPOTHESIS_via_P8_subatoms`
+ theorem (deleted earlier in R200 along with the P8 bridge axiom).
+ Declarations removed:
+   - axiom `goresky_pardon_chern_subalgebra_extension_to_EVII_REQUIRED_HYPOTHESIS`
+     (G-P-EVII extension witness; the active P8 path was already removed)
+   - axiom `is_E6_representation_compatibility_of_section_16dot2_REQUIRED_HYPOTHESIS`
+     (§16.2 atom witness)
+   - axiom `is_EVII_boundary_strata_classification_codim1_is_EIII_PUBLISHED`
+     (P8.1 witness)
+   - axiom `is_hirzebruch_mumford_proportionality_forms_for_EVII_REQUIRED_HYPOTHESIS`
+     (P8.2 witness)
+   - axiom `is_chern_V27_generates_BE6_rational_FOLKLORE_PUBLISHED`
+     (P8.3 witness)
+   - axiom `is_chern_V56_generates_BE7_rational_FOLKLORE_PUBLISHED`
+     (P8.4 witness) -/
 
-/- **R198 ORPHAN COMMENT** (was docstring for deleted borel_hirzebruch_classifying_space_presentation_for_E6_times_U1_FOLKLORE_PUBLISHED axiom). -/
-/- **R198 DELETED AXIOM** (−1): `borel_hirzebruch_classifying_space_presentation_for_E6_times_U1_FOLKLORE_PUBLISHED`.
-Orphaned. -/
-
-/- **R198 ORPHAN COMMENT** (was docstring for deleted gp_abstract_parabolic_connection_framework_group_agnostic_PUBLISHED axiom). -/
-/- **R198 DELETED AXIOM** (−1): `gp_abstract_parabolic_connection_framework_group_agnostic_PUBLISHED`.
-Orphaned. -/
-
-/-- `_REQUIRED_HYPOTHESIS` placeholder witness (kept; load-bearing
- rewire is via derived theorem `_via_P8_subatoms` after the bridge). -/
-axiom is_E6_representation_compatibility_of_section_16dot2_REQUIRED_HYPOTHESIS :
- ∀ (S : E7ShimuraTor),
-   IsE6RepresentationCompatibilityOfSection16dot2_REQUIRED_HYPOTHESIS S
-
-/-- PUBLISHED witness for EVII Baily-Borel boundary strata classification
- (P8.1, R-#new-P8). Sources: Wolf 1972 *Spaces of Constant Curvature*
- + Satake 1980 *Algebraic Structures of Symmetric Domains* + Borel-Ji
- 2006 *Compactifications of Symmetric and Locally Symmetric Spaces*. -/
-axiom is_EVII_boundary_strata_classification_codim1_is_EIII_PUBLISHED :
- ∀ (S : E7ShimuraTor),
-   IsEVIIBoundaryStrataClassification_codim1_is_EIII_PUBLISHED S
-
-/-- `_REQUIRED_HYPOTHESIS` placeholder witness for form-level
- Hirzebruch-Mumford proportionality for EVII (P8.2, R-#new-P8).
- NOT discharged — gapBlocked semantic; new theorem required.
- Sources for existing form-level results (which do NOT cover EVII):
- Mumford 1977 (numbers only); Faltings 1984 (PEL/Sp form-level);
- Looijenga 2017 (Sp canonical-lift); Gritsenko-Hulek-Sankaran 2008
- (orthogonal form-level). -/
-axiom is_hirzebruch_mumford_proportionality_forms_for_EVII_REQUIRED_HYPOTHESIS :
- ∀ (S : E7ShimuraTor),
-   IsHirzebruchMumfordProportionalityFormsForEVII_REQUIRED_HYPOTHESIS S
-
-/-- `_FOLKLORE_PUBLISHED` witness for V_27 Chern generation of
- `H^*(BE_6; ℚ)` (P8.3, R-#new-P8). Sources: Borel 1953 + Toda 1976
- + Kono-Mimura mid-1970s + Mimura-Toda 1991. -/
-axiom is_chern_V27_generates_BE6_rational_FOLKLORE_PUBLISHED :
- ∀ (S : E7ShimuraTor),
-   IsChernV27GeneratesBE6Rational_FOLKLORE_PUBLISHED S
-
-/-- `_FOLKLORE_PUBLISHED` witness for V_56 Chern generation of
- `H^*(BE_7; ℚ)` (P8.4, R-#new-P8). Sources: Kono-Mimura mid-1970s
- + Mimura-Toda 1991 + Borel 1953 framework. -/
-axiom is_chern_V56_generates_BE7_rational_FOLKLORE_PUBLISHED :
- ∀ (S : E7ShimuraTor),
-   IsChernV56GeneratesBE7Rational_FOLKLORE_PUBLISHED S
-
-/-- **P8 DECOMPOSITION BRIDGE** for the §16.2 E_6-rep-compat atom
+/- **P8 DECOMPOSITION BRIDGE** for the §16.2 E_6-rep-compat atom
  (R-#new-P8). Per Phase 0 hostile audit, the monolithic
  `IsE6RepresentationCompatibilityOfSection16dot2_REQUIRED_HYPOTHESIS`
  is structurally derivable from 4 typed sub-atoms:
@@ -2898,15 +2279,11 @@ axiom is_chern_V56_generates_BE7_rational_FOLKLORE_PUBLISHED :
  proportionality for EVII (P8.2) — a genuine open published-
  literature-silent problem, surfaced as a typed Lean atom per
  failure-as-asset discipline. -/
-axiom is_E6_representation_compatibility_of_section_16dot2_from_subatoms_P8 :
- ∀ (S : E7ShimuraTor),
-   IsEVIIBoundaryStrataClassification_codim1_is_EIII_PUBLISHED S →
-   IsHirzebruchMumfordProportionalityFormsForEVII_REQUIRED_HYPOTHESIS S →
-   IsChernV27GeneratesBE6Rational_FOLKLORE_PUBLISHED S →
-   IsChernV56GeneratesBE7Rational_FOLKLORE_PUBLISHED S →
-   IsE6RepresentationCompatibilityOfSection16dot2_REQUIRED_HYPOTHESIS S
+/- **R200 DELETED AXIOM** (−1): `is_E6_representation_compatibility_of_section_16dot2_from_subatoms_P8`.
+Was the P8 bridge axiom; only consumer was `is_E6_representation_compatibility_of_section_16dot2_REQUIRED_HYPOTHESIS_via_P8_subatoms`
+(deleted below). Orphaned cascade from R198 ChernWeil chain deletion. -/
 
-/-- **DERIVED theorem (P12-A LOAD-BEARING REWIRE, R-#new-P12)**: the
+/- **DERIVED theorem (P12-A LOAD-BEARING REWIRE, R-#new-P12)**: the
  §16.2 E_6-rep-compat atom is now derivable from the P8 bridge applied
  to 4 P8 sub-atom witnesses (1 PUBLISHED + 1 gapBlocked + 2 FOLKLORE_PUBLISHED).
  Per Phase 4 batch audit Pattern-7 ceremony-retreat finding, the
@@ -2919,55 +2296,28 @@ axiom is_E6_representation_compatibility_of_section_16dot2_from_subatoms_P8 :
  The downstream consumer in P7-PATCH-A is rewired (later in this file)
  to use this derived theorem instead of the direct axiom, completing
  the load-bearing chain. -/
-theorem is_E6_representation_compatibility_of_section_16dot2_REQUIRED_HYPOTHESIS_via_P8_subatoms :
- ∀ (S : E7ShimuraTor),
-   IsE6RepresentationCompatibilityOfSection16dot2_REQUIRED_HYPOTHESIS S :=
- fun S => is_E6_representation_compatibility_of_section_16dot2_from_subatoms_P8 S
-   (is_EVII_boundary_strata_classification_codim1_is_EIII_PUBLISHED S)
-   -- P13 LOAD-BEARING REWIRE (R-#new-P13): consume form-HM-EVII via the
-   -- P13 derived theorem instead of the direct axiom, so the P13 bridge
-   -- (4 P13 sub-atoms: SI-1 + SI-2-LB PUBLISHED + SI-2-HR + SI-3 REQUIRED)
-   -- is load-bearing. Active gates are now SI-2-HR + SI-3 (narrower
-   -- than monolithic form-HM-EVII).
-   (is_hirzebruch_mumford_proportionality_forms_for_EVII_REQUIRED_HYPOTHESIS_via_P13_subatoms S)
-   (is_chern_V27_generates_BE6_rational_FOLKLORE_PUBLISHED S)
-   (is_chern_V56_generates_BE7_rational_FOLKLORE_PUBLISHED S)
+/- **R200 DELETED THEOREM**: `is_E6_representation_compatibility_of_section_16dot2_REQUIRED_HYPOTHESIS_via_P8_subatoms`.
+Was orphan after R198 ChernWeil chain deletion (sole upstream consumer
+was `goresky_pardon_chern_subalgebra_extension_to_EVII_from_subatoms`
+deleted in R198). -/
 
-/-- `_REQUIRED_HYPOTHESIS` placeholder witness for degree-8 specialization
- of G-P-EVII Chern-subalgebra surjection (P7, R-#new). NOT discharged.
- This is the narrower atom needed by the downstream consumer (clause
- iii ring-hom transport for the Freudenthal quartic `[q]`); if a
- future round produces a degree-8-specific result, this atom can be
- retired without solving the full G-P-EVII extension. -/
-axiom is_GP_chern_subalgebra_surjection_at_degree8_E7_REQUIRED_HYPOTHESIS :
- ∀ (S : E7ShimuraTor),
-   IsGPChernSubalgebraSurjectionAtDegree8_E7_REQUIRED_HYPOTHESIS S
+/- **R200 ORPHAN COMMENT** (was docstring for deleted is_GP_chern_subalgebra_surjection_at_degree8_E7_REQUIRED_HYPOTHESIS axiom). -/
+/- **R200 DELETED AXIOM** (−1): `is_GP_chern_subalgebra_surjection_at_degree8_E7_REQUIRED_HYPOTHESIS`.
+Orphan: 0 value-level consumers. Deleted with the rest of the
+P8-bridge cleanup. -/
 
 /- **R198 ORPHAN COMMENT** (was docstring for deleted goresky_pardon_chern_subalgebra_extension_to_EVII_from_subatoms axiom). -/
 /- **R198 DELETED AXIOM** (−1): `goresky_pardon_chern_subalgebra_extension_to_EVII_from_subatoms`.
 Orphaned. -/
 
-/-- **DOWNSTREAM-NARROWING BRIDGE** for G-P-EVII (P7, R-#new).
- The downstream consumer (clause iii ring-hom transport for the
- Freudenthal quartic class `[q]`) only literally needs the
- degree-8 sub-case. This bridge expresses that the degree-8
- specialization atom suffices to discharge the full G-P-EVII
- extension at the level needed by clause (iii). If a future round
- produces a degree-8-specific result, this is the route to retire
- the full extension via the narrower atom. -/
-axiom goresky_pardon_chern_subalgebra_extension_to_EVII_from_degree8 :
- ∀ (S : E7ShimuraTor),
-   IsGPChernSubalgebraSurjectionAtDegree8_E7_REQUIRED_HYPOTHESIS S →
-   IsGoreskyPardonChernSubalgebraExtensionToEVII_REQUIRED_HYPOTHESIS S
-
-/-- `_INVENTION_CLASS` placeholder witness for MHM/BBD alternative
- routing (P7, R-#new). NOT discharged. Surfaced as alternative
- attack vector for future rounds; if successful, gives indirect
- EVII extension via decomposition theorem on boundary strata
- (which are classical types and so admit G-P §16.4 directly). -/
-axiom is_mhm_decomposition_theorem_route_to_EVII_chern_extension_OPEN_INVENTION_CLASS :
- ∀ (S : E7ShimuraTor),
-   IsMHMDecompositionTheoremRouteToEVIIChernExtension_OPEN_INVENTION_CLASS S
+/- **R200 CASCADE DELETED (−2 axioms)**:
+   - axiom `goresky_pardon_chern_subalgebra_extension_to_EVII_from_degree8`
+     (downstream-narrowing bridge; orphan — its consumer
+     `goresky_pardon_chern_subalgebra_extension_to_EVII_REQUIRED_HYPOTHESIS`
+     is itself orphan in this round)
+   - axiom `is_mhm_decomposition_theorem_route_to_EVII_chern_extension_OPEN_INVENTION_CLASS`
+     (INVENTION_CLASS witness; orphan — never consumed; P8 audit
+     marked the underlying premise FALSE) -/
 
 /-- **PUBLISHED atom** (P5 decomposition, R-#new-Phase4-rollback): the
  IH-to-toroidal pullback step for the Freudenthal class. Concretely:
