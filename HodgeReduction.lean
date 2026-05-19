@@ -168,4 +168,5 @@ import HodgeReduction.HCGapL4.NontrivialCorrespondence
 import HodgeReduction.HCGapL4.CycleClassPresentation
 import HodgeReduction.HCGapL4.ACDReconciliation
 import HodgeReduction.HCGapL4.ProductCohomology
+import HodgeReduction.HCGapL4.CycleInducedCorrespondence
 import HodgeReduction.Concrete
