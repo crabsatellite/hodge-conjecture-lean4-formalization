@@ -1,0 +1,18 @@
+import HodgeReduction.HCGapL4.E7ShimuraToyDeligneTorusSkeleton
+import HodgeReduction.MainTheorem
+
+open HodgeReduction.HCGapL4.E7ShimuraToyDeligneTorusSkeleton
+open HodgeReduction
+
+#print axioms DeligneTorusToySkeleton_weight3
+#print axioms V56Toy_DeligneTorusCocharacterSkeleton
+#print axioms V56Toy_weight_compatibility_MTcocharacter_DeligneTorus
+#print axioms E7ShimuraToy_WithDeligneTorusSkeleton
+#print axioms VarietyHCAt_E7ShimuraToyWithDeligneTorusSkeleton_codim1_via_productCycleFactory
+#print axioms R233_does_not_close_canonicalE7ShimuraTor
+#print axioms R233_does_not_implement_real_deligne_torus
+#print axioms R233_does_not_implement_real_mumford_tate
+#print axioms R233_does_not_implement_algebraic_group_schemes
+#print axioms R233_does_not_implement_real_E7_action
+#print axioms R233_does_not_identify_toy_with_real_E7Shimura
+#print axioms hodgeConjectureReal_canonical
