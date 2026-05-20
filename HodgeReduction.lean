@@ -229,4 +229,5 @@ import HodgeReduction.HCGapL4.Deligne1982BoundaryInterface
 import HodgeReduction.HCGapL4.CMSourceReplacementBridge
 import HodgeReduction.HCGapL4.CMSourceBridgeNextTarget
 import HodgeReduction.HCGapL4.AbelianVarietyInterfaceECRealization
+import HodgeReduction.HCGapL4.AbelianVarietyInterfaceECProjectiveRealization
 import HodgeReduction.Concrete
