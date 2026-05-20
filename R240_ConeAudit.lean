@@ -1,0 +1,15 @@
+import HodgeReduction.HCGapL4.E7ShimuraToyHermitianDomainSkeleton
+import HodgeReduction.MainTheorem
+
+open HodgeReduction.HCGapL4.E7ShimuraToyHermitianDomainSkeleton
+open HodgeReduction
+
+#print axioms HermitianDomainToySkeleton_point
+#print axioms E7ShimuraToy_WithHermitianDomainSkeleton
+#print axioms VarietyHCAt_E7ShimuraToyWithHermitianDomainSkeleton_codim1_via_v3_CMChain
+#print axioms R240_does_not_close_canonicalE7ShimuraTor
+#print axioms R240_does_not_implement_real_hermitian_symmetric_domain
+#print axioms R240_does_not_implement_arithmetic_quotient
+#print axioms R240_does_not_implement_real_E7_shimura_variety
+#print axioms R240_does_not_identify_toy_with_real_E7Shimura
+#print axioms hodgeConjectureReal_canonical
