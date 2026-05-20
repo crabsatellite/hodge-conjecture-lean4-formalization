@@ -1,0 +1,45 @@
+import HodgeReduction.HCGapL4.GaussianImaginaryQuadraticEvidence
+import HodgeReduction.HCGapL4.GaussianCMFieldEvidence
+import HodgeReduction.HCGapL4.EllipticCurveEnd0ActionTargetRefined
+import HodgeReduction.HCGapL4.GaussianCMFieldEvidenceIntegration
+import HodgeReduction.MainTheorem
+
+open HodgeReduction.HCGapL4
+open HodgeReduction
+
+-- R289 (key new theorems)
+#print axioms gaussianRationalI_ne_zero
+#print axioms neg_gaussianRationalI_ne_gaussianRationalI
+#print axioms GaussianRationalFieldCandidate_conj_nontrivial_on_i
+#print axioms GaussianRationalFieldCandidate_conj_ne_id
+#print axioms GaussianImaginaryQuadraticEvidenceSkeleton_current
+#print axioms VarietyHCAt_E7ShimuraToy_codim1_via_GaussianImaginaryQuadraticEvidence
+
+-- R290
+#print axioms LocalCMFieldEvidenceSkeleton_Gaussian
+#print axioms CMFieldRealizationWithLocalEvidenceSkeleton_Gaussian
+#print axioms EllipticCurveCMInterfaceWithLocalCMFieldEvidenceSkeleton_instance
+#print axioms AbstractCMAbelianHCSource_from_EllipticCurveLocalCMFieldEvidence
+#print axioms VarietyHCAt_E7ShimuraToy_codim1_via_LocalCMFieldEvidence
+
+-- R291
+#print axioms EllipticCurveEnd0ActionTargetWithCMFieldEvidenceSkeleton_Gaussian
+#print axioms R291_Target_Construct_EndRing_EllipticCurve
+#print axioms R291_Target_Construct_End0_EllipticCurve
+#print axioms R291_Target_Construct_GaussianEmbedding_To_End0_EllipticCurve
+#print axioms VarietyHCAt_E7ShimuraToy_codim1_via_EllipticCurveEnd0ActionTargetRefined
+
+-- R292
+#print axioms GaussianCMFieldEvidenceIntegratedChainSkeleton_current
+#print axioms VarietyHCAt_E7ShimuraToy_codim1_via_GaussianCMFieldEvidenceIntegratedChain
+#print axioms R292_GaussianNumberField_closed
+#print axioms R292_GaussianConjugation_nontrivial_closed
+#print axioms R292_LocalCMFieldEvidence_available
+#print axioms R292_End0Action_remaining_main_gap
+#print axioms R292_NextTarget_EndRing_EllipticCurve
+#print axioms R292_NextTarget_End0_EllipticCurve
+#print axioms R292_NextTarget_GaussianEmbedding_To_End0
+#print axioms R292_Recommendation_Proceed_To_End0_Infrastructure
+
+-- Headline guard
+#print axioms hodgeConjectureReal_canonical
