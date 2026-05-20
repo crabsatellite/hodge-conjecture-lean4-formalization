@@ -223,4 +223,9 @@ import HodgeReduction.HCGapL4.MTCorrespondenceReplacementNextTarget
 import HodgeReduction.HCGapL4.AbstractHodgeSource
 import HodgeReduction.HCGapL4.AbstractHCDataPackage
 import HodgeReduction.HCGapL4.AbstractHCDataWithMTTransfer
+import HodgeReduction.HCGapL4.AbelianVarietyInterface
+import HodgeReduction.HCGapL4.ComplexMultiplicationInterface
+import HodgeReduction.HCGapL4.Deligne1982BoundaryInterface
+import HodgeReduction.HCGapL4.CMSourceReplacementBridge
+import HodgeReduction.HCGapL4.CMSourceBridgeNextTarget
 import HodgeReduction.Concrete
