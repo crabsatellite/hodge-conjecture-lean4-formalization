@@ -1,0 +1,54 @@
+import HodgeReduction.HCGapL4.GaussianPairAdjoinRootAlgHom
+import HodgeReduction.HCGapL4.GaussianPairToAdjoinRootAlgHom
+import HodgeReduction.HCGapL4.GaussianPairAdjoinRootAlgEquiv
+import HodgeReduction.HCGapL4.GaussianRationalPairAlgEquiv
+import HodgeReduction.HCGapL4.GaussianFieldActionPointEndQClosed
+import HodgeReduction.HCGapL4.HCFrontierAfterClosedGaussianFieldAction
+import HodgeReduction.MainTheorem
+
+open HodgeReduction.HCGapL4
+open HodgeReduction
+
+-- R339: AdjoinRoot → pair
+#print axioms GaussianFieldPair_i
+#print axioms GaussianFieldPair_i_sq_eq_neg_one
+#print axioms aeval_GaussianPolynomialOverQ_GaussianFieldPair_i
+#print axioms GaussianAdjoinRoot_to_GaussianFieldPair
+#print axioms GaussianAdjoinRoot_to_GaussianFieldPair_root
+
+-- R340: pair → AdjoinRoot
+#print axioms GaussianAdjoinRoot_root_sq_eq_neg_one
+#print axioms GaussianFieldPair_to_GaussianAdjoinRoot
+#print axioms GaussianFieldPair_to_GaussianAdjoinRoot_pair_i
+
+-- R341: AlgEquiv
+#print axioms GaussianPair_fwd_comp_rev_eq_id
+#print axioms GaussianPair_rev_comp_fwd_eq_id
+#print axioms GaussianAdjoinRoot_AlgEquiv_GaussianFieldPair
+#print axioms GaussianAdjoinRoot_AlgEquiv_GaussianFieldPair_map_root
+
+-- R342: composed AlgEquiv
+#print axioms GaussianRationalFieldCandidate_AlgEquiv_GaussianFieldPair
+#print axioms GaussianRationalFieldCandidate_AlgEquiv_GaussianFieldPair_map_i
+#print axioms R338_NextTarget_PairCarrier_AlgEquiv_GaussianField_closed
+
+-- R343: Gaussian field action into PointEndHomQ
+#print axioms GaussianField_to_PointEndHomQ
+#print axioms GaussianField_to_PointEndHomQ_map_one
+#print axioms GaussianField_to_PointEndHomQ_map_i
+#print axioms GaussianField_to_PointEndHomQ_map_add
+#print axioms GaussianField_to_PointEndHomQ_map_mul
+#print axioms R338_NextTarget_GaussianField_To_PointEndHomQ_closed
+
+-- R344: frontier audit
+#print axioms HCFrontierAfterClosedGaussianFieldActionSkeleton_current
+#print axioms VarietyHCAt_E7ShimuraToy_codim1_via_HCFrontierAfterClosedGaussianFieldAction
+
+-- Final-goal markers (axiom-free)
+#print axioms R344_HC_FinalGoal_KernelOnly
+#print axioms R344_canonicalE7ShimuraTor_StillOnlyProjectAxiom
+#print axioms R344_mtCorrespondencePackage_SourceSideProgress
+#print axioms R344_NextTarget_CohomologyAction_FromGaussianFieldAction
+
+-- Headline guard
+#print axioms hodgeConjectureReal_canonical
