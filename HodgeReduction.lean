@@ -220,4 +220,7 @@ import HodgeReduction.HCGapL4.CohomologyReplacementNextTarget
 import HodgeReduction.HCGapL4.MTCorrespondenceMathlibAudit
 import HodgeReduction.HCGapL4.MTCorrespondenceReplacementDependencyMap
 import HodgeReduction.HCGapL4.MTCorrespondenceReplacementNextTarget
+import HodgeReduction.HCGapL4.AbstractHodgeSource
+import HodgeReduction.HCGapL4.AbstractHCDataPackage
+import HodgeReduction.HCGapL4.AbstractHCDataWithMTTransfer
 import HodgeReduction.Concrete
