@@ -1,0 +1,38 @@
+import HodgeReduction.HCGapL4.ComplexMultiplicationNumberFieldAudit
+import HodgeReduction.MainTheorem
+
+open HodgeReduction.HCGapL4.ComplexMultiplicationNumberFieldAudit
+open HodgeReduction
+
+-- R267-A audit-missing
+#print axioms AuditMissing_NumberField_CMFieldModule
+#print axioms AuditMissing_ImaginaryQuadraticFieldModule
+#print axioms AuditMissing_CMFieldDegreeConditionModule
+#print axioms AuditMissing_End0EllipticCurveModule
+
+-- R267-A audit instance
+#print axioms CMNumberFieldMathlibAuditSkeleton_current
+
+-- R267-A CM field placeholder + evidence
+#print axioms CMFieldInterfaceSkeleton_rationalPlaceholder
+#print axioms rationalPlaceholder_hasFieldStructure_proved
+#print axioms rationalPlaceholder_isNumberField_proved
+
+-- R267-A rank condition
+#print axioms CMRankConditionSkeleton_ellipticCurveExpected
+#print axioms CMRankConditionSkeleton_ellipticCurveExpected_proved
+
+-- R267-A wrapper + regression
+#print axioms EllipticCurveCMInterfaceNumberFieldAuditSkeleton_instance
+#print axioms AbstractCMAbelianHCSource_from_EllipticCurveCMNumberFieldAudit
+#print axioms VarietyHCAt_E7ShimuraToy_codim1_via_EllipticCurveCMNumberFieldAudit
+
+-- R267-A markers
+#print axioms L4_G_CMNumberFieldAudit_To_RealCMField
+#print axioms L4_G_CMNumberFieldAudit_To_ImaginaryQuadraticField
+#print axioms L4_G_CMNumberFieldAudit_To_End0EllipticCurve
+#print axioms L4_G_CMNumberFieldAudit_To_CMRankCondition
+#print axioms L4_G_CMNumberFieldAudit_To_Deligne1982
+
+-- Headline guard
+#print axioms hodgeConjectureReal_canonical
