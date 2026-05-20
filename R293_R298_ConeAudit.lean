@@ -1,0 +1,87 @@
+import HodgeReduction.HCGapL4.EllipticCurveEndomorphismRingInterface
+import HodgeReduction.HCGapL4.EllipticCurveEnd0Interface
+import HodgeReduction.HCGapL4.GaussianCMEllipticCurveTarget
+import HodgeReduction.HCGapL4.GaussianEmbeddingIntoEnd0Target
+import HodgeReduction.HCGapL4.End0CohomologyActionTarget
+import HodgeReduction.HCGapL4.End0InfrastructureChainIntegration
+import HodgeReduction.HCGapL4.GaussianCMEllipticCurveIsElliptic
+import HodgeReduction.HCGapL4.GaussianCMEllipticCurveBaseChange
+import HodgeReduction.MainTheorem
+
+open HodgeReduction.HCGapL4
+open HodgeReduction
+
+-- R293
+#print axioms EllipticCurveEndomorphismRingInterfaceSkeleton_PointGroupEnd
+#print axioms EllipticCurveEndomorphismRingInterfaceWithCMFieldEvidenceSkeleton_Gaussian
+#print axioms VarietyHCAt_E7ShimuraToy_codim1_via_EndomorphismRingInterface
+#print axioms R293_does_not_construct_real_End
+#print axioms R293_does_not_close_canonicalE7ShimuraTor
+
+-- R294
+#print axioms EllipticCurveEnd0InterfaceSkeleton_Gaussian
+#print axioms EllipticCurveEnd0InterfaceWithEndRingSkeleton_Gaussian
+#print axioms VarietyHCAt_E7ShimuraToy_codim1_via_End0Interface
+#print axioms R294_does_not_construct_End0
+#print axioms R294_does_not_close_canonicalE7ShimuraTor
+
+-- R295
+#print axioms GaussianCMEllipticCurveTarget
+#print axioms Target_GaussianCMEllipticCurveTarget_IsElliptic
+#print axioms R295_does_not_prove_CM
+#print axioms R295_does_not_close_canonicalE7ShimuraTor
+
+-- R296
+#print axioms GaussianEmbeddingIntoEnd0TargetSkeleton_Gaussian
+#print axioms VarietyHCAt_E7ShimuraToy_codim1_via_GaussianEmbeddingIntoEnd0Target
+#print axioms R296_does_not_construct_embedding
+#print axioms R296_does_not_close_canonicalE7ShimuraTor
+
+-- R297
+#print axioms End0CohomologyActionTargetSkeleton_Gaussian
+#print axioms VarietyHCAt_E7ShimuraToy_codim1_via_End0CohomologyActionTarget
+#print axioms R297_does_not_construct_End0_action
+#print axioms R297_does_not_close_canonicalE7ShimuraTor
+
+-- R298
+#print axioms End0InfrastructureChainIntegrationSkeleton_current
+#print axioms VarietyHCAt_E7ShimuraToy_codim1_via_End0InfrastructureChain
+#print axioms R298_Status_EndRing_GroupEndOnly
+#print axioms R298_NextTarget_GaussianCurve_IsElliptic_via_Discriminant
+#print axioms R298_NextTarget_BaseChange_To_GaussianField
+#print axioms R298_NextTarget_Construct_CMAction_i
+#print axioms R298_NextTarget_CMAction_Square_NegId
+#print axioms R298_NextTarget_CMAction_As_End_Element
+#print axioms R298_canonicalE7ShimuraTor_unchanged
+#print axioms R298_no_End_claim
+#print axioms R298_no_End0_claim
+#print axioms R298_no_action_claim
+#print axioms R298_no_Deligne_1982_claim
+#print axioms R298_Recommendation_Proceed_To_IsElliptic
+#print axioms R298_does_not_construct_End
+#print axioms R298_does_not_construct_End0
+#print axioms R298_does_not_construct_CM_action
+#print axioms R298_does_not_construct_cohomology_action
+#print axioms R298_does_not_close_canonicalE7ShimuraTor
+
+-- R299 (IsElliptic discharge — REAL MATH)
+#print axioms GaussianCMEllipticCurveTarget_b₂_eq_zero
+#print axioms GaussianCMEllipticCurveTarget_b₄_eq_two
+#print axioms GaussianCMEllipticCurveTarget_b₆_eq_zero
+#print axioms GaussianCMEllipticCurveTarget_b₈_eq_neg_one
+#print axioms GaussianCMEllipticCurveTarget_Δ_eq_neg_64
+#print axioms GaussianCMEllipticCurveTarget_Δ_ne_zero
+#print axioms GaussianCMEllipticCurveTarget_IsElliptic
+#print axioms Target_GaussianCMEllipticCurveTarget_IsElliptic_closed
+
+-- R300 (base change — REAL MATH)
+#print axioms GaussianCMEllipticCurveTargetBaseChange
+#print axioms GaussianCMEllipticCurveTargetBaseChange_IsElliptic
+#print axioms GaussianCMEllipticCurveTargetBaseChange_a₁_eq_zero
+#print axioms GaussianCMEllipticCurveTargetBaseChange_a₂_eq_zero
+#print axioms GaussianCMEllipticCurveTargetBaseChange_a₃_eq_zero
+#print axioms GaussianCMEllipticCurveTargetBaseChange_a₄_eq_one
+#print axioms GaussianCMEllipticCurveTargetBaseChange_a₆_eq_zero
+
+-- Headline guard
+#print axioms hodgeConjectureReal_canonical
