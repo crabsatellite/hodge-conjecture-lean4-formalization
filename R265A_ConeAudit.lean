@@ -1,0 +1,21 @@
+import HodgeReduction.HCGapL4.AbelianVarietyInterfaceECRealization
+import HodgeReduction.MainTheorem
+
+open HodgeReduction.HCGapL4.AbelianVarietyInterfaceECRealization
+open HodgeReduction
+
+-- R265-A
+#print axioms rat_baseFieldEvidence_for_EC_interface_proved
+#print axioms ellipticCurve_affinePoint_has_addCommGroup
+#print axioms EllipticCurveAbelianVarietyInterfaceEvidenceSkeleton_Q
+#print axioms EllipticCurveAsAbelianVarietyInterfaceSkeleton_RealizedGroupLaw_instance
+#print axioms AbstractCMAbelianHCSource_from_EllipticCurveRealizedGroupLawInterface
+#print axioms VarietyHCAt_E7ShimuraToy_codim1_via_ECRealizedGroupLawInterface
+#print axioms L4_G_ECRealizedGroupLaw_To_AbelianVarietyInterface
+#print axioms L4_G_ECRealizedGroupLaw_MissingProjectiveVarietyProof
+#print axioms L4_G_ECRealizedGroupLaw_MissingSmoothProperProof
+#print axioms L4_G_ECRealizedGroupLaw_MissingHighDimensionalAV
+#print axioms L4_G_ECRealizedGroupLaw_To_CMSourceBridge
+
+-- Headline guard
+#print axioms hodgeConjectureReal_canonical
