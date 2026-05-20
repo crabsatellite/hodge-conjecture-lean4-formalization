@@ -1,0 +1,59 @@
+import HodgeReduction.HCGapL4.GaussianCMActionCoordinateRing
+import HodgeReduction.HCGapL4.GaussianCMActionAffineMorphismInterface
+import HodgeReduction.HCGapL4.GaussianCMActionProjectiveMorphism
+import HodgeReduction.HCGapL4.GaussianCMActionAlgebraicEndInterface
+import HodgeReduction.HCGapL4.GaussianIntActionEndCandidate
+import HodgeReduction.HCGapL4.GaussianFieldToEnd0Chain
+import HodgeReduction.MainTheorem
+
+open HodgeReduction.HCGapL4
+open HodgeReduction
+
+-- R310: coordinate-ring preservation
+#print axioms gaussianCMAction_coordinate_polynomial_preserves
+#print axioms gaussianCMAction_coordinate_polynomial_preserves_zero
+
+-- R311: affine morphism interface
+#print axioms GaussianCMAction_AffineMorphismSkeleton
+#print axioms GaussianCMAction_AffineMorphismSkeleton_equationPreservation_holds
+#print axioms gaussianCMAction_coord_field
+#print axioms gaussianCMAction_coord_field_apply
+
+-- R312: projective preservation
+#print axioms gaussianCMAction_projective_polynomial_preserves
+#print axioms gaussianCMAction_projective_polynomial_preserves_zero
+#print axioms gaussianCMAction_projective_infinity_image
+#print axioms gaussianCMAction_projective_infinity_equiv
+
+-- R313: algebraic End interface
+#print axioms GaussianCMAction_AlgebraicEndomorphismSkeleton
+#print axioms GaussianCMAction_AlgebraicEndomorphismSkeleton_affineMorphism_holds
+#print axioms GaussianCMAction_AlgebraicEndomorphismSkeleton_projectiveMorphism_holds
+#print axioms GaussianCMAction_AlgebraicEndomorphismSkeleton_agreesWithGroupEnd_holds
+#print axioms GaussianCMAction_AlgebraicEndomorphismSkeleton_squareNegOne_holds
+
+-- R314: GaussianInt action targets (markers only, RingHom blocked)
+#print axioms R314_Status_Pointwise_Square_From_R308
+#print axioms R314_Status_Ring_Level_Square_Open
+#print axioms BlockingLemma_R314_RingEnd_TypeclassSynthesis
+#print axioms BlockingLemma_R314_Zsqrtd_lift_requires_CommRing
+
+-- R315: chain integration
+#print axioms GaussianFieldToEnd0ChainSkeleton_current
+#print axioms VarietyHCAt_E7ShimuraToy_codim1_via_GaussianFieldToEnd0Chain
+
+-- Next-target markers
+#print axioms Target_Extend_GaussianIntAction_To_GaussianRationalFieldCandidate
+#print axioms Target_Construct_End0_As_Tensor
+#print axioms Target_Construct_GaussianField_To_End0
+#print axioms Target_Prove_GaussianFieldEmbedding_To_End0
+#print axioms R315_Recommendation_AddMonoidHomLevel_GaussianInt_Action
+
+-- Non-closure
+#print axioms R310_does_not_construct_scheme_morphism
+#print axioms R313_does_not_construct_scheme_morphism
+#print axioms R315_does_not_construct_End0
+#print axioms R315_does_not_close_canonicalE7ShimuraTor
+
+-- Headline guard
+#print axioms hodgeConjectureReal_canonical
