@@ -1,0 +1,56 @@
+import HodgeReduction.HCGapL4.GaussianRationalAdjoinRoot
+import HodgeReduction.HCGapL4.GaussianRationalAdjoinRootEquiv
+import HodgeReduction.HCGapL4.GaussianRationalBasisOneI
+import HodgeReduction.HCGapL4.GaussianNumberFieldChainIntegration
+import HodgeReduction.MainTheorem
+
+open HodgeReduction.HCGapL4
+open HodgeReduction
+
+-- R280
+#print axioms GaussianPolynomialOverQ_ne_zero
+#print axioms GaussianPolynomialOverQ_natDegree_eq_two
+#print axioms GaussianAdjoinRoot_root_sq_add_one
+#print axioms GaussianAdjoinRoot_powerBasis_dim
+#print axioms GaussianAdjoinRootCandidate_finiteDimensional
+#print axioms GaussianAdjoinRootCandidate_finrank_eq_two
+#print axioms GaussianAdjoinRootConstructionSkeleton_current
+#print axioms R280_rootRelation_closed
+#print axioms R280_finiteDimensional_closed
+#print axioms R280_finrankTwo_closed
+
+-- R281
+#print axioms gaussianIntI_sq_eq_neg_one
+#print axioms gaussianRationalI_sq_eq_neg_one
+#print axioms aeval_gaussianPolynomial_gaussianRationalI
+#print axioms GaussianAdjoinRoot_to_GaussianRational
+#print axioms gaussianAdjoinRootI_sq_eq_neg_one_int
+#print axioms GaussianInt_to_GaussianAdjoinRoot
+#print axioms Target_GaussianRational_to_GaussianAdjoinRoot
+#print axioms Target_GaussianRationalFieldCandidate_AlgEquiv_AdjoinRoot
+#print axioms BlockingLemma_R281_X_sq_add_one_irreducible_over_Q
+#print axioms BlockingLemma_R281_AdjoinRoot_isField
+
+-- R282
+#print axioms gaussianRationalOne
+#print axioms GaussianRational_basisCandidate
+#print axioms Target_GaussianRational_span_one_i
+#print axioms Target_GaussianRational_linearIndependent_one_i
+#print axioms Target_GaussianRational_basis_one_i
+#print axioms BlockingLemma_GaussianRational_normal_form
+#print axioms BlockingLemma_GaussianRational_rationalize_denominator
+#print axioms BlockingLemma_GaussianRational_linearIndependent_one_i
+#print axioms GaussianRationalBasisOneIStatusSkeleton_current
+
+-- R283
+#print axioms GaussianNumberFieldChainStatusSkeleton_current
+#print axioms ImaginaryQuadraticInterfaceWithNumberFieldStatusSkeleton_Gaussian
+#print axioms CMFieldRealizationWithNumberFieldStatusSkeleton_Gaussian
+#print axioms VarietyHCAt_E7ShimuraToy_codim1_via_GaussianNumberFieldChainStatus
+#print axioms R283_NextTarget_X_sq_add_one_irreducible
+#print axioms R283_NextTarget_ReverseFractionLift
+#print axioms R283_NextTarget_AlgEquiv
+#print axioms R283_AlternativeNextTarget_DirectBasis
+
+-- Headline guard
+#print axioms hodgeConjectureReal_canonical

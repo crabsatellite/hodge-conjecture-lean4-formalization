@@ -245,4 +245,8 @@ import HodgeReduction.HCGapL4.CMFieldRealizationInterface
 import HodgeReduction.HCGapL4.EllipticCurveEnd0ActionTarget
 import HodgeReduction.HCGapL4.CMFieldChainIntegration
 import HodgeReduction.HCGapL4.GaussianRationalConjugationLift
+import HodgeReduction.HCGapL4.GaussianRationalAdjoinRoot
+import HodgeReduction.HCGapL4.GaussianRationalAdjoinRootEquiv
+import HodgeReduction.HCGapL4.GaussianRationalBasisOneI
+import HodgeReduction.HCGapL4.GaussianNumberFieldChainIntegration
 import HodgeReduction.Concrete
