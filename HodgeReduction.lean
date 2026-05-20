@@ -249,4 +249,5 @@ import HodgeReduction.HCGapL4.GaussianRationalAdjoinRoot
 import HodgeReduction.HCGapL4.GaussianRationalAdjoinRootEquiv
 import HodgeReduction.HCGapL4.GaussianRationalBasisOneI
 import HodgeReduction.HCGapL4.GaussianNumberFieldChainIntegration
+import HodgeReduction.HCGapL4.GaussianPolynomialIrreducible
 import HodgeReduction.Concrete
