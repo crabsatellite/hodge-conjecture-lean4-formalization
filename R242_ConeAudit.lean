@@ -1,0 +1,16 @@
+import HodgeReduction.HCGapL4.E7ShimuraDatumToySkeletonV2
+import HodgeReduction.MainTheorem
+
+open HodgeReduction.HCGapL4.E7ShimuraDatumToySkeletonV2NS
+open HodgeReduction
+
+#print axioms E7ShimuraDatumToySkeletonV2_canonicalToy
+#print axioms E7ShimuraToy_WithShimuraDatumSkeletonV2
+#print axioms VarietyHCAt_E7ShimuraToyWithShimuraDatumSkeletonV2_codim1_via_v3_CMChain
+#print axioms R242_does_not_close_canonicalE7ShimuraTor
+#print axioms R242_does_not_implement_real_shimura_datum
+#print axioms R242_does_not_implement_real_canonical_model
+#print axioms R242_does_not_implement_real_arithmetic_quotient
+#print axioms R242_does_not_implement_real_reflex_field
+#print axioms R242_does_not_identify_toy_with_real_E7Shimura
+#print axioms hodgeConjectureReal_canonical
