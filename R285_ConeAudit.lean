@@ -1,0 +1,18 @@
+import HodgeReduction.HCGapL4.GaussianRationalToAdjoinRoot
+import HodgeReduction.MainTheorem
+
+open HodgeReduction.HCGapL4
+open HodgeReduction
+
+-- R285
+#print axioms neg_one_not_int_square
+#print axioms GaussianInt_to_GaussianAdjoinRoot_injective
+#print axioms GaussianRational_to_GaussianAdjoinRoot_RingHom
+#print axioms GaussianRational_to_GaussianAdjoinRoot_AlgHom
+#print axioms R285_Target_GaussianRational_to_GaussianAdjoinRoot_closed
+#print axioms L4_G_GaussianRationalToAdjoinRoot_To_AlgEquiv
+#print axioms L4_G_GaussianRationalToAdjoinRoot_To_NumberField
+#print axioms L4_G_GaussianRationalToAdjoinRoot_Mathlib_IsFractionRing_lift
+
+-- Headline guard
+#print axioms hodgeConjectureReal_canonical
