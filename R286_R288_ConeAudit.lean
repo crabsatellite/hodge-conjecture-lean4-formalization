@@ -1,0 +1,40 @@
+import HodgeReduction.HCGapL4.GaussianRationalAdjoinRootAlgEquiv
+import HodgeReduction.HCGapL4.GaussianRationalNumberFieldClosed
+import HodgeReduction.HCGapL4.GaussianNumberFieldClosureIntegration
+import HodgeReduction.MainTheorem
+
+open HodgeReduction.HCGapL4
+open HodgeReduction
+
+-- R286 AlgEquiv
+#print axioms GaussianAdjoinRoot_to_GaussianRational_root
+#print axioms GaussianRational_to_GaussianAdjoinRoot_AlgHom_algebraMap
+#print axioms GaussianInt_to_GaussianAdjoinRoot_sqrtd
+#print axioms GaussianRational_to_GaussianAdjoinRoot_AlgHom_i
+#print axioms rev_comp_fwd_eq_id
+#print axioms fwd_comp_rev_eq_id
+#print axioms GaussianRationalFieldCandidate_AlgEquiv_AdjoinRoot
+#print axioms GaussianRationalFieldCandidate_AlgEquiv_AdjoinRoot_map_i
+#print axioms Target_GaussianRationalFieldCandidate_AlgEquiv_AdjoinRoot_closed
+#print axioms L4_G_GaussianRationalAdjoinRootAlgEquiv_To_NumberField
+
+-- R287 NumberField closure (the main payoff)
+#print axioms GaussianRationalFieldCandidate_finiteDimensional
+#print axioms GaussianRationalFieldCandidate_finrank_eq_two
+#print axioms GaussianRationalFieldCandidate_NumberField
+#print axioms Target_R273_FiniteDimensional_closed
+#print axioms Target_R273_NumberField_closed
+#print axioms Target_R273_finrank_eq_two_closed
+#print axioms GaussianRationalNumberFieldEvidenceClosedSkeleton_current
+
+-- R288 chain integration
+#print axioms ImaginaryQuadraticFieldInterfaceWithNumberFieldEvidenceSkeleton_Gaussian
+#print axioms CMFieldRealizationWithNumberFieldEvidenceSkeleton_Gaussian
+#print axioms EllipticCurveCMFieldChainWithNumberFieldEvidenceSkeleton_current
+#print axioms VarietyHCAt_E7ShimuraToy_codim1_via_CMFieldChainWithNumberFieldEvidence
+#print axioms R288_NextTarget_ImaginaryQuadratic_Gaussian
+#print axioms R288_NextTarget_CMField_Gaussian
+#print axioms R288_NextTarget_End0_EllipticCurve
+
+-- Headline guard
+#print axioms hodgeConjectureReal_canonical
