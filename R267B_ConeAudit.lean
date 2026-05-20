@@ -1,0 +1,28 @@
+import HodgeReduction.HCGapL4.ComplexMultiplicationQuadraticFieldCandidate
+import HodgeReduction.MainTheorem
+
+open HodgeReduction.HCGapL4.ComplexMultiplicationQuadraticFieldCandidate
+open HodgeReduction
+
+-- R267-B field + algebra + audit-missing
+#print axioms GaussianRationalFieldCandidate_has_Field
+#print axioms GaussianRationalFieldCandidate_has_QAlgebra
+#print axioms AuditMissing_GaussianRationalFieldCandidate_NumberFieldInstance
+
+-- R267-B candidate skeleton
+#print axioms ImaginaryQuadraticFieldCandidateSkeleton_Gaussian
+
+-- R267-B wrapper + regression
+#print axioms EllipticCurveCMInterfaceWithQuadraticFieldCandidateSkeleton_instance
+#print axioms AbstractCMAbelianHCSource_from_EllipticCurveQuadraticFieldCandidate
+#print axioms VarietyHCAt_E7ShimuraToy_codim1_via_EllipticCurveQuadraticFieldCandidate
+
+-- R267-B markers
+#print axioms L4_G_GaussianRationalFieldCandidate_To_RealImaginaryQuadraticField
+#print axioms L4_G_GaussianRationalFieldCandidate_To_CMFieldInterface
+#print axioms L4_G_GaussianRationalFieldCandidate_MissingEnd0Action
+#print axioms L4_G_GaussianRationalFieldCandidate_MissingNumberFieldInstance
+#print axioms L4_G_GaussianRationalFieldCandidate_To_Deligne1982
+
+-- Headline guard
+#print axioms hodgeConjectureReal_canonical
