@@ -244,4 +244,5 @@ import HodgeReduction.HCGapL4.ImaginaryQuadraticFieldRealizationInterface
 import HodgeReduction.HCGapL4.CMFieldRealizationInterface
 import HodgeReduction.HCGapL4.EllipticCurveEnd0ActionTarget
 import HodgeReduction.HCGapL4.CMFieldChainIntegration
+import HodgeReduction.HCGapL4.GaussianRationalConjugationLift
 import HodgeReduction.Concrete

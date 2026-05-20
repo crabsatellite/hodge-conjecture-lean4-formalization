@@ -1,0 +1,25 @@
+import HodgeReduction.HCGapL4.GaussianRationalConjugationLift
+import HodgeReduction.MainTheorem
+
+open HodgeReduction.HCGapL4
+open HodgeReduction
+
+-- R279 substantive definitions / theorems
+#print axioms GaussianInt_conjRingEquiv
+#print axioms GaussianRationalFieldCandidate_conj
+#print axioms GaussianInt_starRingAut_symm
+#print axioms GaussianRationalFieldCandidate_conj_involutive
+#print axioms gaussianRationalI
+#print axioms star_gaussianIntI_eq_neg
+#print axioms GaussianRationalFieldCandidate_conj_gaussianRationalI_eq_neg
+#print axioms GaussianRationalConjugationSkeleton_closed
+#print axioms R279_conjugationTarget_closed
+#print axioms R279_involutiveTarget_closed
+#print axioms R279_nontrivialOnITarget_closed
+
+-- R279 markers
+#print axioms L4_G_GaussianConjugationLift_To_ImaginaryQuadraticInterface
+#print axioms L4_G_GaussianConjugationLift_To_End0Action
+
+-- Headline guard
+#print axioms hodgeConjectureReal_canonical
