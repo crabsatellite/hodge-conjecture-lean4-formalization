@@ -1,0 +1,30 @@
+import HodgeReduction.HCGapL4.CohomologyReplacementMathlibAudit
+import HodgeReduction.HCGapL4.CohomologyReplacementDependencyMap
+import HodgeReduction.HCGapL4.CohomologyReplacementNextTarget
+import HodgeReduction.MainTheorem
+
+open HodgeReduction.HCGapL4.CohomologyReplacementMathlibAudit
+open HodgeReduction.HCGapL4.CohomologyReplacementDependencyMap
+open HodgeReduction.HCGapL4.CohomologyReplacementNextTarget
+open HodgeReduction
+
+-- R251
+#print axioms CohomologyReplacementMathlibAuditToySkeleton_current
+#print axioms AuditMissing_DeRhamCohomologyModule
+#print axioms AuditMissing_EtaleCohomologyFunctorModule
+#print axioms AuditMissing_HodgeTheoryModule
+
+-- R252
+#print axioms CohomologyOfUnderlyingReplacementDependencyMapToySkeleton_E7Shimura
+#print axioms CohomologyReplacementRouteSingularToySkeleton_marker
+#print axioms CohomologyReplacementRouteDeRhamToySkeleton_marker
+#print axioms CohomologyReplacementRouteEtaleToySkeleton_marker
+#print axioms CohomologyReplacementRecommendedFirstRouteToy
+
+-- R253
+#print axioms CohomologyReplacementNextTargetToySkeleton_chosen
+#print axioms Target_SmoothProjectiveComplexVariety_RationalCohomologyInterface
+#print axioms L1_G_NextCohomologyReplacementTarget_To_R245Plan
+
+-- Headline guard
+#print axioms hodgeConjectureReal_canonical
