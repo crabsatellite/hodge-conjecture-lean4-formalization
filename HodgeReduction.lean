@@ -471,6 +471,7 @@ import HodgeReduction.HCGapL4.FrontC13_E6CaseDerivation
 import HodgeReduction.HCGapL4.FrontC14_CY3NonexistenceDerivation
 import HodgeReduction.HCGapL4.R504_MultiFrontWave16Audit
 import HodgeReduction.Infrastructure.SimpleLieAlgebraClassification
+import HodgeReduction.Infrastructure.ClassicalCominusculeClassification
 import HodgeReduction.HCGapL4.ClassicalCartanProof
 import HodgeReduction.HCGapL4.E6CaseProof
 import HodgeReduction.HCGapL4.CY3NonexistenceProof
