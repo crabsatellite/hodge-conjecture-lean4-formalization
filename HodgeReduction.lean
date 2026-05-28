@@ -460,4 +460,6 @@ import HodgeReduction.HCGapL4.FrontC11_ShimuraBettiComputation
 import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit
 import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness
 import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit
+import HodgeReduction.HCGapL4.FrontE10_HeadlineAssembly
+import HodgeReduction.HCGapL4.R498_MultiFrontWave14Audit
 import HodgeReduction.Concrete
