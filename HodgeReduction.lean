@@ -1,4 +1,4 @@
-/-
+﻿/-
 # HodgeReduction --top-level module.
 
 Lean4 formalisation of the Mumford--Tate reduction of the Hodge Conjecture
@@ -35,7 +35,7 @@ Re-exports:
                                         HC framework typeclasses. First
                                         sub-module: `HodgeReduction.Concrete.EVII`
                                         gives a concrete carrier `A_EVII`
-                                        (= `Polynomial 鈩歚 at scaffolding stage)
+                                        (= `Polynomial 閳╂瓪 at scaffolding stage)
                                         with `CohomologyRing` / `KaehlerClass` /
                                         `Lefschetz11Data` / `HodgeCycleData`
                                         instances and a concrete
@@ -481,7 +481,9 @@ import HodgeReduction.HCGapL4.NoetherLefschetzSkeleton
 import HodgeReduction.HCGapL2.EVIICohomologyModel
 import HodgeReduction.HCGapL4.E6V27VacuityBridge
 import HodgeReduction.HCGapL4.CY3E7Bridge
+import HodgeReduction.HCGapL4.CMAbelianHCBridge
 import HodgeReduction.Concrete
+
 
 
 
