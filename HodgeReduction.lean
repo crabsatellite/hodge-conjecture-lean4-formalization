@@ -1,5 +1,5 @@
 /-
-# HodgeReduction â€” top-level module.
+# HodgeReduction â€?top-level module.
 
 Lean4 formalisation of the Mumford--Tate reduction of the Hodge Conjecture
 ("A Mumford--Tate Reduction of the Hodge Conjecture", Alex Chengyu Li, 2026).
@@ -12,26 +12,26 @@ Several sub-branches (exotic rigid non-Shimura E7-type in dim >= 5 with
 c1 != 0) are explicitly OPEN and carry no theorem statement.
 
 Re-exports:
-  * `HodgeReduction.Types`            â€” opaque types.
-  * `HodgeReduction.ClassicalResults` â€” classical results (axiomatised
+  * `HodgeReduction.Types`            â€?opaque types.
+  * `HodgeReduction.ClassicalResults` â€?classical results (axiomatised
                                         pending Mathlib port).
-  * `HodgeReduction.OpenHypotheses`   â€” nine labelled paper hypotheses
+  * `HodgeReduction.OpenHypotheses`   â€?nine labelled paper hypotheses
                                         (exploratory reduction-stage ledger
                                         with broken-link Phase 0 audit trail).
-  * `HodgeReduction.MainTheorem`      â€” the Main Theorem and unconditional
+  * `HodgeReduction.MainTheorem`      â€?the Main Theorem and unconditional
                                         theorems, each with `sorry`.
-  * `HodgeReduction.Ledger`           â€” gap ledger (status + metadata for
+  * `HodgeReduction.Ledger`           â€?gap ledger (status + metadata for
                                         every OPEN / PARTIAL / BLOCKED /
                                         DEAD-END / CLOSED entry; cross-
                                         session attack-history record).
-  * `HodgeReduction.Strict`           â€” Cat 1-3 strict-discipline restructure
+  * `HodgeReduction.Strict`           â€?Cat 1-3 strict-discipline restructure
                                         (P17+). Each chain migrates from
                                         opaque-axiom reduction-stage to
                                         Cat 1+2-only derivation-stage via
                                         explicit-content Cat 2 axioms +
                                         derived theorems + honest conditional
                                         structure for open targets.
-  * `HodgeReduction.Concrete`         â€” concrete instances of the abstract
+  * `HodgeReduction.Concrete`         â€?concrete instances of the abstract
                                         HC framework typeclasses. First
                                         sub-module: `HodgeReduction.Concrete.EVII`
                                         gives a concrete carrier `A_EVII`
@@ -148,9 +148,9 @@ import HodgeReduction.Infrastructure.AlgebraicGeometry.PicardGroup
 import HodgeReduction.Infrastructure.AlgebraicGeometry.FirstChernClass
 import HodgeReduction.Infrastructure.AlgebraicGeometry.ExponentialSequence
 -- R7 ChowGroup / HodgeDecomposition: re-enabled after R7-quarantine-fix
--- (2026-05-16). ChowGroup: fixed neg_eq_of_add_eq_zero_left â†’ _right;
--- added Mathlib.RingTheory.Adjoin.Basic; fixed multi-binder âˆƒ; replaced
--- OfNat-on-CH-Unit with explicit â„¤-cast via let-binding; fixed
+-- (2026-05-16). ChowGroup: fixed neg_eq_of_add_eq_zero_left â†?_right;
+-- added Mathlib.RingTheory.Adjoin.Basic; fixed multi-binder âˆ? replaced
+-- OfNat-on-CH-Unit with explicit â„?cast via let-binding; fixed
 -- cl_intersect / cl_fundamental via Int.cast_mul / Int.cast_one.
 -- HodgeDecomposition: added noncomputable to HpqTrivial/HkTrivial/
 -- instHodgeDecompositionDataTrivial; fixed le_antisymm argument order;
@@ -350,4 +350,98 @@ import HodgeReduction.HCGapL4.ParametricHCExplicitAssumptions
 import HodgeReduction.HCGapL4.CanonicalRootCompatibilityWrapper
 import HodgeReduction.HCGapL4.AuthorizedRefactorDryRunReport
 import HodgeReduction.HCGapL4.HCFrontierAfterAuthorizedRefactorDryRun
+import HodgeReduction.HCGapL4.InternalToyFullCodimHC
+import HodgeReduction.HCGapL4.ParametricFullCodimMTPackageWitness
+import HodgeReduction.HCGapL4.ParametricCanonicalE7ShimuraTor_AxiomFree
+import HodgeReduction.HCGapL4.HCFrontierAfterAxiomFreeHeadline
+import HodgeReduction.HCGapL4.ToyToRealE7VCDIdentification
+import HodgeReduction.HCGapL4.ToyToRealHCTransfer
+import HodgeReduction.HCGapL4.OriginalHeadlineReplacementSafetyAudit
+import HodgeReduction.HCGapL4.ToyToRealPackageFamilyWitness
+import HodgeReduction.HCGapL4.ToyToRealPackageFamilyLowCodim
+import HodgeReduction.HCGapL4.ToyToRealPackageFamilyHighCodim
+import HodgeReduction.HCGapL4.ToyToRealPackageFamilyDispatcher
+import HodgeReduction.HCGapL4.HeadlineReplacementSafetyAfterPackageFamily
+import HodgeReduction.HCGapL4.RealCompatibleE7CarrierProfile
+import HodgeReduction.HCGapL4.RealCompatibleE7AlgClassesProfile
+import HodgeReduction.HCGapL4.RealCompatibleParametricCanonicalTor
+import HodgeReduction.HCGapL4.MathlibRealGeometryRevisit_R400
+import HodgeReduction.HCGapL4.RealCompatibleVsToyProfileComparison
+import HodgeReduction.HCGapL4.HCFrontierAfterRealCompatibleProfile
+import HodgeReduction.HCGapL4.RealGeometryIdentificationSchema
+import HodgeReduction.HCGapL4.RealGeometryPaperObligationLedger
+import HodgeReduction.HCGapL4.ConditionalRealHeadlineTransfer
+import HodgeReduction.HCGapL4.HCFrontierAfterRealGeometrySchema
+import HodgeReduction.HCGapL4.CohomologyProfileComparisonSkeleton
+import HodgeReduction.HCGapL4.DeligneSchmidCohomologyImportInterface
+import HodgeReduction.HCGapL4.E7CohomologyProfileAdapter
+import HodgeReduction.HCGapL4.CohomologyProfileComparisonConditional
+import HodgeReduction.HCGapL4.HCFrontierAfterCohomologyProfileDecomposition
+import HodgeReduction.HCGapL4.DegreewiseRankE7CohomologyProfile
+import HodgeReduction.HCGapL4.DegreewiseRankE7HodgeStructure
+import HodgeReduction.HCGapL4.DegreewiseRankE7VCDACD
+import HodgeReduction.HCGapL4.DegreewiseRankParametricHC
+import HodgeReduction.HCGapL4.HCFrontierAfterDegreewiseRankProfile
+import HodgeReduction.HCGapL4.Deligne1971LowDegreeFragment
+import HodgeReduction.HCGapL4.E7LowDegreeRankPopulation
+import HodgeReduction.HCGapL4.E7HighDegreeRankTargetSchema
+import HodgeReduction.HCGapL4.HCFrontierAfterFirstRankPopulation
+import HodgeReduction.HCGapL4.ConnectedSmoothProjectiveH0RankOneInterface
+import HodgeReduction.HCGapL4.E7H0RankOneSpecializationTarget
+import HodgeReduction.HCGapL4.LowDegreeRankSchemaIntegration
+import HodgeReduction.HCGapL4.MathlibRealGeometryRevisit_R425_Optional
+import HodgeReduction.HCGapL4.HCFrontierAfterH0RankOneInterface
+import HodgeReduction.HCGapL4.DeligneSchmidLowDegreeRankFragment
+import HodgeReduction.HCGapL4.E7ConnectednessPaperPath
+import HodgeReduction.HCGapL4.HCFrontierAfterSecondRankPopulation
+import HodgeReduction.HCGapL4.AbstractConnectedH0RankOneTheorem
+import HodgeReduction.HCGapL4.E7H0RankOneFromAbstractConnectedSource
+import HodgeReduction.HCGapL4.Deligne1971H0RealizationTarget
+import HodgeReduction.HCGapL4.HCFrontierAfterAbstractH0RankOne
+import HodgeReduction.HCGapL4.ConnectednessToH0ConstantsAbstract
+import HodgeReduction.HCGapL4.BailyBorelConnectednessTargetDecomposition
+import HodgeReduction.HCGapL4.Deligne1971H0TargetDecomposition
+import HodgeReduction.HCGapL4.HCFrontierAfterConnectednessH0Decomposition
+import HodgeReduction.HCGapL4.LocallyConstantOnConnected
+import HodgeReduction.HCGapL4.ConnectedImageQuotient
+import HodgeReduction.HCGapL4.LocallyConstantToH0Realization
+import HodgeReduction.HCGapL4.ConnectedImageToBailyBorelPath
+import HodgeReduction.HCGapL4.SecondPaperTargetDischargeAudit
+import HodgeReduction.HCGapL4.HCFrontierAfterTopologyAtoms
+import HodgeReduction.HCGapL4.LocallyConstantAbstractConnectedSourceBundle
+import HodgeReduction.HCGapL4.LocallyConstantH0RankOneThread
+import HodgeReduction.HCGapL4.DeligneH0AfterLocallyConstantBundle
+import HodgeReduction.HCGapL4.HCFrontierAfterLocallyConstantBundle
+import HodgeReduction.HCGapL4.FrontA_DeligneH0SheafRealization
+import HodgeReduction.HCGapL4.FrontB_BailyBorelConnectedness
+import HodgeReduction.HCGapL4.FrontC_E7LowDegreeHodgeNumbers
+import HodgeReduction.HCGapL4.FrontD_E7ToCMChowCorrespondence
+import HodgeReduction.HCGapL4.FrontE_RealCarrierProfileMatching
+import HodgeReduction.HCGapL4.R451_MultiFrontFrontierAudit
+import HodgeReduction.HCGapL4.FrontC2_LowDegreeHodgeRankAlgebra
+import HodgeReduction.HCGapL4.FrontB2_ConnectednessNstepPipeline
+import HodgeReduction.HCGapL4.FrontE2_ProfileMatchingObligationSplit
+import HodgeReduction.HCGapL4.FrontA_PauseUntilR500
+import HodgeReduction.HCGapL4.R456_MultiFrontWave2Audit
+import HodgeReduction.HCGapL4.FrontC3_LowDegreeHodgeEulerAlgebra
+import HodgeReduction.HCGapL4.FrontB3_ArithmeticQuotientConnectedness
+import HodgeReduction.HCGapL4.FrontE3_LowDegreeDataFeedsProfileMatching
+import HodgeReduction.HCGapL4.R460_MultiFrontWave3Audit
+import HodgeReduction.HCGapL4.FrontE4_AllCodimProfileMatchingDispatcher
+import HodgeReduction.HCGapL4.FrontC4_HodgePolynomialAlgebra
+import HodgeReduction.HCGapL4.FrontB4_DiscreteGroupQuotientRefinement
+import HodgeReduction.HCGapL4.R465_MultiFrontWave4Audit
+import HodgeReduction.HCGapL4.FrontC5_HodgePolynomialToRankAdapter
+import HodgeReduction.HCGapL4.FrontB5_CompactificationConnectednessProbe
+import HodgeReduction.HCGapL4.FrontE5_HodgePolynomialFeedsProfileMatching
+import HodgeReduction.HCGapL4.R470_MultiFrontWave5Audit
+import HodgeReduction.HCGapL4.FrontC6_AllDegreeHodgeRankAdapter
+import HodgeReduction.HCGapL4.FrontE6_FeedR405ConditionalTransfer
+import HodgeReduction.HCGapL4.FrontD6_Deligne1982MinimalFragment
+import HodgeReduction.HCGapL4.FrontB6_MaintenanceOnly
+import HodgeReduction.HCGapL4.R476_MultiFrontWave6Audit
+import HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance
+import HodgeReduction.HCGapL4.FrontE7_ConditionalTransferFromConcrete
+import HodgeReduction.HCGapL4.FrontD7_Deligne1982ExpandedFragment
+import HodgeReduction.HCGapL4.R480_MultiFrontWave7Audit
 import HodgeReduction.Concrete
