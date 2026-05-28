@@ -80,12 +80,12 @@ theorem expected_betti_sum :
     degrees and differ at degree 3 where V_56 contributes).
     KERNEL-PURE. -/
 theorem compact_dual_betti_subset_shimura :
-    e7EVIICompactDualBetti 0 = shimuraEVIIExpectedBetti 0 …
-    e7EVIICompactDualBetti 2 = shimuraEVIIExpectedBetti 2 …
-    e7EVIICompactDualBetti 4 = shimuraEVIIExpectedBetti 4 …
-    e7EVIICompactDualBetti 6 = shimuraEVIIExpectedBetti 6 …
-    e7EVIICompactDualBetti 8 = shimuraEVIIExpectedBetti 8 …
-    e7EVIICompactDualBetti 3 = 0 …
+    e7EVIICompactDualBetti 0 = shimuraEVIIExpectedBetti 0 ?
+    e7EVIICompactDualBetti 2 = shimuraEVIIExpectedBetti 2 ?
+    e7EVIICompactDualBetti 4 = shimuraEVIIExpectedBetti 4 ?
+    e7EVIICompactDualBetti 6 = shimuraEVIIExpectedBetti 6 ?
+    e7EVIICompactDualBetti 8 = shimuraEVIIExpectedBetti 8 ?
+    e7EVIICompactDualBetti 3 = 0 ?
     shimuraEVIIExpectedBetti 3 = 56 := by
   unfold e7EVIICompactDualBetti shimuraEVIIExpectedBetti; omega
 
@@ -98,10 +98,10 @@ theorem compact_dual_betti_subset_shimura :
     with these Hodge numbers (Han-Robles 2020, Gross 1994).
     KERNEL-PURE. -/
 theorem hodge_diamond_shimura_weight3 :
-    v56Weight3HodgeNumber 0 3 = 1 …
-    v56Weight3HodgeNumber 1 2 = 27 …
-    v56Weight3HodgeNumber 2 1 = 27 …
-    v56Weight3HodgeNumber 3 0 = 1 …
+    v56Weight3HodgeNumber 0 3 = 1 ?
+    v56Weight3HodgeNumber 1 2 = 27 ?
+    v56Weight3HodgeNumber 2 1 = 27 ?
+    v56Weight3HodgeNumber 3 0 = 1 ?
     (1 : Nat) + 27 + 27 + 1 = 56 := by
   unfold v56Weight3HodgeNumber; simp [Nat.succ.injEq]; omega
 

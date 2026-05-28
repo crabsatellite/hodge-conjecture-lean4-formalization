@@ -96,7 +96,7 @@ structure Codim1LefschetzBypassData where
     the CM or absolute-Hodge hypothesis. KERNEL-PURE. -/
 theorem codim1_is_unconditional
     (B : Codim1LefschetzBypassData) :
-    B.unconditional ¡ú B.codim1_discharged := by
+    B.unconditional ? B.codim1_discharged := by
   intro h; exact True.intro
 
 /-- **R482 substantive theorem (4/4)**: if the Lefschetz (1,1)-bypass

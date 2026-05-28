@@ -45,10 +45,10 @@ theorem innerProd_symm (A B : J3O) : innerProd A B = innerProd B A := by
   unfold innerProd
   ring_nf
   congr 1
-  · ring
-  · rw [OctonionQ.re_conj_mul]
-  · rw [OctonionQ.re_conj_mul]
-  · rw [OctonionQ.re_conj_mul]
+  路 ring
+  路 rw [OctonionQ.re_conj_mul]
+  路 rw [OctonionQ.re_conj_mul]
+  路 rw [OctonionQ.re_conj_mul]
 
 /-- Inner product is additive in the first argument. -/
 theorem innerProd_add_left (A B C : J3O) :
@@ -75,7 +75,7 @@ theorem component_count : (3 : ?) + 3 * 8 = 27 := by omega
 
 /-- The diagonal subspace (xi1, xi2, xi3 only) has dimension 3. -/
 def diagonalSubspace : Submodule ? J3O where
-  carrier := {X | X.x1 = 0 ∧ X.x2 = 0 ∧ X.x3 = 0}
+  carrier := {X | X.x1 = 0 ? X.x2 = 0 ? X.x3 = 0}
   zero_mem' := ?rfl, rfl, rfl?
   add_mem' := by
     intro X Y ?hx1, hx2, hx3? ?hy1, hy2, hy3?

@@ -73,11 +73,11 @@ theorem eviiCompactDual_hodgeSum6 :
     unfold e7EVIICompactDualHodgeNumber; simp [Nat.succ.injEq]; omega
   unfold hodgeSumAtDegree
   rw [Finset.sum_eq_single 3]
-  ¡¤ exact h33
-  ¡¤ intro p hp hp2
+  Â· exact h33
+  Â· intro p hp hp2
     unfold e7EVIICompactDualHodgeNumber
     simp [Nat.succ.injEq]; omega
-  ¡¤ simp [Finset.mem_range]; omega
+  Â· simp [Finset.mem_range]; omega
 
 /-- **R484 substantive theorem (4/5)**: at degree 6, the EVII compact
     dual Betti number equals the Hodge sum. betti 6 = 1 = h^{3,3}.

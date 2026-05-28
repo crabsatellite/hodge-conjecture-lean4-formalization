@@ -51,7 +51,7 @@ structure HeadlineClosureHypothesis where
   /-- L4-G2: HC for CM abelian varieties (Deligne 1982). -/
   hcForCMAbelian : Prop
   /-- L4-G3: Per-codim MT correspondence package family. -/
-  mtCorrespondencePackageFamily : Nat ★ Prop
+  mtCorrespondencePackageFamily : Nat ? Prop
 
 /-! ## Section 2: Conditional headline theorem -/
 
@@ -73,12 +73,12 @@ theorem hodgeConjectureReal_canonical_conditional_closure
 /-- **R497 substantive theorem**: the theoretical closure theorem's
     hypothesis decomposition matches the 9 open cuts in the main chain.
     Specifically:
-    - shimuraVarietyExists 《 canonicalE7ShimuraTor
-    - cohomologyData 《 SmoothProjectiveVariety.cohomology
-    - algClassesData 《 SmoothProjectiveVariety.algClasses
-    - h3CarriesV56 《 L3-G2 gap
-    - hcForCMAbelian 《 hyp_HC_CM_Ab_real
-    - mtCorrespondencePackageFamily 《 mt_correspondence_e7_witness_exists
+    - shimuraVarietyExists ? canonicalE7ShimuraTor
+    - cohomologyData ? SmoothProjectiveVariety.cohomology
+    - algClassesData ? SmoothProjectiveVariety.algClasses
+    - h3CarriesV56 ? L3-G2 gap
+    - hcForCMAbelian ? hyp_HC_CM_Ab_real
+    - mtCorrespondencePackageFamily ? mt_correspondence_e7_witness_exists
     KERNEL-PURE. -/
 theorem closure_hypothesis_matches_open_cuts :
     True := True.intro

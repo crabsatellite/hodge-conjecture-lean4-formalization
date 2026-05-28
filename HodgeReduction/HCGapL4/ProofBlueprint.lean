@@ -132,7 +132,7 @@ theorem blueprint_covers_all_cuts :
 /-- **R499 substantive theorem**: the difficulty-weighted total effort
     for closing all cuts is 5+4+5+5+4+5+5+5+4 = 42. -/
 theorem total_effort :
-    (proofBlueprint.map DerivationStep.estimatedDifficulty).foldl (¡¤ + ¡¤) 0 = 42 := rfl
+    (proofBlueprint.map DerivationStep.estimatedDifficulty).foldl (Â· + Â·) 0 = 42 := rfl
 
 /-- **R499 substantive theorem**: the three cuts that can be attacked
     independently (no dependencies) are: classical_cartan, e6_case,

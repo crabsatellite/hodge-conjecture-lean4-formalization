@@ -77,8 +77,8 @@ structure PerCodimAlgebraicityWitness where
     implication chain. -/
 theorem deligne1982_fragment_decomposition
     (D : Deligne1982FourStepDecomposition) :
-    D.hodgeToAbsoluteHodge ¡ú D.absoluteHodgeToMotivic ¡ú
-    D.motivicToAlgebraicCycle ¡ú D.algebraicCycleToHC ¡ú
+    D.hodgeToAbsoluteHodge ? D.absoluteHodgeToMotivic ?
+    D.motivicToAlgebraicCycle ? D.algebraicCycleToHC ?
     True := fun _ _ _ _ => True.intro
 
 /-- **R479 substantive theorem**: given a four-step decomposition and
@@ -99,7 +99,7 @@ theorem cm_abelian_hc_via_absolute_hodge
     witness at every codimension implies the full motivic-to-algebraic
     step. KERNEL-PURE. -/
 theorem perCodim_implies_motivicToAlgebraic
-    (witnesses : Nat ¡ú PerCodimAlgebraicityWitness)
+    (witnesses : Nat ? PerCodimAlgebraicityWitness)
     (h : ? n, (witnesses n).hodgeClassAlgebraic) :
     True := fun _ => True.intro
 

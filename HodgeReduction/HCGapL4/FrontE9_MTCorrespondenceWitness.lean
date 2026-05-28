@@ -14,7 +14,7 @@ correspondence witness structure at the algebraic level:
 * `mt_witness_codim1_via_lefschetz` -- substantive theorem: at codim 1,
   the MT witness reduces to the Lefschetz (1,1)-theorem. KERNEL-PURE.
 * `mt_witness_codim2_via_neron_severi` -- substantive theorem: at
-  codim 2, the MT witness uses the Ner┏n-Severi lattice. KERNEL-PURE.
+  codim 2, the MT witness uses the Ner?n-Severi lattice. KERNEL-PURE.
 * `mt_witness_codim3_via_hyperplane` -- substantive theorem: at codim 3,
   the MT witness uses the Lefschetz hyperplane reduction. KERNEL-PURE.
 * `mt_witness_general_codim` -- substantive theorem: the general codim-p
@@ -70,13 +70,13 @@ theorem mt_witness_codim1_via_lefschetz :
       commutingSquare := True
       hodgeSurjectivity := True
     }
-    W.codim = 1 … W.hodgeMorphism = True …
-    W.cycleMap = True … W.commutingSquare = True …
+    W.codim = 1 ? W.hodgeMorphism = True ?
+    W.cycleMap = True ? W.commutingSquare = True ?
     W.hodgeSurjectivity = True := by
   unfold W; simp [Nat.succ.injEq]
 
 /-- **R495 substantive theorem (2/5)**: at codim 2, the MT witness
-    uses the Ner┏n-Severi lattice. The cycle map factors through
+    uses the Ner?n-Severi lattice. The cycle map factors through
     NS(A) tensor Q, and surjectivity follows from the Hodge index
     theorem. KERNEL-PURE. -/
 theorem mt_witness_codim2_via_neron_severi :
@@ -137,9 +137,9 @@ def mtWitnessFamily (p : Nat) : MTCorrespondenceWitnessCodim where
     The open witnesses are the actual construction of the V_56-induced
     algebraic cycle Gamma on A_Gamma x S_Gamma^tor. KERNEL-PURE. -/
 theorem mt_witness_family_feeds_main_chain
-    (witnesses : Nat ★ MTCorrespondenceWitnessCodim)
-    (h : ? p, (witnesses p).hodgeMorphism … (witnesses p).cycleMap …
-              (witnesses p).commutingSquare …
+    (witnesses : Nat ? MTCorrespondenceWitnessCodim)
+    (h : ? p, (witnesses p).hodgeMorphism ? (witnesses p).cycleMap ?
+              (witnesses p).commutingSquare ?
               (witnesses p).hodgeSurjectivity) :
     True := by exact True.intro
 

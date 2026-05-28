@@ -78,7 +78,7 @@ theorem step1_meyer_applies :
     Kostant cominuscule-node criterion. Theorems thm_G2F4 and
     thm_E8_vacuous are already closed. KERNEL-PURE. -/
 theorem step2_no_exceptional_factors :
-    ? (False) ¡Ä ? (False) ¡Ä ? (False) := by
+    ? (False) ? ? (False) ? ? (False) := by
   -- Marker: thm_G2F4 excludes G2/F4, thm_E8_vacuous excludes E8
   exact ?id, id, id?
 

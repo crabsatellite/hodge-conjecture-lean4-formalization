@@ -52,7 +52,7 @@ open FrontC4_HodgePolynomialAlgebra
 structure EVIIConcreteProfileToR405 where
   eviiCertification : EVIICompactDualBettiEqualsHodgeSum
   v56Certification : v56Weight3Betti 3 = hodgeSumAtDegree v56Weight3HodgeDiamond 3
-  mtPackageFamilyTarget : Nat ★ Prop
+  mtPackageFamilyTarget : Nat ? Prop
   conditionalHCTransferTarget : Prop
 
 /-- **R488 substantive theorem (1/3)**: the EVII certified profile
@@ -61,14 +61,14 @@ structure EVIIConcreteProfileToR405 where
     KERNEL-PURE via the certification instance. -/
 theorem evii_certified_profile_provides_low_degree_data
     (P : EVIIConcreteProfileToR405) :
-    e7EVIICompactDualBetti 0 = 1 …
-    e7EVIICompactDualBetti 2 = 1 …
-    e7EVIICompactDualBetti 4 = 1 …
-    e7EVIICompactDualBetti 6 = 1 …
-    e7EVIICompactDualBetti 8 = 1 …
-    e7EVIICompactDualBetti 1 = 0 …
-    e7EVIICompactDualBetti 3 = 0 …
-    e7EVIICompactDualBetti 5 = 0 …
+    e7EVIICompactDualBetti 0 = 1 ?
+    e7EVIICompactDualBetti 2 = 1 ?
+    e7EVIICompactDualBetti 4 = 1 ?
+    e7EVIICompactDualBetti 6 = 1 ?
+    e7EVIICompactDualBetti 8 = 1 ?
+    e7EVIICompactDualBetti 1 = 0 ?
+    e7EVIICompactDualBetti 3 = 0 ?
+    e7EVIICompactDualBetti 5 = 0 ?
     e7EVIICompactDualBetti 7 = 0 := by
   refine ??_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_? <;>
   unfold e7EVIICompactDualBetti <;> omega
@@ -79,10 +79,10 @@ theorem evii_certified_profile_provides_low_degree_data
     KERNEL-PURE. -/
 theorem v56_certified_profile_provides_weight3_data
     (P : EVIIConcreteProfileToR405) :
-    v56Weight3HodgeNumber 0 3 = 1 …
-    v56Weight3HodgeNumber 1 2 = 27 …
-    v56Weight3HodgeNumber 2 1 = 27 …
-    v56Weight3HodgeNumber 3 0 = 1 …
+    v56Weight3HodgeNumber 0 3 = 1 ?
+    v56Weight3HodgeNumber 1 2 = 27 ?
+    v56Weight3HodgeNumber 2 1 = 27 ?
+    v56Weight3HodgeNumber 3 0 = 1 ?
     v56Weight3Betti 3 = 56 := by
   refine ??_, ?_, ?_, ?_, ?_? <;>
   unfold v56Weight3HodgeNumber v56Weight3Betti <;> simp [Nat.succ.injEq] <;> omega

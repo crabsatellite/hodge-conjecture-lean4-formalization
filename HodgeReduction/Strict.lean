@@ -68,7 +68,7 @@ Cat 3 ->Cat 1 lifts performed:
 * P94 (2026-05-16): `H8_EVII_is_one_dim_spanned_by_h4` --Cat 2 axiom
   `H8_EVII_one_dim_OPEN` lifted to Cat 1 theorem via `decide` on the
   Borel-Hirzebruch Poincaré-polynomial partition count
-  `#{(a,b,c) forAllℕ�?: 2a + 10b + 18c = 8} = 1` (unique solution `(4,0,0)`,
+  `#{(a,b,c) forAllℕ??: 2a + 10b + 18c = 8} = 1` (unique solution `(4,0,0)`,
   since `20, 28, 36 > 8` kill numerator factors and `10, 18 > 8` collapse
   the denominator to `1/(1-t^2)`).
 * P230 (2026-05-16): `j_q_G_equivariance_principle` --Cat 2 axiom
@@ -131,7 +131,7 @@ the five L-pieces, e.g. (ab)^2 ->81 h^4, are individually nonzero but sum
 to zero). The genuine twist must NOT be W(E_7)-equivariant. P42 + P43 narrowed the
 search: P42 ruled out three natural QUADRATIC twist candidates (Hodge-
 filtration projection --q is pure type (6,6); Weil operator --C = 1 on
-type (6,6); K-moment-map factorization --κ_{E_7}∘�?= 0, nilcone-isotropic).
+type (6,6); K-moment-map factorization --κ_{E_7}∘??= 0, nilcone-isotropic).
 P43 identified the genuine twist: the NORMAL JET of q along the closed
 orbit. Ě_VII ?ZV_56) IS the rank-1 locus, and {q = 0} = {rank ~3} ?
 Ě_VII, so q literally VANISHES on Ě_VII as a function --that is the
@@ -192,7 +192,7 @@ P51: N(𝟙) = 27 (J_3(O) Zorn basis) ?N(x) = -3h^3 (triangle-vertex-degree
 collapse). P52: the adjoint closed form #(x)_i = #(ν̄)_i + h·ν̄_i + h^2/3
 ??x,#x?= (16 c_0 + 3)h^4. P53: the triangle graph of the 27 of E_6 is
 the strongly regular graph srg(27,10,1,5) (the Schläfli-complement);
-computing c_0 at ξ = ν_1 (cross-checked via ⟨ν�?#(ν̄)?= 3N(ν̄) = 0) gives
+computing c_0 at ξ = ν_1 (cross-checked via ⟨ν??#(ν̄)?= 3N(ν̄) = 0) gives
 c_0 = 1/4, so ?x,#x?= 7h^4 and
   Φ_tw(q) = 4h^4 - 24h^4 - 28h^4 = -48 h^4 ~0.
 [q]_G = -48 h^4 ~0. Hyp_TwistedPhiL_Coefficient_Nonzero is DISCHARGED
@@ -1569,7 +1569,7 @@ def eisensteinVanishing_E7minus25_Deg8 : Prop :=
 --   (2) Weil-operator C insertion. On Hodge type (6,6), C = i^{6-6} = 1.
 --       Inserting C acts as the identity on q. OBSTRUCTED.
 --   (3) K-moment-map factorization. If q = P∘μ_K with P an E_7-invariant
---       quadratic on k, then P forAllκ_{E_7}|_k, and κ_{E_7}∘�?= 0 because the
+--       quadratic on k, then P forAllκ_{E_7}|_k, and κ_{E_7}∘??= 0 because the
 --       moment map image lies in the nilpotent cone (Killing-isotropic).
 --       That forces q = 0 --contradiction. q does NOT factor through the
 --       quadratic K-moment map. OBSTRUCTED.
@@ -1728,7 +1728,7 @@ def eisensteinVanishing_E7minus25_Deg8 : Prop :=
 --   * Σ #(ν̄)_i^2 = G(ν̄) = c_0·(Σν̄^2)^2 = 16 c_0 h^4  (only deg-4 W(E_6)-inv);
 --   * h^2 Σ ν̄_i^2 = h^2·(-4h^2) = -4 h^4;
 --   * Σ (h^2/3)^2 = 27·h^4/9 = 3 h^4;
---   * 2h Σ #(ν̄)_i ν̄_i = 2h·⟨ν�?#(ν̄)?= 2h·3N(ν̄) = 0  (N(ν̄) = 0);
+--   * 2h Σ #(ν̄)_i ν̄_i = 2h·⟨ν??#(ν̄)?= 2h·3N(ν̄) = 0  (N(ν̄) = 0);
 --   * (2h^2/3) Σ #(ν̄)_i = (2h^2/3)·6h^2 = 4 h^4  (Σ#(ν̄)_i = 6h^2);
 --   * (2h^3/3) Σ ν̄_i = 0.
 --   ? G(x) = (16 c_0 - 4 + 3 + 4) h^4 = (16 c_0 + 3) h^4.
@@ -1756,7 +1756,7 @@ def eisensteinVanishing_E7minus25_Deg8 : Prop :=
 -- n_a, n_b):
 --   #(ν̄)_1 = 4/3,  #(ν̄)_{n_a} = #(ν̄)_{n_b} = 4/3,
 --   #(ν̄)_n = -2/3 (other 8 type-N),  #(ν̄)_f = -2/3 (16 type-F).
--- CROSS-CHECK: ⟨ν�? #(ν̄)?= 16/9 - 16/9 + 32/9 - 32/9 = 0 = 3·N(ν̄). ?
+-- CROSS-CHECK: ⟨ν?? #(ν̄)?= 16/9 - 16/9 + 32/9 - 32/9 = 0 = 3·N(ν̄). ?
 -- G(ν̄)|_{ξ=ν_1} = (16 + 32 + 32 + 64)/9 = 16;  (Σν̄^2)^2 = 8^2 = 64.
 -- ? c_0 = 16/64 = 1/4.
 -- THEREFORE:
@@ -1806,7 +1806,7 @@ def canonical_Phi_lands_in_W_E7_augmentation_ideal : Prop :=
  So the coefficient of `t^8` in `P(t)` equals the coefficient of `t^8` in
  `1 / (1 - t^2) = 1 + t^2 + t^4 + t^6 + t^8 + ...`, which is `1`.
  Equivalently, the coefficient equals the partition count
- `#{(a, b, c) forAllℕ�?: 2a + 10b + 18c = 8} = 1` (unique solution `(4, 0, 0)`).
+ `#{(a, b, c) forAllℕ??: 2a + 10b + 18c = 8} = 1` (unique solution `(4, 0, 0)`).
 
  **P94 LEAN-CLOSED**: previously an `opaque Prop`; now expanded to the
  concrete decidable partition-count claim, proved kernel-pure via `decide`
@@ -1936,7 +1936,7 @@ def freudenthal_scalar_piece_maps_to_81_h4 : Prop :=
 /-- **Cat 3 carrier (§3.4.1, P39; R17 KERNEL-ONLY CLOSURE 2026-05-17)** --
  the total coefficient `γ` in `Φ_L(q) = γ·h^4`, summed over all five
  L-pieces of the Freudenthal quartic `q = (ab)^2 + (cross terms involving
- the E_6-cubic-norm N, the E_6-pairing ⟨�?·? and the E_6-adjoint #)`,
+ the E_6-cubic-norm N, the E_6-pairing ⟨??·? and the E_6-adjoint #)`,
  is non-zero (γ = -48 ~0).
 
  **R17 KERNEL-ONLY CLOSURE (2026-05-17)**: previously opaque pending
@@ -2499,7 +2499,7 @@ theorem burgos_kramer_kuhn_2007_PUBLISHED_OPEN :
     (Infrastructure.Shimura.MumfordExtensionData.Vbar (A := A)).chern_isAlgebraic i
 
 /-- **Cat 2 PUBLISHED (§3.3, P64)** --M. Harris, "Automorphic forms of
- ∂�?cohomology type as coherent cohomology classes", J. Diff. Geom. 32
+ ∂??cohomology type as coherent cohomology classes", J. Diff. Geom. 32
  (1990), 1-63 + M. Harris, "Functorial properties of toroidal
  compactifications of locally symmetric varieties", Proc. London Math.
  Soc. (3) 59 (1989), §4.1 (algebraic upgrade of Mumford 1977 §1.3
@@ -2911,7 +2911,7 @@ theorem freudenthal_scalar_piece_computation_OPEN :
  graph of the 27 of E_6 is srg(27,10,1,5) (Schläfli-complement, 45
  triangles, 36+ / 9-, the 9 negatives partition the 27 weights);
  c_0 = G(ν̄)/(16h^4) = 1/4 (computed at ξ = ν_1, cross-checked via
- ⟨ν�?#(ν̄)?= 3N(ν̄) = 0); ?x,#x?= (16·(1/4)+3)h^4 = 7h^4; hence
+ ⟨ν??#(ν̄)?= 3N(ν̄) = 0); ?x,#x?= (16·(1/4)+3)h^4 = 7h^4; hence
  Φ_tw(q) = 4h^4 - 24h^4 - 28h^4 = -48 h^4 ~0. This DISCHARGES
  Hyp_TwistedPhiL_Coefficient_Nonzero (the coefficient γ = -48 ~0).
 
@@ -4087,7 +4087,7 @@ def gap_canonical_Phi_lands_in_W_E7_augmentation_ideal : StrictGapEntry :=
     cat3SubType := .notApplicable
     paperSource := "P39 ->P41-confirmed: RIGOROUSLY ESTABLISHED --q is W(E_7)-invariant, q|_{t^∨} has degree 4, W(E_7) has no degree-4 invariant beyond κ², so q|_{t^∨} = c·κ² forAllSym^4(t^forAll^{W(E_7)}_+, the augmentation ideal of the Borel-Hirzebruch coinvariant presentation (R2 closure: concrete def canonical_Phi_lands_in_W_E7_augmentation_ideal quantifies over Infrastructure.Cohomology.CanonicalPhiData and Infrastructure.Cohomology.AugmentationIdeal; projects through CanonicalPhiData.canonicalPhi_q_in_augmentation_ideal typeclass field; P231 LEAN-CLOSED conversion)"
     attackHistory := ["P39: opaque Prop carrier for the augmentation phenomenon",
-                      "P41 audit (2026-05-15): UPGRADED from heuristic to rigorous --the degree-4 W(E_7)-invariants are exactly ℚ·κ�?(W(E_7) invariant degrees 2,6,8,10,12,14,18 --no degree 4), so canonical Φ(q) = c·[κ²] = 0 cleanly",
+                      "P41 audit (2026-05-15): UPGRADED from heuristic to rigorous --the degree-4 W(E_7)-invariants are exactly ℚ·κ??(W(E_7) invariant degrees 2,6,8,10,12,14,18 --no degree 4), so canonical Φ(q) = c·[κ²] = 0 cleanly",
                       "R2 LEAN-INTERNAL FLIP (2026-05-16): closed via CanonicalPhiData.canonicalPhi_q_in_augmentation_ideal; routes through Infrastructure.Cohomology.{CanonicalPhiData, AugmentationIdeal} typeclass fields (P231 abstract-framework conversion already in place at concrete def site)."]
     scope := "Canonical Φ factors through the W(E_7)-augmentation ideal of H^*(Ě_VII); rigorously: q|_{t^∨} = c·κ² (RIGOROUSLY ESTABLISHED, P41-confirmed)" }
 
@@ -4097,7 +4097,7 @@ def gap_H8_EVII_is_one_dim_spanned_by_h4 : StrictGapEntry :=
     cat3SubType := .notApplicable
     paperSource := "P39: Borel-Hirzebruch 1958 Poincaré poly gives b_8(Ě_VII) = 1. P94 LEAN-CLOSED: expanded to concrete partition-count def via Finset.filter over Finset.range 5 ×ˢ Finset.range 1 ×ˢ Finset.range 1, kernel-decidable."
     attackHistory := ["P39: opaque Prop carrier for H^8(Ě_VII) = ℚ·h^4",
-                      "P94 (2026-05-16): Cat 3 carrier ->Cat 1 derivation. Carrier replaced by concrete def encoding the b_8 coefficient as the partition count #{(a,b,c) forAllℕ�?: 2a + 10b + 18c = 8}; the unique solution (4,0,0) yields card = 1. Proof by `decide` after `unfold`, kernel-pure axioms only [propext, Classical.choice, Quot.sound]."]
+                      "P94 (2026-05-16): Cat 3 carrier ->Cat 1 derivation. Carrier replaced by concrete def encoding the b_8 coefficient as the partition count #{(a,b,c) forAllℕ??: 2a + 10b + 18c = 8}; the unique solution (4,0,0) yields card = 1. Proof by `decide` after `unfold`, kernel-pure axioms only [propext, Classical.choice, Quot.sound]."]
     scope := "H^8(Ě_VII; Z is 1-dim, spanned by h^4 --Cat 1 LEAN-CLOSED via the Borel-Hirzebruch partition-count coefficient computation" }
 
 def gap_V56_hodge_decomposition_under_E6_U1 : StrictGapEntry :=
@@ -4138,7 +4138,7 @@ def gap_twisted_Phi_L_total_coefficient_nonzero : StrictGapEntry :=
     paperSource := "P39 ->P53-COMPUTED: the coefficient γ in Φ_tw(q) = γ·h^4 is COMPUTED to be γ = -48 ~0, where Φ_tw is the Hodge-graded Chern-root evaluation (P49). Finite computation P39-P53, multiply cross-checked."
     attackHistory := ["P39: opaque Prop carrier for Hyp_TwistedPhiL_Coefficient_Nonzero (then: decompose-and-sum γ)",
                       "P41 audit (2026-05-15): the decompose-and-sum γ is identically 0; the genuine twist Φ_tw must be non-W(E_7)-equivariant",
-                      "P53 COMPUTED (2026-05-15): γ = -48 ~0. Via N(x) = -3h^3 (N(𝟙) = 27 from J_3(O) Zorn basis) + c_0 = 1/4 (the triangle graph is srg(27,10,1,5), the Schläfli-complement; computed at ξ = ν_1, cross-checked ⟨ν�?#(ν̄)?= 0) + ?x,#x?= 7h^4. Φ_tw(q) = 4h^4 - 24h^4 - 28h^4 = -48h^4."]
+                      "P53 COMPUTED (2026-05-15): γ = -48 ~0. Via N(x) = -3h^3 (N(𝟙) = 27 from J_3(O) Zorn basis) + c_0 = 1/4 (the triangle graph is srg(27,10,1,5), the Schläfli-complement; computed at ξ = ν_1, cross-checked ⟨ν??#(ν̄)?= 0) + ?x,#x?= 7h^4. Φ_tw(q) = 4h^4 - 24h^4 - 28h^4 = -48h^4."]
     scope := "CLOSED: the cross-ring coefficient γ = -48 ~0, COMPUTED by the finite multiply-cross-checked computation P39-P53" }
 
 /-! ### P40 --Hodge-refinement principle applied to Chern-Weil forms -/
@@ -4316,7 +4316,7 @@ def gap_Hyp_TwistedPhiL_Coefficient_Nonzero : StrictGapEntry :=
     paperSource := "P39 ->P53-COMPUTED: the coefficient γ in Φ_tw(q) = γ·h^4 is COMPUTED to be γ = -48 ~0 by the finite, multiply-cross-checked computation P39-P53, within the P49 Hodge-graded Chern-root framework. DISCHARGED --no longer an open hypothesis."
     attackHistory := ["P39 introduction (2026-05-15): replaced the INVENTION_CLASS Hyp_CrossRingPhiNonzero with a 'Φ_L decompose-and-sum' target.",
                       "P41 hostile self-audit (2026-05-15): the P39 'decompose-and-sum' Φ_L is FLAWED --Σ_j [q_j|_{t^∨}] = [q|_{t^∨}], and q is W(E_7)-invariant, so it lands in the W(E_7)-augmentation ideal = canonical Φ = 0. The five L-pieces (e.g. (ab)^2 ->81 h^4) are individually nonzero but SUM to zero. WHAT SURVIVES: the augmentation phenomenon (now rigorously confirmed: q|_{t^∨} = c·κ² since W(E_7) has no degree-4 invariant but κ²); the L = E_6×U(1) = weight-3 Hodge decomposition identification; the (ab)^2 ->81 h^4 graded-piece computation.",
-                      "P42 exploration (2026-05-15): three natural twist candidates RULED OUT. (1) Hodge-FILTRATION projection: q is E_7-invariant ?Hodge-torus-invariant ?PURE type (6,6) in Sym^4(V_56^forAll; all monomial pieces lie in Gr_F^6, so the filtration does not distinguish them --projection twists nothing. (2) Weil operator C: on type (6,6), C = i^{6-6} = 1 --inserting C is the identity on q. (3) K-moment-map factorization: if q = P∘μ_K with P an E_7-invariant quadratic on k, then P forAllκ_{E_7}|_k and κ_{E_7}∘�?= 0 (moment map image is in the nilpotent cone, Killing-isotropic) --forces q = 0, contradiction. POSITIVE RESIDUE: all three obstructions are QUADRATIC; the twist must use the genuinely CUBIC Freudenthal triple product T.",
+                      "P42 exploration (2026-05-15): three natural twist candidates RULED OUT. (1) Hodge-FILTRATION projection: q is E_7-invariant ?Hodge-torus-invariant ?PURE type (6,6) in Sym^4(V_56^forAll; all monomial pieces lie in Gr_F^6, so the filtration does not distinguish them --projection twists nothing. (2) Weil operator C: on type (6,6), C = i^{6-6} = 1 --inserting C is the identity on q. (3) K-moment-map factorization: if q = P∘μ_K with P an E_7-invariant quadratic on k, then P forAllκ_{E_7}|_k and κ_{E_7}∘??= 0 (moment map image is in the nilpotent cone, Killing-isotropic) --forces q = 0, contradiction. POSITIVE RESIDUE: all three obstructions are QUADRATIC; the twist must use the genuinely CUBIC Freudenthal triple product T.",
                       "P43 positive direction (2026-05-15): the genuine twist IS the NORMAL JET of q along the closed orbit. GEOMETRIC reason canonical Φ(q) = 0: Ě_VII ?ZV_56) is the closed E_7-orbit = rank-1 locus, and {q = 0} = {rank ~3} ?{rank 1} = Ě_VII (Freudenthal / Sato-Kimura / Krutelevich rank stratification). So q LITERALLY VANISHES on Ě_VII; the bridge is the leading normal-derivative term (standard excess-intersection construction).",
                       "P44 computation (2026-05-15): normal-jet computed but with an ERROR --used N = 27'_{-1} ?1_{-3}, concluded order m = 1 with leading jet 4·b·N(A).",
                       "P45 hostile self-audit (2026-05-15): P44 FORGOT the O(1)-twist in the tangent bundle of projective space --T_{[v]}ZV) = ⟨v⟩^forAll?(V/⟨v?, not V/⟨v? CORRECT normal bundle: T_{[v_0]}ZV_56) = 1_{-3} ?(27_{+1} ?27'_{-1} ?1_{-3}) = 27_{-2} ?27'_{-4} ?1_{-6}; T_{[v_0]}Ě_VII = 27_{-2}; ?N = 27'_{-4} ?1_{-6}, N^forAll= 27_{+4} ?1_{+6}. CHARGE-CONSISTENCY now passes: the order-m jet lives in (Sym^m N^forAll?O(4)_{[v_0]})^L with O(4)_{[v_0]} = 1_{-12}; a charge-+12 E_6-invariant in Sym^m(27_{+4} ?1_{+6}) requires 4a+6b=12, a+b=m ?m forAll{2,3}. At m = 2: Sym^2(1_{+6}) ?1_{-12} = 1_0 (L-invariant). The base-point normal slice q(1,0,B,b) = b^2 + 4N(B) has lowest term b^2 at ORDER 2 --CONSISTENT. CONCLUSION: q vanishes to order EXACTLY m = 2 along Ě_VII; leading jet q_2 = b^2 = (ab)^2|_{a=1} forAll(Sym^2 N^forAll?O(4))^L = 1_0, L-INVARIANT and NONZERO. P39's (ab)^2 focus RE-VINDICATED.",
@@ -4327,7 +4327,7 @@ def gap_Hyp_TwistedPhiL_Coefficient_Nonzero : StrictGapEntry :=
                       "P50 the cubic terms (2026-05-15): Φ_tw(q) = 4h^4 + 8h·N(x) - 4?x,#x?(a·N(B) = b·N(A) = h·N(x), ⟨A^#,B^#?= ?x,#x?. N(x) via shift expansion = (4λ - N(𝟙)/27)·h^3, reduced to Jordan constants N(𝟙), λ, ?x,#x?",
                       "P51 the Jordan constants COMPUTED (2026-05-15): N(𝟙) computed in the J_3(O) Zorn basis = 1 - 3(-2) + 2(10) = 27 (checked vs N(1_J) = 1). Triangle-vertex-degree collapse: N(x) = -(N(𝟙)/9)h^3 = -3h^3 (sanity: = -p_3(x), p_3(x) = 3h^3). Σ#(x)_i = (1/2)h^2 N(𝟙) - (1/2)(N(𝟙)/9)Σx_i^2 = 15h^2. Φ_tw(q) = -20h^4 - 4?x,#x?",
                       "P52 the adjoint closed form (2026-05-15): #(x)_i = #(ν̄)_i + h·ν̄_i + h^2/3 (from the triangle condition ν̄_j+ν̄_k = -ν̄_i). G(x) := ?x,#x?= (16c_0 + 3)h^4 where c_0 = G(ν̄)/(16h^4). G(𝟙) corrected to 243 (the J_3(O) trace form is not E_6-invariant); λ_G = 0. Φ_tw(q) = (-32 - 64c_0)·h^4; reduced to the single bowtie invariant c_0.",
-                      "P53 BREAKTHROUGH --c_0 COMPUTED, the cross-ring obstruction RESOLVED (2026-05-15): the triangle graph of the 27 of E_6 is the STRONGLY REGULAR GRAPH srg(27,10,1,5) --the complement of the Schläfli graph (45 triangles, 36 positive / 9 negative, the 9 negatives partitioning the 27 weights; Gram matrix G = I - A + (1/3)J). Computing c_0 at ξ = ν_1: ν̄_p = ⟨ν_p,ν_1?forAll{4/3 (vertex 1), -2/3 (10 neighbors), 1/3 (16 non-neighbors)}; triangles are type (1,N,N) or (N,F,F); working through the sign structure (vertex 1's unique negative triangle is type (1,N,N), covering two neighbors n_a, n_b) gives #(ν̄)_1 = 4/3, #(ν̄)_{n_a} = #(ν̄)_{n_b} = 4/3, #(ν̄) = -2/3 for the other 8 type-N and the 16 type-F. CROSS-CHECK: ⟨ν�?#(ν̄)?= 16/9 - 16/9 + 32/9 - 32/9 = 0 = 3N(ν̄) ? G(ν̄)|_{ξ=ν_1} = (16+32+32+64)/9 = 16, (Σν̄^2)^2 = 64, so c_0 = 16/64 = 1/4. THEREFORE ?x,#x?= G(x) = (16·(1/4)+3)h^4 = 7h^4, and Φ_tw(q) = 4h^4 - 24h^4 - 28h^4 = -48h^4 (cross-check: (-32-64·(1/4))h^4 = -48h^4 ?. CONCLUSION: [q]_G = Φ_tw(q) = -48h^4 ~0. Hyp_TwistedPhiL_Coefficient_Nonzero is DISCHARGED --the coefficient γ = -48 ~0, computed and multiply cross-checked. Encoded via twisted_Phi_L_coefficient_nonzero_COMPUTED_OPEN axiom + Hyp_TwistedPhiL_Coefficient_Nonzero_COMPUTED theorem; Main Theorem signature drops h_phiL_coeff (4 ->3 Hyp_*)."]
+                      "P53 BREAKTHROUGH --c_0 COMPUTED, the cross-ring obstruction RESOLVED (2026-05-15): the triangle graph of the 27 of E_6 is the STRONGLY REGULAR GRAPH srg(27,10,1,5) --the complement of the Schläfli graph (45 triangles, 36 positive / 9 negative, the 9 negatives partitioning the 27 weights; Gram matrix G = I - A + (1/3)J). Computing c_0 at ξ = ν_1: ν̄_p = ⟨ν_p,ν_1?forAll{4/3 (vertex 1), -2/3 (10 neighbors), 1/3 (16 non-neighbors)}; triangles are type (1,N,N) or (N,F,F); working through the sign structure (vertex 1's unique negative triangle is type (1,N,N), covering two neighbors n_a, n_b) gives #(ν̄)_1 = 4/3, #(ν̄)_{n_a} = #(ν̄)_{n_b} = 4/3, #(ν̄) = -2/3 for the other 8 type-N and the 16 type-F. CROSS-CHECK: ⟨ν??#(ν̄)?= 16/9 - 16/9 + 32/9 - 32/9 = 0 = 3N(ν̄) ? G(ν̄)|_{ξ=ν_1} = (16+32+32+64)/9 = 16, (Σν̄^2)^2 = 64, so c_0 = 16/64 = 1/4. THEREFORE ?x,#x?= G(x) = (16·(1/4)+3)h^4 = 7h^4, and Φ_tw(q) = 4h^4 - 24h^4 - 28h^4 = -48h^4 (cross-check: (-32-64·(1/4))h^4 = -48h^4 ?. CONCLUSION: [q]_G = Φ_tw(q) = -48h^4 ~0. Hyp_TwistedPhiL_Coefficient_Nonzero is DISCHARGED --the coefficient γ = -48 ~0, computed and multiply cross-checked. Encoded via twisted_Phi_L_coefficient_nonzero_COMPUTED_OPEN axiom + Hyp_TwistedPhiL_Coefficient_Nonzero_COMPUTED theorem; Main Theorem signature drops h_phiL_coeff (4 ->3 Hyp_*)."]
     scope := "CLOSED (P53): the cross-ring coefficient γ = -48 ~0, COMPUTED by the finite multiply-cross-checked computation P39-P53. The triangle graph is srg(27,10,1,5); c_0 = 1/4; Φ_tw(q) = -48h^4 ~0. Hyp_TwistedPhiL_Coefficient_Nonzero DISCHARGED, conditional only on the P49 identification of Φ_tw as the geometrically correct cross-ring bridge" }
 
 /-! ### Cat 2 single-step axioms -/
@@ -4472,7 +4472,7 @@ def gap_harris_1985_algebraic_upgrade_PUBLISHED : StrictGapEntry :=
   { name := "harris_1985_algebraic_upgrade_PUBLISHED_OPEN"
     status := .gapClosed, inputCategory := .cat1Mathlib
     cat3SubType := .notApplicable
-    paperSource := "M. Harris, 'Automorphic forms of ∂�?cohomology type as coherent cohomology classes', J. Diff. Geom. 32 (1990), 1-63 + M. Harris, 'Functorial properties of toroidal compactifications of locally symmetric varieties', Proc. London Math. Soc. (3) 59 (1989), §4.1; P230 LEAN-CLOSED via abstract `MumfordExtensionData` typeclass"
+    paperSource := "M. Harris, 'Automorphic forms of ∂??cohomology type as coherent cohomology classes', J. Diff. Geom. 32 (1990), 1-63 + M. Harris, 'Functorial properties of toroidal compactifications of locally symmetric varieties', Proc. London Math. Soc. (3) 59 (1989), §4.1; P230 LEAN-CLOSED via abstract `MumfordExtensionData` typeclass"
     attackHistory := ["P64 (2026-05-15): Cat 2 single-step; Harris 1985/1989/1990 algebraic upgrade of Mumford-extended Chern classes. Previously implicit in paper_formHM_EVII P34 closure synthesis; now extracted as a separately-cited Cat 2 single-source dependency",
                       "P230 LEAN-CLOSED (2026-05-16): axiom ->theorem via abstract `Infrastructure.Shimura.MumfordExtensionData` typeclass; same shape as the P63 BKK 2007 closure. Harris 1985 algebraic upgrade reduces to `MumfordExtensionData.Vbar.chern_isAlgebraic`. Kernel-pure derivation."]
     scope := "Cat 2 PUBLISHED ->Cat 1 LEAN-CLOSED: Harris 1985 algebraic upgrade of Mumford-extended automorphic Chern classes; derivable from abstract `MumfordExtensionData` typeclass (P64 ->P230)" }
@@ -4671,7 +4671,7 @@ def gap_twisted_Phi_L_coefficient_nonzero_COMPUTED : StrictGapEntry :=
   { name := "twisted_Phi_L_coefficient_nonzero_COMPUTED_OPEN"
     status := .gapClosed, inputCategory := .cat3PaperNovel
     cat3SubType := .structuralEquation
-    paperSource := "P53: the cross-ring coefficient COMPUTED. The finite computation P39-P53 establishes Φ_tw(q) = γ·h^4 with γ = -48 ~0 (within the P49 Hodge-graded Chern-root framework). Inputs: N(𝟙) = 27 (J_3(O) Zorn basis) ?N(x) = -3h^3; triangle graph = srg(27,10,1,5) (Schläfli-complement); c_0 = 1/4 (computed at ξ = ν_1, cross-checked via ⟨ν�?#(ν̄)?= 0); ?x,#x?= 7h^4; Φ_tw(q) = -48h^4."
+    paperSource := "P53: the cross-ring coefficient COMPUTED. The finite computation P39-P53 establishes Φ_tw(q) = γ·h^4 with γ = -48 ~0 (within the P49 Hodge-graded Chern-root framework). Inputs: N(𝟙) = 27 (J_3(O) Zorn basis) ?N(x) = -3h^3; triangle graph = srg(27,10,1,5) (Schläfli-complement); c_0 = 1/4 (computed at ξ = ν_1, cross-checked via ⟨ν??#(ν̄)?= 0); ?x,#x?= 7h^4; Φ_tw(q) = -48h^4."
     attackHistory := ["P53 introduction (2026-05-15): the structuralEquation recording the completed computation Φ_tw(q) = -48h^4 ~0; discharges Hyp_TwistedPhiL_Coefficient_Nonzero"]
     scope := "The cross-ring coefficient γ = -48 ~0, COMPUTED (P39-P53); conditional only on the P49 identification of Φ_tw as the geometrically correct bridge" }
 
@@ -4980,7 +4980,7 @@ def gap_HC_Main : StrictGapEntry :=
       "P60 EXPLICIT HOLO-DISCRETE LOWEST COHOMOLOGICAL DEGREE: paper_iia_realization_OPEN refactored 7-input ->8-input by adding holo_discrete_lowest_deg_E7minus25 (every holomorphic discrete series A_q(λ) in Hermitian symmetric (g, K) has R(q) = dim_C(G/K); for E_{7(-25)}, dim_C(G/K) = 27). Cited to V-Z 1984 Compositio Math. 53 §5 + Knapp-Wallach 1976 Invent. Math. 34 + Borel-Wallach 1980 Ch. VI. Previously implicit in V-Z 1984 §5 framework; now extracted. Combined with Salamanca-Riba (P59), this completely eliminates non-trivial A_q(λ) contributions at deg 8 < 27 in the (ii.a) realization argument's step (4), leaving only the trivial-module Cartan image (P58) = ⟨h^4?",
       "P61 EXPLICIT j^q G-EQUIVARIANCE: paper_hodge44_step_OPEN refactored 2-input ->3-input by adding j_q_G_equivariance_principle (the Matsushima homomorphism j^q is G-equivariant, sending G-invariant classes on Ě to G-invariant classes on S_Γ). Cited to Matsushima 1962 Osaka Math. J. 14 + Borel 1974 §3-§8. Previously implicit in cohomologyIso_at_deg8 carrier semantics; now extracted as a separately-cited Cat 2 single-source dependency. Load-bearing in the freudenthal-class-G-invariance derivation: h^4 G-inv on Ě_VII ?j^8(h^4) G-inv on S_Γ.",
       "P62 EXPLICIT BOREL-HIRZEBRUCH h = c_1(L): paper_placement_reduction_OPEN refactored 3-input ->4-input by adding h_equals_c_1_canonical_line_bundle (the Borel-Hirzebruch 1958-60 identification of the Kähler class h on Ě_VII with the first Chern class of the canonical line bundle L). Cited to Borel-Hirzebruch Amer. J. Math. 80-82 Part I §13-15 + Part II §28-30. Previously implicit in paper-narrative step (iv) j^8(h^4) = c_1(L̄)^4; now extracted as a separately-cited Cat 2 single-source dependency.",
-      "P94 (2026-05-16) Cat 2 axiom ->Cat 1 theorem for H8_EVII_one_dim_OPEN: the carrier predicate H8_EVII_is_one_dim_spanned_by_h4 was an opaque Prop with the Borel-Hirzebruch dimension fact axiomatized; both are now concrete kernel-pure declarations. The Borel-Hirzebruch Poincaré polynomial (1-t^{20})(1-t^{28})(1-t^{36}) / [(1-t^2)(1-t^{10})(1-t^{18})] at degree 8 has numerator ~1 mod t^9 (smallest power 20 > 8) and denominator factors with exponents 10, 18 also contribute 1, so coeff(t^8, P) = coeff(t^8, 1/(1-t^2)) = 1, equivalently the partition count #{(a,b,c) forAllℕ�?: 2a + 10b + 18c = 8} = 1 (unique solution (4,0,0)). The new def encodes this as a Finset.filter card-1 claim over Finset.range 5 ×ˢ Finset.range 1 ×ˢ Finset.range 1; proof is `decide` after `unfold`. Axiom dependency for the new theorem: [propext, Classical.choice, Quot.sound] (kernel only). Main Theorem 2 ->1 Cat 2 PUBLISHED axiom dependency from the (P39 augmentation, H^8 dim, V_56 Hodge decomp) trio.",
+      "P94 (2026-05-16) Cat 2 axiom ->Cat 1 theorem for H8_EVII_one_dim_OPEN: the carrier predicate H8_EVII_is_one_dim_spanned_by_h4 was an opaque Prop with the Borel-Hirzebruch dimension fact axiomatized; both are now concrete kernel-pure declarations. The Borel-Hirzebruch Poincaré polynomial (1-t^{20})(1-t^{28})(1-t^{36}) / [(1-t^2)(1-t^{10})(1-t^{18})] at degree 8 has numerator ~1 mod t^9 (smallest power 20 > 8) and denominator factors with exponents 10, 18 also contribute 1, so coeff(t^8, P) = coeff(t^8, 1/(1-t^2)) = 1, equivalently the partition count #{(a,b,c) forAllℕ??: 2a + 10b + 18c = 8} = 1 (unique solution (4,0,0)). The new def encodes this as a Finset.filter card-1 claim over Finset.range 5 ×ˢ Finset.range 1 ×ˢ Finset.range 1; proof is `decide` after `unfold`. Axiom dependency for the new theorem: [propext, Classical.choice, Quot.sound] (kernel only). Main Theorem 2 ->1 Cat 2 PUBLISHED axiom dependency from the (P39 augmentation, H^8 dim, V_56 Hodge decomp) trio.",
       "P230 (2026-05-16) Cat 2 axiom ->Cat 1 theorem for borel_1974_j_q_G_equivariance_PUBLISHED_OPEN: the carrier predicate j_q_G_equivariance_principle was an opaque Prop with the Borel 1974 §3-§8 functoriality fact axiomatized; both are now concrete declarations. Enriched `MatsushimaData A B` typeclass (in `HodgeReduction.Infrastructure.Cohomology.Matsushima`) with three new fields: `source_invariants : Submodule ZA`, `target_invariants : Submodule ZB`, and `j_q_maps_invariants_to_invariants : ∀ {α}, α forAllsource_invariants ->j_q α forAlltarget_invariants`. The j_q_G_equivariance_principle `def` then universally quantifies over `MatsushimaData A B` and reduces to the typeclass field directly. Theorem proof: one-line application of the typeclass field after introducing the quantified data. Kernel-pure axioms: [propext, Quot.sound]. One more axiom removed from the Main Theorem roster.",
       "(2026-05-16) Cat 2 axiom ->Cat 1 theorem for borel_hirzebruch_h_equals_c_1_L_PUBLISHED_OPEN: the carrier predicate h_equals_c_1_canonical_line_bundle was an opaque Prop with the Borel-Hirzebruch Kähler-class = c_1 identification axiomatized; both are now concrete kernel-pure declarations. The new def encodes the identification as the abstract universal-quantification: for any cohomology ring `A` equipped with `KaehlerClass A`, `PicardGroupData A`, and `AmpleDivisorData A` typeclasses, `PicardGroupData.c1 AmpleDivisorData.L_amp = KaehlerClass.h`. This is precisely the `AmpleDivisorData.c1_eq_h` typeclass field built into the existing abstract framework `HodgeReduction.Infrastructure.Cohomology.AmpleDivisor` (the ample-divisor data packages a designated ample line bundle whose first Chern class equals the Kähler class). The Borel-Hirzebruch 1958-60 single-source citation is retained as the algebraic-geometric justification that such an `AmpleDivisorData` instance exists for `Ě_VII = E_{7,C}/P_7` (the canonical line bundle on the generalised flag variety generates `Pic(Ě_VII) = ℤ`, with `c_1` to the positive generator of `H^2(Ě_VII; Z = ℤ`); the Lean-level claim records the abstract typeclass-field projection the downstream `paper_placement_reduction` step (iv) `j^8(h^4) = c_1(L̄)^4` actually consumes. Axiom dependency for the new theorem: [propext, Classical.choice, Quot.sound] (kernel only)."
     ]

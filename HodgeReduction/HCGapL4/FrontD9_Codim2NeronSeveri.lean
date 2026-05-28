@@ -1,11 +1,11 @@
 /-
-# HC Gap L4 -- FRONT D9: codim-2 Ner車n-Severi witness (R485).
+# HC Gap L4 -- FRONT D9: codim-2 Ner?n-Severi witness (R485).
 
 R482 (Front D8) constructed the per-codim Deligne 1982 witness at
 codim 1 via the Lefschetz (1,1)-theorem bypass.
 
 R485 (this file, Wave 9 Front D9) CONSTRUCTS the per-codim witness
-at codim 2, encoding the Ner車n-Severi / Hodge index theorem approach:
+at codim 2, encoding the Ner?n-Severi / Hodge index theorem approach:
 
 * `Codim2NeronSeveriWitness` -- structure for codim-2 algebraicity
   on CM abelian varieties via the Hodge index theorem.
@@ -32,18 +32,18 @@ namespace FrontD9_Codim2NeronSeveri
 open FrontD7_Deligne1982ExpandedFragment
 open FrontD8_PerCodimDeligneWitness
 
-/-! ## Section 1: Codim-2 Ner車n-Severi witness -/
+/-! ## Section 1: Codim-2 Ner?n-Severi witness -/
 
-/-- **R485 codim-2 Ner車n-Severi witness structure** carrying the Prop
+/-- **R485 codim-2 Ner?n-Severi witness structure** carrying the Prop
     that Hodge classes at codim 2 on a CM abelian variety are algebraic,
-    via the Hodge index theorem + Ner車n-Severi lattice.
-    Paper source: Ner車n-Severi theorem + Hodge index theorem
+    via the Hodge index theorem + Ner?n-Severi lattice.
+    Paper source: Ner?n-Severi theorem + Hodge index theorem
     (Griffiths-Harris 1978, Ch. 1.2, Ch. 4.1). -/
 structure Codim2NeronSeveriWitness where
   /-- Prop: the Hodge index theorem applies (intersection form has
       the correct signature on H^{1,1}). -/
   hodgeIndexApplies : Prop
-  /-- Prop: Ner車n-Severi rank is finite. -/
+  /-- Prop: Ner?n-Severi rank is finite. -/
   neronSeveriFiniteRank : Prop
   /-- Prop: Hodge classes at codim 2 are algebraic. -/
   hodgeClassAlgebraic_codim2 : Prop

@@ -197,7 +197,7 @@ def config : ChainAudit.ProjectConfig := {
       title := "Layer 1: true E_{7(-25)}-type Shimura toroidal compactification"
       status := "open"
       summary :=
-        "AMRT 1975 / Baily--Borel 1966 construction of S_Γ^tor as a SmoothProjectiveVariety �?  Required Mathlib infrastructure: arithmetic groups, Hermitian symmetric domains, toroidal compactifications."
+        "AMRT 1975 / Baily--Borel 1966 construction of S_Γ^tor as a SmoothProjectiveVariety --  Required Mathlib infrastructure: arithmetic groups, Hermitian symmetric domains, toroidal compactifications."
       files := [
         "HodgeReduction/OpenHypotheses.lean",
         "HodgeReduction/HCGapRegistry.lean",
@@ -215,7 +215,7 @@ def config : ChainAudit.ProjectConfig := {
       title := "Layer 2: VarietyCohomologyData from a non-toy underlying variety"
       status := "open"
       summary :=
-        "Construction of `VarietyCohomologyData` whose `H k` is the actual rational singular cohomology of `S_Γ^tor` at degree `k`, with `hodgeStructure k` the actual pure Hodge structure of weight `k` on `H^k(S_Γ^tor, �?`.  Required Mathlib infrastructure: singular cohomology, Dolbeault decomposition, Hodge theorem for compact Kähler manifolds."
+        "Construction of `VarietyCohomologyData` whose `H k` is the actual rational singular cohomology of `S_Γ^tor` at degree `k`, with `hodgeStructure k` the actual pure Hodge structure of weight `k` on `H^k(S_Γ^tor, --`.  Required Mathlib infrastructure: singular cohomology, Dolbeault decomposition, Hodge theorem for compact Kähler manifolds."
       files := [
         "HodgeReduction/HCGapRegistry.lean",
         "HodgeReduction/Infrastructure/HodgeStructure/VarietyCohomology.lean",
@@ -232,10 +232,10 @@ def config : ChainAudit.ProjectConfig := {
     },
     {
       id := "G-l3-v56-mt-identification"
-      title := "Layer 3: V_56 -- H^3(S_Γ^tor, �? Hodge-structure identification"
+      title := "Layer 3: V_56 -- H^3(S_Γ^tor, -- Hodge-structure identification"
       status := "open"
       summary :=
-        "The H^3 piece of `S.cohomologyOfUnderlying` is identified with the 56-dimensional minuscule E_7-representation V_56 as a polarisable pure �?Hodge structure of weight 3 with Hodge numbers (1, 27, 27, 1).  The V_56 side is kernel-pure (`V56Instance.instPureHodgeStructure_V56`); the identification is the open gap.  Required Mathlib infrastructure: Matsushima isomorphism, Borel--Wallach relative Lie-algebra cohomology, Vogan--Zuckerman 1984."
+        "The H^3 piece of `S.cohomologyOfUnderlying` is identified with the 56-dimensional minuscule E_7-representation V_56 as a polarisable pure --Hodge structure of weight 3 with Hodge numbers (1, 27, 27, 1).  The V_56 side is kernel-pure (`V56Instance.instPureHodgeStructure_V56`); the identification is the open gap.  Required Mathlib infrastructure: Matsushima isomorphism, Borel--Wallach relative Lie-algebra cohomology, Vogan--Zuckerman 1984."
       files := [
         "HodgeReduction/HCGapRegistry.lean",
         "HodgeReduction/Infrastructure/HodgeStructure/V56Instance.lean",
@@ -270,7 +270,7 @@ def config : ChainAudit.ProjectConfig := {
       title := "Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian)"
       status := "open"
       summary :=
-        "Per-codimension data: HodgeStructureMorphism phi + cycle map psi + commuting square + Hodge-class surjectivity, identifying H^*(S_Γ^tor, �? with a CM abelian variety's cohomology.  Currently bundled inside `canonicalE7ShimuraTor.mtCorrespondencePackage` (R188 field); a `mt_correspondence_e7_witness_exists` universal axiom (R177) covers the non-canonical sub-clause."
+        "Per-codimension data: HodgeStructureMorphism phi + cycle map psi + commuting square + Hodge-class surjectivity, identifying H^*(S_Γ^tor, -- with a CM abelian variety's cohomology.  Currently bundled inside `canonicalE7ShimuraTor.mtCorrespondencePackage` (R188 field); a `mt_correspondence_e7_witness_exists` universal axiom (R177) covers the non-canonical sub-clause."
       files := [
         "HodgeReduction/MainTheorem.lean",
         "HodgeReduction/OpenHypotheses.lean",

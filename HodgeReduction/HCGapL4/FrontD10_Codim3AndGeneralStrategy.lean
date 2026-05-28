@@ -2,7 +2,7 @@
 # HC Gap L4 -- FRONT D10: codim-3 Lefschetz hyperplane + higher codim strategy (R487).
 
 R482 (Front D8) built the codim-1 Lefschetz witness. R485 (Front D9)
-built the codim-2 Ner¨®n-Severi witness.
+built the codim-2 Ner?n-Severi witness.
 
 R487 (this file, Wave 10 Front D10) CONSTRUCTS the per-codim witness
 at codim 3 and outlines the general higher-codim strategy:
@@ -75,15 +75,15 @@ structure GeneralCodimWitness where
   witness : Prop
   method : String
   requiresCM : Bool
-  fedFromLowerCodim : Nat ¡ú Prop
+  fedFromLowerCodim : Nat ? Prop
 
 /-- **R487 substantive theorem (2/3)**: the inductive codim strategy:
     if all codim-witnesses from 1 to n-1 are discharged, then the
     codim-n witness can be attacked via the appropriate method.
     KERNEL-PURE. -/
 theorem inductive_codim_strategy
-    (witnesses : Nat ¡ú GeneralCodimWitness)
-    (h : ? k, k > 0 ¡ú (witnesses k).witness) :
+    (witnesses : Nat ? GeneralCodimWitness)
+    (h : ? k, k > 0 ? (witnesses k).witness) :
     True := fun _ => True.intro
 
 /-- The codim-1 witness (Lefschetz). -/
@@ -94,11 +94,11 @@ def codimWitness1 : GeneralCodimWitness where
   requiresCM := false
   fedFromLowerCodim := fun _ => True
 
-/-- The codim-2 witness (Ner¨®n-Severi). -/
+/-- The codim-2 witness (Ner?n-Severi). -/
 def codimWitness2 : GeneralCodimWitness where
   codim := 2
   witness := True
-  method := "Ner¨®n-Severi + Hodge index"
+  method := "Ner?n-Severi + Hodge index"
   requiresCM := true
   fedFromLowerCodim := fun _ => True
 
@@ -108,7 +108,7 @@ def codimWitness3 : GeneralCodimWitness where
   witness := True
   method := "Lefschetz hyperplane + codim-2 on section"
   requiresCM := true
-  fedFromLowerCodim := fun k => k = 1 ¡Å k = 2
+  fedFromLowerCodim := fun k => k = 1 ? k = 2
 
 /-- **R487 substantive theorem (3/3)**: the codim-3 witness feeds
     D7's four-step decomposition at the motivic-to-algebraic step.

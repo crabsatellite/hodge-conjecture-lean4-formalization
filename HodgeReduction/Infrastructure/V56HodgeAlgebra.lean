@@ -135,7 +135,7 @@ theorem total_dim_split :
     The V_56 Hodge structure is weight 3, so there are no (p,p) classes.
     All Hodge classes are at (3,0), (2,1), (1,2), (0,3). -/
 theorem v56_no_pp_classes (p : ?) (hp : p > 0) :
-    p + p ¡Ù 3 := by omega
+    p + p >= 3 := by omega
 
 /-- The V_56 Hodge diamond has nonzero entries only at:
     (3,0), (2,1), (1,2), (0,3). These correspond to the four
@@ -155,22 +155,22 @@ theorem codim1_dim_zero : (0 : ?) = 0 := rfl
 /-! ## Polarisation dimension constraints -/
 
 /-- For a polarised Hodge structure of weight 3 on V_56, the
-    polarisation form Q : V_56 ¡Á V_56 ¡ú ? pairs V^{3,0} with V^{0,3}
+    polarisation form Q : V_56 ? V_56 ? ? pairs V^{3,0} with V^{0,3}
     and V^{2,1} with V^{1,2}. The pairing is non-degenerate, so
     dim V^{3,0} = dim V^{0,3} and dim V^{2,1} = dim V^{1,2}.
     This is already verified above as hodge_symm_dim_30_03 and
     hodge_symm_dim_21_12. -/
 theorem polarisation_dimension_constraint :
-    Module.finrank ? Hodge_3_0 = Module.finrank ? Hodge_0_3 ¡Ä
+    Module.finrank ? Hodge_3_0 = Module.finrank ? Hodge_0_3 ?
     Module.finrank ? Hodge_2_1 = Module.finrank ? Hodge_1_2 := by
   exact ?hodge_symm_dim_30_03, hodge_symm_dim_21_12?
 
 /-- The Hodge classes at weight 3 in V_56 are those in
-    V^{3,0} ¡É V^{0,3} (which is trivial since V^{3,0} and V^{0,3}
+    V^{3,0} ? V^{0,3} (which is trivial since V^{3,0} and V^{0,3}
     are different summands) plus the "Hodge (3,0) + (0,3)" space.
     The actual Hodge conjecture for V_56 asks: are all rational
     Hodge classes algebraic? For weight 3, the Hodge classes are
-    those in V^{3,0} ¡É H^3(X, ?) and V^{0,3} ¡É H^3(X, ?). -/
+    those in V^{3,0} ? H^3(X, ?) and V^{0,3} ? H^3(X, ?). -/
 theorem hodge_class_dim_weight3 :
     Module.finrank ? Hodge_3_0 + Module.finrank ? Hodge_0_3 = 2 := by
   rw [finrank_Hodge_3_0, finrank_Hodge_0_3]

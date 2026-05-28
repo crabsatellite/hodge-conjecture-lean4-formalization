@@ -80,12 +80,12 @@ open FrontC4_HodgePolynomialAlgebra
     This encodes the Borel-Hirzebruch Poincare polynomial
     P(EVII, t) = 1 + t^2 + t^4 + t^6 + t^8. -/
 def e7EVIICompactDualHodgeNumber (p q : Nat) : Nat :=
-  if p = q ∧ 2 * p ≤ 8 then 1 else 0
+  if p = q ? 2 * p ? 8 then 1 else 0
 
 /-- Betti numbers for EVII compact dual: b_k = 1 if k is even and k <= 8,
     b_k = 0 otherwise. -/
 def e7EVIICompactDualBetti (k : Nat) : Nat :=
-  if k % 2 = 0 ∧ k ≤ 8 then 1 else 0
+  if k % 2 = 0 ? k ? 8 then 1 else 0
 
 /-- Hodge symmetry for the EVII compact dual Hodge diamond:
     h^{p,q} = h^{q,p}. Proved by case analysis on the symmetric condition
@@ -152,7 +152,7 @@ theorem e7EVIICompactDual_betti8 : e7EVIICompactDualBetti 8 = 1 := by
 /-- Helper: h^{p,p} = 1 iff 2*p <= 8. -/
 theorem e7EVIICompactDual_diag_eq (p : Nat) :
     e7EVIICompactDualHodgeNumber p p =
-      if 2 * p ≤ 8 then 1 else 0 := by
+      if 2 * p ? 8 then 1 else 0 := by
   unfold e7EVIICompactDualHodgeNumber; simp [Nat.succ.injEq]
 
 /-- **R477 substantive theorem (10/13)**: hodgeSumAtDegree D 0 = 1
@@ -180,7 +180,7 @@ theorem e7EVIICompactDual_hodgeSum2 :
     The only contributing term is h^{2,2} = 1. KERNEL-PURE. -/
 theorem e7EVIICompactDual_hodgeSum4 :
     hodgeSumAtDegree e7EVIICompactDualHodgeDiamond 4 = 1 := by
-  have hp (p : Nat) (hp1 : p ≤ 4) (hp2 : p ≠ 2) :
+  have hp (p : Nat) (hp1 : p ? 4) (hp2 : p >= 2) :
       e7EVIICompactDualHodgeNumber p (4 - p) = 0 := by
     unfold e7EVIICompactDualHodgeNumber
     simp [Nat.succ.injEq]
@@ -189,13 +189,13 @@ theorem e7EVIICompactDual_hodgeSum4 :
     unfold e7EVIICompactDualHodgeNumber; simp [Nat.succ.injEq]; omega
   unfold hodgeSumAtDegree
   simp [Finset.sum_range_succ, Finset.sum_range_zero]
-  have : ? p ∈ Finset.range 5, p = 2 ∨
+  have : ? p ? Finset.range 5, p = 2 ?
       e7EVIICompactDualHodgeNumber p (4 - p) = 0 := by
     intro p hp; omega
   rw [Finset.sum_eq_single 2]
-  · exact h22
-  · intro p hp hp2; exact hp p hp (by omega)
-  · simp [Finset.mem_range]; omega
+  路 exact h22
+  路 intro p hp hp2; exact hp p hp (by omega)
+  路 simp [Finset.mem_range]; omega
 
 /-- **R477 substantive theorem (13/13)**: hodgeSumAtDegree D 8 = 1.
     The only contributing term is h^{4,4} = 1. KERNEL-PURE. -/
@@ -205,12 +205,12 @@ theorem e7EVIICompactDual_hodgeSum8 :
     unfold e7EVIICompactDualHodgeNumber; simp [Nat.succ.injEq]; omega
   unfold hodgeSumAtDegree
   rw [Finset.sum_eq_single 4]
-  · exact h44
-  · intro p hp hp2
+  路 exact h44
+  路 intro p hp hp2
     unfold e7EVIICompactDualHodgeNumber
     simp [Nat.succ.injEq]
     omega
-  · simp [Finset.mem_range]; omega
+  路 simp [Finset.mem_range]; omega
 
 /-! ## Section 4: V_56 weight-3 Hodge diamond -/
 
@@ -220,10 +220,10 @@ theorem e7EVIICompactDual_hodgeSum8 :
     Paper source: Han-Robles 2020 Appendix A.2.6,
     Gross 1994, Kostant 1961. -/
 def v56Weight3HodgeNumber (p q : Nat) : Nat :=
-  if p = 0 ∧ q = 3 then 1 else
-  if p = 1 ∧ q = 2 then 27 else
-  if p = 2 ∧ q = 1 then 27 else
-  if p = 3 ∧ q = 0 then 1 else
+  if p = 0 ? q = 3 then 1 else
+  if p = 1 ? q = 2 then 27 else
+  if p = 2 ? q = 1 then 27 else
+  if p = 3 ? q = 0 then 1 else
   0
 
 /-- Betti numbers for the V_56 carrier: b_k = 0 for k != 3, b_3 = 56.
@@ -276,18 +276,18 @@ theorem v56Weight3_betti3 : v56Weight3Betti 3 = 56 := by
   unfold v56Weight3Betti; omega
 
 /-- **R477 substantive theorem**: V_56 betti k = 0 for k != 3. KERNEL-PURE. -/
-theorem v56Weight3_betti_ne3 (k : Nat) (h : k ≠ 3) : v56Weight3Betti k = 0 := by
+theorem v56Weight3_betti_ne3 (k : Nat) (h : k >= 3) : v56Weight3Betti k = 0 := by
   unfold v56Weight3Betti; omega
 
 /-- **R477 substantive theorem**: the V_56 Hodge diamond entries are
     exactly (0,3)->1, (1,2)->27, (2,1)->27, (3,0)->1, all others 0.
     This is the "Hodge diamond correctness" Prop marker. -/
 def v56Weight3HodgeDiamond_correct : Prop :=
-  v56Weight3HodgeNumber 0 3 = 1 ∧
-  v56Weight3HodgeNumber 1 2 = 27 ∧
-  v56Weight3HodgeNumber 2 1 = 27 ∧
-  v56Weight3HodgeNumber 3 0 = 1 ∧
-  ? p q, p + q ≠ 3 → v56Weight3HodgeNumber p q = 0
+  v56Weight3HodgeNumber 0 3 = 1 ?
+  v56Weight3HodgeNumber 1 2 = 27 ?
+  v56Weight3HodgeNumber 2 1 = 27 ?
+  v56Weight3HodgeNumber 3 0 = 1 ?
+  ? p q, p + q >= 3 ? v56Weight3HodgeNumber p q = 0
 
 theorem v56Weight3HodgeDiamond_correct_proof : v56Weight3HodgeDiamond_correct := by
   unfold v56Weight3HodgeDiamond_correct v56Weight3HodgeNumber
