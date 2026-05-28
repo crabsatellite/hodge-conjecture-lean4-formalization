@@ -1,12 +1,12 @@
-﻿/-
+/-
 # R522: VarietyCohomologyData for the projective plane P^2.
 
 Constructive cohomology for P^2:
-* H^0 = Q (weight 0, fundamental class)
+* H^0 = ℚ (weight 0, fundamental class)
 * H^1 = 0 (PUnit)
-* H^2 = Q (weight 2, hyperplane class h, pure (1,1))
+* H^2 = ℚ (weight 2, hyperplane class h, pure (1,1))
 * H^3 = 0 (PUnit)
-* H^4 = Q (weight 4, line class h^2, pure (2,2))
+* H^4 = ℚ (weight 4, line class h^2, pure (2,2))
 
 The H^2 has the classical Hodge structure with h^{2,0}=0, h^{1,1}=1, h^{0,2}=0.
 This is the simplest non-trivial variety with a non-trivial H^2.
@@ -29,20 +29,20 @@ namespace ProjectivePlane
 open HodgeReduction.Infrastructure.HodgeStructure
 open HodgeReduction.HCGapL2.TrivialPoint
 
-/-! ## 1. PureHodgeStructure on Q at weight 2
+/-! ## 1. PureHodgeStructure on ℚ at weight 2
 
-H^2(P^2, Q) = Q with h^{2,0}=0, h^{1,1}=1, h^{0,2}=0.
+H^2(P^2, ℚ) = ℚ with h^{2,0}=0, h^{1,1}=1, h^{0,2}=0.
 Only the hyperplane class sits in the (1,1) piece. -/
 
-def piece_Q_w2 (i : Fin 3) : Submodule Q Q :=
+def piece_Q_w2 (i : Fin 3) : Submodule ℚ ℚ :=
   match i with
-  | 0 => Bot  -- H^{2,0} = 0
-  | 1 => Top  -- H^{1,1} = Q (hyperplane class)
-  | 2 => Bot  -- H^{0,2} = 0
+  | 0 => ⊥  -- H^{2,0} = 0
+  | 1 => ⊤  -- H^{1,1} = ℚ (hyperplane class)
+  | 2 => ⊥  -- H^{0,2} = 0
 
-@[simp] theorem piece_Q_w2_zero : piece_Q_w2 0 = Bot := rfl
-@[simp] theorem piece_Q_w2_one  : piece_Q_w2 1 = Top := rfl
-@[simp] theorem piece_Q_w2_two  : piece_Q_w2 2 = Bot := rfl
+@[simp] theorem piece_Q_w2_zero : piece_Q_w2 0 = ⊥ := rfl
+@[simp] theorem piece_Q_w2_one  : piece_Q_w2 1 = ⊤ := rfl
+@[simp] theorem piece_Q_w2_two  : piece_Q_w2 2 = ⊥ := rfl
 
 theorem iSupIndep_piece_Q_w2 : iSupIndep piece_Q_w2 := by
   intro p
@@ -54,11 +54,11 @@ theorem iSupIndep_piece_Q_w2 : iSupIndep piece_Q_w2 := by
   all_goals exact Submodule.disjoint_bot_left
 
 theorem iSup_piece_Q_w2_eq_top :
-    iSup piece_Q_w2 = (Top : Submodule Q Q) := by
+    iSup piece_Q_w2 = (⊤ : Submodule ℚ ℚ) := by
   apply le_antisymm le_top
   exact le_iSup_of_le 1 le_rfl
 
-instance pureHodgeStructure_Q_w2 : PureHodgeStructure Q 2 where
+instance pureHodgeStructure_ℚ_w2 : PureHodgeStructure ℚ 2 where
   piece := piece_Q_w2
   isInternal :=
     DirectSum.isInternal_submodule_of_iSupIndep_of_iSup_eq_top
@@ -67,65 +67,65 @@ instance pureHodgeStructure_Q_w2 : PureHodgeStructure Q 2 where
 
 /-! ## 2. Carrier types for P^2 cohomology
 
-H^0 = Q, H^1 = 0, H^2 = Q, H^3 = 0, H^4 = Q, rest = 0. -/
+H^0 = ℚ, H^1 = 0, H^2 = ℚ, H^3 = 0, H^4 = ℚ, rest = 0. -/
 
 def cohomologyType_P2 : Nat -> Type
-  | 0 => Q
+  | 0 => ℚ
   | 1 => PUnit
-  | 2 => Q
+  | 2 => ℚ
   | 3 => PUnit
-  | 4 => Q
+  | 4 => ℚ
   | _ + 5 => PUnit
 
-@[simp] theorem cohomologyType_P2_zero : cohomologyType_P2 0 = Q := rfl
+@[simp] theorem cohomologyType_P2_zero : cohomologyType_P2 0 = ℚ := rfl
 @[simp] theorem cohomologyType_P2_one : cohomologyType_P2 1 = PUnit := rfl
-@[simp] theorem cohomologyType_P2_two : cohomologyType_P2 2 = Q := rfl
+@[simp] theorem cohomologyType_P2_two : cohomologyType_P2 2 = ℚ := rfl
 @[simp] theorem cohomologyType_P2_three : cohomologyType_P2 3 = PUnit := rfl
-@[simp] theorem cohomologyType_P2_four : cohomologyType_P2 4 = Q := rfl
+@[simp] theorem cohomologyType_P2_four : cohomologyType_P2 4 = ℚ := rfl
 @[simp] theorem cohomologyType_P2_five_plus (k : Nat) :
     cohomologyType_P2 (k + 5) = PUnit := rfl
 
 noncomputable def cohomologyType_P2_addCommGroup :
     forall k, AddCommGroup (cohomologyType_P2 k)
-  | 0 => inferInstanceAs (AddCommGroup Q)
+  | 0 => inferInstanceAs (AddCommGroup ℚ)
   | 1 => inferInstanceAs (AddCommGroup PUnit)
-  | 2 => inferInstanceAs (AddCommGroup Q)
+  | 2 => inferInstanceAs (AddCommGroup ℚ)
   | 3 => inferInstanceAs (AddCommGroup PUnit)
-  | 4 => inferInstanceAs (AddCommGroup Q)
+  | 4 => inferInstanceAs (AddCommGroup ℚ)
   | _ + 5 => inferInstanceAs (AddCommGroup PUnit)
 
 noncomputable def cohomologyType_P2_module :
-    forall k, @Module Q (cohomologyType_P2 k) _
+    forall k, @Module ℚ (cohomologyType_P2 k) _
            (cohomologyType_P2_addCommGroup k).toAddCommMonoid
-  | 0 => inferInstanceAs (Module Q Q)
-  | 1 => inferInstanceAs (Module Q PUnit)
-  | 2 => inferInstanceAs (Module Q Q)
-  | 3 => inferInstanceAs (Module Q PUnit)
-  | 4 => inferInstanceAs (Module Q Q)
-  | _ + 5 => inferInstanceAs (Module Q PUnit)
+  | 0 => inferInstanceAs (Module ℚ ℚ)
+  | 1 => inferInstanceAs (Module ℚ PUnit)
+  | 2 => inferInstanceAs (Module ℚ ℚ)
+  | 3 => inferInstanceAs (Module ℚ PUnit)
+  | 4 => inferInstanceAs (Module ℚ ℚ)
+  | _ + 5 => inferInstanceAs (Module ℚ PUnit)
 
 noncomputable def cohomologyType_P2_finite :
-    forall k, @Module.Finite Q (cohomologyType_P2 k) _
+    forall k, @Module.Finite ℚ (cohomologyType_P2 k) _
            (cohomologyType_P2_addCommGroup k).toAddCommMonoid
            (cohomologyType_P2_module k)
-  | 0 => inferInstanceAs (Module.Finite Q Q)
-  | 1 => inferInstanceAs (Module.Finite Q PUnit)
-  | 2 => inferInstanceAs (Module.Finite Q Q)
-  | 3 => inferInstanceAs (Module.Finite Q PUnit)
-  | 4 => inferInstanceAs (Module.Finite Q Q)
-  | _ + 5 => inferInstanceAs (Module.Finite Q PUnit)
+  | 0 => inferInstanceAs (Module.Finite ℚ ℚ)
+  | 1 => inferInstanceAs (Module.Finite ℚ PUnit)
+  | 2 => inferInstanceAs (Module.Finite ℚ ℚ)
+  | 3 => inferInstanceAs (Module.Finite ℚ PUnit)
+  | 4 => inferInstanceAs (Module.Finite ℚ ℚ)
+  | _ + 5 => inferInstanceAs (Module.Finite ℚ PUnit)
 
 noncomputable def cohomologyType_P2_hodgeStructure :
     forall k, @PureHodgeStructure (cohomologyType_P2 k)
            (cohomologyType_P2_addCommGroup k)
            (cohomologyType_P2_module k) k
-  | 0 => TrivialWeight.pureHodgeStructure_Q_0
+  | 0 => TrivialWeight.pureHodgeStructure_ℚ_0
   | 1 => pureHodgeStructure_PUnit 1
-  | 2 => pureHodgeStructure_Q_w2
+  | 2 => pureHodgeStructure_ℚ_w2
   | 3 => pureHodgeStructure_PUnit 3
-  | 4 => pureHodgeStructure_Q_w4
+  | 4 => pureHodgeStructure_ℚ_w4
   | _ + 5 => pureHodgeStructure_PUnit (_ + 5)
-  -- Reuse the weight-4 structure from QuadricSurface (same Q carrier)
+  -- Reuse the weight-4 structure from QuadricSurface (same ℚ carrier)
 
 /-- The projective plane cohomology data. KERNEL-PURE. -/
 noncomputable def varietyCohomology_P2 : VarietyCohomologyData where
@@ -138,23 +138,23 @@ noncomputable def varietyCohomology_P2 : VarietyCohomologyData where
 /-! ## 3. AlgebraicClassesData
 
 The algebraic classes on P^2:
-* p=0: [pt] spans H^0 = Top
-* p=1: [h] spans H^2 = Top (hyperplane class)
-* p=2: [line] spans H^4 = Top
+* p=0: [pt] spans H^0 = ⊤
+* p=1: [h] spans H^2 = ⊤ (hyperplane class)
+* p=2: [line] spans H^4 = ⊤
 * p>=3: trivially empty -/
 
-def algClassesP2 (p : Nat) : Submodule Q (cohomologyType_P2 (2 * p)) :=
+def algClassesP2 (p : Nat) : Submodule ℚ (cohomologyType_P2 (2 * p)) :=
   match p with
-  | 0 => Top
-  | 1 => Top
-  | 2 => Top
-  | _ + 3 => Bot
+  | 0 => ⊤
+  | 1 => ⊤
+  | 2 => ⊤
+  | _ + 3 => ⊥
 
-@[simp] theorem algClassesP2_zero : algClassesP2 0 = Top := rfl
-@[simp] theorem algClassesP2_one : algClassesP2 1 = Top := rfl
-@[simp] theorem algClassesP2_two : algClassesP2 2 = Top := rfl
+@[simp] theorem algClassesP2_zero : algClassesP2 0 = ⊤ := rfl
+@[simp] theorem algClassesP2_one : algClassesP2 1 = ⊤ := rfl
+@[simp] theorem algClassesP2_two : algClassesP2 2 = ⊤ := rfl
 @[simp] theorem algClassesP2_three_plus (p : Nat) :
-    algClassesP2 (p + 3) = Bot := rfl
+    algClassesP2 (p + 3) = ⊥ := rfl
 
 theorem algClassesP2_le_hodgeClasses (p : Nat) :
     algClassesP2 p <= varietyCohomology_P2.hodgeClassesAtDegree p := by
@@ -163,21 +163,21 @@ theorem algClassesP2_le_hodgeClasses (p : Nat) :
   letI _i_phs := varietyCohomology_P2.hodgeStructure (2 * p)
   intro x hx
   rcases p with _ | p'
-  -- p = 0: hodgeClasses = Top
-  · show x ∈ TrivialWeight.piece_Q_w0 ⟨0, by omega⟩
-    rw [TrivialWeight.piece_Q_w0_zero]
+  -- p = 0: hodgeClasses = ⊤
+  · show x ∈ TrivialWeight.piece_ℚ_w0 ⟨0, by omega⟩
+    rw [TrivialWeight.piece_ℚ_w0_zero]
     exact Submodule.mem_top
   rcases p' with _ | p''
-  -- p = 1: hodgeClasses = piece 1 of weight 2 = Q = Top
+  -- p = 1: hodgeClasses = piece 1 of weight 2 = ℚ = ⊤
   · show x ∈ piece_Q_w2 ⟨1, by omega⟩
     rw [piece_Q_w2_one]
     exact Submodule.mem_top
   rcases p'' with _ | p'''
-  -- p = 2: hodgeClasses = piece 2 of weight 4 = Q = Top
-  · show x ∈ piece_Q_w4 ⟨2, by omega⟩
-    rw [piece_Q_w4_two]
+  -- p = 2: hodgeClasses = piece 2 of weight 4 = ℚ = ⊤
+  · show x ∈ piece_ℚ_w4 ⟨2, by omega⟩
+    rw [piece_ℚ_w4_two]
     exact Submodule.mem_top
-  -- p >= 3: algClasses = Bot
+  -- p >= 3: algClasses = ⊥
   · simp at hx
     exact (Submodule.mem_bot _).mp hx
 
@@ -191,7 +191,7 @@ noncomputable def algClasses_P2 :
 /-- **HC for P^2**: every Hodge class on P^2 is algebraic. KERNEL-PURE.
 
     The hyperplane class h generates the entire cohomology ring.
-    At p=0,1,2: algClasses = Top, so hodgeClasses <= Top.
+    At p=0,1,2: algClasses = ⊤, so hodgeClasses <= ⊤.
     At p>=3: H^{2p} = PUnit, everything collapses. -/
 theorem VarietyHC_P2 :
     VarietyHC varietyCohomology_P2 algClasses_P2 := by

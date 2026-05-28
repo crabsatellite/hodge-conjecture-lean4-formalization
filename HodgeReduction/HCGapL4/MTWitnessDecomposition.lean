@@ -1,4 +1,4 @@
-﻿/-
+/-
 # R517: Decompose mt_correspondence_e7_witness_exists into witness + package.
 
 The axiom mt_correspondence_e7_witness_exists says: for every E7+scope X,

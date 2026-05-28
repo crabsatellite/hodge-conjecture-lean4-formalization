@@ -1,4 +1,4 @@
-﻿/-
+/-
 # R520: V56 cohomology rank constraints (kernel-pure).
 
 This file provides kernel-pure rank constraints for the V_56

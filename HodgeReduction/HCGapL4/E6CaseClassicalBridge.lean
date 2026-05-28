@@ -1,4 +1,4 @@
-﻿/-
+/-
 # R516: E6 case reduction to classical Cartan via weight-parity vacuity.
 
 The axiom hc_real_e6_case says: every SPV with E6 factor on MT^der(H^3)

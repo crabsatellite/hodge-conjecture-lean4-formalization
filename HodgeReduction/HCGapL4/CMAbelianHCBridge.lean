@@ -1,4 +1,4 @@
-﻿/-
+/-
 # R515: Decompose hyp_HC_CM_Ab_real into Deligne 1982 + conditional extension.
 
 The axiom hyp_HC_CM_Ab_real says: all CM abelian varieties satisfy HC-real.

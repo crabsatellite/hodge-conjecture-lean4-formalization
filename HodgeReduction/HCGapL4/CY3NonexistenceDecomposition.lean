@@ -1,4 +1,4 @@
-﻿/-
+/-
 # R519: CY3 E7 nonexistence proof decomposition.
 
 The axiom cy3_e7_nonexistence_paper_axiom states: no CY3 has

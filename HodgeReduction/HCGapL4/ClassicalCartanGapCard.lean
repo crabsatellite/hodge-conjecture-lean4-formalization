@@ -1,4 +1,4 @@
-﻿/-
+/-
 # R518: Classical Cartan HC closure boundary (gap card).
 
 This file formally states the precise conditions needed to close
