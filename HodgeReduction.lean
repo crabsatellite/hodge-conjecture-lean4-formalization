@@ -476,7 +476,9 @@ import HodgeReduction.HCGapL4.Lefschetz11Arithmetic
 import HodgeReduction.HCGapL4.DeligneCMHCSkeleton
 import HodgeReduction.Infrastructure.V56BranchingRules
 import HodgeReduction.Infrastructure.ToroidalDimensions
+import HodgeReduction.HCGapL4.E7ShimuraTorDecomposition
 import HodgeReduction.Concrete
+
 
 
 
