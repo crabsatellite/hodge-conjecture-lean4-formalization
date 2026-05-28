@@ -472,5 +472,8 @@ import HodgeReduction.Infrastructure.SimpleLieAlgebraClassification
 import HodgeReduction.HCGapL4.ClassicalCartanProof
 import HodgeReduction.HCGapL4.E6CaseProof
 import HodgeReduction.HCGapL4.CY3NonexistenceProof
+import HodgeReduction.HCGapL4.Lefschetz11Arithmetic
+import HodgeReduction.HCGapL4.DeligneCMHCSkeleton
 import HodgeReduction.Concrete
+
 
