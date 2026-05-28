@@ -447,4 +447,7 @@ import HodgeReduction.HCGapL4.R480_MultiFrontWave7Audit
 import HodgeReduction.HCGapL4.FrontC8_V56MTBridge
 import HodgeReduction.HCGapL4.FrontD8_PerCodimDeligneWitness
 import HodgeReduction.HCGapL4.R483_MultiFrontWave8Audit
+import HodgeReduction.HCGapL4.FrontC9_EVIIHodgeNumberComputation
+import HodgeReduction.HCGapL4.FrontD9_Codim2NeronSeveri
+import HodgeReduction.HCGapL4.R486_MultiFrontWave9Audit
 import HodgeReduction.Concrete
