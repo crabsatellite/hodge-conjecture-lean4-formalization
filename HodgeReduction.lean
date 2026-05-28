@@ -482,6 +482,7 @@ import HodgeReduction.HCGapL2.EVIICohomologyModel
 import HodgeReduction.HCGapL4.E6V27VacuityBridge
 import HodgeReduction.HCGapL4.CY3E7Bridge
 import HodgeReduction.HCGapL4.CMAbelianHCBridge
+import HodgeReduction.HCGapL4.MTWitnessDecomposition
 import HodgeReduction.Concrete
 
 
