@@ -39,6 +39,7 @@ body. The file divides into:
 import HodgeReduction.Types
 import HodgeReduction.ClassicalResults
 import HodgeReduction.OpenHypotheses
+import HodgeReduction.HCGapL4.CY3VacuityDischarge
 
 namespace HodgeReduction
 
@@ -236,11 +237,11 @@ Closes by: `thm_cy3_e7_nonexistence` + Beauville-Bogomolov + Iitaka
 + MRC reduction analysis.
 
 Paper source: §7; thm:cy3-e7-nonexistence (case (iv) of `\ref{thm:main}`). -/
-axiom hc_real_cy3_reducible :
+theorem hc_real_cy3_reducible :
  ∀ (X : SmoothProjectiveVariety ℂ),
    hasSimpleFactor (MumfordTateGroupDerived X 3) E7_neg25 →
    ExistsCY3Reduction X →
-   HodgeConjectureReal X
+   HodgeConjectureReal X := hc_real_cy3_reducible_via_vacuity
 
 /-- **R172**: `main_reduction_real_paper_axiom` is now a THEOREM
 combining the 4 case axioms via InScope-disjunction analysis. The
