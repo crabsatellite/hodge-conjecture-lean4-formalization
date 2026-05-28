@@ -50,103 +50,103 @@ import HodgeReduction.Types
 import HodgeReduction.ClassicalResults
 import HodgeReduction.OpenHypotheses
 import HodgeReduction.MainTheorem
--- import HodgeReduction.Ledger
--- import HodgeReduction.Strict
--- import HodgeReduction.CrossRingArithmetic
--- import HodgeReduction.Infrastructure.CartanMatrices
--- import HodgeReduction.Infrastructure.SchlafliGraph
--- import HodgeReduction.Infrastructure.Octonion
--- import HodgeReduction.Infrastructure.JordanJ3O
--- import HodgeReduction.Infrastructure.V56Freudenthal
--- import HodgeReduction.Infrastructure.CoxeterDegrees
--- import HodgeReduction.Infrastructure.PoincarePolynomialEVII
--- import HodgeReduction.Infrastructure.OctonionBasis
--- import HodgeReduction.Infrastructure.JordanJ3OBasis
--- import HodgeReduction.Infrastructure.V56Basis
--- import HodgeReduction.Infrastructure.LinearMaps
--- import HodgeReduction.Infrastructure.V56HodgeDecomp
--- import HodgeReduction.Infrastructure.J3OInnerProduct
--- import HodgeReduction.Infrastructure.J3OJordan
--- import HodgeReduction.Infrastructure.V56HodgeRank
--- import HodgeReduction.Infrastructure.Cohomology.Basic
--- import HodgeReduction.Infrastructure.Cohomology.ChernClasses
--- import HodgeReduction.Infrastructure.Cohomology.KaehlerClass
--- import HodgeReduction.Infrastructure.Cohomology.FreudenthalClass
--- import HodgeReduction.Infrastructure.Cohomology.AlgebraicBundle
--- import HodgeReduction.Infrastructure.Cohomology.CycleClassMap
--- import HodgeReduction.Infrastructure.Cohomology.Lefschetz
--- import HodgeReduction.Infrastructure.Cohomology.HodgeCycle
--- import HodgeReduction.Infrastructure.Cohomology.HardLefschetz
--- import HodgeReduction.Infrastructure.Cohomology.NeronSeveri
--- import HodgeReduction.Infrastructure.Cohomology.ChowRing
--- import HodgeReduction.Infrastructure.Cohomology.HCCodim1
--- import HodgeReduction.Infrastructure.Cohomology.PicardGroup
--- import HodgeReduction.Infrastructure.Cohomology.AmpleDivisor
--- import HodgeReduction.Infrastructure.Cohomology.Galois
--- import HodgeReduction.Infrastructure.Cohomology.DivisorClass
--- import HodgeReduction.Infrastructure.Cohomology.AlgebraicCycle
--- import HodgeReduction.Infrastructure.Cohomology.ChernCharacter
--- import HodgeReduction.Infrastructure.Cohomology.LefschetzHyperplane
--- import HodgeReduction.Infrastructure.Cohomology.RiemannRoch
--- import HodgeReduction.Infrastructure.Cohomology.SheafCohomology
--- import HodgeReduction.Infrastructure.Cohomology.Motive
--- import HodgeReduction.Infrastructure.Cohomology.Lattice
--- import HodgeReduction.Infrastructure.Cohomology.PoincareDuality
--- import HodgeReduction.Infrastructure.Cohomology.Matsushima
--- import HodgeReduction.Infrastructure.Cohomology.AbelJacobi
--- import HodgeReduction.Infrastructure.Cohomology.StandardConjectures
--- import HodgeReduction.Infrastructure.Cohomology.TateConjecture
--- import HodgeReduction.Infrastructure.Cohomology.DeRham
--- import HodgeReduction.Infrastructure.Cohomology.BettiCohomology
--- import HodgeReduction.Infrastructure.Cohomology.ComparisonTheorem
--- import HodgeReduction.Infrastructure.Shimura.PeriodDomain
--- import HodgeReduction.Infrastructure.Shimura.SchubertCells
--- import HodgeReduction.Infrastructure.HodgeStructure.Basic
--- import HodgeReduction.Infrastructure.HodgeStructure.VarietyCohomology
--- import HodgeReduction.Infrastructure.HodgeStructure.Polarised
--- import HodgeReduction.Infrastructure.HodgeStructure.MixedHodge
--- import HodgeReduction.Infrastructure.HodgeStructure.NilpotentOrbit
--- import HodgeReduction.Infrastructure.HodgeStructure.MixedHodgeModule
--- import HodgeReduction.Infrastructure.HodgeStructure.GaussManin
--- import HodgeReduction.Infrastructure.HodgeStructure.V56Instance
--- import HodgeReduction.Infrastructure.HodgeStructure.MumfordTate
--- import HodgeReduction.Infrastructure.HodgeStructure.Variation
--- import HodgeReduction.Infrastructure.Coxeter.WE7
--- import HodgeReduction.Infrastructure.Shimura.Basic
--- import HodgeReduction.Infrastructure.Shimura.CompactDual
--- import HodgeReduction.Infrastructure.Shimura.MumfordExtension
--- import HodgeReduction.Infrastructure.Shimura.IntersectionHomology
--- import HodgeReduction.Infrastructure.Shimura.HirzebruchMumford
--- import HodgeReduction.Infrastructure.Shimura.ToroidalCompactification
--- import HodgeReduction.Infrastructure.Shimura.BorelHirzebruch
--- import HodgeReduction.Infrastructure.Shimura.HermitianForm
--- import HodgeReduction.Infrastructure.Shimura.Adelic
--- import HodgeReduction.Infrastructure.AbelianVariety.Basic
--- import HodgeReduction.Infrastructure.AbelianVariety.PolarisedAV
--- import HodgeReduction.Infrastructure.AbelianVariety.CMType
--- import HodgeReduction.Infrastructure.AbelianVariety.KugaSatake
--- import HodgeReduction.Infrastructure.AbelianVariety.K3Surface
--- import HodgeReduction.Infrastructure.AbelianVariety.HyperKahler
--- import HodgeReduction.Infrastructure.AbelianVariety.TateModule
--- import HodgeReduction.Infrastructure.Shimura.HermitianSymmetric
--- import HodgeReduction.Infrastructure.Shimura.ArithmeticGroup
--- import HodgeReduction.Infrastructure.Shimura.E7ParabolicCodim
--- import HodgeReduction.Infrastructure.Automorphic.Basic
--- import HodgeReduction.Infrastructure.Automorphic.VoganZuckerman
--- import HodgeReduction.Infrastructure.Automorphic.AtlasE7minus25
--- import HodgeReduction.Infrastructure.Automorphic.BorelBottWeil
--- import HodgeReduction.Infrastructure.Automorphic.HeckeCorrespondence
--- import HodgeReduction.Infrastructure.Automorphic.ModularForm
--- import HodgeReduction.Infrastructure.Automorphic.GKCohomology
--- import HodgeReduction.Infrastructure.Automorphic.CuspidalCohomology
--- import HodgeReduction.Infrastructure.Automorphic.FrankeEisensteinLayer
--- import HodgeReduction.Infrastructure.Cohomology.BorelHirzebruchCoinvariant
--- import HodgeReduction.Infrastructure.LieAlgebra.Basic
--- import HodgeReduction.Infrastructure.LieAlgebra.ReductiveGroup
--- import HodgeReduction.Infrastructure.AlgebraicGeometry.LineBundle
--- import HodgeReduction.Infrastructure.AlgebraicGeometry.PicardGroup
--- import HodgeReduction.Infrastructure.AlgebraicGeometry.FirstChernClass
--- import HodgeReduction.Infrastructure.AlgebraicGeometry.ExponentialSequence
+import HodgeReduction.Ledger
+import HodgeReduction.Strict
+import HodgeReduction.CrossRingArithmetic
+import HodgeReduction.Infrastructure.CartanMatrices
+import HodgeReduction.Infrastructure.SchlafliGraph
+import HodgeReduction.Infrastructure.Octonion
+import HodgeReduction.Infrastructure.JordanJ3O
+import HodgeReduction.Infrastructure.V56Freudenthal
+import HodgeReduction.Infrastructure.CoxeterDegrees
+import HodgeReduction.Infrastructure.PoincarePolynomialEVII
+import HodgeReduction.Infrastructure.OctonionBasis
+import HodgeReduction.Infrastructure.JordanJ3OBasis
+import HodgeReduction.Infrastructure.V56Basis
+import HodgeReduction.Infrastructure.LinearMaps
+import HodgeReduction.Infrastructure.V56HodgeDecomp
+import HodgeReduction.Infrastructure.J3OInnerProduct
+import HodgeReduction.Infrastructure.J3OJordan
+import HodgeReduction.Infrastructure.V56HodgeRank
+import HodgeReduction.Infrastructure.Cohomology.Basic
+import HodgeReduction.Infrastructure.Cohomology.ChernClasses
+import HodgeReduction.Infrastructure.Cohomology.KaehlerClass
+import HodgeReduction.Infrastructure.Cohomology.FreudenthalClass
+import HodgeReduction.Infrastructure.Cohomology.AlgebraicBundle
+import HodgeReduction.Infrastructure.Cohomology.CycleClassMap
+import HodgeReduction.Infrastructure.Cohomology.Lefschetz
+import HodgeReduction.Infrastructure.Cohomology.HodgeCycle
+import HodgeReduction.Infrastructure.Cohomology.HardLefschetz
+import HodgeReduction.Infrastructure.Cohomology.NeronSeveri
+import HodgeReduction.Infrastructure.Cohomology.ChowRing
+import HodgeReduction.Infrastructure.Cohomology.HCCodim1
+import HodgeReduction.Infrastructure.Cohomology.PicardGroup
+import HodgeReduction.Infrastructure.Cohomology.AmpleDivisor
+import HodgeReduction.Infrastructure.Cohomology.Galois
+import HodgeReduction.Infrastructure.Cohomology.DivisorClass
+import HodgeReduction.Infrastructure.Cohomology.AlgebraicCycle
+import HodgeReduction.Infrastructure.Cohomology.ChernCharacter
+import HodgeReduction.Infrastructure.Cohomology.LefschetzHyperplane
+import HodgeReduction.Infrastructure.Cohomology.RiemannRoch
+import HodgeReduction.Infrastructure.Cohomology.SheafCohomology
+import HodgeReduction.Infrastructure.Cohomology.Motive
+import HodgeReduction.Infrastructure.Cohomology.Lattice
+import HodgeReduction.Infrastructure.Cohomology.PoincareDuality
+import HodgeReduction.Infrastructure.Cohomology.Matsushima
+import HodgeReduction.Infrastructure.Cohomology.AbelJacobi
+import HodgeReduction.Infrastructure.Cohomology.StandardConjectures
+import HodgeReduction.Infrastructure.Cohomology.TateConjecture
+import HodgeReduction.Infrastructure.Cohomology.DeRham
+import HodgeReduction.Infrastructure.Cohomology.BettiCohomology
+import HodgeReduction.Infrastructure.Cohomology.ComparisonTheorem
+import HodgeReduction.Infrastructure.Shimura.PeriodDomain
+import HodgeReduction.Infrastructure.Shimura.SchubertCells
+import HodgeReduction.Infrastructure.HodgeStructure.Basic
+import HodgeReduction.Infrastructure.HodgeStructure.VarietyCohomology
+import HodgeReduction.Infrastructure.HodgeStructure.Polarised
+import HodgeReduction.Infrastructure.HodgeStructure.MixedHodge
+import HodgeReduction.Infrastructure.HodgeStructure.NilpotentOrbit
+import HodgeReduction.Infrastructure.HodgeStructure.MixedHodgeModule
+import HodgeReduction.Infrastructure.HodgeStructure.GaussManin
+import HodgeReduction.Infrastructure.HodgeStructure.V56Instance
+import HodgeReduction.Infrastructure.HodgeStructure.MumfordTate
+import HodgeReduction.Infrastructure.HodgeStructure.Variation
+import HodgeReduction.Infrastructure.Coxeter.WE7
+import HodgeReduction.Infrastructure.Shimura.Basic
+import HodgeReduction.Infrastructure.Shimura.CompactDual
+import HodgeReduction.Infrastructure.Shimura.MumfordExtension
+import HodgeReduction.Infrastructure.Shimura.IntersectionHomology
+import HodgeReduction.Infrastructure.Shimura.HirzebruchMumford
+import HodgeReduction.Infrastructure.Shimura.ToroidalCompactification
+import HodgeReduction.Infrastructure.Shimura.BorelHirzebruch
+import HodgeReduction.Infrastructure.Shimura.HermitianForm
+import HodgeReduction.Infrastructure.Shimura.Adelic
+import HodgeReduction.Infrastructure.AbelianVariety.Basic
+import HodgeReduction.Infrastructure.AbelianVariety.PolarisedAV
+import HodgeReduction.Infrastructure.AbelianVariety.CMType
+import HodgeReduction.Infrastructure.AbelianVariety.KugaSatake
+import HodgeReduction.Infrastructure.AbelianVariety.K3Surface
+import HodgeReduction.Infrastructure.AbelianVariety.HyperKahler
+import HodgeReduction.Infrastructure.AbelianVariety.TateModule
+import HodgeReduction.Infrastructure.Shimura.HermitianSymmetric
+import HodgeReduction.Infrastructure.Shimura.ArithmeticGroup
+import HodgeReduction.Infrastructure.Shimura.E7ParabolicCodim
+import HodgeReduction.Infrastructure.Automorphic.Basic
+import HodgeReduction.Infrastructure.Automorphic.VoganZuckerman
+import HodgeReduction.Infrastructure.Automorphic.AtlasE7minus25
+import HodgeReduction.Infrastructure.Automorphic.BorelBottWeil
+import HodgeReduction.Infrastructure.Automorphic.HeckeCorrespondence
+import HodgeReduction.Infrastructure.Automorphic.ModularForm
+import HodgeReduction.Infrastructure.Automorphic.GKCohomology
+import HodgeReduction.Infrastructure.Automorphic.CuspidalCohomology
+import HodgeReduction.Infrastructure.Automorphic.FrankeEisensteinLayer
+import HodgeReduction.Infrastructure.Cohomology.BorelHirzebruchCoinvariant
+import HodgeReduction.Infrastructure.LieAlgebra.Basic
+import HodgeReduction.Infrastructure.LieAlgebra.ReductiveGroup
+import HodgeReduction.Infrastructure.AlgebraicGeometry.LineBundle
+import HodgeReduction.Infrastructure.AlgebraicGeometry.PicardGroup
+import HodgeReduction.Infrastructure.AlgebraicGeometry.FirstChernClass
+import HodgeReduction.Infrastructure.AlgebraicGeometry.ExponentialSequence
 -- R7 ChowGroup / HodgeDecomposition: re-enabled after R7-quarantine-fix
 -- (2026-05-16). ChowGroup: fixed neg_eq_of_add_eq_zero_left ->_right;
 -- added Mathlib.RingTheory.Adjoin.Basic; fixed multi-binder forAll replaced
