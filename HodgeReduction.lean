@@ -164,6 +164,7 @@ import HodgeReduction.HCGapL2.TrivialPoint
 import HodgeReduction.HCGapL2.ProjectiveLine
 import HodgeReduction.HCGapL2.EllipticCurve
 import HodgeReduction.HCGapL2.QuadricSurface
+import HodgeReduction.HCGapL2.ProjectivePlane
 import HodgeReduction.HCGapL4.HodgeMorphism
 import HodgeReduction.HCGapL4.NontrivialCorrespondence
 import HodgeReduction.HCGapL4.CycleClassPresentation
