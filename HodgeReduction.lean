@@ -465,4 +465,7 @@ import HodgeReduction.HCGapL4.R498_MultiFrontWave14Audit
 import HodgeReduction.HCGapL4.ProofBlueprint
 import HodgeReduction.HCGapL4.FrontC12_ClassicalCartanDerivation
 import HodgeReduction.HCGapL4.R501_MultiFrontWave15Audit
+import HodgeReduction.HCGapL4.FrontC13_E6CaseDerivation
+import HodgeReduction.HCGapL4.FrontC14_CY3NonexistenceDerivation
+import HodgeReduction.HCGapL4.R504_MultiFrontWave16Audit
 import HodgeReduction.Concrete
