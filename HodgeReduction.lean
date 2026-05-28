@@ -1,5 +1,5 @@
 /-
-# HodgeReduction â€?top-level module.
+# HodgeReduction --top-level module.
 
 Lean4 formalisation of the Mumford--Tate reduction of the Hodge Conjecture
 ("A Mumford--Tate Reduction of the Hodge Conjecture", Alex Chengyu Li, 2026).
@@ -12,26 +12,26 @@ Several sub-branches (exotic rigid non-Shimura E7-type in dim >= 5 with
 c1 != 0) are explicitly OPEN and carry no theorem statement.
 
 Re-exports:
-  * `HodgeReduction.Types`            â€?opaque types.
-  * `HodgeReduction.ClassicalResults` â€?classical results (axiomatised
+  * `HodgeReduction.Types`            --opaque types.
+  * `HodgeReduction.ClassicalResults` --classical results (axiomatised
                                         pending Mathlib port).
-  * `HodgeReduction.OpenHypotheses`   â€?nine labelled paper hypotheses
+  * `HodgeReduction.OpenHypotheses`   --nine labelled paper hypotheses
                                         (exploratory reduction-stage ledger
                                         with broken-link Phase 0 audit trail).
-  * `HodgeReduction.MainTheorem`      â€?the Main Theorem and unconditional
+  * `HodgeReduction.MainTheorem`      --the Main Theorem and unconditional
                                         theorems, each with `sorry`.
-  * `HodgeReduction.Ledger`           â€?gap ledger (status + metadata for
+  * `HodgeReduction.Ledger`           --gap ledger (status + metadata for
                                         every OPEN / PARTIAL / BLOCKED /
                                         DEAD-END / CLOSED entry; cross-
                                         session attack-history record).
-  * `HodgeReduction.Strict`           â€?Cat 1-3 strict-discipline restructure
+  * `HodgeReduction.Strict`           --Cat 1-3 strict-discipline restructure
                                         (P17+). Each chain migrates from
                                         opaque-axiom reduction-stage to
                                         Cat 1+2-only derivation-stage via
                                         explicit-content Cat 2 axioms +
                                         derived theorems + honest conditional
                                         structure for open targets.
-  * `HodgeReduction.Concrete`         â€?concrete instances of the abstract
+  * `HodgeReduction.Concrete`         --concrete instances of the abstract
                                         HC framework typeclasses. First
                                         sub-module: `HodgeReduction.Concrete.EVII`
                                         gives a concrete carrier `A_EVII`
@@ -148,9 +148,9 @@ import HodgeReduction.Infrastructure.AlgebraicGeometry.PicardGroup
 import HodgeReduction.Infrastructure.AlgebraicGeometry.FirstChernClass
 import HodgeReduction.Infrastructure.AlgebraicGeometry.ExponentialSequence
 -- R7 ChowGroup / HodgeDecomposition: re-enabled after R7-quarantine-fix
--- (2026-05-16). ChowGroup: fixed neg_eq_of_add_eq_zero_left â†?_right;
--- added Mathlib.RingTheory.Adjoin.Basic; fixed multi-binder âˆ? replaced
--- OfNat-on-CH-Unit with explicit â„?cast via let-binding; fixed
+-- (2026-05-16). ChowGroup: fixed neg_eq_of_add_eq_zero_left ->_right;
+-- added Mathlib.RingTheory.Adjoin.Basic; fixed multi-binder forAll replaced
+-- OfNat-on-CH-Unit with explicit Zcast via let-binding; fixed
 -- cl_intersect / cl_fundamental via Int.cast_mul / Int.cast_one.
 -- HodgeDecomposition: added noncomputable to HpqTrivial/HkTrivial/
 -- instHodgeDecompositionDataTrivial; fixed le_antisymm argument order;

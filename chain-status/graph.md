@@ -1,0 +1,101 @@
+# HodgeReduction -- chain DAG (Mermaid)
+
+Source nodes = kernel axioms (squares).  Sink nodes = endpoints
+(hexagons).  Cuts = whitelisted open axioms (diamonds).  Drift
+axioms = unwhitelisted axioms in the closure (highlighted).
+
+
+```mermaid
+graph TD
+  classDef kernel fill:#eef,stroke:#557
+  classDef cut fill:#ffd,stroke:#a80
+  classDef drift fill:#fdd,stroke:#a00,stroke-width:3px
+  classDef endpoint fill:#dfd,stroke:#080
+  HodgeReduction_hyp_HC_CM_Ab_real{{ "hyp_HC_CM_Ab_real" }}:::cut
+  propext{{ "propext" }}:::cut
+  HodgeReduction_SmoothProjectiveVariety_algClasses{{ "algClasses" }}:::cut
+  HodgeReduction_hc_real_e6_case{{ "hc_real_e6_case" }}:::cut
+  HodgeReduction_SmoothProjectiveVariety_cohomology{{ "cohomology" }}:::cut
+  HodgeReduction_hc_real_classical_cartan{{ "hc_real_classical_cartan" }}:::cut
+  HodgeReduction_hc_real_cy3_reducible{{ "hc_real_cy3_reducible" }}:::cut
+  HodgeReduction_canonicalE7ShimuraTor{{ "canonicalE7ShimuraTor" }}:::cut
+  Classical_choice{{ "choice" }}:::cut
+  HodgeReduction_mt_correspondence_e7_witness_exists{{ "mt_correspondence_e7_witness_exists" }}:::cut
+  Quot_sound{{ "sound" }}:::cut
+  HodgeReduction_cy3_e7_nonexistence_paper_axiom{{ "cy3_e7_nonexistence_paper_axiom" }}:::cut
+  HodgeReduction_hodgeConjectureReal_canonical>"hodgeConjectureReal_canonical"]:::endpoint
+  HodgeReduction_main_reduction_real>"main_reduction_real"]:::endpoint
+  HodgeReduction_thm_Meyer>"thm_Meyer"]:::endpoint
+  HodgeReduction_thm_G2F4>"thm_G2F4"]:::endpoint
+  HodgeReduction_thm_E8_vacuous>"thm_E8_vacuous"]:::endpoint
+  HodgeReduction_thm_cy3_e7_nonexistence>"thm_cy3_e7_nonexistence"]:::endpoint
+  HodgeReduction_thm_subcase3b_vacuous>"thm_subcase3b_vacuous"]:::endpoint
+  HodgeReduction_hodgeConjectureReal_canonical --> Classical_choice
+  HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_canonicalE7ShimuraTor
+  HodgeReduction_hodgeConjectureReal_canonical --> Quot_sound
+  HodgeReduction_hodgeConjectureReal_canonical --> propext
+  HodgeReduction_main_reduction_real --> Classical_choice
+  HodgeReduction_main_reduction_real --> HodgeReduction_SmoothProjectiveVariety_algClasses
+  HodgeReduction_main_reduction_real --> HodgeReduction_SmoothProjectiveVariety_cohomology
+  HodgeReduction_main_reduction_real --> HodgeReduction_hc_real_classical_cartan
+  HodgeReduction_main_reduction_real --> HodgeReduction_hc_real_cy3_reducible
+  HodgeReduction_main_reduction_real --> HodgeReduction_hc_real_e6_case
+  HodgeReduction_main_reduction_real --> HodgeReduction_hyp_HC_CM_Ab_real
+  HodgeReduction_main_reduction_real --> HodgeReduction_mt_correspondence_e7_witness_exists
+  HodgeReduction_main_reduction_real --> Quot_sound
+  HodgeReduction_main_reduction_real --> propext
+  HodgeReduction_thm_G2F4 --> Classical_choice
+  HodgeReduction_thm_G2F4 --> Quot_sound
+  HodgeReduction_thm_G2F4 --> propext
+  HodgeReduction_thm_E8_vacuous --> Classical_choice
+  HodgeReduction_thm_E8_vacuous --> Quot_sound
+  HodgeReduction_thm_E8_vacuous --> propext
+  HodgeReduction_thm_cy3_e7_nonexistence --> Classical_choice
+  HodgeReduction_thm_cy3_e7_nonexistence --> HodgeReduction_cy3_e7_nonexistence_paper_axiom
+  HodgeReduction_thm_cy3_e7_nonexistence --> Quot_sound
+  HodgeReduction_thm_cy3_e7_nonexistence --> propext
+```
+
+
+## Route Overlay (Generated)
+
+The first graph is the endpoint/axiom trust DAG.  This overlay is generated from `researchChains` and `researchGaps`; use it to choose the next proof attack.  When `primaryGapId` and `replacementRouteId` are configured, the replacement edge is drawn explicitly and priority labels come from `gapPriority`.
+
+```mermaid
+graph TD
+  classDef routeMain fill:#dfd,stroke:#080,stroke-width:2px
+  classDef routeActive fill:#e7f0ff,stroke:#246,stroke-width:2px
+  classDef routeSupport fill:#eef,stroke:#557
+  classDef routeDead fill:#fdd,stroke:#a00,stroke-width:2px
+  classDef gapOpen fill:#ffd,stroke:#a80,stroke-width:2px
+  classDef gapLegacy fill:#eee,stroke:#777,stroke-dasharray:3 3
+  classDef gapDead fill:#fdd,stroke:#a00,stroke-dasharray:4 2
+  chain_main_hc_axiom_relative["chain:main-hc-axiom-relative\nconditional"]:::routeMain
+  chain_unconditional_classical["chain:unconditional-classical\nclosed-modulo-cy3-citation"]:::routeSupport
+  chain_hcgap_l2_trivial_instances["chain:hcgap-l2-trivial-instances\nstable"]:::routeSupport
+  chain_hcgap_l4_multifront_active["chain:hcgap-l4-multifront-active\nexploratory"]:::routeActive
+  chain_concrete_evii_toy["chain:concrete-evii-toy\nclosed-toy"]:::routeSupport
+  chain_historical_cone_audits["chain:historical-cone-audits\ninfra"]:::routeActive
+  gap_G_main_hc{{"gap:G-main-hc\nconditional"}}:::gapOpen
+  gap_G_l1_e7_shimura_tor{{"gap:G-l1-e7-shimura-tor\nopen"}}:::gapOpen
+  gap_G_l2_cohomology_construction{{"gap:G-l2-cohomology-construction\nopen"}}:::gapOpen
+  gap_G_l3_v56_mt_identification{{"gap:G-l3-v56-mt-identification\nopen"}}:::gapOpen
+  gap_G_l4_cm_abelian_hc{{"gap:G-l4-cm-abelian-hc\nopen"}}:::gapOpen
+  gap_G_l4_mt_correspondence{{"gap:G-l4-mt-correspondence\nopen"}}:::gapOpen
+  gap_G_classical_mathlib_port{{"gap:G-classical-mathlib-port\ndeferred"}}:::gapOpen
+  gap_G_hcgap_l4_multifront{{"gap:G-hcgap-l4-multifront\nactive-open"}}:::gapOpen
+  chain_main_hc_axiom_relative -->|P8| gap_G_main_hc
+  chain_main_hc_axiom_relative -->|P1| gap_G_l1_e7_shimura_tor
+  chain_main_hc_axiom_relative -->|P2| gap_G_l2_cohomology_construction
+  chain_main_hc_axiom_relative -->|P3| gap_G_l3_v56_mt_identification
+  chain_main_hc_axiom_relative -->|P5| gap_G_l4_cm_abelian_hc
+  chain_main_hc_axiom_relative -->|P4| gap_G_l4_mt_correspondence
+  chain_unconditional_classical -->|P6| gap_G_classical_mathlib_port
+  chain_main_hc_axiom_relative --> chain_hcgap_l2_trivial_instances
+  chain_hcgap_l2_trivial_instances -->|P2| gap_G_l2_cohomology_construction
+  chain_main_hc_axiom_relative --> chain_hcgap_l4_multifront_active
+  chain_hcgap_l4_multifront_active -->|P7| gap_G_hcgap_l4_multifront
+  chain_main_hc_axiom_relative --> chain_concrete_evii_toy
+  chain_main_hc_axiom_relative --> chain_historical_cone_audits
+```
+

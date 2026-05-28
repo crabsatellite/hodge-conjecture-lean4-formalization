@@ -1,0 +1,46 @@
+import HodgeReduction.HCGapL4.FrontC5_HodgePolynomialToRankAdapter
+import HodgeReduction.HCGapL4.FrontB5_CompactificationConnectednessProbe
+import HodgeReduction.HCGapL4.FrontE5_HodgePolynomialFeedsProfileMatching
+import HodgeReduction.HCGapL4.R470_MultiFrontWave5Audit
+import HodgeReduction.MainTheorem
+
+open HodgeReduction.HCGapL4
+open HodgeReduction.HCGapL4.FrontC5_HodgePolynomialToRankAdapter
+open HodgeReduction.HCGapL4.FrontB5_CompactificationConnectednessProbe
+open HodgeReduction.HCGapL4.FrontE5_HodgePolynomialFeedsProfileMatching
+open HodgeReduction
+
+-- R467 SUBSTANTIVE 5 rank adapter theorems
+#print axioms rank0_eq_h00_from_adapter
+#print axioms rank1_eq_h01_add_h10_from_adapter
+#print axioms rank2_eq_h02_add_h11_add_h20_from_adapter
+#print axioms rank1_eq_two_mul_h10_from_adapter
+#print axioms rank2_eq_two_mul_h20_add_h11_from_adapter
+
+-- R468 SUBSTANTIVE 2 compactification theorems (KEY: kernel-pure via Mathlib closure)
+#print axioms isPreconnected_closure_of_isPreconnected
+#print axioms preconnected_univ_of_dense_preconnected_subset
+
+-- R469 SUBSTANTIVE 1 theorem + 1 constructor
+#print axioms lowDegreeAdapter_provides_rank_for_matching
+#print axioms AllCodimMatchingData_from_HodgePolynomialAdapter
+
+-- R470 Wave 5 audit + markers
+#print axioms MultiFrontWave5Audit_current
+#print axioms R470_Aggregate_EightSubstantive_OneConstructor_ThisWave
+#print axioms R470_Cumulative_FortyFourSubstantive_AcrossFiveWaves
+#print axioms R470_B_Saturation_NotYet_AdvisoryReduce_Wave6
+#print axioms R470_MethodologyValidation_44Substantive_0Axioms_5Waves_Shift
+
+-- R470 Wave 6 priority markers
+#print axioms R472_Priority1_FrontC6_AllDegreeAdapter
+#print axioms R473_Priority2_FrontE6_FeedR405ConditionalTransfer
+#print axioms R474_Priority3_FrontD6_ActivateMinimalFragment
+#print axioms R475_Priority4_FrontB6_MaintenanceOnly
+
+-- Existing kernel-pure headlines (unchanged)
+#print axioms hodgeConjectureReal_canonical_kernelPure
+#print axioms hodgeConjectureReal_realCompatible_kernelPure
+
+-- Headline guard (must remain unchanged; cone still contains canonicalE7ShimuraTor)
+#print axioms hodgeConjectureReal_canonical

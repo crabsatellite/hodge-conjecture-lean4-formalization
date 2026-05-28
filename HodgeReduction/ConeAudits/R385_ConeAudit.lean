@@ -1,0 +1,16 @@
+import HodgeReduction.HCGapL4.InternalToyFullCodimHC
+import HodgeReduction.MainTheorem
+
+open HodgeReduction.HCGapL4.InternalToyFullCodimHC
+open HodgeReduction
+
+#print axioms InternalToy_VarietyHCAt_codim0
+#print axioms InternalToy_VarietyHCAt_codim1
+#print axioms InternalToy_VarietyHCAt_codim_ge_two
+#print axioms InternalToy_VarietyHC
+#print axioms R385_does_not_close_canonicalE7ShimuraTor
+#print axioms R385_does_not_alter_hodgeConjectureReal_canonical
+#print axioms R385_does_not_claim_real_E7Shimura
+#print axioms R385_does_not_construct_parametric_canonical_instance
+#print axioms R385_first_explicit_bridge_obligation_closed
+#print axioms hodgeConjectureReal_canonical
