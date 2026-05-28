@@ -41,3 +41,13 @@ Three original axioms decomposed into smaller-scope axioms:
 | HodgeReduction.hyp_HC_CM_Ab_real | MainTheorem.lean | CLOSED-R515 (derived via Deligne 1982 + AH extension) |
 | HodgeReduction.hc_real_e6_case | MainTheorem.lean | CLOSED-R516 (derived via classical transfer bridge) |
 | HodgeReduction.mt_correspondence_e7_witness_exists | MainTheorem.lean | CLOSED-R517 (derived via witness+package decomposition) |
+
+
+## R521-R523 update: infrastructure strengthening
+
+No changes to the cut ledger. Three rounds of kernel-pure infrastructure:
+- R521: Closed 3 sorry in SimpleLieAlgebraClassification (classical_cartan_type_remains, classification_cross_check, exceptional_dim_check)
+- R522: 18 new theorems in ClassicalCominusculeClassification (A_n/B_n/C_n/D_n Dynkin marks)
+- R523: 22 new theorems in CY3SpringerDiscriminant (Springer discriminant arithmetic for CY3+E7 nonexistence)
+
+All active cuts remain as listed above. No axioms closed or opened.

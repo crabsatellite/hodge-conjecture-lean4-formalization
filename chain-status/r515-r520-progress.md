@@ -64,3 +64,23 @@ The project has reached the limits of what can be done without:
 4. Formalized Springer discriminant (closes: CY3 nonexistence stages)
 
 Each of these is a multi-year Mathlib development effort.
+
+
+## R521-R523 update: sorry elimination + cominuscule classification + Springer discriminant
+
+| Round | What | Result |
+|-------|------|--------|
+| R521 | Close 3 sorry in SimpleLieAlgebraClassification | 3 theorems now kernel-pure (no sorry) |
+| R522 | Classical cominuscule Dynkin marks classification | 18 new kernel-pure theorems for A_n/B_n/C_n/D_n |
+| R523 | CY3 Springer discriminant arithmetic | 22 new kernel-pure theorems (V_56 + CY3 + quintic) |
+
+### New infrastructure files
+- \HodgeReduction/Infrastructure/ClassicalCominusculeClassification.lean\ -- cominuscule node marks for all 4 classical families
+- \HodgeReduction/HCGapL4/CY3SpringerDiscriminant.lean\ -- Springer discriminant arithmetic for CY3 nonexistence
+
+### Sorry status
+- \SimpleLieAlgebraClassification.lean\: 0 sorry (was 3)
+- Orphan files with sorry: \CY3E7Bridge.lean\ (2 sorry, superseded by CY3VacuityDischarge), \CY3VacuousClosureAttempt.lean\ (1 sorry, superseded)
+
+### Active project cuts: unchanged (16 + 3 kernel)
+No axioms were closed or added. The progress is infrastructure-strengthening.
