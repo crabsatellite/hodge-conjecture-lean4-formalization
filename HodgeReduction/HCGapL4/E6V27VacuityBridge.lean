@@ -1,4 +1,4 @@
-﻿/-!
+/-
 # E6 V27 vacuity bridge: kernel-verified (R512).
 
 This file builds the formal bridge between:

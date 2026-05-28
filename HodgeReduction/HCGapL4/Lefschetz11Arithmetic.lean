@@ -1,4 +1,4 @@
-﻿/-!
+/-
 # Lefschetz (1,1) theorem: kernel-verified arithmetic skeleton (R510).
 
 The Lefschetz (1,1) theorem states: for a smooth projective complex
@@ -21,7 +21,6 @@ All theorems kernel-pure. NO sorry, NO True.intro, NO tricks.
 import HodgeReduction.Infrastructure.SimpleLieAlgebraClassification
 import Mathlib.Data.Nat.Prime.Basic
 import Mathlib.Tactic.NormNum
-import Mathlib.Tactic.Omega
 
 namespace HodgeReduction
 

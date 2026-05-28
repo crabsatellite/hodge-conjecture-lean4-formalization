@@ -1,4 +1,4 @@
-﻿/-!
+/-
 # Toroidal compactification dimensions: kernel-verified (R510).
 
 The AMRT (Ash-Mumford-Rapoport-Tai) toroidal compactification
@@ -20,7 +20,6 @@ import HodgeReduction.Infrastructure.SimpleLieAlgebraClassification
 import HodgeReduction.Infrastructure.E7ParabolicDimensions
 import HodgeReduction.Infrastructure.DynkinMarks
 import HodgeReduction.Infrastructure.V56BranchingRules
-import Mathlib.Tactic.Omega
 
 namespace HodgeReduction.Infrastructure
 

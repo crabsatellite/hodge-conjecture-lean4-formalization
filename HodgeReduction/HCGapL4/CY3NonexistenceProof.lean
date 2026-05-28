@@ -1,4 +1,4 @@
-﻿/-!
+/-
 # CY3 E7 non-existence proof: kernel-verified (R510).
 
 Real (non-placeholder) proof infrastructure for the theorem:

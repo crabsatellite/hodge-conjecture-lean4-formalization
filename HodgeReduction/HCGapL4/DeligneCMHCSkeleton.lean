@@ -1,4 +1,4 @@
-﻿/-!
+/-
 # Deligne 1982 CM abelian variety HC: kernel-verified skeleton (R510).
 
 Deligne's theorem (LNM 900, 1982, Theorem 2.11): every Hodge class
@@ -25,7 +25,6 @@ All theorems kernel-pure. NO sorry, NO True.intro, NO tricks.
 
 import HodgeReduction.Infrastructure.SimpleLieAlgebraClassification
 import Mathlib.Tactic.NormNum
-import Mathlib.Tactic.Omega
 
 namespace HodgeReduction
 

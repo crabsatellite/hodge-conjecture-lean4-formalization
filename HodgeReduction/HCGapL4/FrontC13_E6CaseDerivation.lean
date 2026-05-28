@@ -29,7 +29,7 @@ namespace FrontC13_E6CaseDerivation
 /-- **R502 E6 case derivation structure** carrying the 4-step chain
     from E6 MT factor to HC. -/
 structure E6CaseDerivation where
-  /-- Step 1: The MT group has an E6(-14) simple factor on H^3. -/
+  -- Step 1: The MT group has an E6(-14) simple factor on H^3. 
   hasE6Factor : Prop
   /-- Step 2: The alpha_s string structure of E6 representations
       forces specific parity constraints on Hodge numbers. -/
@@ -37,7 +37,7 @@ structure E6CaseDerivation where
   /-- Step 3: The Grothendieck-Chern argument shows every E6-invariant
       Hodge class is algebraic (via the alpha_s algebraicity). -/
   grothendieckChernAlgebraicity : Prop
-  /-- Step 4: Combining, HC(X) holds for the E6 case. -/
+  -- Step 4: Combining, HC(X) holds for the E6 case. 
   hcConclusion : Prop
 
 /-- **R502 Step 1**: The MT group has an E6(-14) factor on H^3.

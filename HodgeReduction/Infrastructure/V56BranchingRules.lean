@@ -1,4 +1,4 @@
-﻿/-!
+/-
 # V_56 branching rules: kernel-verified (R510).
 
 The V_56 minuscule representation of E_{7(-25)} branches under
@@ -36,7 +36,6 @@ import HodgeReduction.Infrastructure.SimpleLieAlgebraClassification
 import HodgeReduction.Infrastructure.E7ParabolicDimensions
 import HodgeReduction.Infrastructure.DynkinMarks
 import Mathlib.Tactic.NormNum
-import Mathlib.Tactic.Omega
 
 namespace HodgeReduction.Infrastructure
 
@@ -155,12 +154,12 @@ theorem v56_decomposition_check :
 theorem e7_marks_eq_v27_dim :
     (2 + 3 + 4 + 6 + 5 + 4 + 3 : Int) = 27 := e7_marks_eq_j3o_dim
 
-/-- Summary of branching rules verified:
-    - V_56 -> E_6 x T_1: 27 + 27 + 1 + 1 = 56 (VERIFIED)
-    - V_56 -> D_6 x A_1: 32 + 12 + 12 = 56 (VERIFIED)
-    - V_56 -> A_7: ∧^3(Q^8) = 56 (VERIFIED)
-    - V_56 Hodge: 1 + 27 + 27 + 1 = 56 (VERIFIED)
-    All kernel-pure. -/
+-- Summary of branching rules verified:
+--     - V_56 -> E_6 x T_1: 27 + 27 + 1 + 1 = 56 (VERIFIED)
+--     - V_56 -> D_6 x A_1: 32 + 12 + 12 = 56 (VERIFIED)
+--     - V_56 -> A_7: ^3(Q^8) = 56 (VERIFIED)
+--     - V_56 Hodge: 1 + 27 + 27 + 1 = 56 (VERIFIED)
+--     All kernel-pure.
 
 /-- **R510 V56 branching**: 16 kernel-pure theorems, 0 new axioms. -/
 def R510_v56_branching_theorem_count : Nat := 16

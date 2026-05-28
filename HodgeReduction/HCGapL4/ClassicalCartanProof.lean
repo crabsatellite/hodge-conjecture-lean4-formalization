@@ -1,4 +1,4 @@
-﻿/-!
+/-
 # Classical Cartan HC proof: kernel-verified (R510).
 
 This file provides the REAL (non-placeholder) proof derivation for

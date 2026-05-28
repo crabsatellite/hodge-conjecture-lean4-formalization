@@ -1,4 +1,4 @@
-﻿/-!
+/-
 # EVII Shimura variety cohomology model: kernel-verified (R511).
 
 Constructive VarietyCohomologyData for the EVII Shimura variety

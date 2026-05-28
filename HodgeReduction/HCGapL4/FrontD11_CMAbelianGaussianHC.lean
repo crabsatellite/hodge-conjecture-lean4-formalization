@@ -56,17 +56,17 @@ open FrontD10_Codim3AndGeneralStrategy
     * The Deligne 1982 absolute-Hodge step (conditional input)
     * The resulting HC conclusion (conditional output) -/
 structure CMAbelianGaussianHCConditional where
-  /-- The Gaussian CM field exists. -/
+  -- The Gaussian CM field exists. 
   gaussianFieldExists : Prop
-  /-- The elliptic curve E has CM by Gaussian integers. -/
+  -- The elliptic curve E has CM by Gaussian integers. 
   ecHasGaussianCM : Prop
-  /-- E is a CM abelian variety (from EC AV interface). -/
+  -- E is a CM abelian variety (from EC AV interface). 
   isCMAbelianVariety : Prop
-  /-- Deligne 1982 step: every Hodge class on E is absolutely Hodge. -/
+  -- Deligne 1982 step: every Hodge class on E is absolutely Hodge. 
   deligne1982AbsoluteHodge : Prop
-  /-- Absolute Hodge -> algebraic (conjectural extension for CM). -/
+  -- Absolute Hodge -> algebraic (conjectural extension for CM). 
   absoluteHodgeToAlgebraic : Prop
-  /-- HC conclusion: every Hodge class on E is algebraic. -/
+  -- HC conclusion: every Hodge class on E is algebraic. 
   hodgeConjectureHolds : Prop
 
 /-- **R490 substantive theorem (1/4)**: the Gaussian elliptic curve

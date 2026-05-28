@@ -1,4 +1,4 @@
-﻿/-!
+/-
 # CY3 E7 nonexistence bridge: kernel-verified (R512).
 
 This file builds the formal bridge from:

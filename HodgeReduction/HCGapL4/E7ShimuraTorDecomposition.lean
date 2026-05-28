@@ -1,4 +1,4 @@
-﻿/-!
+/-
 # E7ShimuraTor axiom decomposition (R511).
 
 The single axiom canonicalE7ShimuraTor : E7ShimuraTor bundles

@@ -1,4 +1,4 @@
-﻿/-!
+/-
 # E6 case HC proof: kernel-verified (R510).
 
 The E6 case of the main theorem: varieties whose MT group has an

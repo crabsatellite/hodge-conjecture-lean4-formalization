@@ -38,7 +38,7 @@ structure CY3NonexistenceDerivation where
       Numerical computation on the Hodge diamond constraints
       shows the equations are inconsistent. -/
   stageC_direct_computation : Prop
-  /-- Stage D: Conclusion -- no CY3 with MT = E7(-25) exists. -/
+  -- Stage D: Conclusion -- no CY3 with MT = E7(-25) exists. 
   stageD_conclusion : Prop
 
 /-- **R503 Stage A**: Springer discriminant argument. KERNEL-PURE. -/

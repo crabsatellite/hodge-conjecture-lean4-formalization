@@ -1,4 +1,4 @@
-﻿/-
+/-
 # HodgeReduction --top-level module.
 
 Lean4 formalisation of the Mumford--Tate reduction of the Hodge Conjecture

@@ -1,4 +1,4 @@
-﻿/-!
+/-
 # Noether-Lefschetz locus: kernel-verified (R511).
 
 The Noether-Lefschetz theorem: for a smooth projective variety X,
