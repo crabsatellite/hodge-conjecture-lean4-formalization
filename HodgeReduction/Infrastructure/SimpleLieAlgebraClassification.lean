@@ -370,7 +370,17 @@ theorem classical_cartan_type_remains
     (h_not_E6 : t ≠ .E6)
     (h_not_E7 : t ≠ .E7) :
     t.isExceptional = true ->
-    t ∈ [.E8, .F4, .G2] := by sorry  -- TODO: fix proof for Lean 4.16.0
+    t ∈ [.E8, .F4, .G2] := by
+  cases t with
+  | A _ _ => simp [SimpleLieAlgebraType.isExceptional]
+  | B _ _ => simp [SimpleLieAlgebraType.isExceptional]
+  | C _ _ => simp [SimpleLieAlgebraType.isExceptional]
+  | D _ _ => simp [SimpleLieAlgebraType.isExceptional]
+  | E6 => exact absurd rfl h_not_E6
+  | E7 => exact absurd rfl h_not_E7
+  | E8 => simp
+  | F4 => simp
+  | G2 => simp
 
 /-- The complete classification cross-check:
     exceptional types = {E6, E7, E8, F4, G2}
@@ -383,8 +393,8 @@ theorem classification_cross_check :
     SimpleLieAlgebraType.E7.hasCominusculeNode = false /\
     SimpleLieAlgebraType.E8.hasCominusculeNode = false /\
     SimpleLieAlgebraType.F4.hasCominusculeNode = false /\
-    SimpleLieAlgebraType.G2.hasCominusculeNode = false := by
-  sorry  -- TODO: fix andI syntax for Lean 4.16.0
+    SimpleLieAlgebraType.G2.hasCominusculeNode = false :=
+  ⟨rfl, rfl, rfl, rfl, rfl⟩
 
 /-- Dimension identities for all exceptional types.
     E6: 78, E7: 133, E8: 248, F4: 52, G2: 14. KERNEL-PURE. -/
@@ -393,8 +403,8 @@ theorem exceptional_dim_check :
     SimpleLieAlgebraType.E7.dim = 133 /\
     SimpleLieAlgebraType.E8.dim = 248 /\
     SimpleLieAlgebraType.F4.dim = 52 /\
-    SimpleLieAlgebraType.G2.dim = 14 := by
-  sorry  -- TODO: fix andI syntax for Lean 4.16.0
+    SimpleLieAlgebraType.G2.dim = 14 :=
+  ⟨rfl, rfl, rfl, rfl, rfl⟩
 
 /-- Sum of all exceptional dimensions = 525.
     78 + 133 + 248 + 52 + 14 = 525. KERNEL-PURE. -/
