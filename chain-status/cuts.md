@@ -1,30 +1,43 @@
-# HodgeReduction -- cut ledger
+﻿# HodgeReduction -- cut ledger
 
-Every xiom reached from an endpoint.  Whitelisted cuts are
-open by design; non-whitelisted cuts are I1 hard-failures.
+Every axiom reached from an endpoint. Whitelisted cuts are
+open by design; non-whitelisted cuts are hard-failures.
 
-**R514 update**: hc_real_cy3_reducible converted from axiom to
-derived theorem (via CY3+E7 vacuity discharge). Replaced by bridge
-axiom cy3_inherits_e7_factor_exact (smaller scope, geometric-only).
+## R515-R518 update: axiom decompositions
 
+Three original axioms decomposed into smaller-scope axioms:
+- R514: hc_real_cy3_reducible -> derived theorem (via vacuity discharge)
+- R515: hyp_HC_CM_Ab_real -> deligne_1982_abs_hodge_cm + abs_hodge_implies_algebraic
+- R516: hc_real_e6_case -> e6_factor_classical_transfer (bridge)
+- R517: mt_correspondence -> e7_cm_witness_exists + e7_correspondence_package_exists
+- R518: gap card for classical_cartan boundary
+
+## Active cuts (whitelisted, open)
 
 | axiom | file | status |
 |-------|------|--------|
-| Classical.choice | Init/Prelude.lean | OPEN (whitelisted) |
-| HodgeReduction.SmoothProjectiveVariety.algClasses | HodgeReduction/OpenHypotheses.lean | OPEN (whitelisted) |
-| HodgeReduction.SmoothProjectiveVariety.cohomology | HodgeReduction/OpenHypotheses.lean | OPEN (whitelisted) |
-| HodgeReduction.canonicalE7ShimuraTor | HodgeReduction/OpenHypotheses.lean | OPEN (whitelisted) |
-| HodgeReduction.cy3_e7_nonexistence_paper_axiom | HodgeReduction/ClassicalResults.lean | OPEN (whitelisted) |
-| HodgeReduction.cy3_inherits_e7_factor_exact | HodgeReduction/HCGapL4/CY3VacuityDischarge.lean | OPEN (whitelisted, R514 bridge) |
-| HodgeReduction.hc_real_classical_cartan | HodgeReduction/MainTheorem.lean | OPEN (whitelisted) |
-| HodgeReduction.hc_real_e6_case | HodgeReduction/MainTheorem.lean | OPEN (whitelisted) |
-| HodgeReduction.hyp_HC_CM_Ab_real | HodgeReduction/MainTheorem.lean | OPEN (whitelisted) |
-| HodgeReduction.mt_correspondence_e7_witness_exists | HodgeReduction/MainTheorem.lean | OPEN (whitelisted) |
-| Quot.sound | Init/Core.lean | OPEN (whitelisted) |
-| propext | Init/Core.lean | OPEN (whitelisted) |
+| Classical.choice | Init/Prelude.lean | OPEN (kernel) |
+| Quot.sound | Init/Core.lean | OPEN (kernel) |
+| propext | Init/Core.lean | OPEN (kernel) |
+| HodgeReduction.SmoothProjectiveVariety.algClasses | OpenHypotheses.lean | OPEN (whitelisted) |
+| HodgeReduction.SmoothProjectiveVariety.cohomology | OpenHypotheses.lean | OPEN (whitelisted) |
+| HodgeReduction.canonicalE7ShimuraTor | OpenHypotheses.lean | OPEN (whitelisted) |
+| HodgeReduction.cy3_e7_nonexistence_paper_axiom | ClassicalResults.lean | OPEN (whitelisted) |
+| HodgeReduction.cy3_inherits_e7_factor_exact | CY3VacuityDischarge.lean | OPEN (R514 bridge) |
+| HodgeReduction.hc_real_classical_cartan | MainTheorem.lean | OPEN (whitelisted) |
+| HodgeReduction.deligne_1982_abs_hodge_cm | CMAbelianHCBridge.lean | OPEN (R515 decomposition, established math) |
+| HodgeReduction.abs_hodge_implies_algebraic | CMAbelianHCBridge.lean | OPEN (R515 decomposition, conditional) |
+| HodgeReduction.e6_factor_classical_transfer | E6CaseClassicalBridge.lean | OPEN (R516 bridge) |
+| HodgeReduction.e7_cm_witness_exists | MTWitnessDecomposition.lean | OPEN (R517 decomposition, geometric) |
+| HodgeReduction.e7_correspondence_package_exists | MTWitnessDecomposition.lean | OPEN (R517 decomposition, correspondence) |
+| HodgeReduction.classical_mt_standard_hodge | ClassicalCartanGapCard.lean | OPEN (R518 gap boundary) |
+| HodgeReduction.classical_mt_all_hodge_algebraic | ClassicalCartanGapCard.lean | OPEN (R518 gap boundary) |
 
-## CLOSED (R514)
+## CLOSED
 
 | former axiom | file | status |
 |-------|------|--------|
-| HodgeReduction.hc_real_cy3_reducible | HodgeReduction/MainTheorem.lean | CLOSED-R514 (derived via vacuity discharge) |
+| HodgeReduction.hc_real_cy3_reducible | MainTheorem.lean | CLOSED-R514 (derived via vacuity discharge) |
+| HodgeReduction.hyp_HC_CM_Ab_real | MainTheorem.lean | CLOSED-R515 (derived via Deligne 1982 + AH extension) |
+| HodgeReduction.hc_real_e6_case | MainTheorem.lean | CLOSED-R516 (derived via classical transfer bridge) |
+| HodgeReduction.mt_correspondence_e7_witness_exists | MainTheorem.lean | CLOSED-R517 (derived via witness+package decomposition) |
