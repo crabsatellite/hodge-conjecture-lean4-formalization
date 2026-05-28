@@ -462,4 +462,7 @@ import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness
 import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit
 import HodgeReduction.HCGapL4.FrontE10_HeadlineAssembly
 import HodgeReduction.HCGapL4.R498_MultiFrontWave14Audit
+import HodgeReduction.HCGapL4.ProofBlueprint
+import HodgeReduction.HCGapL4.FrontC12_ClassicalCartanDerivation
+import HodgeReduction.HCGapL4.R501_MultiFrontWave15Audit
 import HodgeReduction.Concrete
