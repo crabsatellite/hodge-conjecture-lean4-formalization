@@ -444,4 +444,7 @@ import HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance
 import HodgeReduction.HCGapL4.FrontE7_ConditionalTransferFromConcrete
 import HodgeReduction.HCGapL4.FrontD7_Deligne1982ExpandedFragment
 import HodgeReduction.HCGapL4.R480_MultiFrontWave7Audit
+import HodgeReduction.HCGapL4.FrontC8_V56MTBridge
+import HodgeReduction.HCGapL4.FrontD8_PerCodimDeligneWitness
+import HodgeReduction.HCGapL4.R483_MultiFrontWave8Audit
 import HodgeReduction.Concrete
