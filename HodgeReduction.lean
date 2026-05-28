@@ -458,4 +458,6 @@ import HodgeReduction.HCGapL4.FrontC10_V56CohomologyIdentification
 import HodgeReduction.HCGapL4.R492_MultiFrontWave11Audit
 import HodgeReduction.HCGapL4.FrontC11_ShimuraBettiComputation
 import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit
+import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness
+import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit
 import HodgeReduction.Concrete
