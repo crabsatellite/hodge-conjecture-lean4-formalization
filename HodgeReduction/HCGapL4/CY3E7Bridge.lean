@@ -39,10 +39,10 @@ namespace HodgeReduction
 
 /-! ## Step 1: The CY3 nonexistence axiom -/
 
-/-- The paper axiom: no CY3 has MT^der(H^3) = E7_neg25.
-    This is already declared as cy3_e7_nonexistence_paper_axiom. -/
+-- The paper axiom: no CY3 has MT^der(H^3) = E7_neg25.
+--     This is already declared as cy3_e7_nonexistence_paper_axiom.
 
-/-- Reformulation: for any X that is CY3, the E7 factor cannot appear. -/
+-- Reformulation: for any X that is CY3, the E7 factor cannot appear.
 
 /-- From the axiom: if X is CY3 and has E7 MT factor, contradiction.
     KERNEL-PURE (conditional on the axiom). -/

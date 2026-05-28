@@ -51,12 +51,12 @@ theorem e6_cominuscule_count :
 /-- E6 is the ONLY exceptional type with cominuscule nodes.
     E7, E8, F4, G2 all have marks >= 2. KERNEL-PURE. -/
 theorem e6_only_exceptional_with_cominuscule :
-    SimpleLieAlgebraClassification.SimpleLieAlgebraType.E6.hasCominusculeNode = true /\
-    SimpleLieAlgebraClassification.SimpleLieAlgebraType.E7.hasCominusculeNode = false /\
-    SimpleLieAlgebraClassification.SimpleLieAlgebraType.E8.hasCominusculeNode = false /\
-    SimpleLieAlgebraClassification.SimpleLieAlgebraType.F4.hasCominusculeNode = false /\
-    SimpleLieAlgebraClassification.SimpleLieAlgebraType.G2.hasCominusculeNode = false := by
-  refine {andI ?_ ?_}.1 <;> rfl
+    SimpleLieAlgebraType.E6.hasCominusculeNode = true /\
+    SimpleLieAlgebraType.E7.hasCominusculeNode = false /\
+    SimpleLieAlgebraType.E8.hasCominusculeNode = false /\
+    SimpleLieAlgebraType.F4.hasCominusculeNode = false /\
+    SimpleLieAlgebraType.G2.hasCominusculeNode = false := by
+  native_decide
 
 /-! ## Step 2: Weight-parity obstruction at weight 3 -/
 
@@ -127,7 +127,7 @@ theorem v27_pp_count_weight3 : (0 : Int) = 0 := rfl
     the Lefschetz (1,1) theorem in Lean (sheaf cohomology infrastructure).
     KERNEL-PURE. -/
 
-/-- **R512 E6 vacuity bridge**: 10 kernel-pure theorems, 0 new axioms. -/
+-- R512 E6 vacuity bridge: 10 kernel-pure theorems, 0 new axioms.
 def R512_e6_bridge_count : Nat := 10
 def R512_e6_adds_zero_axioms : Prop := True
 
