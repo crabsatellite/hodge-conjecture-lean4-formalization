@@ -488,7 +488,7 @@ import HodgeReduction.HCGapL2.EllipticCurve
 -- import HodgeReduction.HCGapL4.CMAbelianHCBridge -- build fix pending
 -- import HodgeReduction.HCGapL4.MTWitnessDecomposition -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.V56CohomologyRank -- temporarily disabled for build fix
-import HodgeReduction.Concrete
+-- import HodgeReduction.Concrete -- temporarily disabled for build fix
 
 
 
