@@ -53,7 +53,7 @@ E7, E8, F4, G2 all have marks >= 2 (no cominuscule node). -/
     are exactly the 4 non-E6 exceptional types.
     KERNEL-PURE. -/
 theorem kostant_excluded_are_non_E6_exceptional :
-    SimpleLieAlgebraClassification.SimpleLieAlgebraType.kostantExcludedTypes =
+    SimpleLieAlgebraType.kostantExcludedTypes =
       [.E7, .E8, .F4, .G2] := rfl
 
 /-! ## Step 2: The complete exclusion chain -/
@@ -63,14 +63,14 @@ theorem kostant_excluded_are_non_E6_exceptional :
     (Kostant vacuity) are EXACTLY the classical types.
     KERNEL-PURE. -/
 theorem only_classical_after_full_exclusion
-    (t : SimpleLieAlgebraClassification.SimpleLieAlgebraType)
+    (t : SimpleLieAlgebraType)
     (h_not_e6 : t != .E6)
     (h_not_e7 : t != .E7)
     (h_not_e8 : t != .E8)
     (h_not_f4 : t != .F4)
     (h_not_g2 : t != .G2) :
     t.isClassical = true :=
-  SimpleLieAlgebraClassification.killing_cartan_exclusion_classical
+  killing_cartan_exclusion_classical
     t h_not_e6 h_not_e7 h_not_e8 h_not_f4 h_not_g2
 
 /-! ## Step 3: Kostant criterion applied to Dynkin marks -/
@@ -97,34 +97,34 @@ theorem kostant_g2_verified (i : Fin 2) : g2DynkinMark i >= 2 := g2_all_marks_ge
     all 9 families of simple Lie algebras: A_n, B_n, C_n, D_n,
     E_6, E_7, E_8, F_4, G_2. There are no others. -/
 theorem step1_killing_cartan :
-    SimpleLieAlgebraClassification.exceptionalTypes.length = 5 /\
-    SimpleLieAlgebraClassification.exceptionalTypes =
+    exceptionalTypes.length = 5 /\
+    exceptionalTypes =
       [.E6, .E7, .E8, .F4, .G2] := by
   refine {andI ?_ ?_}.1 <;> rfl
 
 /-- Step 2 (KERNEL-PURE): After the scope hypothesis excludes E6 and E7,
     the possible exceptional factors of MT are only E8, F4, G2. -/
 theorem step2_after_scope_exclusion
-    (t : SimpleLieAlgebraClassification.SimpleLieAlgebraType)
+    (t : SimpleLieAlgebraType)
     (h_not_e6 : t != .E6)
     (h_not_e7 : t != .E7)
     (h_exc : t.isExceptional = true) :
     t ∈ [.E8, .F4, .G2] :=
-  SimpleLieAlgebraClassification.classical_cartan_type_remains
+  classical_cartan_type_remains
     t h_not_e6 h_not_e7 h_exc
 
 /-- Step 3 (KERNEL-PURE): E8, F4, G2 have no cominuscule node.
     Verified by Dynkin marks: all marks >= 2. -/
 theorem step3_kostant_excludes_e8f4g2 :
-    SimpleLieAlgebraClassification.SimpleLieAlgebraType.E8.hasCominusculeNode = false /\
-    SimpleLieAlgebraClassification.SimpleLieAlgebraType.F4.hasCominusculeNode = false /\
-    SimpleLieAlgebraClassification.SimpleLieAlgebraType.G2.hasCominusculeNode = false := by
+    SimpleLieAlgebraType.E8.hasCominusculeNode = false /\
+    SimpleLieAlgebraType.F4.hasCominusculeNode = false /\
+    SimpleLieAlgebraType.G2.hasCominusculeNode = false := by
   refine {andI ?_ ?_}.1 <;> rfl
 
 /-- Step 4 (KERNEL-PURE): After excluding all exceptional types,
     only classical types {A_n, B_n, C_n, D_n} remain. -/
 theorem step4_only_classical_remains
-    (t : SimpleLieAlgebraClassification.SimpleLieAlgebraType)
+    (t : SimpleLieAlgebraType)
     (h : ¬ (t ∈ [.E6, .E7, .E8, .F4, .G2])) :
     t.isClassical = true := by
   cases t with
@@ -141,10 +141,10 @@ theorem step4_only_classical_remains
 /-- Step 4 corollary (KERNEL-PURE): All remaining types have
     cominuscule nodes, so they support Hodge cocharacters. -/
 theorem step4_remaining_have_cominuscule
-    (t : SimpleLieAlgebraClassification.SimpleLieAlgebraType)
+    (t : SimpleLieAlgebraType)
     (h_classical : t.isClassical = true) :
     t.hasCominusculeNode = true :=
-  SimpleLieAlgebraClassification.classical_has_cominuscule t h_classical
+  classical_has_cominuscule t h_classical
 
 /-! ## Step 5: Dimension bookkeeping
 
@@ -155,10 +155,10 @@ arithmetic cross-checks for the infrastructure. -/
     These are the first classical types that can appear as MT factors
     for 3-folds (where H^3 is the interesting cohomology). -/
 theorem classical_dim_cross_checks :
-    SimpleLieAlgebraClassification.SimpleLieAlgebraType.A 3 (by omega) |>.dim = 12 /\
-    SimpleLieAlgebraClassification.SimpleLieAlgebraType.B 3 (by omega) |>.dim = 21 /\
-    SimpleLieAlgebraClassification.SimpleLieAlgebraType.C 3 (by omega) |>.dim = 21 /\
-    SimpleLieAlgebraClassification.SimpleLieAlgebraType.D 4 (by omega) |>.dim = 28 := by
+    SimpleLieAlgebraType.A 3 (by omega) |>.dim = 12 /\
+    SimpleLieAlgebraType.B 3 (by omega) |>.dim = 21 /\
+    SimpleLieAlgebraType.C 3 (by omega) |>.dim = 21 /\
+    SimpleLieAlgebraType.D 4 (by omega) |>.dim = 28 := by
   refine {andI ?_ ?_}.1 <;> rfl
 
 /-! ## Step 6: Connection to the main theorem axiom
