@@ -450,4 +450,7 @@ import HodgeReduction.HCGapL4.R483_MultiFrontWave8Audit
 import HodgeReduction.HCGapL4.FrontC9_EVIIHodgeNumberComputation
 import HodgeReduction.HCGapL4.FrontD9_Codim2NeronSeveri
 import HodgeReduction.HCGapL4.R486_MultiFrontWave9Audit
+import HodgeReduction.HCGapL4.FrontD10_Codim3AndGeneralStrategy
+import HodgeReduction.HCGapL4.FrontE8_ConcreteProfileR405Bridge
+import HodgeReduction.HCGapL4.R489_MultiFrontWave10Audit
 import HodgeReduction.Concrete
