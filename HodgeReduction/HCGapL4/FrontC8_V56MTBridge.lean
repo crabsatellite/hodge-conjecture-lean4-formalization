@@ -75,7 +75,7 @@ theorem evii_compact_dual_betti_sum :
     e7EVIICompactDualBetti 0 + e7EVIICompactDualBetti 2 +
     e7EVIICompactDualBetti 4 + e7EVIICompactDualBetti 6 +
     e7EVIICompactDualBetti 8 = 5 := by
-  unfold e7EVIICompactDualBetti; omega
+  native_decide
 
 /-! ## Section 3: V_56 correctness Prop -/
 
@@ -83,13 +83,13 @@ theorem evii_compact_dual_betti_sum :
     satisfy the dimension identity dim V_56 = 56 and the Euler
     characteristic chi = 0. KERNEL-PURE. -/
 theorem v56_weight3_dimension_and_euler :
-    v56Weight3HodgeNumber 0 3 = 1 ?
-    v56Weight3HodgeNumber 1 2 = 27 ?
-    v56Weight3HodgeNumber 2 1 = 27 ?
-    v56Weight3HodgeNumber 3 0 = 1 ?
-    (1 : Nat) + 27 + 27 + 1 = 56 ?
+    v56Weight3HodgeNumber 0 3 = 1 /\
+    v56Weight3HodgeNumber 1 2 = 27 /\
+    v56Weight3HodgeNumber 2 1 = 27 /\
+    v56Weight3HodgeNumber 3 0 = 1 /\
+    (1 : Nat) + 27 + 27 + 1 = 56 /\
     (1 : Int) - 27 + 27 - 1 = 0 := by
-  unfold v56Weight3HodgeNumber; simp [Nat.succ.injEq]; omega
+  native_decide
 
 /-! ## Section 4: EVII compact dual Poincare polynomial -/
 
@@ -117,7 +117,7 @@ structure EVIICompactDual_to_V56_Weight3_Bridge where
   eviiDiamond : FrontC4_HodgePolynomialAlgebra.FiniteHodgeDiamondData
   v56Diamond : FrontC4_HodgePolynomialAlgebra.FiniteHodgeDiamondData
   h3CarriesV56 : Prop
-  mtCorrespondenceAt_codim_p : Nat ? Prop
+  mtCorrespondenceAt_codim_p : Nat -> Prop
 
 /-- Current placeholder bridge instance. -/
 def eviiToV56Bridge_current : EVIICompactDual_to_V56_Weight3_Bridge where

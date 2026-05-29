@@ -6,9 +6,9 @@ five-way classification:
 
 * quarantine: **0** (explicit failed-route list)
 * infra:      **2** (standalone tools, audit scripts)
-* registered: **20** (configured research route/gap files, off endpoint closure)
+* registered: **26** (configured research route/gap files, off endpoint closure)
 * orphan:     **229** (loaded but unreachable - investigate)
-* on-disk-unloaded: **278** (file exists but not imported by any chain)
+* on-disk-unloaded: **272** (file exists but not imported by any chain)
 
 
 ## Quarantine (0)
@@ -23,7 +23,7 @@ five-way classification:
 | `HodgeReduction/HCGapRegistry.lean` | 9 | 0 |
 | `HodgeReduction/MainChain.lean` | 1 | 0 |
 
-## Registered research routes/gaps (20)
+## Registered research routes/gaps (26)
 
 | file | decls | axioms |
 |------|------:|-------:|
@@ -32,6 +32,12 @@ five-way classification:
 | `HodgeReduction/HCGapL2/TrivialPoint.lean` | 22 | 0 |
 | `HodgeReduction/HCGapL4/FrontA_DeligneH0SheafRealization.lean` | 68 | 0 |
 | `HodgeReduction/HCGapL4/FrontB_BailyBorelConnectedness.lean` | 64 | 0 |
+| `HodgeReduction/HCGapL4/FrontC10_V56CohomologyIdentification.lean` | 28 | 0 |
+| `HodgeReduction/HCGapL4/FrontC11_ShimuraBettiComputation.lean` | 41 | 0 |
+| `HodgeReduction/HCGapL4/FrontC6_AllDegreeHodgeRankAdapter.lean` | 34 | 0 |
+| `HodgeReduction/HCGapL4/FrontC7_E7EVIIHodgeDiamondInstance.lean` | 34 | 0 |
+| `HodgeReduction/HCGapL4/FrontC8_V56MTBridge.lean` | 28 | 0 |
+| `HodgeReduction/HCGapL4/FrontC9_EVIIHodgeNumberComputation.lean` | 35 | 0 |
 | `HodgeReduction/HCGapL4/FrontC_E7LowDegreeHodgeNumbers.lean` | 62 | 0 |
 | `HodgeReduction/HCGapL4/FrontD_E7ToCMChowCorrespondence.lean` | 74 | 0 |
 | `HodgeReduction/HCGapL4/FrontE_RealCarrierProfileMatching.lean` | 68 | 0 |
@@ -282,7 +288,7 @@ five-way classification:
 | `HodgeReduction/Infrastructure/V56Freudenthal.lean` | 121 | 0 |
 | `HodgeReduction/Infrastructure/V56HodgeRank.lean` | 33 | 0 |
 
-## On-disk-unloaded (278)
+## On-disk-unloaded (272)
 
 Files present in the source tree but NOT imported by the entry script.  Either wire them into the chain, mark them quarantine, or delete them.
 
@@ -419,15 +425,9 @@ Files present in the source tree but NOT imported by the entry script.  Either w
 - `HodgeReduction/HCGapL4/EllipticCurveCohomologyRealizationAudit.lean`
 - `HodgeReduction/HCGapL4/EllipticCurveEnd0ActionBoundary.lean`
 - `HodgeReduction/HCGapL4/FrontB6_MaintenanceOnly.lean`
-- `HodgeReduction/HCGapL4/FrontC10_V56CohomologyIdentification.lean`
-- `HodgeReduction/HCGapL4/FrontC11_ShimuraBettiComputation.lean`
 - `HodgeReduction/HCGapL4/FrontC12_ClassicalCartanDerivation.lean`
 - `HodgeReduction/HCGapL4/FrontC13_E6CaseDerivation.lean`
 - `HodgeReduction/HCGapL4/FrontC14_CY3NonexistenceDerivation.lean`
-- `HodgeReduction/HCGapL4/FrontC6_AllDegreeHodgeRankAdapter.lean`
-- `HodgeReduction/HCGapL4/FrontC7_E7EVIIHodgeDiamondInstance.lean`
-- `HodgeReduction/HCGapL4/FrontC8_V56MTBridge.lean`
-- `HodgeReduction/HCGapL4/FrontC9_EVIIHodgeNumberComputation.lean`
 - `HodgeReduction/HCGapL4/FrontD10_Codim3AndGeneralStrategy.lean`
 - `HodgeReduction/HCGapL4/FrontD11_CMAbelianGaussianHC.lean`
 - `HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean`

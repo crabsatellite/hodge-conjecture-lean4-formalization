@@ -8,7 +8,7 @@ For each orphan, the user should either:
 
 
 * loaded-but-orphan: **229**
-* on-disk-but-unloaded: **278**
+* on-disk-but-unloaded: **272**
 
 
 ## Loaded-but-orphan (the env has them, no closure)
@@ -378,15 +378,9 @@ For each orphan, the user should either:
 - `HodgeReduction/HCGapL4/EllipticCurveCohomologyRealizationAudit.lean`
 - `HodgeReduction/HCGapL4/EllipticCurveEnd0ActionBoundary.lean`
 - `HodgeReduction/HCGapL4/FrontB6_MaintenanceOnly.lean`
-- `HodgeReduction/HCGapL4/FrontC10_V56CohomologyIdentification.lean`
-- `HodgeReduction/HCGapL4/FrontC11_ShimuraBettiComputation.lean`
 - `HodgeReduction/HCGapL4/FrontC12_ClassicalCartanDerivation.lean`
 - `HodgeReduction/HCGapL4/FrontC13_E6CaseDerivation.lean`
 - `HodgeReduction/HCGapL4/FrontC14_CY3NonexistenceDerivation.lean`
-- `HodgeReduction/HCGapL4/FrontC6_AllDegreeHodgeRankAdapter.lean`
-- `HodgeReduction/HCGapL4/FrontC7_E7EVIIHodgeDiamondInstance.lean`
-- `HodgeReduction/HCGapL4/FrontC8_V56MTBridge.lean`
-- `HodgeReduction/HCGapL4/FrontC9_EVIIHodgeNumberComputation.lean`
 - `HodgeReduction/HCGapL4/FrontD10_Codim3AndGeneralStrategy.lean`
 - `HodgeReduction/HCGapL4/FrontD11_CMAbelianGaussianHC.lean`
 - `HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean`

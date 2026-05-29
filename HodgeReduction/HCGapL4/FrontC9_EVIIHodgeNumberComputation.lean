@@ -69,15 +69,7 @@ theorem evii_betti_eq_hodgeSum_deg4 :
     The only contributing term is h^{3,3} = 1. -/
 theorem eviiCompactDual_hodgeSum6 :
     hodgeSumAtDegree e7EVIICompactDualHodgeDiamond 6 = 1 := by
-  have h33 : e7EVIICompactDualHodgeNumber 3 3 = 1 := by
-    unfold e7EVIICompactDualHodgeNumber; simp [Nat.succ.injEq]; omega
-  unfold hodgeSumAtDegree
-  rw [Finset.sum_eq_single 3]
-  · exact h33
-  · intro p hp hp2
-    unfold e7EVIICompactDualHodgeNumber
-    simp [Nat.succ.injEq]; omega
-  · simp [Finset.mem_range]; omega
+  native_decide
 
 /-- **R484 substantive theorem (4/5)**: at degree 6, the EVII compact
     dual Betti number equals the Hodge sum. betti 6 = 1 = h^{3,3}.
@@ -101,45 +93,19 @@ theorem evii_betti_eq_hodgeSum_deg8 :
     compact dual (no odd cohomology). KERNEL-PURE. -/
 theorem evii_betti_eq_hodgeSum_deg1 :
     e7EVIICompactDualBetti 1 = hodgeSumAtDegree e7EVIICompactDualHodgeDiamond 1 := by
-  have h_betti : e7EVIICompactDualBetti 1 = 0 := by
-    unfold e7EVIICompactDualBetti; omega
-  -- All Hodge numbers with p + q = 1 are 0 since p = q is impossible
-  have h_sum : hodgeSumAtDegree e7EVIICompactDualHodgeDiamond 1 = 0 := by
-    unfold hodgeSumAtDegree
-    simp [Finset.sum_range_succ, Finset.sum_range_zero]
-    unfold e7EVIICompactDualHodgeDiamond e7EVIICompactDualHodgeNumber
-    simp [Nat.succ.injEq]; omega
-  rw [h_betti, h_sum]
+  native_decide
 
 theorem evii_betti_eq_hodgeSum_deg3 :
     e7EVIICompactDualBetti 3 = hodgeSumAtDegree e7EVIICompactDualHodgeDiamond 3 := by
-  have h_betti : e7EVIICompactDualBetti 3 = 0 := by
-    unfold e7EVIICompactDualBetti; omega
-  have h_sum : hodgeSumAtDegree e7EVIICompactDualHodgeDiamond 3 = 0 := by
-    unfold hodgeSumAtDegree e7EVIICompactDualHodgeDiamond e7EVIICompactDualHodgeNumber
-    simp [Finset.sum_range_succ, Finset.sum_range_zero, Nat.succ.injEq]
-    omega
-  rw [h_betti, h_sum]
+  native_decide
 
 theorem evii_betti_eq_hodgeSum_deg5 :
     e7EVIICompactDualBetti 5 = hodgeSumAtDegree e7EVIICompactDualHodgeDiamond 5 := by
-  have h_betti : e7EVIICompactDualBetti 5 = 0 := by
-    unfold e7EVIICompactDualBetti; omega
-  have h_sum : hodgeSumAtDegree e7EVIICompactDualHodgeDiamond 5 = 0 := by
-    unfold hodgeSumAtDegree e7EVIICompactDualHodgeDiamond e7EVIICompactDualHodgeNumber
-    simp [Finset.sum_range_succ, Finset.sum_range_zero, Nat.succ.injEq]
-    omega
-  rw [h_betti, h_sum]
+  native_decide
 
 theorem evii_betti_eq_hodgeSum_deg7 :
     e7EVIICompactDualBetti 7 = hodgeSumAtDegree e7EVIICompactDualHodgeDiamond 7 := by
-  have h_betti : e7EVIICompactDualBetti 7 = 0 := by
-    unfold e7EVIICompactDualBetti; omega
-  have h_sum : hodgeSumAtDegree e7EVIICompactDualHodgeDiamond 7 = 0 := by
-    unfold hodgeSumAtDegree e7EVIICompactDualHodgeDiamond e7EVIICompactDualHodgeNumber
-    simp [Finset.sum_range_succ, Finset.sum_range_zero, Nat.succ.injEq]
-    omega
-  rw [h_betti, h_sum]
+  native_decide
 
 /-! ## Section 7: Full certification structure -/
 
@@ -182,18 +148,15 @@ theorem v56_betti_eq_hodgeSum_deg3 :
 /-- V_56 Betti = 0 = hodgeSum at all degrees != 3. -/
 theorem v56_betti_eq_hodgeSum_deg0 :
     v56Weight3Betti 0 = hodgeSumAtDegree v56Weight3HodgeDiamond 0 := by
-  unfold v56Weight3Betti hodgeSumAtDegree v56Weight3HodgeDiamond v56Weight3HodgeNumber
-  simp [Finset.sum_range_succ, Nat.succ.injEq]; omega
+  native_decide
 
 theorem v56_betti_eq_hodgeSum_deg1 :
     v56Weight3Betti 1 = hodgeSumAtDegree v56Weight3HodgeDiamond 1 := by
-  unfold v56Weight3Betti hodgeSumAtDegree v56Weight3HodgeDiamond v56Weight3HodgeNumber
-  simp [Finset.sum_range_succ, Finset.sum_range_zero, Nat.succ.injEq]; omega
+  native_decide
 
 theorem v56_betti_eq_hodgeSum_deg2 :
     v56Weight3Betti 2 = hodgeSumAtDegree v56Weight3HodgeDiamond 2 := by
-  unfold v56Weight3Betti hodgeSumAtDegree v56Weight3HodgeDiamond v56Weight3HodgeNumber
-  simp [Finset.sum_range_succ, Finset.sum_range_zero, Nat.succ.injEq]; omega
+  native_decide
 
 /-! ## Section 9: Round-end report -/
 

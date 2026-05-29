@@ -437,28 +437,28 @@ import HodgeReduction.HCGapL2.EllipticCurve
 -- import HodgeReduction.HCGapL4.FrontB5_CompactificationConnectednessProbe -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE5_HodgePolynomialFeedsProfileMatching -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R470_MultiFrontWave5Audit -- temporarily disabled for build fix
--- import HodgeReduction.HCGapL4.FrontC6_AllDegreeHodgeRankAdapter -- build fix pending
+import HodgeReduction.HCGapL4.FrontC6_AllDegreeHodgeRankAdapter
 -- import HodgeReduction.HCGapL4.FrontE6_FeedR405ConditionalTransfer -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontD6_Deligne1982MinimalFragment -- build fix pending
 -- import HodgeReduction.HCGapL4.FrontB6_MaintenanceOnly -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R476_MultiFrontWave6Audit -- temporarily disabled for build fix
--- import HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance -- temporarily disabled for build fix
+import HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance
 -- import HodgeReduction.HCGapL4.FrontE7_ConditionalTransferFromConcrete -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontD7_Deligne1982ExpandedFragment -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R480_MultiFrontWave7Audit -- temporarily disabled for build fix
--- import HodgeReduction.HCGapL4.FrontC8_V56MTBridge -- temporarily disabled for build fix
+import HodgeReduction.HCGapL4.FrontC8_V56MTBridge
 -- import HodgeReduction.HCGapL4.FrontD8_PerCodimDeligneWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R483_MultiFrontWave8Audit -- temporarily disabled for build fix
--- import HodgeReduction.HCGapL4.FrontC9_EVIIHodgeNumberComputation -- temporarily disabled for build fix
+import HodgeReduction.HCGapL4.FrontC9_EVIIHodgeNumberComputation
 -- import HodgeReduction.HCGapL4.FrontD9_Codim2NeronSeveri -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R486_MultiFrontWave9Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontD10_Codim3AndGeneralStrategy -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE8_ConcreteProfileR405Bridge -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R489_MultiFrontWave10Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontD11_CMAbelianGaussianHC -- temporarily disabled for build fix
--- import HodgeReduction.HCGapL4.FrontC10_V56CohomologyIdentification -- temporarily disabled for build fix
+import HodgeReduction.HCGapL4.FrontC10_V56CohomologyIdentification
 -- import HodgeReduction.HCGapL4.R492_MultiFrontWave11Audit -- temporarily disabled for build fix
--- import HodgeReduction.HCGapL4.FrontC11_ShimuraBettiComputation -- temporarily disabled for build fix
+import HodgeReduction.HCGapL4.FrontC11_ShimuraBettiComputation
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix
@@ -489,7 +489,6 @@ import HodgeReduction.HCGapL4.ClassicalCartanProof
 -- import HodgeReduction.HCGapL4.MTWitnessDecomposition -- imported by MainTheorem
 -- import HodgeReduction.HCGapL4.V56CohomologyRank -- temporarily disabled for build fix
 -- import HodgeReduction.Concrete -- temporarily disabled for build fix
-
 
 
 

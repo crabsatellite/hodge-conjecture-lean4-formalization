@@ -378,10 +378,10 @@ def config : ChainAudit.ProjectConfig := {
     },
     {
       id := "G-hcgap-l4-multifront"
-      title := "HCGapL4 multi-front Layer-4 attack waves (R420 -- R476)"
+      title := "HCGapL4 multi-front Layer-4 attack waves (R420 -- R552)"
       status := "active-open"
       summary :=
-        "Active exploratory attack waves on the L4 / cohomology-profile / connectedness pipeline: FrontA (Deligne H0 sheaf realization), FrontB (Baily--Borel connectedness), FrontC (E_7 low-degree Hodge numbers + Hodge polynomial algebra + all-degree rank adapter), FrontD (E_7 -> CM Chow correspondence + Deligne 1982 minimal fragment), FrontE (real-carrier profile matching + R405 conditional transfer feed).  Audits R451 / R456 / R460 / R465 / R470 / R476 are wave-level summaries.  R476 reports 51 cumulative substantive theorems across 6 waves; Front D activated in Wave 6."
+        "Active exploratory attack waves on the L4 / cohomology-profile / connectedness pipeline: FrontA (Deligne H0 sheaf realization), FrontB (Baily--Borel connectedness), FrontC (E_7 low-degree Hodge numbers + Hodge polynomial algebra + all-degree rank adapter + EVII/V56/Shimura expected Betti profile), FrontD (E_7 -> CM Chow correspondence + Deligne 1982 minimal fragment), FrontE (real-carrier profile matching + R405 conditional transfer feed).  Audits R451 / R456 / R460 / R465 / R470 / R476 are wave-level summaries.  R552 certifies the expected Shimura Betti profile degree-by-degree from EVII compact-dual Hodge sums plus the isolated V56 degree-3 contribution, without adding axioms."
       files := [
         "HodgeReduction/HCGapL4/FrontA_DeligneH0SheafRealization.lean",
         "HodgeReduction/HCGapL4/FrontB_BailyBorelConnectedness.lean",
@@ -389,6 +389,11 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction/HCGapL4/FrontD_E7ToCMChowCorrespondence.lean",
         "HodgeReduction/HCGapL4/FrontE_RealCarrierProfileMatching.lean",
         "HodgeReduction/HCGapL4/FrontC6_AllDegreeHodgeRankAdapter.lean",
+        "HodgeReduction/HCGapL4/FrontC7_E7EVIIHodgeDiamondInstance.lean",
+        "HodgeReduction/HCGapL4/FrontC8_V56MTBridge.lean",
+        "HodgeReduction/HCGapL4/FrontC9_EVIIHodgeNumberComputation.lean",
+        "HodgeReduction/HCGapL4/FrontC10_V56CohomologyIdentification.lean",
+        "HodgeReduction/HCGapL4/FrontC11_ShimuraBettiComputation.lean",
         "HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean",
         "HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean",
         "HodgeReduction/HCGapL4/R451_MultiFrontFrontierAudit.lean",
@@ -398,7 +403,15 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction/HCGapL4/R470_MultiFrontWave5Audit.lean",
         "HodgeReduction/HCGapL4/R476_MultiFrontWave6Audit.lean"
       ]
-      decls := []
+      decls := [
+        "HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance.e7EVIICompactDualHodgeDiamond",
+        "HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance.v56Weight3HodgeDiamond",
+        "HodgeReduction.HCGapL4.FrontC8_V56MTBridge.EVIICompactDual_to_V56_Weight3_Bridge",
+        "HodgeReduction.HCGapL4.FrontC9_EVIIHodgeNumberComputation.eviiCompactDualCertification",
+        "HodgeReduction.HCGapL4.FrontC10_V56CohomologyIdentification.EVII_V56_CohomologyBridge",
+        "HodgeReduction.HCGapL4.FrontC11_ShimuraBettiComputation.shimuraEVIIExpectedBettiKnownHodgeSumCertification_current",
+        "HodgeReduction.HCGapL4.FrontC11_ShimuraBettiComputation.shimura_expected_known_hodgeSum_total"
+      ]
     }
   ]
   researchChains := [
@@ -470,11 +483,11 @@ def config : ChainAudit.ProjectConfig := {
     },
     {
       id := "hcgap-l4-multifront-active"
-      title := "HCGapL4 multi-front attack waves (R420 -- R476)"
+      title := "HCGapL4 multi-front attack waves (R420 -- R552)"
       kind := "active"
       status := "exploratory"
       summary :=
-        "5 parallel attack fronts on the L4 cohomology-profile + connectedness pipeline.  Per-wave audits R451 / R456 / R460 / R465 / R470 / R476 enumerate substantive theorems per round.  R476 announces 51 cumulative substantive theorems across 6 waves with 0 added axioms; Front D activated in Wave 6."
+        "5 parallel attack fronts on the L4 cohomology-profile + connectedness pipeline.  Per-wave audits R451 / R456 / R460 / R465 / R470 / R476 enumerate substantive theorems per round.  R552 extends the FrontC numeric bridge through a buildable EVII compact-dual/V56/Shimura expected Betti profile: all degrees 0..8 are certified by known Hodge sums, with degree 3 explicitly routed through V56 rather than hidden in compact-dual odd cohomology.  No new axiom is added and the route remains exploratory, not a closure claim."
       files := [
         "HodgeReduction/HCGapL4/FrontA_DeligneH0SheafRealization.lean",
         "HodgeReduction/HCGapL4/FrontB_BailyBorelConnectedness.lean",
@@ -482,15 +495,23 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction/HCGapL4/FrontD_E7ToCMChowCorrespondence.lean",
         "HodgeReduction/HCGapL4/FrontE_RealCarrierProfileMatching.lean",
         "HodgeReduction/HCGapL4/FrontC6_AllDegreeHodgeRankAdapter.lean",
+        "HodgeReduction/HCGapL4/FrontC7_E7EVIIHodgeDiamondInstance.lean",
+        "HodgeReduction/HCGapL4/FrontC8_V56MTBridge.lean",
+        "HodgeReduction/HCGapL4/FrontC9_EVIIHodgeNumberComputation.lean",
+        "HodgeReduction/HCGapL4/FrontC10_V56CohomologyIdentification.lean",
+        "HodgeReduction/HCGapL4/FrontC11_ShimuraBettiComputation.lean",
         "HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean",
         "HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean",
         "HodgeReduction/HCGapL4/R476_MultiFrontWave6Audit.lean"
       ]
-      entryDecls := []
+      entryDecls := [
+        "HodgeReduction.HCGapL4.FrontC11_ShimuraBettiComputation.shimuraEVIIExpectedBettiKnownHodgeSumCertification_current",
+        "HodgeReduction.HCGapL4.FrontC11_ShimuraBettiComputation.shimura_expected_known_hodgeSum_total"
+      ]
       gapIds := ["G-hcgap-l4-multifront"]
       dependsOn := ["main-hc-axiom-relative"]
       attackPlan := [
-        "FrontC: enrich the low-degree Hodge polynomial algebra so it feeds the profile-matching dispatcher (FrontE).",
+        "FrontC: connect the R552 expected Shimura Betti/Hodge-sum certification to an honest Matsushima-Borel-Wallach construction; do not replace that gap with a True-valued bridge.",
         "FrontB: replace the abstract connectedness pipeline with the genuine Baily--Borel connectedness theorem for arithmetic quotients.",
         "FrontD: deliver the E_7 -> CM Chow correspondence at codim 1 first, then lift to all p; this would discharge G-l4-mt-correspondence for the canonical case.",
         "Never re-bundle a closed front into a stronger hypothesis; chainAudit treats `def : Prop` placeholders and conjunction shells as hard failures."

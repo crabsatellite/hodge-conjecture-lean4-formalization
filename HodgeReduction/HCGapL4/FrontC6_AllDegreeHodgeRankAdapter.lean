@@ -131,13 +131,13 @@ def AllDegreeHodgePolynomialRankAdapter_current :
         show (if Nat.succ k = 0 then 1 else 0) =
           FrontC4_HodgePolynomialAlgebra.hodgeSumAtDegree
             FrontC4_HodgePolynomialAlgebra.FiniteHodgeDiamondData_current (Nat.succ k)
-        rw [FrontC4_HodgePolynomialAlgebra.hodgeSum_degree1,
-            FrontC4_HodgePolynomialAlgebra.hodgeSum_degree2]
-        cases k with
-        | zero =>
-          simp [FrontC4_HodgePolynomialAlgebra.FiniteHodgeDiamondData_current]
-        | succ k =>
-          simp [FrontC4_HodgePolynomialAlgebra.FiniteHodgeDiamondData_current])
+        unfold FrontC4_HodgePolynomialAlgebra.hodgeSumAtDegree
+        simp [FrontC4_HodgePolynomialAlgebra.FiniteHodgeDiamondData_current]
+        symm
+        apply Finset.card_eq_zero.mpr
+        ext x
+        simp
+        omega)
 
 /-! ## Section 7: R472 markers -/
 

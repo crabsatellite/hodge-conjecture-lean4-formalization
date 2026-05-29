@@ -2,7 +2,7 @@
 
 Audit-generated route map overlaid on the automatic endpoint-closure audit.  The infra output is the single research truth source: use this report to distinguish the main chain, active exploration branches, named gaps, and dead or quarantined routes.
 
-* research chains: **6**  *  named gaps: **8**  *  endpoint count: **8**  *  orphan debt files: **424**  *  taxonomy-labelled debt files: **13**  *  rule-labelled debt files: **414**  *  connectable debt files: **417**  *  build components: **28**  *  branch heads: **73**
+* research chains: **6**  *  named gaps: **8**  *  endpoint count: **8**  *  orphan debt files: **418**  *  taxonomy-labelled debt files: **12**  *  rule-labelled debt files: **409**  *  connectable debt files: **411**  *  build components: **28**  *  branch heads: **73**
 
 ## Decision Summary
 
@@ -59,7 +59,7 @@ graph TD
   chain_main_hc_axiom_relative["Main Mumford--Tate-reduction HC chain\nconditional"]:::main
   chain_unconditional_classical["Unconditional classical paper theorems\nclosed-modulo-cy3-citation"]:::closed
   chain_hcgap_l2_trivial_instances["Layer-2 minimum attack: trivial-instance VarietyCohomologyData\nstable"]:::support
-  chain_hcgap_l4_multifront_active["HCGapL4 multi-front attack waves (R420 -- R476)\nexploratory"]:::active
+  chain_hcgap_l4_multifront_active["HCGapL4 multi-front attack waves (R420 -- R552)\nexploratory"]:::active
   chain_concrete_evii_toy["Concrete EVII sanity-check chain\nclosed-toy"]:::closed
   chain_historical_cone_audits["Historical per-round cone audit drivers (R217 -- R476)\ninfra"]:::support
   gap_G_main_hc{{"Hodge conjecture headline remains axiom-relative\nconditional"}}:::gapOpen
@@ -69,7 +69,7 @@ graph TD
   gap_G_l4_cm_abelian_hc{{"Layer 4-G2: Hodge conjecture for CM abelian varieties (Deligne 1982)\nopen"}}:::gapOpen
   gap_G_l4_mt_correspondence{{"Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian)\nopen"}}:::gapOpen
   gap_G_classical_mathlib_port{{"Classical published-literature axioms awaiting Mathlib port\ndeferred"}}:::gapOpen
-  gap_G_hcgap_l4_multifront{{"HCGapL4 multi-front Layer-4 attack waves (R420 -- R476)\nactive-open"}}:::gapOpen
+  gap_G_hcgap_l4_multifront{{"HCGapL4 multi-front Layer-4 attack waves (R420 -- R552)\nactive-open"}}:::gapOpen
   chain_main_hc_axiom_relative --> gap_G_main_hc
   chain_main_hc_axiom_relative --> gap_G_l1_e7_shimura_tor
   chain_main_hc_axiom_relative --> gap_G_l2_cohomology_construction
@@ -83,7 +83,7 @@ graph TD
   chain_hcgap_l4_multifront_active --> gap_G_hcgap_l4_multifront
   chain_concrete_evii_toy --> chain_main_hc_axiom_relative
   chain_historical_cone_audits --> chain_main_hc_axiom_relative
-  debt_all["Orphan debt by actual imports\n424 files / 28 components / 73 heads"]:::debt
+  debt_all["Orphan debt by actual imports\n418 files / 28 components / 73 heads"]:::debt
   chain_hcgap_l4_multifront_active --> debt_all
 ```
 
@@ -100,7 +100,7 @@ graph TD
   classDef anchor fill:#eef,stroke:#557
   classDef ownerChain fill:#e8f3ff,stroke:#2670b8
   classDef ownerGap fill:#ffd,stroke:#a80
-  debt_root["All off-chain debt\n424 files / 73 heads"]:::debt
+  debt_root["All off-chain debt\n418 files / 73 heads"]:::debt
   anchor_on_chain["imports on-chain"]:::anchor
   anchor_cut["imports cut"]:::anchor
   anchor_quarantine["imports quarantine"]:::anchor
@@ -120,7 +120,7 @@ graph TD
   owner_gap_G_l4_cm_abelian_hc["gap:G-l4-cm-abelian-hc"]:::ownerGap
   owner_gap_G_l4_mt_correspondence["gap:G-l4-mt-correspondence"]:::ownerGap
   owner_gap_G_main_hc["gap:G-main-hc"]:::ownerGap
-  debt_C001["C001\n97 files\n2026-05-29 13:19\ncore-support"]:::debtTaxonomy
+  debt_C001["C001\n97 files\n2026-05-29 14:47\ncore-support"]:::debtTaxonomy
   debt_root --> debt_C001
   debt_C001 --> anchor_cut
   debt_C001 --> anchor_infra
@@ -152,7 +152,7 @@ graph TD
   owner_chain_main_hc_axiom_relative --> debt_C003
   owner_gap_G_l2_cohomology_construction --> debt_C003
   owner_gap_G_main_hc --> debt_C003
-  debt_C004["C004\n297 files\n2026-05-29 05:45\ncore-support"]:::debtTaxonomy
+  debt_C004["C004\n291 files\n2026-05-29 05:45\ncore-support"]:::debtTaxonomy
   debt_root --> debt_C004
   debt_C004 --> anchor_cut
   debt_C004 --> anchor_on_chain
@@ -317,7 +317,7 @@ graph TD
 | `main-hc-axiom-relative` | main | conditional | `G-main-hc`, `G-l1-e7-shimura-tor`, `G-l2-cohomology-construction`, `G-l3-v56-mt-identification`, `G-l4-cm-abelian-hc`, `G-l4-mt-correspondence` | cut: 2, infra: 1, on-chain: 2 |
 | `unconditional-classical` | support | closed-modulo-cy3-citation | `G-classical-mathlib-port` | cut: 1, on-chain: 1 |
 | `hcgap-l2-trivial-instances` | support | stable | `G-l2-cohomology-construction` | registered: 3 |
-| `hcgap-l4-multifront-active` | active | exploratory | `G-hcgap-l4-multifront` | on-disk-unloaded: 4, registered: 5 |
+| `hcgap-l4-multifront-active` | active | exploratory | `G-hcgap-l4-multifront` | on-disk-unloaded: 3, registered: 11 |
 | `concrete-evii-toy` | support | closed-toy | - | on-disk-unloaded: 1 |
 | `historical-cone-audits` | infra | infra | - | on-disk-unloaded: 4 |
 
@@ -332,17 +332,17 @@ graph TD
 | `G-l4-cm-abelian-hc` | open | Layer 4-G2: Hodge conjecture for CM abelian varieties (Deligne 1982) | cut: 2, infra: 1, on-disk-unloaded: 2 |
 | `G-l4-mt-correspondence` | open | Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian) | cut: 3, infra: 1, registered: 1 |
 | `G-classical-mathlib-port` | deferred | Classical published-literature axioms awaiting Mathlib port | cut: 3, on-chain: 2 |
-| `G-hcgap-l4-multifront` | active-open | HCGapL4 multi-front Layer-4 attack waves (R420 -- R476) | on-disk-unloaded: 4, registered: 10 |
+| `G-hcgap-l4-multifront` | active-open | HCGapL4 multi-front Layer-4 attack waves (R420 -- R552) | on-disk-unloaded: 3, registered: 16 |
 
 ## Off-Chain Split
 
 Route-labelled off-chain files are assigned by the audit infra but are not consumed by an endpoint closure yet.  Unlabelled debt is grouped by actual Lean import connectivity in `orphan-debt.md`.
 
-* taxonomy-entry off-chain files: **13**
-* taxonomy-labelled debt files: **13**
-* rule-labelled debt files: **414**
+* taxonomy-entry off-chain files: **12**
+* taxonomy-labelled debt files: **12**
+* rule-labelled debt files: **409**
 * unconnected debt files: **7**
-* unlabelled off-chain debt files: **411**
+* unlabelled off-chain debt files: **406**
 * build-connected debt components: **28**
 
 | path | audit route labels | audit class |
@@ -352,7 +352,6 @@ Route-labelled off-chain files are assigned by the audit infra but are not consu
 | `HodgeReduction/ConeAudits/R467_R470_ConeAudit.lean` | `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-l4-cm-abelian-hc`, `gap:G-l4-mt-correspondence`, `gap:G-main-hc` | on-disk-unloaded |
 | `HodgeReduction/ConeAudits/R471_R476_ConeAudit.lean` | `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-hcgap-l4-multifront`, `gap:G-l4-cm-abelian-hc`, `gap:G-l4-mt-correspondence`, `gap:G-main-hc` | on-disk-unloaded |
 | `HodgeReduction/ConeAudits/R477_R480_ConeAudit.lean` | `chain:concrete-evii-toy`, `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-hcgap-l4-multifront`, `gap:G-l3-v56-mt-identification`, `gap:G-l4-cm-abelian-hc`, `gap:G-l4-mt-correspondence`, `gap:G-main-hc` | on-disk-unloaded |
-| `HodgeReduction/HCGapL4/FrontC6_AllDegreeHodgeRankAdapter.lean` | `chain:hcgap-l4-multifront-active`, `gap:G-hcgap-l4-multifront` | on-disk-unloaded |
 | `HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean` | `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-l4-cm-abelian-hc`, `gap:G-l4-mt-correspondence`, `gap:G-main-hc` | on-disk-unloaded |
 | `HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean` | `chain:hcgap-l4-multifront-active`, `gap:G-hcgap-l4-multifront` | on-disk-unloaded |
 | `HodgeReduction/HCGapL4/R476_MultiFrontWave6Audit.lean` | `chain:hcgap-l4-multifront-active`, `gap:G-hcgap-l4-multifront` | on-disk-unloaded |
@@ -411,9 +410,13 @@ Files:
 - `HodgeReduction/HCGapL2/ProjectiveLine.lean` -- registered
 - `HodgeReduction/HCGapL2/EllipticCurve.lean` -- registered
 
-### `hcgap-l4-multifront-active` -- HCGapL4 multi-front attack waves (R420 -- R476)
+### `hcgap-l4-multifront-active` -- HCGapL4 multi-front attack waves (R420 -- R552)
 
-5 parallel attack fronts on the L4 cohomology-profile + connectedness pipeline.  Per-wave audits R451 / R456 / R460 / R465 / R470 / R476 enumerate substantive theorems per round.  R476 announces 51 cumulative substantive theorems across 6 waves with 0 added axioms; Front D activated in Wave 6.
+5 parallel attack fronts on the L4 cohomology-profile + connectedness pipeline.  Per-wave audits R451 / R456 / R460 / R465 / R470 / R476 enumerate substantive theorems per round.  R552 extends the FrontC numeric bridge through a buildable EVII compact-dual/V56/Shimura expected Betti profile: all degrees 0..8 are certified by known Hodge sums, with degree 3 explicitly routed through V56 rather than hidden in compact-dual odd cohomology.  No new axiom is added and the route remains exploratory, not a closure claim.
+
+Entry declarations:
+- `HodgeReduction.HCGapL4.FrontC11_ShimuraBettiComputation.shimuraEVIIExpectedBettiKnownHodgeSumCertification_current`
+- `HodgeReduction.HCGapL4.FrontC11_ShimuraBettiComputation.shimura_expected_known_hodgeSum_total`
 
 Depends on: `main-hc-axiom-relative`
 
@@ -425,7 +428,12 @@ Files:
 - `HodgeReduction/HCGapL4/FrontC_E7LowDegreeHodgeNumbers.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontD_E7ToCMChowCorrespondence.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontE_RealCarrierProfileMatching.lean` -- registered
-- `HodgeReduction/HCGapL4/FrontC6_AllDegreeHodgeRankAdapter.lean` -- on-disk-unloaded
+- `HodgeReduction/HCGapL4/FrontC6_AllDegreeHodgeRankAdapter.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC7_E7EVIIHodgeDiamondInstance.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC8_V56MTBridge.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC9_EVIIHodgeNumberComputation.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC10_V56CohomologyIdentification.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC11_ShimuraBettiComputation.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean` -- on-disk-unloaded
 - `HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean` -- on-disk-unloaded
 - `HodgeReduction/HCGapL4/R476_MultiFrontWave6Audit.lean` -- on-disk-unloaded
@@ -603,9 +611,18 @@ Files:
 - `HodgeReduction/HCGapL4/CY3E7Bridge.lean` -- cut
 - `HodgeReduction/HCGapL4/CY3VacuityDischarge.lean` -- on-chain
 
-### `G-hcgap-l4-multifront` -- HCGapL4 multi-front Layer-4 attack waves (R420 -- R476)
+### `G-hcgap-l4-multifront` -- HCGapL4 multi-front Layer-4 attack waves (R420 -- R552)
 
-Active exploratory attack waves on the L4 / cohomology-profile / connectedness pipeline: FrontA (Deligne H0 sheaf realization), FrontB (Baily--Borel connectedness), FrontC (E_7 low-degree Hodge numbers + Hodge polynomial algebra + all-degree rank adapter), FrontD (E_7 -> CM Chow correspondence + Deligne 1982 minimal fragment), FrontE (real-carrier profile matching + R405 conditional transfer feed).  Audits R451 / R456 / R460 / R465 / R470 / R476 are wave-level summaries.  R476 reports 51 cumulative substantive theorems across 6 waves; Front D activated in Wave 6.
+Active exploratory attack waves on the L4 / cohomology-profile / connectedness pipeline: FrontA (Deligne H0 sheaf realization), FrontB (Baily--Borel connectedness), FrontC (E_7 low-degree Hodge numbers + Hodge polynomial algebra + all-degree rank adapter + EVII/V56/Shimura expected Betti profile), FrontD (E_7 -> CM Chow correspondence + Deligne 1982 minimal fragment), FrontE (real-carrier profile matching + R405 conditional transfer feed).  Audits R451 / R456 / R460 / R465 / R470 / R476 are wave-level summaries.  R552 certifies the expected Shimura Betti profile degree-by-degree from EVII compact-dual Hodge sums plus the isolated V56 degree-3 contribution, without adding axioms.
+
+Declarations:
+- `HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance.e7EVIICompactDualHodgeDiamond`
+- `HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance.v56Weight3HodgeDiamond`
+- `HodgeReduction.HCGapL4.FrontC8_V56MTBridge.EVIICompactDual_to_V56_Weight3_Bridge`
+- `HodgeReduction.HCGapL4.FrontC9_EVIIHodgeNumberComputation.eviiCompactDualCertification`
+- `HodgeReduction.HCGapL4.FrontC10_V56CohomologyIdentification.EVII_V56_CohomologyBridge`
+- `HodgeReduction.HCGapL4.FrontC11_ShimuraBettiComputation.shimuraEVIIExpectedBettiKnownHodgeSumCertification_current`
+- `HodgeReduction.HCGapL4.FrontC11_ShimuraBettiComputation.shimura_expected_known_hodgeSum_total`
 
 Files:
 - `HodgeReduction/HCGapL4/FrontA_DeligneH0SheafRealization.lean` -- registered
@@ -613,7 +630,12 @@ Files:
 - `HodgeReduction/HCGapL4/FrontC_E7LowDegreeHodgeNumbers.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontD_E7ToCMChowCorrespondence.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontE_RealCarrierProfileMatching.lean` -- registered
-- `HodgeReduction/HCGapL4/FrontC6_AllDegreeHodgeRankAdapter.lean` -- on-disk-unloaded
+- `HodgeReduction/HCGapL4/FrontC6_AllDegreeHodgeRankAdapter.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC7_E7EVIIHodgeDiamondInstance.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC8_V56MTBridge.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC9_EVIIHodgeNumberComputation.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC10_V56CohomologyIdentification.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC11_ShimuraBettiComputation.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean` -- on-disk-unloaded
 - `HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean` -- on-disk-unloaded
 - `HodgeReduction/HCGapL4/R451_MultiFrontFrontierAudit.lean` -- registered
