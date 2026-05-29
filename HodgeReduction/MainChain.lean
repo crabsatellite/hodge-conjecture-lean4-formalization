@@ -79,12 +79,15 @@ def config : ChainAudit.ProjectConfig := {
     ``HodgeReduction.hc_real_classical_cartan,
     ``HodgeReduction.e6_classical_remainder_exists,
     ``HodgeReduction.e6_remainder_transfer,
-    -- R529/R517/R545 decomposition of the former
+    -- R529/R517/R545/R549 decomposition of the former
     -- `mt_correspondence_e7_witness_exists` cut into CM source
-    -- existence, chosen-source codim-one package construction, and
+    -- existence, four chosen-source codim-one package components, and
     -- the remaining non-codim-one lift.
     ``HodgeReduction.e7_cm_witness_exists,
-    ``HodgeReduction.e7_chosen_witness_correspondence_package_codim1_exists,
+    ``HodgeReduction.e7_chosen_witness_hsm_codim1,
+    ``HodgeReduction.e7_chosen_witness_alg_map_codim1,
+    ``HodgeReduction.e7_chosen_witness_square_codim1,
+    ``HodgeReduction.e7_chosen_witness_hodge_surj_codim1,
     ``HodgeReduction.e7_chosen_witness_correspondence_package_non_codim1_exists,
     -- R533 decomposition of the former `cy3_e7_nonexistence_paper_axiom`
     -- into paper §4 stage cuts: Springer/V56, FTS omega, J3(O)
@@ -205,7 +208,7 @@ def config : ChainAudit.ProjectConfig := {
       title := "Hodge conjecture headline remains axiom-relative"
       status := "conditional"
       summary :=
-        "The `hodgeConjectureReal_canonical` endpoint is a kernel-pure composition once the canonical target variety and its two E7-scope facts are accepted.  R542 derives `canonicalMTPackageAt` from the generic R517/R532 MT-witness route; R545 splits the chosen-witness package into a codim-one first target plus the remaining non-codim-one lift; R546 exposes the canonical codim-one HC slice as its own endpoint; R547 routes that codim-one slice through a CM-scoped Lefschetz (1,1) cut rather than the all-codim Deligne/AH bridge.  Full HC is NOT unconditional."
+        "The `hodgeConjectureReal_canonical` endpoint is a kernel-pure composition once the canonical target variety and its two E7-scope facts are accepted.  R542 derives `canonicalMTPackageAt` from the generic R517/R532 MT-witness route; R545 splits the chosen-witness package into a codim-one first target plus the remaining non-codim-one lift; R549 opens that codim-one target into Hodge-morphism, algebraic-map, commuting-square, and Hodge-surjectivity component cuts; R546 exposes the canonical codim-one HC slice as its own endpoint; R547 routes that codim-one slice through a CM-scoped Lefschetz (1,1) cut rather than the all-codim Deligne/AH bridge.  Full HC is NOT unconditional."
       files := [
         "HodgeReduction/MainTheorem.lean",
         "HodgeReduction/OpenHypotheses.lean",
@@ -315,7 +318,7 @@ def config : ChainAudit.ProjectConfig := {
       title := "Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian)"
       status := "open"
       summary :=
-        "R529/R517 decomposes the non-canonical MT correspondence witness; R532 tightens the package cut so it applies only to the witness selected by `e7_cm_witness_exists`, not to arbitrary CM abelian sources.  R545 splits that chosen-source package into the codim-one Chow-correspondence target and the remaining non-codim-one lift.  R546 routes the canonical codim-one package directly through the codim-one cut, so `hodgeConjectureReal_canonical_codim1` does not consume the non-codim-one lift.  R542 still makes the full canonical headline consume the generic all-codim route."
+        "R529/R517 decomposes the non-canonical MT correspondence witness; R532 tightens the package cut so it applies only to the witness selected by `e7_cm_witness_exists`, not to arbitrary CM abelian sources.  R545 splits that chosen-source package into the codim-one Chow-correspondence target and the remaining non-codim-one lift.  R549 decomposes the codim-one target into Hodge-morphism, algebraic-map, commuting-square, and Hodge-surjectivity cuts, so the audit can track exactly which piece of the first Chow-correspondence target remains open.  R546 routes the canonical codim-one package directly through these codim-one pieces, so `hodgeConjectureReal_canonical_codim1` does not consume the non-codim-one lift.  R542 still makes the full canonical headline consume the generic all-codim route."
       files := [
         "HodgeReduction/MainTheorem.lean",
         "HodgeReduction/OpenHypotheses.lean",
@@ -328,6 +331,10 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction.e7_cm_witness_exists",
         "HodgeReduction.e7_chosen_witness_correspondence_package_exists",
         "HodgeReduction.e7_chosen_witness_correspondence_package_codim1_exists",
+        "HodgeReduction.e7_chosen_witness_hsm_codim1",
+        "HodgeReduction.e7_chosen_witness_alg_map_codim1",
+        "HodgeReduction.e7_chosen_witness_square_codim1",
+        "HodgeReduction.e7_chosen_witness_hodge_surj_codim1",
         "HodgeReduction.e7_chosen_witness_correspondence_package_non_codim1_exists",
         "HodgeReduction.canonicalMTPackageAt_codim1",
         "HodgeReduction.hodgeConjectureReal_canonical_codim1",
@@ -395,7 +402,7 @@ def config : ChainAudit.ProjectConfig := {
       kind := "main"
       status := "conditional"
       summary :=
-        "`OpenHypotheses` (R169 cohomology / algClasses bridge + R174a Deligne) composes with `MainTheorem` (R170 four-case main reduction + R171/R188/R542 canonical headline) to reach `hodgeConjectureReal_canonical`.  R546 adds the separately audited codim-one endpoint `hodgeConjectureReal_canonical_codim1`, which consumes the codim-one package cut but not the non-codim-one lift.  R547 also keeps this codim-one endpoint on the Lefschetz (1,1) source-HC route instead of the all-codim Deligne/AH route.  Full HC remains conditional on a canonical target SPV, its E7 factor/scope facts, and the generic MT-witness route."
+        "`OpenHypotheses` (R169 cohomology / algClasses bridge + R174a Deligne) composes with `MainTheorem` (R170 four-case main reduction + R171/R188/R542 canonical headline) to reach `hodgeConjectureReal_canonical`.  R546 adds the separately audited codim-one endpoint `hodgeConjectureReal_canonical_codim1`, which now consumes the four R549 codim-one package component cuts but not the non-codim-one lift.  R547 also keeps this codim-one endpoint on the Lefschetz (1,1) source-HC route instead of the all-codim Deligne/AH route.  Full HC remains conditional on a canonical target SPV, its E7 factor/scope facts, and the generic MT-witness route."
       files := [
         "HodgeReduction/Types.lean",
         "HodgeReduction/ClassicalResults.lean",
@@ -587,6 +594,8 @@ def config : ChainAudit.ProjectConfig := {
       labels := ["chain:main-hc-axiom-relative", "gap:G-l4-mt-correspondence"]
       keywords := [
         "mtCorrespondencePackage", "MTCorrespondencePackageAt",
+        "e7_chosen_witness_hsm_codim1", "e7_chosen_witness_alg_map_codim1",
+        "e7_chosen_witness_square_codim1", "e7_chosen_witness_hodge_surj_codim1",
         "MumfordTate", "varietyHCAt_of_correspondence",
         "ShiftedMTCorrespondence", "CycleClassPresentation",
         "CycleInducedCorrespondence", "MTCorrespondenceMathlibAudit"

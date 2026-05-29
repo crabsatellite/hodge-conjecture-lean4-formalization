@@ -25,8 +25,11 @@ Open mathematical cut(s):
 - `HodgeReduction.deligne_1982_abs_hodge_cm` at `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
 - `HodgeReduction.e6_classical_remainder_exists` at `HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean`
 - `HodgeReduction.e6_remainder_transfer` at `HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean`
-- `HodgeReduction.e7_chosen_witness_correspondence_package_codim1_exists` at `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean`
+- `HodgeReduction.e7_chosen_witness_alg_map_codim1` at `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean`
 - `HodgeReduction.e7_chosen_witness_correspondence_package_non_codim1_exists` at `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean`
+- `HodgeReduction.e7_chosen_witness_hodge_surj_codim1` at `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean`
+- `HodgeReduction.e7_chosen_witness_hsm_codim1` at `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean`
+- `HodgeReduction.e7_chosen_witness_square_codim1` at `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean`
 - `HodgeReduction.e7_cm_witness_exists` at `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean`
 - `HodgeReduction.hc_real_classical_cartan` at `HodgeReduction/MainTheorem.lean`
 - `HodgeReduction.lefschetz_11_hc_real_at_codim1_cm` at `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
@@ -362,7 +365,7 @@ Route-labelled off-chain files are assigned by the audit infra but are not consu
 
 ### `main-hc-axiom-relative` -- Main Mumford--Tate-reduction HC chain
 
-`OpenHypotheses` (R169 cohomology / algClasses bridge + R174a Deligne) composes with `MainTheorem` (R170 four-case main reduction + R171/R188/R542 canonical headline) to reach `hodgeConjectureReal_canonical`.  R546 adds the separately audited codim-one endpoint `hodgeConjectureReal_canonical_codim1`, which consumes the codim-one package cut but not the non-codim-one lift.  R547 also keeps this codim-one endpoint on the Lefschetz (1,1) source-HC route instead of the all-codim Deligne/AH route.  Full HC remains conditional on a canonical target SPV, its E7 factor/scope facts, and the generic MT-witness route.
+`OpenHypotheses` (R169 cohomology / algClasses bridge + R174a Deligne) composes with `MainTheorem` (R170 four-case main reduction + R171/R188/R542 canonical headline) to reach `hodgeConjectureReal_canonical`.  R546 adds the separately audited codim-one endpoint `hodgeConjectureReal_canonical_codim1`, which now consumes the four R549 codim-one package component cuts but not the non-codim-one lift.  R547 also keeps this codim-one endpoint on the Lefschetz (1,1) source-HC route instead of the all-codim Deligne/AH route.  Full HC remains conditional on a canonical target SPV, its E7 factor/scope facts, and the generic MT-witness route.
 
 Entry declarations:
 - `HodgeReduction.hodgeConjectureReal_canonical`
@@ -452,7 +455,7 @@ Files:
 
 ### `G-main-hc` -- Hodge conjecture headline remains axiom-relative
 
-The `hodgeConjectureReal_canonical` endpoint is a kernel-pure composition once the canonical target variety and its two E7-scope facts are accepted.  R542 derives `canonicalMTPackageAt` from the generic R517/R532 MT-witness route; R545 splits the chosen-witness package into a codim-one first target plus the remaining non-codim-one lift; R546 exposes the canonical codim-one HC slice as its own endpoint; R547 routes that codim-one slice through a CM-scoped Lefschetz (1,1) cut rather than the all-codim Deligne/AH bridge.  Full HC is NOT unconditional.
+The `hodgeConjectureReal_canonical` endpoint is a kernel-pure composition once the canonical target variety and its two E7-scope facts are accepted.  R542 derives `canonicalMTPackageAt` from the generic R517/R532 MT-witness route; R545 splits the chosen-witness package into a codim-one first target plus the remaining non-codim-one lift; R549 opens that codim-one target into Hodge-morphism, algebraic-map, commuting-square, and Hodge-surjectivity component cuts; R546 exposes the canonical codim-one HC slice as its own endpoint; R547 routes that codim-one slice through a CM-scoped Lefschetz (1,1) cut rather than the all-codim Deligne/AH bridge.  Full HC is NOT unconditional.
 
 Declarations:
 - `HodgeReduction.CanonicalHCData`
@@ -547,13 +550,17 @@ Files:
 
 ### `G-l4-mt-correspondence` -- Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian)
 
-R529/R517 decomposes the non-canonical MT correspondence witness; R532 tightens the package cut so it applies only to the witness selected by `e7_cm_witness_exists`, not to arbitrary CM abelian sources.  R545 splits that chosen-source package into the codim-one Chow-correspondence target and the remaining non-codim-one lift.  R546 routes the canonical codim-one package directly through the codim-one cut, so `hodgeConjectureReal_canonical_codim1` does not consume the non-codim-one lift.  R542 still makes the full canonical headline consume the generic all-codim route.
+R529/R517 decomposes the non-canonical MT correspondence witness; R532 tightens the package cut so it applies only to the witness selected by `e7_cm_witness_exists`, not to arbitrary CM abelian sources.  R545 splits that chosen-source package into the codim-one Chow-correspondence target and the remaining non-codim-one lift.  R549 decomposes the codim-one target into Hodge-morphism, algebraic-map, commuting-square, and Hodge-surjectivity cuts, so the audit can track exactly which piece of the first Chow-correspondence target remains open.  R546 routes the canonical codim-one package directly through these codim-one pieces, so `hodgeConjectureReal_canonical_codim1` does not consume the non-codim-one lift.  R542 still makes the full canonical headline consume the generic all-codim route.
 
 Declarations:
 - `HodgeReduction.mt_correspondence_e7_witness_exists`
 - `HodgeReduction.e7_cm_witness_exists`
 - `HodgeReduction.e7_chosen_witness_correspondence_package_exists`
 - `HodgeReduction.e7_chosen_witness_correspondence_package_codim1_exists`
+- `HodgeReduction.e7_chosen_witness_hsm_codim1`
+- `HodgeReduction.e7_chosen_witness_alg_map_codim1`
+- `HodgeReduction.e7_chosen_witness_square_codim1`
+- `HodgeReduction.e7_chosen_witness_hodge_surj_codim1`
 - `HodgeReduction.e7_chosen_witness_correspondence_package_non_codim1_exists`
 - `HodgeReduction.canonicalMTPackageAt_codim1`
 - `HodgeReduction.hodgeConjectureReal_canonical_codim1`

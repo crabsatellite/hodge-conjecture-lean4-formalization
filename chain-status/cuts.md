@@ -23,8 +23,11 @@ open by design; non-whitelisted cuts are I1 hard-failures.
 | `HodgeReduction.deligne_1982_abs_hodge_cm` | `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean` | OPEN (whitelisted) |
 | `HodgeReduction.e6_classical_remainder_exists` | `HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean` | OPEN (whitelisted) |
 | `HodgeReduction.e6_remainder_transfer` | `HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean` | OPEN (whitelisted) |
-| `HodgeReduction.e7_chosen_witness_correspondence_package_codim1_exists` | `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean` | OPEN (whitelisted) |
+| `HodgeReduction.e7_chosen_witness_alg_map_codim1` | `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean` | OPEN (whitelisted) |
 | `HodgeReduction.e7_chosen_witness_correspondence_package_non_codim1_exists` | `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean` | OPEN (whitelisted) |
+| `HodgeReduction.e7_chosen_witness_hodge_surj_codim1` | `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean` | OPEN (whitelisted) |
+| `HodgeReduction.e7_chosen_witness_hsm_codim1` | `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean` | OPEN (whitelisted) |
+| `HodgeReduction.e7_chosen_witness_square_codim1` | `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean` | OPEN (whitelisted) |
 | `HodgeReduction.e7_cm_witness_exists` | `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean` | OPEN (whitelisted) |
 | `HodgeReduction.hc_real_classical_cartan` | `HodgeReduction/MainTheorem.lean` | OPEN (whitelisted) |
 | `HodgeReduction.lefschetz_11_hc_real_at_codim1_cm` | `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean` | OPEN (whitelisted) |
