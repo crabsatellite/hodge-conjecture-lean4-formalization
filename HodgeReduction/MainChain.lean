@@ -18,7 +18,8 @@ The root aggregator `HodgeReduction.lean` intentionally is not the audit
 entrypoint: it imports many historical and exploratory front-attack
 files.  The audit entry is this file, whose endpoints isolate the
 headline Mumford--Tate reduction theorem
-(`hodgeConjectureReal_canonical`), the four case-axiom-backed
+(`hodgeConjectureReal_canonical`), its codimension-one slice
+(`hodgeConjectureReal_canonical_codim1`), the four case-axiom-backed
 sub-reductions (`main_reduction_real`), and the paper's unconditional
 classical theorems (`thm_Meyer`, `thm_G2F4`, `thm_E8_vacuous`,
 `thm_cy3_e7_nonexistence`, `thm_subcase3b_vacuous`).
@@ -44,6 +45,7 @@ def config : ChainAudit.ProjectConfig := {
   rootNamespace := `HodgeReduction
   endpoints := [
     ``HodgeReduction.hodgeConjectureReal_canonical,
+    ``HodgeReduction.hodgeConjectureReal_canonical_codim1,
     ``HodgeReduction.main_reduction_real,
     ``HodgeReduction.thm_Meyer,
     ``HodgeReduction.thm_G2F4,
@@ -201,7 +203,7 @@ def config : ChainAudit.ProjectConfig := {
       title := "Hodge conjecture headline remains axiom-relative"
       status := "conditional"
       summary :=
-        "The `hodgeConjectureReal_canonical` endpoint is a kernel-pure composition once the canonical target variety and its two E7-scope facts are accepted.  R542 derives `canonicalMTPackageAt` from the generic R517/R532 MT-witness route, and R545 splits the chosen-witness package into a codim-one first target plus the remaining non-codim-one lift.  It is NOT an unconditional proof of HC."
+        "The `hodgeConjectureReal_canonical` endpoint is a kernel-pure composition once the canonical target variety and its two E7-scope facts are accepted.  R542 derives `canonicalMTPackageAt` from the generic R517/R532 MT-witness route; R545 splits the chosen-witness package into a codim-one first target plus the remaining non-codim-one lift; R546 exposes the canonical codim-one HC slice as its own endpoint, avoiding the non-codim-one lift cut.  Full HC is NOT unconditional."
       files := [
         "HodgeReduction/MainTheorem.lean",
         "HodgeReduction/OpenHypotheses.lean",
@@ -217,9 +219,11 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction.canonicalTargetCohomologyData",
         "HodgeReduction.canonicalTargetAlgClassesData",
         "HodgeReduction.canonicalMTPackageAt",
+        "HodgeReduction.canonicalMTPackageAt_codim1",
         "HodgeReduction.canonicalHCDataByCodim",
         "HodgeReduction.hodgeConjectureReal_from_canonicalHCData",
         "HodgeReduction.hodgeConjectureReal_from_canonicalHCDataByCodim",
+        "HodgeReduction.hodgeConjectureReal_canonical_codim1",
         "HodgeReduction.hodgeConjectureReal_canonical"
       ]
     },
@@ -305,7 +309,7 @@ def config : ChainAudit.ProjectConfig := {
       title := "Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian)"
       status := "open"
       summary :=
-        "R529/R517 decomposes the non-canonical MT correspondence witness; R532 tightens the package cut so it applies only to the witness selected by `e7_cm_witness_exists`, not to arbitrary CM abelian sources.  R545 splits that chosen-source package into the codim-one Chow-correspondence target and the remaining non-codim-one lift.  R542 makes the canonical headline consume this generic route directly: `canonicalMTPackageAt` is now a theorem derived from the canonical target's E7 factor/scope facts and `mt_correspondence_e7_witness_exists`."
+        "R529/R517 decomposes the non-canonical MT correspondence witness; R532 tightens the package cut so it applies only to the witness selected by `e7_cm_witness_exists`, not to arbitrary CM abelian sources.  R545 splits that chosen-source package into the codim-one Chow-correspondence target and the remaining non-codim-one lift.  R546 routes the canonical codim-one package directly through the codim-one cut, so `hodgeConjectureReal_canonical_codim1` does not consume the non-codim-one lift.  R542 still makes the full canonical headline consume the generic all-codim route."
       files := [
         "HodgeReduction/MainTheorem.lean",
         "HodgeReduction/OpenHypotheses.lean",
@@ -319,6 +323,8 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction.e7_chosen_witness_correspondence_package_exists",
         "HodgeReduction.e7_chosen_witness_correspondence_package_codim1_exists",
         "HodgeReduction.e7_chosen_witness_correspondence_package_non_codim1_exists",
+        "HodgeReduction.canonicalMTPackageAt_codim1",
+        "HodgeReduction.hodgeConjectureReal_canonical_codim1",
         "HodgeReduction.HCGapRegistry.L4_G3_MT_Correspondence_E7_To_CMAbelian",
         "HodgeReduction.HCGapRegistry.L34_FullPackage_For_E7Canonical"
       ]
@@ -383,7 +389,7 @@ def config : ChainAudit.ProjectConfig := {
       kind := "main"
       status := "conditional"
       summary :=
-        "`OpenHypotheses` (R169 cohomology / algClasses bridge + R174a Deligne) composes with `MainTheorem` (R170 four-case main reduction + R171/R188/R542 canonical headline) to reach `hodgeConjectureReal_canonical`.  Conditional on a canonical target SPV, its E7 factor/scope facts, and the generic MT-witness route; not an unconditional proof of HC."
+        "`OpenHypotheses` (R169 cohomology / algClasses bridge + R174a Deligne) composes with `MainTheorem` (R170 four-case main reduction + R171/R188/R542 canonical headline) to reach `hodgeConjectureReal_canonical`.  R546 adds the separately audited codim-one endpoint `hodgeConjectureReal_canonical_codim1`, which consumes the codim-one package cut but not the non-codim-one lift.  Full HC remains conditional on a canonical target SPV, its E7 factor/scope facts, and the generic MT-witness route."
       files := [
         "HodgeReduction/Types.lean",
         "HodgeReduction/ClassicalResults.lean",
@@ -393,6 +399,7 @@ def config : ChainAudit.ProjectConfig := {
       ]
       entryDecls := [
         "HodgeReduction.hodgeConjectureReal_canonical",
+        "HodgeReduction.hodgeConjectureReal_canonical_codim1",
         "HodgeReduction.main_reduction_real"
       ]
       gapIds := [
@@ -521,10 +528,12 @@ def config : ChainAudit.ProjectConfig := {
     {
       labels := ["chain:main-hc-axiom-relative", "gap:G-main-hc"]
       keywords := [
-        "hodgeConjectureReal_canonical", "main_reduction_real",
+        "hodgeConjectureReal_canonical", "hodgeConjectureReal_canonical_codim1",
+        "main_reduction_real",
         "canonicalTargetVariety", "canonicalTargetE7Factor",
         "canonicalTargetInKnownE7Scope", "canonicalTargetCohomologyData",
         "canonicalTargetAlgClassesData", "canonicalMTPackageAt",
+        "canonicalMTPackageAt_codim1",
         "canonicalHCDataByCodim", "canonicalE7ShimuraTor",
         "E7ShimuraTor", "VarietyHC", "mtCorrespondenceAt",
         "mtCorrespondencePackage", "CanonicalHCData", "CanonicalHCDataByCodim",

@@ -334,6 +334,32 @@ theorem canonicalMTPackageAt :
   simpa [canonicalTargetCohomologyData, canonicalTargetAlgClassesData]
     using h_pkg p
 
+/-- **R546**: codimension-one canonical MT package, routed directly
+through the R545 codim-one cut.
+
+Unlike `canonicalMTPackageAt`, this theorem does not consume the
+non-codimension-one lift cut.  It isolates the first Front-D target for
+the canonical variety: prove the divisor / Chow-correspondence package
+at `p = 1`, then use it before attempting the all-codimension lift. -/
+theorem canonicalMTPackageAt_codim1 :
+    exists A : SmoothProjectiveVariety Complex,
+      IsCMAbelianVariety A /\
+      Infrastructure.HodgeStructure.MTCorrespondencePackageAt
+        A.cohomology canonicalTargetCohomologyData
+        A.algClasses canonicalTargetAlgClassesData 1 := by
+  let hW :=
+    e7_cm_witness_exists
+      canonicalTargetVariety
+      canonicalTargetE7Factor
+      canonicalTargetInKnownE7Scope
+  refine ⟨Classical.choose hW, Classical.choose_spec hW, ?_⟩
+  simpa [canonicalTargetCohomologyData, canonicalTargetAlgClassesData]
+    using
+      e7_chosen_witness_correspondence_package_codim1_exists
+        canonicalTargetVariety
+        canonicalTargetE7Factor
+        canonicalTargetInKnownE7Scope
+
 /-- **R542**: rebuilt degreewise canonical headline package from the
 canonical target variety plus the generic E7 witness theorem. -/
 noncomputable def canonicalHCDataByCodim : CanonicalHCDataByCodim :=
@@ -372,6 +398,20 @@ theorem hodgeConjectureReal_from_canonicalHCDataByCodim
     ⟨A, hA_CM, h_pkg⟩
   exact Infrastructure.HodgeStructure.varietyHCAt_of_correspondence
     h_pkg ((hyp_HC_CM_Ab_real A hA_CM) p)
+
+/-- **R546**: canonical HC at codimension one, isolated from the
+non-codimension-one MT lift.
+
+This is not full HC for the canonical target.  It proves the `p = 1`
+slice from the codim-one MT package plus the CM abelian HC bridge, so
+the audit can track the first Front-D closure target separately from
+the remaining all-codimension theorem. -/
+theorem hodgeConjectureReal_canonical_codim1 :
+    Infrastructure.HodgeStructure.VarietyHCAt
+      canonicalTargetCohomologyData canonicalTargetAlgClassesData 1 := by
+  rcases canonicalMTPackageAt_codim1 with ⟨A, hA_CM, h_pkg⟩
+  exact Infrastructure.HodgeStructure.varietyHCAt_of_correspondence
+    h_pkg ((hyp_HC_CM_Ab_real A hA_CM) 1)
 
 /-- **R171/R173/R188 HEADLINE**: The **Hodge Conjecture holds for the
 canonical E_7 Shimura variety** in its REAL form (no Unit trick).
