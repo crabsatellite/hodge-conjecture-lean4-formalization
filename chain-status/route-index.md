@@ -2,7 +2,7 @@
 
 Decision-first index for the next research round.  Treat this as the base map: the proof spine is the endpoint closure, route labels are generated automatically from the Lean import graph, file names, source text, and audit route taxonomy.  The goal is to show which proof routes are active, blocked, closed, or orphaned before a new agent starts editing.
 
-* endpoints: **7**  *  open mathematical cuts: **16**  *  route taxonomy chains: **6**  *  route taxonomy gaps: **8**  *  debt components: **30**  *  branch heads: **74**
+* endpoints: **7**  *  open mathematical cuts: **17**  *  route taxonomy chains: **6**  *  route taxonomy gaps: **8**  *  debt components: **30**  *  branch heads: **74**
 
 ## Audit Truth Contract
 
@@ -29,7 +29,8 @@ Kernel cut ledger.  These are audit-visible unresolved constants on the endpoint
 - `HodgeReduction.cy3_inherits_e7_factor` in `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
 - `HodgeReduction.cy3_mtd_isSemisimple` in `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
 - `HodgeReduction.deligne_1982_abs_hodge_cm` in `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
-- `HodgeReduction.e6_factor_classical_transfer` in `HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean`
+- `HodgeReduction.e6_classical_remainder_exists` in `HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean`
+- `HodgeReduction.e6_remainder_transfer` in `HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean`
 - `HodgeReduction.e7_chosen_witness_correspondence_package_exists` in `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean`
 - `HodgeReduction.e7_cm_witness_exists` in `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean`
 - `HodgeReduction.hc_real_classical_cartan` in `HodgeReduction/MainTheorem.lean`
@@ -72,7 +73,7 @@ Active exploratory attack waves on the L4 / cohomology-profile / connectedness p
 | endpoint | mathematical cuts | full axiom count |
 |----------|-------------------|-----------------:|
 | `HodgeReduction.hodgeConjectureReal_canonical` | `HodgeReduction.canonicalE7ShimuraTor` | 4 |
-| `HodgeReduction.main_reduction_real` | `HodgeReduction.SmoothProjectiveVariety.algClasses`, `HodgeReduction.SmoothProjectiveVariety.cohomology`, `HodgeReduction.absHodgeClassesAtDegree`, `HodgeReduction.abs_hodge_implies_algebraic`, `HodgeReduction.cy3_e7_excludes_e6`, +10 more | 18 |
+| `HodgeReduction.main_reduction_real` | `HodgeReduction.SmoothProjectiveVariety.algClasses`, `HodgeReduction.SmoothProjectiveVariety.cohomology`, `HodgeReduction.absHodgeClassesAtDegree`, `HodgeReduction.abs_hodge_implies_algebraic`, `HodgeReduction.cy3_e7_excludes_e6`, +11 more | 19 |
 | `HodgeReduction.thm_Meyer` | - | 0 |
 | `HodgeReduction.thm_G2F4` | - | 3 |
 | `HodgeReduction.thm_E8_vacuous` | - | 3 |
@@ -92,7 +93,8 @@ Open mathematical cut ledger:
 - `HodgeReduction.cy3_inherits_e7_factor` in `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
 - `HodgeReduction.cy3_mtd_isSemisimple` in `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
 - `HodgeReduction.deligne_1982_abs_hodge_cm` in `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
-- `HodgeReduction.e6_factor_classical_transfer` in `HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean`
+- `HodgeReduction.e6_classical_remainder_exists` in `HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean`
+- `HodgeReduction.e6_remainder_transfer` in `HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean`
 - `HodgeReduction.e7_chosen_witness_correspondence_package_exists` in `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean`
 - `HodgeReduction.e7_cm_witness_exists` in `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean`
 - `HodgeReduction.hc_real_classical_cartan` in `HodgeReduction/MainTheorem.lean`
@@ -118,7 +120,7 @@ Open mathematical cut ledger:
 | `gap:G-l3-v56-mt-identification` | open | `chain:main-hc-axiom-relative` | `HodgeReduction.HCGapRegistry.L3_G1_V56_PureHodgeStructure_W3_HodgeDiamond`, `HodgeReduction.HCGapRegistry.L3_G2_V56_To_E7_Variety_Cohomology_Identification` | infra: 1, registered: 4 |
 | `gap:G-l4-cm-abelian-hc` | open | `chain:main-hc-axiom-relative` | `HodgeReduction.hyp_HC_CM_Ab_real`, `HodgeReduction.absHodgeClassesAtDegree`, `HodgeReduction.deligne_1982_abs_hodge_cm`, +2 more | cut: 2, infra: 1, on-disk-unloaded: 2 |
 | `gap:G-l4-mt-correspondence` | open | `chain:main-hc-axiom-relative` | `HodgeReduction.mt_correspondence_e7_witness_exists`, `HodgeReduction.e7_cm_witness_exists`, `HodgeReduction.e7_chosen_witness_correspondence_package_exists`, +2 more | cut: 2, infra: 1, registered: 1 |
-| `gap:G-classical-mathlib-port` | deferred | `chain:unconditional-classical` | `HodgeReduction.cy3_e7_nonexistence_paper_axiom`, `HodgeReduction.cy3_e7_springer_stage`, `HodgeReduction.cy3_e7_fts_omega_stage`, +6 more | cut: 2, on-chain: 2 |
+| `gap:G-classical-mathlib-port` | deferred | `chain:unconditional-classical` | `HodgeReduction.e6_classical_remainder_exists`, `HodgeReduction.e6_remainder_transfer`, `HodgeReduction.e6_factor_classical_transfer`, +9 more | cut: 3, on-chain: 2 |
 | `gap:G-hcgap-l4-multifront` | active-open | `chain:hcgap-l4-multifront-active` | - | on-disk-unloaded: 4, registered: 10 |
 
 ## Automatic Route Labels

@@ -125,7 +125,9 @@ axiom hc_real_classical_cartan :
 `α_s`-string parity + Grothendieck-Chern algebraicity argument that
 forces algebraicity of every `E_6`-invariant Hodge class.
 
-Closes by: `E6_V27_vacuity` (existing theorem).
+Closes by: E6/V27 weight-parity plus the R534 chosen classical
+remainder bridge (`e6_classical_remainder_exists` and
+`e6_remainder_transfer`), followed by the classical Cartan theorem.
 
 Paper source: §5; rem:E6-V27-vacuity (case (ii) of `\ref{thm:main}`). -/
 theorem hc_real_e6_case :

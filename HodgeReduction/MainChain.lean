@@ -65,11 +65,12 @@ def config : ChainAudit.ProjectConfig := {
     ``HodgeReduction.absHodgeClassesAtDegree,
     ``HodgeReduction.deligne_1982_abs_hodge_cm,
     ``HodgeReduction.abs_hodge_implies_algebraic,
-    -- R172/R528 case cuts used by main_reduction_real. The E6 case is
-    -- now derived from a smaller transfer cut plus classical Cartan; the
-    -- CY3 case is a theorem routed through the R530 bridge below.
+    -- R172/R528/R534 case cuts used by main_reduction_real. The E6 case
+    -- now consumes a chosen classical remainder plus a transfer cut; the
+    -- CY3 case is a theorem routed through the R530/R531/R533 bridge below.
     ``HodgeReduction.hc_real_classical_cartan,
-    ``HodgeReduction.e6_factor_classical_transfer,
+    ``HodgeReduction.e6_classical_remainder_exists,
+    ``HodgeReduction.e6_remainder_transfer,
     -- R529/R517 decomposition of the former
     -- `mt_correspondence_e7_witness_exists` cut into CM source
     -- existence and chosen-source correspondence package construction.
@@ -308,14 +309,18 @@ def config : ChainAudit.ProjectConfig := {
       title := "Classical published-literature axioms awaiting Mathlib port"
       status := "deferred"
       summary :=
-        "Meyer / Kostant G_2 / Kostant F_4 / SV1 E_8 are already kernel-pure theorems (paper-grade proofs over R120/R121 structure refactor).  R533 decomposes `cy3_e7_nonexistence_paper_axiom` into Springer/V56, FTS omega, and J3(O) nonrealization stage cuts.  R530/R531 refines the CY3 reduction bridge with weak factor inheritance plus CY3 semisimplicity and CY3-scoped E7/E6 exclusivity."
+        "Meyer / Kostant G_2 / Kostant F_4 / SV1 E_8 are already kernel-pure theorems (paper-grade proofs over R120/R121 structure refactor).  R534 decomposes the E6 branch through a chosen classical remainder plus transfer cut.  R533 decomposes `cy3_e7_nonexistence_paper_axiom` into Springer/V56, FTS omega, and J3(O) nonrealization stage cuts.  R530/R531 refines the CY3 reduction bridge with weak factor inheritance plus CY3 semisimplicity and CY3-scoped E7/E6 exclusivity."
       files := [
         "HodgeReduction/ClassicalResults.lean",
+        "HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean",
         "HodgeReduction/HCGapL4/CY3NonexistenceStageCuts.lean",
         "HodgeReduction/HCGapL4/CY3E7Bridge.lean",
         "HodgeReduction/HCGapL4/CY3VacuityDischarge.lean"
       ]
       decls := [
+        "HodgeReduction.e6_classical_remainder_exists",
+        "HodgeReduction.e6_remainder_transfer",
+        "HodgeReduction.e6_factor_classical_transfer",
         "HodgeReduction.cy3_e7_nonexistence_paper_axiom",
         "HodgeReduction.cy3_e7_springer_stage",
         "HodgeReduction.cy3_e7_fts_omega_stage",
@@ -549,6 +554,8 @@ def config : ChainAudit.ProjectConfig := {
       labels := ["chain:unconditional-classical", "gap:G-classical-mathlib-port"]
       keywords := [
         "Meyer", "kostant_vacuity", "SV1_vacuity", "cy3_e7_nonexistence",
+        "e6_classical_remainder_exists", "e6_remainder_transfer",
+        "e6_factor_classical_transfer",
         "cy3_e7_springer_stage", "cy3_e7_fts_omega_stage",
         "cy3_e7_j3o_nonrealization_stage",
         "cy3_inherits_e7_factor", "cy3_mtd_isSemisimple", "cy3_e7_excludes_e6",

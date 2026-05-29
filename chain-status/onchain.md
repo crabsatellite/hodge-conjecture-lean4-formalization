@@ -5,7 +5,7 @@ Files whose declarations are transitively reached from `config.endpoints` (and a
 
 * on-chain: **6**  *  cut: **7**  *  total reached: **13**
 
-* closure constants: 7574  *  closure modules: 276
+* closure constants: 7576  *  closure modules: 276
 
 
 ## On-chain files
@@ -26,7 +26,7 @@ Files whose declarations are transitively reached from `config.endpoints` (and a
 | `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean` | 7 | 3 |
 | `HodgeReduction/HCGapL4/CY3E7Bridge.lean` | 8 | 3 |
 | `HodgeReduction/HCGapL4/CY3NonexistenceStageCuts.lean` | 28 | 3 |
-| `HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean` | 4 | 1 |
+| `HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean` | 6 | 2 |
 | `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean` | 5 | 2 |
 | `HodgeReduction/MainTheorem.lean` | 32 | 1 |
 | `HodgeReduction/OpenHypotheses.lean` | 462 | 204 |

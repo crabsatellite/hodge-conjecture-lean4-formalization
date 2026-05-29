@@ -21,7 +21,8 @@ Open mathematical cut(s):
 - `HodgeReduction.cy3_inherits_e7_factor` at `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
 - `HodgeReduction.cy3_mtd_isSemisimple` at `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
 - `HodgeReduction.deligne_1982_abs_hodge_cm` at `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
-- `HodgeReduction.e6_factor_classical_transfer` at `HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean`
+- `HodgeReduction.e6_classical_remainder_exists` at `HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean`
+- `HodgeReduction.e6_remainder_transfer` at `HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean`
 - `HodgeReduction.e7_chosen_witness_correspondence_package_exists` at `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean`
 - `HodgeReduction.e7_cm_witness_exists` at `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean`
 - `HodgeReduction.hc_real_classical_cartan` at `HodgeReduction/MainTheorem.lean`
@@ -352,7 +353,7 @@ graph TD
 | `G-l3-v56-mt-identification` | open | Layer 3: V_56 -- H^3(S_Γ^tor, -- Hodge-structure identification | infra: 1, registered: 4 |
 | `G-l4-cm-abelian-hc` | open | Layer 4-G2: Hodge conjecture for CM abelian varieties (Deligne 1982) | cut: 2, infra: 1, on-disk-unloaded: 2 |
 | `G-l4-mt-correspondence` | open | Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian) | cut: 2, infra: 1, registered: 1 |
-| `G-classical-mathlib-port` | deferred | Classical published-literature axioms awaiting Mathlib port | cut: 2, on-chain: 2 |
+| `G-classical-mathlib-port` | deferred | Classical published-literature axioms awaiting Mathlib port | cut: 3, on-chain: 2 |
 | `G-hcgap-l4-multifront` | active-open | HCGapL4 multi-front Layer-4 attack waves (R420 -- R476) | on-disk-unloaded: 4, registered: 10 |
 
 ## Off-Chain Split
@@ -571,9 +572,12 @@ Files:
 
 ### `G-classical-mathlib-port` -- Classical published-literature axioms awaiting Mathlib port
 
-Meyer / Kostant G_2 / Kostant F_4 / SV1 E_8 are already kernel-pure theorems (paper-grade proofs over R120/R121 structure refactor).  R533 decomposes `cy3_e7_nonexistence_paper_axiom` into Springer/V56, FTS omega, and J3(O) nonrealization stage cuts.  R530/R531 refines the CY3 reduction bridge with weak factor inheritance plus CY3 semisimplicity and CY3-scoped E7/E6 exclusivity.
+Meyer / Kostant G_2 / Kostant F_4 / SV1 E_8 are already kernel-pure theorems (paper-grade proofs over R120/R121 structure refactor).  R534 decomposes the E6 branch through a chosen classical remainder plus transfer cut.  R533 decomposes `cy3_e7_nonexistence_paper_axiom` into Springer/V56, FTS omega, and J3(O) nonrealization stage cuts.  R530/R531 refines the CY3 reduction bridge with weak factor inheritance plus CY3 semisimplicity and CY3-scoped E7/E6 exclusivity.
 
 Declarations:
+- `HodgeReduction.e6_classical_remainder_exists`
+- `HodgeReduction.e6_remainder_transfer`
+- `HodgeReduction.e6_factor_classical_transfer`
 - `HodgeReduction.cy3_e7_nonexistence_paper_axiom`
 - `HodgeReduction.cy3_e7_springer_stage`
 - `HodgeReduction.cy3_e7_fts_omega_stage`
@@ -586,6 +590,7 @@ Declarations:
 
 Files:
 - `HodgeReduction/ClassicalResults.lean` -- on-chain
+- `HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean` -- cut
 - `HodgeReduction/HCGapL4/CY3NonexistenceStageCuts.lean` -- cut
 - `HodgeReduction/HCGapL4/CY3E7Bridge.lean` -- cut
 - `HodgeReduction/HCGapL4/CY3VacuityDischarge.lean` -- on-chain

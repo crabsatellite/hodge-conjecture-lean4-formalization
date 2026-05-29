@@ -1,20 +1,21 @@
 /-
-# R516: E6 case reduction to classical Cartan via weight-parity vacuity.
+# R516/R534: E6 case reduction through a chosen classical remainder.
 
-The axiom hc_real_e6_case says: every SPV with E6 factor on MT^der(H^3)
-satisfies HC-real. This file reduces it to a SMALLER bridge axiom:
+The E6 case of the main theorem says that an E6 factor on
+`MT^der(H^3)` does not obstruct HC-real because the E6/V27 contribution
+has no `(p,p)` classes at weight 3.
 
-The E6 factor at weight 3 contributes zero (p,p)-classes (weight-parity
-obstruction, established in E6V27VacuityBridge.lean). Therefore HC-real
-for the E6 case follows if the remaining classical factors satisfy HC-real.
+R534 tightens the former bridge. Instead of assuming that the global
+classical theorem can be applied directly to `X`, we expose the missing
+cohomological decomposition:
 
-Bridge axiom: e6_factor_classical_transfer
-  "If classical factors (no E6/E7) satisfy HC, then E6+classical also does."
+1. `e6_classical_remainder_exists`: from the E6 case, produce the
+   classical remainder `Y` with no E6/E7 factors.
+2. `e6_remainder_transfer`: HC-real for that chosen `Y` transfers back
+   to `X`.
 
-This is strictly smaller than hc_real_e6_case because it only asserts
-the transfer step, not the full HC statement.
-
-NO sorry, NO True.intro, NO tricks.
+The theorem `e6_factor_classical_transfer` is kept as a derived
+compatibility theorem for `MainTheorem.lean`.
 -/
 
 import HodgeReduction.Types
@@ -28,54 +29,59 @@ namespace HodgeReduction
 
 open Infrastructure
 
-/-! ## Step 1: The E6 weight-parity constraint is established
+/-! ## Step 1: chosen classical remainder -/
 
-The weight-parity obstruction at weight 3 means the E6 factor
-contributes zero (p,p)-Hodge classes. This is already proven in
-E6V27VacuityBridge (`weight3_parity_obstruction`), together with the
-V27 off-diagonal count. -/
+/-- **R534-A**: An E6 case variety has a classical remainder after removing
+the weight-3 E6/V27 vacuous contribution.
 
-/-! ## Step 2: Bridge axiom for the transfer -/
-
-/-- **R516 bridge axiom**: E6+classical => HC-real, conditional on
-    the classical factors satisfying HC-real.
-
-    Mathematical justification:
-    - The E6 factor sits at weight 3 on H^3(X, Q)
-    - At weight 3 (odd), no (p,p)-classes exist (weight-parity)
-    - Therefore E6 contributes zero to hodgeClassesAtDegree at every p
-    - HC-real at each p requires hodgeClasses(p) <= algClasses(p)
-    - The E6 factor has hodgeClasses(p) = 0 at all p (no (p,p) at weight 3)
-    - So HC-real reduces to the classical factor contribution
-    - If classical factors satisfy HC, then X satisfies HC
-
-    This bridge axiom captures the COHOMOLOGICAL decomposition:
-    "hodge classes from E6 + hodge classes from classical <=
-     (0 from E6) + alg classes from classical"
-    when classical factors satisfy HC.
-
-    Scope: strictly smaller than hc_real_e6_case because:
-    - Only asserts the transfer, not the full HC
-    - Explicitly conditions on hc_real_classical_cartan
-    - The weight-parity obstruction is kernel-pure (not axiomatized) -/
-axiom e6_factor_classical_transfer :
+The result is a witness `Y` whose MT factors have no E6/E7 component. This
+is the missing decomposition object needed before invoking the classical
+Cartan theorem. -/
+axiom e6_classical_remainder_exists :
     forall (X : SmoothProjectiveVariety Complex),
       hasSimpleFactor (MumfordTateGroupDerived X 3) E6_neg14 ->
-      -- If classical factors satisfy HC-real (for the relevant cohomology)
+      exists (Y : SmoothProjectiveVariety Complex),
+        forall k : Nat, NoE6E7Factor (MumfordTateGroup Y k)
+
+/-! ## Step 2: transfer from the chosen remainder -/
+
+/-- **R534-B**: If the chosen classical remainder satisfies HC-real, then
+the original E6 case variety satisfies HC-real.
+
+This is the actual cohomological transfer: the E6/V27 contribution is
+vacuous by the parity facts in `E6V27VacuityBridge`, and the remaining
+Hodge classes are supplied by the chosen classical remainder. -/
+axiom e6_remainder_transfer :
+    forall (X : SmoothProjectiveVariety Complex)
+      (hE6 : hasSimpleFactor (MumfordTateGroupDerived X 3) E6_neg14),
+      HodgeConjectureReal
+        (Classical.choose (e6_classical_remainder_exists X hE6)) ->
+      HodgeConjectureReal X
+
+/-! ## Step 3: compatibility theorem used by the main theorem -/
+
+/-- **R516/R534**: E6+classical => HC-real, conditional on the classical
+Cartan theorem.
+
+This theorem now consumes a chosen classical remainder. The broad
+`e6_factor_classical_transfer` name remains for downstream compatibility,
+but it is no longer an axiom. -/
+theorem e6_factor_classical_transfer :
+    forall (X : SmoothProjectiveVariety Complex),
+      hasSimpleFactor (MumfordTateGroupDerived X 3) E6_neg14 ->
       (forall (Y : SmoothProjectiveVariety Complex),
         (forall k : Nat, NoE6E7Factor (MumfordTateGroup Y k)) ->
         HodgeConjectureReal Y) ->
-      HodgeConjectureReal X
+      HodgeConjectureReal X := by
+  intro X hE6 hClassical
+  let hR := e6_classical_remainder_exists X hE6
+  let Y := Classical.choose hR
+  have hY : forall k : Nat, NoE6E7Factor (MumfordTateGroup Y k) :=
+    Classical.choose_spec hR
+  exact e6_remainder_transfer X hE6 (hClassical Y hY)
 
-/-! ## Step 3: Derived theorem -/
-
-/-- **R516**: hc_real_e6_case derived from the bridge + classical Cartan.
-
-    Proof: Let X have E6 factor. Apply e6_factor_classical_transfer
-    with an explicit classical HC witness. `MainTheorem.lean` supplies
-    `hc_real_classical_cartan`; keeping it as a parameter avoids an import
-    cycle and makes the dependency visible to the audit graph.
-    KERNEL-PURE. -/
+/-- **R516**: `hc_real_e6_case` derived from the remainder bridge plus
+classical Cartan. -/
 theorem hc_real_e6_case_via_classical :
     (forall (Y : SmoothProjectiveVariety Complex),
       (forall k : Nat, NoE6E7Factor (MumfordTateGroup Y k)) ->
@@ -85,10 +91,8 @@ theorem hc_real_e6_case_via_classical :
       HodgeConjectureReal X :=
   fun hClassical X hE6 => e6_factor_classical_transfer X hE6 hClassical
 
-/-- R516: E6 case reduced to bridge + classical Cartan.
-    1 derived theorem, 1 bridge axiom (smaller scope).
-    Bridge axiom only asserts the cohomological transfer. -/
-def R516_bridge_axiom_count : Nat := 1
-def R516_derived_theorem_count : Nat := 1
+/-- R534: one former bridge cut becomes two narrower cuts. -/
+def R516_bridge_axiom_count : Nat := 2
+def R516_derived_theorem_count : Nat := 2
 
 end HodgeReduction

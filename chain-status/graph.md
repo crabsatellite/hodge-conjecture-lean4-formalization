@@ -19,6 +19,8 @@ graph TD
   propext{{ "propext" }}:::cut
   HodgeReduction_SmoothProjectiveVariety_algClasses{{ "algClasses" }}:::cut
   HodgeReduction_cy3_inherits_e7_factor{{ "cy3_inherits_e7_factor" }}:::cut
+  HodgeReduction_e6_remainder_transfer{{ "e6_remainder_transfer" }}:::cut
+  HodgeReduction_e6_classical_remainder_exists{{ "e6_classical_remainder_exists" }}:::cut
   HodgeReduction_SmoothProjectiveVariety_cohomology{{ "cohomology" }}:::cut
   HodgeReduction_hc_real_classical_cartan{{ "hc_real_classical_cartan" }}:::cut
   HodgeReduction_canonicalE7ShimuraTor{{ "canonicalE7ShimuraTor" }}:::cut
@@ -28,7 +30,6 @@ graph TD
   HodgeReduction_deligne_1982_abs_hodge_cm{{ "deligne_1982_abs_hodge_cm" }}:::cut
   HodgeReduction_e7_cm_witness_exists{{ "e7_cm_witness_exists" }}:::cut
   Quot_sound{{ "sound" }}:::cut
-  HodgeReduction_e6_factor_classical_transfer{{ "e6_factor_classical_transfer" }}:::cut
   HodgeReduction_cy3_e7_fts_omega_stage{{ "cy3_e7_fts_omega_stage" }}:::cut
   HodgeReduction_hodgeConjectureReal_canonical>"hodgeConjectureReal_canonical"]:::endpoint
   HodgeReduction_main_reduction_real>"main_reduction_real"]:::endpoint
@@ -53,7 +54,8 @@ graph TD
   HodgeReduction_main_reduction_real --> HodgeReduction_cy3_inherits_e7_factor
   HodgeReduction_main_reduction_real --> HodgeReduction_cy3_mtd_isSemisimple
   HodgeReduction_main_reduction_real --> HodgeReduction_deligne_1982_abs_hodge_cm
-  HodgeReduction_main_reduction_real --> HodgeReduction_e6_factor_classical_transfer
+  HodgeReduction_main_reduction_real --> HodgeReduction_e6_classical_remainder_exists
+  HodgeReduction_main_reduction_real --> HodgeReduction_e6_remainder_transfer
   HodgeReduction_main_reduction_real --> HodgeReduction_e7_chosen_witness_correspondence_package_exists
   HodgeReduction_main_reduction_real --> HodgeReduction_e7_cm_witness_exists
   HodgeReduction_main_reduction_real --> HodgeReduction_hc_real_classical_cartan

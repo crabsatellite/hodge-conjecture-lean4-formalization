@@ -24,7 +24,8 @@ Equivalent to running `#print axioms <endpoint>` for each endpoint.
 - `HodgeReduction.cy3_inherits_e7_factor`
 - `HodgeReduction.cy3_mtd_isSemisimple`
 - `HodgeReduction.deligne_1982_abs_hodge_cm`
-- `HodgeReduction.e6_factor_classical_transfer`
+- `HodgeReduction.e6_classical_remainder_exists`
+- `HodgeReduction.e6_remainder_transfer`
 - `HodgeReduction.e7_chosen_witness_correspondence_package_exists`
 - `HodgeReduction.e7_cm_witness_exists`
 - `HodgeReduction.hc_real_classical_cartan`
