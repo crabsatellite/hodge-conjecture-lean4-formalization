@@ -6,7 +6,7 @@ five-way classification:
 
 * quarantine: **0** (explicit failed-route list)
 * infra:      **2** (standalone tools, audit scripts)
-* registered: **62** (configured research route/gap files, off endpoint closure)
+* registered: **63** (configured research route/gap files, off endpoint closure)
 * orphan:     **233** (loaded but unreachable - investigate)
 * on-disk-unloaded: **268** (file exists but not imported by any chain)
 
@@ -23,7 +23,7 @@ five-way classification:
 | `HodgeReduction/HCGapRegistry.lean` | 9 | 0 |
 | `HodgeReduction/MainChain.lean` | 1 | 0 |
 
-## Registered research routes/gaps (62)
+## Registered research routes/gaps (63)
 
 | file | decls | axioms |
 |------|------:|-------:|
@@ -70,6 +70,7 @@ five-way classification:
 | `HodgeReduction/HCGapL4/FrontC45_H8BoundaryDataObstruction.lean` | 6 | 0 |
 | `HodgeReduction/HCGapL4/FrontC46_TargetSurjectivityContainmentCriterion.lean` | 7 | 0 |
 | `HodgeReduction/HCGapL4/FrontC47_TargetContainmentScalarPreimageCriterion.lean` | 7 | 0 |
+| `HodgeReduction/HCGapL4/FrontC48_H8BoundaryRankOneCriterion.lean` | 8 | 0 |
 | `HodgeReduction/HCGapL4/FrontC6_AllDegreeHodgeRankAdapter.lean` | 34 | 0 |
 | `HodgeReduction/HCGapL4/FrontC7_E7EVIIHodgeDiamondInstance.lean` | 34 | 0 |
 | `HodgeReduction/HCGapL4/FrontC8_V56MTBridge.lean` | 28 | 0 |
