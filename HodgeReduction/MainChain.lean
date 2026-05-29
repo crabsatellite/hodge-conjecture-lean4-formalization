@@ -195,7 +195,7 @@ def config : ChainAudit.ProjectConfig := {
       title := "Hodge conjecture headline remains axiom-relative"
       status := "conditional"
       summary :=
-        "The `hodgeConjectureReal_canonical` endpoint is a kernel-pure composition once the single project axiom `canonicalE7ShimuraTor` is accepted.  It is NOT an unconditional proof of HC; it is a Mumford--Tate reduction conditional on the AMRT 1975 construction of an E_{7(-25)}-Hermitian-symmetric-domain quotient packaged as one structure.  The audit should keep that axiom visible at every report build."
+        "The `hodgeConjectureReal_canonical` endpoint is a kernel-pure composition once the single project axiom `canonicalE7ShimuraTor` is accepted.  R536 exposes the exact proof kernel as `CanonicalHCData`: target cohomology, target algebraic classes, and a per-codim MT correspondence package from a CM abelian source.  It is NOT an unconditional proof of HC; it remains conditional on constructing those fields for the AMRT E_{7(-25)} toroidal compactification."
       files := [
         "HodgeReduction/MainTheorem.lean",
         "HodgeReduction/OpenHypotheses.lean",
@@ -203,6 +203,8 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction/HCGapRegistry.lean"
       ]
       decls := [
+        "HodgeReduction.CanonicalHCData",
+        "HodgeReduction.hodgeConjectureReal_from_canonicalHCData",
         "HodgeReduction.hodgeConjectureReal_canonical",
         "HodgeReduction.canonicalE7ShimuraTor"
       ]
@@ -289,7 +291,7 @@ def config : ChainAudit.ProjectConfig := {
       title := "Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian)"
       status := "open"
       summary :=
-        "R529/R517 decomposes the non-canonical MT correspondence witness; R532 tightens the package cut so it applies only to the witness selected by `e7_cm_witness_exists`, not to arbitrary CM abelian sources.  The canonical headline still uses `canonicalE7ShimuraTor.mtCorrespondencePackage` directly."
+        "R529/R517 decomposes the non-canonical MT correspondence witness; R532 tightens the package cut so it applies only to the witness selected by `e7_cm_witness_exists`, not to arbitrary CM abelian sources.  R536 routes the canonical headline through `CanonicalHCData`; that wrapper is still populated from `canonicalE7ShimuraTor.mtCorrespondencePackage`, so the real construction gap remains the per-codim package itself."
       files := [
         "HodgeReduction/MainTheorem.lean",
         "HodgeReduction/OpenHypotheses.lean",
@@ -503,7 +505,8 @@ def config : ChainAudit.ProjectConfig := {
       keywords := [
         "hodgeConjectureReal_canonical", "main_reduction_real",
         "canonicalE7ShimuraTor", "E7ShimuraTor", "VarietyHC",
-        "mtCorrespondencePackage"
+        "mtCorrespondencePackage", "CanonicalHCData",
+        "hodgeConjectureReal_from_canonicalHCData"
       ]
     },
     {

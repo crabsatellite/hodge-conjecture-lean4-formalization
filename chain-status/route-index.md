@@ -114,7 +114,7 @@ Open mathematical cut ledger:
 
 | gap | status | route owners | declarations | files |
 |-----|--------|--------------|--------------|-------|
-| `gap:G-main-hc` | conditional | `chain:main-hc-axiom-relative` | `HodgeReduction.hodgeConjectureReal_canonical`, `HodgeReduction.canonicalE7ShimuraTor` | cut: 2, infra: 1, on-chain: 1 |
+| `gap:G-main-hc` | conditional | `chain:main-hc-axiom-relative` | `HodgeReduction.CanonicalHCData`, `HodgeReduction.hodgeConjectureReal_from_canonicalHCData`, `HodgeReduction.hodgeConjectureReal_canonical`, +1 more | cut: 2, infra: 1, on-chain: 1 |
 | `gap:G-l1-e7-shimura-tor` | open | `chain:main-hc-axiom-relative` | `HodgeReduction.HCGapRegistry.L1_G1_E7ShimuraTor_Inhabited`, `HodgeReduction.E7ShimuraTor` | cut: 1, infra: 1, on-disk-unloaded: 2, registered: 1 |
 | `gap:G-l2-cohomology-construction` | open | `chain:hcgap-l2-trivial-instances`, `chain:main-hc-axiom-relative` | `HodgeReduction.HCGapRegistry.L2_G1_VarietyCohomologyData_Constructed_NonToy`, `HodgeReduction.HCGapRegistry.L2_G2_E7CanonicalCohomology_MatchesPaper`, `HodgeReduction.SmoothProjectiveVariety.cohomology` | infra: 1, on-chain: 1, registered: 4 |
 | `gap:G-l3-v56-mt-identification` | open | `chain:main-hc-axiom-relative` | `HodgeReduction.HCGapRegistry.L3_G1_V56_PureHodgeStructure_W3_HodgeDiamond`, `HodgeReduction.HCGapRegistry.L3_G2_V56_To_E7_Variety_Cohomology_Identification` | infra: 1, registered: 4 |

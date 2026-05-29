@@ -308,6 +308,43 @@ compactification of the E_7-Hermitian symmetric domain quotient.
 This is the substantive closure of HC for the project's main target
 variety. -/
 
+/-- **R536**: the exact data consumed by the canonical headline proof.
+
+This separates the proof kernel from the construction problem. Once a
+target `VarietyCohomologyData`, target `AlgebraicClassesData`, and a
+per-codimension MT correspondence package from a CM abelian source are
+provided, the HC proof is kernel-pure and no longer mentions the ambient
+`E7ShimuraTor` container. -/
+structure CanonicalHCData where
+  cohomologyOfTarget : Infrastructure.HodgeStructure.VarietyCohomologyData
+  algClassesOfTarget :
+    Infrastructure.HodgeStructure.AlgebraicClassesData cohomologyOfTarget
+  mtCorrespondencePackage :
+    exists (A : SmoothProjectiveVariety Complex)
+      (A_cohData : Infrastructure.HodgeStructure.VarietyCohomologyData)
+      (A_algData : Infrastructure.HodgeStructure.AlgebraicClassesData A_cohData),
+      IsCMAbelianVariety A /\
+      Infrastructure.HodgeStructure.VarietyHC A_cohData A_algData /\
+      forall p : Nat,
+        Infrastructure.HodgeStructure.MTCorrespondencePackageAt
+          A_cohData cohomologyOfTarget
+          A_algData algClassesOfTarget p
+
+/-- **R536**: parametric canonical HC theorem.
+
+The only mathematical input is `CanonicalHCData`; the proof just
+unpacks the per-codim MT correspondence package and applies the
+variety-level transfer theorem. -/
+theorem hodgeConjectureReal_from_canonicalHCData
+    (T : CanonicalHCData) :
+    Infrastructure.HodgeStructure.VarietyHC
+      T.cohomologyOfTarget T.algClassesOfTarget := by
+  intro p
+  rcases T.mtCorrespondencePackage with
+    ⟨_A, A_cohData, A_algData, _hA_CM, h_HC_A, h_pkg⟩
+  exact Infrastructure.HodgeStructure.varietyHCAt_of_correspondence
+    (h_pkg p) (h_HC_A p)
+
 /-- **R171/R173/R188 HEADLINE**: The **Hodge Conjecture holds for the
 canonical E_7 Shimura variety** in its REAL form (no Unit trick).
 
@@ -344,12 +381,10 @@ theorem hodgeConjectureReal_canonical :
     Infrastructure.HodgeStructure.VarietyHC
       canonicalE7ShimuraTor.cohomologyOfUnderlying
       canonicalE7ShimuraTor.algClassesOfUnderlying := by
-  intro p
-  -- R188+R189+R190: destructure (A, A_cohData, A_algData, IsCMAb, HC-real for A, per-p MT package)
-  obtain ⟨_A, _A_cohData, _A_algData, _hA_CM, h_HC_A, h_pkg⟩ :=
-    canonicalE7ShimuraTor.mtCorrespondencePackage
-  exact Infrastructure.HodgeStructure.varietyHCAt_of_correspondence
-    (h_pkg p) (h_HC_A p)
+  exact hodgeConjectureReal_from_canonicalHCData
+    { cohomologyOfTarget := canonicalE7ShimuraTor.cohomologyOfUnderlying
+      algClassesOfTarget := canonicalE7ShimuraTor.algClassesOfUnderlying
+      mtCorrespondencePackage := canonicalE7ShimuraTor.mtCorrespondencePackage }
 
 /-! ## Unconditional paper theorems (body: `sorry`) -/
 
