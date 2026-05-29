@@ -494,6 +494,7 @@ import HodgeReduction.HCGapL4.FrontC43_H8BoundaryEqualityRoute
 import HodgeReduction.HCGapL4.FrontC44_BoundaryDataH8Equivalence
 import HodgeReduction.HCGapL4.FrontC45_H8BoundaryDataObstruction
 import HodgeReduction.HCGapL4.FrontC46_TargetSurjectivityContainmentCriterion
+import HodgeReduction.HCGapL4.FrontC47_TargetContainmentScalarPreimageCriterion
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix
