@@ -20,8 +20,8 @@ Equivalent to running `#print axioms <endpoint>` for each endpoint.
 - `HodgeReduction.cy3_e7_nonexistence_paper_axiom`
 - `HodgeReduction.cy3_inherits_e7_factor_exact`
 - `HodgeReduction.deligne_1982_abs_hodge_cm`
+- `HodgeReduction.e6_factor_classical_transfer`
 - `HodgeReduction.hc_real_classical_cartan`
-- `HodgeReduction.hc_real_e6_case`
 - `HodgeReduction.mt_correspondence_e7_witness_exists`
 - `Quot.sound`
 - `propext`

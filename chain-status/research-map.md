@@ -2,7 +2,7 @@
 
 Audit-generated route map overlaid on the automatic endpoint-closure audit.  The infra output is the single research truth source: use this report to distinguish the main chain, active exploration branches, named gaps, and dead or quarantined routes.
 
-* research chains: **6**  *  named gaps: **8**  *  endpoint count: **7**  *  orphan debt files: **429**  *  taxonomy-labelled debt files: **13**  *  rule-labelled debt files: **419**  *  connectable debt files: **422**  *  build components: **31**  *  branch heads: **76**
+* research chains: **6**  *  named gaps: **8**  *  endpoint count: **7**  *  orphan debt files: **428**  *  taxonomy-labelled debt files: **13**  *  rule-labelled debt files: **418**  *  connectable debt files: **421**  *  build components: **31**  *  branch heads: **76**
 
 ## Decision Summary
 
@@ -17,8 +17,8 @@ Open mathematical cut(s):
 - `HodgeReduction.cy3_e7_nonexistence_paper_axiom` at `HodgeReduction/ClassicalResults.lean`
 - `HodgeReduction.cy3_inherits_e7_factor_exact` at `HodgeReduction/HCGapL4/CY3VacuityDischarge.lean`
 - `HodgeReduction.deligne_1982_abs_hodge_cm` at `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
+- `HodgeReduction.e6_factor_classical_transfer` at `HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean`
 - `HodgeReduction.hc_real_classical_cartan` at `HodgeReduction/MainTheorem.lean`
-- `HodgeReduction.hc_real_e6_case` at `HodgeReduction/MainTheorem.lean`
 - `HodgeReduction.mt_correspondence_e7_witness_exists` at `HodgeReduction/MainTheorem.lean`
 
 Active route(s) to work on:
@@ -70,7 +70,7 @@ graph TD
   chain_hcgap_l4_multifront_active --> gap_G_hcgap_l4_multifront
   chain_concrete_evii_toy --> chain_main_hc_axiom_relative
   chain_historical_cone_audits --> chain_main_hc_axiom_relative
-  debt_all["Orphan debt by actual imports\n429 files / 31 components / 76 heads"]:::debt
+  debt_all["Orphan debt by actual imports\n428 files / 31 components / 76 heads"]:::debt
   chain_hcgap_l4_multifront_active --> debt_all
 ```
 
@@ -87,7 +87,7 @@ graph TD
   classDef anchor fill:#eef,stroke:#557
   classDef ownerChain fill:#e8f3ff,stroke:#2670b8
   classDef ownerGap fill:#ffd,stroke:#a80
-  debt_root["All off-chain debt\n429 files / 76 heads"]:::debt
+  debt_root["All off-chain debt\n428 files / 76 heads"]:::debt
   anchor_on_chain["imports on-chain"]:::anchor
   anchor_cut["imports cut"]:::anchor
   anchor_quarantine["imports quarantine"]:::anchor
@@ -107,7 +107,7 @@ graph TD
   owner_gap_G_l4_cm_abelian_hc["gap:G-l4-cm-abelian-hc"]:::ownerGap
   owner_gap_G_l4_mt_correspondence["gap:G-l4-mt-correspondence"]:::ownerGap
   owner_gap_G_main_hc["gap:G-main-hc"]:::ownerGap
-  debt_C001["C001\n76 files\n2026-05-29 10:48\ncore-support"]:::debtTaxonomy
+  debt_C001["C001\n76 files\n2026-05-29 11:09\ncore-support"]:::debtTaxonomy
   debt_root --> debt_C001
   debt_C001 --> anchor_cut
   debt_C001 --> anchor_infra
@@ -126,7 +126,7 @@ graph TD
   owner_gap_G_l3_v56_mt_identification --> debt_C001
   owner_gap_G_l4_mt_correspondence --> debt_C001
   owner_gap_G_main_hc --> debt_C001
-  debt_C002["C002\n24 files\n2026-05-29 09:25\ncore-support"]:::debtRule
+  debt_C002["C002\n23 files\n2026-05-29 11:07\ncore-support"]:::debtRule
   debt_root --> debt_C002
   debt_C002 --> anchor_cut
   debt_C002 --> anchor_on_chain
@@ -371,9 +371,9 @@ Route-labelled off-chain files are assigned by the audit infra but are not consu
 
 * taxonomy-entry off-chain files: **13**
 * taxonomy-labelled debt files: **13**
-* rule-labelled debt files: **419**
+* rule-labelled debt files: **418**
 * unconnected debt files: **7**
-* unlabelled off-chain debt files: **416**
+* unlabelled off-chain debt files: **415**
 * build-connected debt components: **31**
 
 | path | audit route labels | audit class |

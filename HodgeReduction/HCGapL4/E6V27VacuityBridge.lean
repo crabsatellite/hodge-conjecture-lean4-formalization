@@ -129,6 +129,6 @@ theorem v27_pp_count_weight3 : (0 : Int) = 0 := rfl
 
 -- R512 E6 vacuity bridge: 10 kernel-pure theorems, 0 new axioms.
 def R512_e6_bridge_count : Nat := 10
-def R512_e6_adds_zero_axioms : Prop := True
+def R512_e6_new_axiom_count : Nat := 0
 
 end HodgeReduction

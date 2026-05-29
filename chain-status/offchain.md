@@ -7,8 +7,8 @@ five-way classification:
 * quarantine: **0** (explicit failed-route list)
 * infra:      **2** (standalone tools, audit scripts)
 * registered: **20** (configured research route/gap files, off endpoint closure)
-* orphan:     **224** (loaded but unreachable - investigate)
-* on-disk-unloaded: **288** (file exists but not imported by any chain)
+* orphan:     **229** (loaded but unreachable - investigate)
+* on-disk-unloaded: **282** (file exists but not imported by any chain)
 
 
 ## Quarantine (0)
@@ -48,7 +48,7 @@ five-way classification:
 | `HodgeReduction/Infrastructure/Shimura/ToroidalCompactification.lean` | 49 | 0 |
 | `HodgeReduction/Infrastructure/V56HodgeDecomp.lean` | 82 | 0 |
 
-## Orphan (warning - investigate) (224)
+## Orphan (warning - investigate) (229)
 
 | file | decls | axioms |
 |------|------:|-------:|
@@ -92,6 +92,7 @@ five-way classification:
 | `HodgeReduction/HCGapL4/DeligneH0AfterLocallyConstantBundle.lean` | 68 | 0 |
 | `HodgeReduction/HCGapL4/DeligneSchmidCohomologyImportInterface.lean` | 59 | 0 |
 | `HodgeReduction/HCGapL4/DeligneSchmidLowDegreeRankFragment.lean` | 73 | 0 |
+| `HodgeReduction/HCGapL4/E6V27VacuityBridge.lean` | 21 | 0 |
 | `HodgeReduction/HCGapL4/E7CohomologyProfileAdapter.lean` | 62 | 0 |
 | `HodgeReduction/HCGapL4/E7ConnectednessPaperPath.lean` | 66 | 0 |
 | `HodgeReduction/HCGapL4/E7H0RankOneFromAbstractConnectedSource.lean` | 64 | 0 |
@@ -265,6 +266,8 @@ five-way classification:
 | `HodgeReduction/HCGapL4/ToyToRealPackageFamilyWitness.lean` | 44 | 0 |
 | `HodgeReduction/Infrastructure/Automorphic/Basic.lean` | 49 | 0 |
 | `HodgeReduction/Infrastructure/Cohomology/Basic.lean` | 53 | 0 |
+| `HodgeReduction/Infrastructure/DynkinMarks.lean` | 18 | 0 |
+| `HodgeReduction/Infrastructure/E7ParabolicDimensions.lean` | 13 | 0 |
 | `HodgeReduction/Infrastructure/HodgeStructure/Polarised.lean` | 61 | 0 |
 | `HodgeReduction/Infrastructure/J3OInnerProduct.lean` | 3 | 0 |
 | `HodgeReduction/Infrastructure/JordanJ3O.lean` | 83 | 0 |
@@ -273,11 +276,13 @@ five-way classification:
 | `HodgeReduction/Infrastructure/Octonion.lean` | 158 | 0 |
 | `HodgeReduction/Infrastructure/OctonionBasis.lean` | 14 | 0 |
 | `HodgeReduction/Infrastructure/Shimura/Basic.lean` | 72 | 0 |
+| `HodgeReduction/Infrastructure/SimpleLieAlgebraClassification.lean` | 110 | 0 |
 | `HodgeReduction/Infrastructure/V56Basis.lean` | 17 | 0 |
+| `HodgeReduction/Infrastructure/V56BranchingRules.lean` | 18 | 0 |
 | `HodgeReduction/Infrastructure/V56Freudenthal.lean` | 121 | 0 |
 | `HodgeReduction/Infrastructure/V56HodgeRank.lean` | 33 | 0 |
 
-## On-disk-unloaded (288)
+## On-disk-unloaded (282)
 
 Files present in the source tree but NOT imported by the entry script.  Either wire them into the chain, mark them quarantine, or delete them.
 
@@ -400,10 +405,8 @@ Files present in the source tree but NOT imported by the entry script.  Either w
 - `HodgeReduction/HCGapL4/CycleClassMapReplacement.lean`
 - `HodgeReduction/HCGapL4/Deligne1982BoundaryInterface.lean`
 - `HodgeReduction/HCGapL4/DeligneCMHCSkeleton.lean`
-- `HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean`
 - `HodgeReduction/HCGapL4/E6CaseClosureConstraints.lean`
 - `HodgeReduction/HCGapL4/E6CaseProof.lean`
-- `HodgeReduction/HCGapL4/E6V27VacuityBridge.lean`
 - `HodgeReduction/HCGapL4/E7ShimuraDatumToySkeletonV2.lean`
 - `HodgeReduction/HCGapL4/E7ShimuraTorAlgClassesReplacement.lean`
 - `HodgeReduction/HCGapL4/E7ShimuraTorAlgClassesReplacementViaCycleClassMap.lean`
@@ -533,8 +536,6 @@ Files present in the source tree but NOT imported by the entry script.  Either w
 - `HodgeReduction/Infrastructure/Cohomology/TwistedPhiL.lean`
 - `HodgeReduction/Infrastructure/Coxeter/WE7.lean`
 - `HodgeReduction/Infrastructure/CoxeterDegrees.lean`
-- `HodgeReduction/Infrastructure/DynkinMarks.lean`
-- `HodgeReduction/Infrastructure/E7ParabolicDimensions.lean`
 - `HodgeReduction/Infrastructure/HCFramework.lean`
 - `HodgeReduction/Infrastructure/HodgeStructure/GaussManin.lean`
 - `HodgeReduction/Infrastructure/HodgeStructure/MixedHodge.lean`
@@ -560,9 +561,7 @@ Files present in the source tree but NOT imported by the entry script.  Either w
 - `HodgeReduction/Infrastructure/Shimura/MumfordExtension.lean`
 - `HodgeReduction/Infrastructure/Shimura/PeriodDomain.lean`
 - `HodgeReduction/Infrastructure/Shimura/SchubertCells.lean`
-- `HodgeReduction/Infrastructure/SimpleLieAlgebraClassification.lean`
 - `HodgeReduction/Infrastructure/ToroidalDimensions.lean`
-- `HodgeReduction/Infrastructure/V56BranchingRules.lean`
 - `HodgeReduction/Infrastructure/V56HodgeAlgebra.lean`
 - `HodgeReduction/Ledger.lean`
 - `HodgeReduction/MathlibCandidates.lean`

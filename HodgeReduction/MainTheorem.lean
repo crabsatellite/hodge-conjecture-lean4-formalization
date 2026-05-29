@@ -41,6 +41,7 @@ import HodgeReduction.ClassicalResults
 import HodgeReduction.OpenHypotheses
 import HodgeReduction.HCGapL4.CY3VacuityDischarge
 import HodgeReduction.HCGapL4.CMAbelianHCBridge
+import HodgeReduction.HCGapL4.E6CaseClassicalBridge
 
 namespace HodgeReduction
 
@@ -126,10 +127,11 @@ forces algebraicity of every `E_6`-invariant Hodge class.
 Closes by: `E6_V27_vacuity` (existing theorem).
 
 Paper source: §5; rem:E6-V27-vacuity (case (ii) of `\ref{thm:main}`). -/
-axiom hc_real_e6_case :
+theorem hc_real_e6_case :
  ∀ (X : SmoothProjectiveVariety ℂ),
    hasSimpleFactor (MumfordTateGroupDerived X 3) E6_neg14 →
-   HodgeConjectureReal X
+   HodgeConjectureReal X :=
+ hc_real_e6_case_via_classical hc_real_classical_cartan
 
 /-- **R174a** (Deligne 1982 — HC for CM abelian varieties at REAL level):
 every CM abelian variety satisfies HC-real.

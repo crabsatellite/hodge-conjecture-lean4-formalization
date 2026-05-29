@@ -23,21 +23,17 @@ import HodgeReduction.OpenHypotheses
 import HodgeReduction.Infrastructure.SimpleLieAlgebraClassification
 import HodgeReduction.Infrastructure.DynkinMarks
 import HodgeReduction.HCGapL4.E6V27VacuityBridge
-import HodgeReduction.HCGapL4.E6CaseClosureConstraints
 
 namespace HodgeReduction
 
 open Infrastructure
 
-/-! ## Step 1: The E6 weight-parity constraint is established -/
+/-! ## Step 1: The E6 weight-parity constraint is established
 
-/-- The weight-parity obstruction at weight 3 means the E6 factor
-    contributes zero (p,p)-Hodge classes. This is already proven
-    in E6V27VacuityBridge (weight3_parity_obstruction).
-    KERNEL-PURE. -/
-
-/-- Corollary: the E6 V27 contribution to Hodge classes is vacuous.
-    KERNEL-PURE. -/
+The weight-parity obstruction at weight 3 means the E6 factor
+contributes zero (p,p)-Hodge classes. This is already proven in
+E6V27VacuityBridge (`weight3_parity_obstruction`), together with the
+V27 off-diagonal count. -/
 
 /-! ## Step 2: Bridge axiom for the transfer -/
 
@@ -76,20 +72,23 @@ axiom e6_factor_classical_transfer :
 /-- **R516**: hc_real_e6_case derived from the bridge + classical Cartan.
 
     Proof: Let X have E6 factor. Apply e6_factor_classical_transfer
-    with hc_real_classical_cartan as the classical HC witness.
+    with an explicit classical HC witness. `MainTheorem.lean` supplies
+    `hc_real_classical_cartan`; keeping it as a parameter avoids an import
+    cycle and makes the dependency visible to the audit graph.
     KERNEL-PURE. -/
 theorem hc_real_e6_case_via_classical :
+    (forall (Y : SmoothProjectiveVariety Complex),
+      (forall k : Nat, NoE6E7Factor (MumfordTateGroup Y k)) ->
+      HodgeConjectureReal Y) ->
     forall (X : SmoothProjectiveVariety Complex),
       hasSimpleFactor (MumfordTateGroupDerived X 3) E6_neg14 ->
       HodgeConjectureReal X :=
-  fun X hE6 => e6_factor_classical_transfer X hE6
-    (fun Y hNoE6E7 => hc_real_classical_cartan Y hNoE6E7)
+  fun hClassical X hE6 => e6_factor_classical_transfer X hE6 hClassical
 
 /-- R516: E6 case reduced to bridge + classical Cartan.
     1 derived theorem, 1 bridge axiom (smaller scope).
     Bridge axiom only asserts the cohomological transfer. -/
 def R516_bridge_axiom_count : Nat := 1
 def R516_derived_theorem_count : Nat := 1
-def R516_no_tricks : Prop := True
 
 end HodgeReduction

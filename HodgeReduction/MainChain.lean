@@ -65,9 +65,10 @@ def config : ChainAudit.ProjectConfig := {
     ``HodgeReduction.absHodgeClassesAtDegree,
     ``HodgeReduction.deligne_1982_abs_hodge_cm,
     ``HodgeReduction.abs_hodge_implies_algebraic,
-    -- R172 four case-axioms used by main_reduction_real.
+    -- R172/R528 case cuts used by main_reduction_real. The E6 case is
+    -- now derived from a smaller transfer cut plus classical Cartan.
     ``HodgeReduction.hc_real_classical_cartan,
-    ``HodgeReduction.hc_real_e6_case,
+    ``HodgeReduction.e6_factor_classical_transfer,
     ``HodgeReduction.hc_real_cy3_reducible,
     -- R177 universal existence axiom for the MT correspondence
     -- (currently redundant with canonicalE7ShimuraTor's bundled

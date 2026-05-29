@@ -1,11 +1,16 @@
 # HodgeReduction -- all audit findings
 
 
-* total: **8799**  *  FAIL: **0**  *  WARN: **8799**
+* total: **8801**  *  FAIL: **0**  *  WARN: **8801**
 
 
-## W1.orphan (WARN) -- 224
+## W1.orphan (WARN) -- 229
 
+- file `HodgeReduction.Infrastructure.DynkinMarks` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/DynkinMarks.lean)
+- file `HodgeReduction.Infrastructure.SimpleLieAlgebraClassification` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/SimpleLieAlgebraClassification.lean)
+- file `HodgeReduction.Infrastructure.E7ParabolicDimensions` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/E7ParabolicDimensions.lean)
+- file `HodgeReduction.Infrastructure.V56BranchingRules` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/V56BranchingRules.lean)
+- file `HodgeReduction.HCGapL4.E6V27VacuityBridge` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/HCGapL4/E6V27VacuityBridge.lean)
 - file `HodgeReduction.HCGapL4.RealCompatibleE7CarrierProfile` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/HCGapL4/RealCompatibleE7CarrierProfile.lean)
 - file `HodgeReduction.HCGapL4.E7CohomologyProfileAdapter` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/HCGapL4/E7CohomologyProfileAdapter.lean)
 - file `HodgeReduction.HCGapL4.DegreewiseRankE7CohomologyProfile` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/HCGapL4/DegreewiseRankE7CohomologyProfile.lean)
@@ -231,7 +236,12 @@
 - file `HodgeReduction.HCGapL4.FrontB5_CompactificationConnectednessProbe` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/HCGapL4/FrontB5_CompactificationConnectednessProbe.lean)
 - file `HodgeReduction.HCGapL4.FrontE5_HodgePolynomialFeedsProfileMatching` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/HCGapL4/FrontE5_HodgePolynomialFeedsProfileMatching.lean)
 
-## W3.on-disk-orphan (WARN) -- 201
+## W2.unused-import (WARN) -- 2
+
+- compile-prune candidate: on-chain `HodgeReduction.HCGapL4.E6CaseClassicalBridge` imports `HodgeReduction.Infrastructure.DynkinMarks` but reflected declarations consume no project decl from that import closure  (HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean)
+- compile-prune candidate: on-chain `HodgeReduction.HCGapL4.E6CaseClassicalBridge` imports `HodgeReduction.Infrastructure.SimpleLieAlgebraClassification` but reflected declarations consume no project decl from that import closure  (HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean)
+
+## W3.on-disk-orphan (WARN) -- 195
 
 - file `HodgeReduction.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction.lean)
 - file `HodgeReduction/Concrete.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Concrete.lean)
@@ -267,10 +277,8 @@
 - file `HodgeReduction/HCGapL4/CycleClassMapReplacement.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/CycleClassMapReplacement.lean)
 - file `HodgeReduction/HCGapL4/Deligne1982BoundaryInterface.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/Deligne1982BoundaryInterface.lean)
 - file `HodgeReduction/HCGapL4/DeligneCMHCSkeleton.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/DeligneCMHCSkeleton.lean)
-- file `HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean)
 - file `HodgeReduction/HCGapL4/E6CaseClosureConstraints.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/E6CaseClosureConstraints.lean)
 - file `HodgeReduction/HCGapL4/E6CaseProof.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/E6CaseProof.lean)
-- file `HodgeReduction/HCGapL4/E6V27VacuityBridge.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/E6V27VacuityBridge.lean)
 - file `HodgeReduction/HCGapL4/E7ShimuraDatumToySkeletonV2.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/E7ShimuraDatumToySkeletonV2.lean)
 - file `HodgeReduction/HCGapL4/E7ShimuraTorAlgClassesReplacement.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/E7ShimuraTorAlgClassesReplacement.lean)
 - file `HodgeReduction/HCGapL4/E7ShimuraTorAlgClassesReplacementViaCycleClassMap.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/E7ShimuraTorAlgClassesReplacementViaCycleClassMap.lean)
@@ -400,8 +408,6 @@
 - file `HodgeReduction/Infrastructure/Cohomology/TwistedPhiL.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/Cohomology/TwistedPhiL.lean)
 - file `HodgeReduction/Infrastructure/Coxeter/WE7.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/Coxeter/WE7.lean)
 - file `HodgeReduction/Infrastructure/CoxeterDegrees.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/CoxeterDegrees.lean)
-- file `HodgeReduction/Infrastructure/DynkinMarks.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/DynkinMarks.lean)
-- file `HodgeReduction/Infrastructure/E7ParabolicDimensions.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/E7ParabolicDimensions.lean)
 - file `HodgeReduction/Infrastructure/HCFramework.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/HCFramework.lean)
 - file `HodgeReduction/Infrastructure/HodgeStructure/GaussManin.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/HodgeStructure/GaussManin.lean)
 - file `HodgeReduction/Infrastructure/HodgeStructure/MixedHodge.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/HodgeStructure/MixedHodge.lean)
@@ -427,9 +433,7 @@
 - file `HodgeReduction/Infrastructure/Shimura/MumfordExtension.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/Shimura/MumfordExtension.lean)
 - file `HodgeReduction/Infrastructure/Shimura/PeriodDomain.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/Shimura/PeriodDomain.lean)
 - file `HodgeReduction/Infrastructure/Shimura/SchubertCells.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/Shimura/SchubertCells.lean)
-- file `HodgeReduction/Infrastructure/SimpleLieAlgebraClassification.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/SimpleLieAlgebraClassification.lean)
 - file `HodgeReduction/Infrastructure/ToroidalDimensions.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/ToroidalDimensions.lean)
-- file `HodgeReduction/Infrastructure/V56BranchingRules.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/V56BranchingRules.lean)
 - file `HodgeReduction/Infrastructure/V56HodgeAlgebra.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/V56HodgeAlgebra.lean)
 - file `HodgeReduction/Ledger.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Ledger.lean)
 - file `HodgeReduction/MathlibCandidates.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/MathlibCandidates.lean)
@@ -437,9 +441,9 @@
 
 ## W4.skipped-large-orphan-set (WARN) -- 1
 
-- skipped expensive unused-orphan-import scan because 224 loaded modules are classified orphan; use route labels and W3/W1 first, then narrow the audit entry
+- skipped expensive unused-orphan-import scan because 229 loaded modules are classified orphan; use route labels and W3/W1 first, then narrow the audit entry
 
-## W5.prop-def (WARN) -- 3721
+## W5.prop-def (WARN) -- 3722
 
 - Prop-valued definition `HodgeReduction.HCGapL4.R411_Status_OptionB_Recommended_As_Smallest` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/HCGapL4/HCFrontierAfterCohomologyProfileDecomposition.lean)
 - Prop-valued definition `HodgeReduction.HCGapL4.R411_Status_R407_R410_Integrated` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/HCGapL4/HCFrontierAfterCohomologyProfileDecomposition.lean)
@@ -3351,6 +3355,7 @@
 - Prop-valued definition `HodgeReduction.HCGapL4.MathlibRevisitR425Decision.decisionSkipFullAudit` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/HCGapL4/MathlibRealGeometryRevisit_R425_Optional.lean)
 - Prop-valued definition `HodgeReduction.HCGapL4.R425_Output_IsDecision_NotAudit` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/HCGapL4/MathlibRealGeometryRevisit_R425_Optional.lean)
 - Prop-valued definition `HodgeReduction.HCGapL4.R425_Report_OriginalTheoremCone_StillContainsAxiom_Unchanged` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/HCGapL4/MathlibRealGeometryRevisit_R425_Optional.lean)
+- Prop-valued definition `HodgeReduction.Infrastructure.R510_v56_branching_adds_zero_axioms` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/Infrastructure/V56BranchingRules.lean)
 - Prop-valued definition `HodgeReduction.HCGapL4.CMAbelianToySkeleton.L4_G_CMAbelianToySkeleton_To_RealCMAbelianVariety` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/HCGapL4/CMAbelianToySkeleton.lean)
 - Prop-valued definition `HodgeReduction.HCGapL4.CMAbelianToySkeleton.L4_G_CMAbelianToy_MissingActualCMEndomorphisms` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/HCGapL4/CMAbelianToySkeleton.lean)
 - Prop-valued definition `HodgeReduction.HCGapL4.CMAbelianToySkeleton.L4_G_CMAbelianToyHC_To_Deligne1982` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/HCGapL4/CMAbelianToySkeleton.lean)

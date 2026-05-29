@@ -7,8 +7,8 @@ For each orphan, the user should either:
 3. Delete it.
 
 
-* loaded-but-orphan: **224**
-* on-disk-but-unloaded: **288**
+* loaded-but-orphan: **229**
+* on-disk-but-unloaded: **282**
 
 
 ## Loaded-but-orphan (the env has them, no closure)
@@ -53,6 +53,7 @@ For each orphan, the user should either:
 - `HodgeReduction/HCGapL4/DeligneH0AfterLocallyConstantBundle.lean` -- 68 decl(s)
 - `HodgeReduction/HCGapL4/DeligneSchmidCohomologyImportInterface.lean` -- 59 decl(s)
 - `HodgeReduction/HCGapL4/DeligneSchmidLowDegreeRankFragment.lean` -- 73 decl(s)
+- `HodgeReduction/HCGapL4/E6V27VacuityBridge.lean` -- 21 decl(s)
 - `HodgeReduction/HCGapL4/E7CohomologyProfileAdapter.lean` -- 62 decl(s)
 - `HodgeReduction/HCGapL4/E7ConnectednessPaperPath.lean` -- 66 decl(s)
 - `HodgeReduction/HCGapL4/E7H0RankOneFromAbstractConnectedSource.lean` -- 64 decl(s)
@@ -226,6 +227,8 @@ For each orphan, the user should either:
 - `HodgeReduction/HCGapL4/ToyToRealPackageFamilyWitness.lean` -- 44 decl(s)
 - `HodgeReduction/Infrastructure/Automorphic/Basic.lean` -- 49 decl(s)
 - `HodgeReduction/Infrastructure/Cohomology/Basic.lean` -- 53 decl(s)
+- `HodgeReduction/Infrastructure/DynkinMarks.lean` -- 18 decl(s)
+- `HodgeReduction/Infrastructure/E7ParabolicDimensions.lean` -- 13 decl(s)
 - `HodgeReduction/Infrastructure/HodgeStructure/Polarised.lean` -- 61 decl(s)
 - `HodgeReduction/Infrastructure/J3OInnerProduct.lean` -- 3 decl(s)
 - `HodgeReduction/Infrastructure/JordanJ3O.lean` -- 83 decl(s)
@@ -234,7 +237,9 @@ For each orphan, the user should either:
 - `HodgeReduction/Infrastructure/Octonion.lean` -- 158 decl(s)
 - `HodgeReduction/Infrastructure/OctonionBasis.lean` -- 14 decl(s)
 - `HodgeReduction/Infrastructure/Shimura/Basic.lean` -- 72 decl(s)
+- `HodgeReduction/Infrastructure/SimpleLieAlgebraClassification.lean` -- 110 decl(s)
 - `HodgeReduction/Infrastructure/V56Basis.lean` -- 17 decl(s)
+- `HodgeReduction/Infrastructure/V56BranchingRules.lean` -- 18 decl(s)
 - `HodgeReduction/Infrastructure/V56Freudenthal.lean` -- 121 decl(s)
 - `HodgeReduction/Infrastructure/V56HodgeRank.lean` -- 33 decl(s)
 
@@ -359,10 +364,8 @@ For each orphan, the user should either:
 - `HodgeReduction/HCGapL4/CycleClassMapReplacement.lean`
 - `HodgeReduction/HCGapL4/Deligne1982BoundaryInterface.lean`
 - `HodgeReduction/HCGapL4/DeligneCMHCSkeleton.lean`
-- `HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean`
 - `HodgeReduction/HCGapL4/E6CaseClosureConstraints.lean`
 - `HodgeReduction/HCGapL4/E6CaseProof.lean`
-- `HodgeReduction/HCGapL4/E6V27VacuityBridge.lean`
 - `HodgeReduction/HCGapL4/E7ShimuraDatumToySkeletonV2.lean`
 - `HodgeReduction/HCGapL4/E7ShimuraTorAlgClassesReplacement.lean`
 - `HodgeReduction/HCGapL4/E7ShimuraTorAlgClassesReplacementViaCycleClassMap.lean`
@@ -492,8 +495,6 @@ For each orphan, the user should either:
 - `HodgeReduction/Infrastructure/Cohomology/TwistedPhiL.lean`
 - `HodgeReduction/Infrastructure/Coxeter/WE7.lean`
 - `HodgeReduction/Infrastructure/CoxeterDegrees.lean`
-- `HodgeReduction/Infrastructure/DynkinMarks.lean`
-- `HodgeReduction/Infrastructure/E7ParabolicDimensions.lean`
 - `HodgeReduction/Infrastructure/HCFramework.lean`
 - `HodgeReduction/Infrastructure/HodgeStructure/GaussManin.lean`
 - `HodgeReduction/Infrastructure/HodgeStructure/MixedHodge.lean`
@@ -519,9 +520,7 @@ For each orphan, the user should either:
 - `HodgeReduction/Infrastructure/Shimura/MumfordExtension.lean`
 - `HodgeReduction/Infrastructure/Shimura/PeriodDomain.lean`
 - `HodgeReduction/Infrastructure/Shimura/SchubertCells.lean`
-- `HodgeReduction/Infrastructure/SimpleLieAlgebraClassification.lean`
 - `HodgeReduction/Infrastructure/ToroidalDimensions.lean`
-- `HodgeReduction/Infrastructure/V56BranchingRules.lean`
 - `HodgeReduction/Infrastructure/V56HodgeAlgebra.lean`
 - `HodgeReduction/Ledger.lean`
 - `HodgeReduction/MathlibCandidates.lean`

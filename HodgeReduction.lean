@@ -482,14 +482,13 @@ import HodgeReduction.HCGapL2.EllipticCurve
 -- import HodgeReduction.HCGapL4.E7ShimuraTorDecomposition -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.NoetherLefschetzSkeleton -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL2.EVIICohomologyModel -- temporarily disabled for build fix
--- import HodgeReduction.HCGapL4.E6V27VacuityBridge -- temporarily disabled for build fix
+-- import HodgeReduction.HCGapL4.E6V27VacuityBridge -- imported by MainTheorem via E6CaseClassicalBridge
 -- import HodgeReduction.HCGapL4.CY3E7Bridge -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.CY3SpringerDiscriminant -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.CMAbelianHCBridge -- imported by MainTheorem
 -- import HodgeReduction.HCGapL4.MTWitnessDecomposition -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.V56CohomologyRank -- temporarily disabled for build fix
 -- import HodgeReduction.Concrete -- temporarily disabled for build fix
-
 
 
 
