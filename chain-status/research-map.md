@@ -2,7 +2,7 @@
 
 Audit-generated route map overlaid on the automatic endpoint-closure audit.  The infra output is the single research truth source: use this report to distinguish the main chain, active exploration branches, named gaps, and dead or quarantined routes.
 
-* research chains: **6**  *  named gaps: **8**  *  endpoint count: **7**  *  orphan debt files: **425**  *  taxonomy-labelled debt files: **13**  *  rule-labelled debt files: **415**  *  connectable debt files: **418**  *  build components: **30**  *  branch heads: **74**
+* research chains: **6**  *  named gaps: **8**  *  endpoint count: **7**  *  orphan debt files: **424**  *  taxonomy-labelled debt files: **13**  *  rule-labelled debt files: **414**  *  connectable debt files: **417**  *  build components: **28**  *  branch heads: **73**
 
 ## Decision Summary
 
@@ -78,7 +78,7 @@ graph TD
   chain_hcgap_l4_multifront_active --> gap_G_hcgap_l4_multifront
   chain_concrete_evii_toy --> chain_main_hc_axiom_relative
   chain_historical_cone_audits --> chain_main_hc_axiom_relative
-  debt_all["Orphan debt by actual imports\n425 files / 30 components / 74 heads"]:::debt
+  debt_all["Orphan debt by actual imports\n424 files / 28 components / 73 heads"]:::debt
   chain_hcgap_l4_multifront_active --> debt_all
 ```
 
@@ -95,7 +95,7 @@ graph TD
   classDef anchor fill:#eef,stroke:#557
   classDef ownerChain fill:#e8f3ff,stroke:#2670b8
   classDef ownerGap fill:#ffd,stroke:#a80
-  debt_root["All off-chain debt\n425 files / 74 heads"]:::debt
+  debt_root["All off-chain debt\n424 files / 73 heads"]:::debt
   anchor_on_chain["imports on-chain"]:::anchor
   anchor_cut["imports cut"]:::anchor
   anchor_quarantine["imports quarantine"]:::anchor
@@ -115,7 +115,7 @@ graph TD
   owner_gap_G_l4_cm_abelian_hc["gap:G-l4-cm-abelian-hc"]:::ownerGap
   owner_gap_G_l4_mt_correspondence["gap:G-l4-mt-correspondence"]:::ownerGap
   owner_gap_G_main_hc["gap:G-main-hc"]:::ownerGap
-  debt_C001["C001\n76 files\n2026-05-29 11:22\ncore-support"]:::debtTaxonomy
+  debt_C001["C001\n97 files\n2026-05-29 13:19\ncore-support"]:::debtTaxonomy
   debt_root --> debt_C001
   debt_C001 --> anchor_cut
   debt_C001 --> anchor_infra
@@ -134,204 +134,175 @@ graph TD
   owner_gap_G_l3_v56_mt_identification --> debt_C001
   owner_gap_G_l4_mt_correspondence --> debt_C001
   owner_gap_G_main_hc --> debt_C001
-  debt_C002["C002\n21 files\n2026-05-29 11:07\ncore-support"]:::debtRule
+  debt_C002["C002\n1 files\n2026-05-29 09:22\ncore-support"]:::debtRule
   debt_root --> debt_C002
-  debt_C002 --> anchor_cut
   debt_C002 --> anchor_on_chain
-  owner_chain_concrete_evii_toy --> debt_C002
   owner_chain_hcgap_l2_trivial_instances --> debt_C002
-  owner_chain_hcgap_l4_multifront_active --> debt_C002
   owner_chain_main_hc_axiom_relative --> debt_C002
-  owner_chain_unconditional_classical --> debt_C002
-  owner_gap_G_classical_mathlib_port --> debt_C002
-  owner_gap_G_hcgap_l4_multifront --> debt_C002
-  owner_gap_G_l1_e7_shimura_tor --> debt_C002
   owner_gap_G_l2_cohomology_construction --> debt_C002
-  owner_gap_G_l3_v56_mt_identification --> debt_C002
-  owner_gap_G_l4_cm_abelian_hc --> debt_C002
-  owner_gap_G_l4_mt_correspondence --> debt_C002
-  owner_gap_G_main_hc --> debt_C002
-  debt_C003["C003\n1 files\n2026-05-29 09:22\ncore-support"]:::debtRule
+  debt_C003["C003\n3 files\n2026-05-29 08:04\ncore-support"]:::debtRule
   debt_root --> debt_C003
   debt_C003 --> anchor_on_chain
   owner_chain_hcgap_l2_trivial_instances --> debt_C003
   owner_chain_main_hc_axiom_relative --> debt_C003
   owner_gap_G_l2_cohomology_construction --> debt_C003
-  debt_C004["C004\n3 files\n2026-05-29 08:04\ncore-support"]:::debtRule
+  owner_gap_G_main_hc --> debt_C003
+  debt_C004["C004\n297 files\n2026-05-29 05:45\ncore-support"]:::debtTaxonomy
   debt_root --> debt_C004
+  debt_C004 --> anchor_cut
   debt_C004 --> anchor_on_chain
+  owner_chain_hcgap_l4_multifront_active --> debt_C004
+  owner_chain_historical_cone_audits --> debt_C004
+  owner_gap_G_hcgap_l4_multifront --> debt_C004
+  owner_chain_concrete_evii_toy --> debt_C004
   owner_chain_hcgap_l2_trivial_instances --> debt_C004
   owner_chain_main_hc_axiom_relative --> debt_C004
+  owner_chain_unconditional_classical --> debt_C004
+  owner_gap_G_classical_mathlib_port --> debt_C004
+  owner_gap_G_l1_e7_shimura_tor --> debt_C004
   owner_gap_G_l2_cohomology_construction --> debt_C004
+  owner_gap_G_l3_v56_mt_identification --> debt_C004
+  owner_gap_G_l4_cm_abelian_hc --> debt_C004
+  owner_gap_G_l4_mt_correspondence --> debt_C004
   owner_gap_G_main_hc --> debt_C004
-  debt_C005["C005\n297 files\n2026-05-29 05:45\ncore-support"]:::debtTaxonomy
+  debt_C005["C005\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
   debt_root --> debt_C005
   debt_C005 --> anchor_cut
   debt_C005 --> anchor_on_chain
-  owner_chain_hcgap_l4_multifront_active --> debt_C005
-  owner_chain_historical_cone_audits --> debt_C005
-  owner_gap_G_hcgap_l4_multifront --> debt_C005
   owner_chain_concrete_evii_toy --> debt_C005
   owner_chain_hcgap_l2_trivial_instances --> debt_C005
+  owner_chain_hcgap_l4_multifront_active --> debt_C005
   owner_chain_main_hc_axiom_relative --> debt_C005
   owner_chain_unconditional_classical --> debt_C005
   owner_gap_G_classical_mathlib_port --> debt_C005
+  owner_gap_G_hcgap_l4_multifront --> debt_C005
   owner_gap_G_l1_e7_shimura_tor --> debt_C005
   owner_gap_G_l2_cohomology_construction --> debt_C005
   owner_gap_G_l3_v56_mt_identification --> debt_C005
   owner_gap_G_l4_cm_abelian_hc --> debt_C005
   owner_gap_G_l4_mt_correspondence --> debt_C005
   owner_gap_G_main_hc --> debt_C005
-  debt_C006["C006\n1 files\n2026-05-29 05:34\nfailed-pattern"]:::debtDead
+  debt_C006["C006\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
   debt_root --> debt_C006
-  debt_C006 --> anchor_cut
-  debt_C006 --> anchor_on_chain
-  owner_chain_hcgap_l4_multifront_active --> debt_C006
-  owner_chain_main_hc_axiom_relative --> debt_C006
-  owner_chain_unconditional_classical --> debt_C006
-  owner_gap_G_classical_mathlib_port --> debt_C006
-  owner_gap_G_hcgap_l4_multifront --> debt_C006
-  owner_gap_G_l4_cm_abelian_hc --> debt_C006
-  owner_gap_G_l4_mt_correspondence --> debt_C006
-  owner_gap_G_main_hc --> debt_C006
-  debt_C007["C007\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
+  owner_chain_concrete_evii_toy --> debt_C006
+  debt_C007["C007\n1 files\n2026-05-29 02:11\ncore-support"]:::debtTaxonomy
   debt_root --> debt_C007
-  debt_C007 --> anchor_cut
-  debt_C007 --> anchor_on_chain
-  owner_chain_concrete_evii_toy --> debt_C007
-  owner_chain_hcgap_l2_trivial_instances --> debt_C007
-  owner_chain_hcgap_l4_multifront_active --> debt_C007
-  owner_chain_main_hc_axiom_relative --> debt_C007
-  owner_chain_unconditional_classical --> debt_C007
-  owner_gap_G_classical_mathlib_port --> debt_C007
-  owner_gap_G_hcgap_l4_multifront --> debt_C007
   owner_gap_G_l1_e7_shimura_tor --> debt_C007
-  owner_gap_G_l2_cohomology_construction --> debt_C007
-  owner_gap_G_l3_v56_mt_identification --> debt_C007
-  owner_gap_G_l4_cm_abelian_hc --> debt_C007
-  owner_gap_G_l4_mt_correspondence --> debt_C007
-  owner_gap_G_main_hc --> debt_C007
+  owner_chain_main_hc_axiom_relative --> debt_C007
   debt_C008["C008\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
   debt_root --> debt_C008
-  owner_chain_concrete_evii_toy --> debt_C008
+  owner_chain_hcgap_l2_trivial_instances --> debt_C008
+  owner_chain_main_hc_axiom_relative --> debt_C008
+  owner_chain_unconditional_classical --> debt_C008
+  owner_gap_G_classical_mathlib_port --> debt_C008
+  owner_gap_G_l2_cohomology_construction --> debt_C008
   debt_C009["C009\n1 files\n2026-05-29 02:11\ncore-support"]:::debtTaxonomy
   debt_root --> debt_C009
   owner_gap_G_l1_e7_shimura_tor --> debt_C009
   owner_chain_main_hc_axiom_relative --> debt_C009
   debt_C010["C010\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
   debt_root --> debt_C010
-  owner_chain_hcgap_l2_trivial_instances --> debt_C010
-  owner_chain_main_hc_axiom_relative --> debt_C010
+  owner_chain_concrete_evii_toy --> debt_C010
   owner_chain_unconditional_classical --> debt_C010
   owner_gap_G_classical_mathlib_port --> debt_C010
-  owner_gap_G_l2_cohomology_construction --> debt_C010
-  debt_C011["C011\n1 files\n2026-05-29 02:11\ncore-support"]:::debtTaxonomy
+  debt_C011["C011\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
   debt_root --> debt_C011
-  owner_gap_G_l1_e7_shimura_tor --> debt_C011
   owner_chain_main_hc_axiom_relative --> debt_C011
+  owner_gap_G_l3_v56_mt_identification --> debt_C011
   debt_C012["C012\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
   debt_root --> debt_C012
-  owner_chain_concrete_evii_toy --> debt_C012
+  owner_chain_main_hc_axiom_relative --> debt_C012
   owner_chain_unconditional_classical --> debt_C012
   owner_gap_G_classical_mathlib_port --> debt_C012
+  owner_gap_G_l3_v56_mt_identification --> debt_C012
   debt_C013["C013\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
   debt_root --> debt_C013
+  owner_chain_concrete_evii_toy --> debt_C013
   owner_chain_main_hc_axiom_relative --> debt_C013
+  owner_chain_unconditional_classical --> debt_C013
+  owner_gap_G_classical_mathlib_port --> debt_C013
   owner_gap_G_l3_v56_mt_identification --> debt_C013
   debt_C014["C014\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
   debt_root --> debt_C014
-  owner_chain_main_hc_axiom_relative --> debt_C014
-  owner_chain_unconditional_classical --> debt_C014
-  owner_gap_G_classical_mathlib_port --> debt_C014
-  owner_gap_G_l3_v56_mt_identification --> debt_C014
+  owner_chain_concrete_evii_toy --> debt_C014
   debt_C015["C015\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
   debt_root --> debt_C015
-  owner_chain_concrete_evii_toy --> debt_C015
+  owner_chain_hcgap_l2_trivial_instances --> debt_C015
   owner_chain_main_hc_axiom_relative --> debt_C015
-  owner_chain_unconditional_classical --> debt_C015
-  owner_gap_G_classical_mathlib_port --> debt_C015
-  owner_gap_G_l3_v56_mt_identification --> debt_C015
+  owner_gap_G_l2_cohomology_construction --> debt_C015
   debt_C016["C016\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
   debt_root --> debt_C016
   owner_chain_concrete_evii_toy --> debt_C016
-  debt_C017["C017\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
+  debt_C017["C017\n3 files\n2026-05-29 02:11\ncore-support"]:::debtRule
   debt_root --> debt_C017
   owner_chain_hcgap_l2_trivial_instances --> debt_C017
   owner_chain_main_hc_axiom_relative --> debt_C017
   owner_gap_G_l2_cohomology_construction --> debt_C017
-  debt_C018["C018\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
+  debt_C018["C018\n1 files\n2026-05-29 02:11\ncore-support"]:::debt
   debt_root --> debt_C018
-  owner_chain_concrete_evii_toy --> debt_C018
-  debt_C019["C019\n3 files\n2026-05-29 02:11\ncore-support"]:::debtRule
+  debt_C019["C019\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
   debt_root --> debt_C019
-  owner_chain_hcgap_l2_trivial_instances --> debt_C019
   owner_chain_main_hc_axiom_relative --> debt_C019
-  owner_gap_G_l2_cohomology_construction --> debt_C019
-  debt_C020["C020\n1 files\n2026-05-29 02:11\ncore-support"]:::debt
+  owner_gap_G_l3_v56_mt_identification --> debt_C019
+  debt_C020["C020\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
   debt_root --> debt_C020
+  owner_chain_unconditional_classical --> debt_C020
+  owner_gap_G_classical_mathlib_port --> debt_C020
   debt_C021["C021\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
   debt_root --> debt_C021
+  owner_chain_concrete_evii_toy --> debt_C021
   owner_chain_main_hc_axiom_relative --> debt_C021
   owner_gap_G_l3_v56_mt_identification --> debt_C021
   debt_C022["C022\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
   debt_root --> debt_C022
-  owner_chain_unconditional_classical --> debt_C022
-  owner_gap_G_classical_mathlib_port --> debt_C022
+  owner_chain_concrete_evii_toy --> debt_C022
+  owner_chain_historical_cone_audits --> debt_C022
   debt_C023["C023\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
   debt_root --> debt_C023
-  owner_chain_concrete_evii_toy --> debt_C023
   owner_chain_main_hc_axiom_relative --> debt_C023
-  owner_gap_G_l3_v56_mt_identification --> debt_C023
+  owner_gap_G_l4_cm_abelian_hc --> debt_C023
   debt_C024["C024\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
   debt_root --> debt_C024
-  owner_chain_concrete_evii_toy --> debt_C024
-  owner_chain_historical_cone_audits --> debt_C024
+  owner_chain_main_hc_axiom_relative --> debt_C024
+  owner_gap_G_l4_cm_abelian_hc --> debt_C024
   debt_C025["C025\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
   debt_root --> debt_C025
+  owner_chain_concrete_evii_toy --> debt_C025
+  owner_chain_hcgap_l2_trivial_instances --> debt_C025
   owner_chain_main_hc_axiom_relative --> debt_C025
+  owner_gap_G_l2_cohomology_construction --> debt_C025
   owner_gap_G_l4_cm_abelian_hc --> debt_C025
-  debt_C026["C026\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
+  debt_C026["C026\n1 files\n2026-05-29 02:11\ncore-support"]:::debtTaxonomy
   debt_root --> debt_C026
-  owner_chain_main_hc_axiom_relative --> debt_C026
   owner_gap_G_l4_cm_abelian_hc --> debt_C026
+  owner_chain_concrete_evii_toy --> debt_C026
+  owner_chain_main_hc_axiom_relative --> debt_C026
   debt_C027["C027\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
   debt_root --> debt_C027
-  owner_chain_concrete_evii_toy --> debt_C027
   owner_chain_hcgap_l2_trivial_instances --> debt_C027
+  owner_chain_hcgap_l4_multifront_active --> debt_C027
   owner_chain_main_hc_axiom_relative --> debt_C027
+  owner_gap_G_hcgap_l4_multifront --> debt_C027
+  owner_gap_G_l1_e7_shimura_tor --> debt_C027
   owner_gap_G_l2_cohomology_construction --> debt_C027
   owner_gap_G_l4_cm_abelian_hc --> debt_C027
-  debt_C028["C028\n1 files\n2026-05-29 02:11\ncore-support"]:::debtTaxonomy
+  owner_gap_G_l4_mt_correspondence --> debt_C027
+  owner_gap_G_main_hc --> debt_C027
+  debt_C028["C028\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
   debt_root --> debt_C028
-  owner_gap_G_l4_cm_abelian_hc --> debt_C028
+  debt_C028 --> anchor_cut
   owner_chain_concrete_evii_toy --> debt_C028
+  owner_chain_hcgap_l2_trivial_instances --> debt_C028
+  owner_chain_hcgap_l4_multifront_active --> debt_C028
+  owner_chain_historical_cone_audits --> debt_C028
   owner_chain_main_hc_axiom_relative --> debt_C028
-  debt_C029["C029\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
-  debt_root --> debt_C029
-  owner_chain_hcgap_l2_trivial_instances --> debt_C029
-  owner_chain_hcgap_l4_multifront_active --> debt_C029
-  owner_chain_main_hc_axiom_relative --> debt_C029
-  owner_gap_G_hcgap_l4_multifront --> debt_C029
-  owner_gap_G_l1_e7_shimura_tor --> debt_C029
-  owner_gap_G_l2_cohomology_construction --> debt_C029
-  owner_gap_G_l4_cm_abelian_hc --> debt_C029
-  owner_gap_G_l4_mt_correspondence --> debt_C029
-  owner_gap_G_main_hc --> debt_C029
-  debt_C030["C030\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
-  debt_root --> debt_C030
-  debt_C030 --> anchor_cut
-  owner_chain_concrete_evii_toy --> debt_C030
-  owner_chain_hcgap_l2_trivial_instances --> debt_C030
-  owner_chain_hcgap_l4_multifront_active --> debt_C030
-  owner_chain_historical_cone_audits --> debt_C030
-  owner_chain_main_hc_axiom_relative --> debt_C030
-  owner_chain_unconditional_classical --> debt_C030
-  owner_gap_G_hcgap_l4_multifront --> debt_C030
-  owner_gap_G_l1_e7_shimura_tor --> debt_C030
-  owner_gap_G_l2_cohomology_construction --> debt_C030
-  owner_gap_G_l4_cm_abelian_hc --> debt_C030
-  owner_gap_G_l4_mt_correspondence --> debt_C030
-  owner_gap_G_main_hc --> debt_C030
+  owner_chain_unconditional_classical --> debt_C028
+  owner_gap_G_hcgap_l4_multifront --> debt_C028
+  owner_gap_G_l1_e7_shimura_tor --> debt_C028
+  owner_gap_G_l2_cohomology_construction --> debt_C028
+  owner_gap_G_l4_cm_abelian_hc --> debt_C028
+  owner_gap_G_l4_mt_correspondence --> debt_C028
+  owner_gap_G_main_hc --> debt_C028
 ```
 
 ## Chains
@@ -364,10 +335,10 @@ Route-labelled off-chain files are assigned by the audit infra but are not consu
 
 * taxonomy-entry off-chain files: **13**
 * taxonomy-labelled debt files: **13**
-* rule-labelled debt files: **415**
+* rule-labelled debt files: **414**
 * unconnected debt files: **7**
-* unlabelled off-chain debt files: **412**
-* build-connected debt components: **30**
+* unlabelled off-chain debt files: **411**
+* build-connected debt components: **28**
 
 | path | audit route labels | audit class |
 |------|----------------|-------------|

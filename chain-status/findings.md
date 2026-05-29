@@ -1,7 +1,7 @@
 # HodgeReduction -- all audit findings
 
 
-* total: **8799**  *  FAIL: **0**  *  WARN: **8799**
+* total: **8798**  *  FAIL: **0**  *  WARN: **8798**
 
 
 ## W1.orphan (WARN) -- 229
@@ -242,7 +242,7 @@
 - compile-prune candidate: on-chain `HodgeReduction.HCGapL4.E6CaseClassicalBridge` imports `HodgeReduction.Infrastructure.DynkinMarks` but reflected declarations consume no project decl from that import closure  (HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean)
 - compile-prune candidate: on-chain `HodgeReduction.HCGapL4.E6CaseClassicalBridge` imports `HodgeReduction.Infrastructure.SimpleLieAlgebraClassification` but reflected declarations consume no project decl from that import closure  (HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean)
 
-## W3.on-disk-orphan (WARN) -- 192
+## W3.on-disk-orphan (WARN) -- 191
 
 - file `HodgeReduction.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction.lean)
 - file `HodgeReduction/Concrete.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Concrete.lean)
@@ -266,7 +266,6 @@
 - file `HodgeReduction/HCGapL4/CY3NonexistenceDecomposition.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/CY3NonexistenceDecomposition.lean)
 - file `HodgeReduction/HCGapL4/CY3NonexistenceProof.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/CY3NonexistenceProof.lean)
 - file `HodgeReduction/HCGapL4/CY3SpringerDiscriminant.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/CY3SpringerDiscriminant.lean)
-- file `HodgeReduction/HCGapL4/CY3VacuousClosure.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/CY3VacuousClosure.lean)
 - file `HodgeReduction/HCGapL4/CanonicalConeExtractionAudit.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/CanonicalConeExtractionAudit.lean)
 - file `HodgeReduction/HCGapL4/ClassicalCartanGapCard.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/ClassicalCartanGapCard.lean)
 - file `HodgeReduction/HCGapL4/ClassicalCartanProof.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/ClassicalCartanProof.lean)

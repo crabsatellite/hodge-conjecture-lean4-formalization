@@ -472,7 +472,7 @@ import HodgeReduction.HCGapL2.EllipticCurve
 -- import HodgeReduction.HCGapL4.R504_MultiFrontWave16Audit -- temporarily disabled for build fix
 -- import HodgeReduction.Infrastructure.SimpleLieAlgebraClassification -- temporarily disabled for build fix
 -- import HodgeReduction.Infrastructure.ClassicalCominusculeClassification -- temporarily disabled for build fix
--- import HodgeReduction.HCGapL4.ClassicalCartanProof -- build fix pending
+import HodgeReduction.HCGapL4.ClassicalCartanProof
 -- import HodgeReduction.HCGapL4.E6CaseProof -- build fix pending
 -- import HodgeReduction.HCGapL4.CY3NonexistenceProof -- build fix pending
 -- import HodgeReduction.HCGapL4.Lefschetz11Arithmetic -- build fix pending
@@ -489,7 +489,6 @@ import HodgeReduction.HCGapL2.EllipticCurve
 -- import HodgeReduction.HCGapL4.MTWitnessDecomposition -- imported by MainTheorem
 -- import HodgeReduction.HCGapL4.V56CohomologyRank -- temporarily disabled for build fix
 -- import HodgeReduction.Concrete -- temporarily disabled for build fix
-
 
 
 

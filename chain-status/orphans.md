@@ -8,7 +8,7 @@ For each orphan, the user should either:
 
 
 * loaded-but-orphan: **229**
-* on-disk-but-unloaded: **279**
+* on-disk-but-unloaded: **278**
 
 
 ## Loaded-but-orphan (the env has them, no closure)
@@ -352,7 +352,6 @@ For each orphan, the user should either:
 - `HodgeReduction/HCGapL4/CY3NonexistenceDecomposition.lean`
 - `HodgeReduction/HCGapL4/CY3NonexistenceProof.lean`
 - `HodgeReduction/HCGapL4/CY3SpringerDiscriminant.lean`
-- `HodgeReduction/HCGapL4/CY3VacuousClosure.lean`
 - `HodgeReduction/HCGapL4/CanonicalConeExtractionAudit.lean`
 - `HodgeReduction/HCGapL4/ClassicalCartanGapCard.lean`
 - `HodgeReduction/HCGapL4/ClassicalCartanProof.lean`

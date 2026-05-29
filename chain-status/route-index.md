@@ -2,7 +2,7 @@
 
 Decision-first index for the next research round.  Treat this as the base map: the proof spine is the endpoint closure, route labels are generated automatically from the Lean import graph, file names, source text, and audit route taxonomy.  The goal is to show which proof routes are active, blocked, closed, or orphaned before a new agent starts editing.
 
-* endpoints: **7**  *  open mathematical cuts: **19**  *  route taxonomy chains: **6**  *  route taxonomy gaps: **8**  *  debt components: **30**  *  branch heads: **74**
+* endpoints: **7**  *  open mathematical cuts: **19**  *  route taxonomy chains: **6**  *  route taxonomy gaps: **8**  *  debt components: **28**  *  branch heads: **73**
 
 ## Audit Truth Contract
 
@@ -40,7 +40,7 @@ Kernel cut ledger.  These are audit-visible unresolved constants on the endpoint
 Live subgaps exposed by the current route:
 | priority | gap | labelled debt files | declarations | taxonomy files |
 |---------:|-----|--------------------:|--------------|----------------|
-| 1 | `gap:G-hcgap-l4-multifront` (active-open) | 315 | - | `HodgeReduction/HCGapL4/FrontA_DeligneH0SheafRealization.lean`, `HodgeReduction/HCGapL4/FrontB_BailyBorelConnectedness.lean`, `HodgeReduction/HCGapL4/FrontC_E7LowDegreeHodgeNumbers.lean`, +11 more |
+| 1 | `gap:G-hcgap-l4-multifront` (active-open) | 314 | - | `HodgeReduction/HCGapL4/FrontA_DeligneH0SheafRealization.lean`, `HodgeReduction/HCGapL4/FrontB_BailyBorelConnectedness.lean`, `HodgeReduction/HCGapL4/FrontC_E7LowDegreeHodgeNumbers.lean`, +11 more |
 
 Priority uses the project-configured `gapPriority` order first; remaining active subgaps are sorted mechanically by labelled debt file count.  It is a triage order, not a mathematical proof of easiest-first.
 
@@ -133,27 +133,26 @@ These labels are generated for debt files from imports, names, source text, and 
 
 | route label | state | files | dominant bucket | classes | latest |
 |-------------|-------|------:|-----------------|---------|--------|
-| `chain:main-hc-axiom-relative` | active/exploring | 393 | core-support | on-disk-unloaded: 167, orphan: 226 | 2026-05-29 11:22 |
-| `chain:hcgap-l4-multifront-active` | active/exploring | 315 | core-support | on-disk-unloaded: 103, orphan: 212 | 2026-05-29 11:22 |
-| `gap:G-hcgap-l4-multifront` | active/exploring | 315 | core-support | on-disk-unloaded: 103, orphan: 212 | 2026-05-29 11:22 |
-| `gap:G-main-hc` | active/exploring | 290 | core-support | on-disk-unloaded: 78, orphan: 212 | 2026-05-29 11:22 |
-| `gap:G-l1-e7-shimura-tor` | active/exploring | 280 | core-support | on-disk-unloaded: 69, orphan: 211 | 2026-05-29 11:22 |
-| `gap:G-l2-cohomology-construction` | active/exploring | 256 | core-support | on-disk-unloaded: 108, orphan: 148 | 2026-05-29 11:22 |
-| `gap:G-l4-mt-correspondence` | active/exploring | 143 | core-support | on-disk-unloaded: 42, orphan: 101 | 2026-05-29 11:22 |
-| `gap:G-l4-cm-abelian-hc` | active/exploring | 116 | core-support | on-disk-unloaded: 45, orphan: 71 | 2026-05-29 11:22 |
-| `gap:G-l3-v56-mt-identification` | active/exploring | 101 | core-support | on-disk-unloaded: 76, orphan: 25 | 2026-05-29 11:22 |
-| `chain:unconditional-classical` | active/exploring | 37 | core-support | on-disk-unloaded: 31, orphan: 6 | 2026-05-29 11:22 |
-| `chain:hcgap-l2-trivial-instances` | closed/support | 256 | core-support | on-disk-unloaded: 108, orphan: 148 | 2026-05-29 11:22 |
-| `chain:concrete-evii-toy` | closed/support | 159 | core-support | on-disk-unloaded: 85, orphan: 74 | 2026-05-29 11:22 |
-| `gap:G-classical-mathlib-port` | classified | 29 | core-support | on-disk-unloaded: 24, orphan: 5 | 2026-05-29 11:22 |
+| `chain:main-hc-axiom-relative` | active/exploring | 392 | core-support | on-disk-unloaded: 166, orphan: 226 | 2026-05-29 13:19 |
+| `chain:hcgap-l4-multifront-active` | active/exploring | 314 | core-support | on-disk-unloaded: 102, orphan: 212 | 2026-05-29 13:19 |
+| `gap:G-hcgap-l4-multifront` | active/exploring | 314 | core-support | on-disk-unloaded: 102, orphan: 212 | 2026-05-29 13:19 |
+| `gap:G-main-hc` | active/exploring | 289 | core-support | on-disk-unloaded: 77, orphan: 212 | 2026-05-29 13:19 |
+| `gap:G-l1-e7-shimura-tor` | active/exploring | 280 | core-support | on-disk-unloaded: 69, orphan: 211 | 2026-05-29 13:19 |
+| `gap:G-l2-cohomology-construction` | active/exploring | 256 | core-support | on-disk-unloaded: 108, orphan: 148 | 2026-05-29 13:19 |
+| `gap:G-l4-mt-correspondence` | active/exploring | 142 | core-support | on-disk-unloaded: 41, orphan: 101 | 2026-05-29 13:19 |
+| `gap:G-l4-cm-abelian-hc` | active/exploring | 115 | core-support | on-disk-unloaded: 44, orphan: 71 | 2026-05-29 13:19 |
+| `gap:G-l3-v56-mt-identification` | active/exploring | 101 | core-support | on-disk-unloaded: 76, orphan: 25 | 2026-05-29 13:19 |
+| `chain:unconditional-classical` | active/exploring | 36 | core-support | on-disk-unloaded: 30, orphan: 6 | 2026-05-29 13:19 |
+| `chain:hcgap-l2-trivial-instances` | closed/support | 256 | core-support | on-disk-unloaded: 108, orphan: 148 | 2026-05-29 13:19 |
+| `chain:concrete-evii-toy` | closed/support | 159 | core-support | on-disk-unloaded: 85, orphan: 74 | 2026-05-29 13:19 |
+| `gap:G-classical-mathlib-port` | classified | 28 | core-support | on-disk-unloaded: 23, orphan: 5 | 2026-05-29 13:19 |
 | `chain:historical-cone-audits` | classified | 15 | core-support | on-disk-unloaded: 13, orphan: 2 | 2026-05-29 03:18 |
 
 ## Branch Head State Summary
 
 | state | heads | closure files |
 |-------|------:|--------------:|
-| active/exploring | 68 | 1829 |
-| mixed-active/dead | 1 | 1 |
+| active/exploring | 68 | 1834 |
 | closed/support | 4 | 4 |
 | unclassified | 1 | 1 |
 
@@ -163,7 +162,7 @@ Branch heads are off-chain files that no other off-chain debt file imports.  The
 
 | head | state | closure | bucket | automatic route labels |
 |------|-------|--------:|--------|------------------------|
-| `HodgeReduction.lean` | active/exploring | 23 | core-support | `chain:concrete-evii-toy`, `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port`, `gap:G-hcgap-l4-multifront`, +6 more |
+| `HodgeReduction.lean` | active/exploring | 28 | core-support | `chain:concrete-evii-toy`, `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port`, `gap:G-hcgap-l4-multifront`, +6 more |
 | `HodgeReduction/HCGapL4/CY3SpringerDiscriminant.lean` | active/exploring | 5 | core-support | `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port`, `gap:G-hcgap-l4-multifront`, `gap:G-l2-cohomology-construction`, `gap:G-l3-v56-mt-identification`, +1 more |
 | `HodgeReduction/HCGapL2/AbelianSurface.lean` | active/exploring | 1 | core-support | `chain:hcgap-l2-trivial-instances`, `chain:main-hc-axiom-relative`, `gap:G-l2-cohomology-construction` |
 | `HodgeReduction/HCGapL4/E6CaseProof.lean` | active/exploring | 3 | core-support | `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port`, `gap:G-hcgap-l4-multifront`, `gap:G-l2-cohomology-construction`, `gap:G-l4-mt-correspondence` |
@@ -231,7 +230,6 @@ Branch heads are off-chain files that no other off-chain debt file imports.  The
 | `HodgeReduction/ConeAudits/R471_R476_ConeAudit.lean` | active/exploring | 178 | core-support | `chain:concrete-evii-toy`, `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, +5 more |
 | `HodgeReduction/ConeAudits/R467_R470_ConeAudit.lean` | active/exploring | 164 | core-support | `chain:concrete-evii-toy`, `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, +5 more |
 | `HodgeReduction/ConeAudits/R217_ConeAudit.lean` | active/exploring | 13 | core-support | `chain:concrete-evii-toy`, `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, +5 more |
-| `HodgeReduction/HCGapL4/CY3VacuousClosure.lean` | mixed-active/dead | 1 | failed-pattern | `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port`, `gap:G-hcgap-l4-multifront`, `gap:G-l4-cm-abelian-hc`, `gap:G-l4-mt-correspondence`, `gap:G-main-hc` |
 | `HodgeReduction/Infrastructure/Shimura/SchubertCells.lean` | closed/support | 1 | core-support | `chain:concrete-evii-toy` |
 | `HodgeReduction/Infrastructure/Cohomology/TateConjecture.lean` | closed/support | 1 | core-support | `chain:concrete-evii-toy` |
 | `HodgeReduction/Infrastructure/Cohomology/Lattice.lean` | closed/support | 1 | core-support | `chain:concrete-evii-toy` |
@@ -243,36 +241,34 @@ Components are connected by actual Lean imports.  Large components should be spl
 
 | component | state | files | bucket | automatic route labels | anchors |
 |-----------|-------|------:|--------|------------------------|---------|
-| `C001` | active/exploring | 76 | core-support | `chain:concrete-evii-toy`, `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-l2-cohomology-construction`, +4 more | cut: 1, infra: 1, on-chain: 4, registered: 9 |
-| `C002` | active/exploring | 21 | core-support | `chain:concrete-evii-toy`, `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-l2-cohomology-construction`, `gap:G-l3-v56-mt-identification`, +3 more | cut: 4, on-chain: 7, registered: 1 |
-| `C003` | active/exploring | 1 | core-support | `chain:hcgap-l2-trivial-instances`, `chain:main-hc-axiom-relative`, `gap:G-l2-cohomology-construction` | on-chain: 1, registered: 1 |
-| `C004` | active/exploring | 3 | core-support | `chain:hcgap-l2-trivial-instances`, `chain:main-hc-axiom-relative`, `gap:G-l2-cohomology-construction`, `gap:G-main-hc` | on-chain: 3, registered: 3 |
-| `C005` | active/exploring | 297 | core-support | `chain:concrete-evii-toy`, `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-l2-cohomology-construction`, +4 more | cut: 13, on-chain: 69, registered: 63 |
-| `C006` | mixed-active/dead | 1 | failed-pattern | `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port`, `gap:G-hcgap-l4-multifront`, `gap:G-l4-cm-abelian-hc`, `gap:G-l4-mt-correspondence`, `gap:G-main-hc` | cut: 1, on-chain: 1 |
-| `C007` | active/exploring | 1 | core-support | `chain:concrete-evii-toy`, `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-l2-cohomology-construction`, `gap:G-l3-v56-mt-identification`, +3 more | cut: 1, on-chain: 1 |
-| `C008` | closed/support | 1 | core-support | `chain:concrete-evii-toy` | - |
+| `C001` | active/exploring | 97 | core-support | `chain:concrete-evii-toy`, `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-l2-cohomology-construction`, +4 more | cut: 5, infra: 1, on-chain: 11, registered: 10 |
+| `C002` | active/exploring | 1 | core-support | `chain:hcgap-l2-trivial-instances`, `chain:main-hc-axiom-relative`, `gap:G-l2-cohomology-construction` | on-chain: 1, registered: 1 |
+| `C003` | active/exploring | 3 | core-support | `chain:hcgap-l2-trivial-instances`, `chain:main-hc-axiom-relative`, `gap:G-l2-cohomology-construction`, `gap:G-main-hc` | on-chain: 3, registered: 3 |
+| `C004` | active/exploring | 297 | core-support | `chain:concrete-evii-toy`, `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-l2-cohomology-construction`, +4 more | cut: 13, on-chain: 69, registered: 63 |
+| `C005` | active/exploring | 1 | core-support | `chain:concrete-evii-toy`, `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-l2-cohomology-construction`, `gap:G-l3-v56-mt-identification`, +3 more | cut: 1, on-chain: 1 |
+| `C006` | closed/support | 1 | core-support | `chain:concrete-evii-toy` | - |
+| `C007` | active/exploring | 1 | core-support | `chain:main-hc-axiom-relative`, `gap:G-l1-e7-shimura-tor` | - |
+| `C008` | active/exploring | 1 | core-support | `chain:hcgap-l2-trivial-instances`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port`, `gap:G-l2-cohomology-construction` | - |
 | `C009` | active/exploring | 1 | core-support | `chain:main-hc-axiom-relative`, `gap:G-l1-e7-shimura-tor` | - |
-| `C010` | active/exploring | 1 | core-support | `chain:hcgap-l2-trivial-instances`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port`, `gap:G-l2-cohomology-construction` | - |
-| `C011` | active/exploring | 1 | core-support | `chain:main-hc-axiom-relative`, `gap:G-l1-e7-shimura-tor` | - |
-| `C012` | active/exploring | 1 | core-support | `chain:concrete-evii-toy`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port` | - |
-| `C013` | active/exploring | 1 | core-support | `chain:main-hc-axiom-relative`, `gap:G-l3-v56-mt-identification` | - |
-| `C014` | active/exploring | 1 | core-support | `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port`, `gap:G-l3-v56-mt-identification` | - |
-| `C015` | active/exploring | 1 | core-support | `chain:concrete-evii-toy`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port`, `gap:G-l3-v56-mt-identification` | - |
+| `C010` | active/exploring | 1 | core-support | `chain:concrete-evii-toy`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port` | - |
+| `C011` | active/exploring | 1 | core-support | `chain:main-hc-axiom-relative`, `gap:G-l3-v56-mt-identification` | - |
+| `C012` | active/exploring | 1 | core-support | `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port`, `gap:G-l3-v56-mt-identification` | - |
+| `C013` | active/exploring | 1 | core-support | `chain:concrete-evii-toy`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port`, `gap:G-l3-v56-mt-identification` | - |
+| `C014` | closed/support | 1 | core-support | `chain:concrete-evii-toy` | - |
+| `C015` | active/exploring | 1 | core-support | `chain:hcgap-l2-trivial-instances`, `chain:main-hc-axiom-relative`, `gap:G-l2-cohomology-construction` | - |
 | `C016` | closed/support | 1 | core-support | `chain:concrete-evii-toy` | - |
-| `C017` | active/exploring | 1 | core-support | `chain:hcgap-l2-trivial-instances`, `chain:main-hc-axiom-relative`, `gap:G-l2-cohomology-construction` | - |
-| `C018` | closed/support | 1 | core-support | `chain:concrete-evii-toy` | - |
-| `C019` | active/exploring | 3 | core-support | `chain:hcgap-l2-trivial-instances`, `chain:main-hc-axiom-relative`, `gap:G-l2-cohomology-construction` | - |
-| `C020` | unclassified | 1 | core-support | - | - |
-| `C021` | active/exploring | 1 | core-support | `chain:main-hc-axiom-relative`, `gap:G-l3-v56-mt-identification` | - |
-| `C022` | active/exploring | 1 | core-support | `chain:unconditional-classical`, `gap:G-classical-mathlib-port` | - |
-| `C023` | active/exploring | 1 | core-support | `chain:concrete-evii-toy`, `chain:main-hc-axiom-relative`, `gap:G-l3-v56-mt-identification` | registered: 1 |
-| `C024` | closed/support | 1 | core-support | `chain:concrete-evii-toy`, `chain:historical-cone-audits` | - |
-| `C025` | active/exploring | 1 | core-support | `chain:main-hc-axiom-relative`, `gap:G-l4-cm-abelian-hc` | - |
-| `C026` | active/exploring | 1 | core-support | `chain:main-hc-axiom-relative`, `gap:G-l4-cm-abelian-hc` | - |
-| `C027` | active/exploring | 1 | core-support | `chain:concrete-evii-toy`, `chain:hcgap-l2-trivial-instances`, `chain:main-hc-axiom-relative`, `gap:G-l2-cohomology-construction`, `gap:G-l4-cm-abelian-hc` | - |
-| `C028` | active/exploring | 1 | core-support | `chain:concrete-evii-toy`, `chain:main-hc-axiom-relative`, `gap:G-l4-cm-abelian-hc` | - |
-| `C029` | active/exploring | 1 | core-support | `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-l2-cohomology-construction`, `gap:G-l4-cm-abelian-hc`, `gap:G-l4-mt-correspondence`, `gap:G-main-hc` | - |
-| `C030` | active/exploring | 1 | core-support | `chain:concrete-evii-toy`, `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-l2-cohomology-construction`, `gap:G-l4-cm-abelian-hc`, +2 more | cut: 1 |
+| `C017` | active/exploring | 3 | core-support | `chain:hcgap-l2-trivial-instances`, `chain:main-hc-axiom-relative`, `gap:G-l2-cohomology-construction` | - |
+| `C018` | unclassified | 1 | core-support | - | - |
+| `C019` | active/exploring | 1 | core-support | `chain:main-hc-axiom-relative`, `gap:G-l3-v56-mt-identification` | - |
+| `C020` | active/exploring | 1 | core-support | `chain:unconditional-classical`, `gap:G-classical-mathlib-port` | - |
+| `C021` | active/exploring | 1 | core-support | `chain:concrete-evii-toy`, `chain:main-hc-axiom-relative`, `gap:G-l3-v56-mt-identification` | registered: 1 |
+| `C022` | closed/support | 1 | core-support | `chain:concrete-evii-toy`, `chain:historical-cone-audits` | - |
+| `C023` | active/exploring | 1 | core-support | `chain:main-hc-axiom-relative`, `gap:G-l4-cm-abelian-hc` | - |
+| `C024` | active/exploring | 1 | core-support | `chain:main-hc-axiom-relative`, `gap:G-l4-cm-abelian-hc` | - |
+| `C025` | active/exploring | 1 | core-support | `chain:concrete-evii-toy`, `chain:hcgap-l2-trivial-instances`, `chain:main-hc-axiom-relative`, `gap:G-l2-cohomology-construction`, `gap:G-l4-cm-abelian-hc` | - |
+| `C026` | active/exploring | 1 | core-support | `chain:concrete-evii-toy`, `chain:main-hc-axiom-relative`, `gap:G-l4-cm-abelian-hc` | - |
+| `C027` | active/exploring | 1 | core-support | `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-l2-cohomology-construction`, `gap:G-l4-cm-abelian-hc`, `gap:G-l4-mt-correspondence`, `gap:G-main-hc` | - |
+| `C028` | active/exploring | 1 | core-support | `chain:concrete-evii-toy`, `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-l2-cohomology-construction`, `gap:G-l4-cm-abelian-hc`, +2 more | cut: 1 |
 
 ## Unowned Debt
 
