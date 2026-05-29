@@ -14,6 +14,7 @@ graph TD
   HodgeReduction_cy3_e7_j3o_nonrealization_stage{{ "cy3_e7_j3o_nonrealization_stage" }}:::cut
   HodgeReduction_absHodgeClassesAtDegree{{ "absHodgeClassesAtDegree" }}:::cut
   HodgeReduction_cy3_mtd_isSemisimple{{ "cy3_mtd_isSemisimple" }}:::cut
+  HodgeReduction_canonicalHCData{{ "canonicalHCData" }}:::cut
   HodgeReduction_cy3_e7_excludes_e6{{ "cy3_e7_excludes_e6" }}:::cut
   propext{{ "propext" }}:::cut
   HodgeReduction_abs_hodge_cm_implies_algebraic{{ "abs_hodge_cm_implies_algebraic" }}:::cut
@@ -23,7 +24,6 @@ graph TD
   HodgeReduction_e6_classical_remainder_exists{{ "e6_classical_remainder_exists" }}:::cut
   HodgeReduction_SmoothProjectiveVariety_cohomology{{ "cohomology" }}:::cut
   HodgeReduction_hc_real_classical_cartan{{ "hc_real_classical_cartan" }}:::cut
-  HodgeReduction_canonicalE7ShimuraTor{{ "canonicalE7ShimuraTor" }}:::cut
   HodgeReduction_e7_chosen_witness_correspondence_package_exists{{ "e7_chosen_witness_correspondence_package_exists" }}:::cut
   Classical_choice{{ "choice" }}:::cut
   HodgeReduction_cy3_e7_springer_stage{{ "cy3_e7_springer_stage" }}:::cut
@@ -39,7 +39,7 @@ graph TD
   HodgeReduction_thm_cy3_e7_nonexistence>"thm_cy3_e7_nonexistence"]:::endpoint
   HodgeReduction_thm_subcase3b_vacuous>"thm_subcase3b_vacuous"]:::endpoint
   HodgeReduction_hodgeConjectureReal_canonical --> Classical_choice
-  HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_canonicalE7ShimuraTor
+  HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_canonicalHCData
   HodgeReduction_hodgeConjectureReal_canonical --> Quot_sound
   HodgeReduction_hodgeConjectureReal_canonical --> propext
   HodgeReduction_main_reduction_real --> Classical_choice
@@ -104,17 +104,17 @@ graph TD
   gap_G_l4_mt_correspondence{{"gap:G-l4-mt-correspondence\nopen"}}:::gapOpen
   gap_G_classical_mathlib_port{{"gap:G-classical-mathlib-port\ndeferred"}}:::gapOpen
   gap_G_hcgap_l4_multifront{{"gap:G-hcgap-l4-multifront\nactive-open"}}:::gapOpen
-  chain_main_hc_axiom_relative -->|P8| gap_G_main_hc
-  chain_main_hc_axiom_relative -->|P1| gap_G_l1_e7_shimura_tor
-  chain_main_hc_axiom_relative -->|P2| gap_G_l2_cohomology_construction
-  chain_main_hc_axiom_relative -->|P3| gap_G_l3_v56_mt_identification
-  chain_main_hc_axiom_relative -->|P5| gap_G_l4_cm_abelian_hc
-  chain_main_hc_axiom_relative -->|P4| gap_G_l4_mt_correspondence
-  chain_unconditional_classical -->|P6| gap_G_classical_mathlib_port
+  chain_main_hc_axiom_relative -->|P9| gap_G_main_hc
+  chain_main_hc_axiom_relative -->|P2| gap_G_l1_e7_shimura_tor
+  chain_main_hc_axiom_relative -->|P3| gap_G_l2_cohomology_construction
+  chain_main_hc_axiom_relative -->|P4| gap_G_l3_v56_mt_identification
+  chain_main_hc_axiom_relative -->|P6| gap_G_l4_cm_abelian_hc
+  chain_main_hc_axiom_relative -->|P5| gap_G_l4_mt_correspondence
+  chain_unconditional_classical -->|P7| gap_G_classical_mathlib_port
   chain_main_hc_axiom_relative --> chain_hcgap_l2_trivial_instances
-  chain_hcgap_l2_trivial_instances -->|P2| gap_G_l2_cohomology_construction
+  chain_hcgap_l2_trivial_instances -->|P3| gap_G_l2_cohomology_construction
   chain_main_hc_axiom_relative --> chain_hcgap_l4_multifront_active
-  chain_hcgap_l4_multifront_active -->|P7| gap_G_hcgap_l4_multifront
+  chain_hcgap_l4_multifront_active -->|P8| gap_G_hcgap_l4_multifront
   chain_main_hc_axiom_relative --> chain_concrete_evii_toy
   chain_main_hc_axiom_relative --> chain_historical_cone_audits
 ```

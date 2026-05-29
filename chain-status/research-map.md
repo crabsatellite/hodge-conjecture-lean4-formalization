@@ -13,7 +13,7 @@ Open mathematical cut(s):
 - `HodgeReduction.SmoothProjectiveVariety.cohomology` at `HodgeReduction/OpenHypotheses.lean`
 - `HodgeReduction.absHodgeClassesAtDegree` at `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
 - `HodgeReduction.abs_hodge_cm_implies_algebraic` at `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
-- `HodgeReduction.canonicalE7ShimuraTor` at `HodgeReduction/OpenHypotheses.lean`
+- `HodgeReduction.canonicalHCData` at `HodgeReduction/OpenHypotheses.lean`
 - `HodgeReduction.cy3_e7_excludes_e6` at `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
 - `HodgeReduction.cy3_e7_fts_omega_stage` at `HodgeReduction/HCGapL4/CY3NonexistenceStageCuts.lean`
 - `HodgeReduction.cy3_e7_j3o_nonrealization_stage` at `HodgeReduction/HCGapL4/CY3NonexistenceStageCuts.lean`
@@ -387,7 +387,7 @@ Route-labelled off-chain files are assigned by the audit infra but are not consu
 
 ### `main-hc-axiom-relative` -- Main Mumford--Tate-reduction HC chain
 
-`OpenHypotheses` (R169 cohomology / algClasses bridge + R174a Deligne) composes with `MainTheorem` (R170 four-case main reduction + R171/R188 canonical headline) to reach `hodgeConjectureReal_canonical`.  Conditional on the single axiom `canonicalE7ShimuraTor`; not an unconditional proof of HC.
+`OpenHypotheses` (R169 cohomology / algClasses bridge + R174a Deligne) composes with `MainTheorem` (R170 four-case main reduction + R171/R188/R537 canonical headline) to reach `hodgeConjectureReal_canonical`.  Conditional on the narrower axiom `canonicalHCData`; not an unconditional proof of HC.
 
 Entry declarations:
 - `HodgeReduction.hodgeConjectureReal_canonical`
@@ -476,13 +476,13 @@ Files:
 
 ### `G-main-hc` -- Hodge conjecture headline remains axiom-relative
 
-The `hodgeConjectureReal_canonical` endpoint is a kernel-pure composition once the single project axiom `canonicalE7ShimuraTor` is accepted.  R536 exposes the exact proof kernel as `CanonicalHCData`: target cohomology, target algebraic classes, and a per-codim MT correspondence package from a CM abelian source.  It is NOT an unconditional proof of HC; it remains conditional on constructing those fields for the AMRT E_{7(-25)} toroidal compactification.
+The `hodgeConjectureReal_canonical` endpoint is a kernel-pure composition once the narrower project axiom `canonicalHCData` is accepted.  R536/R537 exposes the exact proof kernel as `CanonicalHCData`: target cohomology, target algebraic classes, and a per-codim MT correspondence package from a CM abelian source.  It is NOT an unconditional proof of HC; it remains conditional on constructing those fields for the AMRT E_{7(-25)} toroidal compactification.
 
 Declarations:
 - `HodgeReduction.CanonicalHCData`
+- `HodgeReduction.canonicalHCData`
 - `HodgeReduction.hodgeConjectureReal_from_canonicalHCData`
 - `HodgeReduction.hodgeConjectureReal_canonical`
-- `HodgeReduction.canonicalE7ShimuraTor`
 
 Files:
 - `HodgeReduction/MainTheorem.lean` -- cut
@@ -557,7 +557,7 @@ Files:
 
 ### `G-l4-mt-correspondence` -- Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian)
 
-R529/R517 decomposes the non-canonical MT correspondence witness; R532 tightens the package cut so it applies only to the witness selected by `e7_cm_witness_exists`, not to arbitrary CM abelian sources.  R536 routes the canonical headline through `CanonicalHCData`; that wrapper is still populated from `canonicalE7ShimuraTor.mtCorrespondencePackage`, so the real construction gap remains the per-codim package itself.
+R529/R517 decomposes the non-canonical MT correspondence witness; R532 tightens the package cut so it applies only to the witness selected by `e7_cm_witness_exists`, not to arbitrary CM abelian sources.  R536/R537 routes the canonical headline through `CanonicalHCData`; the real construction gap is now the per-codim package field inside `canonicalHCData`.
 
 Declarations:
 - `HodgeReduction.mt_correspondence_e7_witness_exists`

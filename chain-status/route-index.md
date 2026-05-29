@@ -11,17 +11,17 @@ This file is generated.  Future agents should update Lean files, audit rules, or
 ## Next Agent Brief
 
 Research attack target:
-- Primary proof gap: `gap:G-l1-e7-shimura-tor` -- AMRT 1975 / Baily--Borel 1966 construction of S_Γ^tor as a SmoothProjectiveVariety --  Required Mathlib infrastructure: arithmetic groups, Hermitian symmetric domains, toroidal compactifications.
+- Primary proof gap: `gap:G-main-hc` -- The `hodgeConjectureReal_canonical` endpoint is a kernel-pure composition once the narrower project axiom `canonicalHCData` is accepted.  R536/R537 exposes the exact proof kernel as `CanonicalHCData`: target cohomology, target algebraic classes, and a per-codim MT correspondence package from a CM abelian source.  It is NOT an unconditional proof of HC; it remains conditional on constructing those fields for the AMRT E_{7(-25)} toroidal compactification.
 - Route owner(s): `chain:main-hc-axiom-relative`
 - Current constructive attack route: `chain:hcgap-l4-multifront-active`.  Use it to replace the primary cut; do not route around the configured gap ledger.
-- Success criterion: A successful follow-up either retires `canonicalE7ShimuraTor` for a smaller-axiom variant, or shrinks `mtCorrespondencePackage` by exhibiting an unconditional per-codim MT correspondence package via Chow / cycle-class data.
+- Success criterion: A successful follow-up decomposes `canonicalHCData` into fieldwise construction cuts, or shrinks its `mtCorrespondencePackage` field by exhibiting an unconditional per-codim MT correspondence package via Chow / cycle-class data.
 
 Kernel cut ledger.  These are audit-visible unresolved constants on the endpoint closure; use the configured route/gap above to decide the next research attack, not this flat list alone:
 - `HodgeReduction.SmoothProjectiveVariety.algClasses` in `HodgeReduction/OpenHypotheses.lean`
 - `HodgeReduction.SmoothProjectiveVariety.cohomology` in `HodgeReduction/OpenHypotheses.lean`
 - `HodgeReduction.absHodgeClassesAtDegree` in `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
 - `HodgeReduction.abs_hodge_cm_implies_algebraic` in `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
-- `HodgeReduction.canonicalE7ShimuraTor` in `HodgeReduction/OpenHypotheses.lean`
+- `HodgeReduction.canonicalHCData` in `HodgeReduction/OpenHypotheses.lean`
 - `HodgeReduction.cy3_e7_excludes_e6` in `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
 - `HodgeReduction.cy3_e7_fts_omega_stage` in `HodgeReduction/HCGapL4/CY3NonexistenceStageCuts.lean`
 - `HodgeReduction.cy3_e7_j3o_nonrealization_stage` in `HodgeReduction/HCGapL4/CY3NonexistenceStageCuts.lean`
@@ -51,7 +51,7 @@ Current replacement plan:
 - FrontB: replace the abstract connectedness pipeline with the genuine Baily--Borel connectedness theorem for arithmetic quotients.
 - FrontD: deliver the E_7 -> CM Chow correspondence at codim 1 first, then lift to all p; this would discharge G-l4-mt-correspondence for the canonical case.
 - Never re-bundle a closed front into a stronger hypothesis; chainAudit treats `def : Prop` placeholders and conjunction shells as hard failures.
-- Final success criterion: A successful follow-up either retires `canonicalE7ShimuraTor` for a smaller-axiom variant, or shrinks `mtCorrespondencePackage` by exhibiting an unconditional per-codim MT correspondence package via Chow / cycle-class data.
+- Final success criterion: A successful follow-up decomposes `canonicalHCData` into fieldwise construction cuts, or shrinks its `mtCorrespondencePackage` field by exhibiting an unconditional per-codim MT correspondence package via Chow / cycle-class data.
 
 ### Priority 1: `gap:G-hcgap-l4-multifront` -- HCGapL4 multi-front Layer-4 attack waves (R420 -- R476)
 
@@ -72,7 +72,7 @@ Active exploratory attack waves on the L4 / cohomology-profile / connectedness p
 
 | endpoint | mathematical cuts | full axiom count |
 |----------|-------------------|-----------------:|
-| `HodgeReduction.hodgeConjectureReal_canonical` | `HodgeReduction.canonicalE7ShimuraTor` | 4 |
+| `HodgeReduction.hodgeConjectureReal_canonical` | `HodgeReduction.canonicalHCData` | 4 |
 | `HodgeReduction.main_reduction_real` | `HodgeReduction.SmoothProjectiveVariety.algClasses`, `HodgeReduction.SmoothProjectiveVariety.cohomology`, `HodgeReduction.absHodgeClassesAtDegree`, `HodgeReduction.abs_hodge_cm_implies_algebraic`, `HodgeReduction.cy3_e7_excludes_e6`, +11 more | 19 |
 | `HodgeReduction.thm_Meyer` | - | 0 |
 | `HodgeReduction.thm_G2F4` | - | 3 |
@@ -85,7 +85,7 @@ Open mathematical cut ledger:
 - `HodgeReduction.SmoothProjectiveVariety.cohomology` in `HodgeReduction/OpenHypotheses.lean`
 - `HodgeReduction.absHodgeClassesAtDegree` in `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
 - `HodgeReduction.abs_hodge_cm_implies_algebraic` in `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
-- `HodgeReduction.canonicalE7ShimuraTor` in `HodgeReduction/OpenHypotheses.lean`
+- `HodgeReduction.canonicalHCData` in `HodgeReduction/OpenHypotheses.lean`
 - `HodgeReduction.cy3_e7_excludes_e6` in `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
 - `HodgeReduction.cy3_e7_fts_omega_stage` in `HodgeReduction/HCGapL4/CY3NonexistenceStageCuts.lean`
 - `HodgeReduction.cy3_e7_j3o_nonrealization_stage` in `HodgeReduction/HCGapL4/CY3NonexistenceStageCuts.lean`
@@ -114,7 +114,7 @@ Open mathematical cut ledger:
 
 | gap | status | route owners | declarations | files |
 |-----|--------|--------------|--------------|-------|
-| `gap:G-main-hc` | conditional | `chain:main-hc-axiom-relative` | `HodgeReduction.CanonicalHCData`, `HodgeReduction.hodgeConjectureReal_from_canonicalHCData`, `HodgeReduction.hodgeConjectureReal_canonical`, +1 more | cut: 2, infra: 1, on-chain: 1 |
+| `gap:G-main-hc` | conditional | `chain:main-hc-axiom-relative` | `HodgeReduction.CanonicalHCData`, `HodgeReduction.canonicalHCData`, `HodgeReduction.hodgeConjectureReal_from_canonicalHCData`, +1 more | cut: 2, infra: 1, on-chain: 1 |
 | `gap:G-l1-e7-shimura-tor` | open | `chain:main-hc-axiom-relative` | `HodgeReduction.HCGapRegistry.L1_G1_E7ShimuraTor_Inhabited`, `HodgeReduction.E7ShimuraTor` | cut: 1, infra: 1, on-disk-unloaded: 2, registered: 1 |
 | `gap:G-l2-cohomology-construction` | open | `chain:hcgap-l2-trivial-instances`, `chain:main-hc-axiom-relative` | `HodgeReduction.HCGapRegistry.L2_G1_VarietyCohomologyData_Constructed_NonToy`, `HodgeReduction.HCGapRegistry.L2_G2_E7CanonicalCohomology_MatchesPaper`, `HodgeReduction.SmoothProjectiveVariety.cohomology` | infra: 1, on-chain: 1, registered: 4 |
 | `gap:G-l3-v56-mt-identification` | open | `chain:main-hc-axiom-relative` | `HodgeReduction.HCGapRegistry.L3_G1_V56_PureHodgeStructure_W3_HodgeDiamond`, `HodgeReduction.HCGapRegistry.L3_G2_V56_To_E7_Variety_Cohomology_Identification` | infra: 1, registered: 4 |
@@ -286,7 +286,7 @@ Files with no automatic route label.  These are the safest next candidates for c
 
 ### `chain:main-hc-axiom-relative` -- Main Mumford--Tate-reduction HC chain
 
-`OpenHypotheses` (R169 cohomology / algClasses bridge + R174a Deligne) composes with `MainTheorem` (R170 four-case main reduction + R171/R188 canonical headline) to reach `hodgeConjectureReal_canonical`.  Conditional on the single axiom `canonicalE7ShimuraTor`; not an unconditional proof of HC.
+`OpenHypotheses` (R169 cohomology / algClasses bridge + R174a Deligne) composes with `MainTheorem` (R170 four-case main reduction + R171/R188/R537 canonical headline) to reach `hodgeConjectureReal_canonical`.  Conditional on the narrower axiom `canonicalHCData`; not an unconditional proof of HC.
 
 Entry declarations:
 - `HodgeReduction.hodgeConjectureReal_canonical`

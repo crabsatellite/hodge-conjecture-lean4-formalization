@@ -877,6 +877,36 @@ structure E7ShimuraTor : Type 1 where
     isCompactDualEVIIHodgeBigradingDiagonal_PUBLISHED →
     isHodgeWeight33OnEVII_AutomaticallyGInvariant_REQUIRED_HYPOTHESIS
 
+/-- **R537**: the exact canonical HC data consumed by the headline proof.
+
+This is the smaller replacement surface for `hodgeConjectureReal_canonical`:
+target cohomology, target algebraic classes, and the per-codimension
+Mumford--Tate correspondence package from a CM abelian source. It does
+not include the many extra `E7ShimuraTor` bookkeeping fields used by
+older projection theorems. -/
+structure CanonicalHCData where
+  cohomologyOfTarget : Infrastructure.HodgeStructure.VarietyCohomologyData
+  algClassesOfTarget :
+    Infrastructure.HodgeStructure.AlgebraicClassesData cohomologyOfTarget
+  mtCorrespondencePackage :
+    ∃ (A : SmoothProjectiveVariety ℂ)
+      (A_cohData : Infrastructure.HodgeStructure.VarietyCohomologyData)
+      (A_algData : Infrastructure.HodgeStructure.AlgebraicClassesData A_cohData),
+      IsCMAbelianVariety A ∧
+      Infrastructure.HodgeStructure.VarietyHC A_cohData A_algData ∧
+      ∀ p : ℕ,
+        Infrastructure.HodgeStructure.MTCorrespondencePackageAt
+          A_cohData cohomologyOfTarget
+          A_algData algClassesOfTarget p
+
+/-- **R537-A**: canonical headline HC package.
+
+This is still an open mathematical construction cut: it packages the
+target Hodge/cohomology data and per-codimension MT correspondence for
+the AMRT E_{7(-25)} toroidal compactification. It is strictly narrower
+than a full inhabitant of `E7ShimuraTor`. -/
+axiom canonicalHCData : CanonicalHCData
+
 /-- Canonical inhabitant of `E7ShimuraTor`: the paper constructs
  `S_Γ^tor` as a specific AMRT-Baily-Borel toroidal compactification
  for a given neat arithmetic `Γ ⊂ E_{7(-25)}(ℚ)`. Declaring a witness
@@ -890,7 +920,22 @@ structure E7ShimuraTor : Type 1 where
  axiom for the E7ShimuraTor scaffolding (down from 3 in pre-R39).
  paper source: hyp:ChernWeil-bridge-E7 (construction
  of `S_Γ^tor` as AMRT toroidal compactification). -/
-axiom canonicalE7ShimuraTor: E7ShimuraTor
+axiom canonicalE7ShimuraTorSupplement : E7ShimuraTor
+
+/-- **R537**: full legacy `E7ShimuraTor` witness rebuilt from the narrow
+headline HC package plus a supplement carrying all older bookkeeping
+fields.
+
+The updated fields are exactly the three consumed by
+`hodgeConjectureReal_canonical`; the remaining fields are retained from
+`canonicalE7ShimuraTorSupplement` so older projection theorems keep their
+types. The audit determines whether a theorem actually consumes the
+narrow package or the supplement. -/
+noncomputable def canonicalE7ShimuraTor : E7ShimuraTor :=
+  { canonicalE7ShimuraTorSupplement with
+    cohomologyOfUnderlying := canonicalHCData.cohomologyOfTarget
+    algClassesOfUnderlying := canonicalHCData.algClassesOfTarget
+    mtCorrespondencePackage := canonicalHCData.mtCorrespondencePackage }
 
 /-- **R173a/R187**: The canonical AMRT toroidal compactification's
 Mumford-Tate group derived part on weight 3 cohomology has an
