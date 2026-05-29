@@ -378,7 +378,7 @@ def config : ChainAudit.ProjectConfig := {
     },
     {
       id := "G-hcgap-l4-multifront"
-      title := "HCGapL4 multi-front Layer-4 attack waves (R420 -- R571)"
+      title := "HCGapL4 multi-front Layer-4 attack waves (R420 -- R572)"
       status := "active-open"
       summary :=
         "Active exploratory attack waves on the L4 / cohomology-profile / connectedness pipeline: FrontA (Deligne H0 sheaf realization), FrontB (Baily--Borel connectedness), FrontC (E_7 low-degree Hodge numbers + Hodge polynomial algebra + all-degree rank adapter + EVII/V56/Shimura expected Betti profile), FrontD (E_7 -> CM Chow correspondence + Deligne 1982 minimal fragment), FrontE (real-carrier profile matching + R405 conditional transfer feed).  Audits R451 / R456 / R460 / R465 / R470 / R476 are wave-level summaries.  R552 certifies the expected Shimura Betti profile degree-by-degree from EVII compact-dual Hodge sums plus the isolated V56 degree-3 contribution; R553 ties that finite V56 contribution to the actual `PureHodgeStructure V56 3` infrastructure; R554 combines the Matsushima, Eisenstein, and cuspidal trivial-module infrastructure into an honest boundary theorem; R555 proves the Cartan compact-dual source bridge and reduces the R554 source equality to `surjectivity_source = source_invariants`; R556 turns both source/target boundary equalities into finite-dimensional containment plus finrank obligations, routing the target through the cuspidal trivial-module part; R557 proves the target containment follows from source containment by Matsushima equivariance and the surjectivity image equation; R558 proves target finrank is transported from source finrank by `j_q` injectivity and the Matsushima image equation; R559 rewrites the remaining source obligations through the compact-dual/Cartan source subspace; R560 gives a Lean countermodel showing those compact-dual obligations are not consequences of the current abstract interface; R561 proves that compact-dual exact image plus target-invariant exactness is enough to recover the R554/R559 boundary data; R562 proves target exactness follows from compact-dual exact image plus the compact-dual-to-trivial rank bridge; R563 proves compact-dual exact image is equivalent to `surjectivity_source = compactDual`; R564 proves the actual compact-dual `H8` carrier has rank one and reduces the rank bridge to `compactDual = H8` plus rank-one of `trivialModulePart`; R565 proves that the trivial-module rank-one fact follows from exact Cartan image equality `Submodule.map j_q trivialModuleGK_H8 = trivialModulePart`; R566 rewrites source equality and compactDual/H8 identification through the same Cartan H8 line; R567 proves by countermodel that those Cartan-line exactness statements are not consequences of the current abstract interface; R568 rewrites the exact Cartan image equality as scalar surjectivity by `j_q (r • h^4)` onto the trivial-module part, and shows the containment direction follows from compactDual = Cartan; R569 gives a countermodel showing compactDual = Cartan still does not force scalar surjectivity; R570 proves rank-one of the trivial-module part plus compactDual = Cartan does force exact Cartan image and scalar preimages.  The remaining concrete EVII facts must come from genuine geometry or a concrete instance, not further abstract linear algebra.  No new axioms."
@@ -413,6 +413,7 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction/HCGapL4/FrontC28_ScalarPreimageObstruction.lean",
         "HodgeReduction/HCGapL4/FrontC29_CartanImageFromRankOne.lean",
         "HodgeReduction/HCGapL4/FrontC30_SourceInvariantsH8TargetRank.lean",
+        "HodgeReduction/HCGapL4/FrontC31_TargetRankFromExpectedBetti.lean",
         "HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean",
         "HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean",
         "HodgeReduction/HCGapL4/R451_MultiFrontFrontierAudit.lean",
@@ -471,7 +472,8 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction.HCGapL4.FrontC27_CartanImageScalarPreimage.cartan_image_eq_trivialModulePart_iff_scalar_preimage",
         "HodgeReduction.HCGapL4.FrontC28_ScalarPreimageObstruction.current_interface_with_compactDual_cartan_does_not_force_scalar_preimage",
         "HodgeReduction.HCGapL4.FrontC29_CartanImageFromRankOne.cartan_image_eq_trivialModulePart_of_compactDual_eq_cartan_trivial_rank_one",
-        "HodgeReduction.HCGapL4.FrontC30_SourceInvariantsH8TargetRank.matsushimaV56BoundaryData_of_source_invariants_H8_target_rank_one"
+        "HodgeReduction.HCGapL4.FrontC30_SourceInvariantsH8TargetRank.matsushimaV56BoundaryData_of_source_invariants_H8_target_rank_one",
+        "HodgeReduction.HCGapL4.FrontC31_TargetRankFromExpectedBetti.matsushimaV56BoundaryData_of_source_invariants_H8_target_expected_betti8"
       ]
     }
   ]
@@ -544,7 +546,7 @@ def config : ChainAudit.ProjectConfig := {
     },
     {
       id := "hcgap-l4-multifront-active"
-      title := "HCGapL4 multi-front attack waves (R420 -- R571)"
+      title := "HCGapL4 multi-front attack waves (R420 -- R572)"
       kind := "active"
       status := "exploratory"
       summary :=
@@ -580,6 +582,7 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction/HCGapL4/FrontC28_ScalarPreimageObstruction.lean",
         "HodgeReduction/HCGapL4/FrontC29_CartanImageFromRankOne.lean",
         "HodgeReduction/HCGapL4/FrontC30_SourceInvariantsH8TargetRank.lean",
+        "HodgeReduction/HCGapL4/FrontC31_TargetRankFromExpectedBetti.lean",
         "HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean",
         "HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean",
         "HodgeReduction/HCGapL4/R476_MultiFrontWave6Audit.lean"
@@ -628,12 +631,13 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction.HCGapL4.FrontC27_CartanImageScalarPreimage.cartan_image_eq_trivialModulePart_iff_scalar_preimage",
         "HodgeReduction.HCGapL4.FrontC28_ScalarPreimageObstruction.current_interface_with_compactDual_cartan_does_not_force_scalar_preimage",
         "HodgeReduction.HCGapL4.FrontC29_CartanImageFromRankOne.cartan_image_eq_trivialModulePart_of_compactDual_eq_cartan_trivial_rank_one",
-        "HodgeReduction.HCGapL4.FrontC30_SourceInvariantsH8TargetRank.matsushimaV56BoundaryData_of_source_invariants_H8_target_rank_one"
+        "HodgeReduction.HCGapL4.FrontC30_SourceInvariantsH8TargetRank.matsushimaV56BoundaryData_of_source_invariants_H8_target_rank_one",
+        "HodgeReduction.HCGapL4.FrontC31_TargetRankFromExpectedBetti.matsushimaV56BoundaryData_of_source_invariants_H8_target_expected_betti8"
       ]
       gapIds := ["G-hcgap-l4-multifront"]
       dependsOn := ["main-hc-axiom-relative"]
       attackPlan := [
-        "FrontC: R560/R567/R569 block abstract-interface closure of the compact-dual/Cartan/scalar-surjectivity targets.  R570 proves compactDual = Cartan plus `finrank trivialModulePart = 1` forces exact Cartan image.  R571 rewrites that into primitive EVII Matsushima targets already named by the interfaces: prove `surjectivity_source = MatsushimaData.source_invariants`, prove `MatsushimaData.source_invariants = CompactDualData.H8`, and prove `finrank MatsushimaData.target_invariants = 1`; then feed R553/R554/R555/R556/R557/R558/R559/R561/R562/R563/R564/R565/R566/R568/R570/R571 together.",
+        "FrontC: R560/R567/R569 block abstract-interface closure of the compact-dual/Cartan/scalar-surjectivity targets.  R570 proves compactDual = Cartan plus `finrank trivialModulePart = 1` forces exact Cartan image.  R571 rewrites that into primitive EVII Matsushima targets already named by the interfaces: prove `surjectivity_source = MatsushimaData.source_invariants`, prove `MatsushimaData.source_invariants = CompactDualData.H8`, and prove `finrank MatsushimaData.target_invariants = 1`.  R572 routes the last target through the already-certified expected Betti slot, so the concrete target is `finrank MatsushimaData.target_invariants = shimuraEVIIExpectedBetti 8`; then feed R553/R554/R555/R556/R557/R558/R559/R561/R562/R563/R564/R565/R566/R568/R570/R571/R572 together.",
         "FrontB: replace the abstract connectedness pipeline with the genuine Baily--Borel connectedness theorem for arithmetic quotients.",
         "FrontD: deliver the E_7 -> CM Chow correspondence at codim 1 first, then lift to all p; this would discharge G-l4-mt-correspondence for the canonical case.",
         "Never re-bundle a closed front into a stronger hypothesis; chainAudit treats `def : Prop` placeholders and conjunction shells as hard failures."
@@ -788,6 +792,7 @@ def config : ChainAudit.ProjectConfig := {
         "ScalarPreimageObstruction",
         "CartanImageFromRankOne",
         "SourceInvariantsH8TargetRank",
+        "TargetRankFromExpectedBetti",
         "RealCompatible", "AbstractConnectedH0", "LocallyConstant"
       ]
     },
