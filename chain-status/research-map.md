@@ -14,6 +14,7 @@ Open mathematical cut(s):
 - `HodgeReduction.absHodgeClassesAtDegree` at `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
 - `HodgeReduction.abs_hodge_implies_algebraic` at `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
 - `HodgeReduction.canonicalE7ShimuraTor` at `HodgeReduction/OpenHypotheses.lean`
+- `HodgeReduction.cy3_e7_excludes_e6` at `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
 - `HodgeReduction.cy3_e7_nonexistence_paper_axiom` at `HodgeReduction/ClassicalResults.lean`
 - `HodgeReduction.cy3_inherits_e7_factor` at `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
 - `HodgeReduction.cy3_mtd_isSemisimple` at `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
@@ -21,7 +22,6 @@ Open mathematical cut(s):
 - `HodgeReduction.e6_factor_classical_transfer` at `HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean`
 - `HodgeReduction.e7_cm_witness_exists` at `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean`
 - `HodgeReduction.e7_correspondence_package_exists` at `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean`
-- `HodgeReduction.e7_excludes_e6` at `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
 - `HodgeReduction.hc_real_classical_cartan` at `HodgeReduction/MainTheorem.lean`
 
 Active route(s) to work on:
@@ -569,13 +569,13 @@ Files:
 
 ### `G-classical-mathlib-port` -- Classical published-literature axioms awaiting Mathlib port
 
-Meyer / Kostant G_2 / Kostant F_4 / SV1 E_8 are already kernel-pure theorems (paper-grade proofs over R120/R121 structure refactor).  R530 refines the CY3 branch by replacing the former exact E7 inheritance cut with weak factor inheritance plus CY3 semisimplicity and E7/E6 exclusivity.  `cy3_e7_nonexistence_paper_axiom` remains a paper-citation axiom until Mathlib provides Calabi--Yau threefold infrastructure + Springer discriminant + FTS omega-pairing.
+Meyer / Kostant G_2 / Kostant F_4 / SV1 E_8 are already kernel-pure theorems (paper-grade proofs over R120/R121 structure refactor).  R530/R531 refines the CY3 branch by replacing the former exact E7 inheritance cut with weak factor inheritance plus CY3 semisimplicity and CY3-scoped E7/E6 exclusivity.  `cy3_e7_nonexistence_paper_axiom` remains a paper-citation axiom until Mathlib provides Calabi--Yau threefold infrastructure + Springer discriminant + FTS omega-pairing.
 
 Declarations:
 - `HodgeReduction.cy3_e7_nonexistence_paper_axiom`
 - `HodgeReduction.cy3_inherits_e7_factor`
 - `HodgeReduction.cy3_mtd_isSemisimple`
-- `HodgeReduction.e7_excludes_e6`
+- `HodgeReduction.cy3_e7_excludes_e6`
 - `HodgeReduction.cy3_e7_vacuity_via_bridge`
 - `HodgeReduction.hc_real_cy3_reducible_via_vacuity`
 

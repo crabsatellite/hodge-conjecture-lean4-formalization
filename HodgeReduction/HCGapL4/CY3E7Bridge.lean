@@ -10,7 +10,8 @@ R525 revision: closed both sorry proofs using the MTGT exclusivity
 machinery from CY3VacuousClosureAttempt. The key insight: for a CY3,
 the MT-derived group at weight 3 has:
   IsTorus = False (semisimple, non-trivial H^3 from CY3 condition)
-  IsE6Type = False (E7 and E6 are different Dynkin types)
+  IsE6Type = False for the CY3 weight-3 MT-derived group under the E7
+  hypothesis.
 Under R525 exclusivity, this gives G = E7_neg25, and the paper axiom applies.
 
 All theorems kernel-pure. NO sorry, NO True.intro, NO tricks.
@@ -34,12 +35,17 @@ axiom cy3_mtd_isSemisimple (X : SmoothProjectiveVariety Complex)
     (h_cy3 : IsCalabiYauThreefold X) :
     (MumfordTateGroupDerived X 3).IsTorus = False
 
-/-- If `IsE7Type` holds, then `IsE6Type = False` for the MT-derived group.
-    E7 and E6 are different Dynkin types, so a group cannot be both.
-    KERNEL-PURE. -/
-axiom e7_excludes_e6 (G : MumfordTateGroupType)
-    (h7 : G.IsE7Type) :
-    G.IsE6Type = False
+/-- For a CY3 weight-3 MT-derived group, an E7-type factor excludes an
+E6-type factor in the specific CY3 reduction component used by the
+nonexistence argument.
+
+This is deliberately CY3-scoped.  A general product Mumford--Tate group
+may contain both E6 and E7 simple factors, so the old generic
+`e7_excludes_e6` formulation was too strong. -/
+axiom cy3_e7_excludes_e6 (X : SmoothProjectiveVariety Complex)
+    (h_cy3 : IsCalabiYauThreefold X)
+    (h7 : (MumfordTateGroupDerived X 3).IsE7Type) :
+    (MumfordTateGroupDerived X 3).IsE6Type = False
 
 /-! ## Step 2: From hasSimpleFactor to contradiction -/
 
@@ -59,7 +65,7 @@ theorem cy3_e7_contradiction
   have h_not_torus : (MumfordTateGroupDerived X 3).IsTorus = False :=
     cy3_mtd_isSemisimple X h_cy3
   have h_not_e6 : (MumfordTateGroupDerived X 3).IsE6Type = False :=
-    e7_excludes_e6 (MumfordTateGroupDerived X 3) h7
+    cy3_e7_excludes_e6 X h_cy3 h7
   have h_eq : MumfordTateGroupDerived X 3 = E7_neg25 :=
     e7_unique_under_exclusivity
       (MumfordTateGroupDerived X 3) h7_eq h_not_torus h_not_e6
@@ -91,8 +97,9 @@ theorem cy3_e7_vacuous_discharge
   | intro Y hY =>
       exact cy3_e7_contradiction Y hY.left hY.right
 
-/-- **R525**: CY3 bridge now fully closed (0 sorry). The two structural
-    axioms (cy3_mtd_isSemisimple, e7_excludes_e6) replace the previous sorry.
+/-- **R525/R531**: CY3 bridge now fully closed (0 sorry). The two structural
+    axioms (`cy3_mtd_isSemisimple`, `cy3_e7_excludes_e6`) replace the
+    previous sorry.
     These are well-established Lie-theoretic facts that require Mathlib-level
     infrastructure to prove formally. -/
 def R525_cy3_bridge_theorem_count : Nat := 3

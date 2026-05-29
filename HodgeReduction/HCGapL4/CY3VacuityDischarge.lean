@@ -9,7 +9,8 @@ discharge now routes through the R525 bridge in `CY3E7Bridge`:
 
 * `cy3_inherits_e7_factor`: a CY3 reduction inherits an E7 simple factor.
 * `cy3_mtd_isSemisimple`: a CY3 weight-3 MT-derived group is not a torus.
-* `e7_excludes_e6`: E7 type excludes E6 type.
+* `cy3_e7_excludes_e6`: in the CY3 weight-3 component, E7 type excludes
+  E6 type.
 
 Those three narrower premises imply the exact E7 type required by
 `cy3_e7_nonexistence_paper_axiom`.  No HC conclusion is assumed in the
@@ -45,7 +46,7 @@ antecedent contradicts CY3/E7 nonexistence.
 Dependency chain:
 `hc_real_cy3_reducible_via_vacuity`
   <- `cy3_e7_vacuity_via_bridge`
-  <- `cy3_inherits_e7_factor`, `cy3_mtd_isSemisimple`, `e7_excludes_e6`
+  <- `cy3_inherits_e7_factor`, `cy3_mtd_isSemisimple`, `cy3_e7_excludes_e6`
   <- `cy3_e7_nonexistence_paper_axiom`
 
 KERNEL-PURE. -/

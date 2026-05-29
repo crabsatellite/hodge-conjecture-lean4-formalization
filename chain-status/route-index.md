@@ -22,6 +22,7 @@ Kernel cut ledger.  These are audit-visible unresolved constants on the endpoint
 - `HodgeReduction.absHodgeClassesAtDegree` in `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
 - `HodgeReduction.abs_hodge_implies_algebraic` in `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
 - `HodgeReduction.canonicalE7ShimuraTor` in `HodgeReduction/OpenHypotheses.lean`
+- `HodgeReduction.cy3_e7_excludes_e6` in `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
 - `HodgeReduction.cy3_e7_nonexistence_paper_axiom` in `HodgeReduction/ClassicalResults.lean`
 - `HodgeReduction.cy3_inherits_e7_factor` in `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
 - `HodgeReduction.cy3_mtd_isSemisimple` in `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
@@ -29,7 +30,6 @@ Kernel cut ledger.  These are audit-visible unresolved constants on the endpoint
 - `HodgeReduction.e6_factor_classical_transfer` in `HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean`
 - `HodgeReduction.e7_cm_witness_exists` in `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean`
 - `HodgeReduction.e7_correspondence_package_exists` in `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean`
-- `HodgeReduction.e7_excludes_e6` in `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
 - `HodgeReduction.hc_real_classical_cartan` in `HodgeReduction/MainTheorem.lean`
 
 Live subgaps exposed by the current route:
@@ -70,7 +70,7 @@ Active exploratory attack waves on the L4 / cohomology-profile / connectedness p
 | endpoint | mathematical cuts | full axiom count |
 |----------|-------------------|-----------------:|
 | `HodgeReduction.hodgeConjectureReal_canonical` | `HodgeReduction.canonicalE7ShimuraTor` | 4 |
-| `HodgeReduction.main_reduction_real` | `HodgeReduction.SmoothProjectiveVariety.algClasses`, `HodgeReduction.SmoothProjectiveVariety.cohomology`, `HodgeReduction.absHodgeClassesAtDegree`, `HodgeReduction.abs_hodge_implies_algebraic`, `HodgeReduction.cy3_e7_nonexistence_paper_axiom`, +8 more | 16 |
+| `HodgeReduction.main_reduction_real` | `HodgeReduction.SmoothProjectiveVariety.algClasses`, `HodgeReduction.SmoothProjectiveVariety.cohomology`, `HodgeReduction.absHodgeClassesAtDegree`, `HodgeReduction.abs_hodge_implies_algebraic`, `HodgeReduction.cy3_e7_excludes_e6`, +8 more | 16 |
 | `HodgeReduction.thm_Meyer` | - | 0 |
 | `HodgeReduction.thm_G2F4` | - | 3 |
 | `HodgeReduction.thm_E8_vacuous` | - | 3 |
@@ -83,6 +83,7 @@ Open mathematical cut ledger:
 - `HodgeReduction.absHodgeClassesAtDegree` in `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
 - `HodgeReduction.abs_hodge_implies_algebraic` in `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
 - `HodgeReduction.canonicalE7ShimuraTor` in `HodgeReduction/OpenHypotheses.lean`
+- `HodgeReduction.cy3_e7_excludes_e6` in `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
 - `HodgeReduction.cy3_e7_nonexistence_paper_axiom` in `HodgeReduction/ClassicalResults.lean`
 - `HodgeReduction.cy3_inherits_e7_factor` in `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
 - `HodgeReduction.cy3_mtd_isSemisimple` in `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
@@ -90,7 +91,6 @@ Open mathematical cut ledger:
 - `HodgeReduction.e6_factor_classical_transfer` in `HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean`
 - `HodgeReduction.e7_cm_witness_exists` in `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean`
 - `HodgeReduction.e7_correspondence_package_exists` in `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean`
-- `HodgeReduction.e7_excludes_e6` in `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
 - `HodgeReduction.hc_real_classical_cartan` in `HodgeReduction/MainTheorem.lean`
 
 ## Route Taxonomy
