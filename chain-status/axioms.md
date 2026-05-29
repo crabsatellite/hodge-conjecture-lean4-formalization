@@ -10,10 +10,12 @@ Equivalent to running `#print axioms <endpoint>` for each endpoint.
 - `HodgeReduction.SmoothProjectiveVariety.cohomology`
 - `HodgeReduction.absHodgeClassesAtDegree`
 - `HodgeReduction.abs_hodge_cm_implies_algebraic`
-- `HodgeReduction.canonicalMTPackageAt`
-- `HodgeReduction.canonicalTargetAlgClassesData`
-- `HodgeReduction.canonicalTargetCohomologyData`
+- `HodgeReduction.canonicalTargetE7Factor`
+- `HodgeReduction.canonicalTargetInKnownE7Scope`
+- `HodgeReduction.canonicalTargetVariety`
 - `HodgeReduction.deligne_1982_abs_hodge_cm`
+- `HodgeReduction.e7_chosen_witness_correspondence_package_exists`
+- `HodgeReduction.e7_cm_witness_exists`
 - `Quot.sound`
 - `propext`
 

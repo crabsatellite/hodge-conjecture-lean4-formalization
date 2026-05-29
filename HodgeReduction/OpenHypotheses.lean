@@ -920,43 +920,37 @@ structure CanonicalHCDataByCodim where
           A.cohomology cohomologyOfTarget
           A.algClasses algClassesOfTarget p
 
-/-- **R541-A**: canonical target cohomology data.
+/-- **R542-A**: canonical target smooth projective variety.
 
-Open construction cut for the actual rational cohomology and Hodge
-structure data of the AMRT E_{7(-25)} toroidal compactification. -/
-axiom canonicalTargetCohomologyData :
-  Infrastructure.HodgeStructure.VarietyCohomologyData
+This is the narrow target-object cut for the AMRT E_{7(-25)} toroidal
+compactification. The headline no longer consumes the full legacy
+`E7ShimuraTor` container; it consumes only this target variety plus the
+two E7-scope properties below. -/
+axiom canonicalTargetVariety : SmoothProjectiveVariety Complex
 
-/-- **R541-B**: canonical target algebraic-classes data.
+/-- **R542-B**: the canonical target has an E_{7(-25)} factor on
+`MT^der(H^3)`. -/
+axiom canonicalTargetE7Factor :
+  hasSimpleFactor (MumfordTateGroupDerived canonicalTargetVariety 3) E7_neg25
 
-Open construction cut for the actual cycle-class image / algebraic class
-submodules of the AMRT E_{7(-25)} toroidal compactification, relative to
-`canonicalTargetCohomologyData`. -/
-axiom canonicalTargetAlgClassesData :
+/-- **R542-C**: the canonical target lies in the known E7 Shimura scope. -/
+axiom canonicalTargetInKnownE7Scope :
+  InKnownE7Scope canonicalTargetVariety
+
+/-- **R542-D**: canonical target cohomology data, now the standard
+R169 cohomology data of `canonicalTargetVariety`. -/
+noncomputable def canonicalTargetCohomologyData :
+  Infrastructure.HodgeStructure.VarietyCohomologyData :=
+  canonicalTargetVariety.cohomology
+
+/-- **R542-E**: canonical target algebraic-classes data, now the standard
+R169 algebraic-classes data of `canonicalTargetVariety`. -/
+noncomputable def canonicalTargetAlgClassesData :
   Infrastructure.HodgeStructure.AlgebraicClassesData
-    canonicalTargetCohomologyData
+    canonicalTargetCohomologyData := by
+  dsimp [canonicalTargetCohomologyData]
+  exact canonicalTargetVariety.algClasses
 
-/-- **R541-C**: per-codimension CM-source MT correspondence for the
-canonical target.
-
-This is the remaining degreewise correspondence construction cut.  For
-each codimension `p`, it must exhibit a genuine CM abelian source and an
-MT correspondence package from that source's own cohomology/cycle data
-to the canonical target data. -/
-axiom canonicalMTPackageAt :
-  forall p : Nat,
-    exists A : SmoothProjectiveVariety Complex,
-      IsCMAbelianVariety A /\
-      Infrastructure.HodgeStructure.MTCorrespondencePackageAt
-        A.cohomology canonicalTargetCohomologyData
-        A.algClasses canonicalTargetAlgClassesData p
-
-/-- **R541**: rebuilt degreewise canonical headline package from the
-three field-level construction cuts. -/
-noncomputable def canonicalHCDataByCodim : CanonicalHCDataByCodim :=
-  { cohomologyOfTarget := canonicalTargetCohomologyData
-    algClassesOfTarget := canonicalTargetAlgClassesData
-    mtCorrespondenceAt := canonicalMTPackageAt }
 
 /-- Canonical inhabitant of `E7ShimuraTor`: the paper constructs
  `S_Γ^tor` as a specific AMRT-Baily-Borel toroidal compactification

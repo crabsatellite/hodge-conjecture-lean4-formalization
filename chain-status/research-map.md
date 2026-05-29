@@ -13,9 +13,9 @@ Open mathematical cut(s):
 - `HodgeReduction.SmoothProjectiveVariety.cohomology` at `HodgeReduction/OpenHypotheses.lean`
 - `HodgeReduction.absHodgeClassesAtDegree` at `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
 - `HodgeReduction.abs_hodge_cm_implies_algebraic` at `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
-- `HodgeReduction.canonicalMTPackageAt` at `HodgeReduction/OpenHypotheses.lean`
-- `HodgeReduction.canonicalTargetAlgClassesData` at `HodgeReduction/OpenHypotheses.lean`
-- `HodgeReduction.canonicalTargetCohomologyData` at `HodgeReduction/OpenHypotheses.lean`
+- `HodgeReduction.canonicalTargetE7Factor` at `HodgeReduction/OpenHypotheses.lean`
+- `HodgeReduction.canonicalTargetInKnownE7Scope` at `HodgeReduction/OpenHypotheses.lean`
+- `HodgeReduction.canonicalTargetVariety` at `HodgeReduction/OpenHypotheses.lean`
 - `HodgeReduction.cy3_e7_excludes_e6` at `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
 - `HodgeReduction.cy3_e7_fts_omega_stage` at `HodgeReduction/HCGapL4/CY3NonexistenceStageCuts.lean`
 - `HodgeReduction.cy3_e7_j3o_nonrealization_stage` at `HodgeReduction/HCGapL4/CY3NonexistenceStageCuts.lean`
@@ -389,7 +389,7 @@ Route-labelled off-chain files are assigned by the audit infra but are not consu
 
 ### `main-hc-axiom-relative` -- Main Mumford--Tate-reduction HC chain
 
-`OpenHypotheses` (R169 cohomology / algClasses bridge + R174a Deligne) composes with `MainTheorem` (R170 four-case main reduction + R171/R188/R541 canonical headline) to reach `hodgeConjectureReal_canonical`.  Conditional on three field-level canonical target / MT-package cuts; not an unconditional proof of HC.
+`OpenHypotheses` (R169 cohomology / algClasses bridge + R174a Deligne) composes with `MainTheorem` (R170 four-case main reduction + R171/R188/R542 canonical headline) to reach `hodgeConjectureReal_canonical`.  Conditional on a canonical target SPV, its E7 factor/scope facts, and the generic MT-witness route; not an unconditional proof of HC.
 
 Entry declarations:
 - `HodgeReduction.hodgeConjectureReal_canonical`
@@ -478,11 +478,14 @@ Files:
 
 ### `G-main-hc` -- Hodge conjecture headline remains axiom-relative
 
-The `hodgeConjectureReal_canonical` endpoint is a kernel-pure composition once three field-level project cuts are accepted: `canonicalTargetCohomologyData`, `canonicalTargetAlgClassesData`, and `canonicalMTPackageAt`.  R541 replaces the single `canonicalHCDataByCodim` axiom by these exact construction cuts; R540 already removed the hidden source-HC field, so source HC is derived through the CM bridge.  It is NOT an unconditional proof of HC.
+The `hodgeConjectureReal_canonical` endpoint is a kernel-pure composition once the canonical target variety and its two E7-scope facts are accepted.  R542 derives `canonicalMTPackageAt` from the generic R517/R532 MT-witness route, so the headline now consumes `e7_cm_witness_exists` and `e7_chosen_witness_correspondence_package_exists` instead of a separate canonical-only package axiom.  It is NOT an unconditional proof of HC.
 
 Declarations:
 - `HodgeReduction.CanonicalHCData`
 - `HodgeReduction.CanonicalHCDataByCodim`
+- `HodgeReduction.canonicalTargetVariety`
+- `HodgeReduction.canonicalTargetE7Factor`
+- `HodgeReduction.canonicalTargetInKnownE7Scope`
 - `HodgeReduction.canonicalTargetCohomologyData`
 - `HodgeReduction.canonicalTargetAlgClassesData`
 - `HodgeReduction.canonicalMTPackageAt`
@@ -564,7 +567,7 @@ Files:
 
 ### `G-l4-mt-correspondence` -- Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian)
 
-R529/R517 decomposes the non-canonical MT correspondence witness; R532 tightens the package cut so it applies only to the witness selected by `e7_cm_witness_exists`, not to arbitrary CM abelian sources.  R541 exposes the canonical headline's correspondence gap as `canonicalMTPackageAt`: for each p, a genuine CM source plus correspondence package into the canonical target, with source HC discharged through the CM bridge.
+R529/R517 decomposes the non-canonical MT correspondence witness; R532 tightens the package cut so it applies only to the witness selected by `e7_cm_witness_exists`, not to arbitrary CM abelian sources.  R542 makes the canonical headline consume this generic route directly: `canonicalMTPackageAt` is now a theorem derived from the canonical target's E7 factor/scope facts and `mt_correspondence_e7_witness_exists`.
 
 Declarations:
 - `HodgeReduction.mt_correspondence_e7_witness_exists`

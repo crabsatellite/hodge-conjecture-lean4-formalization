@@ -14,7 +14,7 @@ graph TD
   HodgeReduction_cy3_e7_j3o_nonrealization_stage{{ "cy3_e7_j3o_nonrealization_stage" }}:::cut
   HodgeReduction_absHodgeClassesAtDegree{{ "absHodgeClassesAtDegree" }}:::cut
   HodgeReduction_cy3_mtd_isSemisimple{{ "cy3_mtd_isSemisimple" }}:::cut
-  HodgeReduction_canonicalTargetAlgClassesData{{ "canonicalTargetAlgClassesData" }}:::cut
+  HodgeReduction_canonicalTargetInKnownE7Scope{{ "canonicalTargetInKnownE7Scope" }}:::cut
   HodgeReduction_cy3_e7_excludes_e6{{ "cy3_e7_excludes_e6" }}:::cut
   propext{{ "propext" }}:::cut
   HodgeReduction_abs_hodge_cm_implies_algebraic{{ "abs_hodge_cm_implies_algebraic" }}:::cut
@@ -22,17 +22,17 @@ graph TD
   HodgeReduction_cy3_inherits_e7_factor{{ "cy3_inherits_e7_factor" }}:::cut
   HodgeReduction_e6_remainder_transfer{{ "e6_remainder_transfer" }}:::cut
   HodgeReduction_e6_classical_remainder_exists{{ "e6_classical_remainder_exists" }}:::cut
-  HodgeReduction_canonicalMTPackageAt{{ "canonicalMTPackageAt" }}:::cut
   HodgeReduction_SmoothProjectiveVariety_cohomology{{ "cohomology" }}:::cut
   HodgeReduction_hc_real_classical_cartan{{ "hc_real_classical_cartan" }}:::cut
+  HodgeReduction_canonicalTargetVariety{{ "canonicalTargetVariety" }}:::cut
   HodgeReduction_e7_chosen_witness_correspondence_package_exists{{ "e7_chosen_witness_correspondence_package_exists" }}:::cut
   Classical_choice{{ "choice" }}:::cut
   HodgeReduction_cy3_e7_springer_stage{{ "cy3_e7_springer_stage" }}:::cut
   HodgeReduction_deligne_1982_abs_hodge_cm{{ "deligne_1982_abs_hodge_cm" }}:::cut
   HodgeReduction_e7_cm_witness_exists{{ "e7_cm_witness_exists" }}:::cut
   Quot_sound{{ "sound" }}:::cut
-  HodgeReduction_canonicalTargetCohomologyData{{ "canonicalTargetCohomologyData" }}:::cut
   HodgeReduction_cy3_e7_fts_omega_stage{{ "cy3_e7_fts_omega_stage" }}:::cut
+  HodgeReduction_canonicalTargetE7Factor{{ "canonicalTargetE7Factor" }}:::cut
   HodgeReduction_hodgeConjectureReal_canonical>"hodgeConjectureReal_canonical"]:::endpoint
   HodgeReduction_main_reduction_real>"main_reduction_real"]:::endpoint
   HodgeReduction_thm_Meyer>"thm_Meyer"]:::endpoint
@@ -45,10 +45,12 @@ graph TD
   HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_SmoothProjectiveVariety_cohomology
   HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_absHodgeClassesAtDegree
   HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_abs_hodge_cm_implies_algebraic
-  HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_canonicalMTPackageAt
-  HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_canonicalTargetAlgClassesData
-  HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_canonicalTargetCohomologyData
+  HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_canonicalTargetE7Factor
+  HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_canonicalTargetInKnownE7Scope
+  HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_canonicalTargetVariety
   HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_deligne_1982_abs_hodge_cm
+  HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_e7_chosen_witness_correspondence_package_exists
+  HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_e7_cm_witness_exists
   HodgeReduction_hodgeConjectureReal_canonical --> Quot_sound
   HodgeReduction_hodgeConjectureReal_canonical --> propext
   HodgeReduction_main_reduction_real --> Classical_choice

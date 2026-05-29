@@ -52,12 +52,12 @@ def config : ChainAudit.ProjectConfig := {
     ``HodgeReduction.thm_subcase3b_vacuous
   ]
   openAxioms := [
-    -- R541 field-level project cuts for the headline: canonical target
-    -- cohomology, canonical target algebraic classes, and the
-    -- codimensionwise CM-source MT-package obligation.
-    ``HodgeReduction.canonicalTargetCohomologyData,
-    ``HodgeReduction.canonicalTargetAlgClassesData,
-    ``HodgeReduction.canonicalMTPackageAt,
+    -- R542 field-level project cuts for the headline: a canonical
+    -- target SPV plus the two E7-scope facts needed to consume the
+    -- generic R517/R532 MT-witness route.
+    ``HodgeReduction.canonicalTargetVariety,
+    ``HodgeReduction.canonicalTargetE7Factor,
+    ``HodgeReduction.canonicalTargetInKnownE7Scope,
     -- R169 substantive bridge axioms (Hodge 1941 / Lefschetz 1924,
     -- awaiting a Mathlib singular cohomology + cycle-class port).
     ``HodgeReduction.SmoothProjectiveVariety.cohomology,
@@ -199,7 +199,7 @@ def config : ChainAudit.ProjectConfig := {
       title := "Hodge conjecture headline remains axiom-relative"
       status := "conditional"
       summary :=
-        "The `hodgeConjectureReal_canonical` endpoint is a kernel-pure composition once three field-level project cuts are accepted: `canonicalTargetCohomologyData`, `canonicalTargetAlgClassesData`, and `canonicalMTPackageAt`.  R541 replaces the single `canonicalHCDataByCodim` axiom by these exact construction cuts; R540 already removed the hidden source-HC field, so source HC is derived through the CM bridge.  It is NOT an unconditional proof of HC."
+        "The `hodgeConjectureReal_canonical` endpoint is a kernel-pure composition once the canonical target variety and its two E7-scope facts are accepted.  R542 derives `canonicalMTPackageAt` from the generic R517/R532 MT-witness route, so the headline now consumes `e7_cm_witness_exists` and `e7_chosen_witness_correspondence_package_exists` instead of a separate canonical-only package axiom.  It is NOT an unconditional proof of HC."
       files := [
         "HodgeReduction/MainTheorem.lean",
         "HodgeReduction/OpenHypotheses.lean",
@@ -209,6 +209,9 @@ def config : ChainAudit.ProjectConfig := {
       decls := [
         "HodgeReduction.CanonicalHCData",
         "HodgeReduction.CanonicalHCDataByCodim",
+        "HodgeReduction.canonicalTargetVariety",
+        "HodgeReduction.canonicalTargetE7Factor",
+        "HodgeReduction.canonicalTargetInKnownE7Scope",
         "HodgeReduction.canonicalTargetCohomologyData",
         "HodgeReduction.canonicalTargetAlgClassesData",
         "HodgeReduction.canonicalMTPackageAt",
@@ -300,7 +303,7 @@ def config : ChainAudit.ProjectConfig := {
       title := "Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian)"
       status := "open"
       summary :=
-        "R529/R517 decomposes the non-canonical MT correspondence witness; R532 tightens the package cut so it applies only to the witness selected by `e7_cm_witness_exists`, not to arbitrary CM abelian sources.  R541 exposes the canonical headline's correspondence gap as `canonicalMTPackageAt`: for each p, a genuine CM source plus correspondence package into the canonical target, with source HC discharged through the CM bridge."
+        "R529/R517 decomposes the non-canonical MT correspondence witness; R532 tightens the package cut so it applies only to the witness selected by `e7_cm_witness_exists`, not to arbitrary CM abelian sources.  R542 makes the canonical headline consume this generic route directly: `canonicalMTPackageAt` is now a theorem derived from the canonical target's E7 factor/scope facts and `mt_correspondence_e7_witness_exists`."
       files := [
         "HodgeReduction/MainTheorem.lean",
         "HodgeReduction/OpenHypotheses.lean",
@@ -375,7 +378,7 @@ def config : ChainAudit.ProjectConfig := {
       kind := "main"
       status := "conditional"
       summary :=
-        "`OpenHypotheses` (R169 cohomology / algClasses bridge + R174a Deligne) composes with `MainTheorem` (R170 four-case main reduction + R171/R188/R541 canonical headline) to reach `hodgeConjectureReal_canonical`.  Conditional on three field-level canonical target / MT-package cuts; not an unconditional proof of HC."
+        "`OpenHypotheses` (R169 cohomology / algClasses bridge + R174a Deligne) composes with `MainTheorem` (R170 four-case main reduction + R171/R188/R542 canonical headline) to reach `hodgeConjectureReal_canonical`.  Conditional on a canonical target SPV, its E7 factor/scope facts, and the generic MT-witness route; not an unconditional proof of HC."
       files := [
         "HodgeReduction/Types.lean",
         "HodgeReduction/ClassicalResults.lean",
@@ -462,7 +465,7 @@ def config : ChainAudit.ProjectConfig := {
         "Never re-bundle a closed front into a stronger hypothesis; chainAudit treats `def : Prop` placeholders and conjunction shells as hard failures."
       ]
       successCriterion :=
-        "A successful follow-up closes one of the three field-level cuts: construct the canonical target cohomology data, construct its algebraic-class data, or close `canonicalMTPackageAt p` for a genuine canonical codimension by Chow / cycle-class data."
+        "A successful follow-up closes one of the remaining target cuts: construct `canonicalTargetVariety`, prove its E7 factor, prove it lies in known E7 scope, or reduce the generic R517/R532 MT-witness cuts by Chow / cycle-class data."
     },
     {
       id := "concrete-evii-toy"
@@ -514,8 +517,10 @@ def config : ChainAudit.ProjectConfig := {
       labels := ["chain:main-hc-axiom-relative", "gap:G-main-hc"]
       keywords := [
         "hodgeConjectureReal_canonical", "main_reduction_real",
-        "canonicalTargetCohomologyData", "canonicalTargetAlgClassesData",
-        "canonicalMTPackageAt", "canonicalHCDataByCodim", "canonicalE7ShimuraTor",
+        "canonicalTargetVariety", "canonicalTargetE7Factor",
+        "canonicalTargetInKnownE7Scope", "canonicalTargetCohomologyData",
+        "canonicalTargetAlgClassesData", "canonicalMTPackageAt",
+        "canonicalHCDataByCodim", "canonicalE7ShimuraTor",
         "E7ShimuraTor", "VarietyHC", "mtCorrespondenceAt",
         "mtCorrespondencePackage", "CanonicalHCData", "CanonicalHCDataByCodim",
         "hodgeConjectureReal_from_canonicalHCDataByCodim"

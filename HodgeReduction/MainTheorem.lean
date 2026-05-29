@@ -309,6 +309,38 @@ and MT correspondence package may vary with codimension.
 This is the substantive closure of HC for the project's main target
 variety. -/
 
+/-- **R542**: derive the canonical per-codimension MT package from the
+generic E7 witness theorem.
+
+This consumes the already-audited R517/R532 decomposition
+(`e7_cm_witness_exists` plus
+`e7_chosen_witness_correspondence_package_exists`) through
+`mt_correspondence_e7_witness_exists`, instead of keeping a separate
+canonical-only package axiom. -/
+theorem canonicalMTPackageAt :
+    forall p : Nat,
+      exists A : SmoothProjectiveVariety Complex,
+        IsCMAbelianVariety A /\
+        Infrastructure.HodgeStructure.MTCorrespondencePackageAt
+          A.cohomology canonicalTargetCohomologyData
+          A.algClasses canonicalTargetAlgClassesData p := by
+  intro p
+  obtain ⟨A, hA_CM, h_pkg⟩ :=
+    mt_correspondence_e7_witness_exists
+      canonicalTargetVariety
+      canonicalTargetE7Factor
+      canonicalTargetInKnownE7Scope
+  refine ⟨A, hA_CM, ?_⟩
+  simpa [canonicalTargetCohomologyData, canonicalTargetAlgClassesData]
+    using h_pkg p
+
+/-- **R542**: rebuilt degreewise canonical headline package from the
+canonical target variety plus the generic E7 witness theorem. -/
+noncomputable def canonicalHCDataByCodim : CanonicalHCDataByCodim :=
+  { cohomologyOfTarget := canonicalTargetCohomologyData
+    algClassesOfTarget := canonicalTargetAlgClassesData
+    mtCorrespondenceAt := canonicalMTPackageAt }
+
 /-- **R536/R537**: parametric canonical HC theorem from a uniform CM source.
 
 The only mathematical input is `CanonicalHCData`; the proof just
@@ -358,9 +390,10 @@ Net dependency reduction: -1 axiom (`mt_correspondence_e7_witness_exists`
 no longer in chain).
 
 Final dependency chain (3 field-level substantive cuts + CM bridge + kernel):
-- `canonicalTargetCohomologyData`
-- `canonicalTargetAlgClassesData`
-- `canonicalMTPackageAt`
+- `canonicalTargetVariety`
+- `canonicalTargetE7Factor`
+- `canonicalTargetInKnownE7Scope`
+- R517/R532 generic E7 witness cuts
 
 + propext, Classical.choice, Quot.sound.
 
