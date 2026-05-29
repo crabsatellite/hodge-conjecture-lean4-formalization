@@ -6,7 +6,7 @@ Equivalent to running `#print axioms <endpoint>` for each endpoint.
 ## `HodgeReduction.hodgeConjectureReal_canonical`
 
 - `Classical.choice`
-- `HodgeReduction.canonicalHCData`
+- `HodgeReduction.canonicalHCDataByCodim`
 - `Quot.sound`
 - `propext`
 

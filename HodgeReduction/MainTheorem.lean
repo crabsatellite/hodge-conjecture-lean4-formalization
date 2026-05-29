@@ -300,15 +300,16 @@ theorem main_reduction_real :
 
 /-! ## R171: HC-real for the canonical E_7 Shimura variety
 
-R537 narrows the headline target from the full legacy
-`canonicalE7ShimuraTor` container to `canonicalHCData`, the exact
-cohomology/algebraic-class/MT-package data needed for the canonical AMRT
-toroidal compactification of the E_7-Hermitian symmetric domain quotient.
+R537 narrowed the headline target from the full legacy
+`canonicalE7ShimuraTor` container to a canonical HC data package. R538
+shrinks the live endpoint again to `canonicalHCDataByCodim`, where the
+target cohomology/algebraic-class data are fixed but the CM abelian source
+and MT correspondence package may vary with codimension.
 
 This is the substantive closure of HC for the project's main target
 variety. -/
 
-/-- **R536/R537**: parametric canonical HC theorem.
+/-- **R536/R537**: parametric canonical HC theorem from a uniform CM source.
 
 The only mathematical input is `CanonicalHCData`; the proof just
 unpacks the per-codim MT correspondence package and applies the
@@ -323,6 +324,22 @@ theorem hodgeConjectureReal_from_canonicalHCData
   exact Infrastructure.HodgeStructure.varietyHCAt_of_correspondence
     (h_pkg p) (h_HC_A p)
 
+/-- **R538**: parametric canonical HC theorem from degreewise CM sources.
+
+This is strictly weaker than `hodgeConjectureReal_from_canonicalHCData`:
+the CM abelian variety and correspondence package may depend on the
+codimension `p`. The proof matches the actual shape of `VarietyHC`,
+which is pointwise in codimension. -/
+theorem hodgeConjectureReal_from_canonicalHCDataByCodim
+    (T : CanonicalHCDataByCodim) :
+    Infrastructure.HodgeStructure.VarietyHC
+      T.cohomologyOfTarget T.algClassesOfTarget := by
+  intro p
+  rcases T.mtCorrespondenceAt p with
+    ⟨_A, A_cohData, A_algData, _hA_CM, h_HC_A, h_pkg⟩
+  exact Infrastructure.HodgeStructure.varietyHCAt_of_correspondence
+    h_pkg (h_HC_A p)
+
 /-- **R171/R173/R188 HEADLINE**: The **Hodge Conjecture holds for the
 canonical E_7 Shimura variety** in its REAL form (no Unit trick).
 
@@ -330,16 +347,16 @@ For every codimension `p`, every Hodge class in
 `H^{2p}(S_Γ^tor, ℚ)` arises as the image of a rational algebraic
 cycle class.
 
-R537 refactor: the theorem now targets `canonicalHCData` directly. This
-retains the data-level `VarietyHC` conclusion while retiring the broad
-`canonicalE7ShimuraTor` cut from the headline closure. The remaining
-open cut is the construction of `canonicalHCData`.
+R538 refactor: the theorem now targets `canonicalHCDataByCodim` directly.
+This keeps the data-level `VarietyHC` conclusion while weakening the
+headline cut from a uniform all-codimension CM source to a per-codimension
+source/package.
 
 Net dependency reduction: -1 axiom (`mt_correspondence_e7_witness_exists`
 no longer in chain).
 
 Final dependency chain (1 substantive + kernel):
-- `canonicalHCData` (AMRT 1975 + per-codim MT correspondence package)
+- `canonicalHCDataByCodim` (AMRT 1975 + per-codim MT correspondence package)
 
 + propext, Classical.choice, Quot.sound.
 
@@ -351,9 +368,9 @@ both sides honest ℚ-submodules. NO Unit trick.
 Paper source: `\label{thm:main}` clause (iii) applied to canonical. -/
 theorem hodgeConjectureReal_canonical :
     Infrastructure.HodgeStructure.VarietyHC
-      canonicalHCData.cohomologyOfTarget
-      canonicalHCData.algClassesOfTarget := by
-  exact hodgeConjectureReal_from_canonicalHCData canonicalHCData
+      canonicalHCDataByCodim.cohomologyOfTarget
+      canonicalHCDataByCodim.algClassesOfTarget := by
+  exact hodgeConjectureReal_from_canonicalHCDataByCodim canonicalHCDataByCodim
 
 /-! ## Unconditional paper theorems (body: `sorry`) -/
 

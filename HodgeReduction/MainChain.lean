@@ -52,9 +52,10 @@ def config : ChainAudit.ProjectConfig := {
     ``HodgeReduction.thm_subcase3b_vacuous
   ]
   openAxioms := [
-    -- R537 load-bearing project axiom for the headline: the exact
-    -- canonical cohomology / algebraic-classes / MT-package data.
-    ``HodgeReduction.canonicalHCData,
+    -- R538 load-bearing project axiom for the headline: the exact
+    -- canonical cohomology / algebraic-classes data plus a weaker
+    -- codimensionwise MT-package obligation.
+    ``HodgeReduction.canonicalHCDataByCodim,
     -- R169 substantive bridge axioms (Hodge 1941 / Lefschetz 1924,
     -- awaiting a Mathlib singular cohomology + cycle-class port).
     ``HodgeReduction.SmoothProjectiveVariety.cohomology,
@@ -196,7 +197,7 @@ def config : ChainAudit.ProjectConfig := {
       title := "Hodge conjecture headline remains axiom-relative"
       status := "conditional"
       summary :=
-        "The `hodgeConjectureReal_canonical` endpoint is a kernel-pure composition once the narrower project axiom `canonicalHCData` is accepted.  R536/R537 exposes the exact proof kernel as `CanonicalHCData`: target cohomology, target algebraic classes, and a per-codim MT correspondence package from a CM abelian source.  It is NOT an unconditional proof of HC; it remains conditional on constructing those fields for the AMRT E_{7(-25)} toroidal compactification."
+        "The `hodgeConjectureReal_canonical` endpoint is a kernel-pure composition once the project axiom `canonicalHCDataByCodim` is accepted.  R538 weakens the R536/R537 uniform package: the target cohomology and algebraic classes are fixed, but the CM abelian source and MT correspondence package may vary with codimension `p`.  It is NOT an unconditional proof of HC; it remains conditional on constructing those degreewise fields for the AMRT E_{7(-25)} toroidal compactification."
       files := [
         "HodgeReduction/MainTheorem.lean",
         "HodgeReduction/OpenHypotheses.lean",
@@ -205,8 +206,10 @@ def config : ChainAudit.ProjectConfig := {
       ]
       decls := [
         "HodgeReduction.CanonicalHCData",
-        "HodgeReduction.canonicalHCData",
+        "HodgeReduction.CanonicalHCDataByCodim",
+        "HodgeReduction.canonicalHCDataByCodim",
         "HodgeReduction.hodgeConjectureReal_from_canonicalHCData",
+        "HodgeReduction.hodgeConjectureReal_from_canonicalHCDataByCodim",
         "HodgeReduction.hodgeConjectureReal_canonical"
       ]
     },
@@ -292,7 +295,7 @@ def config : ChainAudit.ProjectConfig := {
       title := "Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian)"
       status := "open"
       summary :=
-        "R529/R517 decomposes the non-canonical MT correspondence witness; R532 tightens the package cut so it applies only to the witness selected by `e7_cm_witness_exists`, not to arbitrary CM abelian sources.  R536/R537 routes the canonical headline through `CanonicalHCData`; the real construction gap is now the per-codim package field inside `canonicalHCData`."
+        "R529/R517 decomposes the non-canonical MT correspondence witness; R532 tightens the package cut so it applies only to the witness selected by `e7_cm_witness_exists`, not to arbitrary CM abelian sources.  R538 routes the canonical headline through `CanonicalHCDataByCodim`; the real construction gap is now the per-codim package field inside `canonicalHCDataByCodim`."
       files := [
         "HodgeReduction/MainTheorem.lean",
         "HodgeReduction/OpenHypotheses.lean",
@@ -367,7 +370,7 @@ def config : ChainAudit.ProjectConfig := {
       kind := "main"
       status := "conditional"
       summary :=
-        "`OpenHypotheses` (R169 cohomology / algClasses bridge + R174a Deligne) composes with `MainTheorem` (R170 four-case main reduction + R171/R188/R537 canonical headline) to reach `hodgeConjectureReal_canonical`.  Conditional on the narrower axiom `canonicalHCData`; not an unconditional proof of HC."
+        "`OpenHypotheses` (R169 cohomology / algClasses bridge + R174a Deligne) composes with `MainTheorem` (R170 four-case main reduction + R171/R188/R538 canonical headline) to reach `hodgeConjectureReal_canonical`.  Conditional on the degreewise axiom `canonicalHCDataByCodim`; not an unconditional proof of HC."
       files := [
         "HodgeReduction/Types.lean",
         "HodgeReduction/ClassicalResults.lean",
@@ -454,7 +457,7 @@ def config : ChainAudit.ProjectConfig := {
         "Never re-bundle a closed front into a stronger hypothesis; chainAudit treats `def : Prop` placeholders and conjunction shells as hard failures."
       ]
       successCriterion :=
-        "A successful follow-up decomposes `canonicalHCData` into fieldwise construction cuts, or shrinks its `mtCorrespondencePackage` field by exhibiting an unconditional per-codim MT correspondence package via Chow / cycle-class data."
+        "A successful follow-up decomposes `canonicalHCDataByCodim` into target cohomology, target algebraic classes, and one-codimension MT-correspondence construction cuts, or closes the `mtCorrespondenceAt p` field for a genuine canonical codimension by Chow / cycle-class data."
     },
     {
       id := "concrete-evii-toy"
@@ -506,9 +509,10 @@ def config : ChainAudit.ProjectConfig := {
       labels := ["chain:main-hc-axiom-relative", "gap:G-main-hc"]
       keywords := [
         "hodgeConjectureReal_canonical", "main_reduction_real",
-        "canonicalHCData", "canonicalE7ShimuraTor", "E7ShimuraTor", "VarietyHC",
-        "mtCorrespondencePackage", "CanonicalHCData",
-        "hodgeConjectureReal_from_canonicalHCData"
+        "canonicalHCDataByCodim", "canonicalE7ShimuraTor",
+        "E7ShimuraTor", "VarietyHC", "mtCorrespondenceAt",
+        "mtCorrespondencePackage", "CanonicalHCData", "CanonicalHCDataByCodim",
+        "hodgeConjectureReal_from_canonicalHCDataByCodim"
       ]
     },
     {

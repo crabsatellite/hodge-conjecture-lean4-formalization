@@ -28,5 +28,5 @@ Files whose declarations are transitively reached from `config.endpoints` (and a
 | `HodgeReduction/HCGapL4/CY3NonexistenceStageCuts.lean` | 28 | 3 |
 | `HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean` | 6 | 2 |
 | `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean` | 5 | 2 |
-| `HodgeReduction/MainTheorem.lean` | 33 | 1 |
-| `HodgeReduction/OpenHypotheses.lean` | 477 | 205 |
+| `HodgeReduction/MainTheorem.lean` | 34 | 1 |
+| `HodgeReduction/OpenHypotheses.lean` | 490 | 205 |

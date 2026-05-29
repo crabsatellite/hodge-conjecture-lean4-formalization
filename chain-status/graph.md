@@ -14,12 +14,12 @@ graph TD
   HodgeReduction_cy3_e7_j3o_nonrealization_stage{{ "cy3_e7_j3o_nonrealization_stage" }}:::cut
   HodgeReduction_absHodgeClassesAtDegree{{ "absHodgeClassesAtDegree" }}:::cut
   HodgeReduction_cy3_mtd_isSemisimple{{ "cy3_mtd_isSemisimple" }}:::cut
-  HodgeReduction_canonicalHCData{{ "canonicalHCData" }}:::cut
   HodgeReduction_cy3_e7_excludes_e6{{ "cy3_e7_excludes_e6" }}:::cut
   propext{{ "propext" }}:::cut
   HodgeReduction_abs_hodge_cm_implies_algebraic{{ "abs_hodge_cm_implies_algebraic" }}:::cut
   HodgeReduction_SmoothProjectiveVariety_algClasses{{ "algClasses" }}:::cut
   HodgeReduction_cy3_inherits_e7_factor{{ "cy3_inherits_e7_factor" }}:::cut
+  HodgeReduction_canonicalHCDataByCodim{{ "canonicalHCDataByCodim" }}:::cut
   HodgeReduction_e6_remainder_transfer{{ "e6_remainder_transfer" }}:::cut
   HodgeReduction_e6_classical_remainder_exists{{ "e6_classical_remainder_exists" }}:::cut
   HodgeReduction_SmoothProjectiveVariety_cohomology{{ "cohomology" }}:::cut
@@ -39,7 +39,7 @@ graph TD
   HodgeReduction_thm_cy3_e7_nonexistence>"thm_cy3_e7_nonexistence"]:::endpoint
   HodgeReduction_thm_subcase3b_vacuous>"thm_subcase3b_vacuous"]:::endpoint
   HodgeReduction_hodgeConjectureReal_canonical --> Classical_choice
-  HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_canonicalHCData
+  HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_canonicalHCDataByCodim
   HodgeReduction_hodgeConjectureReal_canonical --> Quot_sound
   HodgeReduction_hodgeConjectureReal_canonical --> propext
   HodgeReduction_main_reduction_real --> Classical_choice
