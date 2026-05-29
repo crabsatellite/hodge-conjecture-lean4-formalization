@@ -5,9 +5,10 @@ five-way classification:
 
 
 * quarantine: **0** (explicit failed-route list)
-* infra:      **9** (standalone tools, audit scripts)
-* orphan:     **286** (loaded but unreachable - investigate)
-* on-disk-unloaded: **172** (file exists but not imported by any chain)
+* infra:      **2** (standalone tools, audit scripts)
+* registered: **20** (configured research route/gap files, off endpoint closure)
+* orphan:     **224** (loaded but unreachable - investigate)
+* on-disk-unloaded: **288** (file exists but not imported by any chain)
 
 
 ## Quarantine (0)
@@ -15,29 +16,42 @@ five-way classification:
 (none)
 
 
-## Infra (standalone) (9)
+## Infra (standalone) (2)
 
 | file | decls | axioms |
 |------|------:|-------:|
-| `HodgeReduction/Concrete.lean` | 0 | 0 |
-| `HodgeReduction/HCGapL4/R470_MultiFrontWave5Audit.lean` | 62 | 0 |
 | `HodgeReduction/HCGapRegistry.lean` | 9 | 0 |
-| `HodgeReduction/Infrastructure/AbelianVariety/CMType.lean` | 53 | 0 |
-| `HodgeReduction/Infrastructure/AbelianVariety/KugaSatake.lean` | 47 | 0 |
-| `HodgeReduction/Infrastructure/HodgeStructure/V56Instance.lean` | 103 | 0 |
-| `HodgeReduction/Infrastructure/Shimura/ArithmeticGroup.lean` | 60 | 0 |
-| `HodgeReduction/Infrastructure/Shimura/HermitianSymmetric.lean` | 102 | 0 |
 | `HodgeReduction/MainChain.lean` | 1 | 0 |
 
-## Orphan (warning - investigate) (286)
+## Registered research routes/gaps (20)
 
 | file | decls | axioms |
 |------|------:|-------:|
-| `HodgeReduction/Concrete/EVII.lean` | 253 | 0 |
-| `HodgeReduction/CrossRingArithmetic.lean` | 23 | 0 |
 | `HodgeReduction/HCGapL2/EllipticCurve.lean` | 43 | 0 |
 | `HodgeReduction/HCGapL2/ProjectiveLine.lean` | 44 | 0 |
 | `HodgeReduction/HCGapL2/TrivialPoint.lean` | 22 | 0 |
+| `HodgeReduction/HCGapL4/FrontA_DeligneH0SheafRealization.lean` | 68 | 0 |
+| `HodgeReduction/HCGapL4/FrontB_BailyBorelConnectedness.lean` | 64 | 0 |
+| `HodgeReduction/HCGapL4/FrontC_E7LowDegreeHodgeNumbers.lean` | 62 | 0 |
+| `HodgeReduction/HCGapL4/FrontD_E7ToCMChowCorrespondence.lean` | 74 | 0 |
+| `HodgeReduction/HCGapL4/FrontE_RealCarrierProfileMatching.lean` | 68 | 0 |
+| `HodgeReduction/HCGapL4/R451_MultiFrontFrontierAudit.lean` | 57 | 0 |
+| `HodgeReduction/HCGapL4/R456_MultiFrontWave2Audit.lean` | 55 | 0 |
+| `HodgeReduction/HCGapL4/R460_MultiFrontWave3Audit.lean` | 57 | 0 |
+| `HodgeReduction/HCGapL4/R465_MultiFrontWave4Audit.lean` | 58 | 0 |
+| `HodgeReduction/HCGapL4/R470_MultiFrontWave5Audit.lean` | 62 | 0 |
+| `HodgeReduction/Infrastructure/Automorphic/VoganZuckerman.lean` | 19 | 0 |
+| `HodgeReduction/Infrastructure/Cohomology/Matsushima.lean` | 50 | 0 |
+| `HodgeReduction/Infrastructure/Cohomology/SheafCohomology.lean` | 48 | 0 |
+| `HodgeReduction/Infrastructure/HodgeStructure/MumfordTate.lean` | 70 | 0 |
+| `HodgeReduction/Infrastructure/HodgeStructure/V56Instance.lean` | 103 | 0 |
+| `HodgeReduction/Infrastructure/Shimura/ToroidalCompactification.lean` | 49 | 0 |
+| `HodgeReduction/Infrastructure/V56HodgeDecomp.lean` | 82 | 0 |
+
+## Orphan (warning - investigate) (224)
+
+| file | decls | axioms |
+|------|------:|-------:|
 | `HodgeReduction/HCGapL4/AbelianVarietyInterface.lean` | 44 | 0 |
 | `HodgeReduction/HCGapL4/AbelianVarietyInterfaceECRealization.lean` | 40 | 0 |
 | `HodgeReduction/HCGapL4/AbstractConnectedH0RankOneTheorem.lean` | 48 | 0 |
@@ -99,24 +113,19 @@ five-way classification:
 | `HodgeReduction/HCGapL4/EllipticCurveEndomorphismRingInterface.lean` | 53 | 0 |
 | `HodgeReduction/HCGapL4/End0CohomologyActionTarget.lean` | 31 | 0 |
 | `HodgeReduction/HCGapL4/End0InfrastructureChainIntegration.lean` | 40 | 0 |
-| `HodgeReduction/HCGapL4/FrontA_DeligneH0SheafRealization.lean` | 68 | 0 |
 | `HodgeReduction/HCGapL4/FrontA_PauseUntilR500.lean` | 40 | 0 |
 | `HodgeReduction/HCGapL4/FrontB2_ConnectednessNstepPipeline.lean` | 81 | 0 |
 | `HodgeReduction/HCGapL4/FrontB3_ArithmeticQuotientConnectedness.lean` | 87 | 0 |
 | `HodgeReduction/HCGapL4/FrontB4_DiscreteGroupQuotientRefinement.lean` | 97 | 0 |
 | `HodgeReduction/HCGapL4/FrontB5_CompactificationConnectednessProbe.lean` | 93 | 0 |
-| `HodgeReduction/HCGapL4/FrontB_BailyBorelConnectedness.lean` | 64 | 0 |
 | `HodgeReduction/HCGapL4/FrontC2_LowDegreeHodgeRankAlgebra.lean` | 83 | 0 |
 | `HodgeReduction/HCGapL4/FrontC3_LowDegreeHodgeEulerAlgebra.lean` | 80 | 0 |
 | `HodgeReduction/HCGapL4/FrontC4_HodgePolynomialAlgebra.lean` | 70 | 0 |
 | `HodgeReduction/HCGapL4/FrontC5_HodgePolynomialToRankAdapter.lean` | 102 | 0 |
-| `HodgeReduction/HCGapL4/FrontC_E7LowDegreeHodgeNumbers.lean` | 62 | 0 |
-| `HodgeReduction/HCGapL4/FrontD_E7ToCMChowCorrespondence.lean` | 74 | 0 |
 | `HodgeReduction/HCGapL4/FrontE2_ProfileMatchingObligationSplit.lean` | 93 | 0 |
 | `HodgeReduction/HCGapL4/FrontE3_LowDegreeDataFeedsProfileMatching.lean` | 83 | 0 |
 | `HodgeReduction/HCGapL4/FrontE4_AllCodimProfileMatchingDispatcher.lean` | 77 | 0 |
 | `HodgeReduction/HCGapL4/FrontE5_HodgePolynomialFeedsProfileMatching.lean` | 82 | 0 |
-| `HodgeReduction/HCGapL4/FrontE_RealCarrierProfileMatching.lean` | 68 | 0 |
 | `HodgeReduction/HCGapL4/GaussianCMActionAddCasesBasic.lean` | 10 | 0 |
 | `HodgeReduction/HCGapL4/GaussianCMActionAddCasesGeneric.lean` | 9 | 0 |
 | `HodgeReduction/HCGapL4/GaussianCMActionAddMonoidHom.lean` | 16 | 0 |
@@ -236,10 +245,6 @@ five-way classification:
 | `HodgeReduction/HCGapL4/ProductCohomologyPointTimesE7ShimuraToy.lean` | 19 | 0 |
 | `HodgeReduction/HCGapL4/ProductCycleFactoryLifter.lean` | 16 | 0 |
 | `HodgeReduction/HCGapL4/PtToProjectiveLineProductCycleFactory.lean` | 24 | 0 |
-| `HodgeReduction/HCGapL4/R451_MultiFrontFrontierAudit.lean` | 57 | 0 |
-| `HodgeReduction/HCGapL4/R456_MultiFrontWave2Audit.lean` | 55 | 0 |
-| `HodgeReduction/HCGapL4/R460_MultiFrontWave3Audit.lean` | 57 | 0 |
-| `HodgeReduction/HCGapL4/R465_MultiFrontWave4Audit.lean` | 58 | 0 |
 | `HodgeReduction/HCGapL4/RealCompatibleE7AlgClassesProfile.lean` | 41 | 0 |
 | `HodgeReduction/HCGapL4/RealCompatibleE7CarrierProfile.lean` | 62 | 0 |
 | `HodgeReduction/HCGapL4/RealCompatibleParametricCanonicalTor.lean` | 25 | 0 |
@@ -258,73 +263,27 @@ five-way classification:
 | `HodgeReduction/HCGapL4/ToyToRealPackageFamilyHighCodim.lean` | 32 | 0 |
 | `HodgeReduction/HCGapL4/ToyToRealPackageFamilyLowCodim.lean` | 31 | 0 |
 | `HodgeReduction/HCGapL4/ToyToRealPackageFamilyWitness.lean` | 44 | 0 |
-| `HodgeReduction/Infrastructure/AbelianVariety/Basic.lean` | 81 | 0 |
-| `HodgeReduction/Infrastructure/AlgebraicGeometry/ChowGroup.lean` | 71 | 0 |
-| `HodgeReduction/Infrastructure/AlgebraicGeometry/FirstChernClass.lean` | 54 | 0 |
-| `HodgeReduction/Infrastructure/AlgebraicGeometry/LineBundle.lean` | 58 | 0 |
-| `HodgeReduction/Infrastructure/AlgebraicGeometry/PicardGroup.lean` | 48 | 0 |
 | `HodgeReduction/Infrastructure/Automorphic/Basic.lean` | 49 | 0 |
-| `HodgeReduction/Infrastructure/Automorphic/BorelBottWeil.lean` | 46 | 0 |
-| `HodgeReduction/Infrastructure/Automorphic/CuspidalCohomology.lean` | 26 | 0 |
-| `HodgeReduction/Infrastructure/Automorphic/FrankeEisensteinLayer.lean` | 11 | 0 |
-| `HodgeReduction/Infrastructure/Automorphic/VoganZuckerman.lean` | 19 | 0 |
-| `HodgeReduction/Infrastructure/Cohomology/AbelJacobi.lean` | 45 | 0 |
-| `HodgeReduction/Infrastructure/Cohomology/AlgebraicBundle.lean` | 74 | 0 |
-| `HodgeReduction/Infrastructure/Cohomology/AlgebraicCycle.lean` | 49 | 0 |
-| `HodgeReduction/Infrastructure/Cohomology/AmpleDivisor.lean` | 47 | 0 |
 | `HodgeReduction/Infrastructure/Cohomology/Basic.lean` | 53 | 0 |
-| `HodgeReduction/Infrastructure/Cohomology/BorelHirzebruchCoinvariant.lean` | 48 | 0 |
-| `HodgeReduction/Infrastructure/Cohomology/ChernCharacter.lean` | 41 | 0 |
-| `HodgeReduction/Infrastructure/Cohomology/ChernClasses.lean` | 81 | 0 |
-| `HodgeReduction/Infrastructure/Cohomology/ClassifyingSpace.lean` | 52 | 0 |
-| `HodgeReduction/Infrastructure/Cohomology/CycleClassMap.lean` | 55 | 0 |
-| `HodgeReduction/Infrastructure/Cohomology/DivisorClass.lean` | 59 | 0 |
-| `HodgeReduction/Infrastructure/Cohomology/FreudenthalClass.lean` | 59 | 0 |
-| `HodgeReduction/Infrastructure/Cohomology/Galois.lean` | 40 | 0 |
-| `HodgeReduction/Infrastructure/Cohomology/HCCodim1.lean` | 26 | 0 |
-| `HodgeReduction/Infrastructure/Cohomology/HodgeCycle.lean` | 51 | 0 |
-| `HodgeReduction/Infrastructure/Cohomology/HodgeRefinementCarriers.lean` | 32 | 0 |
-| `HodgeReduction/Infrastructure/Cohomology/KaehlerClass.lean` | 62 | 0 |
-| `HodgeReduction/Infrastructure/Cohomology/Lefschetz.lean` | 50 | 0 |
-| `HodgeReduction/Infrastructure/Cohomology/Matsushima.lean` | 50 | 0 |
-| `HodgeReduction/Infrastructure/Cohomology/Motive.lean` | 40 | 0 |
-| `HodgeReduction/Infrastructure/Cohomology/NeronSeveri.lean` | 54 | 0 |
-| `HodgeReduction/Infrastructure/Cohomology/PicardGroup.lean` | 55 | 0 |
-| `HodgeReduction/Infrastructure/Cohomology/PoincareDuality.lean` | 36 | 0 |
-| `HodgeReduction/Infrastructure/Cohomology/SheafCohomology.lean` | 48 | 0 |
-| `HodgeReduction/Infrastructure/Cohomology/StandardConjectures.lean` | 38 | 0 |
-| `HodgeReduction/Infrastructure/Cohomology/TwistedPhiL.lean` | 44 | 0 |
-| `HodgeReduction/Infrastructure/CoxeterDegrees.lean` | 19 | 0 |
-| `HodgeReduction/Infrastructure/HodgeStructure/MumfordTate.lean` | 70 | 0 |
 | `HodgeReduction/Infrastructure/HodgeStructure/Polarised.lean` | 61 | 0 |
 | `HodgeReduction/Infrastructure/J3OInnerProduct.lean` | 3 | 0 |
-| `HodgeReduction/Infrastructure/J3OJordan.lean` | 51 | 0 |
 | `HodgeReduction/Infrastructure/JordanJ3O.lean` | 83 | 0 |
 | `HodgeReduction/Infrastructure/JordanJ3OBasis.lean` | 21 | 0 |
 | `HodgeReduction/Infrastructure/LinearMaps.lean` | 24 | 0 |
 | `HodgeReduction/Infrastructure/Octonion.lean` | 158 | 0 |
 | `HodgeReduction/Infrastructure/OctonionBasis.lean` | 14 | 0 |
-| `HodgeReduction/Infrastructure/SchlafliGraph.lean` | 75 | 0 |
 | `HodgeReduction/Infrastructure/Shimura/Basic.lean` | 72 | 0 |
-| `HodgeReduction/Infrastructure/Shimura/BorelHirzebruch.lean` | 58 | 0 |
-| `HodgeReduction/Infrastructure/Shimura/CompactDual.lean` | 49 | 0 |
-| `HodgeReduction/Infrastructure/Shimura/E7ParabolicCodim.lean` | 20 | 0 |
-| `HodgeReduction/Infrastructure/Shimura/HirzebruchMumford.lean` | 31 | 0 |
-| `HodgeReduction/Infrastructure/Shimura/IntersectionHomology.lean` | 47 | 0 |
-| `HodgeReduction/Infrastructure/Shimura/MumfordExtension.lean` | 22 | 0 |
-| `HodgeReduction/Infrastructure/Shimura/ToroidalCompactification.lean` | 49 | 0 |
 | `HodgeReduction/Infrastructure/V56Basis.lean` | 17 | 0 |
 | `HodgeReduction/Infrastructure/V56Freudenthal.lean` | 121 | 0 |
-| `HodgeReduction/Infrastructure/V56HodgeDecomp.lean` | 82 | 0 |
 | `HodgeReduction/Infrastructure/V56HodgeRank.lean` | 33 | 0 |
-| `HodgeReduction/MathlibCandidates.lean` | 123 | 0 |
-| `HodgeReduction/Strict.lean` | 358 | 0 |
 
-## On-disk-unloaded (172)
+## On-disk-unloaded (288)
 
 Files present in the source tree but NOT imported by the entry script.  Either wire them into the chain, mark them quarantine, or delete them.
 
 - `HodgeReduction.lean`
+- `HodgeReduction/Concrete.lean`
+- `HodgeReduction/Concrete/EVII.lean`
 - `HodgeReduction/ConeAudits/R217_ConeAudit.lean`
 - `HodgeReduction/ConeAudits/R218_ConeAudit.lean`
 - `HodgeReduction/ConeAudits/R219_ConeAudit.lean`
@@ -408,6 +367,14 @@ Files present in the source tree but NOT imported by the entry script.  Either w
 - `HodgeReduction/ConeAudits/R457_R460_ConeAudit.lean`
 - `HodgeReduction/ConeAudits/R462_R465_ConeAudit.lean`
 - `HodgeReduction/ConeAudits/R467_R470_ConeAudit.lean`
+- `HodgeReduction/ConeAudits/R471_R476_ConeAudit.lean`
+- `HodgeReduction/ConeAudits/R477_R480_ConeAudit.lean`
+- `HodgeReduction/CrossRingArithmetic.lean`
+- `HodgeReduction/HCGapL2/AbelianSurface.lean`
+- `HodgeReduction/HCGapL2/EVIICohomologyModel.lean`
+- `HodgeReduction/HCGapL2/ProjectivePlane.lean`
+- `HodgeReduction/HCGapL2/ProjectiveThreeSpace.lean`
+- `HodgeReduction/HCGapL2/QuadricSurface.lean`
 - `HodgeReduction/HCGapL4/ACDReconciliation.lean`
 - `HodgeReduction/HCGapL4/AbelianVarietyInterfaceECProjectiveRealization.lean`
 - `HodgeReduction/HCGapL4/AbstractHCDataPackage.lean`
@@ -418,16 +385,30 @@ Files present in the source tree but NOT imported by the entry script.  Either w
 - `HodgeReduction/HCGapL4/CMFieldSequenceStoppingAudit.lean`
 - `HodgeReduction/HCGapL4/CMSourceBridgeNextTarget.lean`
 - `HodgeReduction/HCGapL4/CMSourceReplacementBridge.lean`
+- `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
+- `HodgeReduction/HCGapL4/CY3NonexistenceDecomposition.lean`
+- `HodgeReduction/HCGapL4/CY3NonexistenceProof.lean`
+- `HodgeReduction/HCGapL4/CY3SpringerDiscriminant.lean`
+- `HodgeReduction/HCGapL4/CY3VacuousClosure.lean`
+- `HodgeReduction/HCGapL4/CY3VacuousClosureAttempt.lean`
 - `HodgeReduction/HCGapL4/CanonicalConeExtractionAudit.lean`
+- `HodgeReduction/HCGapL4/ClassicalCartanGapCard.lean`
+- `HodgeReduction/HCGapL4/ClassicalCartanProof.lean`
 - `HodgeReduction/HCGapL4/CohomologyReplacementDependencyMap.lean`
 - `HodgeReduction/HCGapL4/CohomologyReplacementMathlibAudit.lean`
 - `HodgeReduction/HCGapL4/CohomologyReplacementNextTarget.lean`
 - `HodgeReduction/HCGapL4/CycleClassMapReplacement.lean`
 - `HodgeReduction/HCGapL4/Deligne1982BoundaryInterface.lean`
+- `HodgeReduction/HCGapL4/DeligneCMHCSkeleton.lean`
+- `HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean`
+- `HodgeReduction/HCGapL4/E6CaseClosureConstraints.lean`
+- `HodgeReduction/HCGapL4/E6CaseProof.lean`
+- `HodgeReduction/HCGapL4/E6V27VacuityBridge.lean`
 - `HodgeReduction/HCGapL4/E7ShimuraDatumToySkeletonV2.lean`
 - `HodgeReduction/HCGapL4/E7ShimuraTorAlgClassesReplacement.lean`
 - `HodgeReduction/HCGapL4/E7ShimuraTorAlgClassesReplacementViaCycleClassMap.lean`
 - `HodgeReduction/HCGapL4/E7ShimuraTorCohomologyReplacement.lean`
+- `HodgeReduction/HCGapL4/E7ShimuraTorDecomposition.lean`
 - `HodgeReduction/HCGapL4/E7ShimuraTorFieldReplacementPlan.lean`
 - `HodgeReduction/HCGapL4/E7ShimuraTorMTCorrespondenceReplacement.lean`
 - `HodgeReduction/HCGapL4/E7ShimuraTorToyContainer.lean`
@@ -437,6 +418,27 @@ Files present in the source tree but NOT imported by the entry script.  Either w
 - `HodgeReduction/HCGapL4/E7ShimuraToyReflexFieldSkeleton.lean`
 - `HodgeReduction/HCGapL4/EllipticCurveCohomologyRealizationAudit.lean`
 - `HodgeReduction/HCGapL4/EllipticCurveEnd0ActionBoundary.lean`
+- `HodgeReduction/HCGapL4/FrontB6_MaintenanceOnly.lean`
+- `HodgeReduction/HCGapL4/FrontC10_V56CohomologyIdentification.lean`
+- `HodgeReduction/HCGapL4/FrontC11_ShimuraBettiComputation.lean`
+- `HodgeReduction/HCGapL4/FrontC12_ClassicalCartanDerivation.lean`
+- `HodgeReduction/HCGapL4/FrontC13_E6CaseDerivation.lean`
+- `HodgeReduction/HCGapL4/FrontC14_CY3NonexistenceDerivation.lean`
+- `HodgeReduction/HCGapL4/FrontC6_AllDegreeHodgeRankAdapter.lean`
+- `HodgeReduction/HCGapL4/FrontC7_E7EVIIHodgeDiamondInstance.lean`
+- `HodgeReduction/HCGapL4/FrontC8_V56MTBridge.lean`
+- `HodgeReduction/HCGapL4/FrontC9_EVIIHodgeNumberComputation.lean`
+- `HodgeReduction/HCGapL4/FrontD10_Codim3AndGeneralStrategy.lean`
+- `HodgeReduction/HCGapL4/FrontD11_CMAbelianGaussianHC.lean`
+- `HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean`
+- `HodgeReduction/HCGapL4/FrontD7_Deligne1982ExpandedFragment.lean`
+- `HodgeReduction/HCGapL4/FrontD8_PerCodimDeligneWitness.lean`
+- `HodgeReduction/HCGapL4/FrontD9_Codim2NeronSeveri.lean`
+- `HodgeReduction/HCGapL4/FrontE10_HeadlineAssembly.lean`
+- `HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean`
+- `HodgeReduction/HCGapL4/FrontE7_ConditionalTransferFromConcrete.lean`
+- `HodgeReduction/HCGapL4/FrontE8_ConcreteProfileR405Bridge.lean`
+- `HodgeReduction/HCGapL4/FrontE9_MTCorrespondenceWitness.lean`
 - `HodgeReduction/HCGapL4/GaussianCMActionAffineMorphismInterface.lean`
 - `HodgeReduction/HCGapL4/GaussianCMActionAlgebraicEndInterface.lean`
 - `HodgeReduction/HCGapL4/GaussianCMActionCoordinateRing.lean`
@@ -450,49 +452,120 @@ Files present in the source tree but NOT imported by the entry script.  Either w
 - `HodgeReduction/HCGapL4/HCFrontierAfterInternalMTPackage.lean`
 - `HodgeReduction/HCGapL4/HCFrontierAfterParametricRefactorPreparation.lean`
 - `HodgeReduction/HCGapL4/ImaginaryQuadraticFieldInterfaceSkeleton.lean`
+- `HodgeReduction/HCGapL4/Lefschetz11Arithmetic.lean`
+- `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean`
+- `HodgeReduction/HCGapL4/NoetherLefschetzSkeleton.lean`
 - `HodgeReduction/HCGapL4/ProductCohomologyProjectiveLineEllipticCurve.lean`
 - `HodgeReduction/HCGapL4/ProductCohomologyProjectiveLineSelf.lean`
 - `HodgeReduction/HCGapL4/ProductCycleFactoryComposition.lean`
 - `HodgeReduction/HCGapL4/ProductCycleFactoryProjectiveLineSelf.lean`
 - `HodgeReduction/HCGapL4/ProductCycleFactoryProjectiveLineToEllipticCurve.lean`
+- `HodgeReduction/HCGapL4/ProofBlueprint.lean`
+- `HodgeReduction/HCGapL4/R476_MultiFrontWave6Audit.lean`
+- `HodgeReduction/HCGapL4/R480_MultiFrontWave7Audit.lean`
+- `HodgeReduction/HCGapL4/R483_MultiFrontWave8Audit.lean`
+- `HodgeReduction/HCGapL4/R486_MultiFrontWave9Audit.lean`
+- `HodgeReduction/HCGapL4/R489_MultiFrontWave10Audit.lean`
+- `HodgeReduction/HCGapL4/R492_MultiFrontWave11Audit.lean`
+- `HodgeReduction/HCGapL4/R494_MultiFrontWave12Audit.lean`
+- `HodgeReduction/HCGapL4/R496_MultiFrontWave13Audit.lean`
+- `HodgeReduction/HCGapL4/R498_MultiFrontWave14Audit.lean`
+- `HodgeReduction/HCGapL4/R501_MultiFrontWave15Audit.lean`
+- `HodgeReduction/HCGapL4/R504_MultiFrontWave16Audit.lean`
 - `HodgeReduction/HCGapL4/SHSMComposition.lean`
 - `HodgeReduction/HCGapL4/SHSMCompositionGeneral.lean`
 - `HodgeReduction/HCGapL4/ShiftedCorrespondenceComposition.lean`
 - `HodgeReduction/HCGapL4/ShiftedCorrespondenceSHSM2Bridge.lean`
+- `HodgeReduction/HCGapL4/V56CohomologyRank.lean`
+- `HodgeReduction/Infrastructure/AbelianVariety/Basic.lean`
+- `HodgeReduction/Infrastructure/AbelianVariety/CMType.lean`
 - `HodgeReduction/Infrastructure/AbelianVariety/HyperKahler.lean`
 - `HodgeReduction/Infrastructure/AbelianVariety/K3Surface.lean`
+- `HodgeReduction/Infrastructure/AbelianVariety/KugaSatake.lean`
 - `HodgeReduction/Infrastructure/AbelianVariety/PolarisedAV.lean`
 - `HodgeReduction/Infrastructure/AbelianVariety/TateModule.lean`
+- `HodgeReduction/Infrastructure/AlgebraicGeometry/ChowGroup.lean`
 - `HodgeReduction/Infrastructure/AlgebraicGeometry/ExponentialSequence.lean`
+- `HodgeReduction/Infrastructure/AlgebraicGeometry/FirstChernClass.lean`
 - `HodgeReduction/Infrastructure/AlgebraicGeometry/HodgeDecomposition.lean`
+- `HodgeReduction/Infrastructure/AlgebraicGeometry/LineBundle.lean`
+- `HodgeReduction/Infrastructure/AlgebraicGeometry/PicardGroup.lean`
 - `HodgeReduction/Infrastructure/Automorphic/AtlasE7minus25.lean`
+- `HodgeReduction/Infrastructure/Automorphic/BorelBottWeil.lean`
+- `HodgeReduction/Infrastructure/Automorphic/CuspidalCohomology.lean`
+- `HodgeReduction/Infrastructure/Automorphic/FrankeEisensteinLayer.lean`
 - `HodgeReduction/Infrastructure/Automorphic/GKCohomology.lean`
 - `HodgeReduction/Infrastructure/Automorphic/HeckeCorrespondence.lean`
 - `HodgeReduction/Infrastructure/Automorphic/ModularForm.lean`
 - `HodgeReduction/Infrastructure/CartanMatrices.lean`
+- `HodgeReduction/Infrastructure/ClassicalCominusculeClassification.lean`
+- `HodgeReduction/Infrastructure/Cohomology/AbelJacobi.lean`
+- `HodgeReduction/Infrastructure/Cohomology/AlgebraicBundle.lean`
+- `HodgeReduction/Infrastructure/Cohomology/AlgebraicCycle.lean`
+- `HodgeReduction/Infrastructure/Cohomology/AmpleDivisor.lean`
 - `HodgeReduction/Infrastructure/Cohomology/BettiCohomology.lean`
+- `HodgeReduction/Infrastructure/Cohomology/BorelHirzebruchCoinvariant.lean`
+- `HodgeReduction/Infrastructure/Cohomology/ChernCharacter.lean`
+- `HodgeReduction/Infrastructure/Cohomology/ChernClasses.lean`
 - `HodgeReduction/Infrastructure/Cohomology/ChowRing.lean`
+- `HodgeReduction/Infrastructure/Cohomology/ClassifyingSpace.lean`
 - `HodgeReduction/Infrastructure/Cohomology/ComparisonTheorem.lean`
+- `HodgeReduction/Infrastructure/Cohomology/CycleClassMap.lean`
 - `HodgeReduction/Infrastructure/Cohomology/DeRham.lean`
+- `HodgeReduction/Infrastructure/Cohomology/DivisorClass.lean`
+- `HodgeReduction/Infrastructure/Cohomology/FreudenthalClass.lean`
+- `HodgeReduction/Infrastructure/Cohomology/Galois.lean`
+- `HodgeReduction/Infrastructure/Cohomology/HCCodim1.lean`
 - `HodgeReduction/Infrastructure/Cohomology/HardLefschetz.lean`
+- `HodgeReduction/Infrastructure/Cohomology/HodgeCycle.lean`
+- `HodgeReduction/Infrastructure/Cohomology/HodgeRefinementCarriers.lean`
+- `HodgeReduction/Infrastructure/Cohomology/KaehlerClass.lean`
 - `HodgeReduction/Infrastructure/Cohomology/Lattice.lean`
+- `HodgeReduction/Infrastructure/Cohomology/Lefschetz.lean`
 - `HodgeReduction/Infrastructure/Cohomology/LefschetzHyperplane.lean`
+- `HodgeReduction/Infrastructure/Cohomology/Motive.lean`
+- `HodgeReduction/Infrastructure/Cohomology/NeronSeveri.lean`
+- `HodgeReduction/Infrastructure/Cohomology/PicardGroup.lean`
+- `HodgeReduction/Infrastructure/Cohomology/PoincareDuality.lean`
 - `HodgeReduction/Infrastructure/Cohomology/RiemannRoch.lean`
+- `HodgeReduction/Infrastructure/Cohomology/StandardConjectures.lean`
 - `HodgeReduction/Infrastructure/Cohomology/TateConjecture.lean`
+- `HodgeReduction/Infrastructure/Cohomology/TwistedPhiL.lean`
 - `HodgeReduction/Infrastructure/Coxeter/WE7.lean`
+- `HodgeReduction/Infrastructure/CoxeterDegrees.lean`
+- `HodgeReduction/Infrastructure/DynkinMarks.lean`
+- `HodgeReduction/Infrastructure/E7ParabolicDimensions.lean`
 - `HodgeReduction/Infrastructure/HCFramework.lean`
 - `HodgeReduction/Infrastructure/HodgeStructure/GaussManin.lean`
 - `HodgeReduction/Infrastructure/HodgeStructure/MixedHodge.lean`
 - `HodgeReduction/Infrastructure/HodgeStructure/MixedHodgeModule.lean`
 - `HodgeReduction/Infrastructure/HodgeStructure/NilpotentOrbit.lean`
 - `HodgeReduction/Infrastructure/HodgeStructure/Variation.lean`
+- `HodgeReduction/Infrastructure/J3OAlgebra.lean`
+- `HodgeReduction/Infrastructure/J3OJordan.lean`
+- `HodgeReduction/Infrastructure/KostantCominusculeClassification.lean`
 - `HodgeReduction/Infrastructure/LieAlgebra/Basic.lean`
 - `HodgeReduction/Infrastructure/LieAlgebra/ReductiveGroup.lean`
 - `HodgeReduction/Infrastructure/PoincarePolynomialEVII.lean`
+- `HodgeReduction/Infrastructure/SchlafliGraph.lean`
 - `HodgeReduction/Infrastructure/Shimura/Adelic.lean`
+- `HodgeReduction/Infrastructure/Shimura/ArithmeticGroup.lean`
+- `HodgeReduction/Infrastructure/Shimura/BorelHirzebruch.lean`
+- `HodgeReduction/Infrastructure/Shimura/CompactDual.lean`
+- `HodgeReduction/Infrastructure/Shimura/E7ParabolicCodim.lean`
 - `HodgeReduction/Infrastructure/Shimura/HermitianForm.lean`
+- `HodgeReduction/Infrastructure/Shimura/HermitianSymmetric.lean`
+- `HodgeReduction/Infrastructure/Shimura/HirzebruchMumford.lean`
+- `HodgeReduction/Infrastructure/Shimura/IntersectionHomology.lean`
+- `HodgeReduction/Infrastructure/Shimura/MumfordExtension.lean`
 - `HodgeReduction/Infrastructure/Shimura/PeriodDomain.lean`
 - `HodgeReduction/Infrastructure/Shimura/SchubertCells.lean`
+- `HodgeReduction/Infrastructure/SimpleLieAlgebraClassification.lean`
+- `HodgeReduction/Infrastructure/ToroidalDimensions.lean`
+- `HodgeReduction/Infrastructure/V56BranchingRules.lean`
+- `HodgeReduction/Infrastructure/V56HodgeAlgebra.lean`
 - `HodgeReduction/Ledger.lean`
+- `HodgeReduction/MathlibCandidates.lean`
 - `HodgeReduction/Scripts/CheckEntry.lean`
 - `HodgeReduction/Scripts/StatusEntry.lean`
+- `HodgeReduction/Strict.lean`

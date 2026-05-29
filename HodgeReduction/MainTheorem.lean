@@ -40,6 +40,7 @@ import HodgeReduction.Types
 import HodgeReduction.ClassicalResults
 import HodgeReduction.OpenHypotheses
 import HodgeReduction.HCGapL4.CY3VacuityDischarge
+import HodgeReduction.HCGapL4.CMAbelianHCBridge
 
 namespace HodgeReduction
 
@@ -140,13 +141,17 @@ absolute-Hodge → algebraicity step is the conjectural extension
 established for products of CM elliptic curves and abelian fourfolds
 via Shioda + Lefschetz (1,1) + Markman 2025 Weil-class arguments).
 
-This axiom asserts the full HC-real statement for CM abelian, treating
-the AH → HC extension as part of the paper-claim package.
+R527 turns this from a monolithic axiom into a theorem derived in
+`CMAbelianHCBridge` from two smaller cuts:
+* `deligne_1982_abs_hodge_cm`: Hodge classes on CM abelian varieties
+  are absolute Hodge (Deligne 1982).
+* `abs_hodge_implies_algebraic`: the remaining AH-to-algebraic bridge.
 
 paper source: hyp:HC-CM-Ab; Deligne 1982 LNM 900 Thm 2.11. -/
-axiom hyp_HC_CM_Ab_real :
+theorem hyp_HC_CM_Ab_real :
  ∀ (A : SmoothProjectiveVariety ℂ),
-   IsCMAbelianVariety A → HodgeConjectureReal A
+   IsCMAbelianVariety A → HodgeConjectureReal A :=
+ hyp_HC_CM_Ab_real_via_deligne_ah
 
 /-- **R177** (refined Mumford-Tate correspondence existence): for every
 clause-(iii) variety `X`, there exists a CM abelian variety `A` with a

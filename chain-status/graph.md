@@ -11,16 +11,18 @@ graph TD
   classDef cut fill:#ffd,stroke:#a80
   classDef drift fill:#fdd,stroke:#a00,stroke-width:3px
   classDef endpoint fill:#dfd,stroke:#080
-  HodgeReduction_hyp_HC_CM_Ab_real{{ "hyp_HC_CM_Ab_real" }}:::cut
+  HodgeReduction_abs_hodge_implies_algebraic{{ "abs_hodge_implies_algebraic" }}:::cut
+  HodgeReduction_absHodgeClassesAtDegree{{ "absHodgeClassesAtDegree" }}:::cut
   propext{{ "propext" }}:::cut
+  HodgeReduction_cy3_inherits_e7_factor_exact{{ "cy3_inherits_e7_factor_exact" }}:::cut
   HodgeReduction_SmoothProjectiveVariety_algClasses{{ "algClasses" }}:::cut
   HodgeReduction_hc_real_e6_case{{ "hc_real_e6_case" }}:::cut
   HodgeReduction_SmoothProjectiveVariety_cohomology{{ "cohomology" }}:::cut
   HodgeReduction_hc_real_classical_cartan{{ "hc_real_classical_cartan" }}:::cut
-  HodgeReduction_hc_real_cy3_reducible{{ "hc_real_cy3_reducible" }}:::cut
   HodgeReduction_canonicalE7ShimuraTor{{ "canonicalE7ShimuraTor" }}:::cut
   Classical_choice{{ "choice" }}:::cut
   HodgeReduction_mt_correspondence_e7_witness_exists{{ "mt_correspondence_e7_witness_exists" }}:::cut
+  HodgeReduction_deligne_1982_abs_hodge_cm{{ "deligne_1982_abs_hodge_cm" }}:::cut
   Quot_sound{{ "sound" }}:::cut
   HodgeReduction_cy3_e7_nonexistence_paper_axiom{{ "cy3_e7_nonexistence_paper_axiom" }}:::cut
   HodgeReduction_hodgeConjectureReal_canonical>"hodgeConjectureReal_canonical"]:::endpoint
@@ -37,10 +39,13 @@ graph TD
   HodgeReduction_main_reduction_real --> Classical_choice
   HodgeReduction_main_reduction_real --> HodgeReduction_SmoothProjectiveVariety_algClasses
   HodgeReduction_main_reduction_real --> HodgeReduction_SmoothProjectiveVariety_cohomology
+  HodgeReduction_main_reduction_real --> HodgeReduction_absHodgeClassesAtDegree
+  HodgeReduction_main_reduction_real --> HodgeReduction_abs_hodge_implies_algebraic
+  HodgeReduction_main_reduction_real --> HodgeReduction_cy3_e7_nonexistence_paper_axiom
+  HodgeReduction_main_reduction_real --> HodgeReduction_cy3_inherits_e7_factor_exact
+  HodgeReduction_main_reduction_real --> HodgeReduction_deligne_1982_abs_hodge_cm
   HodgeReduction_main_reduction_real --> HodgeReduction_hc_real_classical_cartan
-  HodgeReduction_main_reduction_real --> HodgeReduction_hc_real_cy3_reducible
   HodgeReduction_main_reduction_real --> HodgeReduction_hc_real_e6_case
-  HodgeReduction_main_reduction_real --> HodgeReduction_hyp_HC_CM_Ab_real
   HodgeReduction_main_reduction_real --> HodgeReduction_mt_correspondence_e7_witness_exists
   HodgeReduction_main_reduction_real --> Quot_sound
   HodgeReduction_main_reduction_real --> propext
@@ -68,6 +73,7 @@ graph TD
   classDef routeSupport fill:#eef,stroke:#557
   classDef routeDead fill:#fdd,stroke:#a00,stroke-width:2px
   classDef gapOpen fill:#ffd,stroke:#a80,stroke-width:2px
+  classDef gapClosed fill:#eee,stroke:#777
   classDef gapLegacy fill:#eee,stroke:#777,stroke-dasharray:3 3
   classDef gapDead fill:#fdd,stroke:#a00,stroke-dasharray:4 2
   chain_main_hc_axiom_relative["chain:main-hc-axiom-relative\nconditional"]:::routeMain

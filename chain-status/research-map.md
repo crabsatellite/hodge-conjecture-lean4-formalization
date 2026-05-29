@@ -2,7 +2,7 @@
 
 Audit-generated route map overlaid on the automatic endpoint-closure audit.  The infra output is the single research truth source: use this report to distinguish the main chain, active exploration branches, named gaps, and dead or quarantined routes.
 
-* research chains: **6**  *  named gaps: **8**  *  endpoint count: **7**  *  orphan debt files: **375**  *  taxonomy-labelled debt files: **20**  *  rule-labelled debt files: **370**  *  connectable debt files: **370**  *  build components: **1**  *  branch heads: **4**
+* research chains: **6**  *  named gaps: **8**  *  endpoint count: **7**  *  orphan debt files: **429**  *  taxonomy-labelled debt files: **13**  *  rule-labelled debt files: **419**  *  connectable debt files: **422**  *  build components: **31**  *  branch heads: **76**
 
 ## Decision Summary
 
@@ -11,12 +11,14 @@ This is the research base view.  Endpoint closure, route labels, and route state
 Open mathematical cut(s):
 - `HodgeReduction.SmoothProjectiveVariety.algClasses` at `HodgeReduction/OpenHypotheses.lean`
 - `HodgeReduction.SmoothProjectiveVariety.cohomology` at `HodgeReduction/OpenHypotheses.lean`
+- `HodgeReduction.absHodgeClassesAtDegree` at `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
+- `HodgeReduction.abs_hodge_implies_algebraic` at `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
 - `HodgeReduction.canonicalE7ShimuraTor` at `HodgeReduction/OpenHypotheses.lean`
 - `HodgeReduction.cy3_e7_nonexistence_paper_axiom` at `HodgeReduction/ClassicalResults.lean`
+- `HodgeReduction.cy3_inherits_e7_factor_exact` at `HodgeReduction/HCGapL4/CY3VacuityDischarge.lean`
+- `HodgeReduction.deligne_1982_abs_hodge_cm` at `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
 - `HodgeReduction.hc_real_classical_cartan` at `HodgeReduction/MainTheorem.lean`
-- `HodgeReduction.hc_real_cy3_reducible` at `HodgeReduction/MainTheorem.lean`
 - `HodgeReduction.hc_real_e6_case` at `HodgeReduction/MainTheorem.lean`
-- `HodgeReduction.hyp_HC_CM_Ab_real` at `HodgeReduction/MainTheorem.lean`
 - `HodgeReduction.mt_correspondence_e7_witness_exists` at `HodgeReduction/MainTheorem.lean`
 
 Active route(s) to work on:
@@ -44,17 +46,17 @@ graph TD
   chain_main_hc_axiom_relative["Main Mumford--Tate-reduction HC chain\nconditional"]:::main
   chain_unconditional_classical["Unconditional classical paper theorems\nclosed-modulo-cy3-citation"]:::closed
   chain_hcgap_l2_trivial_instances["Layer-2 minimum attack: trivial-instance VarietyCohomologyData\nstable"]:::support
-  chain_hcgap_l4_multifront_active["HCGapL4 multi-front attack waves (R420 -- R470)\nexploratory"]:::active
+  chain_hcgap_l4_multifront_active["HCGapL4 multi-front attack waves (R420 -- R476)\nexploratory"]:::active
   chain_concrete_evii_toy["Concrete EVII sanity-check chain\nclosed-toy"]:::closed
-  chain_historical_cone_audits["Historical per-round cone audit drivers (R217 -- R470)\ninfra"]:::support
+  chain_historical_cone_audits["Historical per-round cone audit drivers (R217 -- R476)\ninfra"]:::support
   gap_G_main_hc{{"Hodge conjecture headline remains axiom-relative\nconditional"}}:::gapOpen
   gap_G_l1_e7_shimura_tor{{"Layer 1: true E_{7(-25)}-type Shimura toroidal compactification\nopen"}}:::gapOpen
   gap_G_l2_cohomology_construction{{"Layer 2: VarietyCohomologyData from a non-toy underlying variety\nopen"}}:::gapOpen
-  gap_G_l3_v56_mt_identification{{"Layer 3: V_56 -- H^3(S_Γ^tor, ℚ) Hodge-structure identification\nopen"}}:::gapOpen
+  gap_G_l3_v56_mt_identification{{"Layer 3: V_56 -- H^3(S_Γ^tor, -- Hodge-structure identification\nopen"}}:::gapOpen
   gap_G_l4_cm_abelian_hc{{"Layer 4-G2: Hodge conjecture for CM abelian varieties (Deligne 1982)\nopen"}}:::gapOpen
   gap_G_l4_mt_correspondence{{"Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian)\nopen"}}:::gapOpen
   gap_G_classical_mathlib_port{{"Classical published-literature axioms awaiting Mathlib port\ndeferred"}}:::gapOpen
-  gap_G_hcgap_l4_multifront{{"HCGapL4 multi-front Layer-4 attack waves (R420 -- R470)\nactive-open"}}:::gapOpen
+  gap_G_hcgap_l4_multifront{{"HCGapL4 multi-front Layer-4 attack waves (R420 -- R476)\nactive-open"}}:::gapOpen
   chain_main_hc_axiom_relative --> gap_G_main_hc
   chain_main_hc_axiom_relative --> gap_G_l1_e7_shimura_tor
   chain_main_hc_axiom_relative --> gap_G_l2_cohomology_construction
@@ -68,7 +70,7 @@ graph TD
   chain_hcgap_l4_multifront_active --> gap_G_hcgap_l4_multifront
   chain_concrete_evii_toy --> chain_main_hc_axiom_relative
   chain_historical_cone_audits --> chain_main_hc_axiom_relative
-  debt_all["Orphan debt by actual imports\n375 files / 1 components / 4 heads"]:::debt
+  debt_all["Orphan debt by actual imports\n429 files / 31 components / 76 heads"]:::debt
   chain_hcgap_l4_multifront_active --> debt_all
 ```
 
@@ -85,7 +87,7 @@ graph TD
   classDef anchor fill:#eef,stroke:#557
   classDef ownerChain fill:#e8f3ff,stroke:#2670b8
   classDef ownerGap fill:#ffd,stroke:#a80
-  debt_root["All off-chain debt\n375 files / 4 heads"]:::debt
+  debt_root["All off-chain debt\n429 files / 76 heads"]:::debt
   anchor_on_chain["imports on-chain"]:::anchor
   anchor_cut["imports cut"]:::anchor
   anchor_quarantine["imports quarantine"]:::anchor
@@ -105,25 +107,238 @@ graph TD
   owner_gap_G_l4_cm_abelian_hc["gap:G-l4-cm-abelian-hc"]:::ownerGap
   owner_gap_G_l4_mt_correspondence["gap:G-l4-mt-correspondence"]:::ownerGap
   owner_gap_G_main_hc["gap:G-main-hc"]:::ownerGap
-  debt_C001["C001\n375 files\n2026-05-21 22:37\ncore-support"]:::debtTaxonomy
+  debt_C001["C001\n76 files\n2026-05-29 10:48\ncore-support"]:::debtTaxonomy
   debt_root --> debt_C001
   debt_C001 --> anchor_cut
   debt_C001 --> anchor_infra
   debt_C001 --> anchor_on_chain
+  owner_chain_concrete_evii_toy --> debt_C001
+  owner_gap_G_l4_cm_abelian_hc --> debt_C001
   owner_chain_hcgap_l2_trivial_instances --> debt_C001
   owner_chain_hcgap_l4_multifront_active --> debt_C001
   owner_chain_historical_cone_audits --> debt_C001
+  owner_chain_main_hc_axiom_relative --> debt_C001
+  owner_chain_unconditional_classical --> debt_C001
+  owner_gap_G_classical_mathlib_port --> debt_C001
   owner_gap_G_hcgap_l4_multifront --> debt_C001
   owner_gap_G_l1_e7_shimura_tor --> debt_C001
   owner_gap_G_l2_cohomology_construction --> debt_C001
   owner_gap_G_l3_v56_mt_identification --> debt_C001
   owner_gap_G_l4_mt_correspondence --> debt_C001
-  owner_chain_concrete_evii_toy --> debt_C001
-  owner_chain_main_hc_axiom_relative --> debt_C001
-  owner_chain_unconditional_classical --> debt_C001
-  owner_gap_G_classical_mathlib_port --> debt_C001
-  owner_gap_G_l4_cm_abelian_hc --> debt_C001
   owner_gap_G_main_hc --> debt_C001
+  debt_C002["C002\n24 files\n2026-05-29 09:25\ncore-support"]:::debtRule
+  debt_root --> debt_C002
+  debt_C002 --> anchor_cut
+  debt_C002 --> anchor_on_chain
+  owner_chain_concrete_evii_toy --> debt_C002
+  owner_chain_hcgap_l2_trivial_instances --> debt_C002
+  owner_chain_hcgap_l4_multifront_active --> debt_C002
+  owner_chain_main_hc_axiom_relative --> debt_C002
+  owner_chain_unconditional_classical --> debt_C002
+  owner_gap_G_classical_mathlib_port --> debt_C002
+  owner_gap_G_hcgap_l4_multifront --> debt_C002
+  owner_gap_G_l1_e7_shimura_tor --> debt_C002
+  owner_gap_G_l2_cohomology_construction --> debt_C002
+  owner_gap_G_l3_v56_mt_identification --> debt_C002
+  owner_gap_G_l4_cm_abelian_hc --> debt_C002
+  owner_gap_G_l4_mt_correspondence --> debt_C002
+  owner_gap_G_main_hc --> debt_C002
+  debt_C003["C003\n1 files\n2026-05-29 09:22\ncore-support"]:::debtRule
+  debt_root --> debt_C003
+  debt_C003 --> anchor_on_chain
+  owner_chain_hcgap_l2_trivial_instances --> debt_C003
+  owner_chain_main_hc_axiom_relative --> debt_C003
+  owner_gap_G_l2_cohomology_construction --> debt_C003
+  debt_C004["C004\n3 files\n2026-05-29 08:04\ncore-support"]:::debtRule
+  debt_root --> debt_C004
+  debt_C004 --> anchor_on_chain
+  owner_chain_hcgap_l2_trivial_instances --> debt_C004
+  owner_chain_main_hc_axiom_relative --> debt_C004
+  owner_gap_G_l2_cohomology_construction --> debt_C004
+  owner_gap_G_main_hc --> debt_C004
+  debt_C005["C005\n1 files\n2026-05-29 07:29\ncore-support"]:::debtRule
+  debt_root --> debt_C005
+  debt_C005 --> anchor_cut
+  debt_C005 --> anchor_on_chain
+  owner_chain_hcgap_l2_trivial_instances --> debt_C005
+  owner_chain_hcgap_l4_multifront_active --> debt_C005
+  owner_chain_main_hc_axiom_relative --> debt_C005
+  owner_chain_unconditional_classical --> debt_C005
+  owner_gap_G_classical_mathlib_port --> debt_C005
+  owner_gap_G_hcgap_l4_multifront --> debt_C005
+  owner_gap_G_l1_e7_shimura_tor --> debt_C005
+  owner_gap_G_l2_cohomology_construction --> debt_C005
+  owner_gap_G_l4_cm_abelian_hc --> debt_C005
+  owner_gap_G_l4_mt_correspondence --> debt_C005
+  owner_gap_G_main_hc --> debt_C005
+  debt_C006["C006\n297 files\n2026-05-29 05:45\ncore-support"]:::debtTaxonomy
+  debt_root --> debt_C006
+  debt_C006 --> anchor_cut
+  debt_C006 --> anchor_on_chain
+  owner_chain_hcgap_l4_multifront_active --> debt_C006
+  owner_chain_historical_cone_audits --> debt_C006
+  owner_gap_G_hcgap_l4_multifront --> debt_C006
+  owner_chain_concrete_evii_toy --> debt_C006
+  owner_chain_hcgap_l2_trivial_instances --> debt_C006
+  owner_chain_main_hc_axiom_relative --> debt_C006
+  owner_chain_unconditional_classical --> debt_C006
+  owner_gap_G_classical_mathlib_port --> debt_C006
+  owner_gap_G_l1_e7_shimura_tor --> debt_C006
+  owner_gap_G_l2_cohomology_construction --> debt_C006
+  owner_gap_G_l3_v56_mt_identification --> debt_C006
+  owner_gap_G_l4_cm_abelian_hc --> debt_C006
+  owner_gap_G_l4_mt_correspondence --> debt_C006
+  owner_gap_G_main_hc --> debt_C006
+  debt_C007["C007\n1 files\n2026-05-29 05:34\nfailed-pattern"]:::debtDead
+  debt_root --> debt_C007
+  debt_C007 --> anchor_cut
+  debt_C007 --> anchor_on_chain
+  owner_chain_hcgap_l4_multifront_active --> debt_C007
+  owner_chain_main_hc_axiom_relative --> debt_C007
+  owner_chain_unconditional_classical --> debt_C007
+  owner_gap_G_classical_mathlib_port --> debt_C007
+  owner_gap_G_hcgap_l4_multifront --> debt_C007
+  owner_gap_G_l4_cm_abelian_hc --> debt_C007
+  owner_gap_G_l4_mt_correspondence --> debt_C007
+  owner_gap_G_main_hc --> debt_C007
+  debt_C008["C008\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
+  debt_root --> debt_C008
+  debt_C008 --> anchor_cut
+  debt_C008 --> anchor_on_chain
+  owner_chain_concrete_evii_toy --> debt_C008
+  owner_chain_hcgap_l2_trivial_instances --> debt_C008
+  owner_chain_hcgap_l4_multifront_active --> debt_C008
+  owner_chain_main_hc_axiom_relative --> debt_C008
+  owner_chain_unconditional_classical --> debt_C008
+  owner_gap_G_classical_mathlib_port --> debt_C008
+  owner_gap_G_hcgap_l4_multifront --> debt_C008
+  owner_gap_G_l1_e7_shimura_tor --> debt_C008
+  owner_gap_G_l2_cohomology_construction --> debt_C008
+  owner_gap_G_l3_v56_mt_identification --> debt_C008
+  owner_gap_G_l4_cm_abelian_hc --> debt_C008
+  owner_gap_G_l4_mt_correspondence --> debt_C008
+  owner_gap_G_main_hc --> debt_C008
+  debt_C009["C009\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
+  debt_root --> debt_C009
+  owner_chain_concrete_evii_toy --> debt_C009
+  debt_C010["C010\n1 files\n2026-05-29 02:11\ncore-support"]:::debtTaxonomy
+  debt_root --> debt_C010
+  owner_gap_G_l1_e7_shimura_tor --> debt_C010
+  owner_chain_main_hc_axiom_relative --> debt_C010
+  debt_C011["C011\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
+  debt_root --> debt_C011
+  owner_chain_hcgap_l2_trivial_instances --> debt_C011
+  owner_chain_main_hc_axiom_relative --> debt_C011
+  owner_chain_unconditional_classical --> debt_C011
+  owner_gap_G_classical_mathlib_port --> debt_C011
+  owner_gap_G_l2_cohomology_construction --> debt_C011
+  debt_C012["C012\n1 files\n2026-05-29 02:11\ncore-support"]:::debtTaxonomy
+  debt_root --> debt_C012
+  owner_gap_G_l1_e7_shimura_tor --> debt_C012
+  owner_chain_main_hc_axiom_relative --> debt_C012
+  debt_C013["C013\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
+  debt_root --> debt_C013
+  owner_chain_concrete_evii_toy --> debt_C013
+  owner_chain_unconditional_classical --> debt_C013
+  owner_gap_G_classical_mathlib_port --> debt_C013
+  debt_C014["C014\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
+  debt_root --> debt_C014
+  owner_chain_main_hc_axiom_relative --> debt_C014
+  owner_gap_G_l3_v56_mt_identification --> debt_C014
+  debt_C015["C015\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
+  debt_root --> debt_C015
+  owner_chain_main_hc_axiom_relative --> debt_C015
+  owner_chain_unconditional_classical --> debt_C015
+  owner_gap_G_classical_mathlib_port --> debt_C015
+  owner_gap_G_l3_v56_mt_identification --> debt_C015
+  debt_C016["C016\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
+  debt_root --> debt_C016
+  owner_chain_concrete_evii_toy --> debt_C016
+  owner_chain_main_hc_axiom_relative --> debt_C016
+  owner_chain_unconditional_classical --> debt_C016
+  owner_gap_G_classical_mathlib_port --> debt_C016
+  owner_gap_G_l3_v56_mt_identification --> debt_C016
+  debt_C017["C017\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
+  debt_root --> debt_C017
+  owner_chain_concrete_evii_toy --> debt_C017
+  debt_C018["C018\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
+  debt_root --> debt_C018
+  owner_chain_hcgap_l2_trivial_instances --> debt_C018
+  owner_chain_main_hc_axiom_relative --> debt_C018
+  owner_gap_G_l2_cohomology_construction --> debt_C018
+  debt_C019["C019\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
+  debt_root --> debt_C019
+  owner_chain_concrete_evii_toy --> debt_C019
+  debt_C020["C020\n3 files\n2026-05-29 02:11\ncore-support"]:::debtRule
+  debt_root --> debt_C020
+  owner_chain_hcgap_l2_trivial_instances --> debt_C020
+  owner_chain_main_hc_axiom_relative --> debt_C020
+  owner_gap_G_l2_cohomology_construction --> debt_C020
+  debt_C021["C021\n1 files\n2026-05-29 02:11\ncore-support"]:::debt
+  debt_root --> debt_C021
+  debt_C022["C022\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
+  debt_root --> debt_C022
+  owner_chain_main_hc_axiom_relative --> debt_C022
+  owner_gap_G_l3_v56_mt_identification --> debt_C022
+  debt_C023["C023\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
+  debt_root --> debt_C023
+  owner_chain_unconditional_classical --> debt_C023
+  owner_gap_G_classical_mathlib_port --> debt_C023
+  debt_C024["C024\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
+  debt_root --> debt_C024
+  owner_chain_concrete_evii_toy --> debt_C024
+  owner_chain_main_hc_axiom_relative --> debt_C024
+  owner_gap_G_l3_v56_mt_identification --> debt_C024
+  debt_C025["C025\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
+  debt_root --> debt_C025
+  owner_chain_concrete_evii_toy --> debt_C025
+  owner_chain_historical_cone_audits --> debt_C025
+  debt_C026["C026\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
+  debt_root --> debt_C026
+  owner_chain_main_hc_axiom_relative --> debt_C026
+  owner_gap_G_l4_cm_abelian_hc --> debt_C026
+  debt_C027["C027\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
+  debt_root --> debt_C027
+  owner_chain_main_hc_axiom_relative --> debt_C027
+  owner_gap_G_l4_cm_abelian_hc --> debt_C027
+  debt_C028["C028\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
+  debt_root --> debt_C028
+  owner_chain_concrete_evii_toy --> debt_C028
+  owner_chain_hcgap_l2_trivial_instances --> debt_C028
+  owner_chain_main_hc_axiom_relative --> debt_C028
+  owner_gap_G_l2_cohomology_construction --> debt_C028
+  owner_gap_G_l4_cm_abelian_hc --> debt_C028
+  debt_C029["C029\n1 files\n2026-05-29 02:11\ncore-support"]:::debtTaxonomy
+  debt_root --> debt_C029
+  owner_gap_G_l4_cm_abelian_hc --> debt_C029
+  owner_chain_concrete_evii_toy --> debt_C029
+  owner_chain_main_hc_axiom_relative --> debt_C029
+  debt_C030["C030\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
+  debt_root --> debt_C030
+  owner_chain_hcgap_l2_trivial_instances --> debt_C030
+  owner_chain_hcgap_l4_multifront_active --> debt_C030
+  owner_chain_main_hc_axiom_relative --> debt_C030
+  owner_gap_G_hcgap_l4_multifront --> debt_C030
+  owner_gap_G_l1_e7_shimura_tor --> debt_C030
+  owner_gap_G_l2_cohomology_construction --> debt_C030
+  owner_gap_G_l4_cm_abelian_hc --> debt_C030
+  owner_gap_G_l4_mt_correspondence --> debt_C030
+  owner_gap_G_main_hc --> debt_C030
+  debt_C031["C031\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
+  debt_root --> debt_C031
+  debt_C031 --> anchor_cut
+  owner_chain_concrete_evii_toy --> debt_C031
+  owner_chain_hcgap_l2_trivial_instances --> debt_C031
+  owner_chain_hcgap_l4_multifront_active --> debt_C031
+  owner_chain_historical_cone_audits --> debt_C031
+  owner_chain_main_hc_axiom_relative --> debt_C031
+  owner_chain_unconditional_classical --> debt_C031
+  owner_gap_G_hcgap_l4_multifront --> debt_C031
+  owner_gap_G_l1_e7_shimura_tor --> debt_C031
+  owner_gap_G_l2_cohomology_construction --> debt_C031
+  owner_gap_G_l4_cm_abelian_hc --> debt_C031
+  owner_gap_G_l4_mt_correspondence --> debt_C031
+  owner_gap_G_main_hc --> debt_C031
 ```
 
 ## Chains
@@ -132,57 +347,50 @@ graph TD
 |----|------|--------|------|--------------|
 | `main-hc-axiom-relative` | main | conditional | `G-main-hc`, `G-l1-e7-shimura-tor`, `G-l2-cohomology-construction`, `G-l3-v56-mt-identification`, `G-l4-cm-abelian-hc`, `G-l4-mt-correspondence` | cut: 3, infra: 1, on-chain: 1 |
 | `unconditional-classical` | support | closed-modulo-cy3-citation | `G-classical-mathlib-port` | cut: 2 |
-| `hcgap-l2-trivial-instances` | support | stable | `G-l2-cohomology-construction` | orphan: 3 |
-| `hcgap-l4-multifront-active` | active | exploratory | `G-hcgap-l4-multifront` | infra: 1, orphan: 5 |
-| `concrete-evii-toy` | support | closed-toy | - | infra: 1 |
-| `historical-cone-audits` | infra | infra | - | on-disk-unloaded: 2 |
+| `hcgap-l2-trivial-instances` | support | stable | `G-l2-cohomology-construction` | registered: 3 |
+| `hcgap-l4-multifront-active` | active | exploratory | `G-hcgap-l4-multifront` | on-disk-unloaded: 4, registered: 5 |
+| `concrete-evii-toy` | support | closed-toy | - | on-disk-unloaded: 1 |
+| `historical-cone-audits` | infra | infra | - | on-disk-unloaded: 4 |
 
 ## Gaps
 
 | id | status | title | files |
 |----|--------|-------|-------|
 | `G-main-hc` | conditional | Hodge conjecture headline remains axiom-relative | cut: 2, infra: 1, on-chain: 1 |
-| `G-l1-e7-shimura-tor` | open | Layer 1: true E_{7(-25)}-type Shimura toroidal compactification | cut: 1, infra: 3, orphan: 1 |
-| `G-l2-cohomology-construction` | open | Layer 2: VarietyCohomologyData from a non-toy underlying variety | infra: 1, on-chain: 1, orphan: 4 |
-| `G-l3-v56-mt-identification` | open | Layer 3: V_56 -- H^3(S_Γ^tor, ℚ) Hodge-structure identification | infra: 2, orphan: 3 |
-| `G-l4-cm-abelian-hc` | open | Layer 4-G2: Hodge conjecture for CM abelian varieties (Deligne 1982) | cut: 1, infra: 3 |
-| `G-l4-mt-correspondence` | open | Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian) | cut: 2, infra: 1, orphan: 1 |
+| `G-l1-e7-shimura-tor` | open | Layer 1: true E_{7(-25)}-type Shimura toroidal compactification | cut: 1, infra: 1, on-disk-unloaded: 2, registered: 1 |
+| `G-l2-cohomology-construction` | open | Layer 2: VarietyCohomologyData from a non-toy underlying variety | infra: 1, on-chain: 1, registered: 4 |
+| `G-l3-v56-mt-identification` | open | Layer 3: V_56 -- H^3(S_Γ^tor, -- Hodge-structure identification | infra: 1, registered: 4 |
+| `G-l4-cm-abelian-hc` | open | Layer 4-G2: Hodge conjecture for CM abelian varieties (Deligne 1982) | cut: 2, infra: 1, on-disk-unloaded: 2 |
+| `G-l4-mt-correspondence` | open | Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian) | cut: 2, infra: 1, registered: 1 |
 | `G-classical-mathlib-port` | deferred | Classical published-literature axioms awaiting Mathlib port | cut: 1 |
-| `G-hcgap-l4-multifront` | active-open | HCGapL4 multi-front Layer-4 attack waves (R420 -- R470) | infra: 1, orphan: 9 |
+| `G-hcgap-l4-multifront` | active-open | HCGapL4 multi-front Layer-4 attack waves (R420 -- R476) | on-disk-unloaded: 4, registered: 10 |
 
 ## Off-Chain Split
 
 Route-labelled off-chain files are assigned by the audit infra but are not consumed by an endpoint closure yet.  Unlabelled debt is grouped by actual Lean import connectivity in `orphan-debt.md`.
 
-* taxonomy-entry off-chain files: **20**
-* taxonomy-labelled debt files: **20**
-* rule-labelled debt files: **370**
-* unconnected debt files: **5**
-* unlabelled off-chain debt files: **355**
-* build-connected debt components: **1**
+* taxonomy-entry off-chain files: **13**
+* taxonomy-labelled debt files: **13**
+* rule-labelled debt files: **419**
+* unconnected debt files: **7**
+* unlabelled off-chain debt files: **416**
+* build-connected debt components: **31**
 
 | path | audit route labels | audit class |
 |------|----------------|-------------|
+| `HodgeReduction/Concrete.lean` | `chain:concrete-evii-toy`, `chain:hcgap-l2-trivial-instances`, `chain:main-hc-axiom-relative`, `gap:G-l2-cohomology-construction`, `gap:G-l3-v56-mt-identification` | on-disk-unloaded |
 | `HodgeReduction/ConeAudits/R217_ConeAudit.lean` | `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-hcgap-l4-multifront`, `gap:G-l2-cohomology-construction`, `gap:G-l4-cm-abelian-hc`, `gap:G-l4-mt-correspondence`, `gap:G-main-hc` | on-disk-unloaded |
 | `HodgeReduction/ConeAudits/R467_R470_ConeAudit.lean` | `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-l4-cm-abelian-hc`, `gap:G-l4-mt-correspondence`, `gap:G-main-hc` | on-disk-unloaded |
-| `HodgeReduction/HCGapL2/EllipticCurve.lean` | `chain:hcgap-l2-trivial-instances`, `chain:main-hc-axiom-relative`, `gap:G-l2-cohomology-construction`, `gap:G-l3-v56-mt-identification`, `gap:G-l4-cm-abelian-hc`, `gap:G-main-hc` | orphan |
-| `HodgeReduction/HCGapL2/ProjectiveLine.lean` | `chain:hcgap-l2-trivial-instances`, `chain:main-hc-axiom-relative`, `gap:G-l2-cohomology-construction`, `gap:G-main-hc` | orphan |
-| `HodgeReduction/HCGapL2/TrivialPoint.lean` | `chain:hcgap-l2-trivial-instances`, `chain:main-hc-axiom-relative`, `gap:G-l2-cohomology-construction`, `gap:G-main-hc` | orphan |
-| `HodgeReduction/HCGapL4/FrontA_DeligneH0SheafRealization.lean` | `chain:concrete-evii-toy`, `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-l2-cohomology-construction`, `gap:G-main-hc` | orphan |
-| `HodgeReduction/HCGapL4/FrontB_BailyBorelConnectedness.lean` | `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-main-hc` | orphan |
-| `HodgeReduction/HCGapL4/FrontC_E7LowDegreeHodgeNumbers.lean` | `chain:concrete-evii-toy`, `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-main-hc` | orphan |
-| `HodgeReduction/HCGapL4/FrontD_E7ToCMChowCorrespondence.lean` | `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-l4-cm-abelian-hc`, `gap:G-l4-mt-correspondence`, `gap:G-main-hc` | orphan |
-| `HodgeReduction/HCGapL4/FrontE_RealCarrierProfileMatching.lean` | `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-l2-cohomology-construction`, `gap:G-l4-mt-correspondence`, `gap:G-main-hc` | orphan |
-| `HodgeReduction/HCGapL4/R451_MultiFrontFrontierAudit.lean` | `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-main-hc` | orphan |
-| `HodgeReduction/HCGapL4/R456_MultiFrontWave2Audit.lean` | `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-main-hc` | orphan |
-| `HodgeReduction/HCGapL4/R460_MultiFrontWave3Audit.lean` | `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-main-hc` | orphan |
-| `HodgeReduction/HCGapL4/R465_MultiFrontWave4Audit.lean` | `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-main-hc` | orphan |
-| `HodgeReduction/Infrastructure/Automorphic/VoganZuckerman.lean` | `chain:concrete-evii-toy`, `chain:main-hc-axiom-relative`, `gap:G-l3-v56-mt-identification` | orphan |
-| `HodgeReduction/Infrastructure/Cohomology/Matsushima.lean` | `chain:concrete-evii-toy`, `chain:main-hc-axiom-relative`, `gap:G-l3-v56-mt-identification` | orphan |
-| `HodgeReduction/Infrastructure/Cohomology/SheafCohomology.lean` | `chain:concrete-evii-toy`, `chain:hcgap-l2-trivial-instances`, `chain:main-hc-axiom-relative`, `gap:G-l2-cohomology-construction`, `gap:G-l3-v56-mt-identification` | orphan |
-| `HodgeReduction/Infrastructure/HodgeStructure/MumfordTate.lean` | `chain:concrete-evii-toy`, `chain:hcgap-l2-trivial-instances`, `chain:main-hc-axiom-relative`, `gap:G-l2-cohomology-construction`, `gap:G-l4-mt-correspondence` | orphan |
-| `HodgeReduction/Infrastructure/Shimura/ToroidalCompactification.lean` | `chain:concrete-evii-toy`, `chain:main-hc-axiom-relative`, `gap:G-l1-e7-shimura-tor` | orphan |
-| `HodgeReduction/Infrastructure/V56HodgeDecomp.lean` | `chain:concrete-evii-toy`, `chain:main-hc-axiom-relative`, `gap:G-l3-v56-mt-identification` | orphan |
+| `HodgeReduction/ConeAudits/R471_R476_ConeAudit.lean` | `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-hcgap-l4-multifront`, `gap:G-l4-cm-abelian-hc`, `gap:G-l4-mt-correspondence`, `gap:G-main-hc` | on-disk-unloaded |
+| `HodgeReduction/ConeAudits/R477_R480_ConeAudit.lean` | `chain:concrete-evii-toy`, `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-hcgap-l4-multifront`, `gap:G-l3-v56-mt-identification`, `gap:G-l4-cm-abelian-hc`, `gap:G-l4-mt-correspondence`, `gap:G-main-hc` | on-disk-unloaded |
+| `HodgeReduction/HCGapL4/FrontC6_AllDegreeHodgeRankAdapter.lean` | `chain:hcgap-l4-multifront-active`, `gap:G-hcgap-l4-multifront` | on-disk-unloaded |
+| `HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean` | `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-l4-cm-abelian-hc`, `gap:G-l4-mt-correspondence`, `gap:G-main-hc` | on-disk-unloaded |
+| `HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean` | `chain:hcgap-l4-multifront-active`, `gap:G-hcgap-l4-multifront` | on-disk-unloaded |
+| `HodgeReduction/HCGapL4/R476_MultiFrontWave6Audit.lean` | `chain:hcgap-l4-multifront-active`, `gap:G-hcgap-l4-multifront` | on-disk-unloaded |
+| `HodgeReduction/Infrastructure/AbelianVariety/CMType.lean` | `chain:concrete-evii-toy`, `chain:main-hc-axiom-relative`, `gap:G-l4-cm-abelian-hc` | on-disk-unloaded |
+| `HodgeReduction/Infrastructure/AbelianVariety/KugaSatake.lean` | `chain:concrete-evii-toy`, `chain:hcgap-l2-trivial-instances`, `chain:main-hc-axiom-relative`, `gap:G-l2-cohomology-construction`, `gap:G-l4-cm-abelian-hc` | on-disk-unloaded |
+| `HodgeReduction/Infrastructure/Shimura/ArithmeticGroup.lean` | `chain:main-hc-axiom-relative`, `gap:G-l1-e7-shimura-tor` | on-disk-unloaded |
+| `HodgeReduction/Infrastructure/Shimura/HermitianSymmetric.lean` | `chain:main-hc-axiom-relative`, `gap:G-l1-e7-shimura-tor` | on-disk-unloaded |
 
 ## Chain Details
 
@@ -229,25 +437,28 @@ Depends on: `main-hc-axiom-relative`
 Gaps: `G-l2-cohomology-construction`
 
 Files:
-- `HodgeReduction/HCGapL2/TrivialPoint.lean` -- orphan
-- `HodgeReduction/HCGapL2/ProjectiveLine.lean` -- orphan
-- `HodgeReduction/HCGapL2/EllipticCurve.lean` -- orphan
+- `HodgeReduction/HCGapL2/TrivialPoint.lean` -- registered
+- `HodgeReduction/HCGapL2/ProjectiveLine.lean` -- registered
+- `HodgeReduction/HCGapL2/EllipticCurve.lean` -- registered
 
-### `hcgap-l4-multifront-active` -- HCGapL4 multi-front attack waves (R420 -- R470)
+### `hcgap-l4-multifront-active` -- HCGapL4 multi-front attack waves (R420 -- R476)
 
-5 parallel attack fronts on the L4 cohomology-profile + connectedness pipeline.  Per-wave audits R451 / R456 / R460 / R465 / R470 enumerate substantive theorems per round.  R470 announces 44 substantive theorems across 5 waves with 0 added axioms.
+5 parallel attack fronts on the L4 cohomology-profile + connectedness pipeline.  Per-wave audits R451 / R456 / R460 / R465 / R470 / R476 enumerate substantive theorems per round.  R476 announces 51 cumulative substantive theorems across 6 waves with 0 added axioms; Front D activated in Wave 6.
 
 Depends on: `main-hc-axiom-relative`
 
 Gaps: `G-hcgap-l4-multifront`
 
 Files:
-- `HodgeReduction/HCGapL4/FrontA_DeligneH0SheafRealization.lean` -- orphan
-- `HodgeReduction/HCGapL4/FrontB_BailyBorelConnectedness.lean` -- orphan
-- `HodgeReduction/HCGapL4/FrontC_E7LowDegreeHodgeNumbers.lean` -- orphan
-- `HodgeReduction/HCGapL4/FrontD_E7ToCMChowCorrespondence.lean` -- orphan
-- `HodgeReduction/HCGapL4/FrontE_RealCarrierProfileMatching.lean` -- orphan
-- `HodgeReduction/HCGapL4/R470_MultiFrontWave5Audit.lean` -- infra
+- `HodgeReduction/HCGapL4/FrontA_DeligneH0SheafRealization.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontB_BailyBorelConnectedness.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC_E7LowDegreeHodgeNumbers.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontD_E7ToCMChowCorrespondence.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontE_RealCarrierProfileMatching.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC6_AllDegreeHodgeRankAdapter.lean` -- on-disk-unloaded
+- `HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean` -- on-disk-unloaded
+- `HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean` -- on-disk-unloaded
+- `HodgeReduction/HCGapL4/R476_MultiFrontWave6Audit.lean` -- on-disk-unloaded
 
 ### `concrete-evii-toy` -- Concrete EVII sanity-check chain
 
@@ -256,17 +467,19 @@ Files:
 Depends on: `main-hc-axiom-relative`
 
 Files:
-- `HodgeReduction/Concrete.lean` -- infra
+- `HodgeReduction/Concrete.lean` -- on-disk-unloaded
 
-### `historical-cone-audits` -- Historical per-round cone audit drivers (R217 -- R470)
+### `historical-cone-audits` -- Historical per-round cone audit drivers (R217 -- R476)
 
-84 per-round `#print axioms` / `#check` driver scripts produced at the end of each attack round.  Each script is a standalone audit consuming a fixed subset of the active chain at its timestamp; none are imported by `HodgeReduction.lean`.  Moved out of the project root into `HodgeReduction/ConeAudits/` and registered as `infraFiles` so the chainAudit classifier records them as infra rather than orphan.
+85 per-round `#print axioms` / `#check` driver scripts produced at the end of each attack round.  Each script is a standalone audit consuming a fixed subset of the active chain at its timestamp; none are imported by `HodgeReduction.lean`.  Moved out of the project root into `HodgeReduction/ConeAudits/` and registered as `infraFiles` so the chainAudit classifier records them as infra rather than orphan.
 
 Depends on: `main-hc-axiom-relative`
 
 Files:
 - `HodgeReduction/ConeAudits/R217_ConeAudit.lean` -- on-disk-unloaded
 - `HodgeReduction/ConeAudits/R467_R470_ConeAudit.lean` -- on-disk-unloaded
+- `HodgeReduction/ConeAudits/R471_R476_ConeAudit.lean` -- on-disk-unloaded
+- `HodgeReduction/ConeAudits/R477_R480_ConeAudit.lean` -- on-disk-unloaded
 
 ## Gap Details
 
@@ -286,7 +499,7 @@ Files:
 
 ### `G-l1-e7-shimura-tor` -- Layer 1: true E_{7(-25)}-type Shimura toroidal compactification
 
-AMRT 1975 / Baily--Borel 1966 construction of S_Γ^tor as a SmoothProjectiveVariety ℂ.  Required Mathlib infrastructure: arithmetic groups, Hermitian symmetric domains, toroidal compactifications.
+AMRT 1975 / Baily--Borel 1966 construction of S_Γ^tor as a SmoothProjectiveVariety --  Required Mathlib infrastructure: arithmetic groups, Hermitian symmetric domains, toroidal compactifications.
 
 Declarations:
 - `HodgeReduction.HCGapRegistry.L1_G1_E7ShimuraTor_Inhabited`
@@ -295,13 +508,13 @@ Declarations:
 Files:
 - `HodgeReduction/OpenHypotheses.lean` -- cut
 - `HodgeReduction/HCGapRegistry.lean` -- infra
-- `HodgeReduction/Infrastructure/Shimura/ToroidalCompactification.lean` -- orphan
-- `HodgeReduction/Infrastructure/Shimura/HermitianSymmetric.lean` -- infra
-- `HodgeReduction/Infrastructure/Shimura/ArithmeticGroup.lean` -- infra
+- `HodgeReduction/Infrastructure/Shimura/ToroidalCompactification.lean` -- registered
+- `HodgeReduction/Infrastructure/Shimura/HermitianSymmetric.lean` -- on-disk-unloaded
+- `HodgeReduction/Infrastructure/Shimura/ArithmeticGroup.lean` -- on-disk-unloaded
 
 ### `G-l2-cohomology-construction` -- Layer 2: VarietyCohomologyData from a non-toy underlying variety
 
-Construction of `VarietyCohomologyData` whose `H k` is the actual rational singular cohomology of `S_Γ^tor` at degree `k`, with `hodgeStructure k` the actual pure Hodge structure of weight `k` on `H^k(S_Γ^tor, ℚ)`.  Required Mathlib infrastructure: singular cohomology, Dolbeault decomposition, Hodge theorem for compact Kähler manifolds.
+Construction of `VarietyCohomologyData` whose `H k` is the actual rational singular cohomology of `S_Γ^tor` at degree `k`, with `hodgeStructure k` the actual pure Hodge structure of weight `k` on `H^k(S_Γ^tor, --`.  Required Mathlib infrastructure: singular cohomology, Dolbeault decomposition, Hodge theorem for compact Kähler manifolds.
 
 Declarations:
 - `HodgeReduction.HCGapRegistry.L2_G1_VarietyCohomologyData_Constructed_NonToy`
@@ -311,14 +524,14 @@ Declarations:
 Files:
 - `HodgeReduction/HCGapRegistry.lean` -- infra
 - `HodgeReduction/Infrastructure/HodgeStructure/VarietyCohomology.lean` -- on-chain
-- `HodgeReduction/Infrastructure/Cohomology/SheafCohomology.lean` -- orphan
-- `HodgeReduction/HCGapL2/TrivialPoint.lean` -- orphan
-- `HodgeReduction/HCGapL2/ProjectiveLine.lean` -- orphan
-- `HodgeReduction/HCGapL2/EllipticCurve.lean` -- orphan
+- `HodgeReduction/Infrastructure/Cohomology/SheafCohomology.lean` -- registered
+- `HodgeReduction/HCGapL2/TrivialPoint.lean` -- registered
+- `HodgeReduction/HCGapL2/ProjectiveLine.lean` -- registered
+- `HodgeReduction/HCGapL2/EllipticCurve.lean` -- registered
 
-### `G-l3-v56-mt-identification` -- Layer 3: V_56 -- H^3(S_Γ^tor, ℚ) Hodge-structure identification
+### `G-l3-v56-mt-identification` -- Layer 3: V_56 -- H^3(S_Γ^tor, -- Hodge-structure identification
 
-The H^3 piece of `S.cohomologyOfUnderlying` is identified with the 56-dimensional minuscule E_7-representation V_56 as a polarisable pure ℚ-Hodge structure of weight 3 with Hodge numbers (1, 27, 27, 1).  The V_56 side is kernel-pure (`V56Instance.instPureHodgeStructure_V56`); the identification is the open gap.  Required Mathlib infrastructure: Matsushima isomorphism, Borel--Wallach relative Lie-algebra cohomology, Vogan--Zuckerman 1984.
+The H^3 piece of `S.cohomologyOfUnderlying` is identified with the 56-dimensional minuscule E_7-representation V_56 as a polarisable pure --Hodge structure of weight 3 with Hodge numbers (1, 27, 27, 1).  The V_56 side is kernel-pure (`V56Instance.instPureHodgeStructure_V56`); the identification is the open gap.  Required Mathlib infrastructure: Matsushima isomorphism, Borel--Wallach relative Lie-algebra cohomology, Vogan--Zuckerman 1984.
 
 Declarations:
 - `HodgeReduction.HCGapRegistry.L3_G1_V56_PureHodgeStructure_W3_HodgeDiamond`
@@ -326,28 +539,32 @@ Declarations:
 
 Files:
 - `HodgeReduction/HCGapRegistry.lean` -- infra
-- `HodgeReduction/Infrastructure/HodgeStructure/V56Instance.lean` -- infra
-- `HodgeReduction/Infrastructure/V56HodgeDecomp.lean` -- orphan
-- `HodgeReduction/Infrastructure/Automorphic/VoganZuckerman.lean` -- orphan
-- `HodgeReduction/Infrastructure/Cohomology/Matsushima.lean` -- orphan
+- `HodgeReduction/Infrastructure/HodgeStructure/V56Instance.lean` -- registered
+- `HodgeReduction/Infrastructure/V56HodgeDecomp.lean` -- registered
+- `HodgeReduction/Infrastructure/Automorphic/VoganZuckerman.lean` -- registered
+- `HodgeReduction/Infrastructure/Cohomology/Matsushima.lean` -- registered
 
 ### `G-l4-cm-abelian-hc` -- Layer 4-G2: Hodge conjecture for CM abelian varieties (Deligne 1982)
 
-Deligne 1982 (LNM 900 Thm 2.11) proves every Hodge class on a CM abelian variety is absolutely Hodge.  The absolute-Hodge -> algebraicity step (Mumford 1969 root) is conditional on AH = HC for CM abelian, established for products of CM elliptic curves (Shioda + Lefschetz (1,1)) and abelian fourfolds (Markman 2025 Weil-class).  The full HC-real claim is carried as the axiom `hyp_HC_CM_Ab_real` (R174a) and is currently the second load-bearing input after `canonicalE7ShimuraTor`.
+R527/R515 decomposes the former broad `hyp_HC_CM_Ab_real` axiom into a theorem.  The open surface is now the absolute-Hodge carrier plus two smaller cuts: Deligne 1982 Hodge-to-absolute-Hodge for CM abelian varieties, and the remaining absolute-Hodge-to-algebraic bridge.  This keeps the CM-abelian HC route load-bearing while removing the monolithic HC-real assumption.
 
 Declarations:
 - `HodgeReduction.hyp_HC_CM_Ab_real`
+- `HodgeReduction.absHodgeClassesAtDegree`
+- `HodgeReduction.deligne_1982_abs_hodge_cm`
+- `HodgeReduction.abs_hodge_implies_algebraic`
 - `HodgeReduction.HCGapRegistry.L4_G2_HC_For_CM_AbelianVariety`
 
 Files:
 - `HodgeReduction/MainTheorem.lean` -- cut
+- `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean` -- cut
 - `HodgeReduction/HCGapRegistry.lean` -- infra
-- `HodgeReduction/Infrastructure/AbelianVariety/CMType.lean` -- infra
-- `HodgeReduction/Infrastructure/AbelianVariety/KugaSatake.lean` -- infra
+- `HodgeReduction/Infrastructure/AbelianVariety/CMType.lean` -- on-disk-unloaded
+- `HodgeReduction/Infrastructure/AbelianVariety/KugaSatake.lean` -- on-disk-unloaded
 
 ### `G-l4-mt-correspondence` -- Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian)
 
-Per-codimension data: HodgeStructureMorphism phi + cycle map psi + commuting square + Hodge-class surjectivity, identifying H^*(S_Γ^tor, ℚ) with a CM abelian variety's cohomology.  Currently bundled inside `canonicalE7ShimuraTor.mtCorrespondencePackage` (R188 field); a `mt_correspondence_e7_witness_exists` universal axiom (R177) covers the non-canonical sub-clause.
+Per-codimension data: HodgeStructureMorphism phi + cycle map psi + commuting square + Hodge-class surjectivity, identifying H^*(S_Γ^tor, -- with a CM abelian variety's cohomology.  Currently bundled inside `canonicalE7ShimuraTor.mtCorrespondencePackage` (R188 field); a `mt_correspondence_e7_witness_exists` universal axiom (R177) covers the non-canonical sub-clause.
 
 Declarations:
 - `HodgeReduction.mt_correspondence_e7_witness_exists`
@@ -358,7 +575,7 @@ Files:
 - `HodgeReduction/MainTheorem.lean` -- cut
 - `HodgeReduction/OpenHypotheses.lean` -- cut
 - `HodgeReduction/HCGapRegistry.lean` -- infra
-- `HodgeReduction/Infrastructure/HodgeStructure/MumfordTate.lean` -- orphan
+- `HodgeReduction/Infrastructure/HodgeStructure/MumfordTate.lean` -- registered
 
 ### `G-classical-mathlib-port` -- Classical published-literature axioms awaiting Mathlib port
 
@@ -370,19 +587,23 @@ Declarations:
 Files:
 - `HodgeReduction/ClassicalResults.lean` -- cut
 
-### `G-hcgap-l4-multifront` -- HCGapL4 multi-front Layer-4 attack waves (R420 -- R470)
+### `G-hcgap-l4-multifront` -- HCGapL4 multi-front Layer-4 attack waves (R420 -- R476)
 
-Active exploratory attack waves on the L4 / cohomology-profile / connectedness pipeline: FrontA (Deligne H0 sheaf realization), FrontB (Baily--Borel connectedness), FrontC (E_7 low-degree Hodge numbers + Hodge polynomial algebra), FrontD (E_7 -> CM Chow correspondence), FrontE (real-carrier profile matching).  Audits R451 / R456 / R460 / R465 / R470 are wave-level summaries.  These files are loaded by `HodgeReduction.lean` but are exploratory and do not yet contribute to the headline kernel-pure closure.
+Active exploratory attack waves on the L4 / cohomology-profile / connectedness pipeline: FrontA (Deligne H0 sheaf realization), FrontB (Baily--Borel connectedness), FrontC (E_7 low-degree Hodge numbers + Hodge polynomial algebra + all-degree rank adapter), FrontD (E_7 -> CM Chow correspondence + Deligne 1982 minimal fragment), FrontE (real-carrier profile matching + R405 conditional transfer feed).  Audits R451 / R456 / R460 / R465 / R470 / R476 are wave-level summaries.  R476 reports 51 cumulative substantive theorems across 6 waves; Front D activated in Wave 6.
 
 Files:
-- `HodgeReduction/HCGapL4/FrontA_DeligneH0SheafRealization.lean` -- orphan
-- `HodgeReduction/HCGapL4/FrontB_BailyBorelConnectedness.lean` -- orphan
-- `HodgeReduction/HCGapL4/FrontC_E7LowDegreeHodgeNumbers.lean` -- orphan
-- `HodgeReduction/HCGapL4/FrontD_E7ToCMChowCorrespondence.lean` -- orphan
-- `HodgeReduction/HCGapL4/FrontE_RealCarrierProfileMatching.lean` -- orphan
-- `HodgeReduction/HCGapL4/R451_MultiFrontFrontierAudit.lean` -- orphan
-- `HodgeReduction/HCGapL4/R456_MultiFrontWave2Audit.lean` -- orphan
-- `HodgeReduction/HCGapL4/R460_MultiFrontWave3Audit.lean` -- orphan
-- `HodgeReduction/HCGapL4/R465_MultiFrontWave4Audit.lean` -- orphan
-- `HodgeReduction/HCGapL4/R470_MultiFrontWave5Audit.lean` -- infra
+- `HodgeReduction/HCGapL4/FrontA_DeligneH0SheafRealization.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontB_BailyBorelConnectedness.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC_E7LowDegreeHodgeNumbers.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontD_E7ToCMChowCorrespondence.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontE_RealCarrierProfileMatching.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC6_AllDegreeHodgeRankAdapter.lean` -- on-disk-unloaded
+- `HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean` -- on-disk-unloaded
+- `HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean` -- on-disk-unloaded
+- `HodgeReduction/HCGapL4/R451_MultiFrontFrontierAudit.lean` -- registered
+- `HodgeReduction/HCGapL4/R456_MultiFrontWave2Audit.lean` -- registered
+- `HodgeReduction/HCGapL4/R460_MultiFrontWave3Audit.lean` -- registered
+- `HodgeReduction/HCGapL4/R465_MultiFrontWave4Audit.lean` -- registered
+- `HodgeReduction/HCGapL4/R470_MultiFrontWave5Audit.lean` -- registered
+- `HodgeReduction/HCGapL4/R476_MultiFrontWave6Audit.lean` -- on-disk-unloaded
 

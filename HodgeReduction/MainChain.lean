@@ -58,8 +58,13 @@ def config : ChainAudit.ProjectConfig := {
     -- awaiting a Mathlib singular cohomology + cycle-class port).
     ``HodgeReduction.SmoothProjectiveVariety.cohomology,
     ``HodgeReduction.SmoothProjectiveVariety.algClasses,
-    -- R174a Deligne 1982 (HC for CM abelian varieties at REAL level).
-    ``HodgeReduction.hyp_HC_CM_Ab_real,
+    -- R527/R515 decomposition of the former broad
+    -- `hyp_HC_CM_Ab_real` cut: absolute-Hodge carrier + Deligne 1982
+    -- Hodge-to-absolute-Hodge theorem + the remaining AH-to-algebraic
+    -- bridge.
+    ``HodgeReduction.absHodgeClassesAtDegree,
+    ``HodgeReduction.deligne_1982_abs_hodge_cm,
+    ``HodgeReduction.abs_hodge_implies_algebraic,
     -- R172 four case-axioms used by main_reduction_real.
     ``HodgeReduction.hc_real_classical_cartan,
     ``HodgeReduction.hc_real_e6_case,
@@ -71,7 +76,10 @@ def config : ChainAudit.ProjectConfig := {
     ``HodgeReduction.mt_correspondence_e7_witness_exists,
     -- Paper-citation axiom for thm_cy3_e7_nonexistence (paper §4
     -- Stages A--D + Springer discriminant + FTS omega-pairing).
-    ``HodgeReduction.cy3_e7_nonexistence_paper_axiom
+    ``HodgeReduction.cy3_e7_nonexistence_paper_axiom,
+    -- R514 CY3 vacuity bridge: geometric inheritance of an exact E7
+    -- MT factor to the CY3 reduction component.
+    ``HodgeReduction.cy3_inherits_e7_factor_exact
   ]
   infraFiles := [
     -- Audit / tooling files (intentionally off-chain).
@@ -169,9 +177,8 @@ def config : ChainAudit.ProjectConfig := {
     "HodgeReduction/ConeAudits/R452_R456_ConeAudit.lean",
     "HodgeReduction/ConeAudits/R457_R460_ConeAudit.lean",
     "HodgeReduction/ConeAudits/R462_R465_ConeAudit.lean",
-    "HodgeReduction/ConeAudits/R467_R470_ConeAudit.lean"
-        "HodgeReduction/ConeAudits/R477_R480_ConeAudit.lean",
-    "HodgeReduction/ConeAudits/R471_R476_ConeAudit.lean"
+    "HodgeReduction/ConeAudits/R467_R470_ConeAudit.lean",
+    "HodgeReduction/ConeAudits/R471_R476_ConeAudit.lean",
     "HodgeReduction/ConeAudits/R477_R480_ConeAudit.lean"
   ]
   researchGaps := [
@@ -253,15 +260,19 @@ def config : ChainAudit.ProjectConfig := {
       title := "Layer 4-G2: Hodge conjecture for CM abelian varieties (Deligne 1982)"
       status := "open"
       summary :=
-        "Deligne 1982 (LNM 900 Thm 2.11) proves every Hodge class on a CM abelian variety is absolutely Hodge.  The absolute-Hodge -> algebraicity step (Mumford 1969 root) is conditional on AH = HC for CM abelian, established for products of CM elliptic curves (Shioda + Lefschetz (1,1)) and abelian fourfolds (Markman 2025 Weil-class).  The full HC-real claim is carried as the axiom `hyp_HC_CM_Ab_real` (R174a) and is currently the second load-bearing input after `canonicalE7ShimuraTor`."
+        "R527/R515 decomposes the former broad `hyp_HC_CM_Ab_real` axiom into a theorem.  The open surface is now the absolute-Hodge carrier plus two smaller cuts: Deligne 1982 Hodge-to-absolute-Hodge for CM abelian varieties, and the remaining absolute-Hodge-to-algebraic bridge.  This keeps the CM-abelian HC route load-bearing while removing the monolithic HC-real assumption."
       files := [
         "HodgeReduction/MainTheorem.lean",
+        "HodgeReduction/HCGapL4/CMAbelianHCBridge.lean",
         "HodgeReduction/HCGapRegistry.lean",
         "HodgeReduction/Infrastructure/AbelianVariety/CMType.lean",
         "HodgeReduction/Infrastructure/AbelianVariety/KugaSatake.lean"
       ]
       decls := [
         "HodgeReduction.hyp_HC_CM_Ab_real",
+        "HodgeReduction.absHodgeClassesAtDegree",
+        "HodgeReduction.deligne_1982_abs_hodge_cm",
+        "HodgeReduction.abs_hodge_implies_algebraic",
         "HodgeReduction.HCGapRegistry.L4_G2_HC_For_CM_AbelianVariety"
       ]
     },
@@ -440,10 +451,9 @@ def config : ChainAudit.ProjectConfig := {
         "85 per-round `#print axioms` / `#check` driver scripts produced at the end of each attack round.  Each script is a standalone audit consuming a fixed subset of the active chain at its timestamp; none are imported by `HodgeReduction.lean`.  Moved out of the project root into `HodgeReduction/ConeAudits/` and registered as `infraFiles` so the chainAudit classifier records them as infra rather than orphan."
       files := [
         "HodgeReduction/ConeAudits/R217_ConeAudit.lean",
-        "HodgeReduction/ConeAudits/R467_R470_ConeAudit.lean"
+        "HodgeReduction/ConeAudits/R467_R470_ConeAudit.lean",
+        "HodgeReduction/ConeAudits/R471_R476_ConeAudit.lean",
         "HodgeReduction/ConeAudits/R477_R480_ConeAudit.lean",
-        "HodgeReduction/ConeAudits/R471_R476_ConeAudit.lean"
-    "HodgeReduction/ConeAudits/R477_R480_ConeAudit.lean"
       ]
       entryDecls := []
       gapIds := []

@@ -27,8 +27,8 @@ remains a Hodge class under all automorphisms of C acting on the generic
 fibre. Defined axiomatically because absolute Hodge theory is not in
 Mathlib. The carrier is a Q-submodule of H^{2p}(X, Q). -/
 axiom absHodgeClassesAtDegree (X : SmoothProjectiveVariety Complex) (p : Nat) :
-    @Submodule Q (X.cohomology.H (2 * p))
-      (X.cohomology.addCommGroup (2 * p)).toAddCommGroup.toAddCommMonoid
+    @Submodule ℚ (X.cohomology.H (2 * p)) _
+      (X.cohomology.addCommGroup (2 * p)).toAddCommMonoid
       (X.cohomology.module (2 * p))
 
 /-! ## Step 2: Deligne 1982 axiom -/
@@ -65,7 +65,7 @@ axiom abs_hodge_implies_algebraic (X : SmoothProjectiveVariety Complex) (p : Nat
     hodgeClasses <= absHodgeClasses  (Deligne 1982)
     absHodgeClasses <= algClasses    (conditional extension)
     Therefore hodgeClasses <= algClasses. KERNEL-PURE. -/
-theorem hyp_HC_CM_Ab_real_via_delille_ah :
+theorem hyp_HC_CM_Ab_real_via_deligne_ah :
     forall (A : SmoothProjectiveVariety Complex),
       IsCMAbelianVariety A -> HodgeConjectureReal A := by
   intro A hA
@@ -74,9 +74,15 @@ theorem hyp_HC_CM_Ab_real_via_delille_ah :
   show A.cohomology.hodgeClassesAtDegree p <= A.algClasses.algClasses p
   exact le_trans (deligne_1982_abs_hodge_cm A hA p) (abs_hodge_implies_algebraic A p)
 
+/-- Backward-compatible alias for the R515 theorem; kept so older round files
+can still import this bridge without spelling churn. -/
+theorem hyp_HC_CM_Ab_real_via_delille_ah :
+    forall (A : SmoothProjectiveVariety Complex),
+      IsCMAbelianVariety A -> HodgeConjectureReal A :=
+  hyp_HC_CM_Ab_real_via_deligne_ah
+
 /-- R515: 1 derived theorem, 2 smaller axioms, 0 sorry, 0 tricks. -/
 def R515_new_axiom_count : Nat := 2
 def R515_retired_axiom_count : Nat := 1
-def R515_no_tricks : Prop := True
 
 end HodgeReduction
