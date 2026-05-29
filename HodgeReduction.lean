@@ -489,6 +489,7 @@ import HodgeReduction.HCGapL4.FrontC38_TargetHodgeSumFromCartanImage
 import HodgeReduction.HCGapL4.FrontC39_TargetHodgeSumFromScalarPreimage
 import HodgeReduction.HCGapL4.FrontC40_TargetRankScalarPreimageEquivalence
 import HodgeReduction.HCGapL4.FrontC41_CartanContainmentCarrierEquivalence
+import HodgeReduction.HCGapL4.FrontC42_H8CarrierEqualityRoute
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix
