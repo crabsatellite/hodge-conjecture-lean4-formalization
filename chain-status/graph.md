@@ -13,7 +13,6 @@ graph TD
   classDef endpoint fill:#dfd,stroke:#080
   HodgeReduction_abs_hodge_implies_algebraic{{ "abs_hodge_implies_algebraic" }}:::cut
   HodgeReduction_absHodgeClassesAtDegree{{ "absHodgeClassesAtDegree" }}:::cut
-  HodgeReduction_e7_correspondence_package_exists{{ "e7_correspondence_package_exists" }}:::cut
   HodgeReduction_cy3_mtd_isSemisimple{{ "cy3_mtd_isSemisimple" }}:::cut
   HodgeReduction_cy3_e7_excludes_e6{{ "cy3_e7_excludes_e6" }}:::cut
   propext{{ "propext" }}:::cut
@@ -22,6 +21,7 @@ graph TD
   HodgeReduction_SmoothProjectiveVariety_cohomology{{ "cohomology" }}:::cut
   HodgeReduction_hc_real_classical_cartan{{ "hc_real_classical_cartan" }}:::cut
   HodgeReduction_canonicalE7ShimuraTor{{ "canonicalE7ShimuraTor" }}:::cut
+  HodgeReduction_e7_chosen_witness_correspondence_package_exists{{ "e7_chosen_witness_correspondence_package_exists" }}:::cut
   Classical_choice{{ "choice" }}:::cut
   HodgeReduction_deligne_1982_abs_hodge_cm{{ "deligne_1982_abs_hodge_cm" }}:::cut
   HodgeReduction_e7_cm_witness_exists{{ "e7_cm_witness_exists" }}:::cut
@@ -50,8 +50,8 @@ graph TD
   HodgeReduction_main_reduction_real --> HodgeReduction_cy3_mtd_isSemisimple
   HodgeReduction_main_reduction_real --> HodgeReduction_deligne_1982_abs_hodge_cm
   HodgeReduction_main_reduction_real --> HodgeReduction_e6_factor_classical_transfer
+  HodgeReduction_main_reduction_real --> HodgeReduction_e7_chosen_witness_correspondence_package_exists
   HodgeReduction_main_reduction_real --> HodgeReduction_e7_cm_witness_exists
-  HodgeReduction_main_reduction_real --> HodgeReduction_e7_correspondence_package_exists
   HodgeReduction_main_reduction_real --> HodgeReduction_hc_real_classical_cartan
   HodgeReduction_main_reduction_real --> Quot_sound
   HodgeReduction_main_reduction_real --> propext

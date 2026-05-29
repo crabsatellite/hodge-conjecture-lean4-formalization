@@ -20,8 +20,8 @@ Open mathematical cut(s):
 - `HodgeReduction.cy3_mtd_isSemisimple` at `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
 - `HodgeReduction.deligne_1982_abs_hodge_cm` at `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
 - `HodgeReduction.e6_factor_classical_transfer` at `HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean`
+- `HodgeReduction.e7_chosen_witness_correspondence_package_exists` at `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean`
 - `HodgeReduction.e7_cm_witness_exists` at `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean`
-- `HodgeReduction.e7_correspondence_package_exists` at `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean`
 - `HodgeReduction.hc_real_classical_cartan` at `HodgeReduction/MainTheorem.lean`
 
 Active route(s) to work on:
@@ -552,12 +552,12 @@ Files:
 
 ### `G-l4-mt-correspondence` -- Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian)
 
-R529/R517 decomposes the non-canonical MT correspondence witness: `e7_cm_witness_exists` provides the CM abelian source, while `e7_correspondence_package_exists` provides the per-codim correspondence package once the source is fixed.  The canonical headline still uses `canonicalE7ShimuraTor.mtCorrespondencePackage` directly.
+R529/R517 decomposes the non-canonical MT correspondence witness; R532 tightens the package cut so it applies only to the witness selected by `e7_cm_witness_exists`, not to arbitrary CM abelian sources.  The canonical headline still uses `canonicalE7ShimuraTor.mtCorrespondencePackage` directly.
 
 Declarations:
 - `HodgeReduction.mt_correspondence_e7_witness_exists`
 - `HodgeReduction.e7_cm_witness_exists`
-- `HodgeReduction.e7_correspondence_package_exists`
+- `HodgeReduction.e7_chosen_witness_correspondence_package_exists`
 - `HodgeReduction.HCGapRegistry.L4_G3_MT_Correspondence_E7_To_CMAbelian`
 - `HodgeReduction.HCGapRegistry.L34_FullPackage_For_E7Canonical`
 

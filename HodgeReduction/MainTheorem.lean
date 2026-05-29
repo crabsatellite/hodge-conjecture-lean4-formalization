@@ -171,8 +171,9 @@ axiom becomes a DERIVED theorem applying R177's `varietyHCAt_of_correspondence`
 R529 turns this from a monolithic axiom into a theorem derived in
 `MTWitnessDecomposition` from two smaller cuts:
 * `e7_cm_witness_exists`: the associated CM abelian source exists.
-* `e7_correspondence_package_exists`: the per-codim correspondence
-  package exists once the source is fixed.
+* `e7_chosen_witness_correspondence_package_exists`: the per-codim
+  correspondence package exists for the source selected by
+  `e7_cm_witness_exists`.
 
 paper source: §6; hyp:ChernWeil-bridge-E7 + hyp:hecke-bbt; AMRT 1975
 construction of the MT correspondence at variety level. -/

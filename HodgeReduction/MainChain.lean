@@ -72,9 +72,9 @@ def config : ChainAudit.ProjectConfig := {
     ``HodgeReduction.e6_factor_classical_transfer,
     -- R529/R517 decomposition of the former
     -- `mt_correspondence_e7_witness_exists` cut into CM source
-    -- existence and fixed-source correspondence package construction.
+    -- existence and chosen-source correspondence package construction.
     ``HodgeReduction.e7_cm_witness_exists,
-    ``HodgeReduction.e7_correspondence_package_exists,
+    ``HodgeReduction.e7_chosen_witness_correspondence_package_exists,
     -- Paper-citation axiom for thm_cy3_e7_nonexistence (paper §4
     -- Stages A--D + Springer discriminant + FTS omega-pairing).
     ``HodgeReduction.cy3_e7_nonexistence_paper_axiom,
@@ -285,7 +285,7 @@ def config : ChainAudit.ProjectConfig := {
       title := "Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian)"
       status := "open"
       summary :=
-        "R529/R517 decomposes the non-canonical MT correspondence witness: `e7_cm_witness_exists` provides the CM abelian source, while `e7_correspondence_package_exists` provides the per-codim correspondence package once the source is fixed.  The canonical headline still uses `canonicalE7ShimuraTor.mtCorrespondencePackage` directly."
+        "R529/R517 decomposes the non-canonical MT correspondence witness; R532 tightens the package cut so it applies only to the witness selected by `e7_cm_witness_exists`, not to arbitrary CM abelian sources.  The canonical headline still uses `canonicalE7ShimuraTor.mtCorrespondencePackage` directly."
       files := [
         "HodgeReduction/MainTheorem.lean",
         "HodgeReduction/OpenHypotheses.lean",
@@ -295,7 +295,7 @@ def config : ChainAudit.ProjectConfig := {
       decls := [
         "HodgeReduction.mt_correspondence_e7_witness_exists",
         "HodgeReduction.e7_cm_witness_exists",
-        "HodgeReduction.e7_correspondence_package_exists",
+        "HodgeReduction.e7_chosen_witness_correspondence_package_exists",
         "HodgeReduction.HCGapRegistry.L4_G3_MT_Correspondence_E7_To_CMAbelian",
         "HodgeReduction.HCGapRegistry.L34_FullPackage_For_E7Canonical"
       ]
