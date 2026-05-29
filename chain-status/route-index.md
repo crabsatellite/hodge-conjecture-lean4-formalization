@@ -45,7 +45,7 @@ Kernel cut ledger.  These are audit-visible unresolved constants on the endpoint
 Live subgaps exposed by the current route:
 | priority | gap | labelled debt files | declarations | taxonomy files |
 |---------:|-----|--------------------:|--------------|----------------|
-| 1 | `gap:G-hcgap-l4-multifront` (active-open) | 308 | `HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance.e7EVIICompactDualHodgeDiamond`, `HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance.v56Weight3HodgeDiamond`, `HodgeReduction.HCGapL4.FrontC8_V56MTBridge.EVIICompactDual_to_V56_Weight3_Bridge`, +5 more | `HodgeReduction/HCGapL4/FrontA_DeligneH0SheafRealization.lean`, `HodgeReduction/HCGapL4/FrontB_BailyBorelConnectedness.lean`, `HodgeReduction/HCGapL4/FrontC_E7LowDegreeHodgeNumbers.lean`, +17 more |
+| 1 | `gap:G-hcgap-l4-multifront` (active-open) | 308 | `HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance.e7EVIICompactDualHodgeDiamond`, `HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance.v56Weight3HodgeDiamond`, `HodgeReduction.HCGapL4.FrontC8_V56MTBridge.EVIICompactDual_to_V56_Weight3_Bridge`, +7 more | `HodgeReduction/HCGapL4/FrontA_DeligneH0SheafRealization.lean`, `HodgeReduction/HCGapL4/FrontB_BailyBorelConnectedness.lean`, `HodgeReduction/HCGapL4/FrontC_E7LowDegreeHodgeNumbers.lean`, +18 more |
 
 Priority uses the project-configured `gapPriority` order first; remaining active subgaps are sorted mechanically by labelled debt file count.  It is a triage order, not a mathematical proof of easiest-first.
 
@@ -54,20 +54,20 @@ Priority uses the project-configured `gapPriority` order first; remaining active
 Readiness verdict: **actionable with caveat**.  The main cut and replacement route are clear, but the active branch-head queue is still contaminated by dead-route labels.  Start from the gap cards and taxonomy files below; use the branch-head queue only for import triage.
 
 Current replacement plan:
-- FrontC: use the R553 finite-profile-to-infrastructure bridge as the input boundary, then construct an honest Matsushima-Borel-Wallach map from automorphic cohomology to the V56 Hodge structure; do not replace that gap with a True-valued bridge.
+- FrontC: instantiate the R554 `MatsushimaV56BoundaryData` equalities for the concrete EVII degree under study: identify the Matsushima surjectivity source with compact dual cohomology and its target with the target-invariant subspace, then feed the R553 V56 profile.
 - FrontB: replace the abstract connectedness pipeline with the genuine Baily--Borel connectedness theorem for arithmetic quotients.
 - FrontD: deliver the E_7 -> CM Chow correspondence at codim 1 first, then lift to all p; this would discharge G-l4-mt-correspondence for the canonical case.
 - Never re-bundle a closed front into a stronger hypothesis; chainAudit treats `def : Prop` placeholders and conjunction shells as hard failures.
 - Final success criterion: A successful follow-up closes one of the remaining target cuts: construct `canonicalTargetVariety`, prove its E7 factor, prove it lies in known E7 scope, or reduce the generic R517/R532 MT-witness cuts by Chow / cycle-class data.
 
-### Priority 1: `gap:G-hcgap-l4-multifront` -- HCGapL4 multi-front Layer-4 attack waves (R420 -- R553)
+### Priority 1: `gap:G-hcgap-l4-multifront` -- HCGapL4 multi-front Layer-4 attack waves (R420 -- R554)
 
-Active exploratory attack waves on the L4 / cohomology-profile / connectedness pipeline: FrontA (Deligne H0 sheaf realization), FrontB (Baily--Borel connectedness), FrontC (E_7 low-degree Hodge numbers + Hodge polynomial algebra + all-degree rank adapter + EVII/V56/Shimura expected Betti profile), FrontD (E_7 -> CM Chow correspondence + Deligne 1982 minimal fragment), FrontE (real-carrier profile matching + R405 conditional transfer feed).  Audits R451 / R456 / R460 / R465 / R470 / R476 are wave-level summaries.  R552 certifies the expected Shimura Betti profile degree-by-degree from EVII compact-dual Hodge sums plus the isolated V56 degree-3 contribution; R553 ties that finite V56 contribution to the actual `PureHodgeStructure V56 3` infrastructure, without adding axioms.
+Active exploratory attack waves on the L4 / cohomology-profile / connectedness pipeline: FrontA (Deligne H0 sheaf realization), FrontB (Baily--Borel connectedness), FrontC (E_7 low-degree Hodge numbers + Hodge polynomial algebra + all-degree rank adapter + EVII/V56/Shimura expected Betti profile), FrontD (E_7 -> CM Chow correspondence + Deligne 1982 minimal fragment), FrontE (real-carrier profile matching + R405 conditional transfer feed).  Audits R451 / R456 / R460 / R465 / R470 / R476 are wave-level summaries.  R552 certifies the expected Shimura Betti profile degree-by-degree from EVII compact-dual Hodge sums plus the isolated V56 degree-3 contribution; R553 ties that finite V56 contribution to the actual `PureHodgeStructure V56 3` infrastructure; R554 combines the Matsushima, Eisenstein, and cuspidal trivial-module infrastructure into an honest boundary theorem, leaving the concrete EVII source/target submodule equalities as the next gap.  No new axioms.
 
 - status: `active-open`
 - owner route(s): `chain:hcgap-l4-multifront-active`
-- prove/provide declaration(s): `HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance.e7EVIICompactDualHodgeDiamond`, `HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance.v56Weight3HodgeDiamond`, `HodgeReduction.HCGapL4.FrontC8_V56MTBridge.EVIICompactDual_to_V56_Weight3_Bridge`, `HodgeReduction.HCGapL4.FrontC9_EVIIHodgeNumberComputation.eviiCompactDualCertification`, `HodgeReduction.HCGapL4.FrontC10_V56CohomologyIdentification.EVII_V56_CohomologyBridge`, `HodgeReduction.HCGapL4.FrontC11_ShimuraBettiComputation.shimuraEVIIExpectedBettiKnownHodgeSumCertification_current`, +2 more
-- start files: `HodgeReduction/HCGapL4/FrontA_DeligneH0SheafRealization.lean [registered]`, `HodgeReduction/HCGapL4/FrontB_BailyBorelConnectedness.lean [registered]`, `HodgeReduction/HCGapL4/FrontC_E7LowDegreeHodgeNumbers.lean [registered]`, `HodgeReduction/HCGapL4/FrontD_E7ToCMChowCorrespondence.lean [registered]`, `HodgeReduction/HCGapL4/FrontE_RealCarrierProfileMatching.lean [registered]`, `HodgeReduction/HCGapL4/FrontC6_AllDegreeHodgeRankAdapter.lean [registered]`, +14 more
+- prove/provide declaration(s): `HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance.e7EVIICompactDualHodgeDiamond`, `HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance.v56Weight3HodgeDiamond`, `HodgeReduction.HCGapL4.FrontC8_V56MTBridge.EVIICompactDual_to_V56_Weight3_Bridge`, `HodgeReduction.HCGapL4.FrontC9_EVIIHodgeNumberComputation.eviiCompactDualCertification`, `HodgeReduction.HCGapL4.FrontC10_V56CohomologyIdentification.EVII_V56_CohomologyBridge`, `HodgeReduction.HCGapL4.FrontC11_ShimuraBettiComputation.shimuraEVIIExpectedBettiKnownHodgeSumCertification_current`, +4 more
+- start files: `HodgeReduction/HCGapL4/FrontA_DeligneH0SheafRealization.lean [registered]`, `HodgeReduction/HCGapL4/FrontB_BailyBorelConnectedness.lean [registered]`, `HodgeReduction/HCGapL4/FrontC_E7LowDegreeHodgeNumbers.lean [registered]`, `HodgeReduction/HCGapL4/FrontD_E7ToCMChowCorrespondence.lean [registered]`, `HodgeReduction/HCGapL4/FrontE_RealCarrierProfileMatching.lean [registered]`, `HodgeReduction/HCGapL4/FrontC6_AllDegreeHodgeRankAdapter.lean [registered]`, +15 more
 - classification note: `orphan` / `on-disk-unloaded` here means the file is not endpoint-reached yet.  For an active replacement route this is expected until a new theorem consumes the branch and removes the main cut; it is not by itself a quarantine signal.
 - trick-audit priority: no W5 Prop-definition finding in the listed start files.
 - import-graph heads touching this gap:
@@ -121,7 +121,7 @@ Open mathematical cut ledger:
 | `chain:main-hc-axiom-relative` | main | conditional | - | `gap:G-main-hc`, `gap:G-l1-e7-shimura-tor`, `gap:G-l2-cohomology-construction`, `gap:G-l3-v56-mt-identification`, `gap:G-l4-cm-abelian-hc`, +1 more | cut: 2, infra: 1, on-chain: 2 |
 | `chain:unconditional-classical` | support | closed-modulo-cy3-citation | - | `gap:G-classical-mathlib-port` | cut: 1, on-chain: 1 |
 | `chain:hcgap-l2-trivial-instances` | support | stable | `chain:main-hc-axiom-relative` | `gap:G-l2-cohomology-construction` | registered: 3 |
-| `chain:hcgap-l4-multifront-active` | active | exploratory | `chain:main-hc-axiom-relative` | `gap:G-hcgap-l4-multifront` | on-disk-unloaded: 3, registered: 12 |
+| `chain:hcgap-l4-multifront-active` | active | exploratory | `chain:main-hc-axiom-relative` | `gap:G-hcgap-l4-multifront` | on-disk-unloaded: 3, registered: 13 |
 | `chain:concrete-evii-toy` | support | closed-toy | `chain:main-hc-axiom-relative` | - | on-disk-unloaded: 1 |
 | `chain:historical-cone-audits` | infra | infra | `chain:main-hc-axiom-relative` | - | on-disk-unloaded: 4 |
 
@@ -136,7 +136,7 @@ Open mathematical cut ledger:
 | `gap:G-l4-cm-abelian-hc` | open | `chain:main-hc-axiom-relative` | `HodgeReduction.hyp_HC_CM_Ab_real`, `HodgeReduction.absHodgeClassesAtDegreeCM`, `HodgeReduction.deligne_1982_abs_hodge_cm`, +5 more | cut: 2, infra: 1, on-disk-unloaded: 2 |
 | `gap:G-l4-mt-correspondence` | open | `chain:main-hc-axiom-relative` | `HodgeReduction.mt_correspondence_e7_witness_exists`, `HodgeReduction.e7_cm_witness_exists`, `HodgeReduction.e7_chosen_witness_correspondence_package_exists`, +11 more | cut: 3, infra: 1, registered: 1 |
 | `gap:G-classical-mathlib-port` | deferred | `chain:unconditional-classical` | `HodgeReduction.e6_classical_remainder_exists`, `HodgeReduction.e6_remainder_transfer`, `HodgeReduction.e6_factor_classical_transfer`, +9 more | cut: 3, on-chain: 2 |
-| `gap:G-hcgap-l4-multifront` | active-open | `chain:hcgap-l4-multifront-active` | `HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance.e7EVIICompactDualHodgeDiamond`, `HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance.v56Weight3HodgeDiamond`, `HodgeReduction.HCGapL4.FrontC8_V56MTBridge.EVIICompactDual_to_V56_Weight3_Bridge`, +5 more | on-disk-unloaded: 3, registered: 17 |
+| `gap:G-hcgap-l4-multifront` | active-open | `chain:hcgap-l4-multifront-active` | `HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance.e7EVIICompactDualHodgeDiamond`, `HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance.v56Weight3HodgeDiamond`, `HodgeReduction.HCGapL4.FrontC8_V56MTBridge.EVIICompactDual_to_V56_Weight3_Bridge`, +7 more | on-disk-unloaded: 3, registered: 18 |
 
 ## Automatic Route Labels
 
@@ -144,19 +144,19 @@ These labels are generated for debt files from imports, names, source text, and 
 
 | route label | state | files | dominant bucket | classes | latest |
 |-------------|-------|------:|-----------------|---------|--------|
-| `chain:main-hc-axiom-relative` | active/exploring | 387 | core-support | on-disk-unloaded: 161, orphan: 226 | 2026-05-29 15:05 |
-| `chain:hcgap-l4-multifront-active` | active/exploring | 308 | core-support | on-disk-unloaded: 96, orphan: 212 | 2026-05-29 15:05 |
-| `gap:G-hcgap-l4-multifront` | active/exploring | 308 | core-support | on-disk-unloaded: 96, orphan: 212 | 2026-05-29 15:05 |
-| `gap:G-main-hc` | active/exploring | 288 | core-support | on-disk-unloaded: 76, orphan: 212 | 2026-05-29 15:05 |
-| `gap:G-l1-e7-shimura-tor` | active/exploring | 280 | core-support | on-disk-unloaded: 69, orphan: 211 | 2026-05-29 15:05 |
-| `gap:G-l2-cohomology-construction` | active/exploring | 256 | core-support | on-disk-unloaded: 108, orphan: 148 | 2026-05-29 15:05 |
-| `gap:G-l4-mt-correspondence` | active/exploring | 142 | core-support | on-disk-unloaded: 41, orphan: 101 | 2026-05-29 15:05 |
-| `gap:G-l4-cm-abelian-hc` | active/exploring | 115 | core-support | on-disk-unloaded: 44, orphan: 71 | 2026-05-29 15:05 |
-| `gap:G-l3-v56-mt-identification` | active/exploring | 96 | core-support | on-disk-unloaded: 71, orphan: 25 | 2026-05-29 15:05 |
-| `chain:unconditional-classical` | active/exploring | 36 | core-support | on-disk-unloaded: 30, orphan: 6 | 2026-05-29 15:05 |
-| `chain:hcgap-l2-trivial-instances` | closed/support | 256 | core-support | on-disk-unloaded: 108, orphan: 148 | 2026-05-29 15:05 |
-| `chain:concrete-evii-toy` | closed/support | 155 | core-support | on-disk-unloaded: 81, orphan: 74 | 2026-05-29 15:05 |
-| `gap:G-classical-mathlib-port` | classified | 28 | core-support | on-disk-unloaded: 23, orphan: 5 | 2026-05-29 15:05 |
+| `chain:main-hc-axiom-relative` | active/exploring | 387 | core-support | on-disk-unloaded: 159, orphan: 228 | 2026-05-29 15:14 |
+| `chain:hcgap-l4-multifront-active` | active/exploring | 308 | core-support | on-disk-unloaded: 96, orphan: 212 | 2026-05-29 15:14 |
+| `gap:G-hcgap-l4-multifront` | active/exploring | 308 | core-support | on-disk-unloaded: 96, orphan: 212 | 2026-05-29 15:14 |
+| `gap:G-main-hc` | active/exploring | 288 | core-support | on-disk-unloaded: 76, orphan: 212 | 2026-05-29 15:14 |
+| `gap:G-l1-e7-shimura-tor` | active/exploring | 280 | core-support | on-disk-unloaded: 69, orphan: 211 | 2026-05-29 15:14 |
+| `gap:G-l2-cohomology-construction` | active/exploring | 256 | core-support | on-disk-unloaded: 108, orphan: 148 | 2026-05-29 15:14 |
+| `gap:G-l4-mt-correspondence` | active/exploring | 142 | core-support | on-disk-unloaded: 41, orphan: 101 | 2026-05-29 15:14 |
+| `gap:G-l4-cm-abelian-hc` | active/exploring | 115 | core-support | on-disk-unloaded: 44, orphan: 71 | 2026-05-29 15:14 |
+| `gap:G-l3-v56-mt-identification` | active/exploring | 96 | core-support | on-disk-unloaded: 69, orphan: 27 | 2026-05-29 15:14 |
+| `chain:unconditional-classical` | active/exploring | 36 | core-support | on-disk-unloaded: 30, orphan: 6 | 2026-05-29 15:14 |
+| `chain:hcgap-l2-trivial-instances` | closed/support | 256 | core-support | on-disk-unloaded: 108, orphan: 148 | 2026-05-29 15:14 |
+| `chain:concrete-evii-toy` | closed/support | 155 | core-support | on-disk-unloaded: 81, orphan: 74 | 2026-05-29 15:14 |
+| `gap:G-classical-mathlib-port` | classified | 28 | core-support | on-disk-unloaded: 23, orphan: 5 | 2026-05-29 15:14 |
 | `chain:historical-cone-audits` | classified | 15 | core-support | on-disk-unloaded: 13, orphan: 2 | 2026-05-29 03:18 |
 
 ## Branch Head State Summary
@@ -335,14 +335,16 @@ Taxonomy files:
 - `HodgeReduction/HCGapL2/ProjectiveLine.lean` -- registered
 - `HodgeReduction/HCGapL2/EllipticCurve.lean` -- registered
 
-### `chain:hcgap-l4-multifront-active` -- HCGapL4 multi-front attack waves (R420 -- R553)
+### `chain:hcgap-l4-multifront-active` -- HCGapL4 multi-front attack waves (R420 -- R554)
 
-5 parallel attack fronts on the L4 cohomology-profile + connectedness pipeline.  Per-wave audits R451 / R456 / R460 / R465 / R470 / R476 enumerate substantive theorems per round.  R552 extends the FrontC numeric bridge through a buildable EVII compact-dual/V56/Shimura expected Betti profile: all degrees 0..8 are certified by known Hodge sums, with degree 3 explicitly routed through V56 rather than hidden in compact-dual odd cohomology.  R553 connects that finite V56 profile to the actual infrastructure `PureHodgeStructure V56 3`; this closes the local profile-isolation debt but not the Matsushima/Borel--Wallach construction.  No new axiom is added and the route remains exploratory, not a closure claim.
+5 parallel attack fronts on the L4 cohomology-profile + connectedness pipeline.  Per-wave audits R451 / R456 / R460 / R465 / R470 / R476 enumerate substantive theorems per round.  R552 extends the FrontC numeric bridge through a buildable EVII compact-dual/V56/Shimura expected Betti profile: all degrees 0..8 are certified by known Hodge sums, with degree 3 explicitly routed through V56 rather than hidden in compact-dual odd cohomology.  R553 connects that finite V56 profile to the actual infrastructure `PureHodgeStructure V56 3`.  R554 proves the abstract Matsushima boundary composition: target invariants reduce to the cuspidal trivial-module part, and compact-dual image reduces to that part once concrete EVII source/target boundary equalities are provided.  The route remains exploratory, not a closure claim.
 
 Entry declarations:
 - `HodgeReduction.HCGapL4.FrontC11_ShimuraBettiComputation.shimuraEVIIExpectedBettiKnownHodgeSumCertification_current`
 - `HodgeReduction.HCGapL4.FrontC11_ShimuraBettiComputation.shimura_expected_known_hodgeSum_total`
 - `HodgeReduction.HCGapL4.FrontC12_V56InfrastructureProfileBridge.v56InfrastructureProfileCertification_current`
+- `HodgeReduction.HCGapL4.FrontC13_MatsushimaV56BoundaryBridge.matsushima_compactDual_image_eq_trivialModulePart`
+- `HodgeReduction.HCGapL4.FrontC13_MatsushimaV56BoundaryBridge.matsushimaV56BoundaryCertification_from_boundary`
 
 Taxonomy files:
 - `HodgeReduction/HCGapL4/FrontA_DeligneH0SheafRealization.lean` -- registered
@@ -357,6 +359,7 @@ Taxonomy files:
 - `HodgeReduction/HCGapL4/FrontC10_V56CohomologyIdentification.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontC11_ShimuraBettiComputation.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontC12_V56InfrastructureProfileBridge.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC13_MatsushimaV56BoundaryBridge.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean` -- on-disk-unloaded
 - `HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean` -- on-disk-unloaded
 - `HodgeReduction/HCGapL4/R476_MultiFrontWave6Audit.lean` -- on-disk-unloaded

@@ -59,7 +59,7 @@ graph TD
   chain_main_hc_axiom_relative["Main Mumford--Tate-reduction HC chain\nconditional"]:::main
   chain_unconditional_classical["Unconditional classical paper theorems\nclosed-modulo-cy3-citation"]:::closed
   chain_hcgap_l2_trivial_instances["Layer-2 minimum attack: trivial-instance VarietyCohomologyData\nstable"]:::support
-  chain_hcgap_l4_multifront_active["HCGapL4 multi-front attack waves (R420 -- R553)\nexploratory"]:::active
+  chain_hcgap_l4_multifront_active["HCGapL4 multi-front attack waves (R420 -- R554)\nexploratory"]:::active
   chain_concrete_evii_toy["Concrete EVII sanity-check chain\nclosed-toy"]:::closed
   chain_historical_cone_audits["Historical per-round cone audit drivers (R217 -- R476)\ninfra"]:::support
   gap_G_main_hc{{"Hodge conjecture headline remains axiom-relative\nconditional"}}:::gapOpen
@@ -69,7 +69,7 @@ graph TD
   gap_G_l4_cm_abelian_hc{{"Layer 4-G2: Hodge conjecture for CM abelian varieties (Deligne 1982)\nopen"}}:::gapOpen
   gap_G_l4_mt_correspondence{{"Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian)\nopen"}}:::gapOpen
   gap_G_classical_mathlib_port{{"Classical published-literature axioms awaiting Mathlib port\ndeferred"}}:::gapOpen
-  gap_G_hcgap_l4_multifront{{"HCGapL4 multi-front Layer-4 attack waves (R420 -- R553)\nactive-open"}}:::gapOpen
+  gap_G_hcgap_l4_multifront{{"HCGapL4 multi-front Layer-4 attack waves (R420 -- R554)\nactive-open"}}:::gapOpen
   chain_main_hc_axiom_relative --> gap_G_main_hc
   chain_main_hc_axiom_relative --> gap_G_l1_e7_shimura_tor
   chain_main_hc_axiom_relative --> gap_G_l2_cohomology_construction
@@ -120,7 +120,7 @@ graph TD
   owner_gap_G_l4_cm_abelian_hc["gap:G-l4-cm-abelian-hc"]:::ownerGap
   owner_gap_G_l4_mt_correspondence["gap:G-l4-mt-correspondence"]:::ownerGap
   owner_gap_G_main_hc["gap:G-main-hc"]:::ownerGap
-  debt_C001["C001\n97 files\n2026-05-29 15:05\ncore-support"]:::debtTaxonomy
+  debt_C001["C001\n97 files\n2026-05-29 15:14\ncore-support"]:::debtTaxonomy
   debt_root --> debt_C001
   debt_C001 --> anchor_cut
   debt_C001 --> anchor_infra
@@ -317,7 +317,7 @@ graph TD
 | `main-hc-axiom-relative` | main | conditional | `G-main-hc`, `G-l1-e7-shimura-tor`, `G-l2-cohomology-construction`, `G-l3-v56-mt-identification`, `G-l4-cm-abelian-hc`, `G-l4-mt-correspondence` | cut: 2, infra: 1, on-chain: 2 |
 | `unconditional-classical` | support | closed-modulo-cy3-citation | `G-classical-mathlib-port` | cut: 1, on-chain: 1 |
 | `hcgap-l2-trivial-instances` | support | stable | `G-l2-cohomology-construction` | registered: 3 |
-| `hcgap-l4-multifront-active` | active | exploratory | `G-hcgap-l4-multifront` | on-disk-unloaded: 3, registered: 12 |
+| `hcgap-l4-multifront-active` | active | exploratory | `G-hcgap-l4-multifront` | on-disk-unloaded: 3, registered: 13 |
 | `concrete-evii-toy` | support | closed-toy | - | on-disk-unloaded: 1 |
 | `historical-cone-audits` | infra | infra | - | on-disk-unloaded: 4 |
 
@@ -332,7 +332,7 @@ graph TD
 | `G-l4-cm-abelian-hc` | open | Layer 4-G2: Hodge conjecture for CM abelian varieties (Deligne 1982) | cut: 2, infra: 1, on-disk-unloaded: 2 |
 | `G-l4-mt-correspondence` | open | Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian) | cut: 3, infra: 1, registered: 1 |
 | `G-classical-mathlib-port` | deferred | Classical published-literature axioms awaiting Mathlib port | cut: 3, on-chain: 2 |
-| `G-hcgap-l4-multifront` | active-open | HCGapL4 multi-front Layer-4 attack waves (R420 -- R553) | on-disk-unloaded: 3, registered: 17 |
+| `G-hcgap-l4-multifront` | active-open | HCGapL4 multi-front Layer-4 attack waves (R420 -- R554) | on-disk-unloaded: 3, registered: 18 |
 
 ## Off-Chain Split
 
@@ -410,14 +410,16 @@ Files:
 - `HodgeReduction/HCGapL2/ProjectiveLine.lean` -- registered
 - `HodgeReduction/HCGapL2/EllipticCurve.lean` -- registered
 
-### `hcgap-l4-multifront-active` -- HCGapL4 multi-front attack waves (R420 -- R553)
+### `hcgap-l4-multifront-active` -- HCGapL4 multi-front attack waves (R420 -- R554)
 
-5 parallel attack fronts on the L4 cohomology-profile + connectedness pipeline.  Per-wave audits R451 / R456 / R460 / R465 / R470 / R476 enumerate substantive theorems per round.  R552 extends the FrontC numeric bridge through a buildable EVII compact-dual/V56/Shimura expected Betti profile: all degrees 0..8 are certified by known Hodge sums, with degree 3 explicitly routed through V56 rather than hidden in compact-dual odd cohomology.  R553 connects that finite V56 profile to the actual infrastructure `PureHodgeStructure V56 3`; this closes the local profile-isolation debt but not the Matsushima/Borel--Wallach construction.  No new axiom is added and the route remains exploratory, not a closure claim.
+5 parallel attack fronts on the L4 cohomology-profile + connectedness pipeline.  Per-wave audits R451 / R456 / R460 / R465 / R470 / R476 enumerate substantive theorems per round.  R552 extends the FrontC numeric bridge through a buildable EVII compact-dual/V56/Shimura expected Betti profile: all degrees 0..8 are certified by known Hodge sums, with degree 3 explicitly routed through V56 rather than hidden in compact-dual odd cohomology.  R553 connects that finite V56 profile to the actual infrastructure `PureHodgeStructure V56 3`.  R554 proves the abstract Matsushima boundary composition: target invariants reduce to the cuspidal trivial-module part, and compact-dual image reduces to that part once concrete EVII source/target boundary equalities are provided.  The route remains exploratory, not a closure claim.
 
 Entry declarations:
 - `HodgeReduction.HCGapL4.FrontC11_ShimuraBettiComputation.shimuraEVIIExpectedBettiKnownHodgeSumCertification_current`
 - `HodgeReduction.HCGapL4.FrontC11_ShimuraBettiComputation.shimura_expected_known_hodgeSum_total`
 - `HodgeReduction.HCGapL4.FrontC12_V56InfrastructureProfileBridge.v56InfrastructureProfileCertification_current`
+- `HodgeReduction.HCGapL4.FrontC13_MatsushimaV56BoundaryBridge.matsushima_compactDual_image_eq_trivialModulePart`
+- `HodgeReduction.HCGapL4.FrontC13_MatsushimaV56BoundaryBridge.matsushimaV56BoundaryCertification_from_boundary`
 
 Depends on: `main-hc-axiom-relative`
 
@@ -436,6 +438,7 @@ Files:
 - `HodgeReduction/HCGapL4/FrontC10_V56CohomologyIdentification.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontC11_ShimuraBettiComputation.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontC12_V56InfrastructureProfileBridge.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC13_MatsushimaV56BoundaryBridge.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean` -- on-disk-unloaded
 - `HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean` -- on-disk-unloaded
 - `HodgeReduction/HCGapL4/R476_MultiFrontWave6Audit.lean` -- on-disk-unloaded
@@ -613,9 +616,9 @@ Files:
 - `HodgeReduction/HCGapL4/CY3E7Bridge.lean` -- cut
 - `HodgeReduction/HCGapL4/CY3VacuityDischarge.lean` -- on-chain
 
-### `G-hcgap-l4-multifront` -- HCGapL4 multi-front Layer-4 attack waves (R420 -- R553)
+### `G-hcgap-l4-multifront` -- HCGapL4 multi-front Layer-4 attack waves (R420 -- R554)
 
-Active exploratory attack waves on the L4 / cohomology-profile / connectedness pipeline: FrontA (Deligne H0 sheaf realization), FrontB (Baily--Borel connectedness), FrontC (E_7 low-degree Hodge numbers + Hodge polynomial algebra + all-degree rank adapter + EVII/V56/Shimura expected Betti profile), FrontD (E_7 -> CM Chow correspondence + Deligne 1982 minimal fragment), FrontE (real-carrier profile matching + R405 conditional transfer feed).  Audits R451 / R456 / R460 / R465 / R470 / R476 are wave-level summaries.  R552 certifies the expected Shimura Betti profile degree-by-degree from EVII compact-dual Hodge sums plus the isolated V56 degree-3 contribution; R553 ties that finite V56 contribution to the actual `PureHodgeStructure V56 3` infrastructure, without adding axioms.
+Active exploratory attack waves on the L4 / cohomology-profile / connectedness pipeline: FrontA (Deligne H0 sheaf realization), FrontB (Baily--Borel connectedness), FrontC (E_7 low-degree Hodge numbers + Hodge polynomial algebra + all-degree rank adapter + EVII/V56/Shimura expected Betti profile), FrontD (E_7 -> CM Chow correspondence + Deligne 1982 minimal fragment), FrontE (real-carrier profile matching + R405 conditional transfer feed).  Audits R451 / R456 / R460 / R465 / R470 / R476 are wave-level summaries.  R552 certifies the expected Shimura Betti profile degree-by-degree from EVII compact-dual Hodge sums plus the isolated V56 degree-3 contribution; R553 ties that finite V56 contribution to the actual `PureHodgeStructure V56 3` infrastructure; R554 combines the Matsushima, Eisenstein, and cuspidal trivial-module infrastructure into an honest boundary theorem, leaving the concrete EVII source/target submodule equalities as the next gap.  No new axioms.
 
 Declarations:
 - `HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance.e7EVIICompactDualHodgeDiamond`
@@ -626,6 +629,8 @@ Declarations:
 - `HodgeReduction.HCGapL4.FrontC11_ShimuraBettiComputation.shimuraEVIIExpectedBettiKnownHodgeSumCertification_current`
 - `HodgeReduction.HCGapL4.FrontC11_ShimuraBettiComputation.shimura_expected_known_hodgeSum_total`
 - `HodgeReduction.HCGapL4.FrontC12_V56InfrastructureProfileBridge.v56InfrastructureProfileCertification_current`
+- `HodgeReduction.HCGapL4.FrontC13_MatsushimaV56BoundaryBridge.matsushima_compactDual_image_eq_trivialModulePart`
+- `HodgeReduction.HCGapL4.FrontC13_MatsushimaV56BoundaryBridge.matsushimaV56BoundaryCertification_from_boundary`
 
 Files:
 - `HodgeReduction/HCGapL4/FrontA_DeligneH0SheafRealization.lean` -- registered
@@ -640,6 +645,7 @@ Files:
 - `HodgeReduction/HCGapL4/FrontC10_V56CohomologyIdentification.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontC11_ShimuraBettiComputation.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontC12_V56InfrastructureProfileBridge.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC13_MatsushimaV56BoundaryBridge.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean` -- on-disk-unloaded
 - `HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean` -- on-disk-unloaded
 - `HodgeReduction/HCGapL4/R451_MultiFrontFrontierAudit.lean` -- registered

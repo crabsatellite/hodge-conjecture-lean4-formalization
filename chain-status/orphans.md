@@ -7,8 +7,8 @@ For each orphan, the user should either:
 3. Delete it.
 
 
-* loaded-but-orphan: **229**
-* on-disk-but-unloaded: **272**
+* loaded-but-orphan: **231**
+* on-disk-but-unloaded: **270**
 
 
 ## Loaded-but-orphan (the env has them, no closure)
@@ -226,6 +226,8 @@ For each orphan, the user should either:
 - `HodgeReduction/HCGapL4/ToyToRealPackageFamilyLowCodim.lean` -- 31 decl(s)
 - `HodgeReduction/HCGapL4/ToyToRealPackageFamilyWitness.lean` -- 44 decl(s)
 - `HodgeReduction/Infrastructure/Automorphic/Basic.lean` -- 49 decl(s)
+- `HodgeReduction/Infrastructure/Automorphic/CuspidalCohomology.lean` -- 26 decl(s)
+- `HodgeReduction/Infrastructure/Automorphic/GKCohomology.lean` -- 50 decl(s)
 - `HodgeReduction/Infrastructure/Cohomology/Basic.lean` -- 53 decl(s)
 - `HodgeReduction/Infrastructure/DynkinMarks.lean` -- 18 decl(s)
 - `HodgeReduction/Infrastructure/E7ParabolicDimensions.lean` -- 13 decl(s)
@@ -444,9 +446,7 @@ For each orphan, the user should either:
 - `HodgeReduction/Infrastructure/AlgebraicGeometry/PicardGroup.lean`
 - `HodgeReduction/Infrastructure/Automorphic/AtlasE7minus25.lean`
 - `HodgeReduction/Infrastructure/Automorphic/BorelBottWeil.lean`
-- `HodgeReduction/Infrastructure/Automorphic/CuspidalCohomology.lean`
 - `HodgeReduction/Infrastructure/Automorphic/FrankeEisensteinLayer.lean`
-- `HodgeReduction/Infrastructure/Automorphic/GKCohomology.lean`
 - `HodgeReduction/Infrastructure/Automorphic/HeckeCorrespondence.lean`
 - `HodgeReduction/Infrastructure/Automorphic/ModularForm.lean`
 - `HodgeReduction/Infrastructure/CartanMatrices.lean`

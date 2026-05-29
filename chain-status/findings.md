@@ -4,7 +4,7 @@
 * total: **8792**  *  FAIL: **0**  *  WARN: **8792**
 
 
-## W1.orphan (WARN) -- 229
+## W1.orphan (WARN) -- 231
 
 - file `HodgeReduction.Infrastructure.DynkinMarks` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/DynkinMarks.lean)
 - file `HodgeReduction.Infrastructure.SimpleLieAlgebraClassification` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/SimpleLieAlgebraClassification.lean)
@@ -170,6 +170,10 @@
 - file `HodgeReduction.Infrastructure.V56HodgeRank` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/V56HodgeRank.lean)
 - file `HodgeReduction.Infrastructure.J3OInnerProduct` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/J3OInnerProduct.lean)
 - file `HodgeReduction.Infrastructure.LinearMaps` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/LinearMaps.lean)
+- file `HodgeReduction.Infrastructure.Automorphic.Basic` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/Automorphic/Basic.lean)
+- file `HodgeReduction.Infrastructure.Cohomology.Basic` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/Cohomology/Basic.lean)
+- file `HodgeReduction.Infrastructure.Automorphic.CuspidalCohomology` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/Automorphic/CuspidalCohomology.lean)
+- file `HodgeReduction.Infrastructure.Automorphic.GKCohomology` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/Automorphic/GKCohomology.lean)
 - file `HodgeReduction.HCGapL4.Deligne1971LowDegreeFragment` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/HCGapL4/Deligne1971LowDegreeFragment.lean)
 - file `HodgeReduction.HCGapL4.ConnectedSmoothProjectiveH0RankOneInterface` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/HCGapL4/ConnectedSmoothProjectiveH0RankOneInterface.lean)
 - file `HodgeReduction.HCGapL4.AbstractConnectedH0RankOneTheorem` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/HCGapL4/AbstractConnectedH0RankOneTheorem.lean)
@@ -193,9 +197,7 @@
 - file `HodgeReduction.HCGapL4.CohomologyProfileComparisonSkeleton` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/HCGapL4/CohomologyProfileComparisonSkeleton.lean)
 - file `HodgeReduction.HCGapL4.CohomologyProfileComparisonConditional` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/HCGapL4/CohomologyProfileComparisonConditional.lean)
 - file `HodgeReduction.HCGapL4.FrontC5_HodgePolynomialToRankAdapter` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/HCGapL4/FrontC5_HodgePolynomialToRankAdapter.lean)
-- file `HodgeReduction.Infrastructure.Cohomology.Basic` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/Cohomology/Basic.lean)
 - file `HodgeReduction.Infrastructure.Shimura.Basic` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/Shimura/Basic.lean)
-- file `HodgeReduction.Infrastructure.Automorphic.Basic` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/Automorphic/Basic.lean)
 - file `HodgeReduction.HCGapL4.LocallyConstantH0RankOneThread` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/HCGapL4/LocallyConstantH0RankOneThread.lean)
 - file `HodgeReduction.HCGapL4.LocallyConstantToH0Realization` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/HCGapL4/LocallyConstantToH0Realization.lean)
 - file `HodgeReduction.HCGapL4.SecondPaperTargetDischargeAudit` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/HCGapL4/SecondPaperTargetDischargeAudit.lean)
@@ -242,7 +244,7 @@
 - compile-prune candidate: on-chain `HodgeReduction.HCGapL4.E6CaseClassicalBridge` imports `HodgeReduction.Infrastructure.DynkinMarks` but reflected declarations consume no project decl from that import closure  (HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean)
 - compile-prune candidate: on-chain `HodgeReduction.HCGapL4.E6CaseClassicalBridge` imports `HodgeReduction.Infrastructure.SimpleLieAlgebraClassification` but reflected declarations consume no project decl from that import closure  (HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean)
 
-## W3.on-disk-orphan (WARN) -- 185
+## W3.on-disk-orphan (WARN) -- 183
 
 - file `HodgeReduction.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction.lean)
 - file `HodgeReduction/Concrete.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Concrete.lean)
@@ -358,9 +360,7 @@
 - file `HodgeReduction/Infrastructure/AlgebraicGeometry/PicardGroup.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/AlgebraicGeometry/PicardGroup.lean)
 - file `HodgeReduction/Infrastructure/Automorphic/AtlasE7minus25.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/Automorphic/AtlasE7minus25.lean)
 - file `HodgeReduction/Infrastructure/Automorphic/BorelBottWeil.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/Automorphic/BorelBottWeil.lean)
-- file `HodgeReduction/Infrastructure/Automorphic/CuspidalCohomology.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/Automorphic/CuspidalCohomology.lean)
 - file `HodgeReduction/Infrastructure/Automorphic/FrankeEisensteinLayer.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/Automorphic/FrankeEisensteinLayer.lean)
-- file `HodgeReduction/Infrastructure/Automorphic/GKCohomology.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/Automorphic/GKCohomology.lean)
 - file `HodgeReduction/Infrastructure/Automorphic/HeckeCorrespondence.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/Automorphic/HeckeCorrespondence.lean)
 - file `HodgeReduction/Infrastructure/Automorphic/ModularForm.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/Automorphic/ModularForm.lean)
 - file `HodgeReduction/Infrastructure/CartanMatrices.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/CartanMatrices.lean)
@@ -432,7 +432,7 @@
 
 ## W4.skipped-large-orphan-set (WARN) -- 1
 
-- skipped expensive unused-orphan-import scan because 229 loaded modules are classified orphan; use route labels and W3/W1 first, then narrow the audit entry
+- skipped expensive unused-orphan-import scan because 231 loaded modules are classified orphan; use route labels and W3/W1 first, then narrow the audit entry
 
 ## W5.prop-def (WARN) -- 3722
 
