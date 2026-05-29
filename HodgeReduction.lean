@@ -486,6 +486,7 @@ import HodgeReduction.HCGapL4.FrontC35_SourceCartanContainments
 import HodgeReduction.HCGapL4.FrontC36_TargetBettiObstruction
 import HodgeReduction.HCGapL4.FrontC37_TargetRankHodgeSumBridge
 import HodgeReduction.HCGapL4.FrontC38_TargetHodgeSumFromCartanImage
+import HodgeReduction.HCGapL4.FrontC39_TargetHodgeSumFromScalarPreimage
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix
