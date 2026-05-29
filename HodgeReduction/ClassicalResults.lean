@@ -203,4 +203,5 @@ axiom cy3_e7_nonexistence_paper_axiom:
  IsCalabiYauThreefold X ∧
  MumfordTateGroupDerived X 3 = E7_neg25
 
+
 end HodgeReduction
