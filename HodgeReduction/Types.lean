@@ -283,9 +283,6 @@ def G2_realForm : MumfordTateGroupType :=
 def F4_realForm : MumfordTateGroupType :=
   ⟨False, False, False⟩
 
-/-- The real form `E_{6(-14)}` acting through `V_{27}`.
- IsTorus = False; IsE6Type = True; IsE7Type = False.
- paper source: subsec:E6_absorption + rem:E6-V27-vacuity. -/
 def E6_neg14 : MumfordTateGroupType :=
   ⟨False, True, False⟩
 
