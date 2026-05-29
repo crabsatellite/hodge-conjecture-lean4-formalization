@@ -480,6 +480,7 @@ import HodgeReduction.HCGapL4.FrontC29_CartanImageFromRankOne
 import HodgeReduction.HCGapL4.FrontC30_SourceInvariantsH8TargetRank
 import HodgeReduction.HCGapL4.FrontC31_TargetRankFromExpectedBetti
 import HodgeReduction.HCGapL4.FrontC32_SourceInvariantsH8CarrierCriterion
+import HodgeReduction.HCGapL4.FrontC33_CompactDualH8CarrierCriterion
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix
