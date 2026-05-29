@@ -25,7 +25,8 @@ Open mathematical cut(s):
 - `HodgeReduction.deligne_1982_abs_hodge_cm` at `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
 - `HodgeReduction.e6_classical_remainder_exists` at `HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean`
 - `HodgeReduction.e6_remainder_transfer` at `HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean`
-- `HodgeReduction.e7_chosen_witness_correspondence_package_exists` at `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean`
+- `HodgeReduction.e7_chosen_witness_correspondence_package_codim1_exists` at `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean`
+- `HodgeReduction.e7_chosen_witness_correspondence_package_non_codim1_exists` at `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean`
 - `HodgeReduction.e7_cm_witness_exists` at `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean`
 - `HodgeReduction.hc_real_classical_cartan` at `HodgeReduction/MainTheorem.lean`
 
@@ -325,7 +326,7 @@ graph TD
 | `G-l2-cohomology-construction` | open | Layer 2: VarietyCohomologyData from a non-toy underlying variety | infra: 1, on-chain: 1, registered: 4 |
 | `G-l3-v56-mt-identification` | open | Layer 3: V_56 -- H^3(S_Γ^tor, -- Hodge-structure identification | infra: 1, registered: 4 |
 | `G-l4-cm-abelian-hc` | open | Layer 4-G2: Hodge conjecture for CM abelian varieties (Deligne 1982) | cut: 2, infra: 1, on-disk-unloaded: 2 |
-| `G-l4-mt-correspondence` | open | Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian) | cut: 2, infra: 1, registered: 1 |
+| `G-l4-mt-correspondence` | open | Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian) | cut: 3, infra: 1, registered: 1 |
 | `G-classical-mathlib-port` | deferred | Classical published-literature axioms awaiting Mathlib port | cut: 3, on-chain: 2 |
 | `G-hcgap-l4-multifront` | active-open | HCGapL4 multi-front Layer-4 attack waves (R420 -- R476) | on-disk-unloaded: 4, registered: 10 |
 
@@ -449,7 +450,7 @@ Files:
 
 ### `G-main-hc` -- Hodge conjecture headline remains axiom-relative
 
-The `hodgeConjectureReal_canonical` endpoint is a kernel-pure composition once the canonical target variety and its two E7-scope facts are accepted.  R542 derives `canonicalMTPackageAt` from the generic R517/R532 MT-witness route, so the headline now consumes `e7_cm_witness_exists` and `e7_chosen_witness_correspondence_package_exists` instead of a separate canonical-only package axiom.  It is NOT an unconditional proof of HC.
+The `hodgeConjectureReal_canonical` endpoint is a kernel-pure composition once the canonical target variety and its two E7-scope facts are accepted.  R542 derives `canonicalMTPackageAt` from the generic R517/R532 MT-witness route, and R545 splits the chosen-witness package into a codim-one first target plus the remaining non-codim-one lift.  It is NOT an unconditional proof of HC.
 
 Declarations:
 - `HodgeReduction.CanonicalHCData`
@@ -538,18 +539,21 @@ Files:
 
 ### `G-l4-mt-correspondence` -- Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian)
 
-R529/R517 decomposes the non-canonical MT correspondence witness; R532 tightens the package cut so it applies only to the witness selected by `e7_cm_witness_exists`, not to arbitrary CM abelian sources.  R542 makes the canonical headline consume this generic route directly: `canonicalMTPackageAt` is now a theorem derived from the canonical target's E7 factor/scope facts and `mt_correspondence_e7_witness_exists`.
+R529/R517 decomposes the non-canonical MT correspondence witness; R532 tightens the package cut so it applies only to the witness selected by `e7_cm_witness_exists`, not to arbitrary CM abelian sources.  R545 splits that chosen-source package into the codim-one Chow-correspondence target and the remaining non-codim-one lift.  R542 makes the canonical headline consume this generic route directly: `canonicalMTPackageAt` is now a theorem derived from the canonical target's E7 factor/scope facts and `mt_correspondence_e7_witness_exists`.
 
 Declarations:
 - `HodgeReduction.mt_correspondence_e7_witness_exists`
 - `HodgeReduction.e7_cm_witness_exists`
 - `HodgeReduction.e7_chosen_witness_correspondence_package_exists`
+- `HodgeReduction.e7_chosen_witness_correspondence_package_codim1_exists`
+- `HodgeReduction.e7_chosen_witness_correspondence_package_non_codim1_exists`
 - `HodgeReduction.HCGapRegistry.L4_G3_MT_Correspondence_E7_To_CMAbelian`
 - `HodgeReduction.HCGapRegistry.L34_FullPackage_For_E7Canonical`
 
 Files:
 - `HodgeReduction/MainTheorem.lean` -- cut
 - `HodgeReduction/OpenHypotheses.lean` -- cut
+- `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean` -- cut
 - `HodgeReduction/HCGapRegistry.lean` -- infra
 - `HodgeReduction/Infrastructure/HodgeStructure/MumfordTate.lean` -- registered
 

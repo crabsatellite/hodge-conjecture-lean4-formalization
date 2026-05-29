@@ -75,11 +75,13 @@ def config : ChainAudit.ProjectConfig := {
     ``HodgeReduction.hc_real_classical_cartan,
     ``HodgeReduction.e6_classical_remainder_exists,
     ``HodgeReduction.e6_remainder_transfer,
-    -- R529/R517 decomposition of the former
+    -- R529/R517/R545 decomposition of the former
     -- `mt_correspondence_e7_witness_exists` cut into CM source
-    -- existence and chosen-source correspondence package construction.
+    -- existence, chosen-source codim-one package construction, and
+    -- the remaining non-codim-one lift.
     ``HodgeReduction.e7_cm_witness_exists,
-    ``HodgeReduction.e7_chosen_witness_correspondence_package_exists,
+    ``HodgeReduction.e7_chosen_witness_correspondence_package_codim1_exists,
+    ``HodgeReduction.e7_chosen_witness_correspondence_package_non_codim1_exists,
     -- R533 decomposition of the former `cy3_e7_nonexistence_paper_axiom`
     -- into paper §4 stage cuts: Springer/V56, FTS omega, J3(O)
     -- nonrealization.
@@ -199,7 +201,7 @@ def config : ChainAudit.ProjectConfig := {
       title := "Hodge conjecture headline remains axiom-relative"
       status := "conditional"
       summary :=
-        "The `hodgeConjectureReal_canonical` endpoint is a kernel-pure composition once the canonical target variety and its two E7-scope facts are accepted.  R542 derives `canonicalMTPackageAt` from the generic R517/R532 MT-witness route, so the headline now consumes `e7_cm_witness_exists` and `e7_chosen_witness_correspondence_package_exists` instead of a separate canonical-only package axiom.  It is NOT an unconditional proof of HC."
+        "The `hodgeConjectureReal_canonical` endpoint is a kernel-pure composition once the canonical target variety and its two E7-scope facts are accepted.  R542 derives `canonicalMTPackageAt` from the generic R517/R532 MT-witness route, and R545 splits the chosen-witness package into a codim-one first target plus the remaining non-codim-one lift.  It is NOT an unconditional proof of HC."
       files := [
         "HodgeReduction/MainTheorem.lean",
         "HodgeReduction/OpenHypotheses.lean",
@@ -303,10 +305,11 @@ def config : ChainAudit.ProjectConfig := {
       title := "Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian)"
       status := "open"
       summary :=
-        "R529/R517 decomposes the non-canonical MT correspondence witness; R532 tightens the package cut so it applies only to the witness selected by `e7_cm_witness_exists`, not to arbitrary CM abelian sources.  R542 makes the canonical headline consume this generic route directly: `canonicalMTPackageAt` is now a theorem derived from the canonical target's E7 factor/scope facts and `mt_correspondence_e7_witness_exists`."
+        "R529/R517 decomposes the non-canonical MT correspondence witness; R532 tightens the package cut so it applies only to the witness selected by `e7_cm_witness_exists`, not to arbitrary CM abelian sources.  R545 splits that chosen-source package into the codim-one Chow-correspondence target and the remaining non-codim-one lift.  R542 makes the canonical headline consume this generic route directly: `canonicalMTPackageAt` is now a theorem derived from the canonical target's E7 factor/scope facts and `mt_correspondence_e7_witness_exists`."
       files := [
         "HodgeReduction/MainTheorem.lean",
         "HodgeReduction/OpenHypotheses.lean",
+        "HodgeReduction/HCGapL4/MTWitnessDecomposition.lean",
         "HodgeReduction/HCGapRegistry.lean",
         "HodgeReduction/Infrastructure/HodgeStructure/MumfordTate.lean"
       ]
@@ -314,6 +317,8 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction.mt_correspondence_e7_witness_exists",
         "HodgeReduction.e7_cm_witness_exists",
         "HodgeReduction.e7_chosen_witness_correspondence_package_exists",
+        "HodgeReduction.e7_chosen_witness_correspondence_package_codim1_exists",
+        "HodgeReduction.e7_chosen_witness_correspondence_package_non_codim1_exists",
         "HodgeReduction.HCGapRegistry.L4_G3_MT_Correspondence_E7_To_CMAbelian",
         "HodgeReduction.HCGapRegistry.L34_FullPackage_For_E7Canonical"
       ]
