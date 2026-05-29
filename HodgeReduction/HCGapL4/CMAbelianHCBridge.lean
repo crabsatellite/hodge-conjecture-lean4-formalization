@@ -1,11 +1,12 @@
 /-
-# R515: Decompose hyp_HC_CM_Ab_real into Deligne 1982 + conditional extension.
+# R515/R535: Decompose hyp_HC_CM_Ab_real into Deligne 1982 + CM-scoped extension.
 
 The axiom hyp_HC_CM_Ab_real says: all CM abelian varieties satisfy HC-real.
 Decomposed into:
 
   (1) Deligne 1982: Hodge => Absolute Hodge for CM abelian varieties (ESTABLISHED)
-  (2) AH => algebraicity (CONDITIONAL, open conjecture)
+  (2) AH => algebraicity for CM abelian varieties
+      (CONDITIONAL, open conjecture)
 
 Net: -1 large axiom +2 smaller axioms. NO sorry, NO tricks.
 -/
@@ -45,17 +46,19 @@ axiom deligne_1982_abs_hodge_cm (A : SmoothProjectiveVariety Complex) :
     forall (p : Nat),
       A.cohomology.hodgeClassesAtDegree p <= absHodgeClassesAtDegree A p
 
-/-! ## Step 3: Conditional extension -/
+/-! ## Step 3: CM-scoped conditional extension -/
 
-/-- **R515-B**: Every absolutely Hodge class is algebraic.
+/-- **R535-B**: Every absolutely Hodge class on a CM abelian variety is
+algebraic.
 
-CONDITIONAL: AH => algebraicity. This is the open conjecture that
-separates established results from full HC for CM abelian varieties.
-
-Scope: generic (applies to all SPV). Strictly weaker than full HC
-(because not all Hodge classes are known to be AH in general). -/
-axiom abs_hodge_implies_algebraic (X : SmoothProjectiveVariety Complex) (p : Nat) :
-    absHodgeClassesAtDegree X p <= X.algClasses.algClasses p
+R515 used a generic SPV-level bridge.  R535 narrows the cut to the
+only scope consumed by `hyp_HC_CM_Ab_real`: CM abelian varieties.  This
+avoids smuggling a stronger absolute-Hodge-to-algebraic principle into
+the main chain. -/
+axiom abs_hodge_cm_implies_algebraic (A : SmoothProjectiveVariety Complex) :
+    IsCMAbelianVariety A ->
+    forall p : Nat,
+      absHodgeClassesAtDegree A p <= A.algClasses.algClasses p
 
 /-! ## Step 4: Derived theorem -/
 
@@ -63,7 +66,7 @@ axiom abs_hodge_implies_algebraic (X : SmoothProjectiveVariety Complex) (p : Nat
 
     Proof: Let A be CM abelian. At each p:
     hodgeClasses <= absHodgeClasses  (Deligne 1982)
-    absHodgeClasses <= algClasses    (conditional extension)
+    absHodgeClasses <= algClasses    (CM-scoped conditional extension)
     Therefore hodgeClasses <= algClasses. KERNEL-PURE. -/
 theorem hyp_HC_CM_Ab_real_via_deligne_ah :
     forall (A : SmoothProjectiveVariety Complex),
@@ -72,7 +75,9 @@ theorem hyp_HC_CM_Ab_real_via_deligne_ah :
   rw [hodgeConjectureReal_iff_forall_at]
   intro p
   show A.cohomology.hodgeClassesAtDegree p <= A.algClasses.algClasses p
-  exact le_trans (deligne_1982_abs_hodge_cm A hA p) (abs_hodge_implies_algebraic A p)
+  exact le_trans
+    (deligne_1982_abs_hodge_cm A hA p)
+    (abs_hodge_cm_implies_algebraic A hA p)
 
 /-- Backward-compatible alias for the R515 theorem; kept so older round files
 can still import this bridge without spelling churn. -/

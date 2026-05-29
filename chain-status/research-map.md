@@ -12,7 +12,7 @@ Open mathematical cut(s):
 - `HodgeReduction.SmoothProjectiveVariety.algClasses` at `HodgeReduction/OpenHypotheses.lean`
 - `HodgeReduction.SmoothProjectiveVariety.cohomology` at `HodgeReduction/OpenHypotheses.lean`
 - `HodgeReduction.absHodgeClassesAtDegree` at `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
-- `HodgeReduction.abs_hodge_implies_algebraic` at `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
+- `HodgeReduction.abs_hodge_cm_implies_algebraic` at `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
 - `HodgeReduction.canonicalE7ShimuraTor` at `HodgeReduction/OpenHypotheses.lean`
 - `HodgeReduction.cy3_e7_excludes_e6` at `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
 - `HodgeReduction.cy3_e7_fts_omega_stage` at `HodgeReduction/HCGapL4/CY3NonexistenceStageCuts.lean`
@@ -537,13 +537,13 @@ Files:
 
 ### `G-l4-cm-abelian-hc` -- Layer 4-G2: Hodge conjecture for CM abelian varieties (Deligne 1982)
 
-R527/R515 decomposes the former broad `hyp_HC_CM_Ab_real` axiom into a theorem.  The open surface is now the absolute-Hodge carrier plus two smaller cuts: Deligne 1982 Hodge-to-absolute-Hodge for CM abelian varieties, and the remaining absolute-Hodge-to-algebraic bridge.  This keeps the CM-abelian HC route load-bearing while removing the monolithic HC-real assumption.
+R527/R515 decomposes the former broad `hyp_HC_CM_Ab_real` axiom into a theorem.  R535 narrows the remaining absolute-Hodge-to-algebraic bridge to CM abelian varieties, the only scope consumed by this route.  The open surface is now the absolute-Hodge carrier plus two smaller cuts: Deligne 1982 Hodge-to-absolute-Hodge for CM abelian varieties, and the remaining CM-scoped absolute-Hodge-to-algebraic bridge.
 
 Declarations:
 - `HodgeReduction.hyp_HC_CM_Ab_real`
 - `HodgeReduction.absHodgeClassesAtDegree`
 - `HodgeReduction.deligne_1982_abs_hodge_cm`
-- `HodgeReduction.abs_hodge_implies_algebraic`
+- `HodgeReduction.abs_hodge_cm_implies_algebraic`
 - `HodgeReduction.HCGapRegistry.L4_G2_HC_For_CM_AbelianVariety`
 
 Files:

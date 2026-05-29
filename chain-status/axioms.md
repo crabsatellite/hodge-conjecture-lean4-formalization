@@ -16,7 +16,7 @@ Equivalent to running `#print axioms <endpoint>` for each endpoint.
 - `HodgeReduction.SmoothProjectiveVariety.algClasses`
 - `HodgeReduction.SmoothProjectiveVariety.cohomology`
 - `HodgeReduction.absHodgeClassesAtDegree`
-- `HodgeReduction.abs_hodge_implies_algebraic`
+- `HodgeReduction.abs_hodge_cm_implies_algebraic`
 - `HodgeReduction.cy3_e7_excludes_e6`
 - `HodgeReduction.cy3_e7_fts_omega_stage`
 - `HodgeReduction.cy3_e7_j3o_nonrealization_stage`

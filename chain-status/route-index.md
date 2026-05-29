@@ -20,7 +20,7 @@ Kernel cut ledger.  These are audit-visible unresolved constants on the endpoint
 - `HodgeReduction.SmoothProjectiveVariety.algClasses` in `HodgeReduction/OpenHypotheses.lean`
 - `HodgeReduction.SmoothProjectiveVariety.cohomology` in `HodgeReduction/OpenHypotheses.lean`
 - `HodgeReduction.absHodgeClassesAtDegree` in `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
-- `HodgeReduction.abs_hodge_implies_algebraic` in `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
+- `HodgeReduction.abs_hodge_cm_implies_algebraic` in `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
 - `HodgeReduction.canonicalE7ShimuraTor` in `HodgeReduction/OpenHypotheses.lean`
 - `HodgeReduction.cy3_e7_excludes_e6` in `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
 - `HodgeReduction.cy3_e7_fts_omega_stage` in `HodgeReduction/HCGapL4/CY3NonexistenceStageCuts.lean`
@@ -73,7 +73,7 @@ Active exploratory attack waves on the L4 / cohomology-profile / connectedness p
 | endpoint | mathematical cuts | full axiom count |
 |----------|-------------------|-----------------:|
 | `HodgeReduction.hodgeConjectureReal_canonical` | `HodgeReduction.canonicalE7ShimuraTor` | 4 |
-| `HodgeReduction.main_reduction_real` | `HodgeReduction.SmoothProjectiveVariety.algClasses`, `HodgeReduction.SmoothProjectiveVariety.cohomology`, `HodgeReduction.absHodgeClassesAtDegree`, `HodgeReduction.abs_hodge_implies_algebraic`, `HodgeReduction.cy3_e7_excludes_e6`, +11 more | 19 |
+| `HodgeReduction.main_reduction_real` | `HodgeReduction.SmoothProjectiveVariety.algClasses`, `HodgeReduction.SmoothProjectiveVariety.cohomology`, `HodgeReduction.absHodgeClassesAtDegree`, `HodgeReduction.abs_hodge_cm_implies_algebraic`, `HodgeReduction.cy3_e7_excludes_e6`, +11 more | 19 |
 | `HodgeReduction.thm_Meyer` | - | 0 |
 | `HodgeReduction.thm_G2F4` | - | 3 |
 | `HodgeReduction.thm_E8_vacuous` | - | 3 |
@@ -84,7 +84,7 @@ Open mathematical cut ledger:
 - `HodgeReduction.SmoothProjectiveVariety.algClasses` in `HodgeReduction/OpenHypotheses.lean`
 - `HodgeReduction.SmoothProjectiveVariety.cohomology` in `HodgeReduction/OpenHypotheses.lean`
 - `HodgeReduction.absHodgeClassesAtDegree` in `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
-- `HodgeReduction.abs_hodge_implies_algebraic` in `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
+- `HodgeReduction.abs_hodge_cm_implies_algebraic` in `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
 - `HodgeReduction.canonicalE7ShimuraTor` in `HodgeReduction/OpenHypotheses.lean`
 - `HodgeReduction.cy3_e7_excludes_e6` in `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
 - `HodgeReduction.cy3_e7_fts_omega_stage` in `HodgeReduction/HCGapL4/CY3NonexistenceStageCuts.lean`

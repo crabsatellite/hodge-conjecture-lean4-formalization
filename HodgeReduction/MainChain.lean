@@ -58,13 +58,13 @@ def config : ChainAudit.ProjectConfig := {
     -- awaiting a Mathlib singular cohomology + cycle-class port).
     ``HodgeReduction.SmoothProjectiveVariety.cohomology,
     ``HodgeReduction.SmoothProjectiveVariety.algClasses,
-    -- R527/R515 decomposition of the former broad
+    -- R527/R515/R535 decomposition of the former broad
     -- `hyp_HC_CM_Ab_real` cut: absolute-Hodge carrier + Deligne 1982
-    -- Hodge-to-absolute-Hodge theorem + the remaining AH-to-algebraic
-    -- bridge.
+    -- Hodge-to-absolute-Hodge theorem + the remaining CM-scoped
+    -- AH-to-algebraic bridge.
     ``HodgeReduction.absHodgeClassesAtDegree,
     ``HodgeReduction.deligne_1982_abs_hodge_cm,
-    ``HodgeReduction.abs_hodge_implies_algebraic,
+    ``HodgeReduction.abs_hodge_cm_implies_algebraic,
     -- R172/R528/R534 case cuts used by main_reduction_real. The E6 case
     -- now consumes a chosen classical remainder plus a transfer cut; the
     -- CY3 case is a theorem routed through the R530/R531/R533 bridge below.
@@ -268,7 +268,7 @@ def config : ChainAudit.ProjectConfig := {
       title := "Layer 4-G2: Hodge conjecture for CM abelian varieties (Deligne 1982)"
       status := "open"
       summary :=
-        "R527/R515 decomposes the former broad `hyp_HC_CM_Ab_real` axiom into a theorem.  The open surface is now the absolute-Hodge carrier plus two smaller cuts: Deligne 1982 Hodge-to-absolute-Hodge for CM abelian varieties, and the remaining absolute-Hodge-to-algebraic bridge.  This keeps the CM-abelian HC route load-bearing while removing the monolithic HC-real assumption."
+        "R527/R515 decomposes the former broad `hyp_HC_CM_Ab_real` axiom into a theorem.  R535 narrows the remaining absolute-Hodge-to-algebraic bridge to CM abelian varieties, the only scope consumed by this route.  The open surface is now the absolute-Hodge carrier plus two smaller cuts: Deligne 1982 Hodge-to-absolute-Hodge for CM abelian varieties, and the remaining CM-scoped absolute-Hodge-to-algebraic bridge."
       files := [
         "HodgeReduction/MainTheorem.lean",
         "HodgeReduction/HCGapL4/CMAbelianHCBridge.lean",
@@ -280,7 +280,7 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction.hyp_HC_CM_Ab_real",
         "HodgeReduction.absHodgeClassesAtDegree",
         "HodgeReduction.deligne_1982_abs_hodge_cm",
-        "HodgeReduction.abs_hodge_implies_algebraic",
+        "HodgeReduction.abs_hodge_cm_implies_algebraic",
         "HodgeReduction.HCGapRegistry.L4_G2_HC_For_CM_AbelianVariety"
       ]
     },
@@ -538,6 +538,7 @@ def config : ChainAudit.ProjectConfig := {
         "CMAbelian", "IsCMAbelianVariety", "CMType", "KugaSatake",
         "K3Surface", "HyperKahler", "TateModule", "hyp_HC_CM_Ab",
         "deligne_absolute_hodge_abelian", "absHodgeWitness",
+        "abs_hodge_cm_implies_algebraic",
         "PolarisedAV", "GaussianCM", "imaginaryQuadratic"
       ]
     },

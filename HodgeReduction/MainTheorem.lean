@@ -150,7 +150,8 @@ R527 turns this from a monolithic axiom into a theorem derived in
 `CMAbelianHCBridge` from two smaller cuts:
 * `deligne_1982_abs_hodge_cm`: Hodge classes on CM abelian varieties
   are absolute Hodge (Deligne 1982).
-* `abs_hodge_implies_algebraic`: the remaining AH-to-algebraic bridge.
+* `abs_hodge_cm_implies_algebraic`: the remaining CM-scoped
+  AH-to-algebraic bridge.
 
 paper source: hyp:HC-CM-Ab; Deligne 1982 LNM 900 Thm 2.11. -/
 theorem hyp_HC_CM_Ab_real :

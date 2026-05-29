@@ -12,11 +12,11 @@ graph TD
   classDef drift fill:#fdd,stroke:#a00,stroke-width:3px
   classDef endpoint fill:#dfd,stroke:#080
   HodgeReduction_cy3_e7_j3o_nonrealization_stage{{ "cy3_e7_j3o_nonrealization_stage" }}:::cut
-  HodgeReduction_abs_hodge_implies_algebraic{{ "abs_hodge_implies_algebraic" }}:::cut
   HodgeReduction_absHodgeClassesAtDegree{{ "absHodgeClassesAtDegree" }}:::cut
   HodgeReduction_cy3_mtd_isSemisimple{{ "cy3_mtd_isSemisimple" }}:::cut
   HodgeReduction_cy3_e7_excludes_e6{{ "cy3_e7_excludes_e6" }}:::cut
   propext{{ "propext" }}:::cut
+  HodgeReduction_abs_hodge_cm_implies_algebraic{{ "abs_hodge_cm_implies_algebraic" }}:::cut
   HodgeReduction_SmoothProjectiveVariety_algClasses{{ "algClasses" }}:::cut
   HodgeReduction_cy3_inherits_e7_factor{{ "cy3_inherits_e7_factor" }}:::cut
   HodgeReduction_e6_remainder_transfer{{ "e6_remainder_transfer" }}:::cut
@@ -46,7 +46,7 @@ graph TD
   HodgeReduction_main_reduction_real --> HodgeReduction_SmoothProjectiveVariety_algClasses
   HodgeReduction_main_reduction_real --> HodgeReduction_SmoothProjectiveVariety_cohomology
   HodgeReduction_main_reduction_real --> HodgeReduction_absHodgeClassesAtDegree
-  HodgeReduction_main_reduction_real --> HodgeReduction_abs_hodge_implies_algebraic
+  HodgeReduction_main_reduction_real --> HodgeReduction_abs_hodge_cm_implies_algebraic
   HodgeReduction_main_reduction_real --> HodgeReduction_cy3_e7_excludes_e6
   HodgeReduction_main_reduction_real --> HodgeReduction_cy3_e7_fts_omega_stage
   HodgeReduction_main_reduction_real --> HodgeReduction_cy3_e7_j3o_nonrealization_stage
