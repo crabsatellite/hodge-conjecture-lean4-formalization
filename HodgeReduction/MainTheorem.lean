@@ -1,8 +1,10 @@
 /-
 # Main Theorem and unconditional paper theorems.
 
-This file records the paper's top-level statements, each with a `sorry`
-body. The file divides into:
+This file records the paper's top-level statements after the no-`sorry`
+cleanup. Remaining mathematical assumptions are explicit axioms routed
+through `OpenHypotheses.lean`, `ClassicalResults.lean`, and the active
+HCGapL4 bridge files. The file divides into:
 
  * `main_reduction` — Theorem `thm:main`, the conditional
  Main Theorem: the nine labelled hypotheses of the paper are already
@@ -12,8 +14,8 @@ body. The file divides into:
  SG-1..SG-23), which the paper explicitly lists alongside the nine
  primary hypotheses as a joint conditional input.
 
- * Unconditional paper theorems (`sorry` body, but the *statement* is
- unconditional):
+ * Unconditional paper theorems (Lean bodies call named classical or
+ paper-stage axioms; no theorem body is `sorry`):
  - `thm_cy3_e7_nonexistence`,
  - `thm_E8_vacuous`,
  - `thm_G2F4`,
@@ -70,8 +72,9 @@ These theorems are superseded by the REAL HC chain:
   for InScope → HodgeConjectureReal (the substantive non-trivial form).
 * `main_reduction_real` (R170) — derived theorem.
 * `hodgeConjectureReal_canonical` (R171/R190) — the HEADLINE result for
-  the canonical E_7 Shimura variety, with 1-axiom closure
-  (canonicalE7ShimuraTor only). -/
+  the canonical E_7 Shimura variety, now routed through the explicit
+  canonical target cuts, the CM bridge, and the E7-to-CM MT witness
+  cuts tracked by `MainChain.lean`. -/
 
 /-! ## R170: Main reduction theorem in REAL HC form
 
@@ -86,10 +89,10 @@ encoding of the paper's main theorem (Thm. `\ref{thm:main}`) at the
 REAL HC level — every InScope smooth projective variety satisfies
 the Hodge Conjecture.
 
-Future rounds will DECOMPOSE this single axiom into the paper's
-finer-grained reduction structure (per-clause-of-InScope axioms +
-applications of the R165 reduction transfer theorem). For now it
-captures the paper's main claim in one substantive declaration.
+The old single axiom has since been decomposed below into per-clause
+case routes plus the R165/R176 variety-level transfer machinery where
+available. Remaining assumptions are named cuts, not anonymous theorem
+bodies.
 
 Paper source: `\label{thm:main}` (Main Theorem). -/
 
@@ -450,7 +453,7 @@ theorem hodgeConjectureReal_canonical :
       canonicalHCDataByCodim.algClassesOfTarget := by
   exact hodgeConjectureReal_from_canonicalHCDataByCodim canonicalHCDataByCodim
 
-/-! ## Unconditional paper theorems (body: `sorry`) -/
+/-! ## Unconditional paper theorems (axiom-backed, no `sorry`) -/
 
 /-- **Meyer / Hasse--Minkowski descent**, paper `\label{thm:Meyer}`.
 
@@ -562,7 +565,7 @@ Orphaned after R191/R192. -/
 
 The paper conditionality of each theorem is reflected in Lean by citing
 the relevant hypothesis axiom from `OpenHypotheses.lean` in the theorem's
-proof (via `sorry`); the hypotheses themselves are already in scope.
+proof body; the hypotheses themselves are already in scope.
 
 `cor_E7_shimura_closed` (paper `cor:E7_shimura_closed`):
 the statement is "Under Hypothesis~\ref{hyp:ChernWeil-bridge-E7}",
