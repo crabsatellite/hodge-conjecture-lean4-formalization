@@ -33,6 +33,7 @@ graph TD
   HodgeReduction_e7_cm_witness_exists{{ "e7_cm_witness_exists" }}:::cut
   Quot_sound{{ "sound" }}:::cut
   HodgeReduction_cy3_e7_fts_omega_stage{{ "cy3_e7_fts_omega_stage" }}:::cut
+  HodgeReduction_lefschetz_11_hc_real_at_codim1_cm{{ "lefschetz_11_hc_real_at_codim1_cm" }}:::cut
   HodgeReduction_canonicalTargetE7Factor{{ "canonicalTargetE7Factor" }}:::cut
   HodgeReduction_hodgeConjectureReal_canonical>"hodgeConjectureReal_canonical"]:::endpoint
   HodgeReduction_hodgeConjectureReal_canonical_codim1>"hodgeConjectureReal_canonical_codim1"]:::endpoint
@@ -59,14 +60,12 @@ graph TD
   HodgeReduction_hodgeConjectureReal_canonical_codim1 --> Classical_choice
   HodgeReduction_hodgeConjectureReal_canonical_codim1 --> HodgeReduction_SmoothProjectiveVariety_algClasses
   HodgeReduction_hodgeConjectureReal_canonical_codim1 --> HodgeReduction_SmoothProjectiveVariety_cohomology
-  HodgeReduction_hodgeConjectureReal_canonical_codim1 --> HodgeReduction_absHodgeClassesAtDegreeCM
-  HodgeReduction_hodgeConjectureReal_canonical_codim1 --> HodgeReduction_abs_hodge_cm_implies_algebraic
   HodgeReduction_hodgeConjectureReal_canonical_codim1 --> HodgeReduction_canonicalTargetE7Factor
   HodgeReduction_hodgeConjectureReal_canonical_codim1 --> HodgeReduction_canonicalTargetInKnownE7Scope
   HodgeReduction_hodgeConjectureReal_canonical_codim1 --> HodgeReduction_canonicalTargetVariety
-  HodgeReduction_hodgeConjectureReal_canonical_codim1 --> HodgeReduction_deligne_1982_abs_hodge_cm
   HodgeReduction_hodgeConjectureReal_canonical_codim1 --> HodgeReduction_e7_chosen_witness_correspondence_package_codim1_exists
   HodgeReduction_hodgeConjectureReal_canonical_codim1 --> HodgeReduction_e7_cm_witness_exists
+  HodgeReduction_hodgeConjectureReal_canonical_codim1 --> HodgeReduction_lefschetz_11_hc_real_at_codim1_cm
   HodgeReduction_hodgeConjectureReal_canonical_codim1 --> Quot_sound
   HodgeReduction_hodgeConjectureReal_canonical_codim1 --> propext
   HodgeReduction_main_reduction_real --> Classical_choice

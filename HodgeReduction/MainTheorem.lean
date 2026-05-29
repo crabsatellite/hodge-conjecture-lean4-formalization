@@ -403,15 +403,16 @@ theorem hodgeConjectureReal_from_canonicalHCDataByCodim
 non-codimension-one MT lift.
 
 This is not full HC for the canonical target.  It proves the `p = 1`
-slice from the codim-one MT package plus the CM abelian HC bridge, so
-the audit can track the first Front-D closure target separately from
-the remaining all-codimension theorem. -/
+slice from the codim-one MT package plus the CM-scoped Lefschetz (1,1)
+bypass, so the audit can track the first Front-D closure target
+separately from the remaining all-codimension theorem and its Deligne/AH
+CM bridge. -/
 theorem hodgeConjectureReal_canonical_codim1 :
     Infrastructure.HodgeStructure.VarietyHCAt
       canonicalTargetCohomologyData canonicalTargetAlgClassesData 1 := by
   rcases canonicalMTPackageAt_codim1 with ⟨A, hA_CM, h_pkg⟩
   exact Infrastructure.HodgeStructure.varietyHCAt_of_correspondence
-    h_pkg ((hyp_HC_CM_Ab_real A hA_CM) 1)
+    h_pkg (hyp_HC_CM_Ab_real_codim1_via_lefschetz11 A hA_CM)
 
 /-- **R171/R173/R188 HEADLINE**: The **Hodge Conjecture holds for the
 canonical E_7 Shimura variety** in its REAL form (no Unit trick).

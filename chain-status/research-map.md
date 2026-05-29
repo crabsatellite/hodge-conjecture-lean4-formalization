@@ -29,6 +29,7 @@ Open mathematical cut(s):
 - `HodgeReduction.e7_chosen_witness_correspondence_package_non_codim1_exists` at `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean`
 - `HodgeReduction.e7_cm_witness_exists` at `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean`
 - `HodgeReduction.hc_real_classical_cartan` at `HodgeReduction/MainTheorem.lean`
+- `HodgeReduction.lefschetz_11_hc_real_at_codim1_cm` at `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
 
 Active route(s) to work on:
 - `hcgap-l4-multifront-active` (exploratory): gaps `G-hcgap-l4-multifront`
@@ -361,7 +362,7 @@ Route-labelled off-chain files are assigned by the audit infra but are not consu
 
 ### `main-hc-axiom-relative` -- Main Mumford--Tate-reduction HC chain
 
-`OpenHypotheses` (R169 cohomology / algClasses bridge + R174a Deligne) composes with `MainTheorem` (R170 four-case main reduction + R171/R188/R542 canonical headline) to reach `hodgeConjectureReal_canonical`.  R546 adds the separately audited codim-one endpoint `hodgeConjectureReal_canonical_codim1`, which consumes the codim-one package cut but not the non-codim-one lift.  Full HC remains conditional on a canonical target SPV, its E7 factor/scope facts, and the generic MT-witness route.
+`OpenHypotheses` (R169 cohomology / algClasses bridge + R174a Deligne) composes with `MainTheorem` (R170 four-case main reduction + R171/R188/R542 canonical headline) to reach `hodgeConjectureReal_canonical`.  R546 adds the separately audited codim-one endpoint `hodgeConjectureReal_canonical_codim1`, which consumes the codim-one package cut but not the non-codim-one lift.  R547 also keeps this codim-one endpoint on the Lefschetz (1,1) source-HC route instead of the all-codim Deligne/AH route.  Full HC remains conditional on a canonical target SPV, its E7 factor/scope facts, and the generic MT-witness route.
 
 Entry declarations:
 - `HodgeReduction.hodgeConjectureReal_canonical`
@@ -451,7 +452,7 @@ Files:
 
 ### `G-main-hc` -- Hodge conjecture headline remains axiom-relative
 
-The `hodgeConjectureReal_canonical` endpoint is a kernel-pure composition once the canonical target variety and its two E7-scope facts are accepted.  R542 derives `canonicalMTPackageAt` from the generic R517/R532 MT-witness route; R545 splits the chosen-witness package into a codim-one first target plus the remaining non-codim-one lift; R546 exposes the canonical codim-one HC slice as its own endpoint, avoiding the non-codim-one lift cut.  Full HC is NOT unconditional.
+The `hodgeConjectureReal_canonical` endpoint is a kernel-pure composition once the canonical target variety and its two E7-scope facts are accepted.  R542 derives `canonicalMTPackageAt` from the generic R517/R532 MT-witness route; R545 splits the chosen-witness package into a codim-one first target plus the remaining non-codim-one lift; R546 exposes the canonical codim-one HC slice as its own endpoint; R547 routes that codim-one slice through a CM-scoped Lefschetz (1,1) cut rather than the all-codim Deligne/AH bridge.  Full HC is NOT unconditional.
 
 Declarations:
 - `HodgeReduction.CanonicalHCData`
@@ -466,6 +467,8 @@ Declarations:
 - `HodgeReduction.canonicalHCDataByCodim`
 - `HodgeReduction.hodgeConjectureReal_from_canonicalHCData`
 - `HodgeReduction.hodgeConjectureReal_from_canonicalHCDataByCodim`
+- `HodgeReduction.lefschetz_11_hc_real_at_codim1_cm`
+- `HodgeReduction.hyp_HC_CM_Ab_real_codim1_via_lefschetz11`
 - `HodgeReduction.hodgeConjectureReal_canonical_codim1`
 - `HodgeReduction.hodgeConjectureReal_canonical`
 
@@ -524,13 +527,15 @@ Files:
 
 ### `G-l4-cm-abelian-hc` -- Layer 4-G2: Hodge conjecture for CM abelian varieties (Deligne 1982)
 
-R527/R515 decomposes the former broad `hyp_HC_CM_Ab_real` axiom into a theorem.  R535 narrows the remaining absolute-Hodge-to-algebraic bridge to CM abelian varieties, and R543 narrows the absolute-Hodge carrier itself to the same CM scope.  The open surface is now three CM-scoped cuts: the carrier, Deligne 1982 Hodge-to-absolute-Hodge, and the remaining CM-scoped absolute-Hodge-to-algebraic bridge.
+R527/R515 decomposes the former broad `hyp_HC_CM_Ab_real` axiom into a theorem.  R535 narrows the remaining absolute-Hodge-to-algebraic bridge to CM abelian varieties, and R543 narrows the absolute-Hodge carrier itself to the same CM scope.  R547 adds a codim-one Lefschetz (1,1) bypass for CM sources, so the canonical codim-one endpoint no longer consumes the all-codim Deligne/AH bridge.  The full CM-abelian HC surface remains the three CM-scoped cuts: carrier, Deligne 1982 Hodge-to-absolute-Hodge, and CM-scoped absolute-Hodge-to-algebraic bridge.
 
 Declarations:
 - `HodgeReduction.hyp_HC_CM_Ab_real`
 - `HodgeReduction.absHodgeClassesAtDegreeCM`
 - `HodgeReduction.deligne_1982_abs_hodge_cm`
 - `HodgeReduction.abs_hodge_cm_implies_algebraic`
+- `HodgeReduction.lefschetz_11_hc_real_at_codim1_cm`
+- `HodgeReduction.hyp_HC_CM_Ab_real_codim1_via_lefschetz11`
 - `HodgeReduction.HCGapRegistry.L4_G2_HC_For_CM_AbelianVariety`
 
 Files:

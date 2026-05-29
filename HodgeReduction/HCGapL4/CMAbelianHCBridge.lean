@@ -1,5 +1,5 @@
 /-
-# R515/R535/R543: Decompose hyp_HC_CM_Ab_real into Deligne 1982 + CM-scoped extension.
+# R515/R535/R543/R547: Decompose hyp_HC_CM_Ab_real into Deligne 1982 + CM-scoped extension.
 
 The axiom hyp_HC_CM_Ab_real says: all CM abelian varieties satisfy HC-real.
 Decomposed into:
@@ -9,6 +9,10 @@ Decomposed into:
       (CONDITIONAL, open conjecture)
 
 Net: -1 large axiom +3 smaller CM-scoped cuts. NO sorry, NO tricks.
+
+R547 adds a separate codimension-one bypass: for CM abelian sources,
+`p = 1` should use the Lefschetz (1,1) theorem directly instead of
+consuming the all-codimension Deligne/AH bridge.
 -/
 
 import HodgeReduction.Types
@@ -67,7 +71,28 @@ axiom abs_hodge_cm_implies_algebraic
       absHodgeClassesAtDegreeCM A hA p <=
         A.algClasses.algClasses p
 
-/-! ## Step 4: Derived theorem -/
+/-! ## Step 4: codimension-one Lefschetz bypass -/
+
+/-- **R547** (Lefschetz (1,1), CM-scoped use): at codimension one,
+HC-real for a CM abelian source follows from the classical Lefschetz
+(1,1) theorem.
+
+The theorem is classically true for every smooth projective complex
+variety.  The cut is intentionally scoped to CM abelian sources because
+the main canonical codim-one route only needs source HC after selecting
+the CM witness in the E7 -> CM correspondence. -/
+axiom lefschetz_11_hc_real_at_codim1_cm
+    (A : SmoothProjectiveVariety Complex) (hA : IsCMAbelianVariety A) :
+    HodgeConjectureRealAt A 1
+
+/-- **R547**: codimension-one source HC via Lefschetz (1,1), without
+the all-codimension Deligne/AH bridge. -/
+theorem hyp_HC_CM_Ab_real_codim1_via_lefschetz11 :
+    forall (A : SmoothProjectiveVariety Complex),
+      IsCMAbelianVariety A -> HodgeConjectureRealAt A 1 :=
+  lefschetz_11_hc_real_at_codim1_cm
+
+/-! ## Step 5: Derived all-codimension theorem -/
 
 /-- **R515**: hyp_HC_CM_Ab_real derived from Deligne 1982 + AH=>alg.
 
@@ -96,5 +121,8 @@ theorem hyp_HC_CM_Ab_real_via_delille_ah :
 /-- R543: 1 derived theorem, 3 smaller CM-scoped cuts, 0 sorry, 0 tricks. -/
 def R515_new_axiom_count : Nat := 3
 def R515_retired_axiom_count : Nat := 1
+
+/-- R547: codim-one bypass uses one CM-scoped Lefschetz cut. -/
+def R547_codim1_new_axiom_count : Nat := 1
 
 end HodgeReduction
