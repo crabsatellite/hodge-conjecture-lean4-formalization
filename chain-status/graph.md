@@ -39,7 +39,12 @@ graph TD
   HodgeReduction_thm_cy3_e7_nonexistence>"thm_cy3_e7_nonexistence"]:::endpoint
   HodgeReduction_thm_subcase3b_vacuous>"thm_subcase3b_vacuous"]:::endpoint
   HodgeReduction_hodgeConjectureReal_canonical --> Classical_choice
+  HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_SmoothProjectiveVariety_algClasses
+  HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_SmoothProjectiveVariety_cohomology
+  HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_absHodgeClassesAtDegree
+  HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_abs_hodge_cm_implies_algebraic
   HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_canonicalHCDataByCodim
+  HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_deligne_1982_abs_hodge_cm
   HodgeReduction_hodgeConjectureReal_canonical --> Quot_sound
   HodgeReduction_hodgeConjectureReal_canonical --> propext
   HodgeReduction_main_reduction_real --> Classical_choice

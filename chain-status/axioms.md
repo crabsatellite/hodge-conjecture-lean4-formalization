@@ -6,7 +6,12 @@ Equivalent to running `#print axioms <endpoint>` for each endpoint.
 ## `HodgeReduction.hodgeConjectureReal_canonical`
 
 - `Classical.choice`
+- `HodgeReduction.SmoothProjectiveVariety.algClasses`
+- `HodgeReduction.SmoothProjectiveVariety.cohomology`
+- `HodgeReduction.absHodgeClassesAtDegree`
+- `HodgeReduction.abs_hodge_cm_implies_algebraic`
 - `HodgeReduction.canonicalHCDataByCodim`
+- `HodgeReduction.deligne_1982_abs_hodge_cm`
 - `Quot.sound`
 - `propext`
 

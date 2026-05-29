@@ -11,10 +11,10 @@ This file is generated.  Future agents should update Lean files, audit rules, or
 ## Next Agent Brief
 
 Research attack target:
-- Primary proof gap: `gap:G-main-hc` -- The `hodgeConjectureReal_canonical` endpoint is a kernel-pure composition once the project axiom `canonicalHCDataByCodim` is accepted.  R538/R539 weakens the R536/R537 uniform package: the target cohomology and algebraic classes are fixed, but the CM abelian source, source HC-at-p input, and MT correspondence package may vary with codimension `p`.  It is NOT an unconditional proof of HC; it remains conditional on constructing those degreewise fields for the AMRT E_{7(-25)} toroidal compactification.
+- Primary proof gap: `gap:G-main-hc` -- The `hodgeConjectureReal_canonical` endpoint is a kernel-pure composition once the project axiom `canonicalHCDataByCodim` is accepted.  R538/R539 weakens the R536/R537 uniform package, and R540 removes the hidden source-HC field: the source is now a genuine CM abelian variety with its own `A.cohomology` / `A.algClasses`, while source HC is derived through the CM bridge.  It is NOT an unconditional proof of HC; it remains conditional on constructing those degreewise fields for the AMRT E_{7(-25)} toroidal compactification.
 - Route owner(s): `chain:main-hc-axiom-relative`
 - Current constructive attack route: `chain:hcgap-l4-multifront-active`.  Use it to replace the primary cut; do not route around the configured gap ledger.
-- Success criterion: A successful follow-up decomposes `canonicalHCDataByCodim` into target cohomology, target algebraic classes, source HC-at-p, and one-codimension MT-correspondence construction cuts, or closes the `mtCorrespondenceAt p` field for a genuine canonical codimension by Chow / cycle-class data.
+- Success criterion: A successful follow-up decomposes `canonicalHCDataByCodim` into target cohomology, target algebraic classes, a genuine CM source at p, and one-codimension MT-correspondence construction cuts, or closes the `mtCorrespondenceAt p` field for a genuine canonical codimension by Chow / cycle-class data.
 
 Kernel cut ledger.  These are audit-visible unresolved constants on the endpoint closure; use the configured route/gap above to decide the next research attack, not this flat list alone:
 - `HodgeReduction.SmoothProjectiveVariety.algClasses` in `HodgeReduction/OpenHypotheses.lean`
@@ -51,7 +51,7 @@ Current replacement plan:
 - FrontB: replace the abstract connectedness pipeline with the genuine Baily--Borel connectedness theorem for arithmetic quotients.
 - FrontD: deliver the E_7 -> CM Chow correspondence at codim 1 first, then lift to all p; this would discharge G-l4-mt-correspondence for the canonical case.
 - Never re-bundle a closed front into a stronger hypothesis; chainAudit treats `def : Prop` placeholders and conjunction shells as hard failures.
-- Final success criterion: A successful follow-up decomposes `canonicalHCDataByCodim` into target cohomology, target algebraic classes, source HC-at-p, and one-codimension MT-correspondence construction cuts, or closes the `mtCorrespondenceAt p` field for a genuine canonical codimension by Chow / cycle-class data.
+- Final success criterion: A successful follow-up decomposes `canonicalHCDataByCodim` into target cohomology, target algebraic classes, a genuine CM source at p, and one-codimension MT-correspondence construction cuts, or closes the `mtCorrespondenceAt p` field for a genuine canonical codimension by Chow / cycle-class data.
 
 ### Priority 1: `gap:G-hcgap-l4-multifront` -- HCGapL4 multi-front Layer-4 attack waves (R420 -- R476)
 
@@ -72,7 +72,7 @@ Active exploratory attack waves on the L4 / cohomology-profile / connectedness p
 
 | endpoint | mathematical cuts | full axiom count |
 |----------|-------------------|-----------------:|
-| `HodgeReduction.hodgeConjectureReal_canonical` | `HodgeReduction.canonicalHCDataByCodim` | 4 |
+| `HodgeReduction.hodgeConjectureReal_canonical` | `HodgeReduction.SmoothProjectiveVariety.algClasses`, `HodgeReduction.SmoothProjectiveVariety.cohomology`, `HodgeReduction.absHodgeClassesAtDegree`, `HodgeReduction.abs_hodge_cm_implies_algebraic`, `HodgeReduction.canonicalHCDataByCodim`, +1 more | 9 |
 | `HodgeReduction.main_reduction_real` | `HodgeReduction.SmoothProjectiveVariety.algClasses`, `HodgeReduction.SmoothProjectiveVariety.cohomology`, `HodgeReduction.absHodgeClassesAtDegree`, `HodgeReduction.abs_hodge_cm_implies_algebraic`, `HodgeReduction.cy3_e7_excludes_e6`, +11 more | 19 |
 | `HodgeReduction.thm_Meyer` | - | 0 |
 | `HodgeReduction.thm_G2F4` | - | 3 |
@@ -286,7 +286,7 @@ Files with no automatic route label.  These are the safest next candidates for c
 
 ### `chain:main-hc-axiom-relative` -- Main Mumford--Tate-reduction HC chain
 
-`OpenHypotheses` (R169 cohomology / algClasses bridge + R174a Deligne) composes with `MainTheorem` (R170 four-case main reduction + R171/R188/R538 canonical headline) to reach `hodgeConjectureReal_canonical`.  Conditional on the degreewise axiom `canonicalHCDataByCodim`; not an unconditional proof of HC.
+`OpenHypotheses` (R169 cohomology / algClasses bridge + R174a Deligne) composes with `MainTheorem` (R170 four-case main reduction + R171/R188/R540 canonical headline) to reach `hodgeConjectureReal_canonical`.  Conditional on the degreewise axiom `canonicalHCDataByCodim`; not an unconditional proof of HC.
 
 Entry declarations:
 - `HodgeReduction.hodgeConjectureReal_canonical`

@@ -197,7 +197,7 @@ def config : ChainAudit.ProjectConfig := {
       title := "Hodge conjecture headline remains axiom-relative"
       status := "conditional"
       summary :=
-        "The `hodgeConjectureReal_canonical` endpoint is a kernel-pure composition once the project axiom `canonicalHCDataByCodim` is accepted.  R538/R539 weakens the R536/R537 uniform package: the target cohomology and algebraic classes are fixed, but the CM abelian source, source HC-at-p input, and MT correspondence package may vary with codimension `p`.  It is NOT an unconditional proof of HC; it remains conditional on constructing those degreewise fields for the AMRT E_{7(-25)} toroidal compactification."
+        "The `hodgeConjectureReal_canonical` endpoint is a kernel-pure composition once the project axiom `canonicalHCDataByCodim` is accepted.  R538/R539 weakens the R536/R537 uniform package, and R540 removes the hidden source-HC field: the source is now a genuine CM abelian variety with its own `A.cohomology` / `A.algClasses`, while source HC is derived through the CM bridge.  It is NOT an unconditional proof of HC; it remains conditional on constructing those degreewise fields for the AMRT E_{7(-25)} toroidal compactification."
       files := [
         "HodgeReduction/MainTheorem.lean",
         "HodgeReduction/OpenHypotheses.lean",
@@ -295,7 +295,7 @@ def config : ChainAudit.ProjectConfig := {
       title := "Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian)"
       status := "open"
       summary :=
-        "R529/R517 decomposes the non-canonical MT correspondence witness; R532 tightens the package cut so it applies only to the witness selected by `e7_cm_witness_exists`, not to arbitrary CM abelian sources.  R538/R539 routes the canonical headline through `CanonicalHCDataByCodim`; the real construction gap is now the per-codim source-HC-at-p plus correspondence package field inside `canonicalHCDataByCodim`."
+        "R529/R517 decomposes the non-canonical MT correspondence witness; R532 tightens the package cut so it applies only to the witness selected by `e7_cm_witness_exists`, not to arbitrary CM abelian sources.  R538/R539/R540 routes the canonical headline through `CanonicalHCDataByCodim`; the real construction gap is now the per-codim CM source plus correspondence package field inside `canonicalHCDataByCodim`, with source HC discharged through the CM bridge."
       files := [
         "HodgeReduction/MainTheorem.lean",
         "HodgeReduction/OpenHypotheses.lean",
@@ -370,7 +370,7 @@ def config : ChainAudit.ProjectConfig := {
       kind := "main"
       status := "conditional"
       summary :=
-        "`OpenHypotheses` (R169 cohomology / algClasses bridge + R174a Deligne) composes with `MainTheorem` (R170 four-case main reduction + R171/R188/R538 canonical headline) to reach `hodgeConjectureReal_canonical`.  Conditional on the degreewise axiom `canonicalHCDataByCodim`; not an unconditional proof of HC."
+        "`OpenHypotheses` (R169 cohomology / algClasses bridge + R174a Deligne) composes with `MainTheorem` (R170 four-case main reduction + R171/R188/R540 canonical headline) to reach `hodgeConjectureReal_canonical`.  Conditional on the degreewise axiom `canonicalHCDataByCodim`; not an unconditional proof of HC."
       files := [
         "HodgeReduction/Types.lean",
         "HodgeReduction/ClassicalResults.lean",
@@ -457,7 +457,7 @@ def config : ChainAudit.ProjectConfig := {
         "Never re-bundle a closed front into a stronger hypothesis; chainAudit treats `def : Prop` placeholders and conjunction shells as hard failures."
       ]
       successCriterion :=
-        "A successful follow-up decomposes `canonicalHCDataByCodim` into target cohomology, target algebraic classes, source HC-at-p, and one-codimension MT-correspondence construction cuts, or closes the `mtCorrespondenceAt p` field for a genuine canonical codimension by Chow / cycle-class data."
+        "A successful follow-up decomposes `canonicalHCDataByCodim` into target cohomology, target algebraic classes, a genuine CM source at p, and one-codimension MT-correspondence construction cuts, or closes the `mtCorrespondenceAt p` field for a genuine canonical codimension by Chow / cycle-class data."
     },
     {
       id := "concrete-evii-toy"

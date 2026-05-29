@@ -905,23 +905,20 @@ headline proof.
 `CanonicalHCData` asked for one CM abelian source and one package that
 works for every codimension. The proof of `VarietyHC`, however, is
 pointwise in `p`; it only needs a possibly different CM abelian source,
-source HC at that same codimension, and correspondence package at each
-codimension. This structure records that weaker mathematical obligation
-explicitly. -/
+using its own `A.cohomology` / `A.algClasses` data, and a correspondence
+package at each codimension. The source HC is no longer bundled here; the
+main proof derives it from the CM abelian bridge. -/
 structure CanonicalHCDataByCodim where
   cohomologyOfTarget : Infrastructure.HodgeStructure.VarietyCohomologyData
   algClassesOfTarget :
     Infrastructure.HodgeStructure.AlgebraicClassesData cohomologyOfTarget
   mtCorrespondenceAt :
     forall p : Nat,
-      exists (A : SmoothProjectiveVariety Complex)
-        (A_cohData : Infrastructure.HodgeStructure.VarietyCohomologyData)
-        (A_algData : Infrastructure.HodgeStructure.AlgebraicClassesData A_cohData),
+      exists A : SmoothProjectiveVariety Complex,
         IsCMAbelianVariety A /\
-        Infrastructure.HodgeStructure.VarietyHCAt A_cohData A_algData p /\
         Infrastructure.HodgeStructure.MTCorrespondencePackageAt
-          A_cohData cohomologyOfTarget
-          A_algData algClassesOfTarget p
+          A.cohomology cohomologyOfTarget
+          A.algClasses algClassesOfTarget p
 
 /-- **R538-A**: degreewise canonical headline HC package.
 
@@ -929,8 +926,7 @@ This is still an open mathematical construction cut: it packages the
 target Hodge/cohomology data and per-codimension MT correspondence for
 the AMRT E_{7(-25)} toroidal compactification. It is strictly narrower
 than a full inhabitant of `E7ShimuraTor`, and weaker than
-`CanonicalHCData` because the CM abelian source may vary with `p` and
-only the source's HC statement at codimension `p` is required. -/
+`CanonicalHCData` because the CM abelian source may vary with `p`. -/
 axiom canonicalHCDataByCodim : CanonicalHCDataByCodim
 
 /-- Canonical inhabitant of `E7ShimuraTor`: the paper constructs
