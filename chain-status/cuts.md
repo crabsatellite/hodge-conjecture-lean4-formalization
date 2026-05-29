@@ -9,7 +9,7 @@ open by design; non-whitelisted cuts are I1 hard-failures.
 | `Classical.choice` | `Init/Prelude.lean` | OPEN (whitelisted) |
 | `HodgeReduction.SmoothProjectiveVariety.algClasses` | `HodgeReduction/OpenHypotheses.lean` | OPEN (whitelisted) |
 | `HodgeReduction.SmoothProjectiveVariety.cohomology` | `HodgeReduction/OpenHypotheses.lean` | OPEN (whitelisted) |
-| `HodgeReduction.absHodgeClassesAtDegree` | `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean` | OPEN (whitelisted) |
+| `HodgeReduction.absHodgeClassesAtDegreeCM` | `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean` | OPEN (whitelisted) |
 | `HodgeReduction.abs_hodge_cm_implies_algebraic` | `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean` | OPEN (whitelisted) |
 | `HodgeReduction.canonicalTargetE7Factor` | `HodgeReduction/OpenHypotheses.lean` | OPEN (whitelisted) |
 | `HodgeReduction.canonicalTargetInKnownE7Scope` | `HodgeReduction/OpenHypotheses.lean` | OPEN (whitelisted) |

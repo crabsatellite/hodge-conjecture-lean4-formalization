@@ -8,7 +8,7 @@ Equivalent to running `#print axioms <endpoint>` for each endpoint.
 - `Classical.choice`
 - `HodgeReduction.SmoothProjectiveVariety.algClasses`
 - `HodgeReduction.SmoothProjectiveVariety.cohomology`
-- `HodgeReduction.absHodgeClassesAtDegree`
+- `HodgeReduction.absHodgeClassesAtDegreeCM`
 - `HodgeReduction.abs_hodge_cm_implies_algebraic`
 - `HodgeReduction.canonicalTargetE7Factor`
 - `HodgeReduction.canonicalTargetInKnownE7Scope`
@@ -24,7 +24,7 @@ Equivalent to running `#print axioms <endpoint>` for each endpoint.
 - `Classical.choice`
 - `HodgeReduction.SmoothProjectiveVariety.algClasses`
 - `HodgeReduction.SmoothProjectiveVariety.cohomology`
-- `HodgeReduction.absHodgeClassesAtDegree`
+- `HodgeReduction.absHodgeClassesAtDegreeCM`
 - `HodgeReduction.abs_hodge_cm_implies_algebraic`
 - `HodgeReduction.cy3_e7_excludes_e6`
 - `HodgeReduction.cy3_e7_fts_omega_stage`

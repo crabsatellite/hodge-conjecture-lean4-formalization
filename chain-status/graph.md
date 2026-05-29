@@ -12,7 +12,6 @@ graph TD
   classDef drift fill:#fdd,stroke:#a00,stroke-width:3px
   classDef endpoint fill:#dfd,stroke:#080
   HodgeReduction_cy3_e7_j3o_nonrealization_stage{{ "cy3_e7_j3o_nonrealization_stage" }}:::cut
-  HodgeReduction_absHodgeClassesAtDegree{{ "absHodgeClassesAtDegree" }}:::cut
   HodgeReduction_cy3_mtd_isSemisimple{{ "cy3_mtd_isSemisimple" }}:::cut
   HodgeReduction_canonicalTargetInKnownE7Scope{{ "canonicalTargetInKnownE7Scope" }}:::cut
   HodgeReduction_cy3_e7_excludes_e6{{ "cy3_e7_excludes_e6" }}:::cut
@@ -22,6 +21,7 @@ graph TD
   HodgeReduction_cy3_inherits_e7_factor{{ "cy3_inherits_e7_factor" }}:::cut
   HodgeReduction_e6_remainder_transfer{{ "e6_remainder_transfer" }}:::cut
   HodgeReduction_e6_classical_remainder_exists{{ "e6_classical_remainder_exists" }}:::cut
+  HodgeReduction_absHodgeClassesAtDegreeCM{{ "absHodgeClassesAtDegreeCM" }}:::cut
   HodgeReduction_SmoothProjectiveVariety_cohomology{{ "cohomology" }}:::cut
   HodgeReduction_hc_real_classical_cartan{{ "hc_real_classical_cartan" }}:::cut
   HodgeReduction_canonicalTargetVariety{{ "canonicalTargetVariety" }}:::cut
@@ -43,7 +43,7 @@ graph TD
   HodgeReduction_hodgeConjectureReal_canonical --> Classical_choice
   HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_SmoothProjectiveVariety_algClasses
   HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_SmoothProjectiveVariety_cohomology
-  HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_absHodgeClassesAtDegree
+  HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_absHodgeClassesAtDegreeCM
   HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_abs_hodge_cm_implies_algebraic
   HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_canonicalTargetE7Factor
   HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_canonicalTargetInKnownE7Scope
@@ -56,7 +56,7 @@ graph TD
   HodgeReduction_main_reduction_real --> Classical_choice
   HodgeReduction_main_reduction_real --> HodgeReduction_SmoothProjectiveVariety_algClasses
   HodgeReduction_main_reduction_real --> HodgeReduction_SmoothProjectiveVariety_cohomology
-  HodgeReduction_main_reduction_real --> HodgeReduction_absHodgeClassesAtDegree
+  HodgeReduction_main_reduction_real --> HodgeReduction_absHodgeClassesAtDegreeCM
   HodgeReduction_main_reduction_real --> HodgeReduction_abs_hodge_cm_implies_algebraic
   HodgeReduction_main_reduction_real --> HodgeReduction_cy3_e7_excludes_e6
   HodgeReduction_main_reduction_real --> HodgeReduction_cy3_e7_fts_omega_stage

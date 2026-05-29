@@ -1,5 +1,5 @@
 /-
-# R515/R535: Decompose hyp_HC_CM_Ab_real into Deligne 1982 + CM-scoped extension.
+# R515/R535/R543: Decompose hyp_HC_CM_Ab_real into Deligne 1982 + CM-scoped extension.
 
 The axiom hyp_HC_CM_Ab_real says: all CM abelian varieties satisfy HC-real.
 Decomposed into:
@@ -8,7 +8,7 @@ Decomposed into:
   (2) AH => algebraicity for CM abelian varieties
       (CONDITIONAL, open conjecture)
 
-Net: -1 large axiom +2 smaller axioms. NO sorry, NO tricks.
+Net: -1 large axiom +3 smaller CM-scoped cuts. NO sorry, NO tricks.
 -/
 
 import HodgeReduction.Types
@@ -19,18 +19,23 @@ namespace HodgeReduction
 
 open Infrastructure.HodgeStructure
 
-/-! ## Step 1: Absolute Hodge class submodule -/
+/-! ## Step 1: CM-scoped absolute Hodge class submodule -/
 
-/-- **R515**: The submodule of absolute Hodge classes at degree 2p.
+/-- **R543**: The submodule of absolute Hodge classes at degree 2p,
+only for a CM abelian variety.
 
 An absolute Hodge class (Deligne 1982, Def 2.3) is a Hodge class that
 remains a Hodge class under all automorphisms of C acting on the generic
 fibre. Defined axiomatically because absolute Hodge theory is not in
-Mathlib. The carrier is a Q-submodule of H^{2p}(X, Q). -/
-axiom absHodgeClassesAtDegree (X : SmoothProjectiveVariety Complex) (p : Nat) :
-    @Submodule ℚ (X.cohomology.H (2 * p)) _
-      (X.cohomology.addCommGroup (2 * p)).toAddCommMonoid
-      (X.cohomology.module (2 * p))
+Mathlib. R543 narrows the carrier from arbitrary smooth projective
+varieties to the only scope consumed by the main chain: CM abelian
+varieties. -/
+axiom absHodgeClassesAtDegreeCM
+    (A : SmoothProjectiveVariety Complex) (hA : IsCMAbelianVariety A)
+    (p : Nat) :
+    @Submodule ℚ (A.cohomology.H (2 * p)) _
+      (A.cohomology.addCommGroup (2 * p)).toAddCommMonoid
+      (A.cohomology.module (2 * p))
 
 /-! ## Step 2: Deligne 1982 axiom -/
 
@@ -41,10 +46,11 @@ ESTABLISHED theorem. Axiom because Mathlib lacks absolute Hodge theory.
 Scope: strictly smaller than hyp_HC_CM_Ab_real (only AH, not algebraicity).
 
 References: P. Deligne, "Hodge Cycles on Abelian Varieties", LNM 900 (1982) -/
-axiom deligne_1982_abs_hodge_cm (A : SmoothProjectiveVariety Complex) :
-    IsCMAbelianVariety A ->
+axiom deligne_1982_abs_hodge_cm
+    (A : SmoothProjectiveVariety Complex) (hA : IsCMAbelianVariety A) :
     forall (p : Nat),
-      A.cohomology.hodgeClassesAtDegree p <= absHodgeClassesAtDegree A p
+      A.cohomology.hodgeClassesAtDegree p <=
+        absHodgeClassesAtDegreeCM A hA p
 
 /-! ## Step 3: CM-scoped conditional extension -/
 
@@ -55,10 +61,11 @@ R515 used a generic SPV-level bridge.  R535 narrows the cut to the
 only scope consumed by `hyp_HC_CM_Ab_real`: CM abelian varieties.  This
 avoids smuggling a stronger absolute-Hodge-to-algebraic principle into
 the main chain. -/
-axiom abs_hodge_cm_implies_algebraic (A : SmoothProjectiveVariety Complex) :
-    IsCMAbelianVariety A ->
+axiom abs_hodge_cm_implies_algebraic
+    (A : SmoothProjectiveVariety Complex) (hA : IsCMAbelianVariety A) :
     forall p : Nat,
-      absHodgeClassesAtDegree A p <= A.algClasses.algClasses p
+      absHodgeClassesAtDegreeCM A hA p <=
+        A.algClasses.algClasses p
 
 /-! ## Step 4: Derived theorem -/
 
@@ -86,8 +93,8 @@ theorem hyp_HC_CM_Ab_real_via_delille_ah :
       IsCMAbelianVariety A -> HodgeConjectureReal A :=
   hyp_HC_CM_Ab_real_via_deligne_ah
 
-/-- R515: 1 derived theorem, 2 smaller axioms, 0 sorry, 0 tricks. -/
-def R515_new_axiom_count : Nat := 2
+/-- R543: 1 derived theorem, 3 smaller CM-scoped cuts, 0 sorry, 0 tricks. -/
+def R515_new_axiom_count : Nat := 3
 def R515_retired_axiom_count : Nat := 1
 
 end HodgeReduction
