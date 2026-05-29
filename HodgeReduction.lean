@@ -474,6 +474,7 @@ import HodgeReduction.HCGapL4.FrontC23_MatsushimaCompactDualRankOne
 import HodgeReduction.HCGapL4.FrontC24_CartanImageTrivialRank
 import HodgeReduction.HCGapL4.FrontC25_CartanLineBoundaryExactness
 import HodgeReduction.HCGapL4.FrontC26_CartanLineExactnessObstruction
+import HodgeReduction.HCGapL4.FrontC27_CartanImageScalarPreimage
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix
