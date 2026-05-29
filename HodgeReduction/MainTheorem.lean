@@ -328,17 +328,18 @@ theorem hodgeConjectureReal_from_canonicalHCData
 
 This is strictly weaker than `hodgeConjectureReal_from_canonicalHCData`:
 the CM abelian variety and correspondence package may depend on the
-codimension `p`. The proof matches the actual shape of `VarietyHC`,
-which is pointwise in codimension. -/
+codimension `p`, and the source side only needs HC at that same `p`.
+The proof matches the actual shape of `VarietyHC`, which is pointwise in
+codimension. -/
 theorem hodgeConjectureReal_from_canonicalHCDataByCodim
     (T : CanonicalHCDataByCodim) :
     Infrastructure.HodgeStructure.VarietyHC
       T.cohomologyOfTarget T.algClassesOfTarget := by
   intro p
   rcases T.mtCorrespondenceAt p with
-    ⟨_A, A_cohData, A_algData, _hA_CM, h_HC_A, h_pkg⟩
+    ⟨_A, A_cohData, A_algData, _hA_CM, h_HC_A_at, h_pkg⟩
   exact Infrastructure.HodgeStructure.varietyHCAt_of_correspondence
-    h_pkg (h_HC_A p)
+    h_pkg h_HC_A_at
 
 /-- **R171/R173/R188 HEADLINE**: The **Hodge Conjecture holds for the
 canonical E_7 Shimura variety** in its REAL form (no Unit trick).
@@ -347,10 +348,10 @@ For every codimension `p`, every Hodge class in
 `H^{2p}(S_Γ^tor, ℚ)` arises as the image of a rational algebraic
 cycle class.
 
-R538 refactor: the theorem now targets `canonicalHCDataByCodim` directly.
+R538/R539 refactor: the theorem now targets `canonicalHCDataByCodim` directly.
 This keeps the data-level `VarietyHC` conclusion while weakening the
 headline cut from a uniform all-codimension CM source to a per-codimension
-source/package.
+source/package with only the source HC statement at the active codimension.
 
 Net dependency reduction: -1 axiom (`mt_correspondence_e7_witness_exists`
 no longer in chain).

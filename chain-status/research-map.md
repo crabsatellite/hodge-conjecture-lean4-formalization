@@ -476,7 +476,7 @@ Files:
 
 ### `G-main-hc` -- Hodge conjecture headline remains axiom-relative
 
-The `hodgeConjectureReal_canonical` endpoint is a kernel-pure composition once the project axiom `canonicalHCDataByCodim` is accepted.  R538 weakens the R536/R537 uniform package: the target cohomology and algebraic classes are fixed, but the CM abelian source and MT correspondence package may vary with codimension `p`.  It is NOT an unconditional proof of HC; it remains conditional on constructing those degreewise fields for the AMRT E_{7(-25)} toroidal compactification.
+The `hodgeConjectureReal_canonical` endpoint is a kernel-pure composition once the project axiom `canonicalHCDataByCodim` is accepted.  R538/R539 weakens the R536/R537 uniform package: the target cohomology and algebraic classes are fixed, but the CM abelian source, source HC-at-p input, and MT correspondence package may vary with codimension `p`.  It is NOT an unconditional proof of HC; it remains conditional on constructing those degreewise fields for the AMRT E_{7(-25)} toroidal compactification.
 
 Declarations:
 - `HodgeReduction.CanonicalHCData`
@@ -559,7 +559,7 @@ Files:
 
 ### `G-l4-mt-correspondence` -- Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian)
 
-R529/R517 decomposes the non-canonical MT correspondence witness; R532 tightens the package cut so it applies only to the witness selected by `e7_cm_witness_exists`, not to arbitrary CM abelian sources.  R538 routes the canonical headline through `CanonicalHCDataByCodim`; the real construction gap is now the per-codim package field inside `canonicalHCDataByCodim`.
+R529/R517 decomposes the non-canonical MT correspondence witness; R532 tightens the package cut so it applies only to the witness selected by `e7_cm_witness_exists`, not to arbitrary CM abelian sources.  R538/R539 routes the canonical headline through `CanonicalHCDataByCodim`; the real construction gap is now the per-codim source-HC-at-p plus correspondence package field inside `canonicalHCDataByCodim`.
 
 Declarations:
 - `HodgeReduction.mt_correspondence_e7_witness_exists`
