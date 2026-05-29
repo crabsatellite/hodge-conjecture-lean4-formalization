@@ -486,10 +486,9 @@ import HodgeReduction.HCGapL2.EllipticCurve
 -- import HodgeReduction.HCGapL4.CY3E7Bridge -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.CY3SpringerDiscriminant -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.CMAbelianHCBridge -- imported by MainTheorem
--- import HodgeReduction.HCGapL4.MTWitnessDecomposition -- temporarily disabled for build fix
+-- import HodgeReduction.HCGapL4.MTWitnessDecomposition -- imported by MainTheorem
 -- import HodgeReduction.HCGapL4.V56CohomologyRank -- temporarily disabled for build fix
 -- import HodgeReduction.Concrete -- temporarily disabled for build fix
-
 
 
 

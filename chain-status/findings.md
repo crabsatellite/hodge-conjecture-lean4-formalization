@@ -1,7 +1,7 @@
 # HodgeReduction -- all audit findings
 
 
-* total: **8801**  *  FAIL: **0**  *  WARN: **8801**
+* total: **8800**  *  FAIL: **0**  *  WARN: **8800**
 
 
 ## W1.orphan (WARN) -- 229
@@ -241,7 +241,7 @@
 - compile-prune candidate: on-chain `HodgeReduction.HCGapL4.E6CaseClassicalBridge` imports `HodgeReduction.Infrastructure.DynkinMarks` but reflected declarations consume no project decl from that import closure  (HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean)
 - compile-prune candidate: on-chain `HodgeReduction.HCGapL4.E6CaseClassicalBridge` imports `HodgeReduction.Infrastructure.SimpleLieAlgebraClassification` but reflected declarations consume no project decl from that import closure  (HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean)
 
-## W3.on-disk-orphan (WARN) -- 195
+## W3.on-disk-orphan (WARN) -- 194
 
 - file `HodgeReduction.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction.lean)
 - file `HodgeReduction/Concrete.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Concrete.lean)
@@ -328,7 +328,6 @@
 - file `HodgeReduction/HCGapL4/HCFrontierAfterParametricRefactorPreparation.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/HCFrontierAfterParametricRefactorPreparation.lean)
 - file `HodgeReduction/HCGapL4/ImaginaryQuadraticFieldInterfaceSkeleton.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/ImaginaryQuadraticFieldInterfaceSkeleton.lean)
 - file `HodgeReduction/HCGapL4/Lefschetz11Arithmetic.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/Lefschetz11Arithmetic.lean)
-- file `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/MTWitnessDecomposition.lean)
 - file `HodgeReduction/HCGapL4/NoetherLefschetzSkeleton.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/NoetherLefschetzSkeleton.lean)
 - file `HodgeReduction/HCGapL4/ProductCohomologyProjectiveLineEllipticCurve.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/ProductCohomologyProjectiveLineEllipticCurve.lean)
 - file `HodgeReduction/HCGapL4/ProductCohomologyProjectiveLineSelf.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/ProductCohomologyProjectiveLineSelf.lean)

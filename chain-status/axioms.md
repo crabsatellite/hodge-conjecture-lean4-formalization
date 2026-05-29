@@ -21,8 +21,9 @@ Equivalent to running `#print axioms <endpoint>` for each endpoint.
 - `HodgeReduction.cy3_inherits_e7_factor_exact`
 - `HodgeReduction.deligne_1982_abs_hodge_cm`
 - `HodgeReduction.e6_factor_classical_transfer`
+- `HodgeReduction.e7_cm_witness_exists`
+- `HodgeReduction.e7_correspondence_package_exists`
 - `HodgeReduction.hc_real_classical_cartan`
-- `HodgeReduction.mt_correspondence_e7_witness_exists`
 - `Quot.sound`
 - `propext`
 
@@ -56,5 +57,4 @@ Equivalent to running `#print axioms <endpoint>` for each endpoint.
 ## Baseline
 
 No `axioms.baseline.md` yet.  Run `cp axioms.md axioms.baseline.md`
-
 to lock the current axiom set.

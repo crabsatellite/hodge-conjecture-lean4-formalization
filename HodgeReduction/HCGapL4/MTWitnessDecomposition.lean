@@ -102,6 +102,5 @@ theorem mt_correspondence_e7_witness_via_decomposition :
     - e7_correspondence_package_exists: correspondence data only -/
 def R517_new_axiom_count : Nat := 2
 def R517_retired_axiom_count : Nat := 1
-def R517_no_tricks : Prop := True
 
 end HodgeReduction

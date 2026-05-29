@@ -8,7 +8,7 @@ five-way classification:
 * infra:      **2** (standalone tools, audit scripts)
 * registered: **20** (configured research route/gap files, off endpoint closure)
 * orphan:     **229** (loaded but unreachable - investigate)
-* on-disk-unloaded: **282** (file exists but not imported by any chain)
+* on-disk-unloaded: **281** (file exists but not imported by any chain)
 
 
 ## Quarantine (0)
@@ -282,7 +282,7 @@ five-way classification:
 | `HodgeReduction/Infrastructure/V56Freudenthal.lean` | 121 | 0 |
 | `HodgeReduction/Infrastructure/V56HodgeRank.lean` | 33 | 0 |
 
-## On-disk-unloaded (282)
+## On-disk-unloaded (281)
 
 Files present in the source tree but NOT imported by the entry script.  Either wire them into the chain, mark them quarantine, or delete them.
 
@@ -456,7 +456,6 @@ Files present in the source tree but NOT imported by the entry script.  Either w
 - `HodgeReduction/HCGapL4/HCFrontierAfterParametricRefactorPreparation.lean`
 - `HodgeReduction/HCGapL4/ImaginaryQuadraticFieldInterfaceSkeleton.lean`
 - `HodgeReduction/HCGapL4/Lefschetz11Arithmetic.lean`
-- `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean`
 - `HodgeReduction/HCGapL4/NoetherLefschetzSkeleton.lean`
 - `HodgeReduction/HCGapL4/ProductCohomologyProjectiveLineEllipticCurve.lean`
 - `HodgeReduction/HCGapL4/ProductCohomologyProjectiveLineSelf.lean`

@@ -16,7 +16,8 @@ open by design; non-whitelisted cuts are I1 hard-failures.
 | `HodgeReduction.cy3_inherits_e7_factor_exact` | `HodgeReduction/HCGapL4/CY3VacuityDischarge.lean` | OPEN (whitelisted) |
 | `HodgeReduction.deligne_1982_abs_hodge_cm` | `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean` | OPEN (whitelisted) |
 | `HodgeReduction.e6_factor_classical_transfer` | `HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean` | OPEN (whitelisted) |
+| `HodgeReduction.e7_cm_witness_exists` | `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean` | OPEN (whitelisted) |
+| `HodgeReduction.e7_correspondence_package_exists` | `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean` | OPEN (whitelisted) |
 | `HodgeReduction.hc_real_classical_cartan` | `HodgeReduction/MainTheorem.lean` | OPEN (whitelisted) |
-| `HodgeReduction.mt_correspondence_e7_witness_exists` | `HodgeReduction/MainTheorem.lean` | OPEN (whitelisted) |
 | `Quot.sound` | `Init/Core.lean` | OPEN (whitelisted) |
 | `propext` | `Init/Core.lean` | OPEN (whitelisted) |

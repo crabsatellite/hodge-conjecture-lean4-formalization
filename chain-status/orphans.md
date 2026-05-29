@@ -8,7 +8,7 @@ For each orphan, the user should either:
 
 
 * loaded-but-orphan: **229**
-* on-disk-but-unloaded: **282**
+* on-disk-but-unloaded: **281**
 
 
 ## Loaded-but-orphan (the env has them, no closure)
@@ -415,7 +415,6 @@ For each orphan, the user should either:
 - `HodgeReduction/HCGapL4/HCFrontierAfterParametricRefactorPreparation.lean`
 - `HodgeReduction/HCGapL4/ImaginaryQuadraticFieldInterfaceSkeleton.lean`
 - `HodgeReduction/HCGapL4/Lefschetz11Arithmetic.lean`
-- `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean`
 - `HodgeReduction/HCGapL4/NoetherLefschetzSkeleton.lean`
 - `HodgeReduction/HCGapL4/ProductCohomologyProjectiveLineEllipticCurve.lean`
 - `HodgeReduction/HCGapL4/ProductCohomologyProjectiveLineSelf.lean`

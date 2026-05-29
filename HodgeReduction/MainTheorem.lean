@@ -42,6 +42,7 @@ import HodgeReduction.OpenHypotheses
 import HodgeReduction.HCGapL4.CY3VacuityDischarge
 import HodgeReduction.HCGapL4.CMAbelianHCBridge
 import HodgeReduction.HCGapL4.E6CaseClassicalBridge
+import HodgeReduction.HCGapL4.MTWitnessDecomposition
 
 namespace HodgeReduction
 
@@ -167,16 +168,23 @@ this axiom, the previous R174b bundled `mt_correspondence_e7_reduction`
 axiom becomes a DERIVED theorem applying R177's `varietyHCAt_of_correspondence`
 (which internally uses R176/R165 reduction transfer).
 
+R529 turns this from a monolithic axiom into a theorem derived in
+`MTWitnessDecomposition` from two smaller cuts:
+* `e7_cm_witness_exists`: the associated CM abelian source exists.
+* `e7_correspondence_package_exists`: the per-codim correspondence
+  package exists once the source is fixed.
+
 paper source: §6; hyp:ChernWeil-bridge-E7 + hyp:hecke-bbt; AMRT 1975
 construction of the MT correspondence at variety level. -/
-axiom mt_correspondence_e7_witness_exists :
+theorem mt_correspondence_e7_witness_exists :
  ∀ (X : SmoothProjectiveVariety ℂ),
    hasSimpleFactor (MumfordTateGroupDerived X 3) E7_neg25 →
    InKnownE7Scope X →
    ∃ (A : SmoothProjectiveVariety ℂ), IsCMAbelianVariety A ∧
      ∀ p : ℕ,
        Infrastructure.HodgeStructure.MTCorrespondencePackageAt
-         A.cohomology X.cohomology A.algClasses X.algClasses p
+         A.cohomology X.cohomology A.algClasses X.algClasses p :=
+ mt_correspondence_e7_witness_via_decomposition
 
 /-- **R174b/R177** (now derived theorem): for every clause-(iii)
 variety `X`, HC-real(X) follows from HC-real being known for all CM

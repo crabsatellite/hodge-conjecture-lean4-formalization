@@ -70,11 +70,11 @@ def config : ChainAudit.ProjectConfig := {
     ``HodgeReduction.hc_real_classical_cartan,
     ``HodgeReduction.e6_factor_classical_transfer,
     ``HodgeReduction.hc_real_cy3_reducible,
-    -- R177 universal existence axiom for the MT correspondence
-    -- (currently redundant with canonicalE7ShimuraTor's bundled
-    -- `mtCorrespondencePackage` field, but kept open for the
-    -- non-canonical sub-clause).
-    ``HodgeReduction.mt_correspondence_e7_witness_exists,
+    -- R529/R517 decomposition of the former
+    -- `mt_correspondence_e7_witness_exists` cut into CM source
+    -- existence and fixed-source correspondence package construction.
+    ``HodgeReduction.e7_cm_witness_exists,
+    ``HodgeReduction.e7_correspondence_package_exists,
     -- Paper-citation axiom for thm_cy3_e7_nonexistence (paper §4
     -- Stages A--D + Springer discriminant + FTS omega-pairing).
     ``HodgeReduction.cy3_e7_nonexistence_paper_axiom,
@@ -282,7 +282,7 @@ def config : ChainAudit.ProjectConfig := {
       title := "Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian)"
       status := "open"
       summary :=
-        "Per-codimension data: HodgeStructureMorphism phi + cycle map psi + commuting square + Hodge-class surjectivity, identifying H^*(S_Γ^tor, -- with a CM abelian variety's cohomology.  Currently bundled inside `canonicalE7ShimuraTor.mtCorrespondencePackage` (R188 field); a `mt_correspondence_e7_witness_exists` universal axiom (R177) covers the non-canonical sub-clause."
+        "R529/R517 decomposes the non-canonical MT correspondence witness: `e7_cm_witness_exists` provides the CM abelian source, while `e7_correspondence_package_exists` provides the per-codim correspondence package once the source is fixed.  The canonical headline still uses `canonicalE7ShimuraTor.mtCorrespondencePackage` directly."
       files := [
         "HodgeReduction/MainTheorem.lean",
         "HodgeReduction/OpenHypotheses.lean",
@@ -291,6 +291,8 @@ def config : ChainAudit.ProjectConfig := {
       ]
       decls := [
         "HodgeReduction.mt_correspondence_e7_witness_exists",
+        "HodgeReduction.e7_cm_witness_exists",
+        "HodgeReduction.e7_correspondence_package_exists",
         "HodgeReduction.HCGapRegistry.L4_G3_MT_Correspondence_E7_To_CMAbelian",
         "HodgeReduction.HCGapRegistry.L34_FullPackage_For_E7Canonical"
       ]

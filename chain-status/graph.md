@@ -13,6 +13,7 @@ graph TD
   classDef endpoint fill:#dfd,stroke:#080
   HodgeReduction_abs_hodge_implies_algebraic{{ "abs_hodge_implies_algebraic" }}:::cut
   HodgeReduction_absHodgeClassesAtDegree{{ "absHodgeClassesAtDegree" }}:::cut
+  HodgeReduction_e7_correspondence_package_exists{{ "e7_correspondence_package_exists" }}:::cut
   propext{{ "propext" }}:::cut
   HodgeReduction_cy3_inherits_e7_factor_exact{{ "cy3_inherits_e7_factor_exact" }}:::cut
   HodgeReduction_SmoothProjectiveVariety_algClasses{{ "algClasses" }}:::cut
@@ -20,8 +21,8 @@ graph TD
   HodgeReduction_hc_real_classical_cartan{{ "hc_real_classical_cartan" }}:::cut
   HodgeReduction_canonicalE7ShimuraTor{{ "canonicalE7ShimuraTor" }}:::cut
   Classical_choice{{ "choice" }}:::cut
-  HodgeReduction_mt_correspondence_e7_witness_exists{{ "mt_correspondence_e7_witness_exists" }}:::cut
   HodgeReduction_deligne_1982_abs_hodge_cm{{ "deligne_1982_abs_hodge_cm" }}:::cut
+  HodgeReduction_e7_cm_witness_exists{{ "e7_cm_witness_exists" }}:::cut
   Quot_sound{{ "sound" }}:::cut
   HodgeReduction_e6_factor_classical_transfer{{ "e6_factor_classical_transfer" }}:::cut
   HodgeReduction_cy3_e7_nonexistence_paper_axiom{{ "cy3_e7_nonexistence_paper_axiom" }}:::cut
@@ -45,8 +46,9 @@ graph TD
   HodgeReduction_main_reduction_real --> HodgeReduction_cy3_inherits_e7_factor_exact
   HodgeReduction_main_reduction_real --> HodgeReduction_deligne_1982_abs_hodge_cm
   HodgeReduction_main_reduction_real --> HodgeReduction_e6_factor_classical_transfer
+  HodgeReduction_main_reduction_real --> HodgeReduction_e7_cm_witness_exists
+  HodgeReduction_main_reduction_real --> HodgeReduction_e7_correspondence_package_exists
   HodgeReduction_main_reduction_real --> HodgeReduction_hc_real_classical_cartan
-  HodgeReduction_main_reduction_real --> HodgeReduction_mt_correspondence_e7_witness_exists
   HodgeReduction_main_reduction_real --> Quot_sound
   HodgeReduction_main_reduction_real --> propext
   HodgeReduction_thm_G2F4 --> Classical_choice
