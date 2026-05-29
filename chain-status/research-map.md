@@ -365,7 +365,7 @@ Route-labelled off-chain files are assigned by the audit infra but are not consu
 
 ### `main-hc-axiom-relative` -- Main Mumford--Tate-reduction HC chain
 
-`OpenHypotheses` (R169 cohomology / algClasses bridge + R174a Deligne) composes with `MainTheorem` (R170 four-case main reduction + R171/R188/R542 canonical headline) to reach `hodgeConjectureReal_canonical`.  R546 adds the separately audited codim-one endpoint `hodgeConjectureReal_canonical_codim1`; R550 reroutes it directly through the classical Lefschetz (1,1) cut, so this slice no longer consumes the E7 -> CM correspondence package.  Full HC remains conditional on a canonical target SPV, its E7 factor/scope facts, and the generic MT-witness route.
+`OpenHypotheses` (R169 cohomology / algClasses bridge + R174a Deligne) composes with `MainTheorem` (R170 four-case main reduction + R171/R188/R542/R551 canonical headline) to reach `hodgeConjectureReal_canonical`.  R546 adds the separately audited codim-one endpoint `hodgeConjectureReal_canonical_codim1`; R550 reroutes it directly through the classical Lefschetz (1,1) cut; R551 uses that endpoint for the `p = 1` branch of the full canonical proof, uses the direct non-codim-one MT package for `p ≠ 1`, and avoids mentioning `canonicalHCDataByCodim` in the endpoint type.  Full HC remains conditional on a canonical target SPV, its E7 factor/scope facts, the non-codim-one MT-witness route, and the CM-source all-codim bridge for `p ≠ 1`.
 
 Entry declarations:
 - `HodgeReduction.hodgeConjectureReal_canonical`
@@ -455,7 +455,7 @@ Files:
 
 ### `G-main-hc` -- Hodge conjecture headline remains axiom-relative
 
-The `hodgeConjectureReal_canonical` endpoint is a kernel-pure composition once the canonical target variety and its two E7-scope facts are accepted.  R542 derives the full `canonicalMTPackageAt` from the generic R517/R532 MT-witness route; R545 splits the chosen-witness package into a codim-one first target plus the remaining non-codim-one lift; R549 opens that codim-one target into Hodge-morphism, algebraic-map, commuting-square, and Hodge-surjectivity component cuts; R550 routes the separately audited codim-one HC slice directly through the classical Lefschetz (1,1) cut, so it no longer consumes the E7 -> CM package.  Full HC is NOT unconditional.
+The `hodgeConjectureReal_canonical` endpoint is a kernel-pure composition once the canonical target variety and its two E7-scope facts are accepted.  R542 derives the full `canonicalMTPackageAt` from the generic R517/R532 MT-witness route; R545 splits the chosen-witness package into a codim-one first target plus the remaining non-codim-one lift; R549 opens that codim-one target into Hodge-morphism, algebraic-map, commuting-square, and Hodge-surjectivity component cuts; R550 routes the separately audited codim-one HC slice directly through the classical Lefschetz (1,1) cut; R551 splits the full canonical proof by codimension so the `p = 1` branch no longer consumes the E7 -> CM package and the `p ≠ 1` branch consumes only the non-codim-one MT lift.  R551 also states the endpoint directly on canonical cohomology/algebraic-class data so the theorem type itself does not pull the legacy all-codim package.  Full HC is NOT unconditional.
 
 Declarations:
 - `HodgeReduction.CanonicalHCData`
@@ -467,6 +467,7 @@ Declarations:
 - `HodgeReduction.canonicalTargetAlgClassesData`
 - `HodgeReduction.canonicalMTPackageAt`
 - `HodgeReduction.canonicalMTPackageAt_codim1`
+- `HodgeReduction.canonicalMTPackageAt_non_codim1`
 - `HodgeReduction.canonicalHCDataByCodim`
 - `HodgeReduction.hodgeConjectureReal_from_canonicalHCData`
 - `HodgeReduction.hodgeConjectureReal_from_canonicalHCDataByCodim`
@@ -552,7 +553,7 @@ Files:
 
 ### `G-l4-mt-correspondence` -- Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian)
 
-R529/R517 decomposes the non-canonical MT correspondence witness; R532 tightens the package cut so it applies only to the witness selected by `e7_cm_witness_exists`, not to arbitrary CM abelian sources.  R545 splits that chosen-source package into the codim-one Chow-correspondence target and the remaining non-codim-one lift.  R549 decomposes the codim-one target into Hodge-morphism, algebraic-map, commuting-square, and Hodge-surjectivity cuts, so the audit can track exactly which piece of the first Chow-correspondence target remains open.  R550 shows the canonical codim-one HC endpoint itself should bypass this MT package entirely via Lefschetz (1,1); the R549 component cuts still matter for the full all-codimension canonical headline.
+R529/R517 decomposes the non-canonical MT correspondence witness; R532 tightens the package cut so it applies only to the witness selected by `e7_cm_witness_exists`, not to arbitrary CM abelian sources.  R545 splits that chosen-source package into the codim-one Chow-correspondence target and the remaining non-codim-one lift.  R549 decomposes the codim-one target into Hodge-morphism, algebraic-map, commuting-square, and Hodge-surjectivity cuts, so the audit can track exactly which piece of the first Chow-correspondence target remains open.  R550 shows the canonical codim-one HC endpoint itself should bypass this MT package entirely via Lefschetz (1,1).  R551 carries that bypass into the full canonical proof: the full endpoint no longer consumes the R549 codim-one component cuts, while the generic main-reduction theorem still consumes them through its all-scope E7 case.
 
 Declarations:
 - `HodgeReduction.mt_correspondence_e7_witness_exists`
@@ -565,6 +566,7 @@ Declarations:
 - `HodgeReduction.e7_chosen_witness_hodge_surj_codim1`
 - `HodgeReduction.e7_chosen_witness_correspondence_package_non_codim1_exists`
 - `HodgeReduction.canonicalMTPackageAt_codim1`
+- `HodgeReduction.canonicalMTPackageAt_non_codim1`
 - `HodgeReduction.hodgeConjectureReal_canonical_codim1`
 - `HodgeReduction.HCGapRegistry.L4_G3_MT_Correspondence_E7_To_CMAbelian`
 - `HodgeReduction.HCGapRegistry.L34_FullPackage_For_E7Canonical`

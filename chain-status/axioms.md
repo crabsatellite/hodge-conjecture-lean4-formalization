@@ -14,12 +14,9 @@ Equivalent to running `#print axioms <endpoint>` for each endpoint.
 - `HodgeReduction.canonicalTargetInKnownE7Scope`
 - `HodgeReduction.canonicalTargetVariety`
 - `HodgeReduction.deligne_1982_abs_hodge_cm`
-- `HodgeReduction.e7_chosen_witness_alg_map_codim1`
 - `HodgeReduction.e7_chosen_witness_correspondence_package_non_codim1_exists`
-- `HodgeReduction.e7_chosen_witness_hodge_surj_codim1`
-- `HodgeReduction.e7_chosen_witness_hsm_codim1`
-- `HodgeReduction.e7_chosen_witness_square_codim1`
 - `HodgeReduction.e7_cm_witness_exists`
+- `HodgeReduction.lefschetz_11_hc_real_at_codim1`
 - `Quot.sound`
 - `propext`
 

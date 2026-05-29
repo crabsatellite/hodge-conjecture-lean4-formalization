@@ -55,12 +55,9 @@ graph TD
   HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_canonicalTargetInKnownE7Scope
   HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_canonicalTargetVariety
   HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_deligne_1982_abs_hodge_cm
-  HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_e7_chosen_witness_alg_map_codim1
   HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_e7_chosen_witness_correspondence_package_non_codim1_exists
-  HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_e7_chosen_witness_hodge_surj_codim1
-  HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_e7_chosen_witness_hsm_codim1
-  HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_e7_chosen_witness_square_codim1
   HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_e7_cm_witness_exists
+  HodgeReduction_hodgeConjectureReal_canonical --> HodgeReduction_lefschetz_11_hc_real_at_codim1
   HodgeReduction_hodgeConjectureReal_canonical --> Quot_sound
   HodgeReduction_hodgeConjectureReal_canonical --> propext
   HodgeReduction_hodgeConjectureReal_canonical_codim1 --> Classical_choice

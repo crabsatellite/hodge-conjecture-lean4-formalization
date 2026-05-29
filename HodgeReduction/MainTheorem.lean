@@ -363,6 +363,32 @@ theorem canonicalMTPackageAt_codim1 :
         canonicalTargetE7Factor
         canonicalTargetInKnownE7Scope
 
+/-- **R551**: non-codimension-one canonical MT package, routed directly
+through the R545 non-codimension-one lift cut.
+
+This theorem avoids the derived all-codimension package theorem, whose
+proof also mentions the codimension-one component cuts.  It is the
+high-codimension branch used by the R551 full headline proof below. -/
+theorem canonicalMTPackageAt_non_codim1 (p : Nat) (hp : p ≠ 1) :
+    exists A : SmoothProjectiveVariety Complex,
+      IsCMAbelianVariety A /\
+      Infrastructure.HodgeStructure.MTCorrespondencePackageAt
+        A.cohomology canonicalTargetCohomologyData
+        A.algClasses canonicalTargetAlgClassesData p := by
+  let hW :=
+    e7_cm_witness_exists
+      canonicalTargetVariety
+      canonicalTargetE7Factor
+      canonicalTargetInKnownE7Scope
+  refine ⟨Classical.choose hW, Classical.choose_spec hW, ?_⟩
+  simpa [canonicalTargetCohomologyData, canonicalTargetAlgClassesData]
+    using
+      e7_chosen_witness_correspondence_package_non_codim1_exists
+        canonicalTargetVariety
+        canonicalTargetE7Factor
+        canonicalTargetInKnownE7Scope
+        p hp
+
 /-- **R542**: rebuilt degreewise canonical headline package from the
 canonical target variety plus the generic E7 witness theorem. -/
 noncomputable def canonicalHCDataByCodim : CanonicalHCDataByCodim :=
@@ -418,18 +444,26 @@ theorem hodgeConjectureReal_canonical_codim1 :
     HodgeConjectureRealAt]
     using lefschetz_11_hc_real_at_codim1 canonicalTargetVariety
 
-/-- **R171/R173/R188 HEADLINE**: The **Hodge Conjecture holds for the
+/-- **R171/R173/R188/R551 HEADLINE**: The **Hodge Conjecture holds for the
 canonical E_7 Shimura variety** in its REAL form (no Unit trick).
 
 For every codimension `p`, every Hodge class in
 `H^{2p}(S_Γ^tor, ℚ)` arises as the image of a rational algebraic
 cycle class.
 
-R538/R539 refactor: the theorem now targets `canonicalHCDataByCodim` directly.
-This keeps the data-level `VarietyHC` conclusion while weakening the
+R538/R539 refactor introduced `canonicalHCDataByCodim`, weakening the
 headline cut from a uniform all-codimension CM source to a per-codimension
 source/package; R540 derives source HC through the CM abelian bridge rather
 than bundling it in the package.
+
+R551 removes the unnecessary E7 -> CM correspondence dependency at
+codimension one: the `p = 1` branch uses the separately audited
+Lefschetz (1,1) endpoint, while the `p ≠ 1` branch uses only the
+non-codimension-one MT lift.  The endpoint target is stated directly as
+`VarietyHC canonicalTargetCohomologyData canonicalTargetAlgClassesData`
+so the theorem type itself does not pull the full `canonicalHCDataByCodim`
+package, whose `mtCorrespondenceAt` field still records the legacy
+all-codimension route.
 
 Net dependency reduction: -1 axiom (`mt_correspondence_e7_witness_exists`
 no longer in chain).
@@ -450,9 +484,18 @@ both sides honest ℚ-submodules. NO Unit trick.
 Paper source: `\label{thm:main}` clause (iii) applied to canonical. -/
 theorem hodgeConjectureReal_canonical :
     Infrastructure.HodgeStructure.VarietyHC
-      canonicalHCDataByCodim.cohomologyOfTarget
-      canonicalHCDataByCodim.algClassesOfTarget := by
-  exact hodgeConjectureReal_from_canonicalHCDataByCodim canonicalHCDataByCodim
+      canonicalTargetCohomologyData
+      canonicalTargetAlgClassesData := by
+  intro p
+  by_cases hp : p = 1
+  · subst hp
+    exact hodgeConjectureReal_canonical_codim1
+  · rcases canonicalMTPackageAt_non_codim1 p hp with ⟨A, hA_CM, h_pkg⟩
+    have h_src : Infrastructure.HodgeStructure.VarietyHCAt
+        A.cohomology A.algClasses p :=
+      (hyp_HC_CM_Ab_real A hA_CM) p
+    exact Infrastructure.HodgeStructure.varietyHCAt_of_correspondence
+        h_pkg h_src
 
 /-! ## Unconditional paper theorems (axiom-backed, no `sorry`) -/
 
