@@ -378,10 +378,10 @@ def config : ChainAudit.ProjectConfig := {
     },
     {
       id := "G-hcgap-l4-multifront"
-      title := "HCGapL4 multi-front Layer-4 attack waves (R420 -- R557)"
+      title := "HCGapL4 multi-front Layer-4 attack waves (R420 -- R558)"
       status := "active-open"
       summary :=
-        "Active exploratory attack waves on the L4 / cohomology-profile / connectedness pipeline: FrontA (Deligne H0 sheaf realization), FrontB (Baily--Borel connectedness), FrontC (E_7 low-degree Hodge numbers + Hodge polynomial algebra + all-degree rank adapter + EVII/V56/Shimura expected Betti profile), FrontD (E_7 -> CM Chow correspondence + Deligne 1982 minimal fragment), FrontE (real-carrier profile matching + R405 conditional transfer feed).  Audits R451 / R456 / R460 / R465 / R470 / R476 are wave-level summaries.  R552 certifies the expected Shimura Betti profile degree-by-degree from EVII compact-dual Hodge sums plus the isolated V56 degree-3 contribution; R553 ties that finite V56 contribution to the actual `PureHodgeStructure V56 3` infrastructure; R554 combines the Matsushima, Eisenstein, and cuspidal trivial-module infrastructure into an honest boundary theorem; R555 proves the Cartan compact-dual source bridge and reduces the R554 source equality to `surjectivity_source = source_invariants`; R556 turns both source/target boundary equalities into finite-dimensional containment plus finrank obligations, routing the target through the cuspidal trivial-module part; R557 proves the target containment follows from source containment by Matsushima equivariance and the surjectivity image equation.  The concrete EVII source containment, source finrank, and target finrank proofs remain open.  No new axioms."
+        "Active exploratory attack waves on the L4 / cohomology-profile / connectedness pipeline: FrontA (Deligne H0 sheaf realization), FrontB (Baily--Borel connectedness), FrontC (E_7 low-degree Hodge numbers + Hodge polynomial algebra + all-degree rank adapter + EVII/V56/Shimura expected Betti profile), FrontD (E_7 -> CM Chow correspondence + Deligne 1982 minimal fragment), FrontE (real-carrier profile matching + R405 conditional transfer feed).  Audits R451 / R456 / R460 / R465 / R470 / R476 are wave-level summaries.  R552 certifies the expected Shimura Betti profile degree-by-degree from EVII compact-dual Hodge sums plus the isolated V56 degree-3 contribution; R553 ties that finite V56 contribution to the actual `PureHodgeStructure V56 3` infrastructure; R554 combines the Matsushima, Eisenstein, and cuspidal trivial-module infrastructure into an honest boundary theorem; R555 proves the Cartan compact-dual source bridge and reduces the R554 source equality to `surjectivity_source = source_invariants`; R556 turns both source/target boundary equalities into finite-dimensional containment plus finrank obligations, routing the target through the cuspidal trivial-module part; R557 proves the target containment follows from source containment by Matsushima equivariance and the surjectivity image equation; R558 proves target finrank is transported from source finrank by `j_q` injectivity and the Matsushima image equation.  The concrete EVII source containment, source finrank, and source-to-cuspidal-trivial rank bridge remain open.  No new axioms."
       files := [
         "HodgeReduction/HCGapL4/FrontA_DeligneH0SheafRealization.lean",
         "HodgeReduction/HCGapL4/FrontB_BailyBorelConnectedness.lean",
@@ -399,6 +399,7 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction/HCGapL4/FrontC14_CartanCompactDualSourceBridge.lean",
         "HodgeReduction/HCGapL4/FrontC15_MatsushimaBoundaryRankCriterion.lean",
         "HodgeReduction/HCGapL4/FrontC16_MatsushimaTargetContainmentFromSource.lean",
+        "HodgeReduction/HCGapL4/FrontC17_MatsushimaTargetRankFromSource.lean",
         "HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean",
         "HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean",
         "HodgeReduction/HCGapL4/R451_MultiFrontFrontierAudit.lean",
@@ -427,7 +428,10 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction.HCGapL4.FrontC15_MatsushimaBoundaryRankCriterion.matsushimaV56BoundaryData_of_rank_criteria",
         "HodgeReduction.HCGapL4.FrontC16_MatsushimaTargetContainmentFromSource.surjectivity_target_le_trivialModulePart_of_source_le",
         "HodgeReduction.HCGapL4.FrontC16_MatsushimaTargetContainmentFromSource.target_eq_invariants_of_source_le_target_finrank",
-        "HodgeReduction.HCGapL4.FrontC16_MatsushimaTargetContainmentFromSource.matsushimaV56BoundaryData_of_source_le_source_rank_target_rank"
+        "HodgeReduction.HCGapL4.FrontC16_MatsushimaTargetContainmentFromSource.matsushimaV56BoundaryData_of_source_le_source_rank_target_rank",
+        "HodgeReduction.HCGapL4.FrontC17_MatsushimaTargetRankFromSource.surjectivity_target_finrank_eq_source",
+        "HodgeReduction.HCGapL4.FrontC17_MatsushimaTargetRankFromSource.target_finrank_eq_trivialModulePart_of_source_finrank_trivial",
+        "HodgeReduction.HCGapL4.FrontC17_MatsushimaTargetRankFromSource.matsushimaV56BoundaryData_of_source_le_source_rank_source_to_trivial_rank"
       ]
     }
   ]
@@ -500,11 +504,11 @@ def config : ChainAudit.ProjectConfig := {
     },
     {
       id := "hcgap-l4-multifront-active"
-      title := "HCGapL4 multi-front attack waves (R420 -- R557)"
+      title := "HCGapL4 multi-front attack waves (R420 -- R558)"
       kind := "active"
       status := "exploratory"
       summary :=
-        "5 parallel attack fronts on the L4 cohomology-profile + connectedness pipeline.  Per-wave audits R451 / R456 / R460 / R465 / R470 / R476 enumerate substantive theorems per round.  R552 extends the FrontC numeric bridge through a buildable EVII compact-dual/V56/Shimura expected Betti profile: all degrees 0..8 are certified by known Hodge sums, with degree 3 explicitly routed through V56 rather than hidden in compact-dual odd cohomology.  R553 connects that finite V56 profile to the actual infrastructure `PureHodgeStructure V56 3`.  R554 proves the abstract Matsushima boundary composition: target invariants reduce to the cuspidal trivial-module part, and compact-dual image reduces to that part once concrete EVII source/target boundary equalities are provided.  R555 tightens the source-side obligation: Cartan's trivial-module H8 line rewrites to compact-dual H8, its classes are algebraic through `CompactDualData`, and the R554 source equality follows from `surjectivity_source = source_invariants`.  R556 converts the remaining boundary equalities into four concrete linear-algebra tasks; R557 shows target containment is forced by source containment, so the remaining concrete EVII boundary work is source containment, source finrank, and target finrank.  The route remains exploratory, not a closure claim."
+        "5 parallel attack fronts on the L4 cohomology-profile + connectedness pipeline.  Per-wave audits R451 / R456 / R460 / R465 / R470 / R476 enumerate substantive theorems per round.  R552 extends the FrontC numeric bridge through a buildable EVII compact-dual/V56/Shimura expected Betti profile: all degrees 0..8 are certified by known Hodge sums, with degree 3 explicitly routed through V56 rather than hidden in compact-dual odd cohomology.  R553 connects that finite V56 profile to the actual infrastructure `PureHodgeStructure V56 3`.  R554 proves the abstract Matsushima boundary composition: target invariants reduce to the cuspidal trivial-module part, and compact-dual image reduces to that part once concrete EVII source/target boundary equalities are provided.  R555 tightens the source-side obligation: Cartan's trivial-module H8 line rewrites to compact-dual H8, its classes are algebraic through `CompactDualData`, and the R554 source equality follows from `surjectivity_source = source_invariants`.  R556 converts the remaining boundary equalities into four concrete linear-algebra tasks; R557 shows target containment is forced by source containment; R558 transports target finrank from source finrank, so there is no separate target-side finrank calculation.  The route remains exploratory, not a closure claim."
       files := [
         "HodgeReduction/HCGapL4/FrontA_DeligneH0SheafRealization.lean",
         "HodgeReduction/HCGapL4/FrontB_BailyBorelConnectedness.lean",
@@ -522,6 +526,7 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction/HCGapL4/FrontC14_CartanCompactDualSourceBridge.lean",
         "HodgeReduction/HCGapL4/FrontC15_MatsushimaBoundaryRankCriterion.lean",
         "HodgeReduction/HCGapL4/FrontC16_MatsushimaTargetContainmentFromSource.lean",
+        "HodgeReduction/HCGapL4/FrontC17_MatsushimaTargetRankFromSource.lean",
         "HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean",
         "HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean",
         "HodgeReduction/HCGapL4/R476_MultiFrontWave6Audit.lean"
@@ -540,12 +545,15 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction.HCGapL4.FrontC15_MatsushimaBoundaryRankCriterion.matsushimaV56BoundaryData_of_rank_criteria",
         "HodgeReduction.HCGapL4.FrontC16_MatsushimaTargetContainmentFromSource.surjectivity_target_le_trivialModulePart_of_source_le",
         "HodgeReduction.HCGapL4.FrontC16_MatsushimaTargetContainmentFromSource.target_eq_invariants_of_source_le_target_finrank",
-        "HodgeReduction.HCGapL4.FrontC16_MatsushimaTargetContainmentFromSource.matsushimaV56BoundaryData_of_source_le_source_rank_target_rank"
+        "HodgeReduction.HCGapL4.FrontC16_MatsushimaTargetContainmentFromSource.matsushimaV56BoundaryData_of_source_le_source_rank_target_rank",
+        "HodgeReduction.HCGapL4.FrontC17_MatsushimaTargetRankFromSource.surjectivity_target_finrank_eq_source",
+        "HodgeReduction.HCGapL4.FrontC17_MatsushimaTargetRankFromSource.target_finrank_eq_trivialModulePart_of_source_finrank_trivial",
+        "HodgeReduction.HCGapL4.FrontC17_MatsushimaTargetRankFromSource.matsushimaV56BoundaryData_of_source_le_source_rank_source_to_trivial_rank"
       ]
       gapIds := ["G-hcgap-l4-multifront"]
       dependsOn := ["main-hc-axiom-relative"]
       attackPlan := [
-        "FrontC: construct the concrete EVII Matsushima/cuspidal instances.  After R557, prove source containment `surjectivity_source <= source_invariants`, source finrank equality, and target finrank equality against `CuspidalCohomologyData.trivialModulePart`; then feed R553/R554/R555/R556/R557 together.",
+        "FrontC: construct the concrete EVII Matsushima/cuspidal instances.  After R558, prove source containment `surjectivity_source <= source_invariants`, source finrank equality, and the source-to-cuspidal-trivial rank bridge; then feed R553/R554/R555/R556/R557/R558 together.",
         "FrontB: replace the abstract connectedness pipeline with the genuine Baily--Borel connectedness theorem for arithmetic quotients.",
         "FrontD: deliver the E_7 -> CM Chow correspondence at codim 1 first, then lift to all p; this would discharge G-l4-mt-correspondence for the canonical case.",
         "Never re-bundle a closed front into a stronger hypothesis; chainAudit treats `def : Prop` placeholders and conjunction shells as hard failures."
@@ -686,7 +694,7 @@ def config : ChainAudit.ProjectConfig := {
         "RealCarrierProfileMatching", "HCFrontierAfter",
         "ParametricCanonicalE7ShimuraTor", "ToyToReal", "V56InfrastructureProfile",
         "MatsushimaV56Boundary", "CartanCompactDualSource", "MatsushimaBoundaryRankCriterion",
-        "MatsushimaTargetContainmentFromSource",
+        "MatsushimaTargetContainmentFromSource", "MatsushimaTargetRankFromSource",
         "RealCompatible", "AbstractConnectedH0", "LocallyConstant"
       ]
     },
