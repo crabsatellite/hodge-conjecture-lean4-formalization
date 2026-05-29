@@ -29,7 +29,7 @@ open Infrastructure
 /-! ## Section 1: E6 Dynkin diagram data -/
 
 /-- E6 has rank 6. KERNEL-PURE. -/
-theorem e6_rank_6 : SimpleLieAlgebraClassification.SimpleLieAlgebraType.E6.rank = 6 := rfl
+theorem e6_rank_6 : SimpleLieAlgebraType.E6.rank = 6 := rfl
 
 /-- E6 dim = 78 = 6 + 2*36 (rank + 2 * positive roots). KERNEL-PURE. -/
 theorem e6_dim_78 : (6 : Int) + 2 * 36 = 78 := by omega
@@ -44,7 +44,7 @@ theorem e6_weyl_order : (2^7 : Int) * (3^4) * 5 = 51840 := by omega
     KERNEL-PURE. -/
 theorem e6_two_cominuscule_nodes :
     e6DynkinMark 0 = 1 /\ e6DynkinMark 4 = 1 := by
-  exact {andI e6_cominuscule_0 e6_cominuscule_4}.1
+  exact ⟨e6_cominuscule_0, e6_cominuscule_4⟩
 
 /-- The minuscule representation V_{27} of E6 has dimension 27.
     The 27 lines on a cubic surface realize this representation.
@@ -101,7 +101,7 @@ theorem e6_coxeter_number : (1 : Int) + 11 = 12 := by omega
     p != q (since 3 is odd), so the class is not (p,p).
     KERNEL-PURE. -/
 theorem e6_weight_3_not_pp (p : Int) (h_sum : p + (3 - p) = 3) :
-    p != 3 - p := by
+    p ≠ 3 - p := by
   intro h; have : 2 * p = 3 := by omega; omega
 
 /-! ## Section 5: Summary and gap status
