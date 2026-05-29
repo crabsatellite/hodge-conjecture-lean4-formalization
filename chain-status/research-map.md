@@ -2,7 +2,7 @@
 
 Audit-generated route map overlaid on the automatic endpoint-closure audit.  The infra output is the single research truth source: use this report to distinguish the main chain, active exploration branches, named gaps, and dead or quarantined routes.
 
-* research chains: **6**  *  named gaps: **8**  *  endpoint count: **7**  *  orphan debt files: **427**  *  taxonomy-labelled debt files: **13**  *  rule-labelled debt files: **417**  *  connectable debt files: **420**  *  build components: **30**  *  branch heads: **75**
+* research chains: **6**  *  named gaps: **8**  *  endpoint count: **7**  *  orphan debt files: **425**  *  taxonomy-labelled debt files: **13**  *  rule-labelled debt files: **415**  *  connectable debt files: **418**  *  build components: **30**  *  branch heads: **74**
 
 ## Decision Summary
 
@@ -15,11 +15,13 @@ Open mathematical cut(s):
 - `HodgeReduction.abs_hodge_implies_algebraic` at `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
 - `HodgeReduction.canonicalE7ShimuraTor` at `HodgeReduction/OpenHypotheses.lean`
 - `HodgeReduction.cy3_e7_nonexistence_paper_axiom` at `HodgeReduction/ClassicalResults.lean`
-- `HodgeReduction.cy3_inherits_e7_factor_exact` at `HodgeReduction/HCGapL4/CY3VacuityDischarge.lean`
+- `HodgeReduction.cy3_inherits_e7_factor` at `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
+- `HodgeReduction.cy3_mtd_isSemisimple` at `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
 - `HodgeReduction.deligne_1982_abs_hodge_cm` at `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
 - `HodgeReduction.e6_factor_classical_transfer` at `HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean`
 - `HodgeReduction.e7_cm_witness_exists` at `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean`
 - `HodgeReduction.e7_correspondence_package_exists` at `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean`
+- `HodgeReduction.e7_excludes_e6` at `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
 - `HodgeReduction.hc_real_classical_cartan` at `HodgeReduction/MainTheorem.lean`
 
 Active route(s) to work on:
@@ -71,7 +73,7 @@ graph TD
   chain_hcgap_l4_multifront_active --> gap_G_hcgap_l4_multifront
   chain_concrete_evii_toy --> chain_main_hc_axiom_relative
   chain_historical_cone_audits --> chain_main_hc_axiom_relative
-  debt_all["Orphan debt by actual imports\n427 files / 30 components / 75 heads"]:::debt
+  debt_all["Orphan debt by actual imports\n425 files / 30 components / 74 heads"]:::debt
   chain_hcgap_l4_multifront_active --> debt_all
 ```
 
@@ -88,7 +90,7 @@ graph TD
   classDef anchor fill:#eef,stroke:#557
   classDef ownerChain fill:#e8f3ff,stroke:#2670b8
   classDef ownerGap fill:#ffd,stroke:#a80
-  debt_root["All off-chain debt\n427 files / 75 heads"]:::debt
+  debt_root["All off-chain debt\n425 files / 74 heads"]:::debt
   anchor_on_chain["imports on-chain"]:::anchor
   anchor_cut["imports cut"]:::anchor
   anchor_quarantine["imports quarantine"]:::anchor
@@ -108,7 +110,7 @@ graph TD
   owner_gap_G_l4_cm_abelian_hc["gap:G-l4-cm-abelian-hc"]:::ownerGap
   owner_gap_G_l4_mt_correspondence["gap:G-l4-mt-correspondence"]:::ownerGap
   owner_gap_G_main_hc["gap:G-main-hc"]:::ownerGap
-  debt_C001["C001\n76 files\n2026-05-29 11:15\ncore-support"]:::debtTaxonomy
+  debt_C001["C001\n76 files\n2026-05-29 11:22\ncore-support"]:::debtTaxonomy
   debt_root --> debt_C001
   debt_C001 --> anchor_cut
   debt_C001 --> anchor_infra
@@ -127,7 +129,7 @@ graph TD
   owner_gap_G_l3_v56_mt_identification --> debt_C001
   owner_gap_G_l4_mt_correspondence --> debt_C001
   owner_gap_G_main_hc --> debt_C001
-  debt_C002["C002\n23 files\n2026-05-29 11:07\ncore-support"]:::debtRule
+  debt_C002["C002\n21 files\n2026-05-29 11:07\ncore-support"]:::debtRule
   debt_root --> debt_C002
   debt_C002 --> anchor_cut
   debt_C002 --> anchor_on_chain
@@ -348,7 +350,7 @@ graph TD
 | `G-l3-v56-mt-identification` | open | Layer 3: V_56 -- H^3(S_Γ^tor, -- Hodge-structure identification | infra: 1, registered: 4 |
 | `G-l4-cm-abelian-hc` | open | Layer 4-G2: Hodge conjecture for CM abelian varieties (Deligne 1982) | cut: 2, infra: 1, on-disk-unloaded: 2 |
 | `G-l4-mt-correspondence` | open | Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian) | cut: 2, infra: 1, registered: 1 |
-| `G-classical-mathlib-port` | deferred | Classical published-literature axioms awaiting Mathlib port | cut: 1 |
+| `G-classical-mathlib-port` | deferred | Classical published-literature axioms awaiting Mathlib port | cut: 2, on-chain: 1 |
 | `G-hcgap-l4-multifront` | active-open | HCGapL4 multi-front Layer-4 attack waves (R420 -- R476) | on-disk-unloaded: 4, registered: 10 |
 
 ## Off-Chain Split
@@ -357,9 +359,9 @@ Route-labelled off-chain files are assigned by the audit infra but are not consu
 
 * taxonomy-entry off-chain files: **13**
 * taxonomy-labelled debt files: **13**
-* rule-labelled debt files: **417**
+* rule-labelled debt files: **415**
 * unconnected debt files: **7**
-* unlabelled off-chain debt files: **414**
+* unlabelled off-chain debt files: **412**
 * build-connected debt components: **30**
 
 | path | audit route labels | audit class |
@@ -567,13 +569,20 @@ Files:
 
 ### `G-classical-mathlib-port` -- Classical published-literature axioms awaiting Mathlib port
 
-Meyer / Kostant G_2 / Kostant F_4 / SV1 E_8 are already kernel-pure theorems (paper-grade proofs over R120/R121 structure refactor).  `cy3_e7_nonexistence_paper_axiom` remains a paper-citation axiom for `thm_cy3_e7_nonexistence` until Mathlib provides Calabi--Yau threefold infrastructure + Springer discriminant + FTS omega-pairing.
+Meyer / Kostant G_2 / Kostant F_4 / SV1 E_8 are already kernel-pure theorems (paper-grade proofs over R120/R121 structure refactor).  R530 refines the CY3 branch by replacing the former exact E7 inheritance cut with weak factor inheritance plus CY3 semisimplicity and E7/E6 exclusivity.  `cy3_e7_nonexistence_paper_axiom` remains a paper-citation axiom until Mathlib provides Calabi--Yau threefold infrastructure + Springer discriminant + FTS omega-pairing.
 
 Declarations:
 - `HodgeReduction.cy3_e7_nonexistence_paper_axiom`
+- `HodgeReduction.cy3_inherits_e7_factor`
+- `HodgeReduction.cy3_mtd_isSemisimple`
+- `HodgeReduction.e7_excludes_e6`
+- `HodgeReduction.cy3_e7_vacuity_via_bridge`
+- `HodgeReduction.hc_real_cy3_reducible_via_vacuity`
 
 Files:
 - `HodgeReduction/ClassicalResults.lean` -- cut
+- `HodgeReduction/HCGapL4/CY3E7Bridge.lean` -- cut
+- `HodgeReduction/HCGapL4/CY3VacuityDischarge.lean` -- on-chain
 
 ### `G-hcgap-l4-multifront` -- HCGapL4 multi-front Layer-4 attack waves (R420 -- R476)
 

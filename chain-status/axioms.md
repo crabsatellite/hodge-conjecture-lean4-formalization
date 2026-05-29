@@ -18,11 +18,13 @@ Equivalent to running `#print axioms <endpoint>` for each endpoint.
 - `HodgeReduction.absHodgeClassesAtDegree`
 - `HodgeReduction.abs_hodge_implies_algebraic`
 - `HodgeReduction.cy3_e7_nonexistence_paper_axiom`
-- `HodgeReduction.cy3_inherits_e7_factor_exact`
+- `HodgeReduction.cy3_inherits_e7_factor`
+- `HodgeReduction.cy3_mtd_isSemisimple`
 - `HodgeReduction.deligne_1982_abs_hodge_cm`
 - `HodgeReduction.e6_factor_classical_transfer`
 - `HodgeReduction.e7_cm_witness_exists`
 - `HodgeReduction.e7_correspondence_package_exists`
+- `HodgeReduction.e7_excludes_e6`
 - `HodgeReduction.hc_real_classical_cartan`
 - `Quot.sound`
 - `propext`

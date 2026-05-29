@@ -1,7 +1,7 @@
 # HodgeReduction -- all audit findings
 
 
-* total: **8800**  *  FAIL: **0**  *  WARN: **8800**
+* total: **8799**  *  FAIL: **0**  *  WARN: **8799**
 
 
 ## W1.orphan (WARN) -- 229
@@ -236,12 +236,13 @@
 - file `HodgeReduction.HCGapL4.FrontB5_CompactificationConnectednessProbe` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/HCGapL4/FrontB5_CompactificationConnectednessProbe.lean)
 - file `HodgeReduction.HCGapL4.FrontE5_HodgePolynomialFeedsProfileMatching` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/HCGapL4/FrontE5_HodgePolynomialFeedsProfileMatching.lean)
 
-## W2.unused-import (WARN) -- 2
+## W2.unused-import (WARN) -- 3
 
+- compile-prune candidate: on-chain `HodgeReduction.HCGapL4.CY3E7Bridge` imports `HodgeReduction.Infrastructure.SimpleLieAlgebraClassification` but reflected declarations consume no project decl from that import closure  (HodgeReduction/HCGapL4/CY3E7Bridge.lean)
 - compile-prune candidate: on-chain `HodgeReduction.HCGapL4.E6CaseClassicalBridge` imports `HodgeReduction.Infrastructure.DynkinMarks` but reflected declarations consume no project decl from that import closure  (HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean)
 - compile-prune candidate: on-chain `HodgeReduction.HCGapL4.E6CaseClassicalBridge` imports `HodgeReduction.Infrastructure.SimpleLieAlgebraClassification` but reflected declarations consume no project decl from that import closure  (HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean)
 
-## W3.on-disk-orphan (WARN) -- 194
+## W3.on-disk-orphan (WARN) -- 192
 
 - file `HodgeReduction.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction.lean)
 - file `HodgeReduction/Concrete.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Concrete.lean)
@@ -262,12 +263,10 @@
 - file `HodgeReduction/HCGapL4/CMFieldSequenceStoppingAudit.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/CMFieldSequenceStoppingAudit.lean)
 - file `HodgeReduction/HCGapL4/CMSourceBridgeNextTarget.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/CMSourceBridgeNextTarget.lean)
 - file `HodgeReduction/HCGapL4/CMSourceReplacementBridge.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/CMSourceReplacementBridge.lean)
-- file `HodgeReduction/HCGapL4/CY3E7Bridge.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/CY3E7Bridge.lean)
 - file `HodgeReduction/HCGapL4/CY3NonexistenceDecomposition.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/CY3NonexistenceDecomposition.lean)
 - file `HodgeReduction/HCGapL4/CY3NonexistenceProof.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/CY3NonexistenceProof.lean)
 - file `HodgeReduction/HCGapL4/CY3SpringerDiscriminant.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/CY3SpringerDiscriminant.lean)
 - file `HodgeReduction/HCGapL4/CY3VacuousClosure.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/CY3VacuousClosure.lean)
-- file `HodgeReduction/HCGapL4/CY3VacuousClosureAttempt.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/CY3VacuousClosureAttempt.lean)
 - file `HodgeReduction/HCGapL4/CanonicalConeExtractionAudit.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/CanonicalConeExtractionAudit.lean)
 - file `HodgeReduction/HCGapL4/ClassicalCartanGapCard.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/ClassicalCartanGapCard.lean)
 - file `HodgeReduction/HCGapL4/ClassicalCartanProof.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/HCGapL4/ClassicalCartanProof.lean)

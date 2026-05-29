@@ -66,10 +66,10 @@ def config : ChainAudit.ProjectConfig := {
     ``HodgeReduction.deligne_1982_abs_hodge_cm,
     ``HodgeReduction.abs_hodge_implies_algebraic,
     -- R172/R528 case cuts used by main_reduction_real. The E6 case is
-    -- now derived from a smaller transfer cut plus classical Cartan.
+    -- now derived from a smaller transfer cut plus classical Cartan; the
+    -- CY3 case is a theorem routed through the R530 bridge below.
     ``HodgeReduction.hc_real_classical_cartan,
     ``HodgeReduction.e6_factor_classical_transfer,
-    ``HodgeReduction.hc_real_cy3_reducible,
     -- R529/R517 decomposition of the former
     -- `mt_correspondence_e7_witness_exists` cut into CM source
     -- existence and fixed-source correspondence package construction.
@@ -78,9 +78,12 @@ def config : ChainAudit.ProjectConfig := {
     -- Paper-citation axiom for thm_cy3_e7_nonexistence (paper §4
     -- Stages A--D + Springer discriminant + FTS omega-pairing).
     ``HodgeReduction.cy3_e7_nonexistence_paper_axiom,
-    -- R514 CY3 vacuity bridge: geometric inheritance of an exact E7
-    -- MT factor to the CY3 reduction component.
-    ``HodgeReduction.cy3_inherits_e7_factor_exact
+    -- R530 CY3 vacuity bridge: weak E7-factor inheritance plus the two
+    -- structural facts needed to recover the exact E7 type used by the
+    -- CY3 nonexistence theorem.
+    ``HodgeReduction.cy3_inherits_e7_factor,
+    ``HodgeReduction.cy3_mtd_isSemisimple,
+    ``HodgeReduction.e7_excludes_e6
   ]
   infraFiles := [
     -- Audit / tooling files (intentionally off-chain).
@@ -302,12 +305,19 @@ def config : ChainAudit.ProjectConfig := {
       title := "Classical published-literature axioms awaiting Mathlib port"
       status := "deferred"
       summary :=
-        "Meyer / Kostant G_2 / Kostant F_4 / SV1 E_8 are already kernel-pure theorems (paper-grade proofs over R120/R121 structure refactor).  `cy3_e7_nonexistence_paper_axiom` remains a paper-citation axiom for `thm_cy3_e7_nonexistence` until Mathlib provides Calabi--Yau threefold infrastructure + Springer discriminant + FTS omega-pairing."
+        "Meyer / Kostant G_2 / Kostant F_4 / SV1 E_8 are already kernel-pure theorems (paper-grade proofs over R120/R121 structure refactor).  R530 refines the CY3 branch by replacing the former exact E7 inheritance cut with weak factor inheritance plus CY3 semisimplicity and E7/E6 exclusivity.  `cy3_e7_nonexistence_paper_axiom` remains a paper-citation axiom until Mathlib provides Calabi--Yau threefold infrastructure + Springer discriminant + FTS omega-pairing."
       files := [
-        "HodgeReduction/ClassicalResults.lean"
+        "HodgeReduction/ClassicalResults.lean",
+        "HodgeReduction/HCGapL4/CY3E7Bridge.lean",
+        "HodgeReduction/HCGapL4/CY3VacuityDischarge.lean"
       ]
       decls := [
-        "HodgeReduction.cy3_e7_nonexistence_paper_axiom"
+        "HodgeReduction.cy3_e7_nonexistence_paper_axiom",
+        "HodgeReduction.cy3_inherits_e7_factor",
+        "HodgeReduction.cy3_mtd_isSemisimple",
+        "HodgeReduction.e7_excludes_e6",
+        "HodgeReduction.cy3_e7_vacuity_via_bridge",
+        "HodgeReduction.hc_real_cy3_reducible_via_vacuity"
       ]
     },
     {
@@ -532,6 +542,7 @@ def config : ChainAudit.ProjectConfig := {
       labels := ["chain:unconditional-classical", "gap:G-classical-mathlib-port"]
       keywords := [
         "Meyer", "kostant_vacuity", "SV1_vacuity", "cy3_e7_nonexistence",
+        "cy3_inherits_e7_factor", "cy3_mtd_isSemisimple", "e7_excludes_e6",
         "subcase3b_vacuous", "Hasse", "Minkowski", "Bourbaki",
         "RationalQuadraticForm", "G2_realForm", "F4_realForm", "E8_realForm"
       ]

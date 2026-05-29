@@ -1,68 +1,36 @@
 /-
-# CY3 E7 vacuous closure: kernel-verified (R512, revised R525).
+# CY3 E7 vacuous closure support (R512, revised R525/R530).
 
-This file proves that the CY3-E7 vacuity discharge can proceed
-via hasSimpleFactor (which does not require type equality).
+This file provides the low-level bridge from
+`hasSimpleFactor G E7_neg25` to the exact `G = E7_neg25` formulation used
+by `cy3_e7_nonexistence_paper_axiom`, once the relevant CY3 structural
+exclusivity facts are supplied.
 
-The key insight: cy3_e7_nonexistence_paper_axiom uses
-MumfordTateGroupDerived X 3 = E7_neg25 (equality), but
-the inheritance bridge cy3_inherits_e7_factor only produces
-hasSimpleFactor (a weaker condition). The fix: we prove that
-hasSimpleFactor G E7_neg25 is logically equivalent to G.IsE7Type = true,
-which is sufficient for the nonexistence argument.
-
-Sources:
-* Paper thm:cy3-e7-nonexistence
-* Beauville-Bogomolov, Iitaka, MRC reduction
-
-All theorems kernel-pure. NO sorry, NO True.intro, NO tricks.
+No broad HC conclusion is assumed here.
 -/
 
 import HodgeReduction.Types
 import HodgeReduction.ClassicalResults
-import HodgeReduction.MainTheorem
 
 namespace HodgeReduction
 
-/-! ## Step 1: hasSimpleFactor characterisation -/
+/-! ## Step 1: `hasSimpleFactor` characterization for `E7_neg25` -/
 
-/-- hasSimpleFactor G E7_neg25 is equivalent to G.IsE7Type = true.
-    Proof: unfold hasSimpleFactor with E7_neg25 = ⟨False, False, True⟩.
-    The disjunction simplifies to just G.IsE7Type since the other
-    branches are False ∧ G.IsTorus = False and False ∧ G.IsE6Type = False.
-    KERNEL-PURE. -/
+/-- For the concrete `E7_neg25` real form, `hasSimpleFactor` is exactly
+the `IsE7Type` field of `G`. -/
 theorem hasSimpleFactor_E7_iff_isE7Type (G : MumfordTateGroupType) :
-    hasSimpleFactor G E7_neg25 ↔ G.IsE7Type = true := by
+    hasSimpleFactor G E7_neg25 ↔ G.IsE7Type := by
   unfold hasSimpleFactor E7_neg25
-  simp only [Bool.false_eq_true, And.self, And True, Or.false, Or.left, Or.right]
-  exact Iff.rfl
+  simp
 
-/-- Forward direction: hasSimpleFactor G E7_neg25 → G.IsE7Type = true.
-    KERNEL-PURE. -/
+/-- Forward direction of `hasSimpleFactor_E7_iff_isE7Type`. -/
 theorem hasSimpleFactor_E7_implies_isE7Type
     (G : MumfordTateGroupType)
     (h : hasSimpleFactor G E7_neg25) :
-    G.IsE7Type = true :=
+    G.IsE7Type :=
   (hasSimpleFactor_E7_iff_isE7Type G).mp h
 
-/-! ## Step 2: The vacuity argument does NOT require type equality
-
-The cy3_e7_nonexistence_paper_axiom states:
-  ¬ ∃ X, IsCalabiYauThreefold X ∧ MumfordTateGroupDerived X 3 = E7_neg25
-
-The bridge cy3_inherits_e7_factor gives:
-  hasSimpleFactor (MTDerived X 3) E7_neg25
-
-Since hasSimpleFactor G E7_neg25 ↔ G.IsE7Type = true,
-and E7_neg25.IsE7Type = true by definition, the nonexistence
-argument works at the IsE7Type level without needing full equality.
-
-The remaining gap is bridging from the = E7_neg25 formulation
-in the paper axiom to the hasSimpleFactor formulation. This is
-a pure reformulation, not a mathematical gap. -/
-
-/-- If the MT-derived group equals E7_neg25, it has the E7 simple factor.
-    KERNEL-PURE. -/
+/-- If the MT-derived group equals `E7_neg25`, it has the E7 simple factor. -/
 theorem eq_E7_neg25_implies_hasSimpleFactor
     (G : MumfordTateGroupType)
     (h : G = E7_neg25) :
@@ -70,56 +38,43 @@ theorem eq_E7_neg25_implies_hasSimpleFactor
   subst h
   exact (hasSimpleFactor_E7_iff_isE7Type E7_neg25).mpr E7_neg25_isE7Type
 
-/-- **R512**: The vacuity chain status. The paper axiom
-    cy3_e7_nonexistence_paper_axiom uses equality (= E7_neg25),
-    while the bridge produces hasSimpleFactor. These are logically
-    equivalent at the IsE7Type level. The gap is a formulation gap,
-    not a mathematical gap.
+/-! ## Step 2: exact-type reconstruction from structural exclusivity -/
 
-    To fully close: either reformulate the paper axiom to use
-    hasSimpleFactor, or add an exclusivity axiom to MumfordTateGroupType
-    (IsTorus, IsE6Type, IsE7Type are pairwise exclusive).
-
-    This file provides the machinery for both approaches. -/
-
-/-- Corollary: E7_neg25 is the unique MTGT with IsE7Type = true,
-    PROVIDED we assume the exclusivity constraint (at most one
-    type field is true). This is the recommended axiom to add.
-    KERNEL-PURE (conditional on exclusivity). -/
+/-- If an MT group is E7-type, not torus, and not E6-type, then it is the
+project's `E7_neg25` record.  The equality of Prop-valued fields uses
+`propext`, which is already audit-visible in theorem cones that compare
+structure records with Prop fields. -/
 theorem e7_unique_under_exclusivity
     (G : MumfordTateGroupType)
-    (h7 : G.IsE7Type = true)
-    (h_not_torus : G.IsTorus = false)
-    (h_not_e6 : G.IsE6Type = false) :
+    (h7 : G.IsE7Type = True)
+    (h_not_torus : G.IsTorus = False)
+    (h_not_e6 : G.IsE6Type = False) :
     G = E7_neg25 := by
-  -- With all three constraints, G = ⟨false, false, true⟩ = E7_neg25
-  cases G with | mk isTorus isE6Type isE7Type =>
-  simp only at h7 h_not_torus h_not_e6
-  rw [h_not_torus, h_not_e6, h7]
+  cases G with
+  | mk isTorus isE6Type isE7Type =>
+      simp [E7_neg25] at h7 h_not_torus h_not_e6 ⊢
+      exact ⟨h_not_torus, h_not_e6, h7⟩
 
-/-- The exclusivity constraint holds for E7_neg25. KERNEL-PURE. -/
+/-- The three exclusivity fields of `E7_neg25` by construction. -/
 theorem E7_neg25_exclusivity :
-    E7_neg25.IsTorus = false ∧ E7_neg25.IsE6Type = false ∧ E7_neg25.IsE7Type = true := by
-  exact ⟨rfl, rfl, trivial⟩
+    E7_neg25.IsTorus = False ∧
+    E7_neg25.IsE6Type = False ∧
+    E7_neg25.IsE7Type = True := by
+  exact ⟨rfl, rfl, rfl⟩
 
-/-- **R525**: Combined theorem: if G.IsE7Type = true and
-    G satisfies the exclusivity constraint (no other type flag is true),
-    then G = E7_neg25 and therefore hasSimpleFactor G E7_neg25.
-
-    This closes the formulation gap for any well-formed MTGT.
-    KERNEL-PURE. -/
+/-- Combined exact reconstruction plus the recovered simple-factor fact. -/
 theorem isE7_with_exclusivity_implies_eq_E7_neg25
     (G : MumfordTateGroupType)
-    (h7 : G.IsE7Type = true)
-    (h_not_torus : G.IsTorus = false)
-    (h_not_e6 : G.IsE6Type = false) :
+    (h7 : G.IsE7Type = True)
+    (h_not_torus : G.IsTorus = False)
+    (h_not_e6 : G.IsE6Type = False) :
     G = E7_neg25 ∧ hasSimpleFactor G E7_neg25 := by
-  exact ⟨e7_unique_under_exclusivity G h7 h_not_torus h_not_e6,
-    eq_E7_neg25_implies_hasSimpleFactor G
-      (e7_unique_under_exclusivity G h7 h_not_torus h_not_e6)⟩
+  have hEq : G = E7_neg25 :=
+    e7_unique_under_exclusivity G h7 h_not_torus h_not_e6
+  exact ⟨hEq, eq_E7_neg25_implies_hasSimpleFactor G hEq⟩
 
-/-- R525: 6 kernel-pure theorems, 0 sorry, 0 axioms. -/
+/-- R530 support count: 6 kernel-pure theorems, 0 new axioms in this file. -/
 def R525_theorem_count : Nat := 6
-def R525_adds_zero_axioms : Prop := True
+def R525_new_axiom_count : Nat := 0
 
 end HodgeReduction

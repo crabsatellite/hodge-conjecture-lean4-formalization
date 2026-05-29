@@ -8,7 +8,7 @@ five-way classification:
 * infra:      **2** (standalone tools, audit scripts)
 * registered: **20** (configured research route/gap files, off endpoint closure)
 * orphan:     **229** (loaded but unreachable - investigate)
-* on-disk-unloaded: **281** (file exists but not imported by any chain)
+* on-disk-unloaded: **279** (file exists but not imported by any chain)
 
 
 ## Quarantine (0)
@@ -282,7 +282,7 @@ five-way classification:
 | `HodgeReduction/Infrastructure/V56Freudenthal.lean` | 121 | 0 |
 | `HodgeReduction/Infrastructure/V56HodgeRank.lean` | 33 | 0 |
 
-## On-disk-unloaded (281)
+## On-disk-unloaded (279)
 
 Files present in the source tree but NOT imported by the entry script.  Either wire them into the chain, mark them quarantine, or delete them.
 
@@ -390,12 +390,10 @@ Files present in the source tree but NOT imported by the entry script.  Either w
 - `HodgeReduction/HCGapL4/CMFieldSequenceStoppingAudit.lean`
 - `HodgeReduction/HCGapL4/CMSourceBridgeNextTarget.lean`
 - `HodgeReduction/HCGapL4/CMSourceReplacementBridge.lean`
-- `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
 - `HodgeReduction/HCGapL4/CY3NonexistenceDecomposition.lean`
 - `HodgeReduction/HCGapL4/CY3NonexistenceProof.lean`
 - `HodgeReduction/HCGapL4/CY3SpringerDiscriminant.lean`
 - `HodgeReduction/HCGapL4/CY3VacuousClosure.lean`
-- `HodgeReduction/HCGapL4/CY3VacuousClosureAttempt.lean`
 - `HodgeReduction/HCGapL4/CanonicalConeExtractionAudit.lean`
 - `HodgeReduction/HCGapL4/ClassicalCartanGapCard.lean`
 - `HodgeReduction/HCGapL4/ClassicalCartanProof.lean`
