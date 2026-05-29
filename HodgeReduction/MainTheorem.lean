@@ -357,8 +357,10 @@ than bundling it in the package.
 Net dependency reduction: -1 axiom (`mt_correspondence_e7_witness_exists`
 no longer in chain).
 
-Final dependency chain (1 substantive + kernel):
-- `canonicalHCDataByCodim` (AMRT 1975 + per-codim MT correspondence package)
+Final dependency chain (3 field-level substantive cuts + CM bridge + kernel):
+- `canonicalTargetCohomologyData`
+- `canonicalTargetAlgClassesData`
+- `canonicalMTPackageAt`
 
 + propext, Classical.choice, Quot.sound.
 
