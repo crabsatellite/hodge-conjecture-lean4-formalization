@@ -462,6 +462,7 @@ import HodgeReduction.HCGapL4.FrontC11_ShimuraBettiComputation
 import HodgeReduction.HCGapL4.FrontC12_V56InfrastructureProfileBridge
 import HodgeReduction.HCGapL4.FrontC13_MatsushimaV56BoundaryBridge
 import HodgeReduction.HCGapL4.FrontC14_CartanCompactDualSourceBridge
+import HodgeReduction.HCGapL4.FrontC15_MatsushimaBoundaryRankCriterion
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix
