@@ -4,7 +4,7 @@
 * total: **8792**  *  FAIL: **0**  *  WARN: **8792**
 
 
-## W1.orphan (WARN) -- 231
+## W1.orphan (WARN) -- 233
 
 - file `HodgeReduction.Infrastructure.DynkinMarks` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/DynkinMarks.lean)
 - file `HodgeReduction.Infrastructure.SimpleLieAlgebraClassification` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/SimpleLieAlgebraClassification.lean)
@@ -174,6 +174,8 @@
 - file `HodgeReduction.Infrastructure.Cohomology.Basic` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/Cohomology/Basic.lean)
 - file `HodgeReduction.Infrastructure.Automorphic.CuspidalCohomology` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/Automorphic/CuspidalCohomology.lean)
 - file `HodgeReduction.Infrastructure.Automorphic.GKCohomology` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/Automorphic/GKCohomology.lean)
+- file `HodgeReduction.Infrastructure.Cohomology.KaehlerClass` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/Cohomology/KaehlerClass.lean)
+- file `HodgeReduction.Infrastructure.Shimura.CompactDual` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/Shimura/CompactDual.lean)
 - file `HodgeReduction.HCGapL4.Deligne1971LowDegreeFragment` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/HCGapL4/Deligne1971LowDegreeFragment.lean)
 - file `HodgeReduction.HCGapL4.ConnectedSmoothProjectiveH0RankOneInterface` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/HCGapL4/ConnectedSmoothProjectiveH0RankOneInterface.lean)
 - file `HodgeReduction.HCGapL4.AbstractConnectedH0RankOneTheorem` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/HCGapL4/AbstractConnectedH0RankOneTheorem.lean)
@@ -244,7 +246,7 @@
 - compile-prune candidate: on-chain `HodgeReduction.HCGapL4.E6CaseClassicalBridge` imports `HodgeReduction.Infrastructure.DynkinMarks` but reflected declarations consume no project decl from that import closure  (HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean)
 - compile-prune candidate: on-chain `HodgeReduction.HCGapL4.E6CaseClassicalBridge` imports `HodgeReduction.Infrastructure.SimpleLieAlgebraClassification` but reflected declarations consume no project decl from that import closure  (HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean)
 
-## W3.on-disk-orphan (WARN) -- 183
+## W3.on-disk-orphan (WARN) -- 181
 
 - file `HodgeReduction.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction.lean)
 - file `HodgeReduction/Concrete.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Concrete.lean)
@@ -385,7 +387,6 @@
 - file `HodgeReduction/Infrastructure/Cohomology/HardLefschetz.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/Cohomology/HardLefschetz.lean)
 - file `HodgeReduction/Infrastructure/Cohomology/HodgeCycle.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/Cohomology/HodgeCycle.lean)
 - file `HodgeReduction/Infrastructure/Cohomology/HodgeRefinementCarriers.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/Cohomology/HodgeRefinementCarriers.lean)
-- file `HodgeReduction/Infrastructure/Cohomology/KaehlerClass.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/Cohomology/KaehlerClass.lean)
 - file `HodgeReduction/Infrastructure/Cohomology/Lattice.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/Cohomology/Lattice.lean)
 - file `HodgeReduction/Infrastructure/Cohomology/Lefschetz.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/Cohomology/Lefschetz.lean)
 - file `HodgeReduction/Infrastructure/Cohomology/LefschetzHyperplane.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/Cohomology/LefschetzHyperplane.lean)
@@ -415,7 +416,6 @@
 - file `HodgeReduction/Infrastructure/Shimura/Adelic.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/Shimura/Adelic.lean)
 - file `HodgeReduction/Infrastructure/Shimura/ArithmeticGroup.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/Shimura/ArithmeticGroup.lean)
 - file `HodgeReduction/Infrastructure/Shimura/BorelHirzebruch.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/Shimura/BorelHirzebruch.lean)
-- file `HodgeReduction/Infrastructure/Shimura/CompactDual.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/Shimura/CompactDual.lean)
 - file `HodgeReduction/Infrastructure/Shimura/E7ParabolicCodim.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/Shimura/E7ParabolicCodim.lean)
 - file `HodgeReduction/Infrastructure/Shimura/HermitianForm.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/Shimura/HermitianForm.lean)
 - file `HodgeReduction/Infrastructure/Shimura/HermitianSymmetric.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/Shimura/HermitianSymmetric.lean)
@@ -432,7 +432,7 @@
 
 ## W4.skipped-large-orphan-set (WARN) -- 1
 
-- skipped expensive unused-orphan-import scan because 231 loaded modules are classified orphan; use route labels and W3/W1 first, then narrow the audit entry
+- skipped expensive unused-orphan-import scan because 233 loaded modules are classified orphan; use route labels and W3/W1 first, then narrow the audit entry
 
 ## W5.prop-def (WARN) -- 3722
 

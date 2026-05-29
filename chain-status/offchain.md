@@ -6,9 +6,9 @@ five-way classification:
 
 * quarantine: **0** (explicit failed-route list)
 * infra:      **2** (standalone tools, audit scripts)
-* registered: **28** (configured research route/gap files, off endpoint closure)
-* orphan:     **231** (loaded but unreachable - investigate)
-* on-disk-unloaded: **270** (file exists but not imported by any chain)
+* registered: **29** (configured research route/gap files, off endpoint closure)
+* orphan:     **233** (loaded but unreachable - investigate)
+* on-disk-unloaded: **268** (file exists but not imported by any chain)
 
 
 ## Quarantine (0)
@@ -23,7 +23,7 @@ five-way classification:
 | `HodgeReduction/HCGapRegistry.lean` | 9 | 0 |
 | `HodgeReduction/MainChain.lean` | 1 | 0 |
 
-## Registered research routes/gaps (28)
+## Registered research routes/gaps (29)
 
 | file | decls | axioms |
 |------|------:|-------:|
@@ -36,6 +36,7 @@ five-way classification:
 | `HodgeReduction/HCGapL4/FrontC11_ShimuraBettiComputation.lean` | 41 | 0 |
 | `HodgeReduction/HCGapL4/FrontC12_V56InfrastructureProfileBridge.lean` | 33 | 0 |
 | `HodgeReduction/HCGapL4/FrontC13_MatsushimaV56BoundaryBridge.lean` | 26 | 0 |
+| `HodgeReduction/HCGapL4/FrontC14_CartanCompactDualSourceBridge.lean` | 18 | 0 |
 | `HodgeReduction/HCGapL4/FrontC6_AllDegreeHodgeRankAdapter.lean` | 34 | 0 |
 | `HodgeReduction/HCGapL4/FrontC7_E7EVIIHodgeDiamondInstance.lean` | 34 | 0 |
 | `HodgeReduction/HCGapL4/FrontC8_V56MTBridge.lean` | 28 | 0 |
@@ -56,7 +57,7 @@ five-way classification:
 | `HodgeReduction/Infrastructure/Shimura/ToroidalCompactification.lean` | 49 | 0 |
 | `HodgeReduction/Infrastructure/V56HodgeDecomp.lean` | 82 | 0 |
 
-## Orphan (warning - investigate) (231)
+## Orphan (warning - investigate) (233)
 
 | file | decls | axioms |
 |------|------:|-------:|
@@ -276,6 +277,7 @@ five-way classification:
 | `HodgeReduction/Infrastructure/Automorphic/CuspidalCohomology.lean` | 26 | 0 |
 | `HodgeReduction/Infrastructure/Automorphic/GKCohomology.lean` | 50 | 0 |
 | `HodgeReduction/Infrastructure/Cohomology/Basic.lean` | 53 | 0 |
+| `HodgeReduction/Infrastructure/Cohomology/KaehlerClass.lean` | 62 | 0 |
 | `HodgeReduction/Infrastructure/DynkinMarks.lean` | 18 | 0 |
 | `HodgeReduction/Infrastructure/E7ParabolicDimensions.lean` | 13 | 0 |
 | `HodgeReduction/Infrastructure/HodgeStructure/Polarised.lean` | 61 | 0 |
@@ -286,13 +288,14 @@ five-way classification:
 | `HodgeReduction/Infrastructure/Octonion.lean` | 158 | 0 |
 | `HodgeReduction/Infrastructure/OctonionBasis.lean` | 14 | 0 |
 | `HodgeReduction/Infrastructure/Shimura/Basic.lean` | 72 | 0 |
+| `HodgeReduction/Infrastructure/Shimura/CompactDual.lean` | 49 | 0 |
 | `HodgeReduction/Infrastructure/SimpleLieAlgebraClassification.lean` | 110 | 0 |
 | `HodgeReduction/Infrastructure/V56Basis.lean` | 17 | 0 |
 | `HodgeReduction/Infrastructure/V56BranchingRules.lean` | 18 | 0 |
 | `HodgeReduction/Infrastructure/V56Freudenthal.lean` | 121 | 0 |
 | `HodgeReduction/Infrastructure/V56HodgeRank.lean` | 33 | 0 |
 
-## On-disk-unloaded (270)
+## On-disk-unloaded (268)
 
 Files present in the source tree but NOT imported by the entry script.  Either wire them into the chain, mark them quarantine, or delete them.
 
@@ -520,7 +523,6 @@ Files present in the source tree but NOT imported by the entry script.  Either w
 - `HodgeReduction/Infrastructure/Cohomology/HardLefschetz.lean`
 - `HodgeReduction/Infrastructure/Cohomology/HodgeCycle.lean`
 - `HodgeReduction/Infrastructure/Cohomology/HodgeRefinementCarriers.lean`
-- `HodgeReduction/Infrastructure/Cohomology/KaehlerClass.lean`
 - `HodgeReduction/Infrastructure/Cohomology/Lattice.lean`
 - `HodgeReduction/Infrastructure/Cohomology/Lefschetz.lean`
 - `HodgeReduction/Infrastructure/Cohomology/LefschetzHyperplane.lean`
@@ -550,7 +552,6 @@ Files present in the source tree but NOT imported by the entry script.  Either w
 - `HodgeReduction/Infrastructure/Shimura/Adelic.lean`
 - `HodgeReduction/Infrastructure/Shimura/ArithmeticGroup.lean`
 - `HodgeReduction/Infrastructure/Shimura/BorelHirzebruch.lean`
-- `HodgeReduction/Infrastructure/Shimura/CompactDual.lean`
 - `HodgeReduction/Infrastructure/Shimura/E7ParabolicCodim.lean`
 - `HodgeReduction/Infrastructure/Shimura/HermitianForm.lean`
 - `HodgeReduction/Infrastructure/Shimura/HermitianSymmetric.lean`

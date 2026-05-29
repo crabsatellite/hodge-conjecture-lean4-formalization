@@ -97,7 +97,6 @@ theorem dim_decomposition :
     Module.finrank ℚ Hodge_3_0 + 2 * Module.finrank ℚ J3O
     + Module.finrank ℚ Hodge_0_3 := by
   rw [finrank, finrank_Hodge_3_0, J3O.finrank, finrank_Hodge_0_3]
-  omega
 
 /-- Numerical: 1 + 2 * 27 + 1 = 56. -/
 theorem dim_decomposition_numerical : (1 : Int) + 2 * 27 + 1 = 56 := by omega
@@ -105,7 +104,8 @@ theorem dim_decomposition_numerical : (1 : Int) + 2 * 27 + 1 = 56 := by omega
 /-! ## Even-dimensional property -/
 
 /-- The total dimension 56 is even. -/
-theorem dim_even : Module.finrank ℚ V56 % 2 = 0 := by omega
+theorem dim_even : Module.finrank ℚ V56 % 2 = 0 := by
+  rw [finrank]
 
 /-- Each of the symmetric Hodge pieces (V^{3,0} + V^{0,3}) contributes
     dimension 2. -/
@@ -124,7 +124,6 @@ theorem total_dim_split :
     + (Module.finrank ℚ Hodge_2_1 + Module.finrank ℚ Hodge_1_2)
     = Module.finrank ℚ V56 := by
   rw [finrank_Hodge_3_0, finrank_Hodge_0_3, finrank_Hodge_2_1, finrank_Hodge_1_2, finrank]
-  omega
 
 /-! ## Hodge class dimension at codim p = dim V^{p,p} for weight 2p -/
 
@@ -134,8 +133,8 @@ theorem total_dim_split :
     p=1: V^{1,1} (doesn't exist in V_56 weight 3)
     The V_56 Hodge structure is weight 3, so there are no (p,p) classes.
     All Hodge classes are at (3,0), (2,1), (1,2), (0,3). -/
-theorem v56_no_pp_classes (p : ℕ) (hp : p > 0) :
-    p + p >= 3 := by omega
+theorem v56_no_pp_classes (p : ℕ) :
+    p + p ≠ 3 := by omega
 
 /-- The V_56 Hodge diamond has nonzero entries only at:
     (3,0), (2,1), (1,2), (0,3). These correspond to the four
@@ -161,9 +160,9 @@ theorem codim1_dim_zero : (0 : Int) = 0 := rfl
     This is already verified above as hodge_symm_dim_30_03 and
     hodge_symm_dim_21_12. -/
 theorem polarisation_dimension_constraint :
-    Module.finrank ℚ Hodge_3_0 = Module.finrank ℚ Hodge_0_3 ?
+    Module.finrank ℚ Hodge_3_0 = Module.finrank ℚ Hodge_0_3 ∧
     Module.finrank ℚ Hodge_2_1 = Module.finrank ℚ Hodge_1_2 := by
-  exact ?hodge_symm_dim_30_03, hodge_symm_dim_21_12?
+  exact ⟨hodge_symm_dim_30_03, hodge_symm_dim_21_12⟩
 
 /-- The Hodge classes at weight 3 in V_56 are those in
     V^{3,0} ? V^{0,3} (which is trivial since V^{3,0} and V^{0,3}

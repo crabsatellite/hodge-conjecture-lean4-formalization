@@ -378,10 +378,10 @@ def config : ChainAudit.ProjectConfig := {
     },
     {
       id := "G-hcgap-l4-multifront"
-      title := "HCGapL4 multi-front Layer-4 attack waves (R420 -- R554)"
+      title := "HCGapL4 multi-front Layer-4 attack waves (R420 -- R555)"
       status := "active-open"
       summary :=
-        "Active exploratory attack waves on the L4 / cohomology-profile / connectedness pipeline: FrontA (Deligne H0 sheaf realization), FrontB (Baily--Borel connectedness), FrontC (E_7 low-degree Hodge numbers + Hodge polynomial algebra + all-degree rank adapter + EVII/V56/Shimura expected Betti profile), FrontD (E_7 -> CM Chow correspondence + Deligne 1982 minimal fragment), FrontE (real-carrier profile matching + R405 conditional transfer feed).  Audits R451 / R456 / R460 / R465 / R470 / R476 are wave-level summaries.  R552 certifies the expected Shimura Betti profile degree-by-degree from EVII compact-dual Hodge sums plus the isolated V56 degree-3 contribution; R553 ties that finite V56 contribution to the actual `PureHodgeStructure V56 3` infrastructure; R554 combines the Matsushima, Eisenstein, and cuspidal trivial-module infrastructure into an honest boundary theorem, leaving the concrete EVII source/target submodule equalities as the next gap.  No new axioms."
+        "Active exploratory attack waves on the L4 / cohomology-profile / connectedness pipeline: FrontA (Deligne H0 sheaf realization), FrontB (Baily--Borel connectedness), FrontC (E_7 low-degree Hodge numbers + Hodge polynomial algebra + all-degree rank adapter + EVII/V56/Shimura expected Betti profile), FrontD (E_7 -> CM Chow correspondence + Deligne 1982 minimal fragment), FrontE (real-carrier profile matching + R405 conditional transfer feed).  Audits R451 / R456 / R460 / R465 / R470 / R476 are wave-level summaries.  R552 certifies the expected Shimura Betti profile degree-by-degree from EVII compact-dual Hodge sums plus the isolated V56 degree-3 contribution; R553 ties that finite V56 contribution to the actual `PureHodgeStructure V56 3` infrastructure; R554 combines the Matsushima, Eisenstein, and cuspidal trivial-module infrastructure into an honest boundary theorem; R555 proves the Cartan compact-dual source bridge and reduces the R554 source equality to `surjectivity_source = source_invariants`.  The concrete EVII Matsushima/cuspidal instances and target equality remain open.  No new axioms."
       files := [
         "HodgeReduction/HCGapL4/FrontA_DeligneH0SheafRealization.lean",
         "HodgeReduction/HCGapL4/FrontB_BailyBorelConnectedness.lean",
@@ -396,6 +396,7 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction/HCGapL4/FrontC11_ShimuraBettiComputation.lean",
         "HodgeReduction/HCGapL4/FrontC12_V56InfrastructureProfileBridge.lean",
         "HodgeReduction/HCGapL4/FrontC13_MatsushimaV56BoundaryBridge.lean",
+        "HodgeReduction/HCGapL4/FrontC14_CartanCompactDualSourceBridge.lean",
         "HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean",
         "HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean",
         "HodgeReduction/HCGapL4/R451_MultiFrontFrontierAudit.lean",
@@ -415,7 +416,10 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction.HCGapL4.FrontC11_ShimuraBettiComputation.shimura_expected_known_hodgeSum_total",
         "HodgeReduction.HCGapL4.FrontC12_V56InfrastructureProfileBridge.v56InfrastructureProfileCertification_current",
         "HodgeReduction.HCGapL4.FrontC13_MatsushimaV56BoundaryBridge.matsushima_compactDual_image_eq_trivialModulePart",
-        "HodgeReduction.HCGapL4.FrontC13_MatsushimaV56BoundaryBridge.matsushimaV56BoundaryCertification_from_boundary"
+        "HodgeReduction.HCGapL4.FrontC13_MatsushimaV56BoundaryBridge.matsushimaV56BoundaryCertification_from_boundary",
+        "HodgeReduction.HCGapL4.FrontC14_CartanCompactDualSourceBridge.cartan_trivialModuleGK_H8_classes_are_algebraic",
+        "HodgeReduction.HCGapL4.FrontC14_CartanCompactDualSourceBridge.matsushimaV56BoundaryData_of_source_target_invariants",
+        "HodgeReduction.HCGapL4.FrontC14_CartanCompactDualSourceBridge.cartanCompactDualSourceCertification_current"
       ]
     }
   ]
@@ -488,11 +492,11 @@ def config : ChainAudit.ProjectConfig := {
     },
     {
       id := "hcgap-l4-multifront-active"
-      title := "HCGapL4 multi-front attack waves (R420 -- R554)"
+      title := "HCGapL4 multi-front attack waves (R420 -- R555)"
       kind := "active"
       status := "exploratory"
       summary :=
-        "5 parallel attack fronts on the L4 cohomology-profile + connectedness pipeline.  Per-wave audits R451 / R456 / R460 / R465 / R470 / R476 enumerate substantive theorems per round.  R552 extends the FrontC numeric bridge through a buildable EVII compact-dual/V56/Shimura expected Betti profile: all degrees 0..8 are certified by known Hodge sums, with degree 3 explicitly routed through V56 rather than hidden in compact-dual odd cohomology.  R553 connects that finite V56 profile to the actual infrastructure `PureHodgeStructure V56 3`.  R554 proves the abstract Matsushima boundary composition: target invariants reduce to the cuspidal trivial-module part, and compact-dual image reduces to that part once concrete EVII source/target boundary equalities are provided.  The route remains exploratory, not a closure claim."
+        "5 parallel attack fronts on the L4 cohomology-profile + connectedness pipeline.  Per-wave audits R451 / R456 / R460 / R465 / R470 / R476 enumerate substantive theorems per round.  R552 extends the FrontC numeric bridge through a buildable EVII compact-dual/V56/Shimura expected Betti profile: all degrees 0..8 are certified by known Hodge sums, with degree 3 explicitly routed through V56 rather than hidden in compact-dual odd cohomology.  R553 connects that finite V56 profile to the actual infrastructure `PureHodgeStructure V56 3`.  R554 proves the abstract Matsushima boundary composition: target invariants reduce to the cuspidal trivial-module part, and compact-dual image reduces to that part once concrete EVII source/target boundary equalities are provided.  R555 tightens the source-side obligation: Cartan's trivial-module H8 line rewrites to compact-dual H8, its classes are algebraic through `CompactDualData`, and the R554 source equality follows from `surjectivity_source = source_invariants`.  The route remains exploratory, not a closure claim."
       files := [
         "HodgeReduction/HCGapL4/FrontA_DeligneH0SheafRealization.lean",
         "HodgeReduction/HCGapL4/FrontB_BailyBorelConnectedness.lean",
@@ -507,6 +511,7 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction/HCGapL4/FrontC11_ShimuraBettiComputation.lean",
         "HodgeReduction/HCGapL4/FrontC12_V56InfrastructureProfileBridge.lean",
         "HodgeReduction/HCGapL4/FrontC13_MatsushimaV56BoundaryBridge.lean",
+        "HodgeReduction/HCGapL4/FrontC14_CartanCompactDualSourceBridge.lean",
         "HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean",
         "HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean",
         "HodgeReduction/HCGapL4/R476_MultiFrontWave6Audit.lean"
@@ -516,12 +521,15 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction.HCGapL4.FrontC11_ShimuraBettiComputation.shimura_expected_known_hodgeSum_total",
         "HodgeReduction.HCGapL4.FrontC12_V56InfrastructureProfileBridge.v56InfrastructureProfileCertification_current",
         "HodgeReduction.HCGapL4.FrontC13_MatsushimaV56BoundaryBridge.matsushima_compactDual_image_eq_trivialModulePart",
-        "HodgeReduction.HCGapL4.FrontC13_MatsushimaV56BoundaryBridge.matsushimaV56BoundaryCertification_from_boundary"
+        "HodgeReduction.HCGapL4.FrontC13_MatsushimaV56BoundaryBridge.matsushimaV56BoundaryCertification_from_boundary",
+        "HodgeReduction.HCGapL4.FrontC14_CartanCompactDualSourceBridge.cartan_trivialModuleGK_H8_classes_are_algebraic",
+        "HodgeReduction.HCGapL4.FrontC14_CartanCompactDualSourceBridge.matsushimaV56BoundaryData_of_source_target_invariants",
+        "HodgeReduction.HCGapL4.FrontC14_CartanCompactDualSourceBridge.cartanCompactDualSourceCertification_current"
       ]
       gapIds := ["G-hcgap-l4-multifront"]
       dependsOn := ["main-hc-axiom-relative"]
       attackPlan := [
-        "FrontC: instantiate the R554 `MatsushimaV56BoundaryData` equalities for the concrete EVII degree under study: identify the Matsushima surjectivity source with compact dual cohomology and its target with the target-invariant subspace, then feed the R553 V56 profile.",
+        "FrontC: construct the concrete EVII Matsushima/cuspidal instances.  After R555, the source half of R554 can be supplied by proving `surjectivity_source = MatsushimaData.source_invariants`; the target half remains `surjectivity_target = MatsushimaData.target_invariants`.  Then feed R553/R554/R555 together.",
         "FrontB: replace the abstract connectedness pipeline with the genuine Baily--Borel connectedness theorem for arithmetic quotients.",
         "FrontD: deliver the E_7 -> CM Chow correspondence at codim 1 first, then lift to all p; this would discharge G-l4-mt-correspondence for the canonical case.",
         "Never re-bundle a closed front into a stronger hypothesis; chainAudit treats `def : Prop` placeholders and conjunction shells as hard failures."
@@ -661,7 +669,7 @@ def config : ChainAudit.ProjectConfig := {
         "DeligneH0SheafRealization", "E7ToCMChowCorrespondence",
         "RealCarrierProfileMatching", "HCFrontierAfter",
         "ParametricCanonicalE7ShimuraTor", "ToyToReal", "V56InfrastructureProfile",
-        "MatsushimaV56Boundary",
+        "MatsushimaV56Boundary", "CartanCompactDualSource",
         "RealCompatible", "AbstractConnectedH0", "LocallyConstant"
       ]
     },

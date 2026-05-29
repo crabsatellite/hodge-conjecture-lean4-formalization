@@ -7,8 +7,8 @@ For each orphan, the user should either:
 3. Delete it.
 
 
-* loaded-but-orphan: **231**
-* on-disk-but-unloaded: **270**
+* loaded-but-orphan: **233**
+* on-disk-but-unloaded: **268**
 
 
 ## Loaded-but-orphan (the env has them, no closure)
@@ -229,6 +229,7 @@ For each orphan, the user should either:
 - `HodgeReduction/Infrastructure/Automorphic/CuspidalCohomology.lean` -- 26 decl(s)
 - `HodgeReduction/Infrastructure/Automorphic/GKCohomology.lean` -- 50 decl(s)
 - `HodgeReduction/Infrastructure/Cohomology/Basic.lean` -- 53 decl(s)
+- `HodgeReduction/Infrastructure/Cohomology/KaehlerClass.lean` -- 62 decl(s)
 - `HodgeReduction/Infrastructure/DynkinMarks.lean` -- 18 decl(s)
 - `HodgeReduction/Infrastructure/E7ParabolicDimensions.lean` -- 13 decl(s)
 - `HodgeReduction/Infrastructure/HodgeStructure/Polarised.lean` -- 61 decl(s)
@@ -239,6 +240,7 @@ For each orphan, the user should either:
 - `HodgeReduction/Infrastructure/Octonion.lean` -- 158 decl(s)
 - `HodgeReduction/Infrastructure/OctonionBasis.lean` -- 14 decl(s)
 - `HodgeReduction/Infrastructure/Shimura/Basic.lean` -- 72 decl(s)
+- `HodgeReduction/Infrastructure/Shimura/CompactDual.lean` -- 49 decl(s)
 - `HodgeReduction/Infrastructure/SimpleLieAlgebraClassification.lean` -- 110 decl(s)
 - `HodgeReduction/Infrastructure/V56Basis.lean` -- 17 decl(s)
 - `HodgeReduction/Infrastructure/V56BranchingRules.lean` -- 18 decl(s)
@@ -471,7 +473,6 @@ For each orphan, the user should either:
 - `HodgeReduction/Infrastructure/Cohomology/HardLefschetz.lean`
 - `HodgeReduction/Infrastructure/Cohomology/HodgeCycle.lean`
 - `HodgeReduction/Infrastructure/Cohomology/HodgeRefinementCarriers.lean`
-- `HodgeReduction/Infrastructure/Cohomology/KaehlerClass.lean`
 - `HodgeReduction/Infrastructure/Cohomology/Lattice.lean`
 - `HodgeReduction/Infrastructure/Cohomology/Lefschetz.lean`
 - `HodgeReduction/Infrastructure/Cohomology/LefschetzHyperplane.lean`
@@ -501,7 +502,6 @@ For each orphan, the user should either:
 - `HodgeReduction/Infrastructure/Shimura/Adelic.lean`
 - `HodgeReduction/Infrastructure/Shimura/ArithmeticGroup.lean`
 - `HodgeReduction/Infrastructure/Shimura/BorelHirzebruch.lean`
-- `HodgeReduction/Infrastructure/Shimura/CompactDual.lean`
 - `HodgeReduction/Infrastructure/Shimura/E7ParabolicCodim.lean`
 - `HodgeReduction/Infrastructure/Shimura/HermitianForm.lean`
 - `HodgeReduction/Infrastructure/Shimura/HermitianSymmetric.lean`
