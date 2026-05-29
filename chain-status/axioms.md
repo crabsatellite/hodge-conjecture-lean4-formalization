@@ -18,7 +18,9 @@ Equivalent to running `#print axioms <endpoint>` for each endpoint.
 - `HodgeReduction.absHodgeClassesAtDegree`
 - `HodgeReduction.abs_hodge_implies_algebraic`
 - `HodgeReduction.cy3_e7_excludes_e6`
-- `HodgeReduction.cy3_e7_nonexistence_paper_axiom`
+- `HodgeReduction.cy3_e7_fts_omega_stage`
+- `HodgeReduction.cy3_e7_j3o_nonrealization_stage`
+- `HodgeReduction.cy3_e7_springer_stage`
 - `HodgeReduction.cy3_inherits_e7_factor`
 - `HodgeReduction.cy3_mtd_isSemisimple`
 - `HodgeReduction.deligne_1982_abs_hodge_cm`
@@ -48,7 +50,9 @@ Equivalent to running `#print axioms <endpoint>` for each endpoint.
 ## `HodgeReduction.thm_cy3_e7_nonexistence`
 
 - `Classical.choice`
-- `HodgeReduction.cy3_e7_nonexistence_paper_axiom`
+- `HodgeReduction.cy3_e7_fts_omega_stage`
+- `HodgeReduction.cy3_e7_j3o_nonrealization_stage`
+- `HodgeReduction.cy3_e7_springer_stage`
 - `Quot.sound`
 - `propext`
 

@@ -2,7 +2,7 @@
 
 Decision-first index for the next research round.  Treat this as the base map: the proof spine is the endpoint closure, route labels are generated automatically from the Lean import graph, file names, source text, and audit route taxonomy.  The goal is to show which proof routes are active, blocked, closed, or orphaned before a new agent starts editing.
 
-* endpoints: **7**  *  open mathematical cuts: **14**  *  route taxonomy chains: **6**  *  route taxonomy gaps: **8**  *  debt components: **30**  *  branch heads: **74**
+* endpoints: **7**  *  open mathematical cuts: **16**  *  route taxonomy chains: **6**  *  route taxonomy gaps: **8**  *  debt components: **30**  *  branch heads: **74**
 
 ## Audit Truth Contract
 
@@ -23,7 +23,9 @@ Kernel cut ledger.  These are audit-visible unresolved constants on the endpoint
 - `HodgeReduction.abs_hodge_implies_algebraic` in `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
 - `HodgeReduction.canonicalE7ShimuraTor` in `HodgeReduction/OpenHypotheses.lean`
 - `HodgeReduction.cy3_e7_excludes_e6` in `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
-- `HodgeReduction.cy3_e7_nonexistence_paper_axiom` in `HodgeReduction/ClassicalResults.lean`
+- `HodgeReduction.cy3_e7_fts_omega_stage` in `HodgeReduction/HCGapL4/CY3NonexistenceStageCuts.lean`
+- `HodgeReduction.cy3_e7_j3o_nonrealization_stage` in `HodgeReduction/HCGapL4/CY3NonexistenceStageCuts.lean`
+- `HodgeReduction.cy3_e7_springer_stage` in `HodgeReduction/HCGapL4/CY3NonexistenceStageCuts.lean`
 - `HodgeReduction.cy3_inherits_e7_factor` in `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
 - `HodgeReduction.cy3_mtd_isSemisimple` in `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
 - `HodgeReduction.deligne_1982_abs_hodge_cm` in `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
@@ -70,11 +72,11 @@ Active exploratory attack waves on the L4 / cohomology-profile / connectedness p
 | endpoint | mathematical cuts | full axiom count |
 |----------|-------------------|-----------------:|
 | `HodgeReduction.hodgeConjectureReal_canonical` | `HodgeReduction.canonicalE7ShimuraTor` | 4 |
-| `HodgeReduction.main_reduction_real` | `HodgeReduction.SmoothProjectiveVariety.algClasses`, `HodgeReduction.SmoothProjectiveVariety.cohomology`, `HodgeReduction.absHodgeClassesAtDegree`, `HodgeReduction.abs_hodge_implies_algebraic`, `HodgeReduction.cy3_e7_excludes_e6`, +8 more | 16 |
+| `HodgeReduction.main_reduction_real` | `HodgeReduction.SmoothProjectiveVariety.algClasses`, `HodgeReduction.SmoothProjectiveVariety.cohomology`, `HodgeReduction.absHodgeClassesAtDegree`, `HodgeReduction.abs_hodge_implies_algebraic`, `HodgeReduction.cy3_e7_excludes_e6`, +10 more | 18 |
 | `HodgeReduction.thm_Meyer` | - | 0 |
 | `HodgeReduction.thm_G2F4` | - | 3 |
 | `HodgeReduction.thm_E8_vacuous` | - | 3 |
-| `HodgeReduction.thm_cy3_e7_nonexistence` | `HodgeReduction.cy3_e7_nonexistence_paper_axiom` | 4 |
+| `HodgeReduction.thm_cy3_e7_nonexistence` | `HodgeReduction.cy3_e7_fts_omega_stage`, `HodgeReduction.cy3_e7_j3o_nonrealization_stage`, `HodgeReduction.cy3_e7_springer_stage` | 6 |
 | `HodgeReduction.thm_subcase3b_vacuous` | - | 0 |
 
 Open mathematical cut ledger:
@@ -84,7 +86,9 @@ Open mathematical cut ledger:
 - `HodgeReduction.abs_hodge_implies_algebraic` in `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
 - `HodgeReduction.canonicalE7ShimuraTor` in `HodgeReduction/OpenHypotheses.lean`
 - `HodgeReduction.cy3_e7_excludes_e6` in `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
-- `HodgeReduction.cy3_e7_nonexistence_paper_axiom` in `HodgeReduction/ClassicalResults.lean`
+- `HodgeReduction.cy3_e7_fts_omega_stage` in `HodgeReduction/HCGapL4/CY3NonexistenceStageCuts.lean`
+- `HodgeReduction.cy3_e7_j3o_nonrealization_stage` in `HodgeReduction/HCGapL4/CY3NonexistenceStageCuts.lean`
+- `HodgeReduction.cy3_e7_springer_stage` in `HodgeReduction/HCGapL4/CY3NonexistenceStageCuts.lean`
 - `HodgeReduction.cy3_inherits_e7_factor` in `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
 - `HodgeReduction.cy3_mtd_isSemisimple` in `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
 - `HodgeReduction.deligne_1982_abs_hodge_cm` in `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
@@ -97,8 +101,8 @@ Open mathematical cut ledger:
 
 | id | role | status | depends on | gaps | files |
 |----|------|--------|------------|------|-------|
-| `chain:main-hc-axiom-relative` | main | conditional | - | `gap:G-main-hc`, `gap:G-l1-e7-shimura-tor`, `gap:G-l2-cohomology-construction`, `gap:G-l3-v56-mt-identification`, `gap:G-l4-cm-abelian-hc`, +1 more | cut: 3, infra: 1, on-chain: 1 |
-| `chain:unconditional-classical` | support | closed-modulo-cy3-citation | - | `gap:G-classical-mathlib-port` | cut: 2 |
+| `chain:main-hc-axiom-relative` | main | conditional | - | `gap:G-main-hc`, `gap:G-l1-e7-shimura-tor`, `gap:G-l2-cohomology-construction`, `gap:G-l3-v56-mt-identification`, `gap:G-l4-cm-abelian-hc`, +1 more | cut: 2, infra: 1, on-chain: 2 |
+| `chain:unconditional-classical` | support | closed-modulo-cy3-citation | - | `gap:G-classical-mathlib-port` | cut: 1, on-chain: 1 |
 | `chain:hcgap-l2-trivial-instances` | support | stable | `chain:main-hc-axiom-relative` | `gap:G-l2-cohomology-construction` | registered: 3 |
 | `chain:hcgap-l4-multifront-active` | active | exploratory | `chain:main-hc-axiom-relative` | `gap:G-hcgap-l4-multifront` | on-disk-unloaded: 4, registered: 5 |
 | `chain:concrete-evii-toy` | support | closed-toy | `chain:main-hc-axiom-relative` | - | on-disk-unloaded: 1 |
@@ -114,7 +118,7 @@ Open mathematical cut ledger:
 | `gap:G-l3-v56-mt-identification` | open | `chain:main-hc-axiom-relative` | `HodgeReduction.HCGapRegistry.L3_G1_V56_PureHodgeStructure_W3_HodgeDiamond`, `HodgeReduction.HCGapRegistry.L3_G2_V56_To_E7_Variety_Cohomology_Identification` | infra: 1, registered: 4 |
 | `gap:G-l4-cm-abelian-hc` | open | `chain:main-hc-axiom-relative` | `HodgeReduction.hyp_HC_CM_Ab_real`, `HodgeReduction.absHodgeClassesAtDegree`, `HodgeReduction.deligne_1982_abs_hodge_cm`, +2 more | cut: 2, infra: 1, on-disk-unloaded: 2 |
 | `gap:G-l4-mt-correspondence` | open | `chain:main-hc-axiom-relative` | `HodgeReduction.mt_correspondence_e7_witness_exists`, `HodgeReduction.e7_cm_witness_exists`, `HodgeReduction.e7_chosen_witness_correspondence_package_exists`, +2 more | cut: 2, infra: 1, registered: 1 |
-| `gap:G-classical-mathlib-port` | deferred | `chain:unconditional-classical` | `HodgeReduction.cy3_e7_nonexistence_paper_axiom`, `HodgeReduction.cy3_inherits_e7_factor`, `HodgeReduction.cy3_mtd_isSemisimple`, +3 more | cut: 2, on-chain: 1 |
+| `gap:G-classical-mathlib-port` | deferred | `chain:unconditional-classical` | `HodgeReduction.cy3_e7_nonexistence_paper_axiom`, `HodgeReduction.cy3_e7_springer_stage`, `HodgeReduction.cy3_e7_fts_omega_stage`, +6 more | cut: 2, on-chain: 2 |
 | `gap:G-hcgap-l4-multifront` | active-open | `chain:hcgap-l4-multifront-active` | - | on-disk-unloaded: 4, registered: 10 |
 
 ## Automatic Route Labels
@@ -234,10 +238,10 @@ Components are connected by actual Lean imports.  Large components should be spl
 | component | state | files | bucket | automatic route labels | anchors |
 |-----------|-------|------:|--------|------------------------|---------|
 | `C001` | active/exploring | 76 | core-support | `chain:concrete-evii-toy`, `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-l2-cohomology-construction`, +4 more | cut: 1, infra: 1, on-chain: 4, registered: 9 |
-| `C002` | active/exploring | 21 | core-support | `chain:concrete-evii-toy`, `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-l2-cohomology-construction`, `gap:G-l3-v56-mt-identification`, +3 more | cut: 6, on-chain: 7, registered: 1 |
+| `C002` | active/exploring | 21 | core-support | `chain:concrete-evii-toy`, `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-l2-cohomology-construction`, `gap:G-l3-v56-mt-identification`, +3 more | cut: 4, on-chain: 7, registered: 1 |
 | `C003` | active/exploring | 1 | core-support | `chain:hcgap-l2-trivial-instances`, `chain:main-hc-axiom-relative`, `gap:G-l2-cohomology-construction` | on-chain: 1, registered: 1 |
 | `C004` | active/exploring | 3 | core-support | `chain:hcgap-l2-trivial-instances`, `chain:main-hc-axiom-relative`, `gap:G-l2-cohomology-construction`, `gap:G-main-hc` | on-chain: 3, registered: 3 |
-| `C005` | active/exploring | 297 | core-support | `chain:concrete-evii-toy`, `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-l2-cohomology-construction`, +4 more | cut: 13, on-chain: 68, registered: 63 |
+| `C005` | active/exploring | 297 | core-support | `chain:concrete-evii-toy`, `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-l2-cohomology-construction`, +4 more | cut: 13, on-chain: 69, registered: 63 |
 | `C006` | mixed-active/dead | 1 | failed-pattern | `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port`, `gap:G-hcgap-l4-multifront`, `gap:G-l4-cm-abelian-hc`, `gap:G-l4-mt-correspondence`, `gap:G-main-hc` | cut: 1, on-chain: 1 |
 | `C007` | active/exploring | 1 | core-support | `chain:concrete-evii-toy`, `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-l2-cohomology-construction`, `gap:G-l3-v56-mt-identification`, +3 more | cut: 1, on-chain: 1 |
 | `C008` | closed/support | 1 | core-support | `chain:concrete-evii-toy` | - |
@@ -288,7 +292,7 @@ Entry declarations:
 
 Taxonomy files:
 - `HodgeReduction/Types.lean` -- on-chain
-- `HodgeReduction/ClassicalResults.lean` -- cut
+- `HodgeReduction/ClassicalResults.lean` -- on-chain
 - `HodgeReduction/OpenHypotheses.lean` -- cut
 - `HodgeReduction/MainTheorem.lean` -- cut
 - `HodgeReduction/HCGapRegistry.lean` -- infra
@@ -305,7 +309,7 @@ Entry declarations:
 - `HodgeReduction.thm_subcase3b_vacuous`
 
 Taxonomy files:
-- `HodgeReduction/ClassicalResults.lean` -- cut
+- `HodgeReduction/ClassicalResults.lean` -- on-chain
 - `HodgeReduction/MainTheorem.lean` -- cut
 
 ### `chain:hcgap-l2-trivial-instances` -- Layer-2 minimum attack: trivial-instance VarietyCohomologyData

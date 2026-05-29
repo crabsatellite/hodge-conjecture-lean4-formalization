@@ -23,6 +23,7 @@ The remaining classical citations live in the docstrings of theorems in
 -/
 
 import HodgeReduction.Types
+import HodgeReduction.HCGapL4.CY3NonexistenceStageCuts
 
 namespace HodgeReduction
 
@@ -194,14 +195,19 @@ Axioms involving OpenHypotheses predicates (e.g.
 theorems they support.
 -/
 
-/-- **CY_3 non-existence with `MT = E_{7(-25)}`** paper-citation axiom.
+/-- **CY_3 non-existence with `MT = E_{7(-25)}`**.
  paper source: master tex `\ref{thm:cy3-e7-nonexistence}`; paper §4
  (moduli identification + Springer discriminant at p=3 +
- Premet-Suprunenko + FTS ω-pairing; Stages A-D). -/
-axiom cy3_e7_nonexistence_paper_axiom:
+ Premet-Suprunenko + FTS omega-pairing; Stages A-D).
+
+ R533 keeps the historical name for downstream compatibility, but this is
+ now a theorem derived from the three narrower stage cuts in
+ `CY3NonexistenceStageCuts`. -/
+theorem cy3_e7_nonexistence_paper_axiom:
  ¬ ∃ (X: SmoothProjectiveVariety ℂ),
  IsCalabiYauThreefold X ∧
- MumfordTateGroupDerived X 3 = E7_neg25
+ MumfordTateGroupDerived X 3 = E7_neg25 :=
+ cy3_e7_nonexistence_via_stage_cuts
 
 
 end HodgeReduction

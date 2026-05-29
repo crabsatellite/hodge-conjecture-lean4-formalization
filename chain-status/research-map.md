@@ -15,7 +15,9 @@ Open mathematical cut(s):
 - `HodgeReduction.abs_hodge_implies_algebraic` at `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
 - `HodgeReduction.canonicalE7ShimuraTor` at `HodgeReduction/OpenHypotheses.lean`
 - `HodgeReduction.cy3_e7_excludes_e6` at `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
-- `HodgeReduction.cy3_e7_nonexistence_paper_axiom` at `HodgeReduction/ClassicalResults.lean`
+- `HodgeReduction.cy3_e7_fts_omega_stage` at `HodgeReduction/HCGapL4/CY3NonexistenceStageCuts.lean`
+- `HodgeReduction.cy3_e7_j3o_nonrealization_stage` at `HodgeReduction/HCGapL4/CY3NonexistenceStageCuts.lean`
+- `HodgeReduction.cy3_e7_springer_stage` at `HodgeReduction/HCGapL4/CY3NonexistenceStageCuts.lean`
 - `HodgeReduction.cy3_inherits_e7_factor` at `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
 - `HodgeReduction.cy3_mtd_isSemisimple` at `HodgeReduction/HCGapL4/CY3E7Bridge.lean`
 - `HodgeReduction.deligne_1982_abs_hodge_cm` at `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
@@ -333,8 +335,8 @@ graph TD
 
 | id | kind | status | gaps | file classes |
 |----|------|--------|------|--------------|
-| `main-hc-axiom-relative` | main | conditional | `G-main-hc`, `G-l1-e7-shimura-tor`, `G-l2-cohomology-construction`, `G-l3-v56-mt-identification`, `G-l4-cm-abelian-hc`, `G-l4-mt-correspondence` | cut: 3, infra: 1, on-chain: 1 |
-| `unconditional-classical` | support | closed-modulo-cy3-citation | `G-classical-mathlib-port` | cut: 2 |
+| `main-hc-axiom-relative` | main | conditional | `G-main-hc`, `G-l1-e7-shimura-tor`, `G-l2-cohomology-construction`, `G-l3-v56-mt-identification`, `G-l4-cm-abelian-hc`, `G-l4-mt-correspondence` | cut: 2, infra: 1, on-chain: 2 |
+| `unconditional-classical` | support | closed-modulo-cy3-citation | `G-classical-mathlib-port` | cut: 1, on-chain: 1 |
 | `hcgap-l2-trivial-instances` | support | stable | `G-l2-cohomology-construction` | registered: 3 |
 | `hcgap-l4-multifront-active` | active | exploratory | `G-hcgap-l4-multifront` | on-disk-unloaded: 4, registered: 5 |
 | `concrete-evii-toy` | support | closed-toy | - | on-disk-unloaded: 1 |
@@ -350,7 +352,7 @@ graph TD
 | `G-l3-v56-mt-identification` | open | Layer 3: V_56 -- H^3(S_Γ^tor, -- Hodge-structure identification | infra: 1, registered: 4 |
 | `G-l4-cm-abelian-hc` | open | Layer 4-G2: Hodge conjecture for CM abelian varieties (Deligne 1982) | cut: 2, infra: 1, on-disk-unloaded: 2 |
 | `G-l4-mt-correspondence` | open | Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian) | cut: 2, infra: 1, registered: 1 |
-| `G-classical-mathlib-port` | deferred | Classical published-literature axioms awaiting Mathlib port | cut: 2, on-chain: 1 |
+| `G-classical-mathlib-port` | deferred | Classical published-literature axioms awaiting Mathlib port | cut: 2, on-chain: 2 |
 | `G-hcgap-l4-multifront` | active-open | HCGapL4 multi-front Layer-4 attack waves (R420 -- R476) | on-disk-unloaded: 4, registered: 10 |
 
 ## Off-Chain Split
@@ -394,7 +396,7 @@ Gaps: `G-main-hc`, `G-l1-e7-shimura-tor`, `G-l2-cohomology-construction`, `G-l3-
 
 Files:
 - `HodgeReduction/Types.lean` -- on-chain
-- `HodgeReduction/ClassicalResults.lean` -- cut
+- `HodgeReduction/ClassicalResults.lean` -- on-chain
 - `HodgeReduction/OpenHypotheses.lean` -- cut
 - `HodgeReduction/MainTheorem.lean` -- cut
 - `HodgeReduction/HCGapRegistry.lean` -- infra
@@ -413,7 +415,7 @@ Entry declarations:
 Gaps: `G-classical-mathlib-port`
 
 Files:
-- `HodgeReduction/ClassicalResults.lean` -- cut
+- `HodgeReduction/ClassicalResults.lean` -- on-chain
 - `HodgeReduction/MainTheorem.lean` -- cut
 
 ### `hcgap-l2-trivial-instances` -- Layer-2 minimum attack: trivial-instance VarietyCohomologyData
@@ -569,10 +571,13 @@ Files:
 
 ### `G-classical-mathlib-port` -- Classical published-literature axioms awaiting Mathlib port
 
-Meyer / Kostant G_2 / Kostant F_4 / SV1 E_8 are already kernel-pure theorems (paper-grade proofs over R120/R121 structure refactor).  R530/R531 refines the CY3 branch by replacing the former exact E7 inheritance cut with weak factor inheritance plus CY3 semisimplicity and CY3-scoped E7/E6 exclusivity.  `cy3_e7_nonexistence_paper_axiom` remains a paper-citation axiom until Mathlib provides Calabi--Yau threefold infrastructure + Springer discriminant + FTS omega-pairing.
+Meyer / Kostant G_2 / Kostant F_4 / SV1 E_8 are already kernel-pure theorems (paper-grade proofs over R120/R121 structure refactor).  R533 decomposes `cy3_e7_nonexistence_paper_axiom` into Springer/V56, FTS omega, and J3(O) nonrealization stage cuts.  R530/R531 refines the CY3 reduction bridge with weak factor inheritance plus CY3 semisimplicity and CY3-scoped E7/E6 exclusivity.
 
 Declarations:
 - `HodgeReduction.cy3_e7_nonexistence_paper_axiom`
+- `HodgeReduction.cy3_e7_springer_stage`
+- `HodgeReduction.cy3_e7_fts_omega_stage`
+- `HodgeReduction.cy3_e7_j3o_nonrealization_stage`
 - `HodgeReduction.cy3_inherits_e7_factor`
 - `HodgeReduction.cy3_mtd_isSemisimple`
 - `HodgeReduction.cy3_e7_excludes_e6`
@@ -580,7 +585,8 @@ Declarations:
 - `HodgeReduction.hc_real_cy3_reducible_via_vacuity`
 
 Files:
-- `HodgeReduction/ClassicalResults.lean` -- cut
+- `HodgeReduction/ClassicalResults.lean` -- on-chain
+- `HodgeReduction/HCGapL4/CY3NonexistenceStageCuts.lean` -- cut
 - `HodgeReduction/HCGapL4/CY3E7Bridge.lean` -- cut
 - `HodgeReduction/HCGapL4/CY3VacuityDischarge.lean` -- on-chain
 

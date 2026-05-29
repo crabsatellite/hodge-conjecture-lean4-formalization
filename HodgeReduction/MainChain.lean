@@ -75,9 +75,12 @@ def config : ChainAudit.ProjectConfig := {
     -- existence and chosen-source correspondence package construction.
     ``HodgeReduction.e7_cm_witness_exists,
     ``HodgeReduction.e7_chosen_witness_correspondence_package_exists,
-    -- Paper-citation axiom for thm_cy3_e7_nonexistence (paper §4
-    -- Stages A--D + Springer discriminant + FTS omega-pairing).
-    ``HodgeReduction.cy3_e7_nonexistence_paper_axiom,
+    -- R533 decomposition of the former `cy3_e7_nonexistence_paper_axiom`
+    -- into paper §4 stage cuts: Springer/V56, FTS omega, J3(O)
+    -- nonrealization.
+    ``HodgeReduction.cy3_e7_springer_stage,
+    ``HodgeReduction.cy3_e7_fts_omega_stage,
+    ``HodgeReduction.cy3_e7_j3o_nonrealization_stage,
     -- R531 CY3 vacuity bridge: weak E7-factor inheritance plus the two
     -- structural facts needed to recover the exact E7 type used by the
     -- CY3 nonexistence theorem.
@@ -305,14 +308,18 @@ def config : ChainAudit.ProjectConfig := {
       title := "Classical published-literature axioms awaiting Mathlib port"
       status := "deferred"
       summary :=
-        "Meyer / Kostant G_2 / Kostant F_4 / SV1 E_8 are already kernel-pure theorems (paper-grade proofs over R120/R121 structure refactor).  R530/R531 refines the CY3 branch by replacing the former exact E7 inheritance cut with weak factor inheritance plus CY3 semisimplicity and CY3-scoped E7/E6 exclusivity.  `cy3_e7_nonexistence_paper_axiom` remains a paper-citation axiom until Mathlib provides Calabi--Yau threefold infrastructure + Springer discriminant + FTS omega-pairing."
+        "Meyer / Kostant G_2 / Kostant F_4 / SV1 E_8 are already kernel-pure theorems (paper-grade proofs over R120/R121 structure refactor).  R533 decomposes `cy3_e7_nonexistence_paper_axiom` into Springer/V56, FTS omega, and J3(O) nonrealization stage cuts.  R530/R531 refines the CY3 reduction bridge with weak factor inheritance plus CY3 semisimplicity and CY3-scoped E7/E6 exclusivity."
       files := [
         "HodgeReduction/ClassicalResults.lean",
+        "HodgeReduction/HCGapL4/CY3NonexistenceStageCuts.lean",
         "HodgeReduction/HCGapL4/CY3E7Bridge.lean",
         "HodgeReduction/HCGapL4/CY3VacuityDischarge.lean"
       ]
       decls := [
         "HodgeReduction.cy3_e7_nonexistence_paper_axiom",
+        "HodgeReduction.cy3_e7_springer_stage",
+        "HodgeReduction.cy3_e7_fts_omega_stage",
+        "HodgeReduction.cy3_e7_j3o_nonrealization_stage",
         "HodgeReduction.cy3_inherits_e7_factor",
         "HodgeReduction.cy3_mtd_isSemisimple",
         "HodgeReduction.cy3_e7_excludes_e6",
@@ -542,6 +549,8 @@ def config : ChainAudit.ProjectConfig := {
       labels := ["chain:unconditional-classical", "gap:G-classical-mathlib-port"]
       keywords := [
         "Meyer", "kostant_vacuity", "SV1_vacuity", "cy3_e7_nonexistence",
+        "cy3_e7_springer_stage", "cy3_e7_fts_omega_stage",
+        "cy3_e7_j3o_nonrealization_stage",
         "cy3_inherits_e7_factor", "cy3_mtd_isSemisimple", "cy3_e7_excludes_e6",
         "subcase3b_vacuous", "Hasse", "Minkowski", "Bourbaki",
         "RationalQuadraticForm", "G2_realForm", "F4_realForm", "E8_realForm"

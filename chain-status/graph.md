@@ -11,6 +11,7 @@ graph TD
   classDef cut fill:#ffd,stroke:#a80
   classDef drift fill:#fdd,stroke:#a00,stroke-width:3px
   classDef endpoint fill:#dfd,stroke:#080
+  HodgeReduction_cy3_e7_j3o_nonrealization_stage{{ "cy3_e7_j3o_nonrealization_stage" }}:::cut
   HodgeReduction_abs_hodge_implies_algebraic{{ "abs_hodge_implies_algebraic" }}:::cut
   HodgeReduction_absHodgeClassesAtDegree{{ "absHodgeClassesAtDegree" }}:::cut
   HodgeReduction_cy3_mtd_isSemisimple{{ "cy3_mtd_isSemisimple" }}:::cut
@@ -23,11 +24,12 @@ graph TD
   HodgeReduction_canonicalE7ShimuraTor{{ "canonicalE7ShimuraTor" }}:::cut
   HodgeReduction_e7_chosen_witness_correspondence_package_exists{{ "e7_chosen_witness_correspondence_package_exists" }}:::cut
   Classical_choice{{ "choice" }}:::cut
+  HodgeReduction_cy3_e7_springer_stage{{ "cy3_e7_springer_stage" }}:::cut
   HodgeReduction_deligne_1982_abs_hodge_cm{{ "deligne_1982_abs_hodge_cm" }}:::cut
   HodgeReduction_e7_cm_witness_exists{{ "e7_cm_witness_exists" }}:::cut
   Quot_sound{{ "sound" }}:::cut
   HodgeReduction_e6_factor_classical_transfer{{ "e6_factor_classical_transfer" }}:::cut
-  HodgeReduction_cy3_e7_nonexistence_paper_axiom{{ "cy3_e7_nonexistence_paper_axiom" }}:::cut
+  HodgeReduction_cy3_e7_fts_omega_stage{{ "cy3_e7_fts_omega_stage" }}:::cut
   HodgeReduction_hodgeConjectureReal_canonical>"hodgeConjectureReal_canonical"]:::endpoint
   HodgeReduction_main_reduction_real>"main_reduction_real"]:::endpoint
   HodgeReduction_thm_Meyer>"thm_Meyer"]:::endpoint
@@ -45,7 +47,9 @@ graph TD
   HodgeReduction_main_reduction_real --> HodgeReduction_absHodgeClassesAtDegree
   HodgeReduction_main_reduction_real --> HodgeReduction_abs_hodge_implies_algebraic
   HodgeReduction_main_reduction_real --> HodgeReduction_cy3_e7_excludes_e6
-  HodgeReduction_main_reduction_real --> HodgeReduction_cy3_e7_nonexistence_paper_axiom
+  HodgeReduction_main_reduction_real --> HodgeReduction_cy3_e7_fts_omega_stage
+  HodgeReduction_main_reduction_real --> HodgeReduction_cy3_e7_j3o_nonrealization_stage
+  HodgeReduction_main_reduction_real --> HodgeReduction_cy3_e7_springer_stage
   HodgeReduction_main_reduction_real --> HodgeReduction_cy3_inherits_e7_factor
   HodgeReduction_main_reduction_real --> HodgeReduction_cy3_mtd_isSemisimple
   HodgeReduction_main_reduction_real --> HodgeReduction_deligne_1982_abs_hodge_cm
@@ -62,7 +66,9 @@ graph TD
   HodgeReduction_thm_E8_vacuous --> Quot_sound
   HodgeReduction_thm_E8_vacuous --> propext
   HodgeReduction_thm_cy3_e7_nonexistence --> Classical_choice
-  HodgeReduction_thm_cy3_e7_nonexistence --> HodgeReduction_cy3_e7_nonexistence_paper_axiom
+  HodgeReduction_thm_cy3_e7_nonexistence --> HodgeReduction_cy3_e7_fts_omega_stage
+  HodgeReduction_thm_cy3_e7_nonexistence --> HodgeReduction_cy3_e7_j3o_nonrealization_stage
+  HodgeReduction_thm_cy3_e7_nonexistence --> HodgeReduction_cy3_e7_springer_stage
   HodgeReduction_thm_cy3_e7_nonexistence --> Quot_sound
   HodgeReduction_thm_cy3_e7_nonexistence --> propext
 ```
