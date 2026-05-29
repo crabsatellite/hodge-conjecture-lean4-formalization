@@ -59,7 +59,7 @@ graph TD
   chain_main_hc_axiom_relative["Main Mumford--Tate-reduction HC chain\nconditional"]:::main
   chain_unconditional_classical["Unconditional classical paper theorems\nclosed-modulo-cy3-citation"]:::closed
   chain_hcgap_l2_trivial_instances["Layer-2 minimum attack: trivial-instance VarietyCohomologyData\nstable"]:::support
-  chain_hcgap_l4_multifront_active["HCGapL4 multi-front attack waves (R420 -- R562)\nexploratory"]:::active
+  chain_hcgap_l4_multifront_active["HCGapL4 multi-front attack waves (R420 -- R563)\nexploratory"]:::active
   chain_concrete_evii_toy["Concrete EVII sanity-check chain\nclosed-toy"]:::closed
   chain_historical_cone_audits["Historical per-round cone audit drivers (R217 -- R476)\ninfra"]:::support
   gap_G_main_hc{{"Hodge conjecture headline remains axiom-relative\nconditional"}}:::gapOpen
@@ -69,7 +69,7 @@ graph TD
   gap_G_l4_cm_abelian_hc{{"Layer 4-G2: Hodge conjecture for CM abelian varieties (Deligne 1982)\nopen"}}:::gapOpen
   gap_G_l4_mt_correspondence{{"Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian)\nopen"}}:::gapOpen
   gap_G_classical_mathlib_port{{"Classical published-literature axioms awaiting Mathlib port\ndeferred"}}:::gapOpen
-  gap_G_hcgap_l4_multifront{{"HCGapL4 multi-front Layer-4 attack waves (R420 -- R562)\nactive-open"}}:::gapOpen
+  gap_G_hcgap_l4_multifront{{"HCGapL4 multi-front Layer-4 attack waves (R420 -- R563)\nactive-open"}}:::gapOpen
   chain_main_hc_axiom_relative --> gap_G_main_hc
   chain_main_hc_axiom_relative --> gap_G_l1_e7_shimura_tor
   chain_main_hc_axiom_relative --> gap_G_l2_cohomology_construction
@@ -120,7 +120,7 @@ graph TD
   owner_gap_G_l4_cm_abelian_hc["gap:G-l4-cm-abelian-hc"]:::ownerGap
   owner_gap_G_l4_mt_correspondence["gap:G-l4-mt-correspondence"]:::ownerGap
   owner_gap_G_main_hc["gap:G-main-hc"]:::ownerGap
-  debt_C001["C001\n97 files\n2026-05-29 17:54\ncore-support"]:::debtTaxonomy
+  debt_C001["C001\n97 files\n2026-05-29 18:01\ncore-support"]:::debtTaxonomy
   debt_root --> debt_C001
   debt_C001 --> anchor_cut
   debt_C001 --> anchor_infra
@@ -317,7 +317,7 @@ graph TD
 | `main-hc-axiom-relative` | main | conditional | `G-main-hc`, `G-l1-e7-shimura-tor`, `G-l2-cohomology-construction`, `G-l3-v56-mt-identification`, `G-l4-cm-abelian-hc`, `G-l4-mt-correspondence` | cut: 2, infra: 1, on-chain: 2 |
 | `unconditional-classical` | support | closed-modulo-cy3-citation | `G-classical-mathlib-port` | cut: 1, on-chain: 1 |
 | `hcgap-l2-trivial-instances` | support | stable | `G-l2-cohomology-construction` | registered: 3 |
-| `hcgap-l4-multifront-active` | active | exploratory | `G-hcgap-l4-multifront` | on-disk-unloaded: 3, registered: 21 |
+| `hcgap-l4-multifront-active` | active | exploratory | `G-hcgap-l4-multifront` | on-disk-unloaded: 3, registered: 22 |
 | `concrete-evii-toy` | support | closed-toy | - | on-disk-unloaded: 1 |
 | `historical-cone-audits` | infra | infra | - | on-disk-unloaded: 4 |
 
@@ -332,7 +332,7 @@ graph TD
 | `G-l4-cm-abelian-hc` | open | Layer 4-G2: Hodge conjecture for CM abelian varieties (Deligne 1982) | cut: 2, infra: 1, on-disk-unloaded: 2 |
 | `G-l4-mt-correspondence` | open | Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian) | cut: 3, infra: 1, registered: 1 |
 | `G-classical-mathlib-port` | deferred | Classical published-literature axioms awaiting Mathlib port | cut: 3, on-chain: 2 |
-| `G-hcgap-l4-multifront` | active-open | HCGapL4 multi-front Layer-4 attack waves (R420 -- R562) | on-disk-unloaded: 3, registered: 26 |
+| `G-hcgap-l4-multifront` | active-open | HCGapL4 multi-front Layer-4 attack waves (R420 -- R563) | on-disk-unloaded: 3, registered: 27 |
 
 ## Off-Chain Split
 
@@ -410,9 +410,9 @@ Files:
 - `HodgeReduction/HCGapL2/ProjectiveLine.lean` -- registered
 - `HodgeReduction/HCGapL2/EllipticCurve.lean` -- registered
 
-### `hcgap-l4-multifront-active` -- HCGapL4 multi-front attack waves (R420 -- R562)
+### `hcgap-l4-multifront-active` -- HCGapL4 multi-front attack waves (R420 -- R563)
 
-5 parallel attack fronts on the L4 cohomology-profile + connectedness pipeline.  Per-wave audits R451 / R456 / R460 / R465 / R470 / R476 enumerate substantive theorems per round.  R552 extends the FrontC numeric bridge through a buildable EVII compact-dual/V56/Shimura expected Betti profile: all degrees 0..8 are certified by known Hodge sums, with degree 3 explicitly routed through V56 rather than hidden in compact-dual odd cohomology.  R553 connects that finite V56 profile to the actual infrastructure `PureHodgeStructure V56 3`.  R554 proves the abstract Matsushima boundary composition: target invariants reduce to the cuspidal trivial-module part, and compact-dual image reduces to that part once concrete EVII source/target boundary equalities are provided.  R555 tightens the source-side obligation: Cartan's trivial-module H8 line rewrites to compact-dual H8, its classes are algebraic through `CompactDualData`, and the R554 source equality follows from `surjectivity_source = source_invariants`.  R556 converts the remaining boundary equalities into four concrete linear-algebra tasks; R557 shows target containment is forced by source containment; R558 transports target finrank from source finrank; R559 rewrites the remaining source obligations against compact-dual/Cartan data; R560 proves those obligations are not derivable from the current abstract interface alone; R561 replaces the three R559 obligations by the sharper compact-dual exact image target plus target-invariant exactness; R562 removes target-invariant exactness as an independent obligation by deriving it from exact image plus the compactDual/trivialModulePart rank bridge.  The route remains exploratory, not a closure claim.
+5 parallel attack fronts on the L4 cohomology-profile + connectedness pipeline.  Per-wave audits R451 / R456 / R460 / R465 / R470 / R476 enumerate substantive theorems per round.  R552 extends the FrontC numeric bridge through a buildable EVII compact-dual/V56/Shimura expected Betti profile: all degrees 0..8 are certified by known Hodge sums, with degree 3 explicitly routed through V56 rather than hidden in compact-dual odd cohomology.  R553 connects that finite V56 profile to the actual infrastructure `PureHodgeStructure V56 3`.  R554 proves the abstract Matsushima boundary composition: target invariants reduce to the cuspidal trivial-module part, and compact-dual image reduces to that part once concrete EVII source/target boundary equalities are provided.  R555 tightens the source-side obligation: Cartan's trivial-module H8 line rewrites to compact-dual H8, its classes are algebraic through `CompactDualData`, and the R554 source equality follows from `surjectivity_source = source_invariants`.  R556 converts the remaining boundary equalities into four concrete linear-algebra tasks; R557 shows target containment is forced by source containment; R558 transports target finrank from source finrank; R559 rewrites the remaining source obligations against compact-dual/Cartan data; R560 proves those obligations are not derivable from the current abstract interface alone; R561 replaces the three R559 obligations by the sharper compact-dual exact image target plus target-invariant exactness; R562 removes target-invariant exactness as an independent obligation by deriving it from exact image plus the compactDual/trivialModulePart rank bridge; R563 proves exact image is equivalent to the source equality `surjectivity_source = compactDual`.  The route remains exploratory, not a closure claim.
 
 Entry declarations:
 - `HodgeReduction.HCGapL4.FrontC11_ShimuraBettiComputation.shimuraEVIIExpectedBettiKnownHodgeSumCertification_current`
@@ -442,6 +442,9 @@ Entry declarations:
 - `HodgeReduction.HCGapL4.FrontC21_MatsushimaExactImageRankBoundary.target_eq_invariants_of_compactDual_exact_image_trivial_rank`
 - `HodgeReduction.HCGapL4.FrontC21_MatsushimaExactImageRankBoundary.matsushimaV56BoundaryData_of_compactDual_exact_image_trivial_rank`
 - `HodgeReduction.HCGapL4.FrontC21_MatsushimaExactImageRankBoundary.matsushima_compactDual_image_eq_trivialModulePart_of_exact_image_rank`
+- `HodgeReduction.HCGapL4.FrontC22_MatsushimaExactImageSourceEquivalence.source_eq_compactDual_iff_compactDual_exact_image`
+- `HodgeReduction.HCGapL4.FrontC22_MatsushimaExactImageSourceEquivalence.matsushimaV56BoundaryData_of_source_eq_compactDual_trivial_rank`
+- `HodgeReduction.HCGapL4.FrontC22_MatsushimaExactImageSourceEquivalence.matsushima_compactDual_image_eq_trivialModulePart_of_source_eq_rank`
 
 Depends on: `main-hc-axiom-relative`
 
@@ -469,6 +472,7 @@ Files:
 - `HodgeReduction/HCGapL4/FrontC19_MatsushimaSourceCompactDualObstruction.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontC20_MatsushimaCompactDualExactImageCriterion.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontC21_MatsushimaExactImageRankBoundary.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC22_MatsushimaExactImageSourceEquivalence.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean` -- on-disk-unloaded
 - `HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean` -- on-disk-unloaded
 - `HodgeReduction/HCGapL4/R476_MultiFrontWave6Audit.lean` -- on-disk-unloaded
@@ -646,9 +650,9 @@ Files:
 - `HodgeReduction/HCGapL4/CY3E7Bridge.lean` -- cut
 - `HodgeReduction/HCGapL4/CY3VacuityDischarge.lean` -- on-chain
 
-### `G-hcgap-l4-multifront` -- HCGapL4 multi-front Layer-4 attack waves (R420 -- R562)
+### `G-hcgap-l4-multifront` -- HCGapL4 multi-front Layer-4 attack waves (R420 -- R563)
 
-Active exploratory attack waves on the L4 / cohomology-profile / connectedness pipeline: FrontA (Deligne H0 sheaf realization), FrontB (Baily--Borel connectedness), FrontC (E_7 low-degree Hodge numbers + Hodge polynomial algebra + all-degree rank adapter + EVII/V56/Shimura expected Betti profile), FrontD (E_7 -> CM Chow correspondence + Deligne 1982 minimal fragment), FrontE (real-carrier profile matching + R405 conditional transfer feed).  Audits R451 / R456 / R460 / R465 / R470 / R476 are wave-level summaries.  R552 certifies the expected Shimura Betti profile degree-by-degree from EVII compact-dual Hodge sums plus the isolated V56 degree-3 contribution; R553 ties that finite V56 contribution to the actual `PureHodgeStructure V56 3` infrastructure; R554 combines the Matsushima, Eisenstein, and cuspidal trivial-module infrastructure into an honest boundary theorem; R555 proves the Cartan compact-dual source bridge and reduces the R554 source equality to `surjectivity_source = source_invariants`; R556 turns both source/target boundary equalities into finite-dimensional containment plus finrank obligations, routing the target through the cuspidal trivial-module part; R557 proves the target containment follows from source containment by Matsushima equivariance and the surjectivity image equation; R558 proves target finrank is transported from source finrank by `j_q` injectivity and the Matsushima image equation; R559 rewrites the remaining source obligations through the compact-dual/Cartan source subspace; R560 gives a Lean countermodel showing those compact-dual obligations are not consequences of the current abstract interface; R561 proves that compact-dual exact image plus target-invariant exactness is enough to recover the R554/R559 boundary data; R562 proves target exactness follows from compact-dual exact image plus the compact-dual-to-trivial rank bridge.  The concrete EVII compact-dual exact image statement and compactDual/trivialModulePart rank bridge remain open and must come from genuine EVII geometry.  No new axioms.
+Active exploratory attack waves on the L4 / cohomology-profile / connectedness pipeline: FrontA (Deligne H0 sheaf realization), FrontB (Baily--Borel connectedness), FrontC (E_7 low-degree Hodge numbers + Hodge polynomial algebra + all-degree rank adapter + EVII/V56/Shimura expected Betti profile), FrontD (E_7 -> CM Chow correspondence + Deligne 1982 minimal fragment), FrontE (real-carrier profile matching + R405 conditional transfer feed).  Audits R451 / R456 / R460 / R465 / R470 / R476 are wave-level summaries.  R552 certifies the expected Shimura Betti profile degree-by-degree from EVII compact-dual Hodge sums plus the isolated V56 degree-3 contribution; R553 ties that finite V56 contribution to the actual `PureHodgeStructure V56 3` infrastructure; R554 combines the Matsushima, Eisenstein, and cuspidal trivial-module infrastructure into an honest boundary theorem; R555 proves the Cartan compact-dual source bridge and reduces the R554 source equality to `surjectivity_source = source_invariants`; R556 turns both source/target boundary equalities into finite-dimensional containment plus finrank obligations, routing the target through the cuspidal trivial-module part; R557 proves the target containment follows from source containment by Matsushima equivariance and the surjectivity image equation; R558 proves target finrank is transported from source finrank by `j_q` injectivity and the Matsushima image equation; R559 rewrites the remaining source obligations through the compact-dual/Cartan source subspace; R560 gives a Lean countermodel showing those compact-dual obligations are not consequences of the current abstract interface; R561 proves that compact-dual exact image plus target-invariant exactness is enough to recover the R554/R559 boundary data; R562 proves target exactness follows from compact-dual exact image plus the compact-dual-to-trivial rank bridge; R563 proves compact-dual exact image is equivalent to `surjectivity_source = compactDual`, so the source-identification form can be attacked directly.  The concrete EVII source equality and compactDual/trivialModulePart rank bridge remain open and must come from genuine EVII geometry.  No new axioms.
 
 Declarations:
 - `HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance.e7EVIICompactDualHodgeDiamond`
@@ -683,6 +687,9 @@ Declarations:
 - `HodgeReduction.HCGapL4.FrontC21_MatsushimaExactImageRankBoundary.target_eq_invariants_of_compactDual_exact_image_trivial_rank`
 - `HodgeReduction.HCGapL4.FrontC21_MatsushimaExactImageRankBoundary.matsushimaV56BoundaryData_of_compactDual_exact_image_trivial_rank`
 - `HodgeReduction.HCGapL4.FrontC21_MatsushimaExactImageRankBoundary.matsushima_compactDual_image_eq_trivialModulePart_of_exact_image_rank`
+- `HodgeReduction.HCGapL4.FrontC22_MatsushimaExactImageSourceEquivalence.source_eq_compactDual_iff_compactDual_exact_image`
+- `HodgeReduction.HCGapL4.FrontC22_MatsushimaExactImageSourceEquivalence.matsushimaV56BoundaryData_of_source_eq_compactDual_trivial_rank`
+- `HodgeReduction.HCGapL4.FrontC22_MatsushimaExactImageSourceEquivalence.matsushima_compactDual_image_eq_trivialModulePart_of_source_eq_rank`
 
 Files:
 - `HodgeReduction/HCGapL4/FrontA_DeligneH0SheafRealization.lean` -- registered
@@ -706,6 +713,7 @@ Files:
 - `HodgeReduction/HCGapL4/FrontC19_MatsushimaSourceCompactDualObstruction.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontC20_MatsushimaCompactDualExactImageCriterion.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontC21_MatsushimaExactImageRankBoundary.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC22_MatsushimaExactImageSourceEquivalence.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean` -- on-disk-unloaded
 - `HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean` -- on-disk-unloaded
 - `HodgeReduction/HCGapL4/R451_MultiFrontFrontierAudit.lean` -- registered

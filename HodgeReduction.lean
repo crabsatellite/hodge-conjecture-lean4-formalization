@@ -469,6 +469,7 @@ import HodgeReduction.HCGapL4.FrontC18_MatsushimaSourceCompactDualRankBridge
 import HodgeReduction.HCGapL4.FrontC19_MatsushimaSourceCompactDualObstruction
 import HodgeReduction.HCGapL4.FrontC20_MatsushimaCompactDualExactImageCriterion
 import HodgeReduction.HCGapL4.FrontC21_MatsushimaExactImageRankBoundary
+import HodgeReduction.HCGapL4.FrontC22_MatsushimaExactImageSourceEquivalence
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix
