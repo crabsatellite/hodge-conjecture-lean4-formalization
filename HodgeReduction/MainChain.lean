@@ -71,8 +71,10 @@ def config : ChainAudit.ProjectConfig := {
     ``HodgeReduction.absHodgeClassesAtDegreeCM,
     ``HodgeReduction.deligne_1982_abs_hodge_cm,
     ``HodgeReduction.abs_hodge_cm_implies_algebraic,
-    -- R547 codim-one bypass for CM sources via Lefschetz (1,1).
-    ``HodgeReduction.lefschetz_11_hc_real_at_codim1_cm,
+    -- R550 codim-one bypass via Lefschetz (1,1), now at the
+    -- theorem's classical all-SPV scope.  The old CM-scoped form is
+    -- a theorem derived from this cut.
+    ``HodgeReduction.lefschetz_11_hc_real_at_codim1,
     -- R172/R528/R534 case cuts used by main_reduction_real. The E6 case
     -- now consumes a chosen classical remainder plus a transfer cut; the
     -- CY3 case is a theorem routed through the R530/R531/R533 bridge below.
@@ -208,7 +210,7 @@ def config : ChainAudit.ProjectConfig := {
       title := "Hodge conjecture headline remains axiom-relative"
       status := "conditional"
       summary :=
-        "The `hodgeConjectureReal_canonical` endpoint is a kernel-pure composition once the canonical target variety and its two E7-scope facts are accepted.  R542 derives `canonicalMTPackageAt` from the generic R517/R532 MT-witness route; R545 splits the chosen-witness package into a codim-one first target plus the remaining non-codim-one lift; R549 opens that codim-one target into Hodge-morphism, algebraic-map, commuting-square, and Hodge-surjectivity component cuts; R546 exposes the canonical codim-one HC slice as its own endpoint; R547 routes that codim-one slice through a CM-scoped Lefschetz (1,1) cut rather than the all-codim Deligne/AH bridge.  Full HC is NOT unconditional."
+        "The `hodgeConjectureReal_canonical` endpoint is a kernel-pure composition once the canonical target variety and its two E7-scope facts are accepted.  R542 derives the full `canonicalMTPackageAt` from the generic R517/R532 MT-witness route; R545 splits the chosen-witness package into a codim-one first target plus the remaining non-codim-one lift; R549 opens that codim-one target into Hodge-morphism, algebraic-map, commuting-square, and Hodge-surjectivity component cuts; R550 routes the separately audited codim-one HC slice directly through the classical Lefschetz (1,1) cut, so it no longer consumes the E7 -> CM package.  Full HC is NOT unconditional."
       files := [
         "HodgeReduction/MainTheorem.lean",
         "HodgeReduction/OpenHypotheses.lean",
@@ -228,6 +230,7 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction.canonicalHCDataByCodim",
         "HodgeReduction.hodgeConjectureReal_from_canonicalHCData",
         "HodgeReduction.hodgeConjectureReal_from_canonicalHCDataByCodim",
+        "HodgeReduction.lefschetz_11_hc_real_at_codim1",
         "HodgeReduction.lefschetz_11_hc_real_at_codim1_cm",
         "HodgeReduction.hyp_HC_CM_Ab_real_codim1_via_lefschetz11",
         "HodgeReduction.hodgeConjectureReal_canonical_codim1",
@@ -295,7 +298,7 @@ def config : ChainAudit.ProjectConfig := {
       title := "Layer 4-G2: Hodge conjecture for CM abelian varieties (Deligne 1982)"
       status := "open"
       summary :=
-        "R527/R515 decomposes the former broad `hyp_HC_CM_Ab_real` axiom into a theorem.  R535 narrows the remaining absolute-Hodge-to-algebraic bridge to CM abelian varieties, and R543 narrows the absolute-Hodge carrier itself to the same CM scope.  R547 adds a codim-one Lefschetz (1,1) bypass for CM sources, so the canonical codim-one endpoint no longer consumes the all-codim Deligne/AH bridge.  The full CM-abelian HC surface remains the three CM-scoped cuts: carrier, Deligne 1982 Hodge-to-absolute-Hodge, and CM-scoped absolute-Hodge-to-algebraic bridge."
+        "R527/R515 decomposes the former broad `hyp_HC_CM_Ab_real` axiom into a theorem.  R535 narrows the remaining absolute-Hodge-to-algebraic bridge to CM abelian varieties, and R543 narrows the absolute-Hodge carrier itself to the same CM scope.  R547 adds a codim-one Lefschetz (1,1) bypass for CM sources; R550 widens that cut to the classical all-SPV Lefschetz theorem and derives the CM-scoped form from it.  The full CM-abelian HC surface remains the three CM-scoped cuts: carrier, Deligne 1982 Hodge-to-absolute-Hodge, and CM-scoped absolute-Hodge-to-algebraic bridge."
       files := [
         "HodgeReduction/MainTheorem.lean",
         "HodgeReduction/HCGapL4/CMAbelianHCBridge.lean",
@@ -308,6 +311,7 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction.absHodgeClassesAtDegreeCM",
         "HodgeReduction.deligne_1982_abs_hodge_cm",
         "HodgeReduction.abs_hodge_cm_implies_algebraic",
+        "HodgeReduction.lefschetz_11_hc_real_at_codim1",
         "HodgeReduction.lefschetz_11_hc_real_at_codim1_cm",
         "HodgeReduction.hyp_HC_CM_Ab_real_codim1_via_lefschetz11",
         "HodgeReduction.HCGapRegistry.L4_G2_HC_For_CM_AbelianVariety"
@@ -318,7 +322,7 @@ def config : ChainAudit.ProjectConfig := {
       title := "Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian)"
       status := "open"
       summary :=
-        "R529/R517 decomposes the non-canonical MT correspondence witness; R532 tightens the package cut so it applies only to the witness selected by `e7_cm_witness_exists`, not to arbitrary CM abelian sources.  R545 splits that chosen-source package into the codim-one Chow-correspondence target and the remaining non-codim-one lift.  R549 decomposes the codim-one target into Hodge-morphism, algebraic-map, commuting-square, and Hodge-surjectivity cuts, so the audit can track exactly which piece of the first Chow-correspondence target remains open.  R546 routes the canonical codim-one package directly through these codim-one pieces, so `hodgeConjectureReal_canonical_codim1` does not consume the non-codim-one lift.  R542 still makes the full canonical headline consume the generic all-codim route."
+        "R529/R517 decomposes the non-canonical MT correspondence witness; R532 tightens the package cut so it applies only to the witness selected by `e7_cm_witness_exists`, not to arbitrary CM abelian sources.  R545 splits that chosen-source package into the codim-one Chow-correspondence target and the remaining non-codim-one lift.  R549 decomposes the codim-one target into Hodge-morphism, algebraic-map, commuting-square, and Hodge-surjectivity cuts, so the audit can track exactly which piece of the first Chow-correspondence target remains open.  R550 shows the canonical codim-one HC endpoint itself should bypass this MT package entirely via Lefschetz (1,1); the R549 component cuts still matter for the full all-codimension canonical headline."
       files := [
         "HodgeReduction/MainTheorem.lean",
         "HodgeReduction/OpenHypotheses.lean",
@@ -402,7 +406,7 @@ def config : ChainAudit.ProjectConfig := {
       kind := "main"
       status := "conditional"
       summary :=
-        "`OpenHypotheses` (R169 cohomology / algClasses bridge + R174a Deligne) composes with `MainTheorem` (R170 four-case main reduction + R171/R188/R542 canonical headline) to reach `hodgeConjectureReal_canonical`.  R546 adds the separately audited codim-one endpoint `hodgeConjectureReal_canonical_codim1`, which now consumes the four R549 codim-one package component cuts but not the non-codim-one lift.  R547 also keeps this codim-one endpoint on the Lefschetz (1,1) source-HC route instead of the all-codim Deligne/AH route.  Full HC remains conditional on a canonical target SPV, its E7 factor/scope facts, and the generic MT-witness route."
+        "`OpenHypotheses` (R169 cohomology / algClasses bridge + R174a Deligne) composes with `MainTheorem` (R170 four-case main reduction + R171/R188/R542 canonical headline) to reach `hodgeConjectureReal_canonical`.  R546 adds the separately audited codim-one endpoint `hodgeConjectureReal_canonical_codim1`; R550 reroutes it directly through the classical Lefschetz (1,1) cut, so this slice no longer consumes the E7 -> CM correspondence package.  Full HC remains conditional on a canonical target SPV, its E7 factor/scope facts, and the generic MT-witness route."
       files := [
         "HodgeReduction/Types.lean",
         "HodgeReduction/ClassicalResults.lean",
@@ -551,6 +555,7 @@ def config : ChainAudit.ProjectConfig := {
         "E7ShimuraTor", "VarietyHC", "mtCorrespondenceAt",
         "mtCorrespondencePackage", "CanonicalHCData", "CanonicalHCDataByCodim",
         "hodgeConjectureReal_from_canonicalHCDataByCodim",
+        "lefschetz_11_hc_real_at_codim1",
         "lefschetz_11_hc_real_at_codim1_cm"
       ]
     },

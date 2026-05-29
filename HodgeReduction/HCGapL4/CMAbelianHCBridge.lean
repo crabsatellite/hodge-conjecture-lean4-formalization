@@ -1,5 +1,5 @@
 /-
-# R515/R535/R543/R547: Decompose hyp_HC_CM_Ab_real into Deligne 1982 + CM-scoped extension.
+# R515/R535/R543/R547/R550: Decompose hyp_HC_CM_Ab_real into Deligne 1982 + CM-scoped extension.
 
 The axiom hyp_HC_CM_Ab_real says: all CM abelian varieties satisfy HC-real.
 Decomposed into:
@@ -13,6 +13,10 @@ Net: -1 large axiom +3 smaller CM-scoped cuts. NO sorry, NO tricks.
 R547 adds a separate codimension-one bypass: for CM abelian sources,
 `p = 1` should use the Lefschetz (1,1) theorem directly instead of
 consuming the all-codimension Deligne/AH bridge.
+
+R550 widens the actual Lefschetz cut to its classical scope: every
+smooth projective complex variety satisfies HC-real at codimension one.
+The CM-scoped statement is retained as a theorem, not an extra cut.
 -/
 
 import HodgeReduction.Types
@@ -73,17 +77,32 @@ axiom abs_hodge_cm_implies_algebraic
 
 /-! ## Step 4: codimension-one Lefschetz bypass -/
 
-/-- **R547** (Lefschetz (1,1), CM-scoped use): at codimension one,
+/-- **R550** (Lefschetz (1,1), classical scope): at codimension one,
+HC-real holds for every smooth projective complex variety.
+
+This is the standard Lefschetz (1,1) theorem: rational `(1,1)` Hodge
+classes in `H^2` are divisor classes.  It is kept as a named cut because
+the current project still lacks the Mathlib cycle-class / divisor-class
+stack needed to prove it internally. -/
+axiom lefschetz_11_hc_real_at_codim1
+    (X : SmoothProjectiveVariety Complex) :
+    HodgeConjectureRealAt X 1
+
+/-- **R547/R550** (Lefschetz (1,1), CM-scoped use): at codimension one,
 HC-real for a CM abelian source follows from the classical Lefschetz
 (1,1) theorem.
 
 The theorem is classically true for every smooth projective complex
 variety.  The cut is intentionally scoped to CM abelian sources because
-the main canonical codim-one route only needs source HC after selecting
-the CM witness in the E7 -> CM correspondence. -/
-axiom lefschetz_11_hc_real_at_codim1_cm
+R547 only needed source HC after selecting the CM witness in the
+E7 -> CM correspondence.  R550 makes this a theorem derived from the
+general Lefschetz cut so the canonical target can also use Lefschetz
+directly. -/
+theorem lefschetz_11_hc_real_at_codim1_cm
     (A : SmoothProjectiveVariety Complex) (hA : IsCMAbelianVariety A) :
-    HodgeConjectureRealAt A 1
+    HodgeConjectureRealAt A 1 := by
+  let _scopeCheck := hA
+  exact lefschetz_11_hc_real_at_codim1 A
 
 /-- **R547**: codimension-one source HC via Lefschetz (1,1), without
 the all-codimension Deligne/AH bridge. -/
@@ -122,7 +141,10 @@ theorem hyp_HC_CM_Ab_real_via_delille_ah :
 def R515_new_axiom_count : Nat := 3
 def R515_retired_axiom_count : Nat := 1
 
-/-- R547: codim-one bypass uses one CM-scoped Lefschetz cut. -/
+/-- R547/R550: codim-one bypass uses one general Lefschetz cut. -/
 def R547_codim1_new_axiom_count : Nat := 1
+
+/-- R550: the old CM-scoped Lefschetz cut is now a theorem. -/
+def R550_retired_cm_scoped_lefschetz_cut_count : Nat := 1
 
 end HodgeReduction

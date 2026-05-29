@@ -28,15 +28,8 @@ Equivalent to running `#print axioms <endpoint>` for each endpoint.
 - `Classical.choice`
 - `HodgeReduction.SmoothProjectiveVariety.algClasses`
 - `HodgeReduction.SmoothProjectiveVariety.cohomology`
-- `HodgeReduction.canonicalTargetE7Factor`
-- `HodgeReduction.canonicalTargetInKnownE7Scope`
 - `HodgeReduction.canonicalTargetVariety`
-- `HodgeReduction.e7_chosen_witness_alg_map_codim1`
-- `HodgeReduction.e7_chosen_witness_hodge_surj_codim1`
-- `HodgeReduction.e7_chosen_witness_hsm_codim1`
-- `HodgeReduction.e7_chosen_witness_square_codim1`
-- `HodgeReduction.e7_cm_witness_exists`
-- `HodgeReduction.lefschetz_11_hc_real_at_codim1_cm`
+- `HodgeReduction.lefschetz_11_hc_real_at_codim1`
 - `Quot.sound`
 - `propext`
 

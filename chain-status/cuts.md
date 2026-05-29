@@ -30,6 +30,6 @@ open by design; non-whitelisted cuts are I1 hard-failures.
 | `HodgeReduction.e7_chosen_witness_square_codim1` | `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean` | OPEN (whitelisted) |
 | `HodgeReduction.e7_cm_witness_exists` | `HodgeReduction/HCGapL4/MTWitnessDecomposition.lean` | OPEN (whitelisted) |
 | `HodgeReduction.hc_real_classical_cartan` | `HodgeReduction/MainTheorem.lean` | OPEN (whitelisted) |
-| `HodgeReduction.lefschetz_11_hc_real_at_codim1_cm` | `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean` | OPEN (whitelisted) |
+| `HodgeReduction.lefschetz_11_hc_real_at_codim1` | `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean` | OPEN (whitelisted) |
 | `Quot.sound` | `Init/Core.lean` | OPEN (whitelisted) |
 | `propext` | `Init/Core.lean` | OPEN (whitelisted) |

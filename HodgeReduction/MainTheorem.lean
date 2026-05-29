@@ -402,20 +402,21 @@ theorem hodgeConjectureReal_from_canonicalHCDataByCodim
   exact Infrastructure.HodgeStructure.varietyHCAt_of_correspondence
     h_pkg ((hyp_HC_CM_Ab_real A hA_CM) p)
 
-/-- **R546**: canonical HC at codimension one, isolated from the
-non-codimension-one MT lift.
+/-- **R546/R550**: canonical HC at codimension one, isolated from the
+non-codimension-one MT lift and now routed directly through Lefschetz
+(1,1).
 
-This is not full HC for the canonical target.  It proves the `p = 1`
-slice from the codim-one MT package plus the CM-scoped Lefschetz (1,1)
-bypass, so the audit can track the first Front-D closure target
-separately from the remaining all-codimension theorem and its Deligne/AH
-CM bridge. -/
+This is not full HC for the canonical target.  R550 observes that the
+`p = 1` slice does not need the E7 -> CM correspondence at all: the
+classical Lefschetz (1,1) theorem proves codimension-one HC for every
+smooth projective complex variety.  The all-codimension headline still
+uses the MT correspondence route. -/
 theorem hodgeConjectureReal_canonical_codim1 :
     Infrastructure.HodgeStructure.VarietyHCAt
       canonicalTargetCohomologyData canonicalTargetAlgClassesData 1 := by
-  rcases canonicalMTPackageAt_codim1 with ⟨A, hA_CM, h_pkg⟩
-  exact Infrastructure.HodgeStructure.varietyHCAt_of_correspondence
-    h_pkg (hyp_HC_CM_Ab_real_codim1_via_lefschetz11 A hA_CM)
+  simpa [canonicalTargetCohomologyData, canonicalTargetAlgClassesData,
+    HodgeConjectureRealAt]
+    using lefschetz_11_hc_real_at_codim1 canonicalTargetVariety
 
 /-- **R171/R173/R188 HEADLINE**: The **Hodge Conjecture holds for the
 canonical E_7 Shimura variety** in its REAL form (no Unit trick).
