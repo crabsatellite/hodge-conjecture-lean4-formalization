@@ -559,6 +559,7 @@ import HodgeReduction.HCGapL4.FrontC78_H8ResidualTargetInvariantInternalQuotient
 import HodgeReduction.HCGapL4.FrontC79_H8ResidualTargetInvariantExcessFinrank
 import HodgeReduction.HCGapL4.FrontC80_H8ResidualTargetInvariantUpperBound
 import HodgeReduction.HCGapL4.FrontC81_H8ResidualTrivialModuleUpperBound
+import HodgeReduction.HCGapL4.FrontC82_H8ResidualAtlasMultiplicityCriterion
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix

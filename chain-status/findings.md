@@ -1,10 +1,10 @@
 # HodgeReduction -- all audit findings
 
 
-* total: **8797**  *  FAIL: **0**  *  WARN: **8797**
+* total: **8801**  *  FAIL: **0**  *  WARN: **8801**
 
 
-## W1.orphan (WARN) -- 252
+## W1.orphan (WARN) -- 253
 
 - file `HodgeReduction.Infrastructure.DynkinMarks` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/DynkinMarks.lean)
 - file `HodgeReduction.Infrastructure.SimpleLieAlgebraClassification` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/SimpleLieAlgebraClassification.lean)
@@ -194,6 +194,7 @@
 - file `HodgeReduction.HCGapL4.FrontC5_HodgePolynomialToRankAdapter` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/HCGapL4/FrontC5_HodgePolynomialToRankAdapter.lean)
 - file `HodgeReduction.Infrastructure.Automorphic.CuspidalCohomology` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/Automorphic/CuspidalCohomology.lean)
 - file `HodgeReduction.Infrastructure.Automorphic.GKCohomology` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/Automorphic/GKCohomology.lean)
+- file `HodgeReduction.Infrastructure.Automorphic.AtlasE7minus25` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/Automorphic/AtlasE7minus25.lean)
 - file `HodgeReduction.Infrastructure.KostantCominusculeClassification` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/KostantCominusculeClassification.lean)
 - file `HodgeReduction.HCGapL4.ClassicalCartanProof` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/HCGapL4/ClassicalCartanProof.lean)
 - file `HodgeReduction` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction.lean)
@@ -265,7 +266,7 @@
 - compile-prune candidate: on-chain `HodgeReduction.HCGapL4.E6CaseClassicalBridge` imports `HodgeReduction.Infrastructure.DynkinMarks` but reflected declarations consume no project decl from that import closure  (HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean)
 - compile-prune candidate: on-chain `HodgeReduction.HCGapL4.E6CaseClassicalBridge` imports `HodgeReduction.Infrastructure.SimpleLieAlgebraClassification` but reflected declarations consume no project decl from that import closure  (HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean)
 
-## W3.on-disk-orphan (WARN) -- 162
+## W3.on-disk-orphan (WARN) -- 161
 
 - file `HodgeReduction/Concrete.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Concrete.lean)
 - file `HodgeReduction/Concrete/EVII.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Concrete/EVII.lean)
@@ -372,7 +373,6 @@
 - file `HodgeReduction/Infrastructure/AbelianVariety/TateModule.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/AbelianVariety/TateModule.lean)
 - file `HodgeReduction/Infrastructure/AlgebraicGeometry/ExponentialSequence.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/AlgebraicGeometry/ExponentialSequence.lean)
 - file `HodgeReduction/Infrastructure/AlgebraicGeometry/FirstChernClass.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/AlgebraicGeometry/FirstChernClass.lean)
-- file `HodgeReduction/Infrastructure/Automorphic/AtlasE7minus25.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/Automorphic/AtlasE7minus25.lean)
 - file `HodgeReduction/Infrastructure/Automorphic/BorelBottWeil.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/Automorphic/BorelBottWeil.lean)
 - file `HodgeReduction/Infrastructure/Automorphic/FrankeEisensteinLayer.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/Automorphic/FrankeEisensteinLayer.lean)
 - file `HodgeReduction/Infrastructure/Automorphic/HeckeCorrespondence.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/Automorphic/HeckeCorrespondence.lean)
@@ -432,9 +432,9 @@
 
 ## W4.skipped-large-orphan-set (WARN) -- 1
 
-- skipped expensive unused-orphan-import scan because 252 loaded modules are classified orphan; use route labels and W3/W1 first, then narrow the audit entry
+- skipped expensive unused-orphan-import scan because 253 loaded modules are classified orphan; use route labels and W3/W1 first, then narrow the audit entry
 
-## W5.prop-def (WARN) -- 3727
+## W5.prop-def (WARN) -- 3731
 
 - Prop-valued definition `HodgeReduction.HCGapL4.R411_Status_OptionB_Recommended_As_Smallest` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/HCGapL4/HCFrontierAfterCohomologyProfileDecomposition.lean)
 - Prop-valued definition `HodgeReduction.HCGapL4.R411_Status_R407_R410_Integrated` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/HCGapL4/HCFrontierAfterCohomologyProfileDecomposition.lean)
@@ -2539,6 +2539,10 @@
 - Prop-valued definition `HodgeReduction.HCGapL4.HCFrontierAfterRealGeometrySchema.originalHeadlineStillCanonical` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/HCGapL4/HCFrontierAfterRealGeometrySchema.lean)
 - Prop-valued definition `HodgeReduction.HCGapL4.HCFrontierAfterRealGeometrySchema.realCompatibleHeadlineKernelPure` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/HCGapL4/HCFrontierAfterRealGeometrySchema.lean)
 - Prop-valued definition `HodgeReduction.HCGapL4.HCFrontierAfterRealGeometrySchema.safeToReplaceOriginalHeadline` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/HCGapL4/HCFrontierAfterRealGeometrySchema.lean)
+- Prop-valued definition `HodgeReduction.Infrastructure.Automorphic.aqLambdaIsUnitaryProp` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/Infrastructure/Automorphic/AtlasE7minus25.lean)
+- Prop-valued definition `HodgeReduction.Infrastructure.Automorphic.aqLambdaContributesAt` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/Infrastructure/Automorphic/AtlasE7minus25.lean)
+- Prop-valued definition `HodgeReduction.Infrastructure.Automorphic.aqLambdaIsTrivialProp` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/Infrastructure/Automorphic/AtlasE7minus25.lean)
+- Prop-valued definition `HodgeReduction.Infrastructure.Automorphic.aqLambdaIsHoloDiscreteProp` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/Infrastructure/Automorphic/AtlasE7minus25.lean)
 - Prop-valued definition `HodgeReduction.Infrastructure.HodgeStructure.HodgeConjectureAtWeight` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/Infrastructure/HodgeStructure/Basic.lean)
 - Prop-valued definition `HodgeReduction.Infrastructure.HodgeStructure.CycleClassMapData.HodgeConjectureForCycleMap` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/Infrastructure/HodgeStructure/Basic.lean)
 - Prop-valued definition `HodgeReduction.Infrastructure.HodgeStructure.PureHodgeStructure.IsHodgeClass` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/Infrastructure/HodgeStructure/Basic.lean)
