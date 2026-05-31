@@ -554,6 +554,7 @@ import HodgeReduction.HCGapL4.FrontC73_H8ResidualExactImageContainmentObstructio
 import HodgeReduction.HCGapL4.FrontC74_H8ResidualTargetInvariantSaturation
 import HodgeReduction.HCGapL4.FrontC75_H8ResidualTargetInvariantRankCriterion
 import HodgeReduction.HCGapL4.FrontC76_H8ResidualRankCriterionReconciliation
+import HodgeReduction.HCGapL4.FrontC77_H8ResidualTargetInvariantExcessQuotient
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix

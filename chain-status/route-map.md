@@ -1,4 +1,5 @@
-# HodgeReduction -- route index
+# HodgeReduction -- route map
+> AUTOGEN compatibility view. The source of truth is the Lean `ProjectConfig` serialized in `raw.json`; update Lean/audit config and rerun postprocess, not this file by hand.
 
 Decision-first index for the next research round.  Treat this as the base map: the proof spine is the endpoint closure, route labels are generated automatically from the Lean import graph, file names, source text, and audit route taxonomy.  The goal is to show which proof routes are active, blocked, closed, or orphaned before a new agent starts editing.
 
