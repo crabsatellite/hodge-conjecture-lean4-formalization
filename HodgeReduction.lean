@@ -582,6 +582,7 @@ import HodgeReduction.HCGapL4.FrontC101_H8ResidualTargetInvariantLineBridge
 import HodgeReduction.HCGapL4.FrontC102_H8ResidualTargetInvariantQuotientEquivalence
 import HodgeReduction.HCGapL4.FrontC103_H8ResidualExactImageQuotientIndependence
 import HodgeReduction.HCGapL4.FrontC104_H8ResidualSourceH8QuotientIndependence
+import HodgeReduction.HCGapL4.FrontC105_H8ResidualTargetInvariantLineEquality
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix
