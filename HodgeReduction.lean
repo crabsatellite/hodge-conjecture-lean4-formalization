@@ -551,6 +551,7 @@ import HodgeReduction.HCGapL4.FrontC70_H8ResidualSourceInvariantScalarContract
 import HodgeReduction.HCGapL4.FrontC71_H8ResidualSourceInvariantExactImageContract
 import HodgeReduction.HCGapL4.FrontC72_H8ResidualExactImageContainmentContract
 import HodgeReduction.HCGapL4.FrontC73_H8ResidualExactImageContainmentObstruction
+import HodgeReduction.HCGapL4.FrontC74_H8ResidualTargetInvariantSaturation
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix
