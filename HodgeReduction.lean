@@ -575,6 +575,7 @@ import HodgeReduction.HCGapL4.FrontC94_H8ResidualQuotientLineContainmentEquivale
 import HodgeReduction.HCGapL4.FrontC95_H8ResidualSourceNoExtraFromLineContainment
 import HodgeReduction.HCGapL4.FrontC96_H8ResidualSourceGeneratorFromCompactDual
 import HodgeReduction.HCGapL4.FrontC97_H8ResidualCartanToCompactDualLine
+import HodgeReduction.HCGapL4.FrontC98_H8ResidualExactImageIndependence
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix
