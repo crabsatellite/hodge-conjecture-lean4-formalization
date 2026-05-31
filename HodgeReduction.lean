@@ -586,6 +586,7 @@ import HodgeReduction.HCGapL4.FrontC105_H8ResidualTargetInvariantLineEquality
 import HodgeReduction.HCGapL4.FrontC106_H8ResidualLineEqualityUpperBoundCriterion
 import HodgeReduction.HCGapL4.FrontC107_H8ResidualLineEqualityFiniteUpperBound
 import HodgeReduction.HCGapL4.FrontC108_H8ResidualBoundaryDataLineEquality
+import HodgeReduction.HCGapL4.FrontC109_H8ResidualBoundaryDataEquivalence
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix
