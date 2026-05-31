@@ -119,12 +119,16 @@ graph TD
   classDef gapClosed fill:#eee,stroke:#777
   classDef gapLegacy fill:#eee,stroke:#777,stroke-dasharray:3 3
   classDef gapDead fill:#fdd,stroke:#a00,stroke-dasharray:4 2
-  chain_main_hc_axiom_relative["chain:main-hc-axiom-relative\nconditional"]:::routeMain
+  chain_full_hc_final_target["chain:full-hc-final-target\nfinal-open"]:::routeMain
+  chain_master_paper_import_ledger["chain:master-paper-import-ledger\nin-progress"]:::routeSupport
+  chain_main_hc_axiom_relative["chain:main-hc-axiom-relative\nconditional"]:::routeActive
   chain_unconditional_classical["chain:unconditional-classical\nclosed-modulo-cy3-citation"]:::routeSupport
   chain_hcgap_l2_trivial_instances["chain:hcgap-l2-trivial-instances\nstable"]:::routeSupport
   chain_hcgap_l4_multifront_active["chain:hcgap-l4-multifront-active\nexploratory"]:::routeActive
   chain_concrete_evii_toy["chain:concrete-evii-toy\nclosed-toy"]:::routeSupport
   chain_historical_cone_audits["chain:historical-cone-audits\ninfra"]:::routeActive
+  gap_G_full_hc{{"gap:G-full-hc\nfinal-open"}}:::gapOpen
+  gap_G_master_paper_import{{"gap:G-master-paper-import\nin-progress"}}:::gapOpen
   gap_G_main_hc{{"gap:G-main-hc\nconditional"}}:::gapOpen
   gap_G_l1_e7_shimura_tor{{"gap:G-l1-e7-shimura-tor\nopen"}}:::gapOpen
   gap_G_l2_cohomology_construction{{"gap:G-l2-cohomology-construction\nopen"}}:::gapOpen
@@ -133,17 +137,23 @@ graph TD
   gap_G_l4_mt_correspondence{{"gap:G-l4-mt-correspondence\nopen"}}:::gapOpen
   gap_G_classical_mathlib_port{{"gap:G-classical-mathlib-port\ndeferred"}}:::gapOpen
   gap_G_hcgap_l4_multifront{{"gap:G-hcgap-l4-multifront\nactive-open"}}:::gapOpen
-  chain_main_hc_axiom_relative -->|P9| gap_G_main_hc
-  chain_main_hc_axiom_relative -->|P2| gap_G_l1_e7_shimura_tor
-  chain_main_hc_axiom_relative -->|P3| gap_G_l2_cohomology_construction
-  chain_main_hc_axiom_relative -->|P4| gap_G_l3_v56_mt_identification
-  chain_main_hc_axiom_relative -->|P6| gap_G_l4_cm_abelian_hc
-  chain_main_hc_axiom_relative -->|P5| gap_G_l4_mt_correspondence
-  chain_unconditional_classical -->|P7| gap_G_classical_mathlib_port
+  chain_full_hc_final_target -->|P1| gap_G_full_hc
+  chain_full_hc_final_target --> chain_master_paper_import_ledger
+  chain_master_paper_import_ledger -->|P2| gap_G_master_paper_import
+  chain_master_paper_import_ledger -->|P1| gap_G_full_hc
+  chain_full_hc_final_target --> chain_main_hc_axiom_relative
+  gap_G_full_hc -->|replacement route| chain_main_hc_axiom_relative
+  chain_main_hc_axiom_relative -->|P11| gap_G_main_hc
+  chain_main_hc_axiom_relative -->|P4| gap_G_l1_e7_shimura_tor
+  chain_main_hc_axiom_relative -->|P5| gap_G_l2_cohomology_construction
+  chain_main_hc_axiom_relative -->|P6| gap_G_l3_v56_mt_identification
+  chain_main_hc_axiom_relative -->|P8| gap_G_l4_cm_abelian_hc
+  chain_main_hc_axiom_relative -->|P7| gap_G_l4_mt_correspondence
+  chain_unconditional_classical -->|P9| gap_G_classical_mathlib_port
   chain_main_hc_axiom_relative --> chain_hcgap_l2_trivial_instances
-  chain_hcgap_l2_trivial_instances -->|P3| gap_G_l2_cohomology_construction
+  chain_hcgap_l2_trivial_instances -->|P5| gap_G_l2_cohomology_construction
   chain_main_hc_axiom_relative --> chain_hcgap_l4_multifront_active
-  chain_hcgap_l4_multifront_active -->|P8| gap_G_hcgap_l4_multifront
+  chain_hcgap_l4_multifront_active -->|P10| gap_G_hcgap_l4_multifront
   chain_main_hc_axiom_relative --> chain_concrete_evii_toy
   chain_main_hc_axiom_relative --> chain_historical_cone_audits
 ```

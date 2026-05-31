@@ -2,7 +2,7 @@
 
 Focused audit for proof-engineering escape hatches: unapproved axioms, direct assumption-as-goal theorems, vacuous Prop placeholders, and Prop-valued definitions that may hide stronger premises. Scope is audit-visible Lean modules; W3 on-disk-orphan files must be imported or quarantined before their declarations can be inspected.
 
-* findings: **8374**  *  FAIL: **0**  *  WARN: **8374**
+* findings: **8379**  *  FAIL: **0**  *  WARN: **8379**
 * hard trick failures: **none detected**
 * review priority: hard failures, then `W5.suspicious-prop-def`, then the full `W5.prop-def` ledger
 
@@ -3576,7 +3576,7 @@ Focused audit for proof-engineering escape hatches: unapproved axioms, direct as
 - Prop-valued definition `HodgeReduction.HCGapL4.ToyToRealPackageFamilyWitness.algClassCompat` has a hypothesis/strengthening/vacuous-style name; verify it is not a stronger premise or placeholder  (HodgeReduction/HCGapL4/ToyToRealPackageFamilyWitness.lean)
 - Prop-valued definition `HodgeReduction.HCGapL4.ToyToRealPackageFamilyWitness.hodgeClassCompat` has a hypothesis/strengthening/vacuous-style name; verify it is not a stronger premise or placeholder  (HodgeReduction/HCGapL4/ToyToRealPackageFamilyWitness.lean)
 
-## W5.prop-def (WARN) -- 3722
+## W5.prop-def (WARN) -- 3727
 
 - Prop-valued definition `HodgeReduction.absHodgeWitness` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/ClassicalResults.lean)
 - Prop-valued definition `HodgeReduction.HCGapL4.AbelianVarietyInterface.AbelianVarietyInterfaceSkeleton.hasBaseFieldToy` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/HCGapL4/AbelianVarietyInterface.lean)
@@ -3808,6 +3808,7 @@ Focused audit for proof-engineering escape hatches: unapproved axioms, direct as
 - Prop-valued definition `HodgeReduction.HCGapL4.R382_Status_FutureRouteTarget_Stated` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/HCGapL4/CanonicalRootCompatibilityWrapper.lean)
 - Prop-valued definition `HodgeReduction.HCGapL4.R382_Status_NoRegression` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/HCGapL4/CanonicalRootCompatibilityWrapper.lean)
 - Prop-valued definition `HodgeReduction.HCGapL4.Target_hodgeConjectureReal_canonical_via_parametric_replacement` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/HCGapL4/CanonicalRootCompatibilityWrapper.lean)
+- Prop-valued definition `HodgeReduction.R510_adds_zero_axioms` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/HCGapL4/ClassicalCartanProof.lean)
 - Prop-valued definition `HodgeReduction.HCGapL4.L4_G_R410_Requires_R409_Profile_Refinement` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/HCGapL4/CohomologyProfileComparisonConditional.lean)
 - Prop-valued definition `HodgeReduction.HCGapL4.L4_G_R410_Requires_R500_OrPaperTranslation` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/HCGapL4/CohomologyProfileComparisonConditional.lean)
 - Prop-valued definition `HodgeReduction.HCGapL4.L4_G_R410_To_Future_Substantive_DeligneSchmid_Translation` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/HCGapL4/CohomologyProfileComparisonConditional.lean)
@@ -7137,6 +7138,8 @@ Focused audit for proof-engineering escape hatches: unapproved axioms, direct as
 - Prop-valued definition `HodgeReduction.HCGapL4.ToyToRealPackageFamilyWitness.algClassCompat` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/HCGapL4/ToyToRealPackageFamilyWitness.lean)
 - Prop-valued definition `HodgeReduction.HCGapL4.ToyToRealPackageFamilyWitness.hodgeClassCompat` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/HCGapL4/ToyToRealPackageFamilyWitness.lean)
 - Prop-valued definition `HodgeReduction.Infrastructure.Cohomology.CohomologyRing.IsAlgebraic` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/Infrastructure/Cohomology/Basic.lean)
+- Prop-valued definition `HodgeReduction.Infrastructure.Cohomology.ChernData.IsAlgebraic` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/Infrastructure/Cohomology/ChernClasses.lean)
+- Prop-valued definition `HodgeReduction.Infrastructure.Cohomology.CycleClassImageData.hodgeConjecture` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/Infrastructure/Cohomology/CycleClassMap.lean)
 - Prop-valued definition `HodgeReduction.Infrastructure.HodgeStructure.CycleClassMapData.HodgeConjectureForCycleMap` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/Infrastructure/HodgeStructure/Basic.lean)
 - Prop-valued definition `HodgeReduction.Infrastructure.HodgeStructure.HodgeConjectureAtWeight` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/Infrastructure/HodgeStructure/Basic.lean)
 - Prop-valued definition `HodgeReduction.Infrastructure.HodgeStructure.PureHodgeStructure.IsHodgeClass` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/Infrastructure/HodgeStructure/Basic.lean)
@@ -7146,12 +7149,14 @@ Focused audit for proof-engineering escape hatches: unapproved axioms, direct as
 - Prop-valued definition `HodgeReduction.Infrastructure.HodgeStructure.VarietyHC` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/Infrastructure/HodgeStructure/VarietyCohomology.lean)
 - Prop-valued definition `HodgeReduction.Infrastructure.Shimura.ComplexEmbedding.IsBasePoint` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/Infrastructure/Shimura/Basic.lean)
 - Prop-valued definition `HodgeReduction.Infrastructure.Shimura.ShimuraVarietyData.IsEVII` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/Infrastructure/Shimura/Basic.lean)
+- Prop-valued definition `HodgeReduction.Infrastructure.Shimura.MumfordExtensionData.L_block_diagonal` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/Infrastructure/Shimura/MumfordExtension.lean)
 - Prop-valued definition `HodgeReduction.Infrastructure.R510_v56_branching_adds_zero_axioms` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/Infrastructure/V56BranchingRules.lean)
 - Prop-valued definition `HodgeReduction.E7Family.BaseIsFiniteCoverOfS_E7` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/MainTheorem.lean)
 - Prop-valued definition `HodgeReduction.E7Family.hasGenericMTE7` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/MainTheorem.lean)
 - Prop-valued definition `HodgeReduction.E7Family.hasHodgeNumbers_1_27_27_1` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/MainTheorem.lean)
 - Prop-valued definition `HodgeReduction.E7Family.periodMapDominant` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/MainTheorem.lean)
 - Prop-valued definition `HodgeReduction.E7Family.periodMapGenericallyFinite` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/MainTheorem.lean)
+- Prop-valued definition `HodgeReduction.MathlibCandidates.Module.IsInvertible.Sigma.IsoRel` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/MathlibCandidates.lean)
 - Prop-valued definition `HodgeReduction.BaseDim27` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/OpenHypotheses.lean)
 - Prop-valued definition `HodgeReduction.CMAbelianDim4Bundle.isHCForCMAbelianDimLE4` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/OpenHypotheses.lean)
 - Prop-valued definition `HodgeReduction.CMAbelianDim4Bundle.isMarkman2025WeilClassesAbelianFourfolds_NAMED_OPEN` is audit-visible; ensure it is definitional infrastructure, not a hidden axiom surface  (HodgeReduction/OpenHypotheses.lean)

@@ -29,10 +29,10 @@ canonical Millennium-style infrastructure pattern shared with
 `abc-conjecture/lean4-formalization` and other sibling projects, via the
 shared `chainAudit` Lake package located at `tools/chain-audit`.
 
-All theorem bodies carry `sorry` only where the paper explicitly states an
-open hypothesis; the headline `hodgeConjectureReal_canonical` is closed
-modulo a single project-axiom `canonicalE7ShimuraTor : E7ShimuraTor` whose
-fields are layer-classified in `HodgeReduction.HCGapRegistry`.
+The final theorem target is recorded in `HodgeReduction.FullHodgeGoal` as
+`FullHodgeConjectureReal`.  The current headline
+`hodgeConjectureReal_canonical` is a conditional canonical `E_7` milestone,
+not the full Hodge Conjecture.
 -/
 
 package «HodgeReduction» where

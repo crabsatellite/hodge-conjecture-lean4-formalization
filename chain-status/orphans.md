@@ -7,12 +7,13 @@ For each orphan, the user should either:
 3. Delete it.
 
 
-* loaded-but-orphan: **233**
-* on-disk-but-unloaded: **268**
+* loaded-but-orphan: **252**
+* on-disk-but-unloaded: **249**
 
 
 ## Loaded-but-orphan (the env has them, no closure)
 
+- `HodgeReduction.lean` -- 0 decl(s)
 - `HodgeReduction/HCGapL4/AbelianVarietyInterface.lean` -- 44 decl(s)
 - `HodgeReduction/HCGapL4/AbelianVarietyInterfaceECRealization.lean` -- 40 decl(s)
 - `HodgeReduction/HCGapL4/AbstractConnectedH0RankOneTheorem.lean` -- 48 decl(s)
@@ -28,6 +29,7 @@ For each orphan, the user should either:
 - `HodgeReduction/HCGapL4/CanonicalFieldwiseCohomologyComparison.lean` -- 45 decl(s)
 - `HodgeReduction/HCGapL4/CanonicalFieldwiseMTPackageComparison.lean` -- 30 decl(s)
 - `HodgeReduction/HCGapL4/CanonicalRootCompatibilityWrapper.lean` -- 14 decl(s)
+- `HodgeReduction/HCGapL4/ClassicalCartanProof.lean` -- 17 decl(s)
 - `HodgeReduction/HCGapL4/CohomologyProfileComparisonConditional.lean` -- 26 decl(s)
 - `HodgeReduction/HCGapL4/CohomologyProfileComparisonSkeleton.lean` -- 47 decl(s)
 - `HodgeReduction/HCGapL4/ComplexMultiplicationInterface.lean` -- 41 decl(s)
@@ -225,31 +227,47 @@ For each orphan, the user should either:
 - `HodgeReduction/HCGapL4/ToyToRealPackageFamilyHighCodim.lean` -- 32 decl(s)
 - `HodgeReduction/HCGapL4/ToyToRealPackageFamilyLowCodim.lean` -- 31 decl(s)
 - `HodgeReduction/HCGapL4/ToyToRealPackageFamilyWitness.lean` -- 44 decl(s)
+- `HodgeReduction/Infrastructure/AbelianVariety/Basic.lean` -- 81 decl(s)
+- `HodgeReduction/Infrastructure/AlgebraicGeometry/ChowGroup.lean` -- 71 decl(s)
+- `HodgeReduction/Infrastructure/AlgebraicGeometry/HodgeDecomposition.lean` -- 49 decl(s)
+- `HodgeReduction/Infrastructure/AlgebraicGeometry/LineBundle.lean` -- 58 decl(s)
+- `HodgeReduction/Infrastructure/AlgebraicGeometry/PicardGroup.lean` -- 48 decl(s)
 - `HodgeReduction/Infrastructure/Automorphic/Basic.lean` -- 49 decl(s)
 - `HodgeReduction/Infrastructure/Automorphic/CuspidalCohomology.lean` -- 26 decl(s)
 - `HodgeReduction/Infrastructure/Automorphic/GKCohomology.lean` -- 50 decl(s)
+- `HodgeReduction/Infrastructure/CartanMatrices.lean` -- 10 decl(s)
+- `HodgeReduction/Infrastructure/Cohomology/AlgebraicBundle.lean` -- 74 decl(s)
 - `HodgeReduction/Infrastructure/Cohomology/Basic.lean` -- 53 decl(s)
+- `HodgeReduction/Infrastructure/Cohomology/ChernClasses.lean` -- 81 decl(s)
+- `HodgeReduction/Infrastructure/Cohomology/CycleClassMap.lean` -- 55 decl(s)
+- `HodgeReduction/Infrastructure/Cohomology/FreudenthalClass.lean` -- 59 decl(s)
 - `HodgeReduction/Infrastructure/Cohomology/KaehlerClass.lean` -- 62 decl(s)
+- `HodgeReduction/Infrastructure/Coxeter/WE7.lean` -- 52 decl(s)
+- `HodgeReduction/Infrastructure/CoxeterDegrees.lean` -- 19 decl(s)
 - `HodgeReduction/Infrastructure/DynkinMarks.lean` -- 18 decl(s)
 - `HodgeReduction/Infrastructure/E7ParabolicDimensions.lean` -- 13 decl(s)
+- `HodgeReduction/Infrastructure/HCFramework.lean` -- 3 decl(s)
 - `HodgeReduction/Infrastructure/HodgeStructure/Polarised.lean` -- 61 decl(s)
+- `HodgeReduction/Infrastructure/HodgeStructure/Variation.lean` -- 67 decl(s)
 - `HodgeReduction/Infrastructure/J3OInnerProduct.lean` -- 3 decl(s)
 - `HodgeReduction/Infrastructure/JordanJ3O.lean` -- 83 decl(s)
 - `HodgeReduction/Infrastructure/JordanJ3OBasis.lean` -- 21 decl(s)
+- `HodgeReduction/Infrastructure/KostantCominusculeClassification.lean` -- 1 decl(s)
 - `HodgeReduction/Infrastructure/LinearMaps.lean` -- 24 decl(s)
 - `HodgeReduction/Infrastructure/Octonion.lean` -- 158 decl(s)
 - `HodgeReduction/Infrastructure/OctonionBasis.lean` -- 14 decl(s)
 - `HodgeReduction/Infrastructure/Shimura/Basic.lean` -- 72 decl(s)
 - `HodgeReduction/Infrastructure/Shimura/CompactDual.lean` -- 49 decl(s)
+- `HodgeReduction/Infrastructure/Shimura/MumfordExtension.lean` -- 22 decl(s)
 - `HodgeReduction/Infrastructure/SimpleLieAlgebraClassification.lean` -- 110 decl(s)
 - `HodgeReduction/Infrastructure/V56Basis.lean` -- 17 decl(s)
 - `HodgeReduction/Infrastructure/V56BranchingRules.lean` -- 18 decl(s)
 - `HodgeReduction/Infrastructure/V56Freudenthal.lean` -- 121 decl(s)
 - `HodgeReduction/Infrastructure/V56HodgeRank.lean` -- 33 decl(s)
+- `HodgeReduction/MathlibCandidates.lean` -- 123 decl(s)
 
 ## On-disk-but-unloaded (file exists, never imported)
 
-- `HodgeReduction.lean`
 - `HodgeReduction/Concrete.lean`
 - `HodgeReduction/Concrete/EVII.lean`
 - `HodgeReduction/ConeAudits/R217_ConeAudit.lean`
@@ -358,7 +376,6 @@ For each orphan, the user should either:
 - `HodgeReduction/HCGapL4/CY3SpringerDiscriminant.lean`
 - `HodgeReduction/HCGapL4/CanonicalConeExtractionAudit.lean`
 - `HodgeReduction/HCGapL4/ClassicalCartanGapCard.lean`
-- `HodgeReduction/HCGapL4/ClassicalCartanProof.lean`
 - `HodgeReduction/HCGapL4/CohomologyReplacementDependencyMap.lean`
 - `HodgeReduction/HCGapL4/CohomologyReplacementMathlibAudit.lean`
 - `HodgeReduction/HCGapL4/CohomologyReplacementNextTarget.lean`
@@ -433,41 +450,31 @@ For each orphan, the user should either:
 - `HodgeReduction/HCGapL4/ShiftedCorrespondenceComposition.lean`
 - `HodgeReduction/HCGapL4/ShiftedCorrespondenceSHSM2Bridge.lean`
 - `HodgeReduction/HCGapL4/V56CohomologyRank.lean`
-- `HodgeReduction/Infrastructure/AbelianVariety/Basic.lean`
 - `HodgeReduction/Infrastructure/AbelianVariety/CMType.lean`
 - `HodgeReduction/Infrastructure/AbelianVariety/HyperKahler.lean`
 - `HodgeReduction/Infrastructure/AbelianVariety/K3Surface.lean`
 - `HodgeReduction/Infrastructure/AbelianVariety/KugaSatake.lean`
 - `HodgeReduction/Infrastructure/AbelianVariety/PolarisedAV.lean`
 - `HodgeReduction/Infrastructure/AbelianVariety/TateModule.lean`
-- `HodgeReduction/Infrastructure/AlgebraicGeometry/ChowGroup.lean`
 - `HodgeReduction/Infrastructure/AlgebraicGeometry/ExponentialSequence.lean`
 - `HodgeReduction/Infrastructure/AlgebraicGeometry/FirstChernClass.lean`
-- `HodgeReduction/Infrastructure/AlgebraicGeometry/HodgeDecomposition.lean`
-- `HodgeReduction/Infrastructure/AlgebraicGeometry/LineBundle.lean`
-- `HodgeReduction/Infrastructure/AlgebraicGeometry/PicardGroup.lean`
 - `HodgeReduction/Infrastructure/Automorphic/AtlasE7minus25.lean`
 - `HodgeReduction/Infrastructure/Automorphic/BorelBottWeil.lean`
 - `HodgeReduction/Infrastructure/Automorphic/FrankeEisensteinLayer.lean`
 - `HodgeReduction/Infrastructure/Automorphic/HeckeCorrespondence.lean`
 - `HodgeReduction/Infrastructure/Automorphic/ModularForm.lean`
-- `HodgeReduction/Infrastructure/CartanMatrices.lean`
 - `HodgeReduction/Infrastructure/ClassicalCominusculeClassification.lean`
 - `HodgeReduction/Infrastructure/Cohomology/AbelJacobi.lean`
-- `HodgeReduction/Infrastructure/Cohomology/AlgebraicBundle.lean`
 - `HodgeReduction/Infrastructure/Cohomology/AlgebraicCycle.lean`
 - `HodgeReduction/Infrastructure/Cohomology/AmpleDivisor.lean`
 - `HodgeReduction/Infrastructure/Cohomology/BettiCohomology.lean`
 - `HodgeReduction/Infrastructure/Cohomology/BorelHirzebruchCoinvariant.lean`
 - `HodgeReduction/Infrastructure/Cohomology/ChernCharacter.lean`
-- `HodgeReduction/Infrastructure/Cohomology/ChernClasses.lean`
 - `HodgeReduction/Infrastructure/Cohomology/ChowRing.lean`
 - `HodgeReduction/Infrastructure/Cohomology/ClassifyingSpace.lean`
 - `HodgeReduction/Infrastructure/Cohomology/ComparisonTheorem.lean`
-- `HodgeReduction/Infrastructure/Cohomology/CycleClassMap.lean`
 - `HodgeReduction/Infrastructure/Cohomology/DeRham.lean`
 - `HodgeReduction/Infrastructure/Cohomology/DivisorClass.lean`
-- `HodgeReduction/Infrastructure/Cohomology/FreudenthalClass.lean`
 - `HodgeReduction/Infrastructure/Cohomology/Galois.lean`
 - `HodgeReduction/Infrastructure/Cohomology/HCCodim1.lean`
 - `HodgeReduction/Infrastructure/Cohomology/HardLefschetz.lean`
@@ -484,17 +491,12 @@ For each orphan, the user should either:
 - `HodgeReduction/Infrastructure/Cohomology/StandardConjectures.lean`
 - `HodgeReduction/Infrastructure/Cohomology/TateConjecture.lean`
 - `HodgeReduction/Infrastructure/Cohomology/TwistedPhiL.lean`
-- `HodgeReduction/Infrastructure/Coxeter/WE7.lean`
-- `HodgeReduction/Infrastructure/CoxeterDegrees.lean`
-- `HodgeReduction/Infrastructure/HCFramework.lean`
 - `HodgeReduction/Infrastructure/HodgeStructure/GaussManin.lean`
 - `HodgeReduction/Infrastructure/HodgeStructure/MixedHodge.lean`
 - `HodgeReduction/Infrastructure/HodgeStructure/MixedHodgeModule.lean`
 - `HodgeReduction/Infrastructure/HodgeStructure/NilpotentOrbit.lean`
-- `HodgeReduction/Infrastructure/HodgeStructure/Variation.lean`
 - `HodgeReduction/Infrastructure/J3OAlgebra.lean`
 - `HodgeReduction/Infrastructure/J3OJordan.lean`
-- `HodgeReduction/Infrastructure/KostantCominusculeClassification.lean`
 - `HodgeReduction/Infrastructure/LieAlgebra/Basic.lean`
 - `HodgeReduction/Infrastructure/LieAlgebra/ReductiveGroup.lean`
 - `HodgeReduction/Infrastructure/PoincarePolynomialEVII.lean`
@@ -507,13 +509,11 @@ For each orphan, the user should either:
 - `HodgeReduction/Infrastructure/Shimura/HermitianSymmetric.lean`
 - `HodgeReduction/Infrastructure/Shimura/HirzebruchMumford.lean`
 - `HodgeReduction/Infrastructure/Shimura/IntersectionHomology.lean`
-- `HodgeReduction/Infrastructure/Shimura/MumfordExtension.lean`
 - `HodgeReduction/Infrastructure/Shimura/PeriodDomain.lean`
 - `HodgeReduction/Infrastructure/Shimura/SchubertCells.lean`
 - `HodgeReduction/Infrastructure/ToroidalDimensions.lean`
 - `HodgeReduction/Infrastructure/V56HodgeAlgebra.lean`
 - `HodgeReduction/Ledger.lean`
-- `HodgeReduction/MathlibCandidates.lean`
 - `HodgeReduction/Scripts/CheckEntry.lean`
 - `HodgeReduction/Scripts/StatusEntry.lean`
 - `HodgeReduction/Strict.lean`

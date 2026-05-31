@@ -1,28 +1,32 @@
-# HodgeReduction — Lean4 Formalisation of the Mumford--Tate Reduction of the Hodge Conjecture
+# HodgeReduction -- Lean4 Formalisation Toward the Full Hodge Conjecture
 
-Status: **infra-parity with ABCReduction (2026-05-25)**. Chain-audit
-pipeline wired; main-chain config `HodgeReduction.MainChain.config`
-records 7 endpoints, 8 named gaps, and 6 research chains.  Build green
-pending `lake exe cache get` + `lake build`.
+Status: **full-HC target realigned (2026-05-30)**. The final project
+target is now explicitly recorded as `HodgeReduction.FullHodgeConjectureReal`,
+i.e. HC-real for every smooth projective complex variety. The current
+canonical `E_7` theorem remains a conditional milestone, not the final
+theorem.
 
 ## Purpose
 
-Formalise the structure of the Mumford--Tate reduction of the Hodge
-Conjecture (master proof: *A Mumford--Tate Reduction of the Hodge
-Conjecture*, Alex Chengyu Li, 2026), and isolate every load-bearing
-gap in a typed audit trail.  The headline target is
+Formalise a route toward the full Hodge Conjecture and isolate every
+load-bearing gap in a typed audit trail. The final target is
+
+```
+HodgeReduction.FullHodgeConjectureReal :
+  Prop  -- forall X : SmoothProjectiveVariety Complex, HodgeConjectureReal X
+```
+
+The current main milestone is
 
 ```
 HodgeReduction.hodgeConjectureReal_canonical :
-  VarietyHC canonicalE7ShimuraTor.cohomologyOfUnderlying
-            canonicalE7ShimuraTor.algClassesOfUnderlying
+  VarietyHC canonicalTargetCohomologyData canonicalTargetAlgClassesData
 ```
 
 a per-codimension HC-real statement for the canonical AMRT toroidal
 compactification of an `E_{7(-25)}`-Hermitian-symmetric-domain
-arithmetic quotient.  The proof is **conditional**: it closes modulo
-the single project axiom `canonicalE7ShimuraTor : E7ShimuraTor`, whose
-~60 fields are layer-classified in `HodgeReduction.HCGapRegistry`.
+arithmetic quotient. This milestone is **conditional** and does not by
+itself prove the full Hodge Conjecture.
 
 The formalisation matches the canonical Millennium-style infrastructure
 shared with `abc-conjecture/lean4-formalization` (and the other
@@ -41,6 +45,8 @@ Cat-3 paper-novel atoms + chainAudit-driven gap ledger discipline.
 | [`HodgeReduction/ClassicalResults.lean`](HodgeReduction/ClassicalResults.lean) | Classical theorems (Meyer / Hasse--Minkowski, Kostant `G_2 / F_4`, SV1 `E_8`, Deligne absolute Hodge, `cy3_e7_nonexistence_paper_axiom`) | mature |
 | [`HodgeReduction/OpenHypotheses.lean`](HodgeReduction/OpenHypotheses.lean) | Paper hypotheses + structural carriers (`E7ShimuraTor`, `canonicalE7ShimuraTor`, `hyp_HC_CM_Ab_real`, R169 cohomology / algClasses bridges) | mature, 204 axioms |
 | [`HodgeReduction/MainTheorem.lean`](HodgeReduction/MainTheorem.lean) | R170 four-case main reduction + R171/R188 headline `hodgeConjectureReal_canonical` + the four paper-unconditional theorems | mature |
+| [`HodgeReduction/FullHodgeGoal.lean`](HodgeReduction/FullHodgeGoal.lean) | Final full-HC target, pointwise codimension equivalent, and explicit scope-coverage blocker | target ledger |
+| [`HodgeReduction/PaperInventory.lean`](HodgeReduction/PaperInventory.lean) | Canonical master-tex import ledger; non-master tex files are archive/background unless promoted into the master paper | import ledger |
 | [`HodgeReduction/HCGapRegistry.lean`](HodgeReduction/HCGapRegistry.lean) | Layer-1/2/3/4 marker registry — every active gap in the headline cone | seeded |
 | [`HodgeReduction/Strict.lean`](HodgeReduction/Strict.lean) | Cat-1+2-only strict-discipline restructure (P17+); explicit-content Cat-2 axioms + derived theorems + honest conditional structure | exploratory |
 | [`HodgeReduction/Concrete/`](HodgeReduction/Concrete) | Concrete EVII toy instance (`A_EVII := Polynomial ℚ`); excluded from real-HC accounting per R201 mandate | sanity-check |
@@ -96,36 +102,45 @@ Generated `chain-status/*` artefacts:
 | `import-audit.md` | `W2` / `W4` import-prune candidates |
 | `findings.md` | All `FAIL` / `WARN` findings grouped by rule |
 
-## Gap ledger entry-points (load-bearing, status 2026-05-25)
+## Gap ledger entry-points (load-bearing, status 2026-05-30)
 
-1. **`G-main-hc`** — `conditional`.  Headline `hodgeConjectureReal_canonical`
-   composes the four substantive axioms (`canonicalE7ShimuraTor`,
-   `hyp_HC_CM_Ab_real`, `SmoothProjectiveVariety.cohomology`,
-   `SmoothProjectiveVariety.algClasses`) and three kernel axioms.
+1. **`G-full-hc`** — `final-open`.  Final target
+   `FullHodgeConjectureReal`: `forall X : SmoothProjectiveVariety Complex,
+   HodgeConjectureReal X`. Current work must feed this theorem, not just a
+   canonical or E7-local theorem.
 
-2. **`G-l1-e7-shimura-tor`** — `open`.  AMRT 1975 / Baily--Borel 1966
+2. **`G-master-paper-import`** -- `in-progress`.  Canonical import of
+   `../contributions/hodge-conjecture-master-proof.tex` into the Lean folder.
+   Attack maps, literature surveys, and round-contribution tex files are
+   archive/background unless a statement is promoted into the master tex.
+
+3. **`G-main-hc`** — `conditional milestone`.  Headline
+   `hodgeConjectureReal_canonical` proves the canonical `E_7` target modulo
+   registered cuts. It is a route milestone toward full HC, not final closure.
+
+4. **`G-l1-e7-shimura-tor`** — `open`.  AMRT 1975 / Baily--Borel 1966
    construction of `S_Γ^tor` as a `SmoothProjectiveVariety ℂ`.
 
-3. **`G-l2-cohomology-construction`** — `open`.  `VarietyCohomologyData`
+5. **`G-l2-cohomology-construction`** — `open`.  `VarietyCohomologyData`
    constructed from a non-toy underlying variety; Mathlib singular
    cohomology + Hodge theorem dependency.
 
-4. **`G-l3-v56-mt-identification`** — `open`.  `V_56` ↔ `H^3(S_Γ^tor, ℚ)`
+6. **`G-l3-v56-mt-identification`** — `open`.  `V_56` ↔ `H^3(S_Γ^tor, ℚ)`
    Hodge-structure identification via Matsushima / Borel--Wallach /
    Vogan--Zuckerman 1984.  The `V_56` side already kernel-pure
    (`V56Instance.instPureHodgeStructure_V56`).
 
-5. **`G-l4-cm-abelian-hc`** — `open`.  Deligne 1982 HC for CM abelian
+7. **`G-l4-cm-abelian-hc`** — `open`.  Deligne 1982 HC for CM abelian
    varieties (the `hyp_HC_CM_Ab_real` axiom).
 
-6. **`G-l4-mt-correspondence`** — `open`.  Per-codimension MT
+8. **`G-l4-mt-correspondence`** — `open`.  Per-codimension MT
    correspondence package; currently bundled in
    `canonicalE7ShimuraTor.mtCorrespondencePackage`.
 
-7. **`G-classical-mathlib-port`** — `deferred`.  `cy3_e7_nonexistence_paper_axiom`
+9. **`G-classical-mathlib-port`** — `deferred`.  `cy3_e7_nonexistence_paper_axiom`
    (paper §4 Stages A--D + Springer disc + FTS ω-pairing).
 
-8. **`G-hcgap-l4-multifront`** — `active-open`.  Active R420--R470 attack
+10. **`G-hcgap-l4-multifront`** — `active-open`.  Active R420--R470 attack
    waves on the L4 cohomology-profile + connectedness pipeline.
 
 See [`HodgeReduction/MainChain.lean`](HodgeReduction/MainChain.lean)

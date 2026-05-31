@@ -2,7 +2,7 @@
 
 Audit-generated route map overlaid on the automatic endpoint-closure audit.  The infra output is the single research truth source: use this report to distinguish the main chain, active exploration branches, named gaps, and dead or quarantined routes.
 
-* research chains: **6**  *  named gaps: **8**  *  endpoint count: **8**  *  orphan debt files: **418**  *  taxonomy-labelled debt files: **12**  *  rule-labelled debt files: **409**  *  connectable debt files: **411**  *  build components: **28**  *  branch heads: **73**
+* research chains: **8**  *  named gaps: **10**  *  endpoint count: **8**  *  orphan debt files: **418**  *  taxonomy-labelled debt files: **12**  *  rule-labelled debt files: **409**  *  connectable debt files: **411**  *  build components: **28**  *  branch heads: **73**
 
 ## Decision Summary
 
@@ -35,6 +35,7 @@ Open mathematical cut(s):
 - `HodgeReduction.lefschetz_11_hc_real_at_codim1` at `HodgeReduction/HCGapL4/CMAbelianHCBridge.lean`
 
 Active route(s) to work on:
+- `main-hc-axiom-relative` (conditional): gaps `G-full-hc`, `G-main-hc`, `G-l1-e7-shimura-tor`, `G-l2-cohomology-construction`, `G-l3-v56-mt-identification`, `G-l4-cm-abelian-hc`, `G-l4-mt-correspondence`
 - `hcgap-l4-multifront-active` (exploratory): gaps `G-hcgap-l4-multifront`
 
 Dead/quarantined route(s):
@@ -56,20 +57,30 @@ graph TD
   classDef debtTaxonomy fill:#e8f3ff,stroke:#2670b8,stroke-dasharray:3 3
   classDef debtRule fill:#eefbea,stroke:#398439,stroke-dasharray:3 3
   classDef debtDead fill:#fdd,stroke:#a00,stroke-dasharray:3 3
-  chain_main_hc_axiom_relative["Main Mumford--Tate-reduction HC chain\nconditional"]:::main
+  chain_full_hc_final_target["Final full Hodge conjecture target\nfinal-open"]:::main
+  chain_master_paper_import_ledger["Master tex import ledger\nin-progress"]:::support
+  chain_main_hc_axiom_relative["Canonical E7 Mumford--Tate-reduction milestone\nconditional"]:::active
   chain_unconditional_classical["Unconditional classical paper theorems\nclosed-modulo-cy3-citation"]:::closed
   chain_hcgap_l2_trivial_instances["Layer-2 minimum attack: trivial-instance VarietyCohomologyData\nstable"]:::support
-  chain_hcgap_l4_multifront_active["HCGapL4 multi-front attack waves (R420 -- R590)\nexploratory"]:::active
+  chain_hcgap_l4_multifront_active["HCGapL4 multi-front attack waves (R420 -- R634)\nexploratory"]:::active
   chain_concrete_evii_toy["Concrete EVII sanity-check chain\nclosed-toy"]:::closed
   chain_historical_cone_audits["Historical per-round cone audit drivers (R217 -- R476)\ninfra"]:::support
+  gap_G_full_hc{{"Final target: full Hodge conjecture for all smooth projective complex varieties\nfinal-open"}}:::gapOpen
+  gap_G_master_paper_import{{"Canonical master-paper content imported into Lean\nin-progress"}}:::gapOpen
   gap_G_main_hc{{"Hodge conjecture headline remains axiom-relative\nconditional"}}:::gapOpen
   gap_G_l1_e7_shimura_tor{{"Layer 1: true E_{7(-25)}-type Shimura toroidal compactification\nopen"}}:::gapOpen
   gap_G_l2_cohomology_construction{{"Layer 2: VarietyCohomologyData from a non-toy underlying variety\nopen"}}:::gapOpen
-  gap_G_l3_v56_mt_identification{{"Layer 3: V_56 -- H^3(S_Γ^tor, -- Hodge-structure identification\nopen"}}:::gapOpen
+  gap_G_l3_v56_mt_identification{{"Layer 3: V_56 -- H^3(S_铻昢tor, -- Hodge-structure identification\nopen"}}:::gapOpen
   gap_G_l4_cm_abelian_hc{{"Layer 4-G2: Hodge conjecture for CM abelian varieties (Deligne 1982)\nopen"}}:::gapOpen
   gap_G_l4_mt_correspondence{{"Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian)\nopen"}}:::gapOpen
   gap_G_classical_mathlib_port{{"Classical published-literature axioms awaiting Mathlib port\ndeferred"}}:::gapOpen
-  gap_G_hcgap_l4_multifront{{"HCGapL4 multi-front Layer-4 attack waves (R420 -- R590)\nactive-open"}}:::gapOpen
+  gap_G_hcgap_l4_multifront{{"HCGapL4 multi-front Layer-4 attack waves (R420 -- R634)\nactive-open"}}:::gapOpen
+  chain_full_hc_final_target --> gap_G_full_hc
+  chain_master_paper_import_ledger --> chain_full_hc_final_target
+  chain_master_paper_import_ledger --> gap_G_master_paper_import
+  chain_master_paper_import_ledger --> gap_G_full_hc
+  chain_main_hc_axiom_relative --> chain_full_hc_final_target
+  chain_main_hc_axiom_relative --> gap_G_full_hc
   chain_main_hc_axiom_relative --> gap_G_main_hc
   chain_main_hc_axiom_relative --> gap_G_l1_e7_shimura_tor
   chain_main_hc_axiom_relative --> gap_G_l2_cohomology_construction
@@ -107,12 +118,15 @@ graph TD
   anchor_infra["imports infra"]:::anchor
   anchor_project_unloaded["imports project-unloaded"]:::anchor
   owner_chain_concrete_evii_toy["chain:concrete-evii-toy"]:::ownerChain
+  owner_chain_full_hc_final_target["chain:full-hc-final-target"]:::ownerChain
   owner_chain_hcgap_l2_trivial_instances["chain:hcgap-l2-trivial-instances"]:::ownerChain
   owner_chain_hcgap_l4_multifront_active["chain:hcgap-l4-multifront-active"]:::ownerChain
   owner_chain_historical_cone_audits["chain:historical-cone-audits"]:::ownerChain
   owner_chain_main_hc_axiom_relative["chain:main-hc-axiom-relative"]:::ownerChain
+  owner_chain_master_paper_import_ledger["chain:master-paper-import-ledger"]:::ownerChain
   owner_chain_unconditional_classical["chain:unconditional-classical"]:::ownerChain
   owner_gap_G_classical_mathlib_port["gap:G-classical-mathlib-port"]:::ownerGap
+  owner_gap_G_full_hc["gap:G-full-hc"]:::ownerGap
   owner_gap_G_hcgap_l4_multifront["gap:G-hcgap-l4-multifront"]:::ownerGap
   owner_gap_G_l1_e7_shimura_tor["gap:G-l1-e7-shimura-tor"]:::ownerGap
   owner_gap_G_l2_cohomology_construction["gap:G-l2-cohomology-construction"]:::ownerGap
@@ -120,25 +134,30 @@ graph TD
   owner_gap_G_l4_cm_abelian_hc["gap:G-l4-cm-abelian-hc"]:::ownerGap
   owner_gap_G_l4_mt_correspondence["gap:G-l4-mt-correspondence"]:::ownerGap
   owner_gap_G_main_hc["gap:G-main-hc"]:::ownerGap
-  debt_C001["C001\n97 files\n2026-05-30 04:57\ncore-support"]:::debtTaxonomy
+  owner_gap_G_master_paper_import["gap:G-master-paper-import"]:::ownerGap
+  debt_C001["C001\n97 files\n2026-05-31 20:40\ncore-support"]:::debtTaxonomy
   debt_root --> debt_C001
   debt_C001 --> anchor_cut
   debt_C001 --> anchor_infra
   debt_C001 --> anchor_on_chain
   owner_chain_concrete_evii_toy --> debt_C001
   owner_gap_G_l4_cm_abelian_hc --> debt_C001
+  owner_chain_full_hc_final_target --> debt_C001
   owner_chain_hcgap_l2_trivial_instances --> debt_C001
   owner_chain_hcgap_l4_multifront_active --> debt_C001
   owner_chain_historical_cone_audits --> debt_C001
   owner_chain_main_hc_axiom_relative --> debt_C001
+  owner_chain_master_paper_import_ledger --> debt_C001
   owner_chain_unconditional_classical --> debt_C001
   owner_gap_G_classical_mathlib_port --> debt_C001
+  owner_gap_G_full_hc --> debt_C001
   owner_gap_G_hcgap_l4_multifront --> debt_C001
   owner_gap_G_l1_e7_shimura_tor --> debt_C001
   owner_gap_G_l2_cohomology_construction --> debt_C001
   owner_gap_G_l3_v56_mt_identification --> debt_C001
   owner_gap_G_l4_mt_correspondence --> debt_C001
   owner_gap_G_main_hc --> debt_C001
+  owner_gap_G_master_paper_import --> debt_C001
   debt_C002["C002\n1 files\n2026-05-29 09:22\ncore-support"]:::debtRule
   debt_root --> debt_C002
   debt_C002 --> anchor_on_chain
@@ -160,26 +179,33 @@ graph TD
   owner_chain_historical_cone_audits --> debt_C004
   owner_gap_G_hcgap_l4_multifront --> debt_C004
   owner_chain_concrete_evii_toy --> debt_C004
+  owner_chain_full_hc_final_target --> debt_C004
   owner_chain_hcgap_l2_trivial_instances --> debt_C004
   owner_chain_main_hc_axiom_relative --> debt_C004
+  owner_chain_master_paper_import_ledger --> debt_C004
   owner_chain_unconditional_classical --> debt_C004
   owner_gap_G_classical_mathlib_port --> debt_C004
+  owner_gap_G_full_hc --> debt_C004
   owner_gap_G_l1_e7_shimura_tor --> debt_C004
   owner_gap_G_l2_cohomology_construction --> debt_C004
   owner_gap_G_l3_v56_mt_identification --> debt_C004
   owner_gap_G_l4_cm_abelian_hc --> debt_C004
   owner_gap_G_l4_mt_correspondence --> debt_C004
   owner_gap_G_main_hc --> debt_C004
+  owner_gap_G_master_paper_import --> debt_C004
   debt_C005["C005\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
   debt_root --> debt_C005
   debt_C005 --> anchor_cut
   debt_C005 --> anchor_on_chain
   owner_chain_concrete_evii_toy --> debt_C005
+  owner_chain_full_hc_final_target --> debt_C005
   owner_chain_hcgap_l2_trivial_instances --> debt_C005
   owner_chain_hcgap_l4_multifront_active --> debt_C005
   owner_chain_main_hc_axiom_relative --> debt_C005
+  owner_chain_master_paper_import_ledger --> debt_C005
   owner_chain_unconditional_classical --> debt_C005
   owner_gap_G_classical_mathlib_port --> debt_C005
+  owner_gap_G_full_hc --> debt_C005
   owner_gap_G_hcgap_l4_multifront --> debt_C005
   owner_gap_G_l1_e7_shimura_tor --> debt_C005
   owner_gap_G_l2_cohomology_construction --> debt_C005
@@ -187,6 +213,7 @@ graph TD
   owner_gap_G_l4_cm_abelian_hc --> debt_C005
   owner_gap_G_l4_mt_correspondence --> debt_C005
   owner_gap_G_main_hc --> debt_C005
+  owner_gap_G_master_paper_import --> debt_C005
   debt_C006["C006\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
   debt_root --> debt_C006
   owner_chain_concrete_evii_toy --> debt_C006
@@ -297,27 +324,33 @@ graph TD
   debt_root --> debt_C028
   debt_C028 --> anchor_cut
   owner_chain_concrete_evii_toy --> debt_C028
+  owner_chain_full_hc_final_target --> debt_C028
   owner_chain_hcgap_l2_trivial_instances --> debt_C028
   owner_chain_hcgap_l4_multifront_active --> debt_C028
   owner_chain_historical_cone_audits --> debt_C028
   owner_chain_main_hc_axiom_relative --> debt_C028
+  owner_chain_master_paper_import_ledger --> debt_C028
   owner_chain_unconditional_classical --> debt_C028
+  owner_gap_G_full_hc --> debt_C028
   owner_gap_G_hcgap_l4_multifront --> debt_C028
   owner_gap_G_l1_e7_shimura_tor --> debt_C028
   owner_gap_G_l2_cohomology_construction --> debt_C028
   owner_gap_G_l4_cm_abelian_hc --> debt_C028
   owner_gap_G_l4_mt_correspondence --> debt_C028
   owner_gap_G_main_hc --> debt_C028
+  owner_gap_G_master_paper_import --> debt_C028
 ```
 
 ## Chains
 
 | id | kind | status | gaps | file classes |
 |----|------|--------|------|--------------|
-| `main-hc-axiom-relative` | main | conditional | `G-main-hc`, `G-l1-e7-shimura-tor`, `G-l2-cohomology-construction`, `G-l3-v56-mt-identification`, `G-l4-cm-abelian-hc`, `G-l4-mt-correspondence` | cut: 2, infra: 1, on-chain: 2 |
+| `full-hc-final-target` | main | final-open | `G-full-hc` | cut: 2, infra: 1, on-chain: 1, registered: 2 |
+| `master-paper-import-ledger` | support | in-progress | `G-master-paper-import`, `G-full-hc` | cut: 2, infra: 2, registered: 20 |
+| `main-hc-axiom-relative` | milestone | conditional | `G-full-hc`, `G-main-hc`, `G-l1-e7-shimura-tor`, `G-l2-cohomology-construction`, `G-l3-v56-mt-identification`, `G-l4-cm-abelian-hc`, `G-l4-mt-correspondence` | cut: 2, infra: 1, on-chain: 2 |
 | `unconditional-classical` | support | closed-modulo-cy3-citation | `G-classical-mathlib-port` | cut: 1, on-chain: 1 |
 | `hcgap-l2-trivial-instances` | support | stable | `G-l2-cohomology-construction` | registered: 3 |
-| `hcgap-l4-multifront-active` | active | exploratory | `G-hcgap-l4-multifront` | on-disk-unloaded: 3, registered: 49 |
+| `hcgap-l4-multifront-active` | active | exploratory | `G-hcgap-l4-multifront` | on-disk-unloaded: 3, registered: 70 |
 | `concrete-evii-toy` | support | closed-toy | - | on-disk-unloaded: 1 |
 | `historical-cone-audits` | infra | infra | - | on-disk-unloaded: 4 |
 
@@ -325,14 +358,16 @@ graph TD
 
 | id | status | title | files |
 |----|--------|-------|-------|
+| `G-full-hc` | final-open | Final target: full Hodge conjecture for all smooth projective complex varieties | cut: 2, infra: 2, on-chain: 1, registered: 1 |
+| `G-master-paper-import` | in-progress | Canonical master-paper content imported into Lean | cut: 2, infra: 3, registered: 21 |
 | `G-main-hc` | conditional | Hodge conjecture headline remains axiom-relative | cut: 2, infra: 1, on-chain: 1 |
 | `G-l1-e7-shimura-tor` | open | Layer 1: true E_{7(-25)}-type Shimura toroidal compactification | cut: 1, infra: 1, on-disk-unloaded: 2, registered: 1 |
 | `G-l2-cohomology-construction` | open | Layer 2: VarietyCohomologyData from a non-toy underlying variety | infra: 1, on-chain: 1, registered: 4 |
-| `G-l3-v56-mt-identification` | open | Layer 3: V_56 -- H^3(S_Γ^tor, -- Hodge-structure identification | infra: 1, registered: 4 |
+| `G-l3-v56-mt-identification` | open | Layer 3: V_56 -- H^3(S_铻昢tor, -- Hodge-structure identification | infra: 1, registered: 4 |
 | `G-l4-cm-abelian-hc` | open | Layer 4-G2: Hodge conjecture for CM abelian varieties (Deligne 1982) | cut: 2, infra: 1, on-disk-unloaded: 2 |
 | `G-l4-mt-correspondence` | open | Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian) | cut: 3, infra: 1, registered: 1 |
 | `G-classical-mathlib-port` | deferred | Classical published-literature axioms awaiting Mathlib port | cut: 3, on-chain: 2 |
-| `G-hcgap-l4-multifront` | active-open | HCGapL4 multi-front Layer-4 attack waves (R420 -- R590) | on-disk-unloaded: 3, registered: 54 |
+| `G-hcgap-l4-multifront` | active-open | HCGapL4 multi-front Layer-4 attack waves (R420 -- R634) | on-disk-unloaded: 3, registered: 75 |
 
 ## Off-Chain Split
 
@@ -348,11 +383,11 @@ Route-labelled off-chain files are assigned by the audit infra but are not consu
 | path | audit route labels | audit class |
 |------|----------------|-------------|
 | `HodgeReduction/Concrete.lean` | `chain:concrete-evii-toy`, `chain:hcgap-l2-trivial-instances`, `chain:main-hc-axiom-relative`, `gap:G-l2-cohomology-construction`, `gap:G-l3-v56-mt-identification` | on-disk-unloaded |
-| `HodgeReduction/ConeAudits/R217_ConeAudit.lean` | `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-hcgap-l4-multifront`, `gap:G-l2-cohomology-construction`, `gap:G-l4-cm-abelian-hc`, `gap:G-l4-mt-correspondence`, `gap:G-main-hc` | on-disk-unloaded |
-| `HodgeReduction/ConeAudits/R467_R470_ConeAudit.lean` | `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-l4-cm-abelian-hc`, `gap:G-l4-mt-correspondence`, `gap:G-main-hc` | on-disk-unloaded |
-| `HodgeReduction/ConeAudits/R471_R476_ConeAudit.lean` | `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-hcgap-l4-multifront`, `gap:G-l4-cm-abelian-hc`, `gap:G-l4-mt-correspondence`, `gap:G-main-hc` | on-disk-unloaded |
-| `HodgeReduction/ConeAudits/R477_R480_ConeAudit.lean` | `chain:concrete-evii-toy`, `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-hcgap-l4-multifront`, `gap:G-l3-v56-mt-identification`, `gap:G-l4-cm-abelian-hc`, `gap:G-l4-mt-correspondence`, `gap:G-main-hc` | on-disk-unloaded |
-| `HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean` | `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-l4-cm-abelian-hc`, `gap:G-l4-mt-correspondence`, `gap:G-main-hc` | on-disk-unloaded |
+| `HodgeReduction/ConeAudits/R217_ConeAudit.lean` | `chain:full-hc-final-target`, `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:master-paper-import-ledger`, `chain:unconditional-classical`, `gap:G-full-hc`, `gap:G-hcgap-l4-multifront`, `gap:G-l2-cohomology-construction`, `gap:G-l4-cm-abelian-hc`, `gap:G-l4-mt-correspondence`, +2 more | on-disk-unloaded |
+| `HodgeReduction/ConeAudits/R467_R470_ConeAudit.lean` | `chain:full-hc-final-target`, `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:master-paper-import-ledger`, `chain:unconditional-classical`, `gap:G-full-hc`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-l4-cm-abelian-hc`, `gap:G-l4-mt-correspondence`, `gap:G-main-hc`, +1 more | on-disk-unloaded |
+| `HodgeReduction/ConeAudits/R471_R476_ConeAudit.lean` | `chain:full-hc-final-target`, `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:master-paper-import-ledger`, `chain:unconditional-classical`, `gap:G-full-hc`, `gap:G-hcgap-l4-multifront`, `gap:G-l4-cm-abelian-hc`, `gap:G-l4-mt-correspondence`, `gap:G-main-hc`, `gap:G-master-paper-import` | on-disk-unloaded |
+| `HodgeReduction/ConeAudits/R477_R480_ConeAudit.lean` | `chain:concrete-evii-toy`, `chain:full-hc-final-target`, `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:master-paper-import-ledger`, `chain:unconditional-classical`, `gap:G-full-hc`, `gap:G-hcgap-l4-multifront`, `gap:G-l3-v56-mt-identification`, `gap:G-l4-cm-abelian-hc`, `gap:G-l4-mt-correspondence`, +2 more | on-disk-unloaded |
+| `HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean` | `chain:full-hc-final-target`, `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `chain:master-paper-import-ledger`, `gap:G-full-hc`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-l4-cm-abelian-hc`, `gap:G-l4-mt-correspondence`, `gap:G-main-hc`, `gap:G-master-paper-import` | on-disk-unloaded |
 | `HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean` | `chain:hcgap-l4-multifront-active`, `gap:G-hcgap-l4-multifront` | on-disk-unloaded |
 | `HodgeReduction/HCGapL4/R476_MultiFrontWave6Audit.lean` | `chain:hcgap-l4-multifront-active`, `gap:G-hcgap-l4-multifront` | on-disk-unloaded |
 | `HodgeReduction/Infrastructure/AbelianVariety/CMType.lean` | `chain:concrete-evii-toy`, `chain:main-hc-axiom-relative`, `gap:G-l4-cm-abelian-hc` | on-disk-unloaded |
@@ -362,16 +397,521 @@ Route-labelled off-chain files are assigned by the audit infra but are not consu
 
 ## Chain Details
 
-### `main-hc-axiom-relative` -- Main Mumford--Tate-reduction HC chain
+### `full-hc-final-target` -- Final full Hodge conjecture target
 
-`OpenHypotheses` (R169 cohomology / algClasses bridge + R174a Deligne) composes with `MainTheorem` (R170 four-case main reduction + R171/R188/R542/R551 canonical headline) to reach `hodgeConjectureReal_canonical`.  R546 adds the separately audited codim-one endpoint `hodgeConjectureReal_canonical_codim1`; R550 reroutes it directly through the classical Lefschetz (1,1) cut; R551 uses that endpoint for the `p = 1` branch of the full canonical proof, uses the direct non-codim-one MT package for `p ≠ 1`, and avoids mentioning `canonicalHCDataByCodim` in the endpoint type.  Full HC remains conditional on a canonical target SPV, its E7 factor/scope facts, the non-codim-one MT-witness route, and the CM-source all-codim bridge for `p ≠ 1`.
+`FullHodgeGoal.lean` records the actual theorem-closing objective: `FullHodgeConjectureReal`, not merely HC for the canonical `E_7` target.  The current `main_reduction_real` theorem is a scoped reduction, and `hodgeConjectureReal_canonical` is a single canonical milestone.  R611 adds the explicit by-codimension consumer plus a kernel-checked full-target status snapshot, so paper summary claims can point to the full target rather than to the L4 proof-work frontier alone.  R612 formalizes the second global closure alternative: prove `CurrentReductionCoversOrSolvesAllSmoothProjective`, then use the current reduction on the `InScope` branch and the independent proof on the complement branch.  R613 aligns the residual-gate vocabulary in `Research/E7ResidualStatus.lean` with that same R612 route, so residual-gate prose and full-HC closure prose now point to a single kernel-visible antecedent.  R620 adds `paperSummaryClaimFailureCount = 0`, so the summary status cannot silently drift from the route and paper-inventory ledgers.  R621 fixes the exact gap id/status table, R629 fixes the top-level project axiom-constant count, R630 fixes the direct `sorryAx` count, R631 fixes the 24-row endpoint open-cut ledger, R632 fixes its route-gap assignment ledger, and R633 fixes the endpoint-paper coverage exception behind the Lean-status prose, so the paper can no longer change those inventories without changing Lean.  Future work should be judged by whether it removes a blocker for the universal theorem or wires a milestone into an explicit implication to `FullHodgeConjectureReal`.
+
+Entry declarations:
+- `HodgeReduction.FullHodgeConjectureReal`
+- `HodgeReduction.FullHodgeConjectureRealByCodim`
+- `HodgeReduction.CurrentReductionCoversAllSmoothProjective`
+- `HodgeReduction.fullHodgeConjectureReal_of_currentScopeCoverage`
+- `HodgeReduction.fullHodgeConjectureRealByCodim_of_currentScopeCoverage`
+- `HodgeReduction.currentFullHodgeClosureRouteNames`
+- `HodgeReduction.FullHodgeClosureStatusSnapshot`
+- `HodgeReduction.currentFullHodgeClosureStatusSnapshot`
+- `HodgeReduction.currentFullHodgeClosureStatusSnapshot_eq_texStatus`
+- `HodgeReduction.currentFullHodgeClosureRouteNames_eq_texStatus`
+- `HodgeReduction.CurrentReductionCoversOrSolvesAllSmoothProjective`
+- `HodgeReduction.currentScopeOrComplementCoverage_of_currentScopeCoverage`
+- `HodgeReduction.fullHodgeConjectureReal_of_currentScopeOrComplementCoverage`
+- `HodgeReduction.fullHodgeConjectureRealByCodim_of_currentScopeOrComplementCoverage`
+- `HodgeReduction.currentFullHodgeScopeOrComplementRouteNames`
+- `HodgeReduction.FullHodgeScopeOrComplementSnapshot`
+- `HodgeReduction.currentFullHodgeScopeOrComplementSnapshot`
+- `HodgeReduction.currentFullHodgeScopeOrComplementSnapshot_eq_texStatus`
+- `HodgeReduction.currentFullHodgeScopeOrComplementRouteNames_eq_texStatus`
+- `HodgeReduction.r612ScopeOrComplementResidualGateData`
+- `HodgeReduction.fullHodgeConjectureReal_from_r612ResidualGate`
+- `HodgeReduction.R613ResidualGateRouteSnapshot`
+- `HodgeReduction.currentR613ResidualGateRouteSnapshot`
+- `HodgeReduction.currentR613ResidualGateRouteSnapshot_eq_texStatus`
+- `HodgeReduction.MainChain.fullHcNarrativeClaimsCompleteProof`
+- `HodgeReduction.MainChain.PaperNarrativeConsistencySnapshot`
+- `HodgeReduction.MainChain.currentPaperNarrativeConsistencySnapshot`
+- `HodgeReduction.MainChain.currentPaperNarrativeConsistencySnapshot_eq_texStatus`
+- `HodgeReduction.MainChain.fullHcCompletionOverclaimCount`
+- `HodgeReduction.MainChain.fullHcFinalOpenStatusFailureCount`
+- `HodgeReduction.MainChain.masterClaimTagPointerFailureCount`
+- `HodgeReduction.MainChain.masterClaimDispositionTagMismatchCount`
+- `HodgeReduction.MainChain.masterBrokenLinkDisciplineFailureCount`
+- `HodgeReduction.MainChain.masterSubgapStatusMarkerFailureCount`
+- `HodgeReduction.MainChain.masterPrimaryHypothesisDisciplineFailureCount`
+- `HodgeReduction.MainChain.scopeSubclassRouteGapReferenceIds`
+- `HodgeReduction.MainChain.unregisteredScopeSubclassRouteGapReferenceIds`
+- `HodgeReduction.MainChain.unregisteredScopeSubclassRouteGapReferenceCount`
+- `HodgeReduction.MainChain.allScopeSubclassRouteGapReferencesRegisteredInRoute`
+- `HodgeReduction.MainChain.masterScopeSubclassStatusFailureCount`
+- `HodgeReduction.MainChain.projectAxiomTrustBaseFailureCount`
+- `HodgeReduction.MainChain.projectSorryAxFailureCount`
+- `HodgeReduction.AxiomInventory.currentProjectAxiomTrustBaseSnapshot_eq_texStatus`
+- `HodgeReduction.AxiomInventory.topLevelProjectAxiomConstantCount_eq_texStatus`
+- `HodgeReduction.AxiomInventory.currentProjectSorryAxSnapshot_eq_texStatus`
+- `HodgeReduction.AxiomInventory.projectDeclarationsWithSorryAxCount_eq_zero`
+- `HodgeReduction.MainChain.masterSourceDisciplineFailureCount`
+- `HodgeReduction.MainChain.masterEnvironmentCoverageFailureCount`
+- `HodgeReduction.MainChain.paperSummaryClaimFailureCount`
+- `HodgeReduction.MainChain.paperSummaryClaimFailureCount_eq_zero`
+- `HodgeReduction.MainChain.RouteGapStatusEntry`
+- `HodgeReduction.MainChain.routeGapStatusLedger`
+- `HodgeReduction.MainChain.routeGapStatusLedger_eq_texStatus`
+- `HodgeReduction.MainChain.endpointOpenCutNames`
+- `HodgeReduction.MainChain.endpointOpenCutCount`
+- `HodgeReduction.MainChain.EndpointOpenCutSnapshot`
+- `HodgeReduction.MainChain.currentEndpointOpenCutSnapshot`
+- `HodgeReduction.MainChain.currentEndpointOpenCutSnapshot_eq_texStatus`
+- `HodgeReduction.MainChain.endpointOpenCutCount_eq_texStatus`
+- `HodgeReduction.MainChain.endpointOpenCutFailureCount`
+- `HodgeReduction.MainChain.EndpointOpenCutRouteAssignment`
+- `HodgeReduction.MainChain.endpointOpenCutRouteAssignments`
+- `HodgeReduction.MainChain.endpointOpenCutRouteAssignments_eq_texStatus`
+- `HodgeReduction.MainChain.EndpointOpenCutRouteAssignmentSnapshot`
+- `HodgeReduction.MainChain.currentEndpointOpenCutRouteAssignmentSnapshot`
+- `HodgeReduction.MainChain.currentEndpointOpenCutRouteAssignmentSnapshot_eq_texStatus`
+- `HodgeReduction.MainChain.endpointOpenCutRouteAssignmentFailureCount`
+- `HodgeReduction.MainChain.EndpointOpenCutPaperCoverageSnapshot`
+- `HodgeReduction.MainChain.currentEndpointOpenCutPaperCoverageSnapshot`
+- `HodgeReduction.MainChain.currentEndpointOpenCutPaperCoverageSnapshot_eq_texStatus`
+- `HodgeReduction.MainChain.endpointOpenCutPaperCoverageFailureCount`
+
+Gaps: `G-full-hc`
+
+Files:
+- `HodgeReduction/FullHodgeGoal.lean` -- registered
+- `HodgeReduction/AxiomInventory.lean` -- infra
+- `HodgeReduction/Research/E7ResidualStatus.lean` -- registered
+- `HodgeReduction/MainTheorem.lean` -- cut
+- `HodgeReduction/OpenHypotheses.lean` -- cut
+- `HodgeReduction/Types.lean` -- on-chain
+
+### `master-paper-import-ledger` -- Master tex import ledger
+
+`PaperInventory.lean` is the canonical ledger for moving the master proof into Lean.  It records the master tex as the sole canonical source, marks non-master tex files as archive/background, and tracks each load-bearing master item by line number, Lean declarations, and gap ids.  The current ledger has `claimedMasterEnvironmentCount = masterEnvironmentIndex.length`, `unclaimedMasterEnvironmentCount = 0`, and no `needsTriage` claims.  R614 checks that every load-bearing master claim has at least one machine correspondence: either a Lean declaration or an explicit route/gap id.  R615 strengthens the semantic tag discipline: formalized/kernel-only claims must carry Lean declarations, while registered-gap, open-hypothesis, open-residual, and new-math-gap claims must carry gap ids.  R616 strengthens the disposition/tag discipline: formalized claims must not carry open/unported tags, and open/gap/conditional dispositions must carry their matching semantic tags.  R617 checks that every master-claim gap id resolves to a route-level `researchGaps` entry.  R618 checks that all load-bearing claims use the single master tex canonical source while the other source families remain archive/background.  R619 checks that every theorem-like master environment has exactly one covering claim with a matching environment kind.  R620 aggregates those summary-facing checks into `paperSummaryClaimFailureCount = 0`, including the full-HC non-closure status.  R621 fixes the exact route gap id/status ledger referenced by those master claims.  R622 fixes exact claim-id worklists for the paper's remaining kernel-port debt and new-math/open-gap obligations.  R623 fixes the exact route-gap-to-master-claim worklists.  R624 records the expected exception: the only route rows with no direct master-paper claim ids are the structural infrastructure gaps `G-l1-e7-shimura-tor` and `G-l2-cohomology-construction`.  R625 records the exact broken-link predicate anchors and checks that they remain open/gap-facing new-math claims, not hidden closure claims.  R626 records the explicit master-tex sub-gap status markers, with four `gapPartial`, one `gapOpen`, and one `gapBlocked` marker tied to Lean declarations.  R627 records the exact nine primary labelled hypotheses used by the abstract, status box, and conclusion, and checks that they are exactly the open-hypothesis claim worklist.  R628 records the four scope-subclass status claims, separating unconditional sub-arguments from inherited conditional machinery.  R629 records the generated top-level project axiom-constant count for the master paper's Lean-status section; R630 records that the compiled root import has zero project declarations with direct `sorryAx` in their type/value; R631 records the exact 24 configured endpoint open cuts; R632 records the exact route-gap assignment for those cuts; R633 records the only endpoint assignment without direct master-paper claim coverage as the structural cohomology cut.  Further proof rounds should replace registered gaps and conditional milestones with kernel theorems where possible, without changing the theorem target away from `FullHodgeConjectureReal`.
+
+Entry declarations:
+- `HodgeReduction.PaperInventory.canonicalMasterSource`
+- `HodgeReduction.PaperInventory.archivedBackgroundSources`
+- `HodgeReduction.PaperInventory.allSources`
+- `HodgeReduction.PaperInventory.knownSourceIds`
+- `HodgeReduction.PaperInventory.sourceIdIsKnown`
+- `HodgeReduction.PaperInventory.masterClaimsWithUnknownSourceIdCount`
+- `HodgeReduction.PaperInventory.allMasterClaimSourceIdsKnown`
+- `HodgeReduction.PaperInventory.masterClaimsOutsideCanonicalSourceCount`
+- `HodgeReduction.PaperInventory.allMasterClaimsUseCanonicalMasterSource`
+- `HodgeReduction.PaperInventory.canonicalMasterSourcePathIsMasterTex`
+- `HodgeReduction.PaperInventory.canonicalMasterSourceRoleIsCanonical`
+- `HodgeReduction.PaperInventory.archivedBackgroundSourceCount`
+- `HodgeReduction.PaperInventory.allArchivedBackgroundSourcesHaveArchiveRole`
+- `HodgeReduction.PaperInventory.MasterSourceDisciplineSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterSourceDisciplineSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterSourceDisciplineSnapshot_eq_texStatus`
+- `HodgeReduction.PaperInventory.masterEnvironmentIndex`
+- `HodgeReduction.PaperInventory.environmentCoveringClaims`
+- `HodgeReduction.PaperInventory.environmentCoveringClaimCount`
+- `HodgeReduction.PaperInventory.allMasterEnvironmentsHaveUniqueClaim`
+- `HodgeReduction.PaperInventory.masterEnvironmentsWithoutUniqueClaimCount`
+- `HodgeReduction.PaperInventory.allClaimedMasterEnvironmentKindsMatch`
+- `HodgeReduction.PaperInventory.masterEnvironmentsWithKindMismatchCount`
+- `HodgeReduction.PaperInventory.masterClaimsNotCoveringMasterEnvironmentCount`
+- `HodgeReduction.PaperInventory.MasterEnvironmentCoverageDisciplineSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterEnvironmentCoverageDisciplineSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterEnvironmentCoverageDisciplineSnapshot_eq_texStatus`
+- `HodgeReduction.PaperInventory.masterClaims`
+- `HodgeReduction.PaperInventory.openHypothesisClaims`
+- `HodgeReduction.PaperInventory.registeredGapClaims`
+- `HodgeReduction.PaperInventory.needsTriageClaims`
+- `HodgeReduction.PaperInventory.formalizedClaims`
+- `HodgeReduction.PaperInventory.provenInPaperClaims`
+- `HodgeReduction.PaperInventory.conditionalMilestoneClaims`
+- `HodgeReduction.PaperInventory.externalCitationClaims`
+- `HodgeReduction.PaperInventory.openResidualClaims`
+- `HodgeReduction.PaperInventory.archiveOnlyClaims`
+- `HodgeReduction.PaperInventory.ClaimAuditTag`
+- `HodgeReduction.PaperInventory.effectiveAuditTags`
+- `HodgeReduction.PaperInventory.kernelOnlyLeanClaims`
+- `HodgeReduction.PaperInventory.kernelOnlyLeanClaimCount`
+- `HodgeReduction.PaperInventory.paperProofNotKernelPortedClaims`
+- `HodgeReduction.PaperInventory.paperProofNotKernelPortedClaimCount`
+- `HodgeReduction.PaperInventory.externalCitationNotKernelPortedClaims`
+- `HodgeReduction.PaperInventory.externalCitationNotKernelPortedClaimCount`
+- `HodgeReduction.PaperInventory.newMathGapClaims`
+- `HodgeReduction.PaperInventory.newMathGapClaimCount`
+- `HodgeReduction.PaperInventory.migrationDebtClaims`
+- `HodgeReduction.PaperInventory.migrationDebtClaimCount`
+- `HodgeReduction.PaperInventory.claimIds`
+- `HodgeReduction.PaperInventory.claimReferencesGapId`
+- `HodgeReduction.PaperInventory.masterClaimsForGapId`
+- `HodgeReduction.PaperInventory.masterClaimIdsForGapId`
+- `HodgeReduction.PaperInventory.registeredGapClaimIds`
+- `HodgeReduction.PaperInventory.openHypothesisClaimIds`
+- `HodgeReduction.PaperInventory.openResidualClaimIds`
+- `HodgeReduction.PaperInventory.conditionalMilestoneClaimIds`
+- `HodgeReduction.PaperInventory.paperProofNotKernelPortedClaimIds`
+- `HodgeReduction.PaperInventory.externalCitationNotKernelPortedClaimIds`
+- `HodgeReduction.PaperInventory.newMathGapClaimIds`
+- `HodgeReduction.PaperInventory.migrationDebtClaimIds`
+- `HodgeReduction.PaperInventory.MasterClaimWorklistSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterClaimWorklistSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterClaimWorklistSnapshot_eq_texStatus`
+- `HodgeReduction.PaperInventory.untaggedMasterClaimCount`
+- `HodgeReduction.PaperInventory.allMasterClaimsHaveEffectiveAuditTag`
+- `HodgeReduction.PaperInventory.claimedMasterEnvironments`
+- `HodgeReduction.PaperInventory.unclaimedMasterEnvironments`
+- `HodgeReduction.PaperInventory.masterClaimCount`
+- `HodgeReduction.PaperInventory.formalizedClaimCount`
+- `HodgeReduction.PaperInventory.provenInPaperClaimCount`
+- `HodgeReduction.PaperInventory.conditionalMilestoneClaimCount`
+- `HodgeReduction.PaperInventory.externalCitationClaimCount`
+- `HodgeReduction.PaperInventory.registeredGapClaimCount`
+- `HodgeReduction.PaperInventory.claimedMasterEnvironmentCount`
+- `HodgeReduction.PaperInventory.unclaimedMasterEnvironmentCount`
+- `HodgeReduction.PaperInventory.openResidualClaimCount`
+- `HodgeReduction.PaperInventory.archiveOnlyClaimCount`
+- `HodgeReduction.PaperInventory.claimHasMachineCorrespondence`
+- `HodgeReduction.PaperInventory.claimsWithoutMachineCorrespondence`
+- `HodgeReduction.PaperInventory.claimsWithoutMachineCorrespondenceCount`
+- `HodgeReduction.PaperInventory.allMasterClaimsHaveMachineCorrespondence`
+- `HodgeReduction.PaperInventory.claimHasLeanDecl`
+- `HodgeReduction.PaperInventory.claimHasGapId`
+- `HodgeReduction.PaperInventory.formalizedClaimsWithoutLeanDeclCount`
+- `HodgeReduction.PaperInventory.allFormalizedClaimsHaveLeanDecl`
+- `HodgeReduction.PaperInventory.kernelOnlyClaimsWithoutLeanDeclCount`
+- `HodgeReduction.PaperInventory.allKernelOnlyClaimsHaveLeanDecl`
+- `HodgeReduction.PaperInventory.registeredGapClaimsWithoutGapIdCount`
+- `HodgeReduction.PaperInventory.allRegisteredGapClaimsHaveGapId`
+- `HodgeReduction.PaperInventory.openHypothesisClaimsWithoutGapIdCount`
+- `HodgeReduction.PaperInventory.allOpenHypothesisClaimsHaveGapId`
+- `HodgeReduction.PaperInventory.openResidualClaimsWithoutGapIdCount`
+- `HodgeReduction.PaperInventory.allOpenResidualClaimsHaveGapId`
+- `HodgeReduction.PaperInventory.newMathGapClaimsWithoutGapIdCount`
+- `HodgeReduction.PaperInventory.allNewMathGapClaimsHaveGapId`
+- `HodgeReduction.PaperInventory.MasterClaimTagDisciplineSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterClaimTagDisciplineSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterClaimTagDisciplineSnapshot_eq_texStatus`
+- `HodgeReduction.PaperInventory.claimHasEffectiveAuditTagValue`
+- `HodgeReduction.PaperInventory.claimHasAnyOpenOrUnportedTag`
+- `HodgeReduction.PaperInventory.formalizedClaimsWithOpenOrUnportedTagCount`
+- `HodgeReduction.PaperInventory.allFormalizedClaimsAvoidOpenOrUnportedTags`
+- `HodgeReduction.PaperInventory.openHypothesisClaimsWithoutNewMathGapTagCount`
+- `HodgeReduction.PaperInventory.allOpenHypothesisClaimsTaggedNewMathGap`
+- `HodgeReduction.PaperInventory.openResidualClaimsWithoutNewMathGapTagCount`
+- `HodgeReduction.PaperInventory.allOpenResidualClaimsTaggedNewMathGap`
+- `HodgeReduction.PaperInventory.registeredGapClaimsWithoutMigrationDebtTagCount`
+- `HodgeReduction.PaperInventory.allRegisteredGapClaimsTaggedMigrationDebt`
+- `HodgeReduction.PaperInventory.conditionalMilestoneClaimsWithoutConditionalLeanPackageTagCount`
+- `HodgeReduction.PaperInventory.allConditionalMilestoneClaimsTaggedConditionalLeanPackage`
+- `HodgeReduction.PaperInventory.MasterClaimDispositionTagDisciplineSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterClaimDispositionTagDisciplineSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterClaimDispositionTagDisciplineSnapshot_eq_texStatus`
+- `HodgeReduction.PaperInventory.MasterBrokenLinkDisciplineSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterBrokenLinkDisciplineSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterBrokenLinkDisciplineSnapshot_eq_texStatus`
+- `HodgeReduction.PaperInventory.MasterSubgapStatusMarkerSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterSubgapStatusMarkerSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterSubgapStatusMarkerSnapshot_eq_texStatus`
+- `HodgeReduction.PaperInventory.MasterPrimaryHypothesisSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterPrimaryHypothesisSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterPrimaryHypothesisSnapshot_eq_texStatus`
+- `HodgeReduction.PaperInventory.MasterScopeSubclassStatusSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterScopeSubclassStatusSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterScopeSubclassStatusSnapshot_eq_texStatus`
+- `HodgeReduction.AxiomInventory.ProjectAxiomTrustBaseSnapshot`
+- `HodgeReduction.AxiomInventory.currentProjectAxiomTrustBaseSnapshot`
+- `HodgeReduction.AxiomInventory.currentProjectAxiomTrustBaseSnapshot_eq_texStatus`
+- `HodgeReduction.AxiomInventory.topLevelProjectAxiomConstantCount`
+- `HodgeReduction.AxiomInventory.topLevelProjectAxiomConstantCount_eq_texStatus`
+- `HodgeReduction.AxiomInventory.ProjectSorryAxSnapshot`
+- `HodgeReduction.AxiomInventory.currentProjectSorryAxSnapshot`
+- `HodgeReduction.AxiomInventory.currentProjectSorryAxSnapshot_eq_texStatus`
+- `HodgeReduction.AxiomInventory.projectDeclarationsWithSorryAxCount`
+- `HodgeReduction.AxiomInventory.projectDeclarationsWithSorryAxCount_eq_zero`
+- `HodgeReduction.MainChain.routeGapIds`
+- `HodgeReduction.MainChain.gapIdIsRouteRegistered`
+- `HodgeReduction.MainChain.masterClaimGapReferenceIds`
+- `HodgeReduction.MainChain.masterClaimGapReferenceCount`
+- `HodgeReduction.MainChain.unregisteredMasterClaimGapReferenceIds`
+- `HodgeReduction.MainChain.unregisteredMasterClaimGapReferenceCount`
+- `HodgeReduction.MainChain.masterClaimsWithUnregisteredGapIds`
+- `HodgeReduction.MainChain.masterClaimsWithUnregisteredGapIdCount`
+- `HodgeReduction.MainChain.allMasterClaimGapReferencesRegisteredInRoute`
+- `HodgeReduction.MainChain.MasterClaimGapReferenceSnapshot`
+- `HodgeReduction.MainChain.currentMasterClaimGapReferenceSnapshot`
+- `HodgeReduction.MainChain.currentMasterClaimGapReferenceSnapshot_eq_texStatus`
+- `HodgeReduction.PaperInventory.MasterAuditSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterAuditSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterAuditSnapshot_eq_texStatus`
+- `HodgeReduction.MainChain.routeLevelGapCount`
+- `HodgeReduction.MainChain.routeLevelFinalOpenGapCount`
+- `HodgeReduction.MainChain.routeLevelInProgressGapCount`
+- `HodgeReduction.MainChain.routeLevelConditionalGapCount`
+- `HodgeReduction.MainChain.routeLevelOpenGapCount`
+- `HodgeReduction.MainChain.routeLevelDeferredGapCount`
+- `HodgeReduction.MainChain.routeLevelActiveOpenGapCount`
+- `HodgeReduction.MainChain.RouteGapStatusSnapshot`
+- `HodgeReduction.MainChain.currentRouteGapStatusSnapshot`
+- `HodgeReduction.MainChain.RouteGapStatusEntry`
+- `HodgeReduction.MainChain.routeGapStatusLedger`
+- `HodgeReduction.MainChain.gapStatusOf?`
+- `HodgeReduction.MainChain.currentRouteGapStatusSnapshot_eq_texStatus`
+- `HodgeReduction.MainChain.routeGapStatusLedger_eq_texStatus`
+- `HodgeReduction.MainChain.endpointOpenCutNames`
+- `HodgeReduction.MainChain.endpointOpenCutCount`
+- `HodgeReduction.MainChain.expectedEndpointOpenCutNames`
+- `HodgeReduction.MainChain.expectedEndpointOpenCutCount`
+- `HodgeReduction.MainChain.endpointOpenCutLedgerMatchesTexStatus`
+- `HodgeReduction.MainChain.endpointOpenCutCountMatchesTexStatus`
+- `HodgeReduction.MainChain.EndpointOpenCutSnapshot`
+- `HodgeReduction.MainChain.currentEndpointOpenCutSnapshot`
+- `HodgeReduction.MainChain.currentEndpointOpenCutSnapshot_eq_texStatus`
+- `HodgeReduction.MainChain.endpointOpenCutCount_eq_texStatus`
+- `HodgeReduction.MainChain.endpointOpenCutFailureCount`
+- `HodgeReduction.MainChain.EndpointOpenCutRouteAssignment`
+- `HodgeReduction.MainChain.endpointOpenCutRouteAssignments`
+- `HodgeReduction.MainChain.endpointOpenCutRouteAssignments_eq_texStatus`
+- `HodgeReduction.MainChain.EndpointOpenCutRouteAssignmentSnapshot`
+- `HodgeReduction.MainChain.currentEndpointOpenCutRouteAssignmentSnapshot`
+- `HodgeReduction.MainChain.currentEndpointOpenCutRouteAssignmentSnapshot_eq_texStatus`
+- `HodgeReduction.MainChain.endpointOpenCutRouteAssignmentFailureCount`
+- `HodgeReduction.MainChain.EndpointOpenCutPaperCoverageSnapshot`
+- `HodgeReduction.MainChain.currentEndpointOpenCutPaperCoverageSnapshot`
+- `HodgeReduction.MainChain.currentEndpointOpenCutPaperCoverageSnapshot_eq_texStatus`
+- `HodgeReduction.MainChain.endpointOpenCutPaperCoverageFailureCount`
+- `HodgeReduction.MainChain.MasterRouteGapClaimEntry`
+- `HodgeReduction.MainChain.masterRouteGapClaimLedger`
+- `HodgeReduction.MainChain.masterRouteGapClaimLedgerClaimReferenceCount`
+- `HodgeReduction.MainChain.currentMasterRouteGapClaimLedger_eq_texStatus`
+- `HodgeReduction.MainChain.masterRouteGapClaimLedgerClaimReferenceCount_eq_masterClaimGapReferenceCount`
+- `HodgeReduction.MainChain.masterRouteGapRowsWithMasterClaims`
+- `HodgeReduction.MainChain.masterRouteGapRowsWithoutMasterClaims`
+- `HodgeReduction.MainChain.masterRouteGapIdsWithoutMasterClaims`
+- `HodgeReduction.MainChain.masterRouteGapRowsWithoutMasterClaimsAreExpectedStructuralInfra`
+- `HodgeReduction.MainChain.MasterRouteGapClaimCoverageSnapshot`
+- `HodgeReduction.MainChain.currentMasterRouteGapClaimCoverageSnapshot`
+- `HodgeReduction.MainChain.currentMasterRouteGapClaimCoverageSnapshot_eq_texStatus`
+- `HodgeReduction.MainChain.masterRouteGapClaimCoverageFailureCount`
+- `HodgeReduction.MainChain.fullHcGapStatus_eq_finalOpen`
+- `HodgeReduction.MainChain.fullHcNarrativeClaimsCompleteProof`
+- `HodgeReduction.MainChain.PaperNarrativeConsistencySnapshot`
+- `HodgeReduction.MainChain.currentPaperNarrativeConsistencySnapshot`
+- `HodgeReduction.MainChain.currentPaperNarrativeConsistencySnapshot_eq_texStatus`
+- `HodgeReduction.MainChain.fullHcCompletionOverclaimCount`
+- `HodgeReduction.MainChain.fullHcFinalOpenStatusFailureCount`
+- `HodgeReduction.MainChain.masterClaimTagPointerFailureCount`
+- `HodgeReduction.MainChain.masterClaimDispositionTagMismatchCount`
+- `HodgeReduction.MainChain.masterBrokenLinkDisciplineFailureCount`
+- `HodgeReduction.MainChain.masterSubgapStatusMarkerFailureCount`
+- `HodgeReduction.MainChain.masterPrimaryHypothesisDisciplineFailureCount`
+- `HodgeReduction.MainChain.scopeSubclassRouteGapReferenceIds`
+- `HodgeReduction.MainChain.unregisteredScopeSubclassRouteGapReferenceIds`
+- `HodgeReduction.MainChain.unregisteredScopeSubclassRouteGapReferenceCount`
+- `HodgeReduction.MainChain.allScopeSubclassRouteGapReferencesRegisteredInRoute`
+- `HodgeReduction.MainChain.masterScopeSubclassStatusFailureCount`
+- `HodgeReduction.MainChain.projectAxiomTrustBaseFailureCount`
+- `HodgeReduction.MainChain.projectSorryAxFailureCount`
+- `HodgeReduction.AxiomInventory.currentProjectSorryAxSnapshot_eq_texStatus`
+- `HodgeReduction.AxiomInventory.projectDeclarationsWithSorryAxCount_eq_zero`
+- `HodgeReduction.MainChain.masterSourceDisciplineFailureCount`
+- `HodgeReduction.MainChain.masterEnvironmentCoverageFailureCount`
+- `HodgeReduction.MainChain.paperSummaryClaimFailureCount`
+- `HodgeReduction.MainChain.paperSummaryClaimFailureCount_eq_zero`
+- `HodgeReduction.RanCoherenceInputData`
+- `HodgeReduction.RanCoherenceInputData.coherence_lemma_from_oka_and_bbt_definable_oka`
+- `HodgeReduction.RanCoherenceInputData.input_ran_from_coherence_lemma`
+- `HodgeReduction.oka_coherence_does_not_self_close_ran_input`
+- `HodgeReduction.CMDensityInputData`
+- `HodgeReduction.CMDensityInputData.cm_density_in_special_subvariety_from_tsimerman`
+- `HodgeReduction.CMDensityInputData.cm_density_in_hodge_locus_from_special_component`
+- `HodgeReduction.specialness_does_not_self_close_cm_density`
+- `HodgeReduction.PeterzilStarchenkoInputData`
+- `HodgeReduction.PeterzilStarchenkoInputData.definable_closed_analytic_subset_is_algebraic`
+- `HodgeReduction.definable_analytic_set_does_not_self_close_algebraicity`
+- `HodgeReduction.VoisinIntegralCounterexampleData`
+- `HodgeReduction.VoisinIntegralCounterexampleData.integral_hodge_counterexample_from_voisin`
+- `HodgeReduction.VoisinIntegralCounterexampleData.voisin_integral_failure_does_not_contradict_rational_target`
+- `HodgeReduction.integral_hc_failure_alone_does_not_self_close_rational_scope`
+- `HodgeReduction.MargulisConditionalData`
+- `HodgeReduction.MargulisConditionalData.arithmeticity_if_monodromy_is_lattice`
+- `HodgeReduction.MargulisConditionalData.representation_extension_if_monodromy_is_lattice`
+- `HodgeReduction.margulis_rank_inputs_do_not_self_close_without_lattice_hypothesis`
+- `HodgeReduction.RationalScalarExtensionDescentData.padic_descent_linear_algebra_core`
+- `HodgeReduction.WitnessLatticeHypothesis`
+- `HodgeReduction.WitnessLatticeHypothesis.orthogonalComplement_signature_eq_p_two`
+- `HodgeReduction.MonodromyLatticeContainmentData`
+- `HodgeReduction.containment_in_arithmetic_lattice_does_not_force_finite_covolume`
+- `HodgeReduction.ShimuraTypeFibreData`
+- `HodgeReduction.ShimuraTypeFibreData.invariant_classes_realized_through_map`
+- `HodgeReduction.aniso_empty_isotropic_core`
+- `HodgeReduction.CMFibreDensityData`
+- `HodgeReduction.CMFibreDensityData.shimura_fibre_density_from_transport`
+- `HodgeReduction.cm_density_alone_does_not_force_e7_family_density`
+- `HodgeReduction.RankTwoCMCY3CorrespondenceData`
+- `HodgeReduction.RankTwoCMCY3CorrespondenceData.algebraicity_from_rank_two_cm_cy3_hypothesis`
+- `HodgeReduction.blasius_deligne_do_not_self_close_cm_cy3_correspondence`
+- `HodgeReduction.MotivicSpanData`
+- `HodgeReduction.MotivicSpanData.rigid_nonabelian_cm_subcase_from_motivic_span`
+- `HodgeReduction.cm_correspondence_does_not_self_close_motivic_span`
+- `HodgeReduction.AbelianTypeCoverageData`
+- `HodgeReduction.AbelianTypeCoverageData.abelian_type_coverage_from_hc_cm_and_ran`
+- `HodgeReduction.hc_cm_abelian_does_not_self_close_abelian_type_coverage`
+- `HodgeReduction.KugaSatakeP3Data`
+- `HodgeReduction.KugaSatakeP3Data.ks_p3_from_spin_hodge_and_correspondence`
+- `HodgeReduction.spin_abs_periodicity_does_not_self_close_ks_p3`
+- `HodgeReduction.AbsoluteHodgeDescentData`
+- `HodgeReduction.AbsoluteHodgeDescentData.ahd_from_wlh_hodge_locus_principleB_and_hcab`
+- `HodgeReduction.hc_ab_and_hodge_locus_do_not_self_close_ahd`
+- `HodgeReduction.GLBOrthClosureData`
+- `HodgeReduction.GLBOrthClosureData.glb_orth_from_meyer_ahd_ks_and_hcab`
+- `HodgeReduction.GLBOrthClosureData.orthogonal_coverage_from_glb_orth`
+- `HodgeReduction.meyer_input_does_not_self_close_glb_orth`
+- `HodgeReduction.GenericFibreInvariantData`
+- `HodgeReduction.GenericFibreInvariantData.generic_fibre_invariant_from_full_package`
+- `HodgeReduction.invariant_theory_and_chern_classes_do_not_self_close_generic_fibre`
+- `HodgeReduction.SatakeAbelianClassificationData`
+- `HodgeReduction.SatakeAbelianClassificationData.exceptional_eiii_evii_not_abelian_type`
+- `HodgeReduction.exceptional_label_does_not_self_close_satake_classification`
+- `HodgeReduction.E7ApproachFTotalSpaceData`
+- `HodgeReduction.E7ApproachFTotalSpaceData.total_space_class_from_chern_weil_bridge`
+- `HodgeReduction.approach_f_total_space_does_not_self_close_fibre_level_class`
+- `HodgeReduction.CMEigenvalueSeparationData`
+- `HodgeReduction.CMEigenvalueSeparationData.abelian_type_eigenvalue_separation_from_honda_tate`
+- `HodgeReduction.CMEigenvalueSeparationData.nonabelian_e7_eigenvalue_separation_from_honda_tate_extension`
+- `HodgeReduction.abelian_honda_tate_does_not_self_close_nonabelian_e7_eigenvalue_separation`
+- `HodgeReduction.E7ArithmeticityStep1Data`
+- `HodgeReduction.E7ArithmeticityStep1Data.arithmeticity_from_all_inputs`
+- `HodgeReduction.e7_arithmeticity_not_from_boundary_data_alone`
+- `HodgeReduction.BBTRigidReachData`
+- `HodgeReduction.BBTRigidReachData.rigid_isolated_reach_from_full_package`
+- `HodgeReduction.bbt_frameworks_do_not_self_close_rigid_isolated_reach`
+- `HodgeReduction.NonRigidFamilyBridgeData`
+- `HodgeReduction.NonRigidFamilyBridgeData.base_dimension_from_period_package`
+- `HodgeReduction.NonRigidFamilyBridgeData.nonrigid_family_bridge_from_full_period_package`
+- `HodgeReduction.nonrigidity_does_not_self_close_period_family_bridge`
+- `HodgeReduction.E7BBTSpreadingData`
+- `HodgeReduction.E7BBTSpreadingData.e7_bbt_spreading_from_full_package`
+- `HodgeReduction.E7BBTSpreadingData.individual_scope_transfer_from_family_spreading_and_bridges`
+- `HodgeReduction.bbt_cm_density_do_not_self_close_e7_bbt_spreading`
+- `HodgeReduction.family_spreading_does_not_self_close_individual_e7_scope`
+- `HodgeReduction.E7CMAlgebraicityData`
+- `HodgeReduction.E7CMAlgebraicityData.absolute_hodge_from_nonabelian_e7_extension`
+- `HodgeReduction.E7CMAlgebraicityData.cm_e7_algebraicity_from_absolute_hodge_and_hbundle`
+- `HodgeReduction.E7CMAlgebraicityData.cm_e7_algebraicity_from_full_package`
+- `HodgeReduction.abelian_frameworks_do_not_self_close_nonabelian_e7_absolute_hodge`
+- `HodgeReduction.absolute_hodge_does_not_self_close_cm_e7_algebraicity`
+- `HodgeReduction.E7ChernWeilBridgeData`
+- `HodgeReduction.E7ChernWeilBridgeData.compact_dual_nonzero_from_schwarz_bridge`
+- `HodgeReduction.E7ChernWeilBridgeData.toroidal_class_from_matsushima_descent`
+- `HodgeReduction.E7ChernWeilBridgeData.algebraicity_from_chern_polynomial_identity`
+- `HodgeReduction.E7ChernWeilBridgeData.e7_chern_weil_algebraicity_from_full_bridge`
+- `HodgeReduction.schwarz_invariant_ring_does_not_self_close_e7_chern_weil`
+- `HodgeReduction.cocompact_matsushima_does_not_self_close_noncompact_e7_chern_weil`
+- `HodgeReduction.ExoticE7NarrowingData`
+- `HodgeReduction.ExoticE7NarrowingData.exotic_residual_narrowed_from_geometric_eliminations`
+- `HodgeReduction.exotic_narrowing_does_not_self_close_residual`
+- `HodgeReduction.TorelliEVIIQuestionData`
+- `HodgeReduction.TorelliEVIIQuestionData.exotic_rigid_vacuity_from_evii_uniformisation`
+- `HodgeReduction.arithmeticity_and_mok_do_not_self_close_torelli_evii`
+- `HodgeReduction.ExoticE7ResidualData`
+- `HodgeReduction.ExoticE7ResidualData.exotic_residual_eliminated_from_all_subbranches`
+- `HodgeReduction.known_e7_cases_do_not_self_close_exotic_residual`
+- `HodgeReduction.FullHCResidualGateData`
+- `HodgeReduction.FullHCResidualGateData.full_hodge_conjecture_from_residual_gate`
+- `HodgeReduction.E7ResidualStrategyData`
+- `HodgeReduction.E7ResidualStrategyData.residual_hc_from_theta_transfer`
+- `HodgeReduction.E7ResidualStrategyData.residual_hc_from_padic_route`
+- `HodgeReduction.E7ResidualStrategyData.residual_hc_from_bost_charles_route`
+- `HodgeReduction.theta_shimura_cycle_does_not_self_close_residual_hc`
+- `HodgeReduction.padic_descent_does_not_self_close_residual_hc`
+- `HodgeReduction.bost_charles_framework_does_not_self_close_residual_hc`
+- `HodgeReduction.OmegaDiagonalData`
+- `HodgeReduction.OmegaDiagonalData.cohomological_identity_from_standard_conjecture_package`
+- `HodgeReduction.OmegaDiagonalData.omega_algebraic_from_diagonal_standard_conjectures_and_schur`
+- `HodgeReduction.OmegaDiagonalData.schur_projector_step_iff_omega_algebraicity`
+- `HodgeReduction.standard_conjecture_pair_does_not_self_close_omega_diagonal`
+- `HodgeReduction.andre_motivated_closure_does_not_self_close_chow_omega`
+- `HodgeReduction.E7ChowModularityData`
+- `HodgeReduction.E7ChowModularityData.chow_modularity_from_full_package`
+- `HodgeReduction.ThetaIsChowModular`
+- `HodgeReduction.IsExceptionalE7ChowModularityExtension_CONJECTURAL`
+- `HodgeReduction.orthogonal_chow_frameworks_do_not_self_close_exceptional_e7_chow_modularity`
+- `HodgeReduction.E7ThetaModularityData`
+- `HodgeReduction.E7ThetaModularityData.cohomological_theta_modularity_from_kernel`
+- `HodgeReduction.E7ThetaModularityData.e7_chow_modularity_from_full_package`
+- `HodgeReduction.cohomological_theta_does_not_self_close_chow_valued_e7_modularity`
+- `HodgeReduction.E7ThetaMatchData`
+- `HodgeReduction.E7ThetaMatchData.theta_match_from_full_package`
+- `HodgeReduction.E7ThetaMatchData.nonzero_algebraic_theta_cycle_from_match`
+- `HodgeReduction.chow_modularity_and_theta_framework_do_not_self_close_theta_match`
+- `HodgeReduction.E7ThetaStepIIIData`
+- `HodgeReduction.E7ThetaStepIIIData.shimura_side_cycle_seeding_from_theta_package`
+- `HodgeReduction.E7ThetaStepIIIData.hbundle_cycle_seeding_from_theta_and_fibre_transfer`
+- `HodgeReduction.shimura_side_theta_cycle_does_not_self_close_fibre_transfer`
+- `HodgeReduction.HBundleMatchingData`
+- `HodgeReduction.HBundleMatchingData.bundle_matching_from_rigid_point_case`
+- `HodgeReduction.HBundleMatchingData.bundle_matching_from_toroidal_reduction_package`
+- `HodgeReduction.known_hbundle_cases_do_not_self_close_arbitrary_nontoroidal_boundary`
+- `HodgeReduction.HBundleCycleSeedingData`
+- `HodgeReduction.HBundleCycleSeedingData.cycle_seeding_from_low_dimensional_lefschetz`
+- `HodgeReduction.HBundleCycleSeedingData.cycle_seeding_from_nonrigid_e7_package`
+- `HodgeReduction.HBundleCycleSeedingData.cycle_seeding_from_known_rigid_e7_package`
+- `HodgeReduction.low_dimensional_hbundle_does_not_self_close_high_dimensional_residual`
+- `HodgeReduction.HBundleInputData`
+- `HodgeReduction.HBundleInputData.hbundle_input_from_matching_and_cycle_seeding`
+- `HodgeReduction.bundle_matching_does_not_self_close_hbundle_input`
+- `HodgeReduction.FibreTransferData`
+- `HodgeReduction.FibreTransferData.base_level_algebraicity_from_shimura_side`
+- `HodgeReduction.shimura_side_and_period_map_do_not_self_close_fibre_algebraicity`
+- `HodgeReduction.E7FibreInvariantClassSplitData`
+- `HodgeReduction.E7FibreInvariantClassSplitData.all_invariant_classes_from_h3_algebraicity`
+- `HodgeReduction.motivated_h3_class_does_not_self_close_algebraicity`
+- `HodgeReduction.Q4AbelianAlgebraicityData`
+- `HodgeReduction.Q4AbelianAlgebraicityData.pointwise_q4_algebraicity_from_cm_abelian_bridge`
+- `HodgeReduction.Q4AbelianAlgebraicityData.global_q4_algebraicity_from_full_transfer`
+- `HodgeReduction.pointwise_q4_algebraicity_does_not_self_close_global_e7`
+- `HodgeReduction.MokTorelliConditionalShape`
+- `HodgeReduction.mok_conditional_does_not_self_close_torelli`
+
+Depends on: `full-hc-final-target`
+
+Gaps: `G-master-paper-import`, `G-full-hc`
+
+Files:
+- `HodgeReduction/PaperInventory.lean` -- infra
+- `HodgeReduction/Research/AnisotropicResidue.lean` -- registered
+- `HodgeReduction/Research/ClassicalExternalStatus.lean` -- registered
+- `HodgeReduction/Research/CMFibreDensity.lean` -- registered
+- `HodgeReduction/Research/E7ArithmeticityPipeline.lean` -- registered
+- `HodgeReduction/Research/E7BBTSpreading.lean` -- registered
+- `HodgeReduction/Research/E7CMAlgebraicity.lean` -- registered
+- `HodgeReduction/Research/E7ChernWeilBridge.lean` -- registered
+- `HodgeReduction/Research/E7ResidualStatus.lean` -- registered
+- `HodgeReduction/Research/E7ThetaModularity.lean` -- registered
+- `HodgeReduction/Research/FibreTransfer.lean` -- registered
+- `HodgeReduction/Research/HBundleStatus.lean` -- registered
+- `HodgeReduction/Research/LatticeGap.lean` -- registered
+- `HodgeReduction/Research/MainTheoremInputStatus.lean` -- registered
+- `HodgeReduction/Research/MainTheoremResidualStatus.lean` -- registered
+- `HodgeReduction/Research/MokCircularity.lean` -- registered
+- `HodgeReduction/Research/OmegaDiagonal.lean` -- registered
+- `HodgeReduction/Research/PadicDescent.lean` -- registered
+- `HodgeReduction/Research/Q4AbelianAlgebraicity.lean` -- registered
+- `HodgeReduction/Research/ShimuraTypeFibre.lean` -- registered
+- `HodgeReduction/Research/WitnessLatticeHypothesis.lean` -- registered
+- `HodgeReduction/OpenHypotheses.lean` -- cut
+- `HodgeReduction/MainTheorem.lean` -- cut
+- `HodgeReduction/AxiomInventory.lean` -- infra
+
+### `main-hc-axiom-relative` -- Canonical E7 Mumford--Tate-reduction milestone
+
+`OpenHypotheses` (R169 cohomology / algClasses bridge + R174a Deligne) composes with `MainTheorem` (R170 four-case main reduction + R171/R188/R542/R551 canonical headline) to reach `hodgeConjectureReal_canonical`.  This is explicitly a milestone toward `FullHodgeConjectureReal`, not the final project theorem.  R546 adds the separately audited codim-one endpoint `hodgeConjectureReal_canonical_codim1`; R550 reroutes it directly through the classical Lefschetz (1,1) cut; R551 uses that endpoint for the `p = 1` branch of the full canonical proof, uses the direct non-codim-one MT package for `p 鈮?1`, and avoids mentioning `canonicalHCDataByCodim` in the endpoint type.  Full HC still requires a universal route over all smooth projective complex varieties.
 
 Entry declarations:
 - `HodgeReduction.hodgeConjectureReal_canonical`
 - `HodgeReduction.hodgeConjectureReal_canonical_codim1`
 - `HodgeReduction.main_reduction_real`
 
-Gaps: `G-main-hc`, `G-l1-e7-shimura-tor`, `G-l2-cohomology-construction`, `G-l3-v56-mt-identification`, `G-l4-cm-abelian-hc`, `G-l4-mt-correspondence`
+Depends on: `full-hc-final-target`
+
+Gaps: `G-full-hc`, `G-main-hc`, `G-l1-e7-shimura-tor`, `G-l2-cohomology-construction`, `G-l3-v56-mt-identification`, `G-l4-cm-abelian-hc`, `G-l4-mt-correspondence`
 
 Files:
 - `HodgeReduction/Types.lean` -- on-chain
@@ -382,7 +922,7 @@ Files:
 
 ### `unconditional-classical` -- Unconditional classical paper theorems
 
-Meyer / G_2 / F_4 / E_8 vacuity are kernel-pure derived theorems.  `thm_cy3_e7_nonexistence` still consumes `cy3_e7_nonexistence_paper_axiom` (paper §4 Stages A--D).
+Meyer / G_2 / F_4 / E_8 vacuity are kernel-pure derived theorems.  `thm_cy3_e7_nonexistence` still consumes `cy3_e7_nonexistence_paper_axiom` (paper 搂4 Stages A--D).
 
 Entry declarations:
 - `HodgeReduction.thm_Meyer`
@@ -410,9 +950,9 @@ Files:
 - `HodgeReduction/HCGapL2/ProjectiveLine.lean` -- registered
 - `HodgeReduction/HCGapL2/EllipticCurve.lean` -- registered
 
-### `hcgap-l4-multifront-active` -- HCGapL4 multi-front attack waves (R420 -- R590)
+### `hcgap-l4-multifront-active` -- HCGapL4 multi-front attack waves (R420 -- R634)
 
-5 parallel attack fronts on the L4 cohomology-profile + connectedness pipeline.  Per-wave audits R451 / R456 / R460 / R465 / R470 / R476 enumerate substantive theorems per round.  R552 extends the FrontC numeric bridge through a buildable EVII compact-dual/V56/Shimura expected Betti profile: all degrees 0..8 are certified by known Hodge sums, with degree 3 explicitly routed through V56 rather than hidden in compact-dual odd cohomology.  R553 connects that finite V56 profile to the actual infrastructure `PureHodgeStructure V56 3`.  R554 proves the abstract Matsushima boundary composition: target invariants reduce to the cuspidal trivial-module part, and compact-dual image reduces to that part once concrete EVII source/target boundary equalities are provided.  R555 tightens the source-side obligation: Cartan's trivial-module H8 line rewrites to compact-dual H8, its classes are algebraic through `CompactDualData`, and the R554 source equality follows from `surjectivity_source = source_invariants`.  R556 converts the remaining boundary equalities into four concrete linear-algebra tasks; R557 shows target containment is forced by source containment; R558 transports target finrank from source finrank; R559 rewrites the remaining source obligations against compact-dual/Cartan data; R560 proves those obligations are not derivable from the current abstract interface alone; R561 replaces the three R559 obligations by the sharper compact-dual exact image target plus target-invariant exactness; R562 removes target-invariant exactness as an independent obligation by deriving it from exact image plus the compactDual/trivialModulePart rank bridge; R563 proves exact image is equivalent to the source equality `surjectivity_source = compactDual`; R564 closes the compact-dual H8 rank-one side and reduces the rank bridge to `compactDual = H8` plus `finrank trivialModulePart = 1`; R565 replaces that target rank-one obligation by exact Cartan image equality; R566 rewrites the remaining source and compact-dual carrier obligations to Cartan-line exactness; R567 blocks any attempt to derive those exactness statements from the current abstract interface alone; R568 turns exact Cartan image into the element-level scalar-preimage target `forall beta in trivialModulePart, exists r, j_q (r • h^4) = beta`; R569 shows that even compactDual = Cartan does not force that scalar-surjectivity target; R570 proves that target rank-one plus compactDual = Cartan is enough for exact Cartan image; R571/R572 reduce the live target to source equality, source-invariants/H8, and expected Betti-8 target rank; R573 splits source-invariants/H8 into no-extra-source containment and `h^4` generator membership, with a source-rank-one alternate route; R574 rewrites that source-carrier split through `MatsushimaCompactDualData.compactDual`, leaving compactDual containment in H8 plus generator membership as the next concrete carrier targets; R575 rewrites those as the Cartan/compactDual containments `compactDual <= CartanH8` and `CartanH8 <= compactDual`; R576 rewrites source equality as source/Cartan two-sided containment and feeds the two source directions plus the two compactDual directions into the boundary package; R577 records that all four carrier directions still do not imply the target expected-Betti rank; R578 routes that target rank through the degree-8 compact-dual Hodge-sum profile; R579 derives the target Hodge-sum rank from exact Cartan image equality; R580 derives exact Cartan image from compactDual/Cartan two-sided containment plus scalar preimage surjectivity; R581 proves that target Hodge-sum rank and scalar-preimage surjectivity are equivalent once the four Cartan carrier directions are fixed; R582 rewrites the four Cartan carrier directions as source/compactDual H8 no-extra plus h^4 generator-membership splits; R583 collapses each H8 split to exact equality with H8; R584 translates those H8 equalities into Matsushima boundary language and proves target Hodge-sum rank is equivalent to `surjectivity_target = trivialModulePart`; R585 proves that, after `compactDual = H8`, this concrete boundary package is equivalent to the existing `MatsushimaV56BoundaryData`; R586 records a countermodel showing the H8 carrier equalities alone do not force the target boundary equality or boundary data; R587 isolates the remaining target boundary as the single reverse containment `trivialModulePart <= surjectivity_target`, and proves that this containment is also not forced by the abstract H8 carrier interface; R588 proves this reverse containment is exactly the element-level scalar-preimage statement `forall beta in trivialModulePart, exists r, j_q (r • h^4) = beta` once `source = H8`, with no finite-dimensional rank hypothesis; R589 proves that, under the two H8 carrier equalities, target boundary/scalar preimages/boundary data/target Hodge-sum are all equivalent to `finrank trivialModulePart = 1`, and the rank-one target is not forced by the abstract H8 carrier interface.  R590 proves the target expected-Betti rank is equivalent to that rank-one theorem, identifies boundary data with expected-Betti rank under the H8 carriers, and records that the H8 carrier interface still does not force the expected-Betti target.  The route remains exploratory, not a closure claim.
+5 parallel attack fronts on the L4 cohomology-profile + connectedness pipeline.  Per-wave audits R451 / R456 / R460 / R465 / R470 / R476 enumerate substantive theorems per round.  R552 extends the FrontC numeric bridge through a buildable EVII compact-dual/V56/Shimura expected Betti profile: all degrees 0..8 are certified by known Hodge sums, with degree 3 explicitly routed through V56 rather than hidden in compact-dual odd cohomology.  R553 connects that finite V56 profile to the actual infrastructure `PureHodgeStructure V56 3`.  R554 proves the abstract Matsushima boundary composition: target invariants reduce to the cuspidal trivial-module part, and compact-dual image reduces to that part once concrete EVII source/target boundary equalities are provided.  R555 tightens the source-side obligation: Cartan's trivial-module H8 line rewrites to compact-dual H8, its classes are algebraic through `CompactDualData`, and the R554 source equality follows from `surjectivity_source = source_invariants`.  R556 converts the remaining boundary equalities into four concrete linear-algebra tasks; R557 shows target containment is forced by source containment; R558 transports target finrank from source finrank; R559 rewrites the remaining source obligations against compact-dual/Cartan data; R560 proves those obligations are not derivable from the current abstract interface alone; R561 replaces the three R559 obligations by the sharper compact-dual exact image target plus target-invariant exactness; R562 removes target-invariant exactness as an independent obligation by deriving it from exact image plus the compactDual/trivialModulePart rank bridge; R563 proves exact image is equivalent to the source equality `surjectivity_source = compactDual`; R564 closes the compact-dual H8 rank-one side and reduces the rank bridge to `compactDual = H8` plus `finrank trivialModulePart = 1`; R565 replaces that target rank-one obligation by exact Cartan image equality; R566 rewrites the remaining source and compact-dual carrier obligations to Cartan-line exactness; R567 blocks any attempt to derive those exactness statements from the current abstract interface alone; R568 turns exact Cartan image into the element-level scalar-preimage target `forall beta in trivialModulePart, exists r, j_q (r 鈥?h^4) = beta`; R569 shows that even compactDual = Cartan does not force that scalar-surjectivity target; R570 proves that target rank-one plus compactDual = Cartan is enough for exact Cartan image; R571/R572 reduce the live target to source equality, source-invariants/H8, and expected Betti-8 target rank; R573 splits source-invariants/H8 into no-extra-source containment and `h^4` generator membership, with a source-rank-one alternate route; R574 rewrites that source-carrier split through `MatsushimaCompactDualData.compactDual`, leaving compactDual containment in H8 plus generator membership as the next concrete carrier targets; R575 rewrites those as the Cartan/compactDual containments `compactDual <= CartanH8` and `CartanH8 <= compactDual`; R576 rewrites source equality as source/Cartan two-sided containment and feeds the two source directions plus the two compactDual directions into the boundary package; R577 records that all four carrier directions still do not imply the target expected-Betti rank; R578 routes that target rank through the degree-8 compact-dual Hodge-sum profile; R579 derives the target Hodge-sum rank from exact Cartan image equality; R580 derives exact Cartan image from compactDual/Cartan two-sided containment plus scalar preimage surjectivity; R581 proves that target Hodge-sum rank and scalar-preimage surjectivity are equivalent once the four Cartan carrier directions are fixed; R582 rewrites the four Cartan carrier directions as source/compactDual H8 no-extra plus h^4 generator-membership splits; R583 collapses each H8 split to exact equality with H8; R584 translates those H8 equalities into Matsushima boundary language and proves target Hodge-sum rank is equivalent to `surjectivity_target = trivialModulePart`; R585 proves that, after `compactDual = H8`, this concrete boundary package is equivalent to the existing `MatsushimaV56BoundaryData`; R586 records a countermodel showing the H8 carrier equalities alone do not force the target boundary equality or boundary data; R587 isolates the remaining target boundary as the single reverse containment `trivialModulePart <= surjectivity_target`, and proves that this containment is also not forced by the abstract H8 carrier interface; R588 proves this reverse containment is exactly the element-level scalar-preimage statement `forall beta in trivialModulePart, exists r, j_q (r 鈥?h^4) = beta` once `source = H8`, with no finite-dimensional rank hypothesis; R589 proves that, under the two H8 carrier equalities, target boundary/scalar preimages/boundary data/target Hodge-sum are all equivalent to `finrank trivialModulePart = 1`, and the rank-one target is not forced by the abstract H8 carrier interface.  R590 proves the target expected-Betti rank is equivalent to that rank-one theorem, identifies boundary data with expected-Betti rank under the H8 carriers, and records that the H8 carrier interface still does not force the expected-Betti target.  R591 names the exact residual package: prove the two H8 carrier equalities and target-invariant rank one; this package feeds the existing boundary bridge.  R592 proves this rank-one residual package is equivalent to the scalar-preimage residual package.  R593 packages the equivalent target-boundary residual package and records that the abstract H8 carrier interface still does not force it.  R594 packages the same residual target as `compactDual = H8` plus the existing `MatsushimaV56BoundaryData` bridge.  R595 rewrites that residual bridge as `compactDual = H8`, compact-dual exact image, and target-invariant exactness.  R596 replaces that target-invariant exactness by the equivalent rank-one target `finrank trivialModulePart = 1` once compact-dual exact image is fixed.  R597 proves that this exact-image rank-one package is equivalent to Cartan-line source/compact-dual equalities plus `finrank trivialModulePart = 1`, exposing the live residual as Cartan H8 carrier exactness and target rank.  R598 rewrites that same residual as `surjectivity_source = source_invariants`, `source_invariants = H8`, and `finrank target_invariants = 1`.  R599 proves the R598 source-invariant package is directly equivalent to the earlier R591 H8/rank-one residual package, recovers the expected Betti-8 target rank from it, and records that `source_invariants = H8` alone still does not force the full residual.  R600 replaces the target-rank spelling inside that package by the expected-Betti-8 equality `finrank target_invariants = shimuraEVIIExpectedBetti 8`, proves equivalence with R598, and keeps the same obstruction visible.  R601 splits the source-invariants/H8 equality into the equivalent source-carrier targets `source_invariants <= H8` plus `h^4` membership, packages that split against the R600 expected-Betti target, and keeps the obstruction visible.  R602 moves that same residual to the equivalent compact-dual carrier targets `compactDual <= H8` plus `h^4` membership in `compactDual`, using the existing compactDual/source-invariants comparison and preserving the obstruction.  R603 proves this R602 package is equivalent to the four Cartan containment directions together with the same target expected-Betti theorem, while preserving the R577 obstruction that carrier facts alone do not force target rank.  R604 splits the R603 residual into four carrier directions plus one target expected-Betti theorem and certifies primitive target count 5.  R605 proves that this fifth target can equivalently be attacked as scalar-preimage surjectivity under the same four carrier directions, so expected-Betti rank and scalar preimage are one target, not two.  R606 flattens the same residual into the five named paper-facing primitive targets and kernel-checks that expected-Betti rank and scalar preimage are not counted separately.  R607 proves that the five paper-facing primitive targets are equivalent to the three proof-work obligations `surjectivity_source = CartanH8`, `compactDual = CartanH8`, and scalar-preimage surjectivity.  R608 reconciles scalar-preimage surjectivity with the older `finrank trivialModulePart = 1` rank-one target under the two Cartan-line equalities, so those spellings are not separate gaps.  R609 proves that the two Cartan-line carrier equalities alone do not force the scalar/rank-one target in the current abstract interface.  R610 packages the exact live proof-work contract as those two equalities plus one scalar/rank-one target, proves it is equivalent to the R607/R608 residual ledgers, and records that the contract is not a closure claim.  R634 rewrites that same contract as the source-invariant scalar contract `surjectivity_source = source_invariants`, `source_invariants = H8`, plus scalar/rank-one target, without adding finite-dimensional rank conversion or closure claim.  The route remains exploratory, not a closure claim.
 
 Entry declarations:
 - `HodgeReduction.HCGapL4.FrontC11_ShimuraBettiComputation.shimuraEVIIExpectedBettiKnownHodgeSumCertification_current`
@@ -482,6 +1022,199 @@ Entry declarations:
 - `HodgeReduction.HCGapL4.FrontC48_H8BoundaryRankOneCriterion.current_interface_with_H8_equalities_does_not_force_trivialModulePart_rank_one`
 - `HodgeReduction.HCGapL4.FrontC49_H8BoundaryExpectedBettiCriterion.matsushimaV56BoundaryData_iff_target_expected_betti8_of_source_compactDual_eq_H8`
 - `HodgeReduction.HCGapL4.FrontC49_H8BoundaryExpectedBettiCriterion.current_interface_with_H8_equalities_does_not_force_target_expected_betti8`
+- `HodgeReduction.HCGapL4.FrontC50_H8ResidualObligationPackage.target_expected_betti8_iff_target_invariants_finrank_eq_one`
+- `HodgeReduction.HCGapL4.FrontC50_H8ResidualObligationPackage.EVIIH8ResidualRankOneObligations`
+- `HodgeReduction.HCGapL4.FrontC50_H8ResidualObligationPackage.target_expected_betti8_of_residual_obligations`
+- `HodgeReduction.HCGapL4.FrontC50_H8ResidualObligationPackage.matsushimaV56BoundaryData_of_residual_obligations`
+- `HodgeReduction.HCGapL4.FrontC50_H8ResidualObligationPackage.matsushimaV56BoundaryData_of_H8_and_target_rank_one`
+- `HodgeReduction.HCGapL4.FrontC50_H8ResidualObligationPackage.current_interface_with_H8_equalities_does_not_force_target_rank_one`
+- `HodgeReduction.HCGapL4.FrontC51_H8ResidualScalarPreimagePackage.target_rank_one_iff_scalar_preimage_of_source_compactDual_eq_H8`
+- `HodgeReduction.HCGapL4.FrontC51_H8ResidualScalarPreimagePackage.target_expected_betti8_iff_scalar_preimage_of_source_compactDual_eq_H8`
+- `HodgeReduction.HCGapL4.FrontC51_H8ResidualScalarPreimagePackage.EVIIH8ResidualScalarPreimageObligations`
+- `HodgeReduction.HCGapL4.FrontC51_H8ResidualScalarPreimagePackage.rankOneResidual_of_scalarPreimageResidual`
+- `HodgeReduction.HCGapL4.FrontC51_H8ResidualScalarPreimagePackage.scalarPreimageResidual_of_rankOneResidual`
+- `HodgeReduction.HCGapL4.FrontC51_H8ResidualScalarPreimagePackage.residual_rankOne_nonempty_iff_scalarPreimage_nonempty`
+- `HodgeReduction.HCGapL4.FrontC51_H8ResidualScalarPreimagePackage.matsushimaV56BoundaryData_of_scalarPreimageResidual`
+- `HodgeReduction.HCGapL4.FrontC51_H8ResidualScalarPreimagePackage.current_interface_with_H8_equalities_does_not_force_scalar_preimage`
+- `HodgeReduction.HCGapL4.FrontC52_H8ResidualBoundaryPackage.target_boundary_iff_scalar_preimageTarget_of_source_compactDual_eq_H8`
+- `HodgeReduction.HCGapL4.FrontC52_H8ResidualBoundaryPackage.EVIIH8ResidualBoundaryObligations`
+- `HodgeReduction.HCGapL4.FrontC52_H8ResidualBoundaryPackage.boundaryResidual_of_scalarPreimageResidual`
+- `HodgeReduction.HCGapL4.FrontC52_H8ResidualBoundaryPackage.scalarPreimageResidual_of_boundaryResidual`
+- `HodgeReduction.HCGapL4.FrontC52_H8ResidualBoundaryPackage.residual_scalarPreimage_nonempty_iff_boundary_nonempty`
+- `HodgeReduction.HCGapL4.FrontC52_H8ResidualBoundaryPackage.residual_rankOne_nonempty_iff_boundary_nonempty`
+- `HodgeReduction.HCGapL4.FrontC52_H8ResidualBoundaryPackage.matsushimaV56BoundaryData_of_boundaryResidual`
+- `HodgeReduction.HCGapL4.FrontC52_H8ResidualBoundaryPackage.current_interface_with_H8_equalities_does_not_force_target_boundary`
+- `HodgeReduction.HCGapL4.FrontC53_H8ResidualBoundaryDataPackage.EVIIH8ResidualBoundaryDataObligations`
+- `HodgeReduction.HCGapL4.FrontC53_H8ResidualBoundaryDataPackage.boundaryResidual_of_boundaryDataResidual`
+- `HodgeReduction.HCGapL4.FrontC53_H8ResidualBoundaryDataPackage.boundaryDataResidual_of_boundaryResidual`
+- `HodgeReduction.HCGapL4.FrontC53_H8ResidualBoundaryDataPackage.residual_boundary_nonempty_iff_boundaryData_nonempty`
+- `HodgeReduction.HCGapL4.FrontC53_H8ResidualBoundaryDataPackage.residual_scalarPreimage_nonempty_iff_boundaryData_nonempty`
+- `HodgeReduction.HCGapL4.FrontC53_H8ResidualBoundaryDataPackage.residual_rankOne_nonempty_iff_boundaryData_nonempty`
+- `HodgeReduction.HCGapL4.FrontC53_H8ResidualBoundaryDataPackage.matsushimaV56BoundaryData_of_boundaryDataResidual`
+- `HodgeReduction.HCGapL4.FrontC53_H8ResidualBoundaryDataPackage.current_interface_with_compactDual_eq_H8_does_not_force_boundaryData`
+- `HodgeReduction.HCGapL4.FrontC54_H8ResidualExactImagePackage.EVIIH8ResidualExactImageObligations`
+- `HodgeReduction.HCGapL4.FrontC54_H8ResidualExactImagePackage.exactImageResidual_of_boundaryDataResidual`
+- `HodgeReduction.HCGapL4.FrontC54_H8ResidualExactImagePackage.boundaryDataResidual_of_exactImageResidual`
+- `HodgeReduction.HCGapL4.FrontC54_H8ResidualExactImagePackage.residual_boundaryData_nonempty_iff_exactImage_nonempty`
+- `HodgeReduction.HCGapL4.FrontC54_H8ResidualExactImagePackage.residual_scalarPreimage_nonempty_iff_exactImage_nonempty`
+- `HodgeReduction.HCGapL4.FrontC54_H8ResidualExactImagePackage.residual_rankOne_nonempty_iff_exactImage_nonempty`
+- `HodgeReduction.HCGapL4.FrontC54_H8ResidualExactImagePackage.matsushimaV56BoundaryData_of_exactImageResidual`
+- `HodgeReduction.HCGapL4.FrontC54_H8ResidualExactImagePackage.current_interface_with_compactDual_eq_H8_does_not_force_exactImageResidual`
+- `HodgeReduction.HCGapL4.FrontC55_H8ResidualExactImageRankOnePackage.EVIIH8ResidualExactImageRankOneObligations`
+- `HodgeReduction.HCGapL4.FrontC55_H8ResidualExactImageRankOnePackage.exactImageResidual_of_exactImageRankOneResidual`
+- `HodgeReduction.HCGapL4.FrontC55_H8ResidualExactImageRankOnePackage.exactImageRankOneResidual_of_exactImageResidual`
+- `HodgeReduction.HCGapL4.FrontC55_H8ResidualExactImageRankOnePackage.residual_exactImage_nonempty_iff_exactImageRankOne_nonempty`
+- `HodgeReduction.HCGapL4.FrontC55_H8ResidualExactImageRankOnePackage.residual_boundaryData_nonempty_iff_exactImageRankOne_nonempty`
+- `HodgeReduction.HCGapL4.FrontC55_H8ResidualExactImageRankOnePackage.residual_rankOne_nonempty_iff_exactImageRankOne_nonempty`
+- `HodgeReduction.HCGapL4.FrontC55_H8ResidualExactImageRankOnePackage.matsushimaV56BoundaryData_of_exactImageRankOneResidual`
+- `HodgeReduction.HCGapL4.FrontC55_H8ResidualExactImageRankOnePackage.current_interface_with_compactDual_eq_H8_does_not_force_exactImageRankOneResidual`
+- `HodgeReduction.HCGapL4.FrontC56_H8ResidualCartanRankOnePackage.EVIIH8ResidualCartanRankOneObligations`
+- `HodgeReduction.HCGapL4.FrontC56_H8ResidualCartanRankOnePackage.exactImageRankOneResidual_of_cartanRankOneResidual`
+- `HodgeReduction.HCGapL4.FrontC56_H8ResidualCartanRankOnePackage.cartanRankOneResidual_of_exactImageRankOneResidual`
+- `HodgeReduction.HCGapL4.FrontC56_H8ResidualCartanRankOnePackage.residual_exactImageRankOne_nonempty_iff_cartanRankOne_nonempty`
+- `HodgeReduction.HCGapL4.FrontC56_H8ResidualCartanRankOnePackage.residual_boundaryData_nonempty_iff_cartanRankOne_nonempty`
+- `HodgeReduction.HCGapL4.FrontC56_H8ResidualCartanRankOnePackage.matsushimaV56BoundaryData_of_cartanRankOneResidual`
+- `HodgeReduction.HCGapL4.FrontC56_H8ResidualCartanRankOnePackage.current_interface_with_compactDual_eq_H8_does_not_force_cartanRankOneResidual`
+- `HodgeReduction.HCGapL4.FrontC57_H8ResidualSourceInvariantTargetRankPackage.EVIIH8ResidualSourceInvariantTargetRankObligations`
+- `HodgeReduction.HCGapL4.FrontC57_H8ResidualSourceInvariantTargetRankPackage.cartanRankOneResidual_of_sourceInvariantTargetRankResidual`
+- `HodgeReduction.HCGapL4.FrontC57_H8ResidualSourceInvariantTargetRankPackage.sourceInvariantTargetRankResidual_of_cartanRankOneResidual`
+- `HodgeReduction.HCGapL4.FrontC57_H8ResidualSourceInvariantTargetRankPackage.residual_cartanRankOne_nonempty_iff_sourceInvariantTargetRank_nonempty`
+- `HodgeReduction.HCGapL4.FrontC57_H8ResidualSourceInvariantTargetRankPackage.residual_boundaryData_nonempty_iff_sourceInvariantTargetRank_nonempty`
+- `HodgeReduction.HCGapL4.FrontC57_H8ResidualSourceInvariantTargetRankPackage.matsushimaV56BoundaryData_of_sourceInvariantTargetRankResidual`
+- `HodgeReduction.HCGapL4.FrontC57_H8ResidualSourceInvariantTargetRankPackage.current_interface_with_compactDual_eq_H8_does_not_force_sourceInvariantTargetRankResidual`
+- `HodgeReduction.HCGapL4.FrontC58_H8ResidualSourceInvariantNormalization.residualRankOne_of_sourceInvariantTargetRankResidual`
+- `HodgeReduction.HCGapL4.FrontC58_H8ResidualSourceInvariantNormalization.sourceInvariantTargetRankResidual_of_residualRankOne`
+- `HodgeReduction.HCGapL4.FrontC58_H8ResidualSourceInvariantNormalization.residual_rankOne_nonempty_iff_sourceInvariantTargetRank_nonempty`
+- `HodgeReduction.HCGapL4.FrontC58_H8ResidualSourceInvariantNormalization.target_expected_betti8_of_sourceInvariantTargetRankResidual`
+- `HodgeReduction.HCGapL4.FrontC58_H8ResidualSourceInvariantNormalization.current_interface_with_source_invariants_eq_H8_does_not_force_sourceInvariantTargetRankResidual`
+- `HodgeReduction.HCGapL4.FrontC59_H8ResidualExpectedBettiPackage.EVIIH8ResidualSourceInvariantExpectedBettiObligations`
+- `HodgeReduction.HCGapL4.FrontC59_H8ResidualExpectedBettiPackage.sourceInvariantExpectedBettiResidual_of_sourceInvariantTargetRankResidual`
+- `HodgeReduction.HCGapL4.FrontC59_H8ResidualExpectedBettiPackage.sourceInvariantTargetRankResidual_of_sourceInvariantExpectedBettiResidual`
+- `HodgeReduction.HCGapL4.FrontC59_H8ResidualExpectedBettiPackage.residual_sourceInvariantTargetRank_nonempty_iff_sourceInvariantExpectedBetti_nonempty`
+- `HodgeReduction.HCGapL4.FrontC59_H8ResidualExpectedBettiPackage.target_rank_one_of_sourceInvariantExpectedBettiResidual`
+- `HodgeReduction.HCGapL4.FrontC59_H8ResidualExpectedBettiPackage.matsushimaV56BoundaryData_of_sourceInvariantExpectedBettiResidual`
+- `HodgeReduction.HCGapL4.FrontC59_H8ResidualExpectedBettiPackage.current_interface_with_source_invariants_eq_H8_does_not_force_sourceInvariantExpectedBettiResidual`
+- `HodgeReduction.HCGapL4.FrontC60_H8ResidualSourceCarrierSplitPackage.EVIIH8ResidualSourceCarrierSplitExpectedBettiObligations`
+- `HodgeReduction.HCGapL4.FrontC60_H8ResidualSourceCarrierSplitPackage.source_invariants_eq_H8_of_sourceCarrierSplitResidual`
+- `HodgeReduction.HCGapL4.FrontC60_H8ResidualSourceCarrierSplitPackage.h_pow_four_mem_source_invariants_of_source_invariants_eq_H8`
+- `HodgeReduction.HCGapL4.FrontC60_H8ResidualSourceCarrierSplitPackage.sourceInvariantExpectedBettiResidual_of_sourceCarrierSplitResidual`
+- `HodgeReduction.HCGapL4.FrontC60_H8ResidualSourceCarrierSplitPackage.sourceCarrierSplitResidual_of_sourceInvariantExpectedBettiResidual`
+- `HodgeReduction.HCGapL4.FrontC60_H8ResidualSourceCarrierSplitPackage.residual_sourceInvariantExpectedBetti_nonempty_iff_sourceCarrierSplit_nonempty`
+- `HodgeReduction.HCGapL4.FrontC60_H8ResidualSourceCarrierSplitPackage.matsushimaV56BoundaryData_of_sourceCarrierSplitResidual`
+- `HodgeReduction.HCGapL4.FrontC60_H8ResidualSourceCarrierSplitPackage.current_interface_with_sourceCarrierSplit_does_not_force_sourceCarrierSplitResidual`
+- `HodgeReduction.HCGapL4.FrontC61_H8ResidualCompactDualCarrierPackage.EVIIH8ResidualCompactDualCarrierExpectedBettiObligations`
+- `HodgeReduction.HCGapL4.FrontC61_H8ResidualCompactDualCarrierPackage.sourceCarrierSplitResidual_of_compactDualCarrierResidual`
+- `HodgeReduction.HCGapL4.FrontC61_H8ResidualCompactDualCarrierPackage.compactDualCarrierResidual_of_sourceCarrierSplitResidual`
+- `HodgeReduction.HCGapL4.FrontC61_H8ResidualCompactDualCarrierPackage.residual_sourceCarrierSplit_nonempty_iff_compactDualCarrier_nonempty`
+- `HodgeReduction.HCGapL4.FrontC61_H8ResidualCompactDualCarrierPackage.sourceInvariantExpectedBettiResidual_of_compactDualCarrierResidual`
+- `HodgeReduction.HCGapL4.FrontC61_H8ResidualCompactDualCarrierPackage.matsushimaV56BoundaryData_of_compactDualCarrierResidual`
+- `HodgeReduction.HCGapL4.FrontC61_H8ResidualCompactDualCarrierPackage.current_interface_with_compactDualCarrier_does_not_force_compactDualCarrierResidual`
+- `HodgeReduction.HCGapL4.FrontC62_H8ResidualCartanContainmentExpectedBettiPackage.EVIIH8ResidualCartanContainmentExpectedBettiObligations`
+- `HodgeReduction.HCGapL4.FrontC62_H8ResidualCartanContainmentExpectedBettiPackage.compactDualCarrierResidual_of_cartanContainmentResidual`
+- `HodgeReduction.HCGapL4.FrontC62_H8ResidualCartanContainmentExpectedBettiPackage.cartan_le_of_h_pow_four_mem`
+- `HodgeReduction.HCGapL4.FrontC62_H8ResidualCartanContainmentExpectedBettiPackage.compactDual_le_cartan_of_compactDualCarrierResidual`
+- `HodgeReduction.HCGapL4.FrontC62_H8ResidualCartanContainmentExpectedBettiPackage.cartan_le_compactDual_of_compactDualCarrierResidual`
+- `HodgeReduction.HCGapL4.FrontC62_H8ResidualCartanContainmentExpectedBettiPackage.source_le_cartan_of_compactDualCarrierResidual`
+- `HodgeReduction.HCGapL4.FrontC62_H8ResidualCartanContainmentExpectedBettiPackage.cartan_le_source_of_compactDualCarrierResidual`
+- `HodgeReduction.HCGapL4.FrontC62_H8ResidualCartanContainmentExpectedBettiPackage.cartanContainmentResidual_of_compactDualCarrierResidual`
+- `HodgeReduction.HCGapL4.FrontC62_H8ResidualCartanContainmentExpectedBettiPackage.residual_compactDualCarrier_nonempty_iff_cartanContainment_nonempty`
+- `HodgeReduction.HCGapL4.FrontC62_H8ResidualCartanContainmentExpectedBettiPackage.matsushimaV56BoundaryData_of_cartanContainmentResidual`
+- `HodgeReduction.HCGapL4.FrontC62_H8ResidualCartanContainmentExpectedBettiPackage.current_interface_with_cartanContainments_does_not_force_cartanContainmentResidual`
+- `HodgeReduction.HCGapL4.FrontC63_H8ResidualPrimitiveGapSplit.EVIIH8ResidualCartanCarrierObligations`
+- `HodgeReduction.HCGapL4.FrontC63_H8ResidualPrimitiveGapSplit.EVIIH8ResidualExpectedBettiTargetObligation`
+- `HodgeReduction.HCGapL4.FrontC63_H8ResidualPrimitiveGapSplit.cartanContainmentResidual_of_carrier_and_expectedBetti`
+- `HodgeReduction.HCGapL4.FrontC63_H8ResidualPrimitiveGapSplit.carrierObligations_of_cartanContainmentResidual`
+- `HodgeReduction.HCGapL4.FrontC63_H8ResidualPrimitiveGapSplit.expectedBettiTargetObligation_of_cartanContainmentResidual`
+- `HodgeReduction.HCGapL4.FrontC63_H8ResidualPrimitiveGapSplit.residual_cartanContainment_nonempty_iff_carrier_and_expectedBetti_nonempty`
+- `HodgeReduction.HCGapL4.FrontC63_H8ResidualPrimitiveGapSplit.matsushimaV56BoundaryData_of_carrier_and_expectedBetti`
+- `HodgeReduction.HCGapL4.FrontC63_H8ResidualPrimitiveGapSplit.current_interface_with_carrierObligations_does_not_force_expectedBettiTarget`
+- `HodgeReduction.HCGapL4.FrontC63_H8ResidualPrimitiveGapSplit.R604PrimitiveResidualSnapshot`
+- `HodgeReduction.HCGapL4.FrontC63_H8ResidualPrimitiveGapSplit.currentR604PrimitiveResidualSnapshot`
+- `HodgeReduction.HCGapL4.FrontC63_H8ResidualPrimitiveGapSplit.currentR604PrimitiveResidualSnapshot_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC64_H8ResidualScalarPreimagePrimitiveSplit.EVIIH8ResidualCartanScalarPreimageObligations`
+- `HodgeReduction.HCGapL4.FrontC64_H8ResidualScalarPreimagePrimitiveSplit.expectedBettiTarget_of_carrierScalarPreimage`
+- `HodgeReduction.HCGapL4.FrontC64_H8ResidualScalarPreimagePrimitiveSplit.cartanContainmentResidual_of_carrierScalarPreimage`
+- `HodgeReduction.HCGapL4.FrontC64_H8ResidualScalarPreimagePrimitiveSplit.carrierScalarPreimage_of_cartanContainmentResidual`
+- `HodgeReduction.HCGapL4.FrontC64_H8ResidualScalarPreimagePrimitiveSplit.residual_cartanContainment_nonempty_iff_carrierScalarPreimage_nonempty`
+- `HodgeReduction.HCGapL4.FrontC64_H8ResidualScalarPreimagePrimitiveSplit.matsushimaV56BoundaryData_of_carrierScalarPreimage`
+- `HodgeReduction.HCGapL4.FrontC64_H8ResidualScalarPreimagePrimitiveSplit.current_interface_with_carrierObligations_does_not_force_scalarPreimage`
+- `HodgeReduction.HCGapL4.FrontC64_H8ResidualScalarPreimagePrimitiveSplit.R605ScalarPreimageResidualSnapshot`
+- `HodgeReduction.HCGapL4.FrontC64_H8ResidualScalarPreimagePrimitiveSplit.currentR605ScalarPreimageResidualSnapshot`
+- `HodgeReduction.HCGapL4.FrontC64_H8ResidualScalarPreimagePrimitiveSplit.currentR605ScalarPreimageResidualSnapshot_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC65_H8ResidualPrimitiveTargetLedger.sourceToCartanPrimitiveTarget`
+- `HodgeReduction.HCGapL4.FrontC65_H8ResidualPrimitiveTargetLedger.cartanToSourcePrimitiveTarget`
+- `HodgeReduction.HCGapL4.FrontC65_H8ResidualPrimitiveTargetLedger.compactDualToCartanPrimitiveTarget`
+- `HodgeReduction.HCGapL4.FrontC65_H8ResidualPrimitiveTargetLedger.cartanToCompactDualPrimitiveTarget`
+- `HodgeReduction.HCGapL4.FrontC65_H8ResidualPrimitiveTargetLedger.scalarPreimagePrimitiveTarget`
+- `HodgeReduction.HCGapL4.FrontC65_H8ResidualPrimitiveTargetLedger.EVIIH8ResidualFivePrimitiveTargets`
+- `HodgeReduction.HCGapL4.FrontC65_H8ResidualPrimitiveTargetLedger.fivePrimitiveTargets_of_carrierScalarPreimage`
+- `HodgeReduction.HCGapL4.FrontC65_H8ResidualPrimitiveTargetLedger.carrierScalarPreimage_of_fivePrimitiveTargets`
+- `HodgeReduction.HCGapL4.FrontC65_H8ResidualPrimitiveTargetLedger.residual_carrierScalarPreimage_nonempty_iff_fivePrimitiveTargets_nonempty`
+- `HodgeReduction.HCGapL4.FrontC65_H8ResidualPrimitiveTargetLedger.cartanContainmentResidual_of_fivePrimitiveTargets`
+- `HodgeReduction.HCGapL4.FrontC65_H8ResidualPrimitiveTargetLedger.matsushimaV56BoundaryData_of_fivePrimitiveTargets`
+- `HodgeReduction.HCGapL4.FrontC65_H8ResidualPrimitiveTargetLedger.currentR606PrimitiveTargetNames`
+- `HodgeReduction.HCGapL4.FrontC65_H8ResidualPrimitiveTargetLedger.R606PrimitiveTargetLedgerSnapshot`
+- `HodgeReduction.HCGapL4.FrontC65_H8ResidualPrimitiveTargetLedger.currentR606PrimitiveTargetLedgerSnapshot`
+- `HodgeReduction.HCGapL4.FrontC65_H8ResidualPrimitiveTargetLedger.currentR606PrimitiveTargetLedgerSnapshot_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC65_H8ResidualPrimitiveTargetLedger.currentR606PrimitiveTargetNames_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC66_H8ResidualEqualityTargetLedger.sourceCartanEqualityTarget`
+- `HodgeReduction.HCGapL4.FrontC66_H8ResidualEqualityTargetLedger.compactDualCartanEqualityTarget`
+- `HodgeReduction.HCGapL4.FrontC66_H8ResidualEqualityTargetLedger.EVIIH8ResidualEqualityScalarTargets`
+- `HodgeReduction.HCGapL4.FrontC66_H8ResidualEqualityTargetLedger.equalityScalarTargets_of_fivePrimitiveTargets`
+- `HodgeReduction.HCGapL4.FrontC66_H8ResidualEqualityTargetLedger.fivePrimitiveTargets_of_equalityScalarTargets`
+- `HodgeReduction.HCGapL4.FrontC66_H8ResidualEqualityTargetLedger.residual_fivePrimitiveTargets_nonempty_iff_equalityScalarTargets_nonempty`
+- `HodgeReduction.HCGapL4.FrontC66_H8ResidualEqualityTargetLedger.cartanContainmentResidual_of_equalityScalarTargets`
+- `HodgeReduction.HCGapL4.FrontC66_H8ResidualEqualityTargetLedger.matsushimaV56BoundaryData_of_equalityScalarTargets`
+- `HodgeReduction.HCGapL4.FrontC66_H8ResidualEqualityTargetLedger.currentR607ProofWorkTargetNames`
+- `HodgeReduction.HCGapL4.FrontC66_H8ResidualEqualityTargetLedger.R607EqualityTargetLedgerSnapshot`
+- `HodgeReduction.HCGapL4.FrontC66_H8ResidualEqualityTargetLedger.currentR607EqualityTargetLedgerSnapshot`
+- `HodgeReduction.HCGapL4.FrontC66_H8ResidualEqualityTargetLedger.currentR607EqualityTargetLedgerSnapshot_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC66_H8ResidualEqualityTargetLedger.currentR607ProofWorkTargetNames_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC67_H8ResidualRankOneReconciliation.scalarPreimageResidual_of_equalityScalarTargets`
+- `HodgeReduction.HCGapL4.FrontC67_H8ResidualRankOneReconciliation.equalityScalarTargets_of_scalarPreimageResidual`
+- `HodgeReduction.HCGapL4.FrontC67_H8ResidualRankOneReconciliation.residual_scalarPreimage_nonempty_iff_equalityScalarTargets_nonempty`
+- `HodgeReduction.HCGapL4.FrontC67_H8ResidualRankOneReconciliation.cartanRankOneResidual_of_equalityScalarTargets`
+- `HodgeReduction.HCGapL4.FrontC67_H8ResidualRankOneReconciliation.equalityScalarTargets_of_cartanRankOneResidual`
+- `HodgeReduction.HCGapL4.FrontC67_H8ResidualRankOneReconciliation.residual_equalityScalarTargets_nonempty_iff_cartanRankOne_nonempty`
+- `HodgeReduction.HCGapL4.FrontC67_H8ResidualRankOneReconciliation.currentR608RankOneReconciliationTargetNames`
+- `HodgeReduction.HCGapL4.FrontC67_H8ResidualRankOneReconciliation.R608RankOneReconciliationSnapshot`
+- `HodgeReduction.HCGapL4.FrontC67_H8ResidualRankOneReconciliation.currentR608RankOneReconciliationSnapshot`
+- `HodgeReduction.HCGapL4.FrontC67_H8ResidualRankOneReconciliation.currentR608RankOneReconciliationSnapshot_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC67_H8ResidualRankOneReconciliation.currentR608RankOneReconciliationTargetNames_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC68_H8ResidualCarrierEqualityObstruction.counterexample_source_eq_cartan`
+- `HodgeReduction.HCGapL4.FrontC68_H8ResidualCarrierEqualityObstruction.counterexample_compactDual_eq_cartan`
+- `HodgeReduction.HCGapL4.FrontC68_H8ResidualCarrierEqualityObstruction.current_interface_with_cartan_equalities_does_not_force_scalar_preimage`
+- `HodgeReduction.HCGapL4.FrontC68_H8ResidualCarrierEqualityObstruction.current_interface_with_cartan_equalities_does_not_force_equalityScalarTargets`
+- `HodgeReduction.HCGapL4.FrontC68_H8ResidualCarrierEqualityObstruction.R609CarrierEqualityObstructionSnapshot`
+- `HodgeReduction.HCGapL4.FrontC68_H8ResidualCarrierEqualityObstruction.currentR609CarrierEqualityObstructionSnapshot`
+- `HodgeReduction.HCGapL4.FrontC68_H8ResidualCarrierEqualityObstruction.currentR609CarrierEqualityObstructionSnapshot_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC68_H8ResidualCarrierEqualityObstruction.currentR609ObstructionTargetNames`
+- `HodgeReduction.HCGapL4.FrontC68_H8ResidualCarrierEqualityObstruction.currentR609ObstructionTargetNames_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC69_H8ResidualProofWorkContract.EVIIH8ResidualProofWorkContract`
+- `HodgeReduction.HCGapL4.FrontC69_H8ResidualProofWorkContract.proofWorkContract_of_equalityScalarTargets`
+- `HodgeReduction.HCGapL4.FrontC69_H8ResidualProofWorkContract.equalityScalarTargets_of_proofWorkContract`
+- `HodgeReduction.HCGapL4.FrontC69_H8ResidualProofWorkContract.residual_equalityScalarTargets_nonempty_iff_proofWorkContract_nonempty`
+- `HodgeReduction.HCGapL4.FrontC69_H8ResidualProofWorkContract.cartanContainmentResidual_of_proofWorkContract`
+- `HodgeReduction.HCGapL4.FrontC69_H8ResidualProofWorkContract.matsushimaV56BoundaryData_of_proofWorkContract`
+- `HodgeReduction.HCGapL4.FrontC69_H8ResidualProofWorkContract.residual_proofWorkContract_nonempty_iff_cartanRankOne_nonempty`
+- `HodgeReduction.HCGapL4.FrontC69_H8ResidualProofWorkContract.current_interface_with_cartan_equalities_does_not_force_proofWorkContract`
+- `HodgeReduction.HCGapL4.FrontC69_H8ResidualProofWorkContract.currentR610ProofWorkContractTargetNames`
+- `HodgeReduction.HCGapL4.FrontC69_H8ResidualProofWorkContract.R610ProofWorkContractSnapshot`
+- `HodgeReduction.HCGapL4.FrontC69_H8ResidualProofWorkContract.currentR610ProofWorkContractSnapshot`
+- `HodgeReduction.HCGapL4.FrontC69_H8ResidualProofWorkContract.currentR610ProofWorkContractSnapshot_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC69_H8ResidualProofWorkContract.currentR610ProofWorkContractTargetNames_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC70_H8ResidualSourceInvariantScalarContract.EVIIH8ResidualSourceInvariantScalarContract`
+- `HodgeReduction.HCGapL4.FrontC70_H8ResidualSourceInvariantScalarContract.source_invariants_eq_H8_of_compactDualCartan`
+- `HodgeReduction.HCGapL4.FrontC70_H8ResidualSourceInvariantScalarContract.source_eq_invariants_of_sourceCartan_compactDualCartan`
+- `HodgeReduction.HCGapL4.FrontC70_H8ResidualSourceInvariantScalarContract.sourceInvariantScalarContract_of_proofWorkContract`
+- `HodgeReduction.HCGapL4.FrontC70_H8ResidualSourceInvariantScalarContract.proofWorkContract_of_sourceInvariantScalarContract`
+- `HodgeReduction.HCGapL4.FrontC70_H8ResidualSourceInvariantScalarContract.residual_proofWorkContract_nonempty_iff_sourceInvariantScalarContract_nonempty`
+- `HodgeReduction.HCGapL4.FrontC70_H8ResidualSourceInvariantScalarContract.matsushimaV56BoundaryData_of_sourceInvariantScalarContract`
+- `HodgeReduction.HCGapL4.FrontC70_H8ResidualSourceInvariantScalarContract.currentR634SourceInvariantScalarContractTargetNames`
+- `HodgeReduction.HCGapL4.FrontC70_H8ResidualSourceInvariantScalarContract.R634SourceInvariantScalarContractSnapshot`
+- `HodgeReduction.HCGapL4.FrontC70_H8ResidualSourceInvariantScalarContract.currentR634SourceInvariantScalarContractSnapshot`
+- `HodgeReduction.HCGapL4.FrontC70_H8ResidualSourceInvariantScalarContract.currentR634SourceInvariantScalarContractSnapshot_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC70_H8ResidualSourceInvariantScalarContract.currentR634SourceInvariantScalarContractTargetNames_eq_texStatus`
 
 Depends on: `main-hc-axiom-relative`
 
@@ -537,13 +1270,34 @@ Files:
 - `HodgeReduction/HCGapL4/FrontC47_TargetContainmentScalarPreimageCriterion.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontC48_H8BoundaryRankOneCriterion.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontC49_H8BoundaryExpectedBettiCriterion.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC50_H8ResidualObligationPackage.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC51_H8ResidualScalarPreimagePackage.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC52_H8ResidualBoundaryPackage.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC53_H8ResidualBoundaryDataPackage.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC54_H8ResidualExactImagePackage.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC55_H8ResidualExactImageRankOnePackage.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC56_H8ResidualCartanRankOnePackage.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC57_H8ResidualSourceInvariantTargetRankPackage.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC58_H8ResidualSourceInvariantNormalization.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC59_H8ResidualExpectedBettiPackage.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC60_H8ResidualSourceCarrierSplitPackage.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC61_H8ResidualCompactDualCarrierPackage.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC62_H8ResidualCartanContainmentExpectedBettiPackage.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC63_H8ResidualPrimitiveGapSplit.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC64_H8ResidualScalarPreimagePrimitiveSplit.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC65_H8ResidualPrimitiveTargetLedger.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC66_H8ResidualEqualityTargetLedger.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC67_H8ResidualRankOneReconciliation.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC68_H8ResidualCarrierEqualityObstruction.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC69_H8ResidualProofWorkContract.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC70_H8ResidualSourceInvariantScalarContract.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean` -- on-disk-unloaded
 - `HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean` -- on-disk-unloaded
 - `HodgeReduction/HCGapL4/R476_MultiFrontWave6Audit.lean` -- on-disk-unloaded
 
 ### `concrete-evii-toy` -- Concrete EVII sanity-check chain
 
-`HC_for_Concrete_EVII` specialises the abstract closure `HC_for_freudenthal_quartic_on_EVII_UNCONDITIONAL` to a concrete `A_EVII := Polynomial ℚ` toy carrier.  Cone is `{propext, Classical.choice, Quot.sound}` (no project axioms) but the carrier is explicitly toy; per R201 mandate it is EXCLUDED from real-HC closure accounting.
+`HC_for_Concrete_EVII` specialises the abstract closure `HC_for_freudenthal_quartic_on_EVII_UNCONDITIONAL` to a concrete `A_EVII := Polynomial 鈩歚 toy carrier.  Cone is `{propext, Classical.choice, Quot.sound}` (no project axioms) but the carrier is explicitly toy; per R201 mandate it is EXCLUDED from real-HC closure accounting.
 
 Depends on: `main-hc-axiom-relative`
 
@@ -564,9 +1318,516 @@ Files:
 
 ## Gap Details
 
+### `G-full-hc` -- Final target: full Hodge conjecture for all smooth projective complex varieties
+
+The final project objective is `FullHodgeConjectureReal`, the universal theorem `forall X : SmoothProjectiveVariety Complex, HodgeConjectureReal X`.  The current canonical `E_7` endpoint and the four-case `main_reduction_real` theorem are milestones only.  `main_reduction_real` proves `InScope X -> HodgeConjectureReal X`; a full proof still needs either a proof that the current scope covers every smooth projective complex variety or a separate global route for varieties outside that scope.  R611 records that global closure route in `FullHodgeGoal.lean`, including the by-codimension consumer and the machine-checked status that the current state is not a full-HC closure claim.  R612 formalizes the second alternative as `CurrentReductionCoversOrSolvesAllSmoothProjective` and proves that this scope-or-complement route consumes `main_reduction_real` to conclude the full theorem.  R613 aligns the residual-gate vocabulary in `Research/E7ResidualStatus.lean` with the same R612 antecedent, so the paper's residual-gate route and the full-HC closure route are now the same kernel-visible interface.  R620 adds a zero-failure summary guard tying the paper's non-closure claim, final-open route status, and import-ledger sanity checks to Lean.  R621 fixes the exact ten route gap id/status pairs used by the paper summary, R627 fixes the exact nine primary labelled hypotheses that the paper summary lists as open inputs, R628 fixes the four scope-subclass status claims, R629 fixes the top-level project axiom-constant count used by the Lean trust-base prose, R630 fixes the direct `sorryAx` count for project declarations visible from the root import, R631 pins the exact endpoint-level open-cut ledger at 24 configured cuts, R632 assigns those endpoint cuts to registered route-level gap rows, and R633 isolates the only endpoint cut without direct master-paper claim coverage as structural cohomology infrastructure.  Do not treat closure of `G-main-hc`, `G-l4-mt-correspondence`, or any canonical target branch as closure of the full Hodge conjecture unless it feeds an explicit theorem concluding `FullHodgeConjectureReal`.
+
+Declarations:
+- `HodgeReduction.FullHodgeConjectureReal`
+- `HodgeReduction.FullHodgeConjectureRealByCodim`
+- `HodgeReduction.fullHodgeConjectureReal_iff_byCodim`
+- `HodgeReduction.CurrentReductionCoversAllSmoothProjective`
+- `HodgeReduction.fullHodgeConjectureReal_of_currentScopeCoverage`
+- `HodgeReduction.fullHodgeConjectureRealByCodim_of_currentScopeCoverage`
+- `HodgeReduction.currentFullHodgeClosureRouteNames`
+- `HodgeReduction.FullHodgeClosureStatusSnapshot`
+- `HodgeReduction.currentFullHodgeClosureStatusSnapshot`
+- `HodgeReduction.currentFullHodgeClosureStatusSnapshot_eq_texStatus`
+- `HodgeReduction.currentFullHodgeClosureRouteNames_eq_texStatus`
+- `HodgeReduction.CurrentReductionCoversOrSolvesAllSmoothProjective`
+- `HodgeReduction.currentScopeOrComplementCoverage_of_currentScopeCoverage`
+- `HodgeReduction.fullHodgeConjectureReal_of_currentScopeOrComplementCoverage`
+- `HodgeReduction.fullHodgeConjectureRealByCodim_of_currentScopeOrComplementCoverage`
+- `HodgeReduction.currentFullHodgeScopeOrComplementRouteNames`
+- `HodgeReduction.FullHodgeScopeOrComplementSnapshot`
+- `HodgeReduction.currentFullHodgeScopeOrComplementSnapshot`
+- `HodgeReduction.currentFullHodgeScopeOrComplementSnapshot_eq_texStatus`
+- `HodgeReduction.currentFullHodgeScopeOrComplementRouteNames_eq_texStatus`
+- `HodgeReduction.MainChain.fullHcNarrativeClaimsCompleteProof`
+- `HodgeReduction.MainChain.PaperNarrativeConsistencySnapshot`
+- `HodgeReduction.MainChain.currentPaperNarrativeConsistencySnapshot`
+- `HodgeReduction.MainChain.currentPaperNarrativeConsistencySnapshot_eq_texStatus`
+- `HodgeReduction.MainChain.fullHcCompletionOverclaimCount`
+- `HodgeReduction.MainChain.fullHcFinalOpenStatusFailureCount`
+- `HodgeReduction.MainChain.masterClaimTagPointerFailureCount`
+- `HodgeReduction.MainChain.masterClaimDispositionTagMismatchCount`
+- `HodgeReduction.MainChain.masterBrokenLinkDisciplineFailureCount`
+- `HodgeReduction.MainChain.masterSubgapStatusMarkerFailureCount`
+- `HodgeReduction.MainChain.masterPrimaryHypothesisDisciplineFailureCount`
+- `HodgeReduction.MainChain.scopeSubclassRouteGapReferenceIds`
+- `HodgeReduction.MainChain.unregisteredScopeSubclassRouteGapReferenceIds`
+- `HodgeReduction.MainChain.unregisteredScopeSubclassRouteGapReferenceCount`
+- `HodgeReduction.MainChain.allScopeSubclassRouteGapReferencesRegisteredInRoute`
+- `HodgeReduction.MainChain.masterScopeSubclassStatusFailureCount`
+- `HodgeReduction.MainChain.projectAxiomTrustBaseFailureCount`
+- `HodgeReduction.MainChain.projectSorryAxFailureCount`
+- `HodgeReduction.AxiomInventory.currentProjectAxiomTrustBaseSnapshot_eq_texStatus`
+- `HodgeReduction.AxiomInventory.topLevelProjectAxiomConstantCount_eq_texStatus`
+- `HodgeReduction.AxiomInventory.currentProjectSorryAxSnapshot_eq_texStatus`
+- `HodgeReduction.AxiomInventory.projectDeclarationsWithSorryAxCount_eq_zero`
+- `HodgeReduction.MainChain.masterSourceDisciplineFailureCount`
+- `HodgeReduction.MainChain.masterEnvironmentCoverageFailureCount`
+- `HodgeReduction.MainChain.paperSummaryClaimFailureCount`
+- `HodgeReduction.MainChain.paperSummaryClaimFailureCount_eq_zero`
+- `HodgeReduction.MainChain.RouteGapStatusEntry`
+- `HodgeReduction.MainChain.routeGapStatusLedger`
+- `HodgeReduction.MainChain.routeGapStatusLedger_eq_texStatus`
+- `HodgeReduction.MainChain.endpointOpenCutNames`
+- `HodgeReduction.MainChain.endpointOpenCutCount`
+- `HodgeReduction.MainChain.EndpointOpenCutSnapshot`
+- `HodgeReduction.MainChain.currentEndpointOpenCutSnapshot`
+- `HodgeReduction.MainChain.currentEndpointOpenCutSnapshot_eq_texStatus`
+- `HodgeReduction.MainChain.endpointOpenCutCount_eq_texStatus`
+- `HodgeReduction.MainChain.endpointOpenCutFailureCount`
+- `HodgeReduction.MainChain.EndpointOpenCutRouteAssignment`
+- `HodgeReduction.MainChain.endpointOpenCutRouteAssignments`
+- `HodgeReduction.MainChain.endpointOpenCutRouteAssignments_eq_texStatus`
+- `HodgeReduction.MainChain.EndpointOpenCutRouteAssignmentSnapshot`
+- `HodgeReduction.MainChain.currentEndpointOpenCutRouteAssignmentSnapshot`
+- `HodgeReduction.MainChain.currentEndpointOpenCutRouteAssignmentSnapshot_eq_texStatus`
+- `HodgeReduction.MainChain.endpointOpenCutRouteAssignmentFailureCount`
+- `HodgeReduction.MainChain.EndpointOpenCutPaperCoverageSnapshot`
+- `HodgeReduction.MainChain.currentEndpointOpenCutPaperCoverageSnapshot`
+- `HodgeReduction.MainChain.currentEndpointOpenCutPaperCoverageSnapshot_eq_texStatus`
+- `HodgeReduction.MainChain.endpointOpenCutPaperCoverageFailureCount`
+- `HodgeReduction.main_reduction_real`
+- `HodgeReduction.hodgeConjectureReal_canonical`
+
+Files:
+- `HodgeReduction/FullHodgeGoal.lean` -- registered
+- `HodgeReduction/AxiomInventory.lean` -- infra
+- `HodgeReduction/MainTheorem.lean` -- cut
+- `HodgeReduction/OpenHypotheses.lean` -- cut
+- `HodgeReduction/Types.lean` -- on-chain
+- `HodgeReduction/MainChain.lean` -- infra
+
+### `G-master-paper-import` -- Canonical master-paper content imported into Lean
+
+`PaperInventory.lean` makes `../contributions/hodge-conjecture-master-proof.tex` the only canonical paper source for the import pass.  Attack maps, literature surveys, and round-contribution tex files are archive/background unless a later round promotes a statement into the master tex.  Each indexed master-paper environment is now claimed in the ledger: existing Lean declarations where available, published-input carriers where appropriate, and explicit `registeredGap` / `openHypothesis` / `openResidual` entries where the paper does not currently supply a kernel-checkable proof.  R620 ties the master-paper summary paragraph to a single zero-failure guard over route status, correspondence, tag, source, and theorem-environment checks; R621 pins the exact route gap id/status list behind that summary.  R622 pins the exact claim-id worklists for registered gaps, open hypotheses/residuals, conditional milestones, paper proofs not kernel-ported, external citations not kernel-ported, new-math gaps, and migration debt.  R623 pins the exact claim-id worklist attached to each route-level gap id/status pair.  R624 records that the only route rows without direct master-paper claim ids are the structural infrastructure gaps `G-l1-e7-shimura-tor` and `G-l2-cohomology-construction`.  R625 pins the exact broken-link predicate list and checks that those anchors stay attached to open/gap-facing master claims.  R626 pins the explicit sub-gap status markers in the master tex: four `gapPartial`, one `gapOpen`, and one `gapBlocked`.  R627 pins the exact nine primary labelled hypotheses used by the abstract, status box, and conclusion, and checks that they are exactly the open-hypothesis claim worklist.  R628 pins the four scope-subclass status claims, separating unconditional sub-arguments from inherited conditional machinery.  R629 pins the Lean trust-base prose to the generated top-level project axiom-constant count, R630 pins the compiled direct `sorryAx` count to zero, R631 pins the flat endpoint-open-cut count/list behind the route-index headline, R632 pins the route-gap assignment for each endpoint cut, and R633 pins the structural endpoint-cut exception without direct master-claim coverage.  This completes the master-environment triage pass, not the full Hodge theorem.
+
+Declarations:
+- `HodgeReduction.PaperInventory.canonicalMasterSource`
+- `HodgeReduction.PaperInventory.archivedBackgroundSources`
+- `HodgeReduction.PaperInventory.allSources`
+- `HodgeReduction.PaperInventory.knownSourceIds`
+- `HodgeReduction.PaperInventory.sourceIdIsKnown`
+- `HodgeReduction.PaperInventory.masterClaimsWithUnknownSourceIdCount`
+- `HodgeReduction.PaperInventory.allMasterClaimSourceIdsKnown`
+- `HodgeReduction.PaperInventory.masterClaimsOutsideCanonicalSourceCount`
+- `HodgeReduction.PaperInventory.allMasterClaimsUseCanonicalMasterSource`
+- `HodgeReduction.PaperInventory.canonicalMasterSourcePathIsMasterTex`
+- `HodgeReduction.PaperInventory.canonicalMasterSourceRoleIsCanonical`
+- `HodgeReduction.PaperInventory.archivedBackgroundSourceCount`
+- `HodgeReduction.PaperInventory.allArchivedBackgroundSourcesHaveArchiveRole`
+- `HodgeReduction.PaperInventory.MasterSourceDisciplineSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterSourceDisciplineSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterSourceDisciplineSnapshot_eq_texStatus`
+- `HodgeReduction.PaperInventory.masterEnvironmentIndex`
+- `HodgeReduction.PaperInventory.masterEnvironmentCount`
+- `HodgeReduction.PaperInventory.environmentCoveringClaims`
+- `HodgeReduction.PaperInventory.environmentCoveringClaimCount`
+- `HodgeReduction.PaperInventory.allMasterEnvironmentsHaveUniqueClaim`
+- `HodgeReduction.PaperInventory.masterEnvironmentsWithoutUniqueClaimCount`
+- `HodgeReduction.PaperInventory.allClaimedMasterEnvironmentKindsMatch`
+- `HodgeReduction.PaperInventory.masterEnvironmentsWithKindMismatchCount`
+- `HodgeReduction.PaperInventory.masterClaimsNotCoveringMasterEnvironmentCount`
+- `HodgeReduction.PaperInventory.MasterEnvironmentCoverageDisciplineSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterEnvironmentCoverageDisciplineSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterEnvironmentCoverageDisciplineSnapshot_eq_texStatus`
+- `HodgeReduction.PaperInventory.masterClaims`
+- `HodgeReduction.PaperInventory.openHypothesisClaims`
+- `HodgeReduction.PaperInventory.registeredGapClaims`
+- `HodgeReduction.PaperInventory.needsTriageClaims`
+- `HodgeReduction.PaperInventory.formalizedClaims`
+- `HodgeReduction.PaperInventory.provenInPaperClaims`
+- `HodgeReduction.PaperInventory.conditionalMilestoneClaims`
+- `HodgeReduction.PaperInventory.externalCitationClaims`
+- `HodgeReduction.PaperInventory.openResidualClaims`
+- `HodgeReduction.PaperInventory.archiveOnlyClaims`
+- `HodgeReduction.PaperInventory.ClaimAuditTag`
+- `HodgeReduction.PaperInventory.effectiveAuditTags`
+- `HodgeReduction.PaperInventory.kernelOnlyLeanClaims`
+- `HodgeReduction.PaperInventory.kernelOnlyLeanClaimCount`
+- `HodgeReduction.PaperInventory.paperProofNotKernelPortedClaims`
+- `HodgeReduction.PaperInventory.paperProofNotKernelPortedClaimCount`
+- `HodgeReduction.PaperInventory.externalCitationNotKernelPortedClaims`
+- `HodgeReduction.PaperInventory.externalCitationNotKernelPortedClaimCount`
+- `HodgeReduction.PaperInventory.newMathGapClaims`
+- `HodgeReduction.PaperInventory.newMathGapClaimCount`
+- `HodgeReduction.PaperInventory.migrationDebtClaims`
+- `HodgeReduction.PaperInventory.migrationDebtClaimCount`
+- `HodgeReduction.PaperInventory.claimIds`
+- `HodgeReduction.PaperInventory.claimReferencesGapId`
+- `HodgeReduction.PaperInventory.masterClaimsForGapId`
+- `HodgeReduction.PaperInventory.masterClaimIdsForGapId`
+- `HodgeReduction.PaperInventory.registeredGapClaimIds`
+- `HodgeReduction.PaperInventory.openHypothesisClaimIds`
+- `HodgeReduction.PaperInventory.openResidualClaimIds`
+- `HodgeReduction.PaperInventory.conditionalMilestoneClaimIds`
+- `HodgeReduction.PaperInventory.paperProofNotKernelPortedClaimIds`
+- `HodgeReduction.PaperInventory.externalCitationNotKernelPortedClaimIds`
+- `HodgeReduction.PaperInventory.newMathGapClaimIds`
+- `HodgeReduction.PaperInventory.migrationDebtClaimIds`
+- `HodgeReduction.PaperInventory.MasterClaimWorklistSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterClaimWorklistSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterClaimWorklistSnapshot_eq_texStatus`
+- `HodgeReduction.PaperInventory.untaggedMasterClaimCount`
+- `HodgeReduction.PaperInventory.allMasterClaimsHaveEffectiveAuditTag`
+- `HodgeReduction.PaperInventory.claimedMasterEnvironments`
+- `HodgeReduction.PaperInventory.unclaimedMasterEnvironments`
+- `HodgeReduction.PaperInventory.masterClaimCount`
+- `HodgeReduction.PaperInventory.formalizedClaimCount`
+- `HodgeReduction.PaperInventory.provenInPaperClaimCount`
+- `HodgeReduction.PaperInventory.conditionalMilestoneClaimCount`
+- `HodgeReduction.PaperInventory.externalCitationClaimCount`
+- `HodgeReduction.PaperInventory.registeredGapClaimCount`
+- `HodgeReduction.PaperInventory.claimedMasterEnvironmentCount`
+- `HodgeReduction.PaperInventory.unclaimedMasterEnvironmentCount`
+- `HodgeReduction.PaperInventory.openResidualClaimCount`
+- `HodgeReduction.PaperInventory.archiveOnlyClaimCount`
+- `HodgeReduction.PaperInventory.claimHasMachineCorrespondence`
+- `HodgeReduction.PaperInventory.claimsWithoutMachineCorrespondence`
+- `HodgeReduction.PaperInventory.claimsWithoutMachineCorrespondenceCount`
+- `HodgeReduction.PaperInventory.allMasterClaimsHaveMachineCorrespondence`
+- `HodgeReduction.PaperInventory.claimHasLeanDecl`
+- `HodgeReduction.PaperInventory.claimHasGapId`
+- `HodgeReduction.PaperInventory.formalizedClaimsWithoutLeanDeclCount`
+- `HodgeReduction.PaperInventory.allFormalizedClaimsHaveLeanDecl`
+- `HodgeReduction.PaperInventory.kernelOnlyClaimsWithoutLeanDeclCount`
+- `HodgeReduction.PaperInventory.allKernelOnlyClaimsHaveLeanDecl`
+- `HodgeReduction.PaperInventory.registeredGapClaimsWithoutGapIdCount`
+- `HodgeReduction.PaperInventory.allRegisteredGapClaimsHaveGapId`
+- `HodgeReduction.PaperInventory.openHypothesisClaimsWithoutGapIdCount`
+- `HodgeReduction.PaperInventory.allOpenHypothesisClaimsHaveGapId`
+- `HodgeReduction.PaperInventory.openResidualClaimsWithoutGapIdCount`
+- `HodgeReduction.PaperInventory.allOpenResidualClaimsHaveGapId`
+- `HodgeReduction.PaperInventory.newMathGapClaimsWithoutGapIdCount`
+- `HodgeReduction.PaperInventory.allNewMathGapClaimsHaveGapId`
+- `HodgeReduction.PaperInventory.MasterClaimTagDisciplineSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterClaimTagDisciplineSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterClaimTagDisciplineSnapshot_eq_texStatus`
+- `HodgeReduction.PaperInventory.claimHasEffectiveAuditTagValue`
+- `HodgeReduction.PaperInventory.claimHasAnyOpenOrUnportedTag`
+- `HodgeReduction.PaperInventory.formalizedClaimsWithOpenOrUnportedTagCount`
+- `HodgeReduction.PaperInventory.allFormalizedClaimsAvoidOpenOrUnportedTags`
+- `HodgeReduction.PaperInventory.openHypothesisClaimsWithoutNewMathGapTagCount`
+- `HodgeReduction.PaperInventory.allOpenHypothesisClaimsTaggedNewMathGap`
+- `HodgeReduction.PaperInventory.openResidualClaimsWithoutNewMathGapTagCount`
+- `HodgeReduction.PaperInventory.allOpenResidualClaimsTaggedNewMathGap`
+- `HodgeReduction.PaperInventory.registeredGapClaimsWithoutMigrationDebtTagCount`
+- `HodgeReduction.PaperInventory.allRegisteredGapClaimsTaggedMigrationDebt`
+- `HodgeReduction.PaperInventory.conditionalMilestoneClaimsWithoutConditionalLeanPackageTagCount`
+- `HodgeReduction.PaperInventory.allConditionalMilestoneClaimsTaggedConditionalLeanPackage`
+- `HodgeReduction.PaperInventory.MasterClaimDispositionTagDisciplineSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterClaimDispositionTagDisciplineSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterClaimDispositionTagDisciplineSnapshot_eq_texStatus`
+- `HodgeReduction.PaperInventory.MasterBrokenLinkDisciplineSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterBrokenLinkDisciplineSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterBrokenLinkDisciplineSnapshot_eq_texStatus`
+- `HodgeReduction.PaperInventory.MasterSubgapStatusMarkerSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterSubgapStatusMarkerSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterSubgapStatusMarkerSnapshot_eq_texStatus`
+- `HodgeReduction.PaperInventory.MasterPrimaryHypothesisSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterPrimaryHypothesisSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterPrimaryHypothesisSnapshot_eq_texStatus`
+- `HodgeReduction.PaperInventory.MasterScopeSubclassStatusSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterScopeSubclassStatusSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterScopeSubclassStatusSnapshot_eq_texStatus`
+- `HodgeReduction.AxiomInventory.ProjectAxiomTrustBaseSnapshot`
+- `HodgeReduction.AxiomInventory.currentProjectAxiomTrustBaseSnapshot`
+- `HodgeReduction.AxiomInventory.currentProjectAxiomTrustBaseSnapshot_eq_texStatus`
+- `HodgeReduction.AxiomInventory.topLevelProjectAxiomConstantCount`
+- `HodgeReduction.AxiomInventory.topLevelProjectAxiomConstantCount_eq_texStatus`
+- `HodgeReduction.AxiomInventory.ProjectSorryAxSnapshot`
+- `HodgeReduction.AxiomInventory.currentProjectSorryAxSnapshot`
+- `HodgeReduction.AxiomInventory.currentProjectSorryAxSnapshot_eq_texStatus`
+- `HodgeReduction.AxiomInventory.projectDeclarationsWithSorryAxCount`
+- `HodgeReduction.AxiomInventory.projectDeclarationsWithSorryAxCount_eq_zero`
+- `HodgeReduction.MainChain.routeGapIds`
+- `HodgeReduction.MainChain.gapIdIsRouteRegistered`
+- `HodgeReduction.MainChain.masterClaimGapReferenceIds`
+- `HodgeReduction.MainChain.masterClaimGapReferenceCount`
+- `HodgeReduction.MainChain.unregisteredMasterClaimGapReferenceIds`
+- `HodgeReduction.MainChain.unregisteredMasterClaimGapReferenceCount`
+- `HodgeReduction.MainChain.masterClaimsWithUnregisteredGapIds`
+- `HodgeReduction.MainChain.masterClaimsWithUnregisteredGapIdCount`
+- `HodgeReduction.MainChain.allMasterClaimGapReferencesRegisteredInRoute`
+- `HodgeReduction.MainChain.MasterClaimGapReferenceSnapshot`
+- `HodgeReduction.MainChain.currentMasterClaimGapReferenceSnapshot`
+- `HodgeReduction.MainChain.currentMasterClaimGapReferenceSnapshot_eq_texStatus`
+- `HodgeReduction.PaperInventory.MasterAuditSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterAuditSnapshot`
+- `HodgeReduction.PaperInventory.currentMasterAuditSnapshot_eq_texStatus`
+- `HodgeReduction.MainChain.routeLevelGapCount`
+- `HodgeReduction.MainChain.routeLevelFinalOpenGapCount`
+- `HodgeReduction.MainChain.routeLevelInProgressGapCount`
+- `HodgeReduction.MainChain.routeLevelConditionalGapCount`
+- `HodgeReduction.MainChain.routeLevelOpenGapCount`
+- `HodgeReduction.MainChain.routeLevelDeferredGapCount`
+- `HodgeReduction.MainChain.routeLevelActiveOpenGapCount`
+- `HodgeReduction.MainChain.RouteGapStatusSnapshot`
+- `HodgeReduction.MainChain.currentRouteGapStatusSnapshot`
+- `HodgeReduction.MainChain.RouteGapStatusEntry`
+- `HodgeReduction.MainChain.routeGapStatusLedger`
+- `HodgeReduction.MainChain.gapStatusOf?`
+- `HodgeReduction.MainChain.currentRouteGapStatusSnapshot_eq_texStatus`
+- `HodgeReduction.MainChain.routeGapStatusLedger_eq_texStatus`
+- `HodgeReduction.MainChain.endpointOpenCutNames`
+- `HodgeReduction.MainChain.endpointOpenCutCount`
+- `HodgeReduction.MainChain.expectedEndpointOpenCutNames`
+- `HodgeReduction.MainChain.expectedEndpointOpenCutCount`
+- `HodgeReduction.MainChain.endpointOpenCutLedgerMatchesTexStatus`
+- `HodgeReduction.MainChain.endpointOpenCutCountMatchesTexStatus`
+- `HodgeReduction.MainChain.EndpointOpenCutSnapshot`
+- `HodgeReduction.MainChain.currentEndpointOpenCutSnapshot`
+- `HodgeReduction.MainChain.currentEndpointOpenCutSnapshot_eq_texStatus`
+- `HodgeReduction.MainChain.endpointOpenCutCount_eq_texStatus`
+- `HodgeReduction.MainChain.endpointOpenCutFailureCount`
+- `HodgeReduction.MainChain.EndpointOpenCutRouteAssignment`
+- `HodgeReduction.MainChain.endpointOpenCutRouteAssignments`
+- `HodgeReduction.MainChain.endpointOpenCutRouteAssignments_eq_texStatus`
+- `HodgeReduction.MainChain.EndpointOpenCutRouteAssignmentSnapshot`
+- `HodgeReduction.MainChain.currentEndpointOpenCutRouteAssignmentSnapshot`
+- `HodgeReduction.MainChain.currentEndpointOpenCutRouteAssignmentSnapshot_eq_texStatus`
+- `HodgeReduction.MainChain.endpointOpenCutRouteAssignmentFailureCount`
+- `HodgeReduction.MainChain.EndpointOpenCutPaperCoverageSnapshot`
+- `HodgeReduction.MainChain.currentEndpointOpenCutPaperCoverageSnapshot`
+- `HodgeReduction.MainChain.currentEndpointOpenCutPaperCoverageSnapshot_eq_texStatus`
+- `HodgeReduction.MainChain.endpointOpenCutPaperCoverageFailureCount`
+- `HodgeReduction.MainChain.MasterRouteGapClaimEntry`
+- `HodgeReduction.MainChain.masterRouteGapClaimLedger`
+- `HodgeReduction.MainChain.masterRouteGapClaimLedgerClaimReferenceCount`
+- `HodgeReduction.MainChain.currentMasterRouteGapClaimLedger_eq_texStatus`
+- `HodgeReduction.MainChain.masterRouteGapClaimLedgerClaimReferenceCount_eq_masterClaimGapReferenceCount`
+- `HodgeReduction.MainChain.masterRouteGapRowsWithMasterClaims`
+- `HodgeReduction.MainChain.masterRouteGapRowsWithoutMasterClaims`
+- `HodgeReduction.MainChain.masterRouteGapIdsWithoutMasterClaims`
+- `HodgeReduction.MainChain.masterRouteGapRowsWithoutMasterClaimsAreExpectedStructuralInfra`
+- `HodgeReduction.MainChain.MasterRouteGapClaimCoverageSnapshot`
+- `HodgeReduction.MainChain.currentMasterRouteGapClaimCoverageSnapshot`
+- `HodgeReduction.MainChain.currentMasterRouteGapClaimCoverageSnapshot_eq_texStatus`
+- `HodgeReduction.MainChain.masterRouteGapClaimCoverageFailureCount`
+- `HodgeReduction.MainChain.fullHcGapStatus_eq_finalOpen`
+- `HodgeReduction.MainChain.fullHcNarrativeClaimsCompleteProof`
+- `HodgeReduction.MainChain.PaperNarrativeConsistencySnapshot`
+- `HodgeReduction.MainChain.currentPaperNarrativeConsistencySnapshot`
+- `HodgeReduction.MainChain.currentPaperNarrativeConsistencySnapshot_eq_texStatus`
+- `HodgeReduction.MainChain.fullHcCompletionOverclaimCount`
+- `HodgeReduction.MainChain.fullHcFinalOpenStatusFailureCount`
+- `HodgeReduction.MainChain.masterClaimTagPointerFailureCount`
+- `HodgeReduction.MainChain.masterClaimDispositionTagMismatchCount`
+- `HodgeReduction.MainChain.masterBrokenLinkDisciplineFailureCount`
+- `HodgeReduction.MainChain.masterSubgapStatusMarkerFailureCount`
+- `HodgeReduction.MainChain.masterPrimaryHypothesisDisciplineFailureCount`
+- `HodgeReduction.MainChain.scopeSubclassRouteGapReferenceIds`
+- `HodgeReduction.MainChain.unregisteredScopeSubclassRouteGapReferenceIds`
+- `HodgeReduction.MainChain.unregisteredScopeSubclassRouteGapReferenceCount`
+- `HodgeReduction.MainChain.allScopeSubclassRouteGapReferencesRegisteredInRoute`
+- `HodgeReduction.MainChain.masterScopeSubclassStatusFailureCount`
+- `HodgeReduction.MainChain.projectAxiomTrustBaseFailureCount`
+- `HodgeReduction.MainChain.projectSorryAxFailureCount`
+- `HodgeReduction.AxiomInventory.currentProjectAxiomTrustBaseSnapshot_eq_texStatus`
+- `HodgeReduction.AxiomInventory.topLevelProjectAxiomConstantCount_eq_texStatus`
+- `HodgeReduction.AxiomInventory.currentProjectSorryAxSnapshot_eq_texStatus`
+- `HodgeReduction.AxiomInventory.projectDeclarationsWithSorryAxCount_eq_zero`
+- `HodgeReduction.MainChain.masterSourceDisciplineFailureCount`
+- `HodgeReduction.MainChain.masterEnvironmentCoverageFailureCount`
+- `HodgeReduction.MainChain.paperSummaryClaimFailureCount`
+- `HodgeReduction.MainChain.paperSummaryClaimFailureCount_eq_zero`
+- `HodgeReduction.PaperInventory.openHypothesisCount`
+- `HodgeReduction.PaperInventory.needsTriageCount`
+- `HodgeReduction.RanCoherenceInputData`
+- `HodgeReduction.RanCoherenceInputData.coherence_lemma_from_oka_and_bbt_definable_oka`
+- `HodgeReduction.RanCoherenceInputData.input_ran_from_coherence_lemma`
+- `HodgeReduction.oka_coherence_does_not_self_close_ran_input`
+- `HodgeReduction.CMDensityInputData`
+- `HodgeReduction.CMDensityInputData.cm_density_in_special_subvariety_from_tsimerman`
+- `HodgeReduction.CMDensityInputData.cm_density_in_hodge_locus_from_special_component`
+- `HodgeReduction.specialness_does_not_self_close_cm_density`
+- `HodgeReduction.PeterzilStarchenkoInputData`
+- `HodgeReduction.PeterzilStarchenkoInputData.definable_closed_analytic_subset_is_algebraic`
+- `HodgeReduction.definable_analytic_set_does_not_self_close_algebraicity`
+- `HodgeReduction.VoisinIntegralCounterexampleData`
+- `HodgeReduction.VoisinIntegralCounterexampleData.integral_hodge_counterexample_from_voisin`
+- `HodgeReduction.VoisinIntegralCounterexampleData.voisin_integral_failure_does_not_contradict_rational_target`
+- `HodgeReduction.integral_hc_failure_alone_does_not_self_close_rational_scope`
+- `HodgeReduction.MargulisConditionalData`
+- `HodgeReduction.MargulisConditionalData.arithmeticity_if_monodromy_is_lattice`
+- `HodgeReduction.MargulisConditionalData.representation_extension_if_monodromy_is_lattice`
+- `HodgeReduction.margulis_rank_inputs_do_not_self_close_without_lattice_hypothesis`
+- `HodgeReduction.RationalScalarExtensionDescentData.padic_descent_linear_algebra_core`
+- `HodgeReduction.WitnessLatticeHypothesis`
+- `HodgeReduction.WitnessLatticeHypothesis.orthogonalComplement_signature_eq_p_two`
+- `HodgeReduction.MonodromyLatticeContainmentData`
+- `HodgeReduction.containment_in_arithmetic_lattice_does_not_force_finite_covolume`
+- `HodgeReduction.ShimuraTypeFibreData`
+- `HodgeReduction.ShimuraTypeFibreData.invariant_classes_realized_through_map`
+- `HodgeReduction.aniso_empty_isotropic_core`
+- `HodgeReduction.CMFibreDensityData`
+- `HodgeReduction.CMFibreDensityData.shimura_fibre_density_from_transport`
+- `HodgeReduction.cm_density_alone_does_not_force_e7_family_density`
+- `HodgeReduction.RankTwoCMCY3CorrespondenceData`
+- `HodgeReduction.RankTwoCMCY3CorrespondenceData.algebraicity_from_rank_two_cm_cy3_hypothesis`
+- `HodgeReduction.blasius_deligne_do_not_self_close_cm_cy3_correspondence`
+- `HodgeReduction.MotivicSpanData`
+- `HodgeReduction.MotivicSpanData.rigid_nonabelian_cm_subcase_from_motivic_span`
+- `HodgeReduction.cm_correspondence_does_not_self_close_motivic_span`
+- `HodgeReduction.AbelianTypeCoverageData`
+- `HodgeReduction.AbelianTypeCoverageData.abelian_type_coverage_from_hc_cm_and_ran`
+- `HodgeReduction.hc_cm_abelian_does_not_self_close_abelian_type_coverage`
+- `HodgeReduction.KugaSatakeP3Data`
+- `HodgeReduction.KugaSatakeP3Data.ks_p3_from_spin_hodge_and_correspondence`
+- `HodgeReduction.spin_abs_periodicity_does_not_self_close_ks_p3`
+- `HodgeReduction.AbsoluteHodgeDescentData`
+- `HodgeReduction.AbsoluteHodgeDescentData.ahd_from_wlh_hodge_locus_principleB_and_hcab`
+- `HodgeReduction.hc_ab_and_hodge_locus_do_not_self_close_ahd`
+- `HodgeReduction.GLBOrthClosureData`
+- `HodgeReduction.GLBOrthClosureData.glb_orth_from_meyer_ahd_ks_and_hcab`
+- `HodgeReduction.GLBOrthClosureData.orthogonal_coverage_from_glb_orth`
+- `HodgeReduction.meyer_input_does_not_self_close_glb_orth`
+- `HodgeReduction.GenericFibreInvariantData`
+- `HodgeReduction.GenericFibreInvariantData.generic_fibre_invariant_from_full_package`
+- `HodgeReduction.invariant_theory_and_chern_classes_do_not_self_close_generic_fibre`
+- `HodgeReduction.SatakeAbelianClassificationData`
+- `HodgeReduction.SatakeAbelianClassificationData.exceptional_eiii_evii_not_abelian_type`
+- `HodgeReduction.exceptional_label_does_not_self_close_satake_classification`
+- `HodgeReduction.E7ApproachFTotalSpaceData`
+- `HodgeReduction.E7ApproachFTotalSpaceData.total_space_class_from_chern_weil_bridge`
+- `HodgeReduction.approach_f_total_space_does_not_self_close_fibre_level_class`
+- `HodgeReduction.CMEigenvalueSeparationData`
+- `HodgeReduction.CMEigenvalueSeparationData.abelian_type_eigenvalue_separation_from_honda_tate`
+- `HodgeReduction.CMEigenvalueSeparationData.nonabelian_e7_eigenvalue_separation_from_honda_tate_extension`
+- `HodgeReduction.abelian_honda_tate_does_not_self_close_nonabelian_e7_eigenvalue_separation`
+- `HodgeReduction.E7ArithmeticityStep1Data`
+- `HodgeReduction.E7ArithmeticityStep1Data.arithmeticity_from_all_inputs`
+- `HodgeReduction.e7_arithmeticity_not_from_boundary_data_alone`
+- `HodgeReduction.BBTRigidReachData`
+- `HodgeReduction.BBTRigidReachData.rigid_isolated_reach_from_full_package`
+- `HodgeReduction.bbt_frameworks_do_not_self_close_rigid_isolated_reach`
+- `HodgeReduction.NonRigidFamilyBridgeData`
+- `HodgeReduction.NonRigidFamilyBridgeData.base_dimension_from_period_package`
+- `HodgeReduction.NonRigidFamilyBridgeData.nonrigid_family_bridge_from_full_period_package`
+- `HodgeReduction.nonrigidity_does_not_self_close_period_family_bridge`
+- `HodgeReduction.E7BBTSpreadingData`
+- `HodgeReduction.E7BBTSpreadingData.e7_bbt_spreading_from_full_package`
+- `HodgeReduction.E7BBTSpreadingData.individual_scope_transfer_from_family_spreading_and_bridges`
+- `HodgeReduction.bbt_cm_density_do_not_self_close_e7_bbt_spreading`
+- `HodgeReduction.family_spreading_does_not_self_close_individual_e7_scope`
+- `HodgeReduction.E7CMAlgebraicityData`
+- `HodgeReduction.E7CMAlgebraicityData.absolute_hodge_from_nonabelian_e7_extension`
+- `HodgeReduction.E7CMAlgebraicityData.cm_e7_algebraicity_from_absolute_hodge_and_hbundle`
+- `HodgeReduction.E7CMAlgebraicityData.cm_e7_algebraicity_from_full_package`
+- `HodgeReduction.abelian_frameworks_do_not_self_close_nonabelian_e7_absolute_hodge`
+- `HodgeReduction.absolute_hodge_does_not_self_close_cm_e7_algebraicity`
+- `HodgeReduction.E7ChernWeilBridgeData`
+- `HodgeReduction.E7ChernWeilBridgeData.compact_dual_nonzero_from_schwarz_bridge`
+- `HodgeReduction.E7ChernWeilBridgeData.toroidal_class_from_matsushima_descent`
+- `HodgeReduction.E7ChernWeilBridgeData.algebraicity_from_chern_polynomial_identity`
+- `HodgeReduction.E7ChernWeilBridgeData.e7_chern_weil_algebraicity_from_full_bridge`
+- `HodgeReduction.schwarz_invariant_ring_does_not_self_close_e7_chern_weil`
+- `HodgeReduction.cocompact_matsushima_does_not_self_close_noncompact_e7_chern_weil`
+- `HodgeReduction.ExoticE7NarrowingData`
+- `HodgeReduction.ExoticE7NarrowingData.exotic_residual_narrowed_from_geometric_eliminations`
+- `HodgeReduction.exotic_narrowing_does_not_self_close_residual`
+- `HodgeReduction.TorelliEVIIQuestionData`
+- `HodgeReduction.TorelliEVIIQuestionData.exotic_rigid_vacuity_from_evii_uniformisation`
+- `HodgeReduction.arithmeticity_and_mok_do_not_self_close_torelli_evii`
+- `HodgeReduction.ExoticE7ResidualData`
+- `HodgeReduction.ExoticE7ResidualData.exotic_residual_eliminated_from_all_subbranches`
+- `HodgeReduction.known_e7_cases_do_not_self_close_exotic_residual`
+- `HodgeReduction.FullHCResidualGateData`
+- `HodgeReduction.FullHCResidualGateData.full_hodge_conjecture_from_residual_gate`
+- `HodgeReduction.r612ScopeOrComplementResidualGateData`
+- `HodgeReduction.fullHodgeConjectureReal_from_r612ResidualGate`
+- `HodgeReduction.R613ResidualGateRouteSnapshot`
+- `HodgeReduction.currentR613ResidualGateRouteSnapshot`
+- `HodgeReduction.currentR613ResidualGateRouteSnapshot_eq_texStatus`
+- `HodgeReduction.E7ResidualStrategyData`
+- `HodgeReduction.E7ResidualStrategyData.residual_hc_from_theta_transfer`
+- `HodgeReduction.E7ResidualStrategyData.residual_hc_from_padic_route`
+- `HodgeReduction.E7ResidualStrategyData.residual_hc_from_bost_charles_route`
+- `HodgeReduction.theta_shimura_cycle_does_not_self_close_residual_hc`
+- `HodgeReduction.padic_descent_does_not_self_close_residual_hc`
+- `HodgeReduction.bost_charles_framework_does_not_self_close_residual_hc`
+- `HodgeReduction.OmegaDiagonalData`
+- `HodgeReduction.OmegaDiagonalData.cohomological_identity_from_standard_conjecture_package`
+- `HodgeReduction.OmegaDiagonalData.omega_algebraic_from_diagonal_standard_conjectures_and_schur`
+- `HodgeReduction.OmegaDiagonalData.schur_projector_step_iff_omega_algebraicity`
+- `HodgeReduction.standard_conjecture_pair_does_not_self_close_omega_diagonal`
+- `HodgeReduction.andre_motivated_closure_does_not_self_close_chow_omega`
+- `HodgeReduction.E7ChowModularityData`
+- `HodgeReduction.E7ChowModularityData.chow_modularity_from_full_package`
+- `HodgeReduction.ThetaIsChowModular`
+- `HodgeReduction.IsExceptionalE7ChowModularityExtension_CONJECTURAL`
+- `HodgeReduction.orthogonal_chow_frameworks_do_not_self_close_exceptional_e7_chow_modularity`
+- `HodgeReduction.E7ThetaModularityData`
+- `HodgeReduction.E7ThetaModularityData.cohomological_theta_modularity_from_kernel`
+- `HodgeReduction.E7ThetaModularityData.e7_chow_modularity_from_full_package`
+- `HodgeReduction.cohomological_theta_does_not_self_close_chow_valued_e7_modularity`
+- `HodgeReduction.E7ThetaMatchData`
+- `HodgeReduction.E7ThetaMatchData.theta_match_from_full_package`
+- `HodgeReduction.E7ThetaMatchData.nonzero_algebraic_theta_cycle_from_match`
+- `HodgeReduction.chow_modularity_and_theta_framework_do_not_self_close_theta_match`
+- `HodgeReduction.E7ThetaStepIIIData`
+- `HodgeReduction.E7ThetaStepIIIData.shimura_side_cycle_seeding_from_theta_package`
+- `HodgeReduction.E7ThetaStepIIIData.hbundle_cycle_seeding_from_theta_and_fibre_transfer`
+- `HodgeReduction.shimura_side_theta_cycle_does_not_self_close_fibre_transfer`
+- `HodgeReduction.HBundleMatchingData`
+- `HodgeReduction.HBundleMatchingData.bundle_matching_from_rigid_point_case`
+- `HodgeReduction.HBundleMatchingData.bundle_matching_from_toroidal_reduction_package`
+- `HodgeReduction.known_hbundle_cases_do_not_self_close_arbitrary_nontoroidal_boundary`
+- `HodgeReduction.HBundleCycleSeedingData`
+- `HodgeReduction.HBundleCycleSeedingData.cycle_seeding_from_low_dimensional_lefschetz`
+- `HodgeReduction.HBundleCycleSeedingData.cycle_seeding_from_nonrigid_e7_package`
+- `HodgeReduction.HBundleCycleSeedingData.cycle_seeding_from_known_rigid_e7_package`
+- `HodgeReduction.low_dimensional_hbundle_does_not_self_close_high_dimensional_residual`
+- `HodgeReduction.HBundleInputData`
+- `HodgeReduction.HBundleInputData.hbundle_input_from_matching_and_cycle_seeding`
+- `HodgeReduction.bundle_matching_does_not_self_close_hbundle_input`
+- `HodgeReduction.FibreTransferData`
+- `HodgeReduction.FibreTransferData.base_level_algebraicity_from_shimura_side`
+- `HodgeReduction.shimura_side_and_period_map_do_not_self_close_fibre_algebraicity`
+- `HodgeReduction.E7FibreInvariantClassSplitData`
+- `HodgeReduction.E7FibreInvariantClassSplitData.all_invariant_classes_from_h3_algebraicity`
+- `HodgeReduction.motivated_h3_class_does_not_self_close_algebraicity`
+- `HodgeReduction.Q4AbelianAlgebraicityData`
+- `HodgeReduction.Q4AbelianAlgebraicityData.pointwise_q4_algebraicity_from_cm_abelian_bridge`
+- `HodgeReduction.Q4AbelianAlgebraicityData.global_q4_algebraicity_from_full_transfer`
+- `HodgeReduction.pointwise_q4_algebraicity_does_not_self_close_global_e7`
+- `HodgeReduction.MokTorelliConditionalShape`
+- `HodgeReduction.mok_conditional_does_not_self_close_torelli`
+
+Files:
+- `HodgeReduction/PaperInventory.lean` -- infra
+- `HodgeReduction/Research/AnisotropicResidue.lean` -- registered
+- `HodgeReduction/Research/ClassicalExternalStatus.lean` -- registered
+- `HodgeReduction/Research/CMFibreDensity.lean` -- registered
+- `HodgeReduction/Research/E7ArithmeticityPipeline.lean` -- registered
+- `HodgeReduction/Research/E7BBTSpreading.lean` -- registered
+- `HodgeReduction/Research/E7CMAlgebraicity.lean` -- registered
+- `HodgeReduction/Research/E7ChernWeilBridge.lean` -- registered
+- `HodgeReduction/Research/E7ResidualStatus.lean` -- registered
+- `HodgeReduction/Research/E7ThetaModularity.lean` -- registered
+- `HodgeReduction/Research/FibreTransfer.lean` -- registered
+- `HodgeReduction/Research/HBundleStatus.lean` -- registered
+- `HodgeReduction/Research/LatticeGap.lean` -- registered
+- `HodgeReduction/Research/MainTheoremInputStatus.lean` -- registered
+- `HodgeReduction/Research/MainTheoremResidualStatus.lean` -- registered
+- `HodgeReduction/Research/MokCircularity.lean` -- registered
+- `HodgeReduction/Research/OmegaDiagonal.lean` -- registered
+- `HodgeReduction/Research/PadicDescent.lean` -- registered
+- `HodgeReduction/Research/Q4AbelianAlgebraicity.lean` -- registered
+- `HodgeReduction/Research/ShimuraTypeFibre.lean` -- registered
+- `HodgeReduction/Research/WitnessLatticeHypothesis.lean` -- registered
+- `HodgeReduction/OpenHypotheses.lean` -- cut
+- `HodgeReduction/MainTheorem.lean` -- cut
+- `HodgeReduction/FullHodgeGoal.lean` -- registered
+- `HodgeReduction/AxiomInventory.lean` -- infra
+- `HodgeReduction/MainChain.lean` -- infra
+
 ### `G-main-hc` -- Hodge conjecture headline remains axiom-relative
 
-The `hodgeConjectureReal_canonical` endpoint is a kernel-pure composition once the canonical target variety and its two E7-scope facts are accepted.  R542 derives the full `canonicalMTPackageAt` from the generic R517/R532 MT-witness route; R545 splits the chosen-witness package into a codim-one first target plus the remaining non-codim-one lift; R549 opens that codim-one target into Hodge-morphism, algebraic-map, commuting-square, and Hodge-surjectivity component cuts; R550 routes the separately audited codim-one HC slice directly through the classical Lefschetz (1,1) cut; R551 splits the full canonical proof by codimension so the `p = 1` branch no longer consumes the E7 -> CM package and the `p ≠ 1` branch consumes only the non-codim-one MT lift.  R551 also states the endpoint directly on canonical cohomology/algebraic-class data so the theorem type itself does not pull the legacy all-codim package.  Full HC is NOT unconditional.
+The `hodgeConjectureReal_canonical` endpoint is a kernel-pure composition once the canonical target variety and its two E7-scope facts are accepted.  R542 derives the full `canonicalMTPackageAt` from the generic R517/R532 MT-witness route; R545 splits the chosen-witness package into a codim-one first target plus the remaining non-codim-one lift; R549 opens that codim-one target into Hodge-morphism, algebraic-map, commuting-square, and Hodge-surjectivity component cuts; R550 routes the separately audited codim-one HC slice directly through the classical Lefschetz (1,1) cut; R551 splits the full canonical proof by codimension so the `p = 1` branch no longer consumes the E7 -> CM package and the `p 鈮?1` branch consumes only the non-codim-one MT lift.  R551 also states the endpoint directly on canonical cohomology/algebraic-class data so the theorem type itself does not pull the legacy all-codim package.  Full HC is NOT unconditional.
 
 Declarations:
 - `HodgeReduction.CanonicalHCData`
@@ -596,7 +1857,7 @@ Files:
 
 ### `G-l1-e7-shimura-tor` -- Layer 1: true E_{7(-25)}-type Shimura toroidal compactification
 
-AMRT 1975 / Baily--Borel 1966 construction of S_Γ^tor as a SmoothProjectiveVariety --  Required Mathlib infrastructure: arithmetic groups, Hermitian symmetric domains, toroidal compactifications.
+AMRT 1975 / Baily--Borel 1966 construction of S_铻昢tor as a SmoothProjectiveVariety --  Required Mathlib infrastructure: arithmetic groups, Hermitian symmetric domains, toroidal compactifications.
 
 Declarations:
 - `HodgeReduction.HCGapRegistry.L1_G1_E7ShimuraTor_Inhabited`
@@ -611,7 +1872,7 @@ Files:
 
 ### `G-l2-cohomology-construction` -- Layer 2: VarietyCohomologyData from a non-toy underlying variety
 
-Construction of `VarietyCohomologyData` whose `H k` is the actual rational singular cohomology of `S_Γ^tor` at degree `k`, with `hodgeStructure k` the actual pure Hodge structure of weight `k` on `H^k(S_Γ^tor, --`.  Required Mathlib infrastructure: singular cohomology, Dolbeault decomposition, Hodge theorem for compact Kähler manifolds.
+Construction of `VarietyCohomologyData` whose `H k` is the actual rational singular cohomology of `S_铻昢tor` at degree `k`, with `hodgeStructure k` the actual pure Hodge structure of weight `k` on `H^k(S_铻昢tor, --`.  Required Mathlib infrastructure: singular cohomology, Dolbeault decomposition, Hodge theorem for compact K鐩瞙ler manifolds.
 
 Declarations:
 - `HodgeReduction.HCGapRegistry.L2_G1_VarietyCohomologyData_Constructed_NonToy`
@@ -626,7 +1887,7 @@ Files:
 - `HodgeReduction/HCGapL2/ProjectiveLine.lean` -- registered
 - `HodgeReduction/HCGapL2/EllipticCurve.lean` -- registered
 
-### `G-l3-v56-mt-identification` -- Layer 3: V_56 -- H^3(S_Γ^tor, -- Hodge-structure identification
+### `G-l3-v56-mt-identification` -- Layer 3: V_56 -- H^3(S_铻昢tor, -- Hodge-structure identification
 
 The H^3 piece of `S.cohomologyOfUnderlying` is identified with the 56-dimensional minuscule E_7-representation V_56 as a polarisable pure --Hodge structure of weight 3 with Hodge numbers (1, 27, 27, 1).  The V_56 side is kernel-pure (`V56Instance.instPureHodgeStructure_V56`); the identification is the open gap.  Required Mathlib infrastructure: Matsushima isomorphism, Borel--Wallach relative Lie-algebra cohomology, Vogan--Zuckerman 1984.
 
@@ -714,9 +1975,9 @@ Files:
 - `HodgeReduction/HCGapL4/CY3E7Bridge.lean` -- cut
 - `HodgeReduction/HCGapL4/CY3VacuityDischarge.lean` -- on-chain
 
-### `G-hcgap-l4-multifront` -- HCGapL4 multi-front Layer-4 attack waves (R420 -- R590)
+### `G-hcgap-l4-multifront` -- HCGapL4 multi-front Layer-4 attack waves (R420 -- R634)
 
-Active exploratory attack waves on the L4 / cohomology-profile / connectedness pipeline: FrontA (Deligne H0 sheaf realization), FrontB (Baily--Borel connectedness), FrontC (E_7 low-degree Hodge numbers + Hodge polynomial algebra + all-degree rank adapter + EVII/V56/Shimura expected Betti profile), FrontD (E_7 -> CM Chow correspondence + Deligne 1982 minimal fragment), FrontE (real-carrier profile matching + R405 conditional transfer feed).  Audits R451 / R456 / R460 / R465 / R470 / R476 are wave-level summaries.  R552 certifies the expected Shimura Betti profile degree-by-degree from EVII compact-dual Hodge sums plus the isolated V56 degree-3 contribution; R553 ties that finite V56 contribution to the actual `PureHodgeStructure V56 3` infrastructure; R554 combines the Matsushima, Eisenstein, and cuspidal trivial-module infrastructure into an honest boundary theorem; R555 proves the Cartan compact-dual source bridge and reduces the R554 source equality to `surjectivity_source = source_invariants`; R556 turns both source/target boundary equalities into finite-dimensional containment plus finrank obligations, routing the target through the cuspidal trivial-module part; R557 proves the target containment follows from source containment by Matsushima equivariance and the surjectivity image equation; R558 proves target finrank is transported from source finrank by `j_q` injectivity and the Matsushima image equation; R559 rewrites the remaining source obligations through the compact-dual/Cartan source subspace; R560 gives a Lean countermodel showing those compact-dual obligations are not consequences of the current abstract interface; R561 proves that compact-dual exact image plus target-invariant exactness is enough to recover the R554/R559 boundary data; R562 proves target exactness follows from compact-dual exact image plus the compact-dual-to-trivial rank bridge; R563 proves compact-dual exact image is equivalent to `surjectivity_source = compactDual`; R564 proves the actual compact-dual `H8` carrier has rank one and reduces the rank bridge to `compactDual = H8` plus rank-one of `trivialModulePart`; R565 proves that the trivial-module rank-one fact follows from exact Cartan image equality `Submodule.map j_q trivialModuleGK_H8 = trivialModulePart`; R566 rewrites source equality and compactDual/H8 identification through the same Cartan H8 line; R567 proves by countermodel that those Cartan-line exactness statements are not consequences of the current abstract interface; R568 rewrites the exact Cartan image equality as scalar surjectivity by `j_q (r • h^4)` onto the trivial-module part, and shows the containment direction follows from compactDual = Cartan; R569 gives a countermodel showing compactDual = Cartan still does not force scalar surjectivity; R570 proves rank-one of the trivial-module part plus compactDual = Cartan does force exact Cartan image and scalar preimages; R571 reframes the surviving obligations as source equality, source-invariants/H8 equality, and target rank; R572 routes the target rank through the expected degree-8 Shimura Betti slot; R573 splits source-invariants/H8 into no-extra-source containment plus membership of the generator `h^4`, with a rank-one alternate criterion; R574 pushes those two source-carrier facts back to the compact-dual carrier: prove `compactDual <= H8` and prove `h^4` lies in compactDual; R575 rewrites those compact-dual carrier targets as the two Cartan/compactDual containments; R576 rewrites the remaining source equality as two source/Cartan containment directions and feeds all four Cartan containment directions into the same boundary package; R577 proves by countermodel that those four carrier containments still do not force the target expected-Betti rank; R578 routes the target rank through the degree-8 compact-dual Hodge-sum profile certified in FrontC11; R579 derives that target Hodge-sum rank from exact Cartan image equality; R580 derives exact Cartan image from compactDual/Cartan two-sided containment plus scalar preimage surjectivity; R581 proves that target Hodge-sum rank and scalar-preimage surjectivity are equivalent once the four Cartan carrier directions are fixed; R582 rewrites the four Cartan carrier directions as source/compactDual H8 no-extra plus h^4 generator-membership splits; R583 collapses each H8 split to exact equality with H8; R584 translates those H8 equalities into Matsushima boundary language and proves target Hodge-sum rank is equivalent to `surjectivity_target = trivialModulePart`; R585 proves that, after `compactDual = H8`, this concrete boundary package is equivalent to the existing `MatsushimaV56BoundaryData`; R586 records a countermodel showing the H8 carrier equalities alone do not force the target boundary equality or boundary data; R587 isolates the remaining target boundary as the single reverse containment `trivialModulePart <= surjectivity_target`, and proves that this containment is also not forced by the abstract H8 carrier interface; R588 proves this reverse containment is exactly the element-level scalar-preimage statement `forall beta in trivialModulePart, exists r, j_q (r • h^4) = beta` once `source = H8`, with no finite-dimensional rank hypothesis; R589 proves that, under the two H8 carrier equalities, target boundary/scalar preimages/boundary data/target Hodge-sum are all equivalent to `finrank trivialModulePart = 1`, and the rank-one target is not forced by the abstract H8 carrier interface.  R590 proves the target expected-Betti rank is equivalent to that rank-one theorem, identifies boundary data with expected-Betti rank under the H8 carriers, and records that the H8 carrier interface still does not force the expected-Betti target.  The remaining concrete EVII facts are the two H8 carrier equalities plus the genuine target expected-Betti/rank-one theorem.  No new axioms.
+Active exploratory attack waves on the L4 / cohomology-profile / connectedness pipeline: FrontA (Deligne H0 sheaf realization), FrontB (Baily--Borel connectedness), FrontC (E_7 low-degree Hodge numbers + Hodge polynomial algebra + all-degree rank adapter + EVII/V56/Shimura expected Betti profile), FrontD (E_7 -> CM Chow correspondence + Deligne 1982 minimal fragment), FrontE (real-carrier profile matching + R405 conditional transfer feed).  Audits R451 / R456 / R460 / R465 / R470 / R476 are wave-level summaries.  R552 certifies the expected Shimura Betti profile degree-by-degree from EVII compact-dual Hodge sums plus the isolated V56 degree-3 contribution; R553 ties that finite V56 contribution to the actual `PureHodgeStructure V56 3` infrastructure; R554 combines the Matsushima, Eisenstein, and cuspidal trivial-module infrastructure into an honest boundary theorem; R555 proves the Cartan compact-dual source bridge and reduces the R554 source equality to `surjectivity_source = source_invariants`; R556 turns both source/target boundary equalities into finite-dimensional containment plus finrank obligations, routing the target through the cuspidal trivial-module part; R557 proves the target containment follows from source containment by Matsushima equivariance and the surjectivity image equation; R558 proves target finrank is transported from source finrank by `j_q` injectivity and the Matsushima image equation; R559 rewrites the remaining source obligations through the compact-dual/Cartan source subspace; R560 gives a Lean countermodel showing those compact-dual obligations are not consequences of the current abstract interface; R561 proves that compact-dual exact image plus target-invariant exactness is enough to recover the R554/R559 boundary data; R562 proves target exactness follows from compact-dual exact image plus the compact-dual-to-trivial rank bridge; R563 proves compact-dual exact image is equivalent to `surjectivity_source = compactDual`; R564 proves the actual compact-dual `H8` carrier has rank one and reduces the rank bridge to `compactDual = H8` plus rank-one of `trivialModulePart`; R565 proves that the trivial-module rank-one fact follows from exact Cartan image equality `Submodule.map j_q trivialModuleGK_H8 = trivialModulePart`; R566 rewrites source equality and compactDual/H8 identification through the same Cartan H8 line; R567 proves by countermodel that those Cartan-line exactness statements are not consequences of the current abstract interface; R568 rewrites the exact Cartan image equality as scalar surjectivity by `j_q (r 鈥?h^4)` onto the trivial-module part, and shows the containment direction follows from compactDual = Cartan; R569 gives a countermodel showing compactDual = Cartan still does not force scalar surjectivity; R570 proves rank-one of the trivial-module part plus compactDual = Cartan does force exact Cartan image and scalar preimages; R571 reframes the surviving obligations as source equality, source-invariants/H8 equality, and target rank; R572 routes the target rank through the expected degree-8 Shimura Betti slot; R573 splits source-invariants/H8 into no-extra-source containment plus membership of the generator `h^4`, with a rank-one alternate criterion; R574 pushes those two source-carrier facts back to the compact-dual carrier: prove `compactDual <= H8` and prove `h^4` lies in compactDual; R575 rewrites those compact-dual carrier targets as the two Cartan/compactDual containments; R576 rewrites the remaining source equality as two source/Cartan containment directions and feeds all four Cartan containment directions into the same boundary package; R577 proves by countermodel that those four carrier containments still do not force the target expected-Betti rank; R578 routes the target rank through the degree-8 compact-dual Hodge-sum profile certified in FrontC11; R579 derives that target Hodge-sum rank from exact Cartan image equality; R580 derives exact Cartan image from compactDual/Cartan two-sided containment plus scalar preimage surjectivity; R581 proves that target Hodge-sum rank and scalar-preimage surjectivity are equivalent once the four Cartan carrier directions are fixed; R582 rewrites the four Cartan carrier directions as source/compactDual H8 no-extra plus h^4 generator-membership splits; R583 collapses each H8 split to exact equality with H8; R584 translates those H8 equalities into Matsushima boundary language and proves target Hodge-sum rank is equivalent to `surjectivity_target = trivialModulePart`; R585 proves that, after `compactDual = H8`, this concrete boundary package is equivalent to the existing `MatsushimaV56BoundaryData`; R586 records a countermodel showing the H8 carrier equalities alone do not force the target boundary equality or boundary data; R587 isolates the remaining target boundary as the single reverse containment `trivialModulePart <= surjectivity_target`, and proves that this containment is also not forced by the abstract H8 carrier interface; R588 proves this reverse containment is exactly the element-level scalar-preimage statement `forall beta in trivialModulePart, exists r, j_q (r 鈥?h^4) = beta` once `source = H8`, with no finite-dimensional rank hypothesis; R589 proves that, under the two H8 carrier equalities, target boundary/scalar preimages/boundary data/target Hodge-sum are all equivalent to `finrank trivialModulePart = 1`, and the rank-one target is not forced by the abstract H8 carrier interface.  R590 proves the target expected-Betti rank is equivalent to that rank-one theorem, identifies boundary data with expected-Betti rank under the H8 carriers, and records that the H8 carrier interface still does not force the expected-Betti target.  R591 packages the exact residual obligation as the two H8 carrier equalities plus target-invariant rank one, and proves this package feeds the existing Matsushima boundary bridge.  R592 proves this rank-one residual package is equivalent to the scalar-preimage residual package.  R593 packages the equivalent target-boundary residual package and records that the abstract H8 carrier interface still does not force it.  R594 packages the same residual target as `compactDual = H8` plus the existing `MatsushimaV56BoundaryData` bridge.  R595 rewrites that residual bridge as `compactDual = H8`, compact-dual exact image, and target-invariant exactness.  R596 replaces that target-invariant exactness by the equivalent rank-one target `finrank trivialModulePart = 1` once compact-dual exact image is fixed.  R597 proves that this exact-image rank-one package is equivalent to Cartan-line source/compact-dual equalities plus `finrank trivialModulePart = 1`, exposing the live residual as Cartan H8 carrier exactness and target rank.  R598 rewrites that same residual as `surjectivity_source = source_invariants`, `source_invariants = H8`, and `finrank target_invariants = 1`.  R599 proves the R598 source-invariant package is directly equivalent to the earlier R591 H8/rank-one residual package, recovers the expected Betti-8 target rank from it, and records that `source_invariants = H8` alone still does not force the full residual.  R600 replaces the target-rank spelling inside that package by the expected-Betti-8 equality `finrank target_invariants = shimuraEVIIExpectedBetti 8`, proves equivalence with R598, and keeps the same obstruction visible.  R601 splits the source-invariants/H8 equality into the equivalent source-carrier targets `source_invariants <= H8` plus `h^4` membership, packages that split against the R600 expected-Betti target, and keeps the obstruction visible.  R602 moves that same residual to the equivalent compact-dual carrier targets `compactDual <= H8` plus `h^4` membership in `compactDual`, using the existing compactDual/source-invariants comparison and preserving the obstruction.  R603 proves this R602 package is equivalent to the four Cartan containment directions together with the same target expected-Betti theorem, and preserves the R577 obstruction that the carrier directions alone do not force target rank.  R604 splits the R603 residual into a four-direction carrier obligation and one independent target expected-Betti obligation, and certifies the paper-facing primitive target count as 5 without making a closure claim.  R605 proves that the fifth primitive target is equivalently available as scalar-preimage surjectivity once the four carrier directions are fixed, and records that carrier facts alone still do not force scalar preimages.  R606 flattens the same residual into the five named paper-facing primitive targets and kernel-checks that expected-Betti rank and scalar preimage are not counted separately.  R607 proves that the five paper-facing primitive targets are equivalent to the three proof-work obligations `surjectivity_source = CartanH8`, `compactDual = CartanH8`, and scalar-preimage surjectivity.  R608 reconciles scalar-preimage surjectivity with the older `finrank trivialModulePart = 1` rank-one target under the two Cartan-line equalities, so those spellings are not separate gaps.  R609 proves that the two Cartan-line carrier equalities alone do not force the scalar/rank-one target in the current abstract interface.  R610 packages the exact live proof-work contract as those two equalities plus one scalar/rank-one target, proves it is equivalent to the R607/R608 residual ledgers, and records that the contract is not a closure claim.  R634 rewrites that same contract as the source-invariant scalar contract `surjectivity_source = source_invariants`, `source_invariants = H8`, plus scalar/rank-one target, without adding finite-dimensional rank conversion or closure claim.  No new axioms.
 
 Declarations:
 - `HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance.e7EVIICompactDualHodgeDiamond`
@@ -791,6 +2052,199 @@ Declarations:
 - `HodgeReduction.HCGapL4.FrontC48_H8BoundaryRankOneCriterion.current_interface_with_H8_equalities_does_not_force_trivialModulePart_rank_one`
 - `HodgeReduction.HCGapL4.FrontC49_H8BoundaryExpectedBettiCriterion.matsushimaV56BoundaryData_iff_target_expected_betti8_of_source_compactDual_eq_H8`
 - `HodgeReduction.HCGapL4.FrontC49_H8BoundaryExpectedBettiCriterion.current_interface_with_H8_equalities_does_not_force_target_expected_betti8`
+- `HodgeReduction.HCGapL4.FrontC50_H8ResidualObligationPackage.target_expected_betti8_iff_target_invariants_finrank_eq_one`
+- `HodgeReduction.HCGapL4.FrontC50_H8ResidualObligationPackage.EVIIH8ResidualRankOneObligations`
+- `HodgeReduction.HCGapL4.FrontC50_H8ResidualObligationPackage.target_expected_betti8_of_residual_obligations`
+- `HodgeReduction.HCGapL4.FrontC50_H8ResidualObligationPackage.matsushimaV56BoundaryData_of_residual_obligations`
+- `HodgeReduction.HCGapL4.FrontC50_H8ResidualObligationPackage.matsushimaV56BoundaryData_of_H8_and_target_rank_one`
+- `HodgeReduction.HCGapL4.FrontC50_H8ResidualObligationPackage.current_interface_with_H8_equalities_does_not_force_target_rank_one`
+- `HodgeReduction.HCGapL4.FrontC51_H8ResidualScalarPreimagePackage.target_rank_one_iff_scalar_preimage_of_source_compactDual_eq_H8`
+- `HodgeReduction.HCGapL4.FrontC51_H8ResidualScalarPreimagePackage.target_expected_betti8_iff_scalar_preimage_of_source_compactDual_eq_H8`
+- `HodgeReduction.HCGapL4.FrontC51_H8ResidualScalarPreimagePackage.EVIIH8ResidualScalarPreimageObligations`
+- `HodgeReduction.HCGapL4.FrontC51_H8ResidualScalarPreimagePackage.rankOneResidual_of_scalarPreimageResidual`
+- `HodgeReduction.HCGapL4.FrontC51_H8ResidualScalarPreimagePackage.scalarPreimageResidual_of_rankOneResidual`
+- `HodgeReduction.HCGapL4.FrontC51_H8ResidualScalarPreimagePackage.residual_rankOne_nonempty_iff_scalarPreimage_nonempty`
+- `HodgeReduction.HCGapL4.FrontC51_H8ResidualScalarPreimagePackage.matsushimaV56BoundaryData_of_scalarPreimageResidual`
+- `HodgeReduction.HCGapL4.FrontC51_H8ResidualScalarPreimagePackage.current_interface_with_H8_equalities_does_not_force_scalar_preimage`
+- `HodgeReduction.HCGapL4.FrontC52_H8ResidualBoundaryPackage.target_boundary_iff_scalar_preimageTarget_of_source_compactDual_eq_H8`
+- `HodgeReduction.HCGapL4.FrontC52_H8ResidualBoundaryPackage.EVIIH8ResidualBoundaryObligations`
+- `HodgeReduction.HCGapL4.FrontC52_H8ResidualBoundaryPackage.boundaryResidual_of_scalarPreimageResidual`
+- `HodgeReduction.HCGapL4.FrontC52_H8ResidualBoundaryPackage.scalarPreimageResidual_of_boundaryResidual`
+- `HodgeReduction.HCGapL4.FrontC52_H8ResidualBoundaryPackage.residual_scalarPreimage_nonempty_iff_boundary_nonempty`
+- `HodgeReduction.HCGapL4.FrontC52_H8ResidualBoundaryPackage.residual_rankOne_nonempty_iff_boundary_nonempty`
+- `HodgeReduction.HCGapL4.FrontC52_H8ResidualBoundaryPackage.matsushimaV56BoundaryData_of_boundaryResidual`
+- `HodgeReduction.HCGapL4.FrontC52_H8ResidualBoundaryPackage.current_interface_with_H8_equalities_does_not_force_target_boundary`
+- `HodgeReduction.HCGapL4.FrontC53_H8ResidualBoundaryDataPackage.EVIIH8ResidualBoundaryDataObligations`
+- `HodgeReduction.HCGapL4.FrontC53_H8ResidualBoundaryDataPackage.boundaryResidual_of_boundaryDataResidual`
+- `HodgeReduction.HCGapL4.FrontC53_H8ResidualBoundaryDataPackage.boundaryDataResidual_of_boundaryResidual`
+- `HodgeReduction.HCGapL4.FrontC53_H8ResidualBoundaryDataPackage.residual_boundary_nonempty_iff_boundaryData_nonempty`
+- `HodgeReduction.HCGapL4.FrontC53_H8ResidualBoundaryDataPackage.residual_scalarPreimage_nonempty_iff_boundaryData_nonempty`
+- `HodgeReduction.HCGapL4.FrontC53_H8ResidualBoundaryDataPackage.residual_rankOne_nonempty_iff_boundaryData_nonempty`
+- `HodgeReduction.HCGapL4.FrontC53_H8ResidualBoundaryDataPackage.matsushimaV56BoundaryData_of_boundaryDataResidual`
+- `HodgeReduction.HCGapL4.FrontC53_H8ResidualBoundaryDataPackage.current_interface_with_compactDual_eq_H8_does_not_force_boundaryData`
+- `HodgeReduction.HCGapL4.FrontC54_H8ResidualExactImagePackage.EVIIH8ResidualExactImageObligations`
+- `HodgeReduction.HCGapL4.FrontC54_H8ResidualExactImagePackage.exactImageResidual_of_boundaryDataResidual`
+- `HodgeReduction.HCGapL4.FrontC54_H8ResidualExactImagePackage.boundaryDataResidual_of_exactImageResidual`
+- `HodgeReduction.HCGapL4.FrontC54_H8ResidualExactImagePackage.residual_boundaryData_nonempty_iff_exactImage_nonempty`
+- `HodgeReduction.HCGapL4.FrontC54_H8ResidualExactImagePackage.residual_scalarPreimage_nonempty_iff_exactImage_nonempty`
+- `HodgeReduction.HCGapL4.FrontC54_H8ResidualExactImagePackage.residual_rankOne_nonempty_iff_exactImage_nonempty`
+- `HodgeReduction.HCGapL4.FrontC54_H8ResidualExactImagePackage.matsushimaV56BoundaryData_of_exactImageResidual`
+- `HodgeReduction.HCGapL4.FrontC54_H8ResidualExactImagePackage.current_interface_with_compactDual_eq_H8_does_not_force_exactImageResidual`
+- `HodgeReduction.HCGapL4.FrontC55_H8ResidualExactImageRankOnePackage.EVIIH8ResidualExactImageRankOneObligations`
+- `HodgeReduction.HCGapL4.FrontC55_H8ResidualExactImageRankOnePackage.exactImageResidual_of_exactImageRankOneResidual`
+- `HodgeReduction.HCGapL4.FrontC55_H8ResidualExactImageRankOnePackage.exactImageRankOneResidual_of_exactImageResidual`
+- `HodgeReduction.HCGapL4.FrontC55_H8ResidualExactImageRankOnePackage.residual_exactImage_nonempty_iff_exactImageRankOne_nonempty`
+- `HodgeReduction.HCGapL4.FrontC55_H8ResidualExactImageRankOnePackage.residual_boundaryData_nonempty_iff_exactImageRankOne_nonempty`
+- `HodgeReduction.HCGapL4.FrontC55_H8ResidualExactImageRankOnePackage.residual_rankOne_nonempty_iff_exactImageRankOne_nonempty`
+- `HodgeReduction.HCGapL4.FrontC55_H8ResidualExactImageRankOnePackage.matsushimaV56BoundaryData_of_exactImageRankOneResidual`
+- `HodgeReduction.HCGapL4.FrontC55_H8ResidualExactImageRankOnePackage.current_interface_with_compactDual_eq_H8_does_not_force_exactImageRankOneResidual`
+- `HodgeReduction.HCGapL4.FrontC56_H8ResidualCartanRankOnePackage.EVIIH8ResidualCartanRankOneObligations`
+- `HodgeReduction.HCGapL4.FrontC56_H8ResidualCartanRankOnePackage.exactImageRankOneResidual_of_cartanRankOneResidual`
+- `HodgeReduction.HCGapL4.FrontC56_H8ResidualCartanRankOnePackage.cartanRankOneResidual_of_exactImageRankOneResidual`
+- `HodgeReduction.HCGapL4.FrontC56_H8ResidualCartanRankOnePackage.residual_exactImageRankOne_nonempty_iff_cartanRankOne_nonempty`
+- `HodgeReduction.HCGapL4.FrontC56_H8ResidualCartanRankOnePackage.residual_boundaryData_nonempty_iff_cartanRankOne_nonempty`
+- `HodgeReduction.HCGapL4.FrontC56_H8ResidualCartanRankOnePackage.matsushimaV56BoundaryData_of_cartanRankOneResidual`
+- `HodgeReduction.HCGapL4.FrontC56_H8ResidualCartanRankOnePackage.current_interface_with_compactDual_eq_H8_does_not_force_cartanRankOneResidual`
+- `HodgeReduction.HCGapL4.FrontC57_H8ResidualSourceInvariantTargetRankPackage.EVIIH8ResidualSourceInvariantTargetRankObligations`
+- `HodgeReduction.HCGapL4.FrontC57_H8ResidualSourceInvariantTargetRankPackage.cartanRankOneResidual_of_sourceInvariantTargetRankResidual`
+- `HodgeReduction.HCGapL4.FrontC57_H8ResidualSourceInvariantTargetRankPackage.sourceInvariantTargetRankResidual_of_cartanRankOneResidual`
+- `HodgeReduction.HCGapL4.FrontC57_H8ResidualSourceInvariantTargetRankPackage.residual_cartanRankOne_nonempty_iff_sourceInvariantTargetRank_nonempty`
+- `HodgeReduction.HCGapL4.FrontC57_H8ResidualSourceInvariantTargetRankPackage.residual_boundaryData_nonempty_iff_sourceInvariantTargetRank_nonempty`
+- `HodgeReduction.HCGapL4.FrontC57_H8ResidualSourceInvariantTargetRankPackage.matsushimaV56BoundaryData_of_sourceInvariantTargetRankResidual`
+- `HodgeReduction.HCGapL4.FrontC57_H8ResidualSourceInvariantTargetRankPackage.current_interface_with_compactDual_eq_H8_does_not_force_sourceInvariantTargetRankResidual`
+- `HodgeReduction.HCGapL4.FrontC58_H8ResidualSourceInvariantNormalization.residualRankOne_of_sourceInvariantTargetRankResidual`
+- `HodgeReduction.HCGapL4.FrontC58_H8ResidualSourceInvariantNormalization.sourceInvariantTargetRankResidual_of_residualRankOne`
+- `HodgeReduction.HCGapL4.FrontC58_H8ResidualSourceInvariantNormalization.residual_rankOne_nonempty_iff_sourceInvariantTargetRank_nonempty`
+- `HodgeReduction.HCGapL4.FrontC58_H8ResidualSourceInvariantNormalization.target_expected_betti8_of_sourceInvariantTargetRankResidual`
+- `HodgeReduction.HCGapL4.FrontC58_H8ResidualSourceInvariantNormalization.current_interface_with_source_invariants_eq_H8_does_not_force_sourceInvariantTargetRankResidual`
+- `HodgeReduction.HCGapL4.FrontC59_H8ResidualExpectedBettiPackage.EVIIH8ResidualSourceInvariantExpectedBettiObligations`
+- `HodgeReduction.HCGapL4.FrontC59_H8ResidualExpectedBettiPackage.sourceInvariantExpectedBettiResidual_of_sourceInvariantTargetRankResidual`
+- `HodgeReduction.HCGapL4.FrontC59_H8ResidualExpectedBettiPackage.sourceInvariantTargetRankResidual_of_sourceInvariantExpectedBettiResidual`
+- `HodgeReduction.HCGapL4.FrontC59_H8ResidualExpectedBettiPackage.residual_sourceInvariantTargetRank_nonempty_iff_sourceInvariantExpectedBetti_nonempty`
+- `HodgeReduction.HCGapL4.FrontC59_H8ResidualExpectedBettiPackage.target_rank_one_of_sourceInvariantExpectedBettiResidual`
+- `HodgeReduction.HCGapL4.FrontC59_H8ResidualExpectedBettiPackage.matsushimaV56BoundaryData_of_sourceInvariantExpectedBettiResidual`
+- `HodgeReduction.HCGapL4.FrontC59_H8ResidualExpectedBettiPackage.current_interface_with_source_invariants_eq_H8_does_not_force_sourceInvariantExpectedBettiResidual`
+- `HodgeReduction.HCGapL4.FrontC60_H8ResidualSourceCarrierSplitPackage.EVIIH8ResidualSourceCarrierSplitExpectedBettiObligations`
+- `HodgeReduction.HCGapL4.FrontC60_H8ResidualSourceCarrierSplitPackage.source_invariants_eq_H8_of_sourceCarrierSplitResidual`
+- `HodgeReduction.HCGapL4.FrontC60_H8ResidualSourceCarrierSplitPackage.h_pow_four_mem_source_invariants_of_source_invariants_eq_H8`
+- `HodgeReduction.HCGapL4.FrontC60_H8ResidualSourceCarrierSplitPackage.sourceInvariantExpectedBettiResidual_of_sourceCarrierSplitResidual`
+- `HodgeReduction.HCGapL4.FrontC60_H8ResidualSourceCarrierSplitPackage.sourceCarrierSplitResidual_of_sourceInvariantExpectedBettiResidual`
+- `HodgeReduction.HCGapL4.FrontC60_H8ResidualSourceCarrierSplitPackage.residual_sourceInvariantExpectedBetti_nonempty_iff_sourceCarrierSplit_nonempty`
+- `HodgeReduction.HCGapL4.FrontC60_H8ResidualSourceCarrierSplitPackage.matsushimaV56BoundaryData_of_sourceCarrierSplitResidual`
+- `HodgeReduction.HCGapL4.FrontC60_H8ResidualSourceCarrierSplitPackage.current_interface_with_sourceCarrierSplit_does_not_force_sourceCarrierSplitResidual`
+- `HodgeReduction.HCGapL4.FrontC61_H8ResidualCompactDualCarrierPackage.EVIIH8ResidualCompactDualCarrierExpectedBettiObligations`
+- `HodgeReduction.HCGapL4.FrontC61_H8ResidualCompactDualCarrierPackage.sourceCarrierSplitResidual_of_compactDualCarrierResidual`
+- `HodgeReduction.HCGapL4.FrontC61_H8ResidualCompactDualCarrierPackage.compactDualCarrierResidual_of_sourceCarrierSplitResidual`
+- `HodgeReduction.HCGapL4.FrontC61_H8ResidualCompactDualCarrierPackage.residual_sourceCarrierSplit_nonempty_iff_compactDualCarrier_nonempty`
+- `HodgeReduction.HCGapL4.FrontC61_H8ResidualCompactDualCarrierPackage.sourceInvariantExpectedBettiResidual_of_compactDualCarrierResidual`
+- `HodgeReduction.HCGapL4.FrontC61_H8ResidualCompactDualCarrierPackage.matsushimaV56BoundaryData_of_compactDualCarrierResidual`
+- `HodgeReduction.HCGapL4.FrontC61_H8ResidualCompactDualCarrierPackage.current_interface_with_compactDualCarrier_does_not_force_compactDualCarrierResidual`
+- `HodgeReduction.HCGapL4.FrontC62_H8ResidualCartanContainmentExpectedBettiPackage.EVIIH8ResidualCartanContainmentExpectedBettiObligations`
+- `HodgeReduction.HCGapL4.FrontC62_H8ResidualCartanContainmentExpectedBettiPackage.compactDualCarrierResidual_of_cartanContainmentResidual`
+- `HodgeReduction.HCGapL4.FrontC62_H8ResidualCartanContainmentExpectedBettiPackage.cartan_le_of_h_pow_four_mem`
+- `HodgeReduction.HCGapL4.FrontC62_H8ResidualCartanContainmentExpectedBettiPackage.compactDual_le_cartan_of_compactDualCarrierResidual`
+- `HodgeReduction.HCGapL4.FrontC62_H8ResidualCartanContainmentExpectedBettiPackage.cartan_le_compactDual_of_compactDualCarrierResidual`
+- `HodgeReduction.HCGapL4.FrontC62_H8ResidualCartanContainmentExpectedBettiPackage.source_le_cartan_of_compactDualCarrierResidual`
+- `HodgeReduction.HCGapL4.FrontC62_H8ResidualCartanContainmentExpectedBettiPackage.cartan_le_source_of_compactDualCarrierResidual`
+- `HodgeReduction.HCGapL4.FrontC62_H8ResidualCartanContainmentExpectedBettiPackage.cartanContainmentResidual_of_compactDualCarrierResidual`
+- `HodgeReduction.HCGapL4.FrontC62_H8ResidualCartanContainmentExpectedBettiPackage.residual_compactDualCarrier_nonempty_iff_cartanContainment_nonempty`
+- `HodgeReduction.HCGapL4.FrontC62_H8ResidualCartanContainmentExpectedBettiPackage.matsushimaV56BoundaryData_of_cartanContainmentResidual`
+- `HodgeReduction.HCGapL4.FrontC62_H8ResidualCartanContainmentExpectedBettiPackage.current_interface_with_cartanContainments_does_not_force_cartanContainmentResidual`
+- `HodgeReduction.HCGapL4.FrontC63_H8ResidualPrimitiveGapSplit.EVIIH8ResidualCartanCarrierObligations`
+- `HodgeReduction.HCGapL4.FrontC63_H8ResidualPrimitiveGapSplit.EVIIH8ResidualExpectedBettiTargetObligation`
+- `HodgeReduction.HCGapL4.FrontC63_H8ResidualPrimitiveGapSplit.cartanContainmentResidual_of_carrier_and_expectedBetti`
+- `HodgeReduction.HCGapL4.FrontC63_H8ResidualPrimitiveGapSplit.carrierObligations_of_cartanContainmentResidual`
+- `HodgeReduction.HCGapL4.FrontC63_H8ResidualPrimitiveGapSplit.expectedBettiTargetObligation_of_cartanContainmentResidual`
+- `HodgeReduction.HCGapL4.FrontC63_H8ResidualPrimitiveGapSplit.residual_cartanContainment_nonempty_iff_carrier_and_expectedBetti_nonempty`
+- `HodgeReduction.HCGapL4.FrontC63_H8ResidualPrimitiveGapSplit.matsushimaV56BoundaryData_of_carrier_and_expectedBetti`
+- `HodgeReduction.HCGapL4.FrontC63_H8ResidualPrimitiveGapSplit.current_interface_with_carrierObligations_does_not_force_expectedBettiTarget`
+- `HodgeReduction.HCGapL4.FrontC63_H8ResidualPrimitiveGapSplit.R604PrimitiveResidualSnapshot`
+- `HodgeReduction.HCGapL4.FrontC63_H8ResidualPrimitiveGapSplit.currentR604PrimitiveResidualSnapshot`
+- `HodgeReduction.HCGapL4.FrontC63_H8ResidualPrimitiveGapSplit.currentR604PrimitiveResidualSnapshot_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC64_H8ResidualScalarPreimagePrimitiveSplit.EVIIH8ResidualCartanScalarPreimageObligations`
+- `HodgeReduction.HCGapL4.FrontC64_H8ResidualScalarPreimagePrimitiveSplit.expectedBettiTarget_of_carrierScalarPreimage`
+- `HodgeReduction.HCGapL4.FrontC64_H8ResidualScalarPreimagePrimitiveSplit.cartanContainmentResidual_of_carrierScalarPreimage`
+- `HodgeReduction.HCGapL4.FrontC64_H8ResidualScalarPreimagePrimitiveSplit.carrierScalarPreimage_of_cartanContainmentResidual`
+- `HodgeReduction.HCGapL4.FrontC64_H8ResidualScalarPreimagePrimitiveSplit.residual_cartanContainment_nonempty_iff_carrierScalarPreimage_nonempty`
+- `HodgeReduction.HCGapL4.FrontC64_H8ResidualScalarPreimagePrimitiveSplit.matsushimaV56BoundaryData_of_carrierScalarPreimage`
+- `HodgeReduction.HCGapL4.FrontC64_H8ResidualScalarPreimagePrimitiveSplit.current_interface_with_carrierObligations_does_not_force_scalarPreimage`
+- `HodgeReduction.HCGapL4.FrontC64_H8ResidualScalarPreimagePrimitiveSplit.R605ScalarPreimageResidualSnapshot`
+- `HodgeReduction.HCGapL4.FrontC64_H8ResidualScalarPreimagePrimitiveSplit.currentR605ScalarPreimageResidualSnapshot`
+- `HodgeReduction.HCGapL4.FrontC64_H8ResidualScalarPreimagePrimitiveSplit.currentR605ScalarPreimageResidualSnapshot_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC65_H8ResidualPrimitiveTargetLedger.sourceToCartanPrimitiveTarget`
+- `HodgeReduction.HCGapL4.FrontC65_H8ResidualPrimitiveTargetLedger.cartanToSourcePrimitiveTarget`
+- `HodgeReduction.HCGapL4.FrontC65_H8ResidualPrimitiveTargetLedger.compactDualToCartanPrimitiveTarget`
+- `HodgeReduction.HCGapL4.FrontC65_H8ResidualPrimitiveTargetLedger.cartanToCompactDualPrimitiveTarget`
+- `HodgeReduction.HCGapL4.FrontC65_H8ResidualPrimitiveTargetLedger.scalarPreimagePrimitiveTarget`
+- `HodgeReduction.HCGapL4.FrontC65_H8ResidualPrimitiveTargetLedger.EVIIH8ResidualFivePrimitiveTargets`
+- `HodgeReduction.HCGapL4.FrontC65_H8ResidualPrimitiveTargetLedger.fivePrimitiveTargets_of_carrierScalarPreimage`
+- `HodgeReduction.HCGapL4.FrontC65_H8ResidualPrimitiveTargetLedger.carrierScalarPreimage_of_fivePrimitiveTargets`
+- `HodgeReduction.HCGapL4.FrontC65_H8ResidualPrimitiveTargetLedger.residual_carrierScalarPreimage_nonempty_iff_fivePrimitiveTargets_nonempty`
+- `HodgeReduction.HCGapL4.FrontC65_H8ResidualPrimitiveTargetLedger.cartanContainmentResidual_of_fivePrimitiveTargets`
+- `HodgeReduction.HCGapL4.FrontC65_H8ResidualPrimitiveTargetLedger.matsushimaV56BoundaryData_of_fivePrimitiveTargets`
+- `HodgeReduction.HCGapL4.FrontC65_H8ResidualPrimitiveTargetLedger.currentR606PrimitiveTargetNames`
+- `HodgeReduction.HCGapL4.FrontC65_H8ResidualPrimitiveTargetLedger.R606PrimitiveTargetLedgerSnapshot`
+- `HodgeReduction.HCGapL4.FrontC65_H8ResidualPrimitiveTargetLedger.currentR606PrimitiveTargetLedgerSnapshot`
+- `HodgeReduction.HCGapL4.FrontC65_H8ResidualPrimitiveTargetLedger.currentR606PrimitiveTargetLedgerSnapshot_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC65_H8ResidualPrimitiveTargetLedger.currentR606PrimitiveTargetNames_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC66_H8ResidualEqualityTargetLedger.sourceCartanEqualityTarget`
+- `HodgeReduction.HCGapL4.FrontC66_H8ResidualEqualityTargetLedger.compactDualCartanEqualityTarget`
+- `HodgeReduction.HCGapL4.FrontC66_H8ResidualEqualityTargetLedger.EVIIH8ResidualEqualityScalarTargets`
+- `HodgeReduction.HCGapL4.FrontC66_H8ResidualEqualityTargetLedger.equalityScalarTargets_of_fivePrimitiveTargets`
+- `HodgeReduction.HCGapL4.FrontC66_H8ResidualEqualityTargetLedger.fivePrimitiveTargets_of_equalityScalarTargets`
+- `HodgeReduction.HCGapL4.FrontC66_H8ResidualEqualityTargetLedger.residual_fivePrimitiveTargets_nonempty_iff_equalityScalarTargets_nonempty`
+- `HodgeReduction.HCGapL4.FrontC66_H8ResidualEqualityTargetLedger.cartanContainmentResidual_of_equalityScalarTargets`
+- `HodgeReduction.HCGapL4.FrontC66_H8ResidualEqualityTargetLedger.matsushimaV56BoundaryData_of_equalityScalarTargets`
+- `HodgeReduction.HCGapL4.FrontC66_H8ResidualEqualityTargetLedger.currentR607ProofWorkTargetNames`
+- `HodgeReduction.HCGapL4.FrontC66_H8ResidualEqualityTargetLedger.R607EqualityTargetLedgerSnapshot`
+- `HodgeReduction.HCGapL4.FrontC66_H8ResidualEqualityTargetLedger.currentR607EqualityTargetLedgerSnapshot`
+- `HodgeReduction.HCGapL4.FrontC66_H8ResidualEqualityTargetLedger.currentR607EqualityTargetLedgerSnapshot_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC66_H8ResidualEqualityTargetLedger.currentR607ProofWorkTargetNames_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC67_H8ResidualRankOneReconciliation.scalarPreimageResidual_of_equalityScalarTargets`
+- `HodgeReduction.HCGapL4.FrontC67_H8ResidualRankOneReconciliation.equalityScalarTargets_of_scalarPreimageResidual`
+- `HodgeReduction.HCGapL4.FrontC67_H8ResidualRankOneReconciliation.residual_scalarPreimage_nonempty_iff_equalityScalarTargets_nonempty`
+- `HodgeReduction.HCGapL4.FrontC67_H8ResidualRankOneReconciliation.cartanRankOneResidual_of_equalityScalarTargets`
+- `HodgeReduction.HCGapL4.FrontC67_H8ResidualRankOneReconciliation.equalityScalarTargets_of_cartanRankOneResidual`
+- `HodgeReduction.HCGapL4.FrontC67_H8ResidualRankOneReconciliation.residual_equalityScalarTargets_nonempty_iff_cartanRankOne_nonempty`
+- `HodgeReduction.HCGapL4.FrontC67_H8ResidualRankOneReconciliation.currentR608RankOneReconciliationTargetNames`
+- `HodgeReduction.HCGapL4.FrontC67_H8ResidualRankOneReconciliation.R608RankOneReconciliationSnapshot`
+- `HodgeReduction.HCGapL4.FrontC67_H8ResidualRankOneReconciliation.currentR608RankOneReconciliationSnapshot`
+- `HodgeReduction.HCGapL4.FrontC67_H8ResidualRankOneReconciliation.currentR608RankOneReconciliationSnapshot_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC67_H8ResidualRankOneReconciliation.currentR608RankOneReconciliationTargetNames_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC68_H8ResidualCarrierEqualityObstruction.counterexample_source_eq_cartan`
+- `HodgeReduction.HCGapL4.FrontC68_H8ResidualCarrierEqualityObstruction.counterexample_compactDual_eq_cartan`
+- `HodgeReduction.HCGapL4.FrontC68_H8ResidualCarrierEqualityObstruction.current_interface_with_cartan_equalities_does_not_force_scalar_preimage`
+- `HodgeReduction.HCGapL4.FrontC68_H8ResidualCarrierEqualityObstruction.current_interface_with_cartan_equalities_does_not_force_equalityScalarTargets`
+- `HodgeReduction.HCGapL4.FrontC68_H8ResidualCarrierEqualityObstruction.R609CarrierEqualityObstructionSnapshot`
+- `HodgeReduction.HCGapL4.FrontC68_H8ResidualCarrierEqualityObstruction.currentR609CarrierEqualityObstructionSnapshot`
+- `HodgeReduction.HCGapL4.FrontC68_H8ResidualCarrierEqualityObstruction.currentR609CarrierEqualityObstructionSnapshot_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC68_H8ResidualCarrierEqualityObstruction.currentR609ObstructionTargetNames`
+- `HodgeReduction.HCGapL4.FrontC68_H8ResidualCarrierEqualityObstruction.currentR609ObstructionTargetNames_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC69_H8ResidualProofWorkContract.EVIIH8ResidualProofWorkContract`
+- `HodgeReduction.HCGapL4.FrontC69_H8ResidualProofWorkContract.proofWorkContract_of_equalityScalarTargets`
+- `HodgeReduction.HCGapL4.FrontC69_H8ResidualProofWorkContract.equalityScalarTargets_of_proofWorkContract`
+- `HodgeReduction.HCGapL4.FrontC69_H8ResidualProofWorkContract.residual_equalityScalarTargets_nonempty_iff_proofWorkContract_nonempty`
+- `HodgeReduction.HCGapL4.FrontC69_H8ResidualProofWorkContract.cartanContainmentResidual_of_proofWorkContract`
+- `HodgeReduction.HCGapL4.FrontC69_H8ResidualProofWorkContract.matsushimaV56BoundaryData_of_proofWorkContract`
+- `HodgeReduction.HCGapL4.FrontC69_H8ResidualProofWorkContract.residual_proofWorkContract_nonempty_iff_cartanRankOne_nonempty`
+- `HodgeReduction.HCGapL4.FrontC69_H8ResidualProofWorkContract.current_interface_with_cartan_equalities_does_not_force_proofWorkContract`
+- `HodgeReduction.HCGapL4.FrontC69_H8ResidualProofWorkContract.currentR610ProofWorkContractTargetNames`
+- `HodgeReduction.HCGapL4.FrontC69_H8ResidualProofWorkContract.R610ProofWorkContractSnapshot`
+- `HodgeReduction.HCGapL4.FrontC69_H8ResidualProofWorkContract.currentR610ProofWorkContractSnapshot`
+- `HodgeReduction.HCGapL4.FrontC69_H8ResidualProofWorkContract.currentR610ProofWorkContractSnapshot_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC69_H8ResidualProofWorkContract.currentR610ProofWorkContractTargetNames_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC70_H8ResidualSourceInvariantScalarContract.EVIIH8ResidualSourceInvariantScalarContract`
+- `HodgeReduction.HCGapL4.FrontC70_H8ResidualSourceInvariantScalarContract.source_invariants_eq_H8_of_compactDualCartan`
+- `HodgeReduction.HCGapL4.FrontC70_H8ResidualSourceInvariantScalarContract.source_eq_invariants_of_sourceCartan_compactDualCartan`
+- `HodgeReduction.HCGapL4.FrontC70_H8ResidualSourceInvariantScalarContract.sourceInvariantScalarContract_of_proofWorkContract`
+- `HodgeReduction.HCGapL4.FrontC70_H8ResidualSourceInvariantScalarContract.proofWorkContract_of_sourceInvariantScalarContract`
+- `HodgeReduction.HCGapL4.FrontC70_H8ResidualSourceInvariantScalarContract.residual_proofWorkContract_nonempty_iff_sourceInvariantScalarContract_nonempty`
+- `HodgeReduction.HCGapL4.FrontC70_H8ResidualSourceInvariantScalarContract.matsushimaV56BoundaryData_of_sourceInvariantScalarContract`
+- `HodgeReduction.HCGapL4.FrontC70_H8ResidualSourceInvariantScalarContract.currentR634SourceInvariantScalarContractTargetNames`
+- `HodgeReduction.HCGapL4.FrontC70_H8ResidualSourceInvariantScalarContract.R634SourceInvariantScalarContractSnapshot`
+- `HodgeReduction.HCGapL4.FrontC70_H8ResidualSourceInvariantScalarContract.currentR634SourceInvariantScalarContractSnapshot`
+- `HodgeReduction.HCGapL4.FrontC70_H8ResidualSourceInvariantScalarContract.currentR634SourceInvariantScalarContractSnapshot_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC70_H8ResidualSourceInvariantScalarContract.currentR634SourceInvariantScalarContractTargetNames_eq_texStatus`
 
 Files:
 - `HodgeReduction/HCGapL4/FrontA_DeligneH0SheafRealization.lean` -- registered
@@ -842,6 +2296,27 @@ Files:
 - `HodgeReduction/HCGapL4/FrontC47_TargetContainmentScalarPreimageCriterion.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontC48_H8BoundaryRankOneCriterion.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontC49_H8BoundaryExpectedBettiCriterion.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC50_H8ResidualObligationPackage.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC51_H8ResidualScalarPreimagePackage.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC52_H8ResidualBoundaryPackage.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC53_H8ResidualBoundaryDataPackage.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC54_H8ResidualExactImagePackage.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC55_H8ResidualExactImageRankOnePackage.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC56_H8ResidualCartanRankOnePackage.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC57_H8ResidualSourceInvariantTargetRankPackage.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC58_H8ResidualSourceInvariantNormalization.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC59_H8ResidualExpectedBettiPackage.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC60_H8ResidualSourceCarrierSplitPackage.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC61_H8ResidualCompactDualCarrierPackage.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC62_H8ResidualCartanContainmentExpectedBettiPackage.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC63_H8ResidualPrimitiveGapSplit.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC64_H8ResidualScalarPreimagePrimitiveSplit.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC65_H8ResidualPrimitiveTargetLedger.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC66_H8ResidualEqualityTargetLedger.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC67_H8ResidualRankOneReconciliation.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC68_H8ResidualCarrierEqualityObstruction.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC69_H8ResidualProofWorkContract.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC70_H8ResidualSourceInvariantScalarContract.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean` -- on-disk-unloaded
 - `HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean` -- on-disk-unloaded
 - `HodgeReduction/HCGapL4/R451_MultiFrontFrontierAudit.lean` -- registered

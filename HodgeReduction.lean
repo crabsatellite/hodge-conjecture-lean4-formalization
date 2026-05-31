@@ -1,8 +1,9 @@
 /-
 # HodgeReduction --top-level module.
 
-Lean4 formalisation of the Mumford--Tate reduction of the Hodge Conjecture
-("A Mumford--Tate Reduction of the Hodge Conjecture", Alex Chengyu Li, 2026).
+Lean4 formalisation aimed at the full Hodge Conjecture, with the current
+Mumford--Tate / canonical `E_7` route treated as a milestone rather than
+the final theorem.
 
 The formalisation matches the state of the master proof at its current
 writing. The Main Theorem is a *reduction*, not an unconditional proof: it
@@ -18,8 +19,15 @@ Re-exports:
   * `HodgeReduction.OpenHypotheses`   --nine labelled paper hypotheses
                                         (exploratory reduction-stage ledger
                                         with broken-link Phase 0 audit trail).
-  * `HodgeReduction.MainTheorem`      --the Main Theorem and unconditional
-                                        theorems, each with `sorry`.
+  * `HodgeReduction.MainTheorem`      --the scoped Main Theorem,
+                                        canonical `E_7` milestone, and
+                                        paper-level theorem reductions.
+  * `HodgeReduction.FullHodgeGoal`    --the explicit full-HC target:
+                                        `forall X, HodgeConjectureReal X`.
+  * `HodgeReduction.PaperInventory`   --canonical master-tex import ledger;
+                                        non-master tex files are archive
+                                        background unless promoted into the
+                                        master paper.
   * `HodgeReduction.Ledger`           --gap ledger (status + metadata for
                                         every OPEN / PARTIAL / BLOCKED /
                                         DEAD-END / CLOSED entry; cross-
@@ -35,7 +43,7 @@ Re-exports:
                                         HC framework typeclasses. First
                                         sub-module: `HodgeReduction.Concrete.EVII`
                                         gives a concrete carrier `A_EVII`
-                                        (= `Polynomial 閳╂瓪 at scaffolding stage)
+                                        (= `Polynomial ℚ` at scaffolding stage)
                                         with `CohomologyRing` / `KaehlerClass` /
                                         `Lefschetz11Data` / `HodgeCycleData`
                                         instances and a concrete
@@ -50,6 +58,28 @@ import HodgeReduction.Types
 import HodgeReduction.ClassicalResults
 import HodgeReduction.OpenHypotheses
 import HodgeReduction.MainTheorem
+import HodgeReduction.FullHodgeGoal
+import HodgeReduction.PaperInventory
+import HodgeReduction.Research.AnisotropicResidue
+import HodgeReduction.Research.ClassicalExternalStatus
+import HodgeReduction.Research.CMFibreDensity
+import HodgeReduction.Research.E7ArithmeticityPipeline
+import HodgeReduction.Research.E7BBTSpreading
+import HodgeReduction.Research.E7CMAlgebraicity
+import HodgeReduction.Research.E7ChernWeilBridge
+import HodgeReduction.Research.E7ResidualStatus
+import HodgeReduction.Research.E7ThetaModularity
+import HodgeReduction.Research.FibreTransfer
+import HodgeReduction.Research.HBundleStatus
+import HodgeReduction.Research.LatticeGap
+import HodgeReduction.Research.MainTheoremInputStatus
+import HodgeReduction.Research.MainTheoremResidualStatus
+import HodgeReduction.Research.MokCircularity
+import HodgeReduction.Research.OmegaDiagonal
+import HodgeReduction.Research.PadicDescent
+import HodgeReduction.Research.Q4AbelianAlgebraicity
+import HodgeReduction.Research.ShimuraTypeFibre
+import HodgeReduction.Research.WitnessLatticeHypothesis
 -- import HodgeReduction.Ledger
 -- import HodgeReduction.Strict
 -- import HodgeReduction.CrossRingArithmetic
@@ -497,6 +527,27 @@ import HodgeReduction.HCGapL4.FrontC46_TargetSurjectivityContainmentCriterion
 import HodgeReduction.HCGapL4.FrontC47_TargetContainmentScalarPreimageCriterion
 import HodgeReduction.HCGapL4.FrontC48_H8BoundaryRankOneCriterion
 import HodgeReduction.HCGapL4.FrontC49_H8BoundaryExpectedBettiCriterion
+import HodgeReduction.HCGapL4.FrontC50_H8ResidualObligationPackage
+import HodgeReduction.HCGapL4.FrontC51_H8ResidualScalarPreimagePackage
+import HodgeReduction.HCGapL4.FrontC52_H8ResidualBoundaryPackage
+import HodgeReduction.HCGapL4.FrontC53_H8ResidualBoundaryDataPackage
+import HodgeReduction.HCGapL4.FrontC54_H8ResidualExactImagePackage
+import HodgeReduction.HCGapL4.FrontC55_H8ResidualExactImageRankOnePackage
+import HodgeReduction.HCGapL4.FrontC56_H8ResidualCartanRankOnePackage
+import HodgeReduction.HCGapL4.FrontC57_H8ResidualSourceInvariantTargetRankPackage
+import HodgeReduction.HCGapL4.FrontC58_H8ResidualSourceInvariantNormalization
+import HodgeReduction.HCGapL4.FrontC59_H8ResidualExpectedBettiPackage
+import HodgeReduction.HCGapL4.FrontC60_H8ResidualSourceCarrierSplitPackage
+import HodgeReduction.HCGapL4.FrontC61_H8ResidualCompactDualCarrierPackage
+import HodgeReduction.HCGapL4.FrontC62_H8ResidualCartanContainmentExpectedBettiPackage
+import HodgeReduction.HCGapL4.FrontC63_H8ResidualPrimitiveGapSplit
+import HodgeReduction.HCGapL4.FrontC64_H8ResidualScalarPreimagePrimitiveSplit
+import HodgeReduction.HCGapL4.FrontC65_H8ResidualPrimitiveTargetLedger
+import HodgeReduction.HCGapL4.FrontC66_H8ResidualEqualityTargetLedger
+import HodgeReduction.HCGapL4.FrontC67_H8ResidualRankOneReconciliation
+import HodgeReduction.HCGapL4.FrontC68_H8ResidualCarrierEqualityObstruction
+import HodgeReduction.HCGapL4.FrontC69_H8ResidualProofWorkContract
+import HodgeReduction.HCGapL4.FrontC70_H8ResidualSourceInvariantScalarContract
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix
