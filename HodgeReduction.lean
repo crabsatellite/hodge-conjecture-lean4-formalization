@@ -548,6 +548,7 @@ import HodgeReduction.HCGapL4.FrontC67_H8ResidualRankOneReconciliation
 import HodgeReduction.HCGapL4.FrontC68_H8ResidualCarrierEqualityObstruction
 import HodgeReduction.HCGapL4.FrontC69_H8ResidualProofWorkContract
 import HodgeReduction.HCGapL4.FrontC70_H8ResidualSourceInvariantScalarContract
+import HodgeReduction.HCGapL4.FrontC71_H8ResidualSourceInvariantExactImageContract
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix
