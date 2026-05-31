@@ -33,7 +33,7 @@ open FrontC88_H8ResidualInvariantMapBijectivity
 /-- Typed identity on target invariants.  Keeping this explicit prevents
 `LinearMap.id` from leaving an ambiguous module metavariable in right-inverse
 contracts. -/
-private abbrev targetInvariantIdentity
+abbrev targetInvariantIdentity
     (A B : Type*) [AddCommGroup A] [Module Rat A]
     [AddCommGroup B] [Module Rat B] [MatsushimaData A B] :
     MatsushimaData.target_invariants (A := A) (B := B) →ₗ[Rat]
