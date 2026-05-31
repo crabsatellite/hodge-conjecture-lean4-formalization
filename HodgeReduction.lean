@@ -569,6 +569,7 @@ import HodgeReduction.HCGapL4.FrontC88_H8ResidualInvariantMapBijectivity
 import HodgeReduction.HCGapL4.FrontC89_H8ResidualInvariantMapRightInverse
 import HodgeReduction.HCGapL4.FrontC90_H8ResidualInvariantMapRightInverseEquivalence
 import HodgeReduction.HCGapL4.FrontC91_H8ResidualRightInverseScalarPreimageEquivalence
+import HodgeReduction.HCGapL4.FrontC92_H8ResidualCartanGeneratorLineCriterion
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix
