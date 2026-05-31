@@ -6,7 +6,7 @@ five-way classification:
 
 * quarantine: **0** (explicit failed-route list)
 * infra:      **4** (standalone tools, audit scripts)
-* registered: **130** (configured research route/gap files, off endpoint closure)
+* registered: **131** (configured research route/gap files, off endpoint closure)
 * orphan:     **253** (loaded but unreachable - investigate)
 * on-disk-unloaded: **248** (file exists but not imported by any chain)
 
@@ -25,7 +25,7 @@ five-way classification:
 | `HodgeReduction/MainChain.lean` | 340 | 0 |
 | `HodgeReduction/PaperInventory.lean` | 677 | 0 |
 
-## Registered research routes/gaps (130)
+## Registered research routes/gaps (131)
 
 | file | decls | axioms |
 |------|------:|-------:|
@@ -123,6 +123,7 @@ five-way classification:
 | `HodgeReduction/HCGapL4/FrontC92_H8ResidualCartanGeneratorLineCriterion.lean` | 45 | 0 |
 | `HodgeReduction/HCGapL4/FrontC93_H8ResidualLineContainmentFromMultiplicity.lean` | 32 | 0 |
 | `HodgeReduction/HCGapL4/FrontC94_H8ResidualQuotientLineContainmentEquivalence.lean` | 32 | 0 |
+| `HodgeReduction/HCGapL4/FrontC95_H8ResidualSourceNoExtraFromLineContainment.lean` | 43 | 0 |
 | `HodgeReduction/HCGapL4/FrontC9_EVIIHodgeNumberComputation.lean` | 35 | 0 |
 | `HodgeReduction/HCGapL4/FrontC_E7LowDegreeHodgeNumbers.lean` | 62 | 0 |
 | `HodgeReduction/HCGapL4/FrontD_E7ToCMChowCorrespondence.lean` | 74 | 0 |
