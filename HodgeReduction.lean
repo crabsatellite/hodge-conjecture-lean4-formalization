@@ -566,6 +566,7 @@ import HodgeReduction.HCGapL4.FrontC85_H8ResidualQuotientUpperBoundNoFinite
 import HodgeReduction.HCGapL4.FrontC86_H8ResidualTargetInvariantPreimageCriterion
 import HodgeReduction.HCGapL4.FrontC87_H8ResidualInvariantMapSurjectivity
 import HodgeReduction.HCGapL4.FrontC88_H8ResidualInvariantMapBijectivity
+import HodgeReduction.HCGapL4.FrontC89_H8ResidualInvariantMapRightInverse
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix
