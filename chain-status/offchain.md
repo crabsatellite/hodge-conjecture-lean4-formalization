@@ -7,7 +7,7 @@ five-way classification:
 * quarantine: **0** (explicit failed-route list)
 * infra:      **4** (standalone tools, audit scripts)
 * registered: **152** (configured research route/gap files, off endpoint closure)
-* orphan:     **253** (loaded but unreachable - investigate)
+* orphan:     **254** (loaded but unreachable - investigate)
 * on-disk-unloaded: **248** (file exists but not imported by any chain)
 
 
@@ -182,7 +182,7 @@ five-way classification:
 | `HodgeReduction/Research/ShimuraTypeFibre.lean` | 32 | 0 |
 | `HodgeReduction/Research/WitnessLatticeHypothesis.lean` | 28 | 0 |
 
-## Orphan (warning - investigate) (253)
+## Orphan (warning - investigate) (254)
 
 | file | decls | axioms |
 |------|------:|-------:|
@@ -255,6 +255,7 @@ five-way classification:
 | `HodgeReduction/HCGapL4/FrontB3_ArithmeticQuotientConnectedness.lean` | 87 | 0 |
 | `HodgeReduction/HCGapL4/FrontB4_DiscreteGroupQuotientRefinement.lean` | 97 | 0 |
 | `HodgeReduction/HCGapL4/FrontB5_CompactificationConnectednessProbe.lean` | 93 | 0 |
+| `HodgeReduction/HCGapL4/FrontC117_H8ResidualSourceCompactDualCartanLineThreeTargetEquivalence.lean` | 45 | 0 |
 | `HodgeReduction/HCGapL4/FrontC2_LowDegreeHodgeRankAlgebra.lean` | 83 | 0 |
 | `HodgeReduction/HCGapL4/FrontC3_LowDegreeHodgeEulerAlgebra.lean` | 80 | 0 |
 | `HodgeReduction/HCGapL4/FrontC4_HodgePolynomialAlgebra.lean` | 70 | 0 |

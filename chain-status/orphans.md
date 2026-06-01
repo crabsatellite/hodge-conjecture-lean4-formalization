@@ -7,7 +7,7 @@ For each orphan, the user should either:
 3. Delete it.
 
 
-* loaded-but-orphan: **253**
+* loaded-but-orphan: **254**
 * on-disk-but-unloaded: **248**
 
 
@@ -82,6 +82,7 @@ For each orphan, the user should either:
 - `HodgeReduction/HCGapL4/FrontB3_ArithmeticQuotientConnectedness.lean` -- 87 decl(s)
 - `HodgeReduction/HCGapL4/FrontB4_DiscreteGroupQuotientRefinement.lean` -- 97 decl(s)
 - `HodgeReduction/HCGapL4/FrontB5_CompactificationConnectednessProbe.lean` -- 93 decl(s)
+- `HodgeReduction/HCGapL4/FrontC117_H8ResidualSourceCompactDualCartanLineThreeTargetEquivalence.lean` -- 45 decl(s)
 - `HodgeReduction/HCGapL4/FrontC2_LowDegreeHodgeRankAlgebra.lean` -- 83 decl(s)
 - `HodgeReduction/HCGapL4/FrontC3_LowDegreeHodgeEulerAlgebra.lean` -- 80 decl(s)
 - `HodgeReduction/HCGapL4/FrontC4_HodgePolynomialAlgebra.lean` -- 70 decl(s)

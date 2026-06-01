@@ -1,10 +1,10 @@
 # HodgeReduction -- all audit findings
 
 
-* total: **8801**  *  FAIL: **0**  *  WARN: **8801**
+* total: **8802**  *  FAIL: **0**  *  WARN: **8802**
 
 
-## W1.orphan (WARN) -- 253
+## W1.orphan (WARN) -- 254
 
 - file `HodgeReduction.Infrastructure.DynkinMarks` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/DynkinMarks.lean)
 - file `HodgeReduction.Infrastructure.SimpleLieAlgebraClassification` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/SimpleLieAlgebraClassification.lean)
@@ -195,6 +195,7 @@
 - file `HodgeReduction.Infrastructure.Automorphic.CuspidalCohomology` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/Automorphic/CuspidalCohomology.lean)
 - file `HodgeReduction.Infrastructure.Automorphic.GKCohomology` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/Automorphic/GKCohomology.lean)
 - file `HodgeReduction.Infrastructure.Automorphic.AtlasE7minus25` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/Automorphic/AtlasE7minus25.lean)
+- file `HodgeReduction.HCGapL4.FrontC117_H8ResidualSourceCompactDualCartanLineThreeTargetEquivalence` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/HCGapL4/FrontC117_H8ResidualSourceCompactDualCartanLineThreeTargetEquivalence.lean)
 - file `HodgeReduction.Infrastructure.KostantCominusculeClassification` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/KostantCominusculeClassification.lean)
 - file `HodgeReduction.HCGapL4.ClassicalCartanProof` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/HCGapL4/ClassicalCartanProof.lean)
 - file `HodgeReduction` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction.lean)
@@ -432,7 +433,7 @@
 
 ## W4.skipped-large-orphan-set (WARN) -- 1
 
-- skipped expensive unused-orphan-import scan because 253 loaded modules are classified orphan; use route labels and W3/W1 first, then narrow the audit entry
+- skipped expensive unused-orphan-import scan because 254 loaded modules are classified orphan; use route labels and W3/W1 first, then narrow the audit entry
 
 ## W5.prop-def (WARN) -- 3731
 
