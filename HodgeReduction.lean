@@ -596,6 +596,7 @@ import HodgeReduction.HCGapL4.FrontC115_H8ResidualExactImageCartanLineContainmen
 import HodgeReduction.HCGapL4.FrontC116_H8ResidualExactImageCartanLineThreeTargetEquivalence
 import HodgeReduction.HCGapL4.FrontC117_H8ResidualSourceCompactDualCartanLineThreeTargetEquivalence
 import HodgeReduction.HCGapL4.FrontC118_H8ResidualCartanLineExactnessFromSourceCompactDual
+import HodgeReduction.HCGapL4.FrontC119_H8ResidualCartanBoundaryEquality
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix
