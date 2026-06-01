@@ -1,7 +1,7 @@
 # HodgeReduction -- all audit findings
 
 
-* total: **8801**  *  FAIL: **0**  *  WARN: **8801**
+* total: **8806**  *  FAIL: **0**  *  WARN: **8806**
 
 
 ## W1.orphan (WARN) -- 253
@@ -8825,3 +8825,11 @@
 - theorem `HodgeReduction.HCGapL4.R391_does_not_identify_toy_with_real` has a literal True/Unit-style conclusion; keep it out of proof chains  (HodgeReduction/HCGapL4/OriginalHeadlineReplacementSafetyAudit.lean)
 - theorem `HodgeReduction.HCGapL4.R391_does_not_alter_old_headline` has a literal True/Unit-style conclusion; keep it out of proof chains  (HodgeReduction/HCGapL4/OriginalHeadlineReplacementSafetyAudit.lean)
 - theorem `HodgeReduction.HCGapL4.R391_does_not_define_realized_replacement` has a literal True/Unit-style conclusion; keep it out of proof chains  (HodgeReduction/HCGapL4/OriginalHeadlineReplacementSafetyAudit.lean)
+
+## W8.vacuous-premise (WARN) -- 5
+
+- theorem/axiom `HodgeReduction.Infrastructure.Automorphic.cuspidalRepData_Unit_C.proof_2` has a literal True/False/Unit-style premise; verify it is not a vacuous conditional wrapper  (HodgeReduction/Infrastructure/Automorphic/Basic.lean)
+- theorem/axiom `HodgeReduction.Infrastructure.Shimura.canonicalModelData_Unit.proof_2` has a literal True/False/Unit-style premise; verify it is not a vacuous conditional wrapper  (HodgeReduction/Infrastructure/Shimura/Basic.lean)
+- theorem/axiom `HodgeReduction.Infrastructure.Shimura.shimuraDatumData_Unit.proof_1` has a literal True/False/Unit-style premise; verify it is not a vacuous conditional wrapper  (HodgeReduction/Infrastructure/Shimura/Basic.lean)
+- theorem/axiom `HodgeReduction.Infrastructure.Trivial.weylActionPunitQ.proof_2` has a literal True/False/Unit-style premise; verify it is not a vacuous conditional wrapper  (HodgeReduction/Infrastructure/Coxeter/WE7.lean)
+- theorem/axiom `HodgeReduction.Infrastructure.Trivial.we7InvariantsPunitQ.proof_1` has a literal True/False/Unit-style premise; verify it is not a vacuous conditional wrapper  (HodgeReduction/Infrastructure/Coxeter/WE7.lean)
