@@ -64,6 +64,7 @@ import HodgeReduction.HCGapL4.FrontC143_H8ResidualCompactDualRankBoundSharpness
 import HodgeReduction.HCGapL4.FrontC144_H8ResidualSourceInvariantFiniteRankCarrierRoute
 import HodgeReduction.HCGapL4.FrontC145_H8ResidualSourceInvariantRankBoundSharpness
 import HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit
+import HodgeReduction.HCGapL4.FrontC147_H8ResidualSourceFiniteDimensionalityGuard
 
 /-!
 # Hodge main-chain audit configuration
@@ -1115,6 +1116,7 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction/HCGapL4/FrontC144_H8ResidualSourceInvariantFiniteRankCarrierRoute.lean",
         "HodgeReduction/HCGapL4/FrontC145_H8ResidualSourceInvariantRankBoundSharpness.lean",
         "HodgeReduction/HCGapL4/FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.lean",
+        "HodgeReduction/HCGapL4/FrontC147_H8ResidualSourceFiniteDimensionalityGuard.lean",
         "HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean",
         "HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean",
         "HodgeReduction/HCGapL4/R451_MultiFrontFrontierAudit.lean",
@@ -2316,7 +2318,19 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.currentR711SourceFiniteRankToCarrierSplitSnapshot",
         "HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.currentR711SourceFiniteRankToCarrierSplitSnapshot_eq_texStatus",
         "HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.currentR711SourceFiniteRankToCarrierSplitTargetNames_eq_texStatus",
-        "HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.R711_substantiveTheoremCount"
+        "HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.R711_substantiveTheoremCount",
+        "HodgeReduction.HCGapL4.FrontC147_H8ResidualSourceFiniteDimensionalityGuard.InfinitePolynomialSource",
+        "HodgeReduction.HCGapL4.FrontC147_H8ResidualSourceFiniteDimensionalityGuard.polynomialSourceInvariantCarrier",
+        "HodgeReduction.HCGapL4.FrontC147_H8ResidualSourceFiniteDimensionalityGuard.polynomialSource_not_finiteDimensional",
+        "HodgeReduction.HCGapL4.FrontC147_H8ResidualSourceFiniteDimensionalityGuard.polynomialSourceInvariantCarrier_not_finiteDimensional",
+        "HodgeReduction.HCGapL4.FrontC147_H8ResidualSourceFiniteDimensionalityGuard.polynomialSourceInvariantCarrier_finrank_le_one",
+        "HodgeReduction.HCGapL4.FrontC147_H8ResidualSourceFiniteDimensionalityGuard.source_finrank_le_one_does_not_force_source_finiteDimensionality",
+        "HodgeReduction.HCGapL4.FrontC147_H8ResidualSourceFiniteDimensionalityGuard.currentR712SourceFiniteDimensionalityGuardTargetNames",
+        "HodgeReduction.HCGapL4.FrontC147_H8ResidualSourceFiniteDimensionalityGuard.R712SourceFiniteDimensionalityGuardSnapshot",
+        "HodgeReduction.HCGapL4.FrontC147_H8ResidualSourceFiniteDimensionalityGuard.currentR712SourceFiniteDimensionalityGuardSnapshot",
+        "HodgeReduction.HCGapL4.FrontC147_H8ResidualSourceFiniteDimensionalityGuard.currentR712SourceFiniteDimensionalityGuardSnapshot_eq_texStatus",
+        "HodgeReduction.HCGapL4.FrontC147_H8ResidualSourceFiniteDimensionalityGuard.currentR712SourceFiniteDimensionalityGuardTargetNames_eq_texStatus",
+        "HodgeReduction.HCGapL4.FrontC147_H8ResidualSourceFiniteDimensionalityGuard.R712_substantiveTheoremCount"
       ]
     }
   ]
@@ -3050,6 +3064,7 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction/HCGapL4/FrontC144_H8ResidualSourceInvariantFiniteRankCarrierRoute.lean",
         "HodgeReduction/HCGapL4/FrontC145_H8ResidualSourceInvariantRankBoundSharpness.lean",
         "HodgeReduction/HCGapL4/FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.lean",
+        "HodgeReduction/HCGapL4/FrontC147_H8ResidualSourceFiniteDimensionalityGuard.lean",
         "HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean",
         "HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean",
         "HodgeReduction/HCGapL4/R476_MultiFrontWave6Audit.lean"
@@ -4241,7 +4256,19 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.currentR711SourceFiniteRankToCarrierSplitSnapshot",
         "HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.currentR711SourceFiniteRankToCarrierSplitSnapshot_eq_texStatus",
         "HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.currentR711SourceFiniteRankToCarrierSplitTargetNames_eq_texStatus",
-        "HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.R711_substantiveTheoremCount"
+        "HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.R711_substantiveTheoremCount",
+        "HodgeReduction.HCGapL4.FrontC147_H8ResidualSourceFiniteDimensionalityGuard.InfinitePolynomialSource",
+        "HodgeReduction.HCGapL4.FrontC147_H8ResidualSourceFiniteDimensionalityGuard.polynomialSourceInvariantCarrier",
+        "HodgeReduction.HCGapL4.FrontC147_H8ResidualSourceFiniteDimensionalityGuard.polynomialSource_not_finiteDimensional",
+        "HodgeReduction.HCGapL4.FrontC147_H8ResidualSourceFiniteDimensionalityGuard.polynomialSourceInvariantCarrier_not_finiteDimensional",
+        "HodgeReduction.HCGapL4.FrontC147_H8ResidualSourceFiniteDimensionalityGuard.polynomialSourceInvariantCarrier_finrank_le_one",
+        "HodgeReduction.HCGapL4.FrontC147_H8ResidualSourceFiniteDimensionalityGuard.source_finrank_le_one_does_not_force_source_finiteDimensionality",
+        "HodgeReduction.HCGapL4.FrontC147_H8ResidualSourceFiniteDimensionalityGuard.currentR712SourceFiniteDimensionalityGuardTargetNames",
+        "HodgeReduction.HCGapL4.FrontC147_H8ResidualSourceFiniteDimensionalityGuard.R712SourceFiniteDimensionalityGuardSnapshot",
+        "HodgeReduction.HCGapL4.FrontC147_H8ResidualSourceFiniteDimensionalityGuard.currentR712SourceFiniteDimensionalityGuardSnapshot",
+        "HodgeReduction.HCGapL4.FrontC147_H8ResidualSourceFiniteDimensionalityGuard.currentR712SourceFiniteDimensionalityGuardSnapshot_eq_texStatus",
+        "HodgeReduction.HCGapL4.FrontC147_H8ResidualSourceFiniteDimensionalityGuard.currentR712SourceFiniteDimensionalityGuardTargetNames_eq_texStatus",
+        "HodgeReduction.HCGapL4.FrontC147_H8ResidualSourceFiniteDimensionalityGuard.R712_substantiveTheoremCount"
       ]
       gapIds := ["G-hcgap-l4-multifront"]
       dependsOn := ["main-hc-axiom-relative"]
@@ -4331,12 +4358,13 @@ def config : ChainAudit.ProjectConfig := {
         "R709 status: the R708 finite-rank compact-dual route transfers exactly to the primitive Matsushima source-invariant carrier: prove boundary data, h^4 in source_invariants, finite-dimensional source_invariants, and finrank source_invariants <= 1; this is equivalent to the compact-dual finite-rank contract via `compactDual = source_invariants`.",
         "R710 status: with finite-dimensional source_invariants and h^4 in source_invariants, both `source_invariants <= H8` and `source_invariants = H8` are equivalent to `finrank source_invariants <= 1`; countermodels show source finite-dimensionality plus generator membership cannot replace the rank bound, and rank cannot replace source generator membership.",
         "R711 status: the R709/R710 source finite-rank carrier contract feeds the older boundary/source-H8 and R705 compact-dual carrier-split routes, and inhabited source finite-rank contracts are equivalent to inhabited R705 carrier-split contracts.  The live proof work remains the four source-side obligations: boundary data, h^4 in source_invariants, finite-dimensional source_invariants, and finrank source_invariants <= 1.",
+        "R712 status: `finrank source_invariants <= 1` cannot replace the explicit finite-dimensionality field.  A polynomial source-invariant carrier has `finrank <= 1` because infinite-dimensional finrank is zero, while it is not finite-dimensional.  Future route steps must keep source finite-dimensionality as a separate proof obligation.",
         "FrontB: replace the abstract connectedness pipeline with the genuine Baily--Borel connectedness theorem for arithmetic quotients.",
         "FrontD: deliver the E_7 -> CM Chow correspondence at codim 1 first, then lift to all p; this would discharge G-l4-mt-correspondence for the canonical case.",
         "Never re-bundle a closed front into a stronger hypothesis; chainAudit treats `def : Prop` placeholders and conjunction shells as hard failures."
       ]
       successCriterion :=
-        "A successful follow-up closes one live H8 residual target without adding assumptions: prove `MatsushimaV56BoundaryData`, prove both `compactDual <= H8` and `h^4 in compactDual` from genuine EVII compact-dual/source-invariant geometry, prove `compactDual = H8`, prove `source_invariants = H8` or the target-line theorem under boundary data, prove the R687 generator/multiplicity route by closing boundary data, h^4 source membership, and finite-dimensional trivial-module upper bound, prove the R688/R689/R690 smaller route by closing source boundary equality, h^4 source membership, finite-dimensional trivialModulePart, and `finrank <= 1`, prove the R691 route by closing source boundary equality, h^4 source membership, and `trivialModulePart <= span {j_q(h^4)}`, prove the R692/R693/R694/R696/R703/R704/R705 route by closing `MatsushimaV56BoundaryData` and either both compact-dual carrier split targets or one equivalent spelling (`compactDual = H8`, `surjectivity_source = H8`, `source_invariants = H8`, or the target-line equality), prove the R697/R698/R700/R701/R702 route by closing the equivalent R705 route, prove the R709/R710/R711 source-invariant finite-rank route by closing boundary data plus source generator membership, source finite-dimensionality, and source rank <= 1, or prove the full split route.  R686 blocks treating boundary data alone as a source-H8 proof; R693 blocks consuming h^4 source membership from source-H8 plus line containment; R694 shows boundary data plus source-H8 is sufficient for the R692 generator-line fields; R695 shows boundary data alone cannot provide source-H8; R696 shows source-H8/source-invariants-H8/target-line are one non-boundary target under boundary data; R704 shows source-H8 is just compactDual-H8 once boundary data is fixed; R705 shows compactDual-H8 is exactly `compactDual <= H8` plus `h^4 in compactDual`; R706 blocks deriving either R705 carrier fact from boundary data alone; R707 shows the no-extra compactDual carrier target can equivalently be attacked as finite-dimensional `compactDual` plus `finrank compactDual <= 1` together with the same `h^4 in compactDual` generator target; R708 shows that once finite-dimensionality and `h^4 in compactDual` are fixed, the remaining no-extra/equality target is exactly the rank bound, and it blocks dropping either generator membership or rank from the route; R709 transfers the same contract to source_invariants without strengthening it; R710 makes the source-invariant version sharp under the same finite/generator preconditions; R711 connects that source finite-rank route back to the R705 carrier-split route so future work should close the four source-side obligations rather than treating the two contract surfaces as separate gaps; R697/R698/R700/R701/R702/R703/R704/R705 identify that non-boundary target with the finite trivial-module multiplicity computation and connect it back to the R690 explicit route, the R646 Cartan-image containment route, and the preferred boundary-data/compact-dual-carrier route."
+        "A successful follow-up closes one live H8 residual target without adding assumptions: prove `MatsushimaV56BoundaryData`, prove both `compactDual <= H8` and `h^4 in compactDual` from genuine EVII compact-dual/source-invariant geometry, prove `compactDual = H8`, prove `source_invariants = H8` or the target-line theorem under boundary data, prove the R687 generator/multiplicity route by closing boundary data, h^4 source membership, and finite-dimensional trivial-module upper bound, prove the R688/R689/R690 smaller route by closing source boundary equality, h^4 source membership, finite-dimensional trivialModulePart, and `finrank <= 1`, prove the R691 route by closing source boundary equality, h^4 source membership, and `trivialModulePart <= span {j_q(h^4)}`, prove the R692/R693/R694/R696/R703/R704/R705 route by closing `MatsushimaV56BoundaryData` and either both compact-dual carrier split targets or one equivalent spelling (`compactDual = H8`, `surjectivity_source = H8`, `source_invariants = H8`, or the target-line equality), prove the R697/R698/R700/R701/R702 route by closing the equivalent R705 route, prove the R709/R710/R711/R712 source-invariant finite-rank route by closing boundary data plus source generator membership, source finite-dimensionality, and source rank <= 1, or prove the full split route.  R686 blocks treating boundary data alone as a source-H8 proof; R693 blocks consuming h^4 source membership from source-H8 plus line containment; R694 shows boundary data plus source-H8 is sufficient for the R692 generator-line fields; R695 shows boundary data alone cannot provide source-H8; R696 shows source-H8/source-invariants-H8/target-line are one non-boundary target under boundary data; R704 shows source-H8 is just compactDual-H8 once boundary data is fixed; R705 shows compactDual-H8 is exactly `compactDual <= H8` plus `h^4 in compactDual`; R706 blocks deriving either R705 carrier fact from boundary data alone; R707 shows the no-extra compactDual carrier target can equivalently be attacked as finite-dimensional `compactDual` plus `finrank compactDual <= 1` together with the same `h^4 in compactDual` generator target; R708 shows that once finite-dimensionality and `h^4 in compactDual` are fixed, the remaining no-extra/equality target is exactly the rank bound, and it blocks dropping either generator membership or rank from the route; R709 transfers the same contract to source_invariants without strengthening it; R710 makes the source-invariant version sharp under the same finite/generator preconditions; R711 connects that source finite-rank route back to the R705 carrier-split route so future work should close the four source-side obligations rather than treating the two contract surfaces as separate gaps; R712 blocks dropping source finite-dimensionality merely because a naked finrank inequality typechecks; R697/R698/R700/R701/R702/R703/R704/R705 identify that non-boundary target with the finite trivial-module multiplicity computation and connect it back to the R690 explicit route, the R646 Cartan-image containment route, and the preferred boundary-data/compact-dual-carrier route."
     },
     {
       id := "concrete-evii-toy"
