@@ -627,6 +627,7 @@ import HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit
 import HodgeReduction.HCGapL4.FrontC147_H8ResidualSourceFiniteDimensionalityGuard
 import HodgeReduction.HCGapL4.FrontC148_H8ResidualSourceGeneratorContainmentRoute
 import HodgeReduction.HCGapL4.FrontC149_H8ResidualSourceContainmentFiniteRankConsumer
+import HodgeReduction.HCGapL4.FrontC150_H8ResidualSourceTwoSidedContainmentRoute
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix
