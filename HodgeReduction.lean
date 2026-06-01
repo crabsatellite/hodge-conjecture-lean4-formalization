@@ -616,6 +616,7 @@ import HodgeReduction.HCGapL4.FrontC135_H8ResidualFiniteRankOneTrivialMultiplici
 import HodgeReduction.HCGapL4.FrontC136_H8ResidualFiniteTrivialMultiplicityExplicitRoute
 import HodgeReduction.HCGapL4.FrontC137_H8ResidualCartanImageFiniteMultiplicity
 import HodgeReduction.HCGapL4.FrontC138_H8ResidualCartanImageBoundarySourceH8Equivalence
+import HodgeReduction.HCGapL4.FrontC139_H8ResidualBoundarySourceCompactDualEquivalence
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix
