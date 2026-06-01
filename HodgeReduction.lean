@@ -606,6 +606,7 @@ import HodgeReduction.HCGapL4.FrontC125_H8ResidualSourceBoundaryCartanLineRoute
 import HodgeReduction.HCGapL4.FrontC126_H8ResidualExplicitFiniteMultiplicityRoute
 import HodgeReduction.HCGapL4.FrontC127_H8ResidualLineContainmentExplicitFiniteRoute
 import HodgeReduction.HCGapL4.FrontC128_H8ResidualSourceH8LineContainmentRoute
+import HodgeReduction.HCGapL4.FrontC129_H8ResidualSourceH8GeneratorIndependence
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix
