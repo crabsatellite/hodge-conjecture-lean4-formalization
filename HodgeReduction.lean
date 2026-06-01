@@ -633,6 +633,7 @@ import HodgeReduction.HCGapL4.FrontC152_H8ResidualSourceEqualityCompactDualRoute
 import HodgeReduction.HCGapL4.FrontC153_H8ResidualCompactDualFiniteRankAttackRoute
 import HodgeReduction.HCGapL4.FrontC154_H8ResidualPrimitiveBoundaryFiniteRankRoute
 import HodgeReduction.HCGapL4.FrontC155_H8ResidualCompactDualGeneratorContainmentRoute
+import HodgeReduction.HCGapL4.FrontC156_H8ResidualCompactDualTwoContainmentRoute
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix
