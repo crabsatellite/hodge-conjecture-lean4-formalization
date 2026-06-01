@@ -619,6 +619,7 @@ import HodgeReduction.HCGapL4.FrontC138_H8ResidualCartanImageBoundarySourceH8Equ
 import HodgeReduction.HCGapL4.FrontC139_H8ResidualBoundarySourceCompactDualEquivalence
 import HodgeReduction.HCGapL4.FrontC140_H8ResidualBoundaryCompactDualCarrierSplit
 import HodgeReduction.HCGapL4.FrontC141_H8ResidualBoundaryCarrierIndependence
+import HodgeReduction.HCGapL4.FrontC142_H8ResidualCompactDualFiniteRankCarrierRoute
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix
