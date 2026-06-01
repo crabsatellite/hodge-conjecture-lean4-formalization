@@ -6,8 +6,8 @@ five-way classification:
 
 * quarantine: **0** (explicit failed-route list)
 * infra:      **4** (standalone tools, audit scripts)
-* registered: **152** (configured research route/gap files, off endpoint closure)
-* orphan:     **254** (loaded but unreachable - investigate)
+* registered: **154** (configured research route/gap files, off endpoint closure)
+* orphan:     **253** (loaded but unreachable - investigate)
 * on-disk-unloaded: **248** (file exists but not imported by any chain)
 
 
@@ -25,7 +25,7 @@ five-way classification:
 | `HodgeReduction/MainChain.lean` | 340 | 0 |
 | `HodgeReduction/PaperInventory.lean` | 677 | 0 |
 
-## Registered research routes/gaps (152)
+## Registered research routes/gaps (154)
 
 | file | decls | axioms |
 |------|------:|-------:|
@@ -53,6 +53,8 @@ five-way classification:
 | `HodgeReduction/HCGapL4/FrontC114_H8ResidualExactImageCartanContainmentEquivalence.lean` | 47 | 0 |
 | `HodgeReduction/HCGapL4/FrontC115_H8ResidualExactImageCartanLineContainmentEquivalence.lean` | 47 | 0 |
 | `HodgeReduction/HCGapL4/FrontC116_H8ResidualExactImageCartanLineThreeTargetEquivalence.lean` | 45 | 0 |
+| `HodgeReduction/HCGapL4/FrontC117_H8ResidualSourceCompactDualCartanLineThreeTargetEquivalence.lean` | 45 | 0 |
+| `HodgeReduction/HCGapL4/FrontC118_H8ResidualCartanLineExactnessFromSourceCompactDual.lean` | 46 | 0 |
 | `HodgeReduction/HCGapL4/FrontC11_ShimuraBettiComputation.lean` | 41 | 0 |
 | `HodgeReduction/HCGapL4/FrontC12_V56InfrastructureProfileBridge.lean` | 33 | 0 |
 | `HodgeReduction/HCGapL4/FrontC13_MatsushimaV56BoundaryBridge.lean` | 26 | 0 |
@@ -182,7 +184,7 @@ five-way classification:
 | `HodgeReduction/Research/ShimuraTypeFibre.lean` | 32 | 0 |
 | `HodgeReduction/Research/WitnessLatticeHypothesis.lean` | 28 | 0 |
 
-## Orphan (warning - investigate) (254)
+## Orphan (warning - investigate) (253)
 
 | file | decls | axioms |
 |------|------:|-------:|
@@ -255,7 +257,6 @@ five-way classification:
 | `HodgeReduction/HCGapL4/FrontB3_ArithmeticQuotientConnectedness.lean` | 87 | 0 |
 | `HodgeReduction/HCGapL4/FrontB4_DiscreteGroupQuotientRefinement.lean` | 97 | 0 |
 | `HodgeReduction/HCGapL4/FrontB5_CompactificationConnectednessProbe.lean` | 93 | 0 |
-| `HodgeReduction/HCGapL4/FrontC117_H8ResidualSourceCompactDualCartanLineThreeTargetEquivalence.lean` | 45 | 0 |
 | `HodgeReduction/HCGapL4/FrontC2_LowDegreeHodgeRankAlgebra.lean` | 83 | 0 |
 | `HodgeReduction/HCGapL4/FrontC3_LowDegreeHodgeEulerAlgebra.lean` | 80 | 0 |
 | `HodgeReduction/HCGapL4/FrontC4_HodgePolynomialAlgebra.lean` | 70 | 0 |
