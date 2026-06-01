@@ -135,7 +135,7 @@ graph TD
   owner_gap_G_l4_mt_correspondence["gap:G-l4-mt-correspondence"]:::ownerGap
   owner_gap_G_main_hc["gap:G-main-hc"]:::ownerGap
   owner_gap_G_master_paper_import["gap:G-master-paper-import"]:::ownerGap
-  debt_C001["C001\n97 files\n2026-06-02 05:44\ncore-support"]:::debtTaxonomy
+  debt_C001["C001\n97 files\n2026-06-02 06:01\ncore-support"]:::debtTaxonomy
   debt_root --> debt_C001
   debt_C001 --> anchor_cut
   debt_C001 --> anchor_infra
@@ -350,7 +350,7 @@ graph TD
 | `main-hc-axiom-relative` | milestone | conditional | `G-full-hc`, `G-main-hc`, `G-l1-e7-shimura-tor`, `G-l2-cohomology-construction`, `G-l3-v56-mt-identification`, `G-l4-cm-abelian-hc`, `G-l4-mt-correspondence` | cut: 2, infra: 1, on-chain: 2 |
 | `unconditional-classical` | support | closed-modulo-cy3-citation | `G-classical-mathlib-port` | cut: 1, on-chain: 1 |
 | `hcgap-l2-trivial-instances` | support | stable | `G-l2-cohomology-construction` | registered: 3 |
-| `hcgap-l4-multifront-active` | active | exploratory | `G-hcgap-l4-multifront` | on-disk-unloaded: 3, registered: 129 |
+| `hcgap-l4-multifront-active` | active | exploratory | `G-hcgap-l4-multifront` | on-disk-unloaded: 3, registered: 130 |
 | `concrete-evii-toy` | support | closed-toy | - | on-disk-unloaded: 1 |
 | `historical-cone-audits` | infra | infra | - | on-disk-unloaded: 4 |
 
@@ -367,7 +367,7 @@ graph TD
 | `G-l4-cm-abelian-hc` | open | Layer 4-G2: Hodge conjecture for CM abelian varieties (Deligne 1982) | cut: 2, infra: 1, on-disk-unloaded: 2 |
 | `G-l4-mt-correspondence` | open | Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian) | cut: 3, infra: 1, registered: 1 |
 | `G-classical-mathlib-port` | deferred | Classical published-literature axioms awaiting Mathlib port | cut: 3, on-chain: 2 |
-| `G-hcgap-l4-multifront` | active-open | HCGapL4 multi-front Layer-4 attack waves (R420 -- R710) | on-disk-unloaded: 3, registered: 152 |
+| `G-hcgap-l4-multifront` | active-open | HCGapL4 multi-front Layer-4 attack waves (R420 -- R710) | on-disk-unloaded: 3, registered: 153 |
 
 ## Off-Chain Split
 
@@ -2154,6 +2154,19 @@ Entry declarations:
 - `HodgeReduction.HCGapL4.FrontC147_H8ResidualSourceFiniteDimensionalityGuard.currentR712SourceFiniteDimensionalityGuardSnapshot_eq_texStatus`
 - `HodgeReduction.HCGapL4.FrontC147_H8ResidualSourceFiniteDimensionalityGuard.currentR712SourceFiniteDimensionalityGuardTargetNames_eq_texStatus`
 - `HodgeReduction.HCGapL4.FrontC147_H8ResidualSourceFiniteDimensionalityGuard.R712_substantiveTheoremCount`
+- `HodgeReduction.HCGapL4.FrontC148_H8ResidualSourceGeneratorContainmentRoute.H8_le_source_invariants_iff_h_pow_four_mem_source_invariants`
+- `HodgeReduction.HCGapL4.FrontC148_H8ResidualSourceGeneratorContainmentRoute.h_pow_four_mem_source_invariants_of_H8_le_source_invariants`
+- `HodgeReduction.HCGapL4.FrontC148_H8ResidualSourceGeneratorContainmentRoute.H8_le_source_invariants_of_h_pow_four_mem_source_invariants`
+- `HodgeReduction.HCGapL4.FrontC148_H8ResidualSourceGeneratorContainmentRoute.EVIIH8ResidualBoundaryDataSourceInvariantFiniteRankH8ContainmentContract`
+- `HodgeReduction.HCGapL4.FrontC148_H8ResidualSourceGeneratorContainmentRoute.sourceInvariantFiniteRankCarrierContract_of_H8ContainmentContract`
+- `HodgeReduction.HCGapL4.FrontC148_H8ResidualSourceGeneratorContainmentRoute.H8ContainmentContract_of_sourceInvariantFiniteRankCarrierContract`
+- `HodgeReduction.HCGapL4.FrontC148_H8ResidualSourceGeneratorContainmentRoute.residual_sourceInvariantFiniteRankH8Containment_nonempty_iff_sourceInvariantFiniteRankCarrier_nonempty`
+- `HodgeReduction.HCGapL4.FrontC148_H8ResidualSourceGeneratorContainmentRoute.currentR713SourceGeneratorContainmentTargetNames`
+- `HodgeReduction.HCGapL4.FrontC148_H8ResidualSourceGeneratorContainmentRoute.R713SourceGeneratorContainmentSnapshot`
+- `HodgeReduction.HCGapL4.FrontC148_H8ResidualSourceGeneratorContainmentRoute.currentR713SourceGeneratorContainmentSnapshot`
+- `HodgeReduction.HCGapL4.FrontC148_H8ResidualSourceGeneratorContainmentRoute.currentR713SourceGeneratorContainmentSnapshot_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC148_H8ResidualSourceGeneratorContainmentRoute.currentR713SourceGeneratorContainmentTargetNames_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC148_H8ResidualSourceGeneratorContainmentRoute.R713_substantiveTheoremCount`
 
 Depends on: `main-hc-axiom-relative`
 
@@ -2289,6 +2302,7 @@ Files:
 - `HodgeReduction/HCGapL4/FrontC145_H8ResidualSourceInvariantRankBoundSharpness.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontC147_H8ResidualSourceFiniteDimensionalityGuard.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC148_H8ResidualSourceGeneratorContainmentRoute.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean` -- on-disk-unloaded
 - `HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean` -- on-disk-unloaded
 - `HodgeReduction/HCGapL4/R476_MultiFrontWave6Audit.lean` -- on-disk-unloaded
@@ -4182,6 +4196,19 @@ Declarations:
 - `HodgeReduction.HCGapL4.FrontC147_H8ResidualSourceFiniteDimensionalityGuard.currentR712SourceFiniteDimensionalityGuardSnapshot_eq_texStatus`
 - `HodgeReduction.HCGapL4.FrontC147_H8ResidualSourceFiniteDimensionalityGuard.currentR712SourceFiniteDimensionalityGuardTargetNames_eq_texStatus`
 - `HodgeReduction.HCGapL4.FrontC147_H8ResidualSourceFiniteDimensionalityGuard.R712_substantiveTheoremCount`
+- `HodgeReduction.HCGapL4.FrontC148_H8ResidualSourceGeneratorContainmentRoute.H8_le_source_invariants_iff_h_pow_four_mem_source_invariants`
+- `HodgeReduction.HCGapL4.FrontC148_H8ResidualSourceGeneratorContainmentRoute.h_pow_four_mem_source_invariants_of_H8_le_source_invariants`
+- `HodgeReduction.HCGapL4.FrontC148_H8ResidualSourceGeneratorContainmentRoute.H8_le_source_invariants_of_h_pow_four_mem_source_invariants`
+- `HodgeReduction.HCGapL4.FrontC148_H8ResidualSourceGeneratorContainmentRoute.EVIIH8ResidualBoundaryDataSourceInvariantFiniteRankH8ContainmentContract`
+- `HodgeReduction.HCGapL4.FrontC148_H8ResidualSourceGeneratorContainmentRoute.sourceInvariantFiniteRankCarrierContract_of_H8ContainmentContract`
+- `HodgeReduction.HCGapL4.FrontC148_H8ResidualSourceGeneratorContainmentRoute.H8ContainmentContract_of_sourceInvariantFiniteRankCarrierContract`
+- `HodgeReduction.HCGapL4.FrontC148_H8ResidualSourceGeneratorContainmentRoute.residual_sourceInvariantFiniteRankH8Containment_nonempty_iff_sourceInvariantFiniteRankCarrier_nonempty`
+- `HodgeReduction.HCGapL4.FrontC148_H8ResidualSourceGeneratorContainmentRoute.currentR713SourceGeneratorContainmentTargetNames`
+- `HodgeReduction.HCGapL4.FrontC148_H8ResidualSourceGeneratorContainmentRoute.R713SourceGeneratorContainmentSnapshot`
+- `HodgeReduction.HCGapL4.FrontC148_H8ResidualSourceGeneratorContainmentRoute.currentR713SourceGeneratorContainmentSnapshot`
+- `HodgeReduction.HCGapL4.FrontC148_H8ResidualSourceGeneratorContainmentRoute.currentR713SourceGeneratorContainmentSnapshot_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC148_H8ResidualSourceGeneratorContainmentRoute.currentR713SourceGeneratorContainmentTargetNames_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC148_H8ResidualSourceGeneratorContainmentRoute.R713_substantiveTheoremCount`
 
 Files:
 - `HodgeReduction/HCGapL4/FrontA_DeligneH0SheafRealization.lean` -- registered
@@ -4331,6 +4358,7 @@ Files:
 - `HodgeReduction/HCGapL4/FrontC145_H8ResidualSourceInvariantRankBoundSharpness.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontC147_H8ResidualSourceFiniteDimensionalityGuard.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC148_H8ResidualSourceGeneratorContainmentRoute.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean` -- on-disk-unloaded
 - `HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean` -- on-disk-unloaded
 - `HodgeReduction/HCGapL4/R451_MultiFrontFrontierAudit.lean` -- registered
