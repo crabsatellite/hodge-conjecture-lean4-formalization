@@ -45,16 +45,13 @@ require mathlib from git
   "https://github.com/leanprover-community/mathlib4.git" @ "v4.16.0"
 
 /-
-Shared chain-audit infrastructure.  The path dependency points at the
-same `tools/chain-audit` package that `abc-conjecture/lean4-formalization`
-uses; the package's own `lakefile.lean` writes products into a
-version-specific `.lake/build-<Lean.versionString>/` directory, so both
-consumers safely share one source checkout without colliding artifacts.
-Do NOT add a `buildDir` override here: that is the chainAudit package's
-concern; this project keeps the default `.lake/build/` for its own
-HodgeReduction library so its build cache stays independent of ABC's.
+Shared chain-audit infrastructure.  The dependency is vendored inside this
+repository so standalone CI checkouts do not rely on the local OpenExecution
+monorepo layout.  The package's own `lakefile.lean` writes products into a
+version-specific `.lake/build-<Lean.versionString>/` directory, so consumers
+safely avoid colliding artifacts.
 -/
-require chainAudit from "../../../tools/chain-audit"
+require chainAudit from "vendor/chain-audit"
 
 @[default_target]
 lean_lib «HodgeReduction» where

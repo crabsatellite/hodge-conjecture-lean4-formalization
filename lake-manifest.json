@@ -6,7 +6,7 @@
    "name": "chainAudit",
    "manifestFile": "lake-manifest.json",
    "inherited": false,
-   "dir": "./../../../tools/chain-audit",
+   "dir": "./vendor/chain-audit",
    "configFile": "lakefile.lean"},
   {"url": "https://github.com/leanprover-community/mathlib4.git",
    "type": "git",
