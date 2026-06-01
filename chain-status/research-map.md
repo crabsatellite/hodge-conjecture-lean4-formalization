@@ -135,7 +135,7 @@ graph TD
   owner_gap_G_l4_mt_correspondence["gap:G-l4-mt-correspondence"]:::ownerGap
   owner_gap_G_main_hc["gap:G-main-hc"]:::ownerGap
   owner_gap_G_master_paper_import["gap:G-master-paper-import"]:::ownerGap
-  debt_C001["C001\n97 files\n2026-06-02 05:06\ncore-support"]:::debtTaxonomy
+  debt_C001["C001\n97 files\n2026-06-02 05:21\ncore-support"]:::debtTaxonomy
   debt_root --> debt_C001
   debt_C001 --> anchor_cut
   debt_C001 --> anchor_infra
@@ -350,7 +350,7 @@ graph TD
 | `main-hc-axiom-relative` | milestone | conditional | `G-full-hc`, `G-main-hc`, `G-l1-e7-shimura-tor`, `G-l2-cohomology-construction`, `G-l3-v56-mt-identification`, `G-l4-cm-abelian-hc`, `G-l4-mt-correspondence` | cut: 2, infra: 1, on-chain: 2 |
 | `unconditional-classical` | support | closed-modulo-cy3-citation | `G-classical-mathlib-port` | cut: 1, on-chain: 1 |
 | `hcgap-l2-trivial-instances` | support | stable | `G-l2-cohomology-construction` | registered: 3 |
-| `hcgap-l4-multifront-active` | active | exploratory | `G-hcgap-l4-multifront` | on-disk-unloaded: 3, registered: 127 |
+| `hcgap-l4-multifront-active` | active | exploratory | `G-hcgap-l4-multifront` | on-disk-unloaded: 3, registered: 128 |
 | `concrete-evii-toy` | support | closed-toy | - | on-disk-unloaded: 1 |
 | `historical-cone-audits` | infra | infra | - | on-disk-unloaded: 4 |
 
@@ -367,7 +367,7 @@ graph TD
 | `G-l4-cm-abelian-hc` | open | Layer 4-G2: Hodge conjecture for CM abelian varieties (Deligne 1982) | cut: 2, infra: 1, on-disk-unloaded: 2 |
 | `G-l4-mt-correspondence` | open | Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian) | cut: 3, infra: 1, registered: 1 |
 | `G-classical-mathlib-port` | deferred | Classical published-literature axioms awaiting Mathlib port | cut: 3, on-chain: 2 |
-| `G-hcgap-l4-multifront` | active-open | HCGapL4 multi-front Layer-4 attack waves (R420 -- R710) | on-disk-unloaded: 3, registered: 150 |
+| `G-hcgap-l4-multifront` | active-open | HCGapL4 multi-front Layer-4 attack waves (R420 -- R710) | on-disk-unloaded: 3, registered: 151 |
 
 ## Off-Chain Split
 
@@ -2129,6 +2129,19 @@ Entry declarations:
 - `HodgeReduction.HCGapL4.FrontC145_H8ResidualSourceInvariantRankBoundSharpness.currentR710SourceInvariantRankBoundSharpnessSnapshot_eq_texStatus`
 - `HodgeReduction.HCGapL4.FrontC145_H8ResidualSourceInvariantRankBoundSharpness.currentR710SourceInvariantRankBoundSharpnessTargetNames_eq_texStatus`
 - `HodgeReduction.HCGapL4.FrontC145_H8ResidualSourceInvariantRankBoundSharpness.R710_substantiveTheoremCount`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.source_invariants_eq_H8_of_sourceInvariantFiniteRankCarrierContract`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.compactDual_eq_H8_of_sourceInvariantFiniteRankCarrierContract`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.boundaryDataCompactDualH8Contract_of_sourceInvariantFiniteRankCarrierContract`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.boundaryDataSourceSurjectivityContract_of_sourceInvariantFiniteRankCarrierContract`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.boundaryDataCompactDualCarrierSplitContract_of_sourceInvariantFiniteRankCarrierContract`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.sourceInvariantFiniteRankCarrierContract_of_boundaryDataCompactDualCarrierSplitContract`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.residual_boundaryDataCompactDualCarrierSplit_nonempty_iff_sourceInvariantFiniteRankCarrier_nonempty`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.currentR711SourceFiniteRankToCarrierSplitTargetNames`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.R711SourceFiniteRankToCarrierSplitSnapshot`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.currentR711SourceFiniteRankToCarrierSplitSnapshot`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.currentR711SourceFiniteRankToCarrierSplitSnapshot_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.currentR711SourceFiniteRankToCarrierSplitTargetNames_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.R711_substantiveTheoremCount`
 
 Depends on: `main-hc-axiom-relative`
 
@@ -2262,6 +2275,7 @@ Files:
 - `HodgeReduction/HCGapL4/FrontC143_H8ResidualCompactDualRankBoundSharpness.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontC144_H8ResidualSourceInvariantFiniteRankCarrierRoute.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontC145_H8ResidualSourceInvariantRankBoundSharpness.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean` -- on-disk-unloaded
 - `HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean` -- on-disk-unloaded
 - `HodgeReduction/HCGapL4/R476_MultiFrontWave6Audit.lean` -- on-disk-unloaded
@@ -4130,6 +4144,19 @@ Declarations:
 - `HodgeReduction.HCGapL4.FrontC145_H8ResidualSourceInvariantRankBoundSharpness.currentR710SourceInvariantRankBoundSharpnessSnapshot_eq_texStatus`
 - `HodgeReduction.HCGapL4.FrontC145_H8ResidualSourceInvariantRankBoundSharpness.currentR710SourceInvariantRankBoundSharpnessTargetNames_eq_texStatus`
 - `HodgeReduction.HCGapL4.FrontC145_H8ResidualSourceInvariantRankBoundSharpness.R710_substantiveTheoremCount`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.source_invariants_eq_H8_of_sourceInvariantFiniteRankCarrierContract`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.compactDual_eq_H8_of_sourceInvariantFiniteRankCarrierContract`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.boundaryDataCompactDualH8Contract_of_sourceInvariantFiniteRankCarrierContract`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.boundaryDataSourceSurjectivityContract_of_sourceInvariantFiniteRankCarrierContract`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.boundaryDataCompactDualCarrierSplitContract_of_sourceInvariantFiniteRankCarrierContract`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.sourceInvariantFiniteRankCarrierContract_of_boundaryDataCompactDualCarrierSplitContract`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.residual_boundaryDataCompactDualCarrierSplit_nonempty_iff_sourceInvariantFiniteRankCarrier_nonempty`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.currentR711SourceFiniteRankToCarrierSplitTargetNames`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.R711SourceFiniteRankToCarrierSplitSnapshot`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.currentR711SourceFiniteRankToCarrierSplitSnapshot`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.currentR711SourceFiniteRankToCarrierSplitSnapshot_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.currentR711SourceFiniteRankToCarrierSplitTargetNames_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.R711_substantiveTheoremCount`
 
 Files:
 - `HodgeReduction/HCGapL4/FrontA_DeligneH0SheafRealization.lean` -- registered
@@ -4277,6 +4304,7 @@ Files:
 - `HodgeReduction/HCGapL4/FrontC143_H8ResidualCompactDualRankBoundSharpness.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontC144_H8ResidualSourceInvariantFiniteRankCarrierRoute.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontC145_H8ResidualSourceInvariantRankBoundSharpness.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean` -- on-disk-unloaded
 - `HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean` -- on-disk-unloaded
 - `HodgeReduction/HCGapL4/R451_MultiFrontFrontierAudit.lean` -- registered

@@ -45,7 +45,7 @@ Kernel cut ledger.  These are audit-visible unresolved constants on the endpoint
 Live subgaps exposed by the current route:
 | priority | gap | labelled debt files | declarations | taxonomy files |
 |---------:|-----|--------------------:|--------------|----------------|
-| 1 | `gap:G-hcgap-l4-multifront` (active-open) | 308 | `HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance.e7EVIICompactDualHodgeDiamond`, `HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance.v56Weight3HodgeDiamond`, `HodgeReduction.HCGapL4.FrontC8_V56MTBridge.EVIICompactDual_to_V56_Weight3_Bridge`, +1176 more | `HodgeReduction/HCGapL4/FrontA_DeligneH0SheafRealization.lean`, `HodgeReduction/HCGapL4/FrontB_BailyBorelConnectedness.lean`, `HodgeReduction/HCGapL4/FrontC_E7LowDegreeHodgeNumbers.lean`, +150 more |
+| 1 | `gap:G-hcgap-l4-multifront` (active-open) | 308 | `HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance.e7EVIICompactDualHodgeDiamond`, `HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance.v56Weight3HodgeDiamond`, `HodgeReduction.HCGapL4.FrontC8_V56MTBridge.EVIICompactDual_to_V56_Weight3_Bridge`, +1189 more | `HodgeReduction/HCGapL4/FrontA_DeligneH0SheafRealization.lean`, `HodgeReduction/HCGapL4/FrontB_BailyBorelConnectedness.lean`, `HodgeReduction/HCGapL4/FrontC_E7LowDegreeHodgeNumbers.lean`, +151 more |
 
 Priority uses the project-configured `gapPriority` order first; remaining active subgaps are sorted mechanically by labelled debt file count.  It is a triage order, not a mathematical proof of easiest-first.
 
@@ -59,8 +59,8 @@ Active exploratory attack waves on the L4 / cohomology-profile / connectedness p
 
 - status: `active-open`
 - owner route(s): `chain:hcgap-l4-multifront-active`
-- prove/provide declaration(s): `HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance.e7EVIICompactDualHodgeDiamond`, `HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance.v56Weight3HodgeDiamond`, `HodgeReduction.HCGapL4.FrontC8_V56MTBridge.EVIICompactDual_to_V56_Weight3_Bridge`, `HodgeReduction.HCGapL4.FrontC9_EVIIHodgeNumberComputation.eviiCompactDualCertification`, `HodgeReduction.HCGapL4.FrontC10_V56CohomologyIdentification.EVII_V56_CohomologyBridge`, `HodgeReduction.HCGapL4.FrontC11_ShimuraBettiComputation.shimuraEVIIExpectedBettiKnownHodgeSumCertification_current`, +1173 more
-- start files: `HodgeReduction/HCGapL4/FrontA_DeligneH0SheafRealization.lean [registered]`, `HodgeReduction/HCGapL4/FrontB_BailyBorelConnectedness.lean [registered]`, `HodgeReduction/HCGapL4/FrontC_E7LowDegreeHodgeNumbers.lean [registered]`, `HodgeReduction/HCGapL4/FrontD_E7ToCMChowCorrespondence.lean [registered]`, `HodgeReduction/HCGapL4/FrontE_RealCarrierProfileMatching.lean [registered]`, `HodgeReduction/HCGapL4/FrontC6_AllDegreeHodgeRankAdapter.lean [registered]`, +147 more
+- prove/provide declaration(s): `HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance.e7EVIICompactDualHodgeDiamond`, `HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance.v56Weight3HodgeDiamond`, `HodgeReduction.HCGapL4.FrontC8_V56MTBridge.EVIICompactDual_to_V56_Weight3_Bridge`, `HodgeReduction.HCGapL4.FrontC9_EVIIHodgeNumberComputation.eviiCompactDualCertification`, `HodgeReduction.HCGapL4.FrontC10_V56CohomologyIdentification.EVII_V56_CohomologyBridge`, `HodgeReduction.HCGapL4.FrontC11_ShimuraBettiComputation.shimuraEVIIExpectedBettiKnownHodgeSumCertification_current`, +1186 more
+- start files: `HodgeReduction/HCGapL4/FrontA_DeligneH0SheafRealization.lean [registered]`, `HodgeReduction/HCGapL4/FrontB_BailyBorelConnectedness.lean [registered]`, `HodgeReduction/HCGapL4/FrontC_E7LowDegreeHodgeNumbers.lean [registered]`, `HodgeReduction/HCGapL4/FrontD_E7ToCMChowCorrespondence.lean [registered]`, `HodgeReduction/HCGapL4/FrontE_RealCarrierProfileMatching.lean [registered]`, `HodgeReduction/HCGapL4/FrontC6_AllDegreeHodgeRankAdapter.lean [registered]`, +148 more
 - classification note: `orphan` / `on-disk-unloaded` here means the file is not endpoint-reached yet.  For an active replacement route this is expected until a new theorem consumes the branch and removes the main cut; it is not by itself a quarantine signal.
 - trick-audit priority: no W5 Prop-definition finding in the listed start files.
 - import-graph heads touching this gap:
@@ -116,7 +116,7 @@ Open mathematical cut ledger:
 | `chain:main-hc-axiom-relative` | milestone | conditional | `chain:full-hc-final-target` | `gap:G-full-hc`, `gap:G-main-hc`, `gap:G-l1-e7-shimura-tor`, `gap:G-l2-cohomology-construction`, `gap:G-l3-v56-mt-identification`, +2 more | cut: 2, infra: 1, on-chain: 2 |
 | `chain:unconditional-classical` | support | closed-modulo-cy3-citation | - | `gap:G-classical-mathlib-port` | cut: 1, on-chain: 1 |
 | `chain:hcgap-l2-trivial-instances` | support | stable | `chain:main-hc-axiom-relative` | `gap:G-l2-cohomology-construction` | registered: 3 |
-| `chain:hcgap-l4-multifront-active` | active | exploratory | `chain:main-hc-axiom-relative` | `gap:G-hcgap-l4-multifront` | on-disk-unloaded: 3, registered: 127 |
+| `chain:hcgap-l4-multifront-active` | active | exploratory | `chain:main-hc-axiom-relative` | `gap:G-hcgap-l4-multifront` | on-disk-unloaded: 3, registered: 128 |
 | `chain:concrete-evii-toy` | support | closed-toy | `chain:main-hc-axiom-relative` | - | on-disk-unloaded: 1 |
 | `chain:historical-cone-audits` | infra | infra | `chain:main-hc-axiom-relative` | - | on-disk-unloaded: 4 |
 
@@ -133,7 +133,7 @@ Open mathematical cut ledger:
 | `gap:G-l4-cm-abelian-hc` | open | `chain:main-hc-axiom-relative` | `HodgeReduction.hyp_HC_CM_Ab_real`, `HodgeReduction.absHodgeClassesAtDegreeCM`, `HodgeReduction.deligne_1982_abs_hodge_cm`, +5 more | cut: 2, infra: 1, on-disk-unloaded: 2 |
 | `gap:G-l4-mt-correspondence` | open | `chain:main-hc-axiom-relative` | `HodgeReduction.mt_correspondence_e7_witness_exists`, `HodgeReduction.e7_cm_witness_exists`, `HodgeReduction.e7_chosen_witness_correspondence_package_exists`, +11 more | cut: 3, infra: 1, registered: 1 |
 | `gap:G-classical-mathlib-port` | deferred | `chain:unconditional-classical` | `HodgeReduction.e6_classical_remainder_exists`, `HodgeReduction.e6_remainder_transfer`, `HodgeReduction.e6_factor_classical_transfer`, +9 more | cut: 3, on-chain: 2 |
-| `gap:G-hcgap-l4-multifront` | active-open | `chain:hcgap-l4-multifront-active` | `HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance.e7EVIICompactDualHodgeDiamond`, `HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance.v56Weight3HodgeDiamond`, `HodgeReduction.HCGapL4.FrontC8_V56MTBridge.EVIICompactDual_to_V56_Weight3_Bridge`, +1176 more | on-disk-unloaded: 3, registered: 150 |
+| `gap:G-hcgap-l4-multifront` | active-open | `chain:hcgap-l4-multifront-active` | `HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance.e7EVIICompactDualHodgeDiamond`, `HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance.v56Weight3HodgeDiamond`, `HodgeReduction.HCGapL4.FrontC8_V56MTBridge.EVIICompactDual_to_V56_Weight3_Bridge`, +1189 more | on-disk-unloaded: 3, registered: 151 |
 
 ## Automatic Route Labels
 
@@ -141,23 +141,23 @@ These labels are generated for debt files from imports, names, source text, and 
 
 | route label | state | files | dominant bucket | classes | latest |
 |-------------|-------|------:|-----------------|---------|--------|
-| `chain:main-hc-axiom-relative` | active/exploring | 387 | core-support | on-disk-unloaded: 145, orphan: 242 | 2026-06-02 05:06 |
-| `chain:hcgap-l4-multifront-active` | active/exploring | 308 | core-support | on-disk-unloaded: 94, orphan: 214 | 2026-06-02 05:06 |
-| `gap:G-hcgap-l4-multifront` | active/exploring | 308 | core-support | on-disk-unloaded: 94, orphan: 214 | 2026-06-02 05:06 |
-| `gap:G-main-hc` | active/exploring | 288 | core-support | on-disk-unloaded: 74, orphan: 214 | 2026-06-02 05:06 |
-| `gap:G-l1-e7-shimura-tor` | active/exploring | 280 | core-support | on-disk-unloaded: 68, orphan: 212 | 2026-06-02 05:06 |
-| `gap:G-l2-cohomology-construction` | active/exploring | 256 | core-support | on-disk-unloaded: 100, orphan: 156 | 2026-06-02 05:06 |
-| `gap:G-l4-mt-correspondence` | active/exploring | 142 | core-support | on-disk-unloaded: 39, orphan: 103 | 2026-06-02 05:06 |
-| `gap:G-l4-cm-abelian-hc` | active/exploring | 115 | core-support | on-disk-unloaded: 43, orphan: 72 | 2026-06-02 05:06 |
-| `gap:G-l3-v56-mt-identification` | active/exploring | 96 | core-support | on-disk-unloaded: 59, orphan: 37 | 2026-06-02 05:06 |
-| `chain:unconditional-classical` | active/exploring | 36 | core-support | on-disk-unloaded: 24, orphan: 12 | 2026-06-02 05:06 |
-| `chain:full-hc-final-target` | active/exploring | 25 | core-support | on-disk-unloaded: 16, orphan: 9 | 2026-06-02 05:06 |
-| `gap:G-full-hc` | active/exploring | 25 | core-support | on-disk-unloaded: 16, orphan: 9 | 2026-06-02 05:06 |
-| `chain:hcgap-l2-trivial-instances` | closed/support | 256 | core-support | on-disk-unloaded: 100, orphan: 156 | 2026-06-02 05:06 |
-| `chain:concrete-evii-toy` | closed/support | 155 | core-support | on-disk-unloaded: 66, orphan: 89 | 2026-06-02 05:06 |
-| `chain:master-paper-import-ledger` | closed/support | 21 | core-support | on-disk-unloaded: 14, orphan: 7 | 2026-06-02 05:06 |
-| `gap:G-classical-mathlib-port` | classified | 28 | core-support | on-disk-unloaded: 17, orphan: 11 | 2026-06-02 05:06 |
-| `gap:G-master-paper-import` | classified | 21 | core-support | on-disk-unloaded: 14, orphan: 7 | 2026-06-02 05:06 |
+| `chain:main-hc-axiom-relative` | active/exploring | 387 | core-support | on-disk-unloaded: 145, orphan: 242 | 2026-06-02 05:21 |
+| `chain:hcgap-l4-multifront-active` | active/exploring | 308 | core-support | on-disk-unloaded: 94, orphan: 214 | 2026-06-02 05:21 |
+| `gap:G-hcgap-l4-multifront` | active/exploring | 308 | core-support | on-disk-unloaded: 94, orphan: 214 | 2026-06-02 05:21 |
+| `gap:G-main-hc` | active/exploring | 288 | core-support | on-disk-unloaded: 74, orphan: 214 | 2026-06-02 05:21 |
+| `gap:G-l1-e7-shimura-tor` | active/exploring | 280 | core-support | on-disk-unloaded: 68, orphan: 212 | 2026-06-02 05:21 |
+| `gap:G-l2-cohomology-construction` | active/exploring | 256 | core-support | on-disk-unloaded: 100, orphan: 156 | 2026-06-02 05:21 |
+| `gap:G-l4-mt-correspondence` | active/exploring | 142 | core-support | on-disk-unloaded: 39, orphan: 103 | 2026-06-02 05:21 |
+| `gap:G-l4-cm-abelian-hc` | active/exploring | 115 | core-support | on-disk-unloaded: 43, orphan: 72 | 2026-06-02 05:21 |
+| `gap:G-l3-v56-mt-identification` | active/exploring | 96 | core-support | on-disk-unloaded: 59, orphan: 37 | 2026-06-02 05:21 |
+| `chain:unconditional-classical` | active/exploring | 36 | core-support | on-disk-unloaded: 24, orphan: 12 | 2026-06-02 05:21 |
+| `chain:full-hc-final-target` | active/exploring | 25 | core-support | on-disk-unloaded: 16, orphan: 9 | 2026-06-02 05:21 |
+| `gap:G-full-hc` | active/exploring | 25 | core-support | on-disk-unloaded: 16, orphan: 9 | 2026-06-02 05:21 |
+| `chain:hcgap-l2-trivial-instances` | closed/support | 256 | core-support | on-disk-unloaded: 100, orphan: 156 | 2026-06-02 05:21 |
+| `chain:concrete-evii-toy` | closed/support | 155 | core-support | on-disk-unloaded: 66, orphan: 89 | 2026-06-02 05:21 |
+| `chain:master-paper-import-ledger` | closed/support | 21 | core-support | on-disk-unloaded: 14, orphan: 7 | 2026-06-02 05:21 |
+| `gap:G-classical-mathlib-port` | classified | 28 | core-support | on-disk-unloaded: 17, orphan: 11 | 2026-06-02 05:21 |
+| `gap:G-master-paper-import` | classified | 21 | core-support | on-disk-unloaded: 14, orphan: 7 | 2026-06-02 05:21 |
 | `chain:historical-cone-audits` | classified | 15 | core-support | on-disk-unloaded: 10, orphan: 5 | 2026-05-29 03:18 |
 
 ## Branch Head State Summary
@@ -2012,6 +2012,19 @@ Entry declarations:
 - `HodgeReduction.HCGapL4.FrontC145_H8ResidualSourceInvariantRankBoundSharpness.currentR710SourceInvariantRankBoundSharpnessSnapshot_eq_texStatus`
 - `HodgeReduction.HCGapL4.FrontC145_H8ResidualSourceInvariantRankBoundSharpness.currentR710SourceInvariantRankBoundSharpnessTargetNames_eq_texStatus`
 - `HodgeReduction.HCGapL4.FrontC145_H8ResidualSourceInvariantRankBoundSharpness.R710_substantiveTheoremCount`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.source_invariants_eq_H8_of_sourceInvariantFiniteRankCarrierContract`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.compactDual_eq_H8_of_sourceInvariantFiniteRankCarrierContract`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.boundaryDataCompactDualH8Contract_of_sourceInvariantFiniteRankCarrierContract`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.boundaryDataSourceSurjectivityContract_of_sourceInvariantFiniteRankCarrierContract`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.boundaryDataCompactDualCarrierSplitContract_of_sourceInvariantFiniteRankCarrierContract`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.sourceInvariantFiniteRankCarrierContract_of_boundaryDataCompactDualCarrierSplitContract`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.residual_boundaryDataCompactDualCarrierSplit_nonempty_iff_sourceInvariantFiniteRankCarrier_nonempty`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.currentR711SourceFiniteRankToCarrierSplitTargetNames`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.R711SourceFiniteRankToCarrierSplitSnapshot`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.currentR711SourceFiniteRankToCarrierSplitSnapshot`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.currentR711SourceFiniteRankToCarrierSplitSnapshot_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.currentR711SourceFiniteRankToCarrierSplitTargetNames_eq_texStatus`
+- `HodgeReduction.HCGapL4.FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.R711_substantiveTheoremCount`
 
 Taxonomy files:
 - `HodgeReduction/HCGapL4/FrontA_DeligneH0SheafRealization.lean` -- registered
@@ -2141,6 +2154,7 @@ Taxonomy files:
 - `HodgeReduction/HCGapL4/FrontC143_H8ResidualCompactDualRankBoundSharpness.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontC144_H8ResidualSourceInvariantFiniteRankCarrierRoute.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontC145_H8ResidualSourceInvariantRankBoundSharpness.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC146_H8ResidualSourceFiniteRankToCarrierSplit.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean` -- on-disk-unloaded
 - `HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean` -- on-disk-unloaded
 - `HodgeReduction/HCGapL4/R476_MultiFrontWave6Audit.lean` -- on-disk-unloaded
