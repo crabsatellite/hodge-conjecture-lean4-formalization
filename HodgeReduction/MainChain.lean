@@ -31,6 +31,7 @@ import HodgeReduction.HCGapL4.FrontC110_H8ResidualBoundaryDataTargetLineEquivale
 import HodgeReduction.HCGapL4.FrontC111_H8ResidualBoundaryDataCompactDualEquivalence
 import HodgeReduction.HCGapL4.FrontC112_H8ResidualExactImageContainmentBoundaryEquivalence
 import HodgeReduction.HCGapL4.FrontC113_H8ResidualExactImageCompactDualContainmentEquivalence
+import HodgeReduction.HCGapL4.FrontC114_H8ResidualExactImageCartanContainmentEquivalence
 
 /-!
 # Hodge main-chain audit configuration
@@ -931,7 +932,7 @@ def config : ChainAudit.ProjectConfig := {
     },
     {
       id := "G-hcgap-l4-multifront"
-      title := "HCGapL4 multi-front Layer-4 attack waves (R420 -- R677)"
+      title := "HCGapL4 multi-front Layer-4 attack waves (R420 -- R678)"
       status := "active-open"
       summary :=
         "Active exploratory attack waves on the L4 / cohomology-profile / connectedness pipeline: FrontA (Deligne H0 sheaf realization), FrontB (Baily--Borel connectedness), FrontC (E_7 low-degree Hodge numbers + Hodge polynomial algebra + all-degree rank adapter + EVII/V56/Shimura expected Betti profile), FrontD (E_7 -> CM Chow correspondence + Deligne 1982 minimal fragment), FrontE (real-carrier profile matching + R405 conditional transfer feed).  Audits R451 / R456 / R460 / R465 / R470 / R476 are wave-level summaries.  R552 certifies the expected Shimura Betti profile degree-by-degree from EVII compact-dual Hodge sums plus the isolated V56 degree-3 contribution; R553 ties that finite V56 contribution to the actual `PureHodgeStructure V56 3` infrastructure; R554 combines the Matsushima, Eisenstein, and cuspidal trivial-module infrastructure into an honest boundary theorem; R555 proves the Cartan compact-dual source bridge and reduces the R554 source equality to `surjectivity_source = source_invariants`; R556 turns both source/target boundary equalities into finite-dimensional containment plus finrank obligations, routing the target through the cuspidal trivial-module part; R557 proves the target containment follows from source containment by Matsushima equivariance and the surjectivity image equation; R558 proves target finrank is transported from source finrank by `j_q` injectivity and the Matsushima image equation; R559 rewrites the remaining source obligations through the compact-dual/Cartan source subspace; R560 gives a Lean countermodel showing those compact-dual obligations are not consequences of the current abstract interface; R561 proves that compact-dual exact image plus target-invariant exactness is enough to recover the R554/R559 boundary data; R562 proves target exactness follows from compact-dual exact image plus the compactDual/trivialModulePart rank bridge; R563 proves compact-dual exact image is equivalent to `surjectivity_source = compactDual`; R564 proves the actual compact-dual `H8` carrier has rank one and reduces the rank bridge to `compactDual = H8` plus rank-one of `trivialModulePart`; R565 proves that the trivial-module rank-one fact follows from exact Cartan image equality `Submodule.map j_q trivialModuleGK_H8 = trivialModulePart`; R566 rewrites source equality and compactDual/H8 identification through the same Cartan H8 line; R567 proves by countermodel that those Cartan-line exactness statements are not consequences of the current abstract interface; R568 rewrites the exact Cartan image equality as scalar surjectivity by `j_q (r * h^4)` onto the trivial-module part, and shows the containment direction follows from compactDual = Cartan; R569 gives a countermodel showing compactDual = Cartan still does not force scalar surjectivity; R570 proves rank-one of the trivial-module part plus compactDual = Cartan does force exact Cartan image and scalar preimages; R571 reframes the surviving obligations as source equality, source-invariants/H8 equality, and target rank; R572 routes the target rank through the expected degree-8 Shimura Betti slot; R573 splits source-invariants/H8 into no-extra-source containment plus membership of the generator `h^4`, with a rank-one alternate criterion; R574 pushes those two source-carrier facts back to the compact-dual carrier: prove `compactDual <= H8` and prove `h^4` lies in compactDual; R575 rewrites those compact-dual carrier targets as the two Cartan/compactDual containments; R576 rewrites the remaining source equality as two source/Cartan containment directions and feeds all four Cartan containment directions into the same boundary package; R577 proves by countermodel that those four carrier containments still do not force the target expected-Betti rank; R578 routes the target rank through the degree-8 compact-dual Hodge-sum profile certified in FrontC11; R579 derives that target Hodge-sum rank from exact Cartan image equality; R580 derives exact Cartan image from compactDual/Cartan two-sided containment plus scalar preimage surjectivity; R581 proves that target Hodge-sum rank and scalar-preimage surjectivity are equivalent once the four carrier directions are fixed; R582 rewrites the four Cartan carrier directions as source/compactDual H8 no-extra plus h^4 generator-membership splits; R583 collapses each H8 split to exact equality with H8; R584 translates those H8 equalities into Matsushima boundary language and proves target Hodge-sum rank is equivalent to `surjectivity_target = trivialModulePart`; R585 proves that, after `compactDual = H8`, this concrete boundary package is equivalent to the existing `MatsushimaV56BoundaryData`; R586 records a countermodel showing the H8 carrier equalities alone do not force the target boundary equality or boundary data; R587 isolates the remaining target boundary as the single reverse containment `trivialModulePart <= surjectivity_target`, and proves that this containment is also not forced by the abstract H8 carrier interface; R588 proves this reverse containment is exactly the element-level scalar-preimage statement `forall beta in trivialModulePart, exists r, j_q (r * h^4) = beta` once `source = H8`, with no finite-dimensional rank hypothesis; R589--R643 progressively normalize the same target side through rank-one, expected-Betti, saturation, quotient, and excess-finrank spellings.  R644--R675 identify the currently preferred target-side spellings as one gap: `targetInvariantExcessQuotient = bot`, `target_invariants <= span {j_q(h^4)}`, `target_invariants = span {j_q(h^4)}`, and bundled finite-dimensional target invariants plus `finrank target_invariants <= shimuraEVIIExpectedBetti 8`; R672 proves that honest `MatsushimaV56BoundaryData` closes exact image and, with source-H8, feeds this target-side theorem; R673 proves this boundary-data/source-H8 spelling is equivalent to the current line-equality residual, so it is not a stronger hidden premise; R674 proves that under boundary data the target-line equality itself recovers source-H8; R675 proves the same boundary route can be read as boundary data plus `compactDual = H8`, equivalently target-line equality; R676 proves the R636 exact-image/reverse-containment contract is equivalent to the current target-line residual and the boundary-data/compact-dual spelling; R677 rewrites the R676 source-H8 item exactly as `compactDual = H8`, so exact image, compactDual-H8, and `trivialModulePart <= surjectivity_target` are a current concrete attack route, not a stronger premise.  No new axioms."
@@ -1049,6 +1050,7 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction/HCGapL4/FrontC111_H8ResidualBoundaryDataCompactDualEquivalence.lean",
         "HodgeReduction/HCGapL4/FrontC112_H8ResidualExactImageContainmentBoundaryEquivalence.lean",
         "HodgeReduction/HCGapL4/FrontC113_H8ResidualExactImageCompactDualContainmentEquivalence.lean",
+        "HodgeReduction/HCGapL4/FrontC114_H8ResidualExactImageCartanContainmentEquivalence.lean",
         "HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean",
         "HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean",
         "HodgeReduction/HCGapL4/R451_MultiFrontFrontierAudit.lean",
@@ -1851,7 +1853,20 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction.HCGapL4.FrontC113_H8ResidualExactImageCompactDualContainmentEquivalence.currentR677ExactImageCompactDualContainmentSnapshot",
         "HodgeReduction.HCGapL4.FrontC113_H8ResidualExactImageCompactDualContainmentEquivalence.currentR677ExactImageCompactDualContainmentSnapshot_eq_texStatus",
         "HodgeReduction.HCGapL4.FrontC113_H8ResidualExactImageCompactDualContainmentEquivalence.currentR677ExactImageCompactDualContainmentTargetNames_eq_texStatus",
-        "HodgeReduction.HCGapL4.FrontC113_H8ResidualExactImageCompactDualContainmentEquivalence.R677_substantiveTheoremCount"
+        "HodgeReduction.HCGapL4.FrontC113_H8ResidualExactImageCompactDualContainmentEquivalence.R677_substantiveTheoremCount",
+        "HodgeReduction.HCGapL4.FrontC114_H8ResidualExactImageCartanContainmentEquivalence.compactDual_eq_H8_iff_cartan_containments",
+        "HodgeReduction.HCGapL4.FrontC114_H8ResidualExactImageCartanContainmentEquivalence.EVIIH8ResidualExactImageCartanContainmentContract",
+        "HodgeReduction.HCGapL4.FrontC114_H8ResidualExactImageCartanContainmentEquivalence.exactImageCartanContainmentContract_of_exactImageCompactDualContainmentContract",
+        "HodgeReduction.HCGapL4.FrontC114_H8ResidualExactImageCartanContainmentEquivalence.exactImageCompactDualContainmentContract_of_exactImageCartanContainmentContract",
+        "HodgeReduction.HCGapL4.FrontC114_H8ResidualExactImageCartanContainmentEquivalence.residual_exactImageCompactDualContainment_nonempty_iff_exactImageCartanContainment_nonempty",
+        "HodgeReduction.HCGapL4.FrontC114_H8ResidualExactImageCartanContainmentEquivalence.residual_exactImageCartanContainment_nonempty_iff_targetInvariantLineEquality_nonempty",
+        "HodgeReduction.HCGapL4.FrontC114_H8ResidualExactImageCartanContainmentEquivalence.residual_exactImageCartanContainment_nonempty_iff_boundaryDataCompactDualH8_nonempty",
+        "HodgeReduction.HCGapL4.FrontC114_H8ResidualExactImageCartanContainmentEquivalence.currentR678ExactImageCartanContainmentTargetNames",
+        "HodgeReduction.HCGapL4.FrontC114_H8ResidualExactImageCartanContainmentEquivalence.R678ExactImageCartanContainmentSnapshot",
+        "HodgeReduction.HCGapL4.FrontC114_H8ResidualExactImageCartanContainmentEquivalence.currentR678ExactImageCartanContainmentSnapshot",
+        "HodgeReduction.HCGapL4.FrontC114_H8ResidualExactImageCartanContainmentEquivalence.currentR678ExactImageCartanContainmentSnapshot_eq_texStatus",
+        "HodgeReduction.HCGapL4.FrontC114_H8ResidualExactImageCartanContainmentEquivalence.currentR678ExactImageCartanContainmentTargetNames_eq_texStatus",
+        "HodgeReduction.HCGapL4.FrontC114_H8ResidualExactImageCartanContainmentEquivalence.R678_substantiveTheoremCount"
       ]
     }
   ]
@@ -2451,7 +2466,7 @@ def config : ChainAudit.ProjectConfig := {
     },
     {
       id := "hcgap-l4-multifront-active"
-      title := "HCGapL4 multi-front attack waves (R420 -- R677)"
+      title := "HCGapL4 multi-front attack waves (R420 -- R678)"
       kind := "active"
       status := "exploratory"
       summary :=
@@ -3357,7 +3372,20 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction.HCGapL4.FrontC113_H8ResidualExactImageCompactDualContainmentEquivalence.currentR677ExactImageCompactDualContainmentSnapshot",
         "HodgeReduction.HCGapL4.FrontC113_H8ResidualExactImageCompactDualContainmentEquivalence.currentR677ExactImageCompactDualContainmentSnapshot_eq_texStatus",
         "HodgeReduction.HCGapL4.FrontC113_H8ResidualExactImageCompactDualContainmentEquivalence.currentR677ExactImageCompactDualContainmentTargetNames_eq_texStatus",
-        "HodgeReduction.HCGapL4.FrontC113_H8ResidualExactImageCompactDualContainmentEquivalence.R677_substantiveTheoremCount"
+        "HodgeReduction.HCGapL4.FrontC113_H8ResidualExactImageCompactDualContainmentEquivalence.R677_substantiveTheoremCount",
+        "HodgeReduction.HCGapL4.FrontC114_H8ResidualExactImageCartanContainmentEquivalence.compactDual_eq_H8_iff_cartan_containments",
+        "HodgeReduction.HCGapL4.FrontC114_H8ResidualExactImageCartanContainmentEquivalence.EVIIH8ResidualExactImageCartanContainmentContract",
+        "HodgeReduction.HCGapL4.FrontC114_H8ResidualExactImageCartanContainmentEquivalence.exactImageCartanContainmentContract_of_exactImageCompactDualContainmentContract",
+        "HodgeReduction.HCGapL4.FrontC114_H8ResidualExactImageCartanContainmentEquivalence.exactImageCompactDualContainmentContract_of_exactImageCartanContainmentContract",
+        "HodgeReduction.HCGapL4.FrontC114_H8ResidualExactImageCartanContainmentEquivalence.residual_exactImageCompactDualContainment_nonempty_iff_exactImageCartanContainment_nonempty",
+        "HodgeReduction.HCGapL4.FrontC114_H8ResidualExactImageCartanContainmentEquivalence.residual_exactImageCartanContainment_nonempty_iff_targetInvariantLineEquality_nonempty",
+        "HodgeReduction.HCGapL4.FrontC114_H8ResidualExactImageCartanContainmentEquivalence.residual_exactImageCartanContainment_nonempty_iff_boundaryDataCompactDualH8_nonempty",
+        "HodgeReduction.HCGapL4.FrontC114_H8ResidualExactImageCartanContainmentEquivalence.currentR678ExactImageCartanContainmentTargetNames",
+        "HodgeReduction.HCGapL4.FrontC114_H8ResidualExactImageCartanContainmentEquivalence.R678ExactImageCartanContainmentSnapshot",
+        "HodgeReduction.HCGapL4.FrontC114_H8ResidualExactImageCartanContainmentEquivalence.currentR678ExactImageCartanContainmentSnapshot",
+        "HodgeReduction.HCGapL4.FrontC114_H8ResidualExactImageCartanContainmentEquivalence.currentR678ExactImageCartanContainmentSnapshot_eq_texStatus",
+        "HodgeReduction.HCGapL4.FrontC114_H8ResidualExactImageCartanContainmentEquivalence.currentR678ExactImageCartanContainmentTargetNames_eq_texStatus",
+        "HodgeReduction.HCGapL4.FrontC114_H8ResidualExactImageCartanContainmentEquivalence.R678_substantiveTheoremCount"
       ]
       gapIds := ["G-hcgap-l4-multifront"]
       dependsOn := ["main-hc-axiom-relative"]
@@ -3414,12 +3442,13 @@ def config : ChainAudit.ProjectConfig := {
         "R675 status: under honest `MatsushimaV56BoundaryData`, the target-line theorem is equivalent to the compact-dual carrier equality `compactDual = H8`.  The boundary route can now be attacked as boundary data plus compact-dual/H8 equality, or equivalently boundary data plus target-line equality.",
         "R676 status: the R636 exact-image containment contract is equivalent to the current target-line residual and to the R675 boundary-data/compact-dual-H8 spelling.  The concrete route can be attacked as exact image, `source_invariants = H8`, and `trivialModulePart <= surjectivity_target`; this is not a stronger premise.",
         "R677 status: the R676 source-H8 item is exactly equivalent to `compactDual = H8` by the existing Matsushima compact-dual/source-invariants comparison.  The exact-image route can therefore be attacked as exact image, compactDual-H8, and target reverse containment, without adding a premise.",
+        "R678 status: the R677 compactDual-H8 item is exactly equivalent to the two Cartan carrier containments `compactDual <= CartanH8` and `CartanH8 <= compactDual`.  The exact-image route can therefore be attacked as four explicit targets: exact image, compactDual-to-Cartan, Cartan-to-compactDual, and target reverse containment.",
         "FrontB: replace the abstract connectedness pipeline with the genuine Baily--Borel connectedness theorem for arithmetic quotients.",
         "FrontD: deliver the E_7 -> CM Chow correspondence at codim 1 first, then lift to all p; this would discharge G-l4-mt-correspondence for the canonical case.",
         "Never re-bundle a closed front into a stronger hypothesis; chainAudit treats `def : Prop` placeholders and conjunction shells as hard failures."
       ]
       successCriterion :=
-        "A successful follow-up closes one live H8 residual target without adding assumptions: prove `MatsushimaV56BoundaryData`, prove `compactDual = H8` under the boundary route, prove the target-side theorem in any equivalent spelling (`targetInvariantExcessQuotient = bot`, `target_invariants <= span {j_q(h^4)}`, `target_invariants = span {j_q(h^4)}`, or bundled finite-dimensional target invariants plus `finrank target_invariants <= shimuraEVIIExpectedBetti 8`), or prove the R677 exact-image containment route: exact image, compactDual-H8, and `trivialModulePart <= surjectivity_target`."
+        "A successful follow-up closes one live H8 residual target without adding assumptions: prove `MatsushimaV56BoundaryData`, prove `compactDual = H8` under the boundary route, prove the target-side theorem in any equivalent spelling (`targetInvariantExcessQuotient = bot`, `target_invariants <= span {j_q(h^4)}`, `target_invariants = span {j_q(h^4)}`, or bundled finite-dimensional target invariants plus `finrank target_invariants <= shimuraEVIIExpectedBetti 8`), or prove the R678 exact-image Cartan containment route: exact image, `compactDual <= CartanH8`, `CartanH8 <= compactDual`, and `trivialModulePart <= surjectivity_target`."
     },
     {
       id := "concrete-evii-toy"
