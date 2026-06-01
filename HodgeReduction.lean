@@ -612,6 +612,7 @@ import HodgeReduction.HCGapL4.FrontC131_H8ResidualBoundaryDataSourceSurjectivity
 import HodgeReduction.HCGapL4.FrontC132_H8ResidualBoundaryDataSourceSurjectivityTargetLineEquivalence
 import HodgeReduction.HCGapL4.FrontC133_H8ResidualBoundarySourceSurjectivityFiniteUpperBoundEquivalence
 import HodgeReduction.HCGapL4.FrontC134_H8ResidualFiniteUpperBoundRankOneTarget
+import HodgeReduction.HCGapL4.FrontC135_H8ResidualFiniteRankOneTrivialMultiplicity
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix
