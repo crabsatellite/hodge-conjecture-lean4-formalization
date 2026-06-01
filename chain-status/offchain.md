@@ -6,7 +6,7 @@ five-way classification:
 
 * quarantine: **0** (explicit failed-route list)
 * infra:      **4** (standalone tools, audit scripts)
-* registered: **146** (configured research route/gap files, off endpoint closure)
+* registered: **147** (configured research route/gap files, off endpoint closure)
 * orphan:     **253** (loaded but unreachable - investigate)
 * on-disk-unloaded: **248** (file exists but not imported by any chain)
 
@@ -25,7 +25,7 @@ five-way classification:
 | `HodgeReduction/MainChain.lean` | 340 | 0 |
 | `HodgeReduction/PaperInventory.lean` | 677 | 0 |
 
-## Registered research routes/gaps (146)
+## Registered research routes/gaps (147)
 
 | file | decls | axioms |
 |------|------:|-------:|
@@ -47,6 +47,7 @@ five-way classification:
 | `HodgeReduction/HCGapL4/FrontC109_H8ResidualBoundaryDataEquivalence.lean` | 31 | 0 |
 | `HodgeReduction/HCGapL4/FrontC10_V56CohomologyIdentification.lean` | 28 | 0 |
 | `HodgeReduction/HCGapL4/FrontC110_H8ResidualBoundaryDataTargetLineEquivalence.lean` | 42 | 0 |
+| `HodgeReduction/HCGapL4/FrontC111_H8ResidualBoundaryDataCompactDualEquivalence.lean` | 42 | 0 |
 | `HodgeReduction/HCGapL4/FrontC11_ShimuraBettiComputation.lean` | 41 | 0 |
 | `HodgeReduction/HCGapL4/FrontC12_V56InfrastructureProfileBridge.lean` | 33 | 0 |
 | `HodgeReduction/HCGapL4/FrontC13_MatsushimaV56BoundaryBridge.lean` | 26 | 0 |
