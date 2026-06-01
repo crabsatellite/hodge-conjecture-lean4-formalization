@@ -590,6 +590,7 @@ import HodgeReduction.HCGapL4.FrontC109_H8ResidualBoundaryDataEquivalence
 import HodgeReduction.HCGapL4.FrontC110_H8ResidualBoundaryDataTargetLineEquivalence
 import HodgeReduction.HCGapL4.FrontC111_H8ResidualBoundaryDataCompactDualEquivalence
 import HodgeReduction.HCGapL4.FrontC112_H8ResidualExactImageContainmentBoundaryEquivalence
+import HodgeReduction.HCGapL4.FrontC113_H8ResidualExactImageCompactDualContainmentEquivalence
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix
