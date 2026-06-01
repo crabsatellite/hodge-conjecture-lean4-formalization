@@ -609,6 +609,7 @@ import HodgeReduction.HCGapL4.FrontC128_H8ResidualSourceH8LineContainmentRoute
 import HodgeReduction.HCGapL4.FrontC129_H8ResidualSourceH8GeneratorIndependence
 import HodgeReduction.HCGapL4.FrontC130_H8ResidualBoundaryDataSourceSurjectivityRoute
 import HodgeReduction.HCGapL4.FrontC131_H8ResidualBoundaryDataSourceSurjectivityObstruction
+import HodgeReduction.HCGapL4.FrontC132_H8ResidualBoundaryDataSourceSurjectivityTargetLineEquivalence
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix
