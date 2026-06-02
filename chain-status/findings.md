@@ -1,10 +1,10 @@
 # HodgeReduction -- all audit findings
 
 
-* total: **8806**  *  FAIL: **0**  *  WARN: **8806**
+* total: **8807**  *  FAIL: **0**  *  WARN: **8807**
 
 
-## W1.orphan (WARN) -- 253
+## W1.orphan (WARN) -- 254
 
 - file `HodgeReduction.Infrastructure.DynkinMarks` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/DynkinMarks.lean)
 - file `HodgeReduction.Infrastructure.SimpleLieAlgebraClassification` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/SimpleLieAlgebraClassification.lean)
@@ -195,6 +195,7 @@
 - file `HodgeReduction.Infrastructure.Automorphic.CuspidalCohomology` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/Automorphic/CuspidalCohomology.lean)
 - file `HodgeReduction.Infrastructure.Automorphic.GKCohomology` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/Automorphic/GKCohomology.lean)
 - file `HodgeReduction.Infrastructure.Automorphic.AtlasE7minus25` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/Automorphic/AtlasE7minus25.lean)
+- file `HodgeReduction.Infrastructure.Automorphic.BorelBottWeil` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/Automorphic/BorelBottWeil.lean)
 - file `HodgeReduction.Infrastructure.KostantCominusculeClassification` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/Infrastructure/KostantCominusculeClassification.lean)
 - file `HodgeReduction.HCGapL4.ClassicalCartanProof` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction/HCGapL4/ClassicalCartanProof.lean)
 - file `HodgeReduction` is orphan (not on-chain, not quarantined, not standalone)  (HodgeReduction.lean)
@@ -266,7 +267,7 @@
 - compile-prune candidate: on-chain `HodgeReduction.HCGapL4.E6CaseClassicalBridge` imports `HodgeReduction.Infrastructure.DynkinMarks` but reflected declarations consume no project decl from that import closure  (HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean)
 - compile-prune candidate: on-chain `HodgeReduction.HCGapL4.E6CaseClassicalBridge` imports `HodgeReduction.Infrastructure.SimpleLieAlgebraClassification` but reflected declarations consume no project decl from that import closure  (HodgeReduction/HCGapL4/E6CaseClassicalBridge.lean)
 
-## W3.on-disk-orphan (WARN) -- 161
+## W3.on-disk-orphan (WARN) -- 160
 
 - file `HodgeReduction/Concrete.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Concrete.lean)
 - file `HodgeReduction/Concrete/EVII.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Concrete/EVII.lean)
@@ -373,7 +374,6 @@
 - file `HodgeReduction/Infrastructure/AbelianVariety/TateModule.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/AbelianVariety/TateModule.lean)
 - file `HodgeReduction/Infrastructure/AlgebraicGeometry/ExponentialSequence.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/AlgebraicGeometry/ExponentialSequence.lean)
 - file `HodgeReduction/Infrastructure/AlgebraicGeometry/FirstChernClass.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/AlgebraicGeometry/FirstChernClass.lean)
-- file `HodgeReduction/Infrastructure/Automorphic/BorelBottWeil.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/Automorphic/BorelBottWeil.lean)
 - file `HodgeReduction/Infrastructure/Automorphic/FrankeEisensteinLayer.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/Automorphic/FrankeEisensteinLayer.lean)
 - file `HodgeReduction/Infrastructure/Automorphic/HeckeCorrespondence.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/Automorphic/HeckeCorrespondence.lean)
 - file `HodgeReduction/Infrastructure/Automorphic/ModularForm.lean` exists on disk but is not imported by the chain and is not quarantined  (HodgeReduction/Infrastructure/Automorphic/ModularForm.lean)
@@ -432,7 +432,7 @@
 
 ## W4.skipped-large-orphan-set (WARN) -- 1
 
-- skipped expensive unused-orphan-import scan because 253 loaded modules are classified orphan; use route labels and W3/W1 first, then narrow the audit entry
+- skipped expensive unused-orphan-import scan because 254 loaded modules are classified orphan; use route labels and W3/W1 first, then narrow the audit entry
 
 ## W5.prop-def (WARN) -- 3731
 
@@ -8826,8 +8826,9 @@
 - theorem `HodgeReduction.HCGapL4.R391_does_not_alter_old_headline` has a literal True/Unit-style conclusion; keep it out of proof chains  (HodgeReduction/HCGapL4/OriginalHeadlineReplacementSafetyAudit.lean)
 - theorem `HodgeReduction.HCGapL4.R391_does_not_define_realized_replacement` has a literal True/Unit-style conclusion; keep it out of proof chains  (HodgeReduction/HCGapL4/OriginalHeadlineReplacementSafetyAudit.lean)
 
-## W8.vacuous-premise (WARN) -- 5
+## W8.vacuous-premise (WARN) -- 6
 
+- theorem/axiom `HodgeReduction.Infrastructure.Automorphic.trivialBorelBottWeilCohomologyData.proof_1` has a literal True/False/Unit-style premise; verify it is not a vacuous conditional wrapper  (HodgeReduction/Infrastructure/Automorphic/BorelBottWeil.lean)
 - theorem/axiom `HodgeReduction.Infrastructure.Automorphic.cuspidalRepData_Unit_C.proof_2` has a literal True/False/Unit-style premise; verify it is not a vacuous conditional wrapper  (HodgeReduction/Infrastructure/Automorphic/Basic.lean)
 - theorem/axiom `HodgeReduction.Infrastructure.Shimura.canonicalModelData_Unit.proof_2` has a literal True/False/Unit-style premise; verify it is not a vacuous conditional wrapper  (HodgeReduction/Infrastructure/Shimura/Basic.lean)
 - theorem/axiom `HodgeReduction.Infrastructure.Shimura.shimuraDatumData_Unit.proof_1` has a literal True/False/Unit-style premise; verify it is not a vacuous conditional wrapper  (HodgeReduction/Infrastructure/Shimura/Basic.lean)

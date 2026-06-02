@@ -8,14 +8,14 @@ This report treats the Lean import graph as the source of truth.  Debt files are
 * taxonomy-labelled files: **12**
 * rule-labelled files: **409**
 * unconnected debt files: **7**
-* class split: on-disk-unloaded: 165, orphan: 253
+* class split: on-disk-unloaded: 164, orphan: 254
 * bucket split: core-support: 418
 
 ## Component Summary
 
 | component | files | latest | earliest | rounds | dominant bucket | classes | anchors | taxonomy | rule | connected |
 |-----------|-------|--------|----------|--------|-----------------|---------|---------|----------|------|-----------|
-| `C001` | 97 | 2026-06-02 08:58 | 2026-05-29 02:11 | - | core-support | on-disk-unloaded: 57, orphan: 40 | cut: 5, infra: 1, on-chain: 11, registered: 10 | 2 | 91 | 91 |
+| `C001` | 97 | 2026-06-02 09:14 | 2026-05-29 02:11 | - | core-support | on-disk-unloaded: 56, orphan: 41 | cut: 5, infra: 1, on-chain: 11, registered: 10 | 2 | 91 | 91 |
 | `C002` | 1 | 2026-05-29 09:22 | 2026-05-29 09:22 | - | core-support | on-disk-unloaded: 1 | on-chain: 1, registered: 1 | 0 | 1 | 1 |
 | `C003` | 3 | 2026-05-29 08:04 | 2026-05-29 07:57 | - | core-support | on-disk-unloaded: 3 | on-chain: 3, registered: 3 | 0 | 3 | 3 |
 | `C004` | 291 | 2026-05-29 05:45 | 2026-05-19 20:41 | R217..R504 | core-support | on-disk-unloaded: 80, orphan: 211 | cut: 13, on-chain: 69, registered: 75 | 7 | 289 | 291 |
@@ -50,7 +50,7 @@ A branch head is an off-chain debt file that no other off-chain debt file import
 
 | head mtime | closure files | state | dominant bucket | classes | anchors | automatic route labels | head path |
 |------------|---------------|-------|-----------------|---------|---------|------------------------|-----------|
-| 2026-06-02 08:58 | 28 | active/exploring | core-support | orphan: 28 | cut: 1, infra: 1, on-chain: 4, registered: 3 | `chain:concrete-evii-toy`, `chain:full-hc-final-target`, `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:master-paper-import-ledger`, `chain:unconditional-classical`, +10 more | `HodgeReduction.lean` |
+| 2026-06-02 09:14 | 28 | active/exploring | core-support | orphan: 28 | cut: 1, infra: 1, on-chain: 4, registered: 3 | `chain:concrete-evii-toy`, `chain:full-hc-final-target`, `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:master-paper-import-ledger`, `chain:unconditional-classical`, +10 more | `HodgeReduction.lean` |
 | 2026-05-29 09:25 | 5 | active/exploring | core-support | on-disk-unloaded: 1, orphan: 4 | - | `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port`, `gap:G-hcgap-l4-multifront`, `gap:G-l2-cohomology-construction`, `gap:G-l3-v56-mt-identification`, +1 more | `HodgeReduction/HCGapL4/CY3SpringerDiscriminant.lean` |
 | 2026-05-29 09:22 | 1 | active/exploring | core-support | on-disk-unloaded: 1 | on-chain: 1, registered: 1 | `chain:hcgap-l2-trivial-instances`, `chain:main-hc-axiom-relative`, `gap:G-l2-cohomology-construction` | `HodgeReduction/HCGapL2/AbelianSurface.lean` |
 | 2026-05-29 08:31 | 3 | active/exploring | core-support | on-disk-unloaded: 1, orphan: 2 | - | `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port`, `gap:G-hcgap-l4-multifront`, `gap:G-l2-cohomology-construction`, `gap:G-l4-mt-correspondence` | `HodgeReduction/HCGapL4/E6CaseProof.lean` |
@@ -117,7 +117,7 @@ A branch head is an off-chain debt file that no other off-chain debt file import
 | 2026-05-29 02:11 | 40 | active/exploring | core-support | on-disk-unloaded: 3, orphan: 37 | on-chain: 34, registered: 30 | `chain:concrete-evii-toy`, `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-l2-cohomology-construction`, `gap:G-l3-v56-mt-identification`, +3 more | `HodgeReduction/HCGapL4/CMFieldSequenceStoppingAudit.lean` |
 | 2026-05-29 02:11 | 33 | active/exploring | core-support | on-disk-unloaded: 1, orphan: 32 | on-chain: 31, registered: 25 | `chain:concrete-evii-toy`, `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-l2-cohomology-construction`, `gap:G-l3-v56-mt-identification`, +3 more | `HodgeReduction/HCGapL4/AbelianVarietyInterfaceECProjectiveRealization.lean` |
 | 2026-05-29 02:11 | 2 | active/exploring | core-support | on-disk-unloaded: 1, orphan: 1 | on-chain: 2, registered: 2 | `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-l2-cohomology-construction`, `gap:G-l4-mt-correspondence`, `gap:G-main-hc` | `HodgeReduction/HCGapL4/ACDReconciliation.lean` |
-| 2026-05-29 02:11 | 57 | active/exploring | core-support | on-disk-unloaded: 32, orphan: 25 | on-chain: 1, registered: 6 | `chain:concrete-evii-toy`, `chain:full-hc-final-target`, `chain:hcgap-l2-trivial-instances`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:master-paper-import-ledger`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port`, +5 more | `HodgeReduction/Concrete.lean` |
+| 2026-05-29 02:11 | 57 | active/exploring | core-support | on-disk-unloaded: 31, orphan: 26 | on-chain: 1, registered: 6 | `chain:concrete-evii-toy`, `chain:full-hc-final-target`, `chain:hcgap-l2-trivial-instances`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:master-paper-import-ledger`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port`, +5 more | `HodgeReduction/Concrete.lean` |
 | 2026-05-29 00:50 | 199 | active/exploring | core-support | on-disk-unloaded: 27, orphan: 172 | cut: 8, on-chain: 39, registered: 51 | `chain:concrete-evii-toy`, `chain:full-hc-final-target`, `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `chain:master-paper-import-ledger`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port`, +9 more | `HodgeReduction/HCGapL4/R504_MultiFrontWave16Audit.lean` |
 | 2026-05-29 00:14 | 180 | active/exploring | core-support | on-disk-unloaded: 8, orphan: 172 | cut: 6, on-chain: 38, registered: 45 | `chain:concrete-evii-toy`, `chain:full-hc-final-target`, `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:master-paper-import-ledger`, `chain:unconditional-classical`, +9 more | `HodgeReduction/ConeAudits/R477_R480_ConeAudit.lean` |
 | 2026-05-28 19:36 | 177 | active/exploring | core-support | on-disk-unloaded: 5, orphan: 172 | cut: 6, on-chain: 38, registered: 43 | `chain:concrete-evii-toy`, `chain:full-hc-final-target`, `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:master-paper-import-ledger`, `chain:unconditional-classical`, +9 more | `HodgeReduction/ConeAudits/R471_R476_ConeAudit.lean` |
@@ -128,12 +128,12 @@ A branch head is an off-chain debt file that no other off-chain debt file import
 
 ### `C001` -- core-support
 
-* files: **97**  *  time: **2026-05-29 02:11 -> 2026-06-02 08:58**  *  classes: **on-disk-unloaded: 57, orphan: 40**  *  anchors: **cut: 5, infra: 1, on-chain: 11, registered: 10**
+* files: **97**  *  time: **2026-05-29 02:11 -> 2026-06-02 09:14**  *  classes: **on-disk-unloaded: 56, orphan: 41**  *  anchors: **cut: 5, infra: 1, on-chain: 11, registered: 10**
 * automatic route labels: `chain:concrete-evii-toy`, `chain:full-hc-final-target`, `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:master-paper-import-ledger`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port`, `gap:G-full-hc`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-l2-cohomology-construction`, `gap:G-l3-v56-mt-identification`, +4 more
 
 | mtime | class | state | bucket | automatic route labels | path |
 |-------|-------|-------|--------|------------------------|------|
-| 2026-06-02 08:58 | orphan | active/exploring | core-support | `chain:concrete-evii-toy`, `chain:full-hc-final-target`, `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `chain:master-paper-import-ledger`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port`, +9 more | `HodgeReduction.lean` |
+| 2026-06-02 09:14 | orphan | active/exploring | core-support | `chain:concrete-evii-toy`, `chain:full-hc-final-target`, `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `chain:master-paper-import-ledger`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port`, +9 more | `HodgeReduction.lean` |
 | 2026-05-29 15:23 | on-disk-unloaded | active/exploring | core-support | `chain:concrete-evii-toy`, `chain:hcgap-l2-trivial-instances`, `chain:main-hc-axiom-relative`, `gap:G-l2-cohomology-construction`, `gap:G-l3-v56-mt-identification` | `HodgeReduction/Infrastructure/V56HodgeAlgebra.lean` |
 | 2026-05-29 11:07 | orphan | active/exploring | core-support | `chain:full-hc-final-target`, `chain:hcgap-l2-trivial-instances`, `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `chain:unconditional-classical`, `gap:G-classical-mathlib-port`, `gap:G-full-hc`, `gap:G-hcgap-l4-multifront`, +3 more | `HodgeReduction/HCGapL4/E6V27VacuityBridge.lean` |
 | 2026-05-29 09:25 | on-disk-unloaded | active/exploring | core-support | `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `gap:G-hcgap-l4-multifront`, `gap:G-l3-v56-mt-identification` | `HodgeReduction/HCGapL4/CY3SpringerDiscriminant.lean` |
@@ -216,7 +216,7 @@ A branch head is an off-chain debt file that no other off-chain debt file import
 | 2026-05-29 02:11 | on-disk-unloaded | closed/support | core-support | `chain:concrete-evii-toy` | `HodgeReduction/Infrastructure/Cohomology/AbelJacobi.lean` |
 | 2026-05-29 02:11 | orphan | active/exploring | core-support | `chain:unconditional-classical`, `gap:G-classical-mathlib-port` | `HodgeReduction/Infrastructure/CartanMatrices.lean` |
 | 2026-05-29 02:11 | on-disk-unloaded | active/exploring | core-support | `chain:main-hc-axiom-relative`, `gap:G-l3-v56-mt-identification` | `HodgeReduction/Infrastructure/Automorphic/FrankeEisensteinLayer.lean` |
-| 2026-05-29 02:11 | on-disk-unloaded | unclassified | core-support | - | `HodgeReduction/Infrastructure/Automorphic/BorelBottWeil.lean` |
+| 2026-05-29 02:11 | orphan | unclassified | core-support | - | `HodgeReduction/Infrastructure/Automorphic/BorelBottWeil.lean` |
 | 2026-05-29 02:11 | orphan | active/exploring | core-support | `chain:main-hc-axiom-relative`, `gap:G-l3-v56-mt-identification` | `HodgeReduction/Infrastructure/Automorphic/CuspidalCohomology.lean` |
 | 2026-05-29 02:11 | orphan | unclassified | core-support | - | `HodgeReduction/Infrastructure/Automorphic/Basic.lean` |
 | 2026-05-29 02:11 | orphan | closed/support | core-support | `chain:concrete-evii-toy` | `HodgeReduction/Infrastructure/AlgebraicGeometry/LineBundle.lean` |

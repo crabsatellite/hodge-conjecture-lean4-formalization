@@ -6,9 +6,9 @@ five-way classification:
 
 * quarantine: **0** (explicit failed-route list)
 * infra:      **4** (standalone tools, audit scripts)
-* registered: **194** (configured research route/gap files, off endpoint closure)
-* orphan:     **253** (loaded but unreachable - investigate)
-* on-disk-unloaded: **248** (file exists but not imported by any chain)
+* registered: **195** (configured research route/gap files, off endpoint closure)
+* orphan:     **254** (loaded but unreachable - investigate)
+* on-disk-unloaded: **247** (file exists but not imported by any chain)
 
 
 ## Quarantine (0)
@@ -25,7 +25,7 @@ five-way classification:
 | `HodgeReduction/MainChain.lean` | 340 | 0 |
 | `HodgeReduction/PaperInventory.lean` | 677 | 0 |
 
-## Registered research routes/gaps (194)
+## Registered research routes/gaps (195)
 
 | file | decls | axioms |
 |------|------:|-------:|
@@ -99,6 +99,7 @@ five-way classification:
 | `HodgeReduction/HCGapL4/FrontC156_H8ResidualCompactDualTwoContainmentRoute.lean` | 44 | 0 |
 | `HodgeReduction/HCGapL4/FrontC157_H8ResidualBoundaryCompactDualPrimitiveCollapse.lean` | 32 | 0 |
 | `HodgeReduction/HCGapL4/FrontC158_H8ResidualBoundaryCompactDualIndependence.lean` | 28 | 0 |
+| `HodgeReduction/HCGapL4/FrontC159_H8ResidualPaperCarrierStackIndependence.lean` | 48 | 0 |
 | `HodgeReduction/HCGapL4/FrontC15_MatsushimaBoundaryRankCriterion.lean` | 6 | 0 |
 | `HodgeReduction/HCGapL4/FrontC16_MatsushimaTargetContainmentFromSource.lean` | 6 | 0 |
 | `HodgeReduction/HCGapL4/FrontC17_MatsushimaTargetRankFromSource.lean` | 6 | 0 |
@@ -224,7 +225,7 @@ five-way classification:
 | `HodgeReduction/Research/ShimuraTypeFibre.lean` | 32 | 0 |
 | `HodgeReduction/Research/WitnessLatticeHypothesis.lean` | 28 | 0 |
 
-## Orphan (warning - investigate) (253)
+## Orphan (warning - investigate) (254)
 
 | file | decls | axioms |
 |------|------:|-------:|
@@ -449,6 +450,7 @@ five-way classification:
 | `HodgeReduction/Infrastructure/AlgebraicGeometry/PicardGroup.lean` | 48 | 0 |
 | `HodgeReduction/Infrastructure/Automorphic/AtlasE7minus25.lean` | 51 | 0 |
 | `HodgeReduction/Infrastructure/Automorphic/Basic.lean` | 49 | 0 |
+| `HodgeReduction/Infrastructure/Automorphic/BorelBottWeil.lean` | 46 | 0 |
 | `HodgeReduction/Infrastructure/Automorphic/CuspidalCohomology.lean` | 26 | 0 |
 | `HodgeReduction/Infrastructure/Automorphic/GKCohomology.lean` | 50 | 0 |
 | `HodgeReduction/Infrastructure/CartanMatrices.lean` | 10 | 0 |
@@ -482,7 +484,7 @@ five-way classification:
 | `HodgeReduction/Infrastructure/V56HodgeRank.lean` | 33 | 0 |
 | `HodgeReduction/MathlibCandidates.lean` | 123 | 0 |
 
-## On-disk-unloaded (248)
+## On-disk-unloaded (247)
 
 Files present in the source tree but NOT imported by the entry script.  Either wire them into the chain, mark them quarantine, or delete them.
 
@@ -676,7 +678,6 @@ Files present in the source tree but NOT imported by the entry script.  Either w
 - `HodgeReduction/Infrastructure/AbelianVariety/TateModule.lean`
 - `HodgeReduction/Infrastructure/AlgebraicGeometry/ExponentialSequence.lean`
 - `HodgeReduction/Infrastructure/AlgebraicGeometry/FirstChernClass.lean`
-- `HodgeReduction/Infrastructure/Automorphic/BorelBottWeil.lean`
 - `HodgeReduction/Infrastructure/Automorphic/FrankeEisensteinLayer.lean`
 - `HodgeReduction/Infrastructure/Automorphic/HeckeCorrespondence.lean`
 - `HodgeReduction/Infrastructure/Automorphic/ModularForm.lean`
