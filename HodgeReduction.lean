@@ -664,6 +664,7 @@ import HodgeReduction.HCGapL4.FrontC183_H8ResidualLatestRouteRankOneGeneratorAtt
 import HodgeReduction.HCGapL4.FrontC184_H8ResidualRankOneGeneratorCompactDualH8Collapse
 import HodgeReduction.HCGapL4.FrontC185_H8ResidualRankOneGeneratorPaperCarrierIndependence
 import HodgeReduction.HCGapL4.FrontC186_H8ResidualBoundaryCompactDualTargetRankRoute
+import HodgeReduction.HCGapL4.FrontC187_H8ResidualTargetRankNonzeroSplit
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix
