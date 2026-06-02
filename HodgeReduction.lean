@@ -651,6 +651,7 @@ import HodgeReduction.HCGapL4.FrontC170_H8ResidualFiniteMultiplicityIndependence
 import HodgeReduction.HCGapL4.FrontC171_H8ResidualFiniteMultiplicityQuotientBridge
 import HodgeReduction.HCGapL4.FrontC172_H8ResidualSourceH8QuotientMinimalRoute
 import HodgeReduction.HCGapL4.FrontC173_H8ResidualSourceH8QuotientCollapse
+import HodgeReduction.HCGapL4.FrontC174_H8ResidualBoundaryTargetLineCurrentRoute
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix
