@@ -655,6 +655,7 @@ import HodgeReduction.HCGapL4.FrontC174_H8ResidualBoundaryTargetLineCurrentRoute
 import HodgeReduction.HCGapL4.FrontC175_H8ResidualTargetLinePrimitiveSplit
 import HodgeReduction.HCGapL4.FrontC176_H8ResidualTargetGeneratorBoundaryTransport
 import HodgeReduction.HCGapL4.FrontC177_H8ResidualTargetInvariantFiniteMultiplicityCurrentRoute
+import HodgeReduction.HCGapL4.FrontC178_H8ResidualFiniteMultiplicityScalarPreimageCurrentRoute
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix
