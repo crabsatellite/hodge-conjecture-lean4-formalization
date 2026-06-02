@@ -646,6 +646,7 @@ import HodgeReduction.HCGapL4.FrontC165_H8ResidualCurrentCompactDualGeneratorLin
 import HodgeReduction.HCGapL4.FrontC166_H8ResidualCurrentCompactDualTwoContainmentRoute
 import HodgeReduction.HCGapL4.FrontC167_H8ResidualCurrentTwoContainmentIndependence
 import HodgeReduction.HCGapL4.FrontC168_H8ResidualNoExtraTargetLineEquivalence
+import HodgeReduction.HCGapL4.FrontC169_H8ResidualTargetLineFiniteMultiplicityEquivalence
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix
