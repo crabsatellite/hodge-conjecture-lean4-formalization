@@ -648,6 +648,7 @@ import HodgeReduction.HCGapL4.FrontC167_H8ResidualCurrentTwoContainmentIndepende
 import HodgeReduction.HCGapL4.FrontC168_H8ResidualNoExtraTargetLineEquivalence
 import HodgeReduction.HCGapL4.FrontC169_H8ResidualTargetLineFiniteMultiplicityEquivalence
 import HodgeReduction.HCGapL4.FrontC170_H8ResidualFiniteMultiplicityIndependence
+import HodgeReduction.HCGapL4.FrontC171_H8ResidualFiniteMultiplicityQuotientBridge
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix
