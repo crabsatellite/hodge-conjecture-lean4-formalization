@@ -114,6 +114,7 @@ import HodgeReduction.HCGapL4.FrontC193_H8ResidualBoundaryCompactDualCartanImage
 import HodgeReduction.HCGapL4.FrontC194_H8ResidualCompactDualSourceInvariantBridge
 import HodgeReduction.HCGapL4.FrontC195_H8ResidualSourceInvariantExactRankGenerator
 import HodgeReduction.HCGapL4.FrontC196_H8ResidualExactSourceRankGeneratorIndependence
+import HodgeReduction.HCGapL4.FrontC197_H8ResidualSourceRankNoExtraEquivalence
 
 /-!
 # Hodge main-chain audit configuration
@@ -1014,10 +1015,10 @@ def config : ChainAudit.ProjectConfig := {
     },
     {
       id := "G-hcgap-l4-multifront"
-      title := "HCGapL4 multi-front Layer-4 attack waves (R420 -- R761)"
+      title := "HCGapL4 multi-front Layer-4 attack waves (R420 -- R762)"
       status := "active-open"
       summary :=
-        "Active exploratory attack waves on the L4 / cohomology-profile / connectedness pipeline.  R707--R756 normalize the H8 residual down to the current three-field Cartan-image frontier: prove `compactDual = H8`, prove `surjectivity_source = compactDual`, and prove `trivialModulePart <= Submodule.map j_q CartanH8`.  R756 proves those three fields rebuild honest `MatsushimaV56BoundaryData`.  R757 transports the R723/R724 countermodels to this current frontier: boundary data alone, and the paper-facing GK/Borel--Wallach/BBW/Freudenthal carrier stack plus boundary data, still do not force the current Cartan-image contract.  R758 names the pointwise forward consumer from an actual boundary-data/compact-dual-H8 witness into the current Cartan-image contract and extracts the source and reverse-Cartan-image fields.  R759 proves that the visible compact-dual/H8 carrier gap is exactly the source-invariants/H8 carrier gap, and transports generator/rank-one spellings across that comparison.  R760 proves source-invariants/H8 is exactly the source generator plus exact source-rank-one package.  R761 records the matching guardrail: even boundary data plus exact source rank one does not force source generator membership or source-H8.  The route remains exploratory, not a closure claim."
+        "Active exploratory attack waves on the L4 / cohomology-profile / connectedness pipeline.  R707--R756 normalize the H8 residual down to the current three-field Cartan-image frontier: prove `compactDual = H8`, prove `surjectivity_source = compactDual`, and prove `trivialModulePart <= Submodule.map j_q CartanH8`.  R756 proves those three fields rebuild honest `MatsushimaV56BoundaryData`.  R757 transports the R723/R724 countermodels to this current frontier: boundary data alone, and the paper-facing GK/Borel--Wallach/BBW/Freudenthal carrier stack plus boundary data, still do not force the current Cartan-image contract.  R758 names the pointwise forward consumer from an actual boundary-data/compact-dual-H8 witness into the current Cartan-image contract and extracts the source and reverse-Cartan-image fields.  R759 proves that the visible compact-dual/H8 carrier gap is exactly the source-invariants/H8 carrier gap, and transports generator/rank-one spellings across that comparison.  R760 proves source-invariants/H8 is exactly the source generator plus exact source-rank-one package.  R761 records the matching guardrail: even boundary data plus exact source rank one does not force source generator membership or source-H8.  R762 proves that, once generator placement is fixed, exact source rank one is exactly the no-extra source containment `source_invariants <= H8`.  The route remains exploratory, not a closure claim."
       files := [
         "HodgeReduction/HCGapL4/FrontA_DeligneH0SheafRealization.lean",
         "HodgeReduction/HCGapL4/FrontB_BailyBorelConnectedness.lean",
@@ -1215,6 +1216,7 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction/HCGapL4/FrontC194_H8ResidualCompactDualSourceInvariantBridge.lean",
         "HodgeReduction/HCGapL4/FrontC195_H8ResidualSourceInvariantExactRankGenerator.lean",
         "HodgeReduction/HCGapL4/FrontC196_H8ResidualExactSourceRankGeneratorIndependence.lean",
+        "HodgeReduction/HCGapL4/FrontC197_H8ResidualSourceRankNoExtraEquivalence.lean",
         "HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean",
         "HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean",
         "HodgeReduction/HCGapL4/R451_MultiFrontFrontierAudit.lean",
@@ -3056,7 +3058,18 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction.HCGapL4.FrontC196_H8ResidualExactSourceRankGeneratorIndependence.currentR761ExactSourceRankGeneratorIndependenceSnapshot",
         "HodgeReduction.HCGapL4.FrontC196_H8ResidualExactSourceRankGeneratorIndependence.currentR761ExactSourceRankGeneratorIndependenceSnapshot_eq_texStatus",
         "HodgeReduction.HCGapL4.FrontC196_H8ResidualExactSourceRankGeneratorIndependence.currentR761ExactSourceRankGeneratorIndependenceTargetNames_eq_texStatus",
-        "HodgeReduction.HCGapL4.FrontC196_H8ResidualExactSourceRankGeneratorIndependence.R761_substantiveTheoremCount"
+        "HodgeReduction.HCGapL4.FrontC196_H8ResidualExactSourceRankGeneratorIndependence.R761_substantiveTheoremCount",
+        "HodgeReduction.HCGapL4.FrontC197_H8ResidualSourceRankNoExtraEquivalence.source_invariants_le_H8_of_h_pow_four_mem_and_finrank_eq_one",
+        "HodgeReduction.HCGapL4.FrontC197_H8ResidualSourceRankNoExtraEquivalence.source_invariants_finrank_eq_one_of_h_pow_four_mem_and_source_invariants_le_H8",
+        "HodgeReduction.HCGapL4.FrontC197_H8ResidualSourceRankNoExtraEquivalence.source_invariants_finrank_eq_one_iff_source_invariants_le_H8_of_h_pow_four_mem",
+        "HodgeReduction.HCGapL4.FrontC197_H8ResidualSourceRankNoExtraEquivalence.source_invariants_eq_H8_iff_h_pow_four_mem_and_source_invariants_le_H8",
+        "HodgeReduction.HCGapL4.FrontC197_H8ResidualSourceRankNoExtraEquivalence.compactDual_eq_H8_of_source_h_pow_four_mem_and_source_invariants_le_H8",
+        "HodgeReduction.HCGapL4.FrontC197_H8ResidualSourceRankNoExtraEquivalence.currentR762SourceRankNoExtraEquivalenceTargetNames",
+        "HodgeReduction.HCGapL4.FrontC197_H8ResidualSourceRankNoExtraEquivalence.R762SourceRankNoExtraEquivalenceSnapshot",
+        "HodgeReduction.HCGapL4.FrontC197_H8ResidualSourceRankNoExtraEquivalence.currentR762SourceRankNoExtraEquivalenceSnapshot",
+        "HodgeReduction.HCGapL4.FrontC197_H8ResidualSourceRankNoExtraEquivalence.currentR762SourceRankNoExtraEquivalenceSnapshot_eq_texStatus",
+        "HodgeReduction.HCGapL4.FrontC197_H8ResidualSourceRankNoExtraEquivalence.currentR762SourceRankNoExtraEquivalenceTargetNames_eq_texStatus",
+        "HodgeReduction.HCGapL4.FrontC197_H8ResidualSourceRankNoExtraEquivalence.R762_substantiveTheoremCount"
       ]
     }
   ]
@@ -3656,7 +3669,7 @@ def config : ChainAudit.ProjectConfig := {
     },
     {
       id := "hcgap-l4-multifront-active"
-      title := "HCGapL4 multi-front attack waves (R420 -- R761)"
+      title := "HCGapL4 multi-front attack waves (R420 -- R762)"
       kind := "active"
       status := "exploratory"
       summary :=
@@ -3840,6 +3853,7 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction/HCGapL4/FrontC194_H8ResidualCompactDualSourceInvariantBridge.lean",
         "HodgeReduction/HCGapL4/FrontC195_H8ResidualSourceInvariantExactRankGenerator.lean",
         "HodgeReduction/HCGapL4/FrontC196_H8ResidualExactSourceRankGeneratorIndependence.lean",
+        "HodgeReduction/HCGapL4/FrontC197_H8ResidualSourceRankNoExtraEquivalence.lean",
         "HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean",
         "HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean",
         "HodgeReduction/HCGapL4/R476_MultiFrontWave6Audit.lean"
@@ -5671,7 +5685,18 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction.HCGapL4.FrontC196_H8ResidualExactSourceRankGeneratorIndependence.currentR761ExactSourceRankGeneratorIndependenceSnapshot",
         "HodgeReduction.HCGapL4.FrontC196_H8ResidualExactSourceRankGeneratorIndependence.currentR761ExactSourceRankGeneratorIndependenceSnapshot_eq_texStatus",
         "HodgeReduction.HCGapL4.FrontC196_H8ResidualExactSourceRankGeneratorIndependence.currentR761ExactSourceRankGeneratorIndependenceTargetNames_eq_texStatus",
-        "HodgeReduction.HCGapL4.FrontC196_H8ResidualExactSourceRankGeneratorIndependence.R761_substantiveTheoremCount"
+        "HodgeReduction.HCGapL4.FrontC196_H8ResidualExactSourceRankGeneratorIndependence.R761_substantiveTheoremCount",
+        "HodgeReduction.HCGapL4.FrontC197_H8ResidualSourceRankNoExtraEquivalence.source_invariants_le_H8_of_h_pow_four_mem_and_finrank_eq_one",
+        "HodgeReduction.HCGapL4.FrontC197_H8ResidualSourceRankNoExtraEquivalence.source_invariants_finrank_eq_one_of_h_pow_four_mem_and_source_invariants_le_H8",
+        "HodgeReduction.HCGapL4.FrontC197_H8ResidualSourceRankNoExtraEquivalence.source_invariants_finrank_eq_one_iff_source_invariants_le_H8_of_h_pow_four_mem",
+        "HodgeReduction.HCGapL4.FrontC197_H8ResidualSourceRankNoExtraEquivalence.source_invariants_eq_H8_iff_h_pow_four_mem_and_source_invariants_le_H8",
+        "HodgeReduction.HCGapL4.FrontC197_H8ResidualSourceRankNoExtraEquivalence.compactDual_eq_H8_of_source_h_pow_four_mem_and_source_invariants_le_H8",
+        "HodgeReduction.HCGapL4.FrontC197_H8ResidualSourceRankNoExtraEquivalence.currentR762SourceRankNoExtraEquivalenceTargetNames",
+        "HodgeReduction.HCGapL4.FrontC197_H8ResidualSourceRankNoExtraEquivalence.R762SourceRankNoExtraEquivalenceSnapshot",
+        "HodgeReduction.HCGapL4.FrontC197_H8ResidualSourceRankNoExtraEquivalence.currentR762SourceRankNoExtraEquivalenceSnapshot",
+        "HodgeReduction.HCGapL4.FrontC197_H8ResidualSourceRankNoExtraEquivalence.currentR762SourceRankNoExtraEquivalenceSnapshot_eq_texStatus",
+        "HodgeReduction.HCGapL4.FrontC197_H8ResidualSourceRankNoExtraEquivalence.currentR762SourceRankNoExtraEquivalenceTargetNames_eq_texStatus",
+        "HodgeReduction.HCGapL4.FrontC197_H8ResidualSourceRankNoExtraEquivalence.R762_substantiveTheoremCount"
       ]
       gapIds := ["G-hcgap-l4-multifront"]
       dependsOn := ["main-hc-axiom-relative"]
@@ -5783,7 +5808,8 @@ def config : ChainAudit.ProjectConfig := {
         "R759 status: the visible `compactDual = H8` carrier is exactly `source_invariants = H8`; generator membership and rank-one spellings also transport across the compact-dual/source-invariants comparison.",
         "R760 status: `source_invariants = H8` is exactly `h^4 in source_invariants` plus `finrank source_invariants = 1`; exact rank one supplies the finite-dimensional/rank-bound inputs required by the older R710 route.",
         "R761 status: boundary data plus exact source rank one still does not force `h^4 in source_invariants` or the R760 source-H8 equality, so rank cannot replace the source generator-placement theorem.",
-        "R761 next attack: prove the genuine source-native generator placement `h^4 in source_invariants` from EVII geometry, or separately prove exact source rank one as one half of the R760 package; the genuine Matsushima boundary theorem is still needed for the old route witness consumed by R758.",
+        "R762 status: once `h^4 in source_invariants` is fixed, exact source rank one is equivalent to the no-extra source containment `source_invariants <= H8`; source-H8 is equivalently the two containments `H8 <= source_invariants` and `source_invariants <= H8`.",
+        "R762 next attack: prove one of the two genuine source containments from EVII geometry, with priority on `H8 <= source_invariants` / generator placement; the genuine Matsushima boundary theorem is still needed for the old route witness consumed by R758.",
         "FrontB: replace the abstract connectedness pipeline with the genuine Baily--Borel connectedness theorem for arithmetic quotients.",
         "FrontD: deliver the E_7 -> CM Chow correspondence at codim 1 first, then lift to all p; this would discharge G-l4-mt-correspondence for the canonical case.",
         "Never re-bundle a closed front into a stronger hypothesis; chainAudit treats `def : Prop` placeholders and conjunction shells as hard failures."
