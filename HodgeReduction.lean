@@ -669,6 +669,7 @@ import HodgeReduction.HCGapL4.FrontC188_H8ResidualTargetNonzeroFromCompactDual
 import HodgeReduction.HCGapL4.FrontC189_H8ResidualFiniteUpperToTargetLineRoute
 import HodgeReduction.HCGapL4.FrontC190_H8ResidualTargetLineCartanImageRoute
 import HodgeReduction.HCGapL4.FrontC191_H8ResidualCartanImageBoundaryConsumer
+import HodgeReduction.HCGapL4.FrontC192_H8ResidualCurrentCartanImageGuardrail
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix
