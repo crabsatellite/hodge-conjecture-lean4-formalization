@@ -230,7 +230,7 @@ def runAuditWithEnv (env : Environment) (cfg : ProjectConfig) : IO UInt32 := do
   IO.FS.createDirAll cfg.outputDir
   let outPath := cfg.outputDir / "raw.json"
   IO.FS.writeFile outPath json
-  IO.println s!"[{cfg.projectName}] wrote {outPath} ({json.length} bytes)"
+  IO.println s!"[{cfg.projectName}] wrote {outPath}"
   IO.println s!"  closure constants: {report.closureConstants}"
   IO.println s!"  closure modules:   {report.closureModules}"
   IO.println s!"  on-chain:    {report.onChainCount}"
