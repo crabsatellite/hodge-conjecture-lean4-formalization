@@ -675,6 +675,7 @@ import HodgeReduction.HCGapL4.FrontC194_H8ResidualCompactDualSourceInvariantBrid
 import HodgeReduction.HCGapL4.FrontC195_H8ResidualSourceInvariantExactRankGenerator
 import HodgeReduction.HCGapL4.FrontC196_H8ResidualExactSourceRankGeneratorIndependence
 import HodgeReduction.HCGapL4.FrontC197_H8ResidualSourceRankNoExtraEquivalence
+import HodgeReduction.HCGapL4.FrontC198_H8ResidualSourceContainmentIndependence
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix
