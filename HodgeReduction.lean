@@ -687,6 +687,7 @@ import HodgeReduction.HCGapL4.FrontC206_H8ResidualCartanScalarRoute
 import HodgeReduction.HCGapL4.FrontC207_H8ResidualCartanScalarCarrierClosure
 import HodgeReduction.HCGapL4.FrontC208_H8ResidualExactImageScalarIndependence
 import HodgeReduction.HCGapL4.FrontC209_H8ResidualCompactDualGeneratorScalarCarrierClosure
+import HodgeReduction.HCGapL4.FrontC210_H8ResidualCompactDualGeneratorTargetLineEquality
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix
