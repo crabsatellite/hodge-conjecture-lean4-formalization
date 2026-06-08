@@ -684,6 +684,7 @@ import HodgeReduction.HCGapL4.FrontC203_H8ResidualBoundaryDataFromScalarCertific
 import HodgeReduction.HCGapL4.FrontC204_H8ResidualThreeFieldScalarRoute
 import HodgeReduction.HCGapL4.FrontC205_H8ResidualGeneratorScalarRoute
 import HodgeReduction.HCGapL4.FrontC206_H8ResidualCartanScalarRoute
+import HodgeReduction.HCGapL4.FrontC207_H8ResidualCartanScalarCarrierClosure
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix

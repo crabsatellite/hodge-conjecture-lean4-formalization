@@ -6,7 +6,7 @@ five-way classification:
 
 * quarantine: **0** (explicit failed-route list)
 * infra:      **4** (standalone tools, audit scripts)
-* registered: **242** (configured research route/gap files, off endpoint closure)
+* registered: **243** (configured research route/gap files, off endpoint closure)
 * orphan:     **254** (loaded but unreachable - investigate)
 * on-disk-unloaded: **247** (file exists but not imported by any chain)
 
@@ -25,7 +25,7 @@ five-way classification:
 | `HodgeReduction/MainChain.lean` | 340 | 0 |
 | `HodgeReduction/PaperInventory.lean` | 677 | 0 |
 
-## Registered research routes/gaps (242)
+## Registered research routes/gaps (243)
 
 | file | decls | axioms |
 |------|------:|-------:|
@@ -152,6 +152,7 @@ five-way classification:
 | `HodgeReduction/HCGapL4/FrontC204_H8ResidualThreeFieldScalarRoute.lean` | 43 | 0 |
 | `HodgeReduction/HCGapL4/FrontC205_H8ResidualGeneratorScalarRoute.lean` | 40 | 0 |
 | `HodgeReduction/HCGapL4/FrontC206_H8ResidualCartanScalarRoute.lean` | 40 | 0 |
+| `HodgeReduction/HCGapL4/FrontC207_H8ResidualCartanScalarCarrierClosure.lean` | 39 | 0 |
 | `HodgeReduction/HCGapL4/FrontC20_MatsushimaCompactDualExactImageCriterion.lean` | 6 | 0 |
 | `HodgeReduction/HCGapL4/FrontC21_MatsushimaExactImageRankBoundary.lean` | 6 | 0 |
 | `HodgeReduction/HCGapL4/FrontC22_MatsushimaExactImageSourceEquivalence.lean` | 6 | 0 |
