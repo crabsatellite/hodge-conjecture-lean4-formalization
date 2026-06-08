@@ -681,6 +681,7 @@ import HodgeReduction.HCGapL4.FrontC200_H8ResidualTargetLineNonzeroGenerator
 import HodgeReduction.HCGapL4.FrontC201_H8ResidualTargetLineScalarCertificate
 import HodgeReduction.HCGapL4.FrontC202_H8ResidualTargetNonzeroCertificate
 import HodgeReduction.HCGapL4.FrontC203_H8ResidualBoundaryDataFromScalarCertificate
+import HodgeReduction.HCGapL4.FrontC204_H8ResidualThreeFieldScalarRoute
 -- import HodgeReduction.HCGapL4.R494_MultiFrontWave12Audit -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontE9_MTCorrespondenceWitness -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R496_MultiFrontWave13Audit -- temporarily disabled for build fix
