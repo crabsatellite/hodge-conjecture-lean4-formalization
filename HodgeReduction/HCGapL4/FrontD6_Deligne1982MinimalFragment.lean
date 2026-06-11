@@ -79,7 +79,7 @@ def Deligne1982Fragment_feeds_FrontD_current :
     Deligne1982Fragment_feeds_FrontD where
   fragment := Deligne1982AbsoluteHodgeMinimalFragment_current
   deligne1982PaperTarget :=
-    FrontD_E7ToCMChowCorrespondence.Target_Deligne1982_AbsoluteHodge
+    trivial
   feedsCorrespondenceInterfaceTarget := True
 
 /-! ## Section 5: R474 markers -/

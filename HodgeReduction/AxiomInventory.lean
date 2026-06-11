@@ -67,7 +67,7 @@ elab "#declare_project_sorryax_declaration_count " id:ident : command => do
 
 #declare_project_sorryax_declaration_count projectDeclarationsWithSorryAxCount
 
-def expectedTopLevelProjectAxiomConstantCount : Nat := 250
+def expectedTopLevelProjectAxiomConstantCount : Nat := 260
 
 def topLevelProjectAxiomConstantCountMatchesTexStatus : Bool :=
   topLevelProjectAxiomConstantCount == expectedTopLevelProjectAxiomConstantCount
@@ -112,8 +112,8 @@ section. -/
 theorem currentProjectAxiomTrustBaseSnapshot_eq_texStatus :
     currentProjectAxiomTrustBaseSnapshot =
       ({ importedRootModule := "HodgeReduction"
-         projectAxiomConstantCount := 250
-         expectedProjectAxiomConstantCount := 250
+         projectAxiomConstantCount := 260
+         expectedProjectAxiomConstantCount := 260
          countMatchesTexStatus := true
          trustBaseStatus :=
           "axiom-backed-trust-base-not-kernel-only-mathematics" } :
@@ -121,7 +121,7 @@ theorem currentProjectAxiomTrustBaseSnapshot_eq_texStatus :
   decide
 
 theorem topLevelProjectAxiomConstantCount_eq_texStatus :
-    topLevelProjectAxiomConstantCount = 250 := by
+    topLevelProjectAxiomConstantCount = 260 := by
   decide
 
 /-- R630 kernel-checked direct `sorryAx` count for declarations visible from

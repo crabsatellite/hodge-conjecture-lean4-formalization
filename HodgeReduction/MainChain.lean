@@ -340,6 +340,7 @@ def config : ChainAudit.ProjectConfig := {
     "HodgeReduction/ConeAudits/R462_R465_ConeAudit.lean",
     "HodgeReduction/ConeAudits/R467_R470_ConeAudit.lean",
     "HodgeReduction/ConeAudits/R471_R476_ConeAudit.lean",
+    "HodgeReduction/ConeAudits/R472_R476_ConeAudit.lean",
     "HodgeReduction/ConeAudits/R477_R480_ConeAudit.lean"
   ]
   researchGaps := [
@@ -1040,6 +1041,7 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction/HCGapL4/FrontD_E7ToCMChowCorrespondence.lean",
         "HodgeReduction/HCGapL4/FrontE_RealCarrierProfileMatching.lean",
         "HodgeReduction/HCGapL4/FrontC6_AllDegreeHodgeRankAdapter.lean",
+        "HodgeReduction/HCGapL4/FrontC6_AllDegreeRankAdapter.lean",
         "HodgeReduction/HCGapL4/FrontC7_E7EVIIHodgeDiamondInstance.lean",
         "HodgeReduction/HCGapL4/FrontC8_V56MTBridge.lean",
         "HodgeReduction/HCGapL4/FrontC9_EVIIHodgeNumberComputation.lean",
@@ -4087,10 +4089,21 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction/HCGapL4/FrontC210_H8ResidualCompactDualGeneratorTargetLineEquality.lean",
         "HodgeReduction/HCGapL4/FrontC211_H8ResidualCompactDualTargetLineUnifiedSurfaces.lean",
         "HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean",
+        "HodgeReduction/HCGapL4/FrontE6_DispatcherFeedsConditionalTransfer.lean",
         "HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean",
+        "HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment_FinalGoalCompat.lean",
+        "HodgeReduction/HCGapL4/FrontB6_MaintenanceOnly.lean",
         "HodgeReduction/HCGapL4/R476_MultiFrontWave6Audit.lean"
       ]
       entryDecls := [
+        "HodgeReduction.HCGapL4.FrontC6_AllDegreeRankAdapter.rank_eq_hodgeSum_all_degrees",
+        "HodgeReduction.HCGapL4.FrontC6_AllDegreeRankAdapter.rank1_eq_two_mul_h10_from_allDegree",
+        "HodgeReduction.HCGapL4.FrontC6_AllDegreeRankAdapter.rank_odd_is_even",
+        "HodgeReduction.HCGapL4.FrontE6_DispatcherFeedsConditionalTransfer.AllCodimMatchingData_from_AllDegreeAdapter",
+        "HodgeReduction.HCGapL4.FrontE6_DispatcherFeedsConditionalTransfer.betti_target_discharged_all_k",
+        "HodgeReduction.HCGapL4.FrontE6_DispatcherFeedsConditionalTransfer.R405FeedPackage.transfers_to_realCanonical",
+        "HodgeReduction.HCGapL4.FrontD6_Deligne1982MinimalFragment.internal_elliptic_absoluteHodge_implies_algebraic_codim1",
+        "HodgeReduction.HCGapL4.FrontD6_Deligne1982MinimalFragment.Deligne1982_full_statement",
         "HodgeReduction.HCGapL4.FrontC11_ShimuraBettiComputation.shimuraEVIIExpectedBettiKnownHodgeSumCertification_current",
         "HodgeReduction.HCGapL4.FrontC11_ShimuraBettiComputation.shimura_expected_known_hodgeSum_total",
         "HodgeReduction.HCGapL4.FrontC12_V56InfrastructureProfileBridge.v56InfrastructureProfileCertification_current",
@@ -6279,6 +6292,7 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction/ConeAudits/R217_ConeAudit.lean",
         "HodgeReduction/ConeAudits/R467_R470_ConeAudit.lean",
         "HodgeReduction/ConeAudits/R471_R476_ConeAudit.lean",
+        "HodgeReduction/ConeAudits/R472_R476_ConeAudit.lean",
         "HodgeReduction/ConeAudits/R477_R480_ConeAudit.lean",
       ]
       entryDecls := []
@@ -7684,8 +7698,8 @@ theorem currentPaperNarrativeConsistencySnapshot_eq_texStatus :
          unregisteredScopeSubclassRouteGapReferenceCount := 0
          allScopeSubclassRouteGapReferencesRegisteredInRoute := true
          masterScopeSubclassStatusFailureCount := 0
-         projectAxiomConstantCount := 250
-         expectedProjectAxiomConstantCount := 250
+         projectAxiomConstantCount := 260
+         expectedProjectAxiomConstantCount := 260
          projectAxiomConstantCountMatchesTexStatus := true
          projectAxiomTrustBaseFailureCount := 0
          projectDeclarationsWithSorryAxCount := 0

@@ -5,10 +5,10 @@ five-way classification:
 
 
 * quarantine: **0** (explicit failed-route list)
-* infra:      **4** (standalone tools, audit scripts)
-* registered: **247** (configured research route/gap files, off endpoint closure)
+* infra:      **5** (standalone tools, audit scripts)
+* registered: **254** (configured research route/gap files, off endpoint closure)
 * orphan:     **254** (loaded but unreachable - investigate)
-* on-disk-unloaded: **247** (file exists but not imported by any chain)
+* on-disk-unloaded: **243** (file exists but not imported by any chain)
 
 
 ## Quarantine (0)
@@ -16,16 +16,17 @@ five-way classification:
 (none)
 
 
-## Infra (standalone) (4)
+## Infra (standalone) (5)
 
 | file | decls | axioms |
 |------|------:|-------:|
 | `HodgeReduction/AxiomInventory.lean` | 55 | 0 |
+| `HodgeReduction/ConeAudits/R472_R476_ConeAudit.lean` | 0 | 0 |
 | `HodgeReduction/HCGapRegistry.lean` | 9 | 0 |
 | `HodgeReduction/MainChain.lean` | 340 | 0 |
 | `HodgeReduction/PaperInventory.lean` | 677 | 0 |
 
-## Registered research routes/gaps (247)
+## Registered research routes/gaps (254)
 
 | file | decls | axioms |
 |------|------:|-------:|
@@ -34,6 +35,7 @@ five-way classification:
 | `HodgeReduction/HCGapL2/ProjectiveLine.lean` | 44 | 0 |
 | `HodgeReduction/HCGapL2/TrivialPoint.lean` | 22 | 0 |
 | `HodgeReduction/HCGapL4/FrontA_DeligneH0SheafRealization.lean` | 68 | 0 |
+| `HodgeReduction/HCGapL4/FrontB6_MaintenanceOnly.lean` | 7 | 0 |
 | `HodgeReduction/HCGapL4/FrontB_BailyBorelConnectedness.lean` | 64 | 0 |
 | `HodgeReduction/HCGapL4/FrontC100_H8ResidualCartanContainmentIndependence.lean` | 55 | 0 |
 | `HodgeReduction/HCGapL4/FrontC101_H8ResidualTargetInvariantLineBridge.lean` | 42 | 0 |
@@ -208,6 +210,7 @@ five-way classification:
 | `HodgeReduction/HCGapL4/FrontC68_H8ResidualCarrierEqualityObstruction.lean` | 26 | 0 |
 | `HodgeReduction/HCGapL4/FrontC69_H8ResidualProofWorkContract.lean` | 43 | 0 |
 | `HodgeReduction/HCGapL4/FrontC6_AllDegreeHodgeRankAdapter.lean` | 34 | 0 |
+| `HodgeReduction/HCGapL4/FrontC6_AllDegreeRankAdapter.lean` | 8 | 0 |
 | `HodgeReduction/HCGapL4/FrontC70_H8ResidualSourceInvariantScalarContract.lean` | 41 | 0 |
 | `HodgeReduction/HCGapL4/FrontC71_H8ResidualSourceInvariantExactImageContract.lean` | 44 | 0 |
 | `HodgeReduction/HCGapL4/FrontC72_H8ResidualExactImageContainmentContract.lean` | 41 | 0 |
@@ -242,13 +245,18 @@ five-way classification:
 | `HodgeReduction/HCGapL4/FrontC99_H8ResidualTargetLineIndependence.lean` | 25 | 0 |
 | `HodgeReduction/HCGapL4/FrontC9_EVIIHodgeNumberComputation.lean` | 35 | 0 |
 | `HodgeReduction/HCGapL4/FrontC_E7LowDegreeHodgeNumbers.lean` | 62 | 0 |
+| `HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean` | 39 | 0 |
+| `HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment_FinalGoalCompat.lean` | 34 | 0 |
 | `HodgeReduction/HCGapL4/FrontD_E7ToCMChowCorrespondence.lean` | 74 | 0 |
+| `HodgeReduction/HCGapL4/FrontE6_DispatcherFeedsConditionalTransfer.lean` | 22 | 0 |
+| `HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean` | 28 | 0 |
 | `HodgeReduction/HCGapL4/FrontE_RealCarrierProfileMatching.lean` | 68 | 0 |
 | `HodgeReduction/HCGapL4/R451_MultiFrontFrontierAudit.lean` | 57 | 0 |
 | `HodgeReduction/HCGapL4/R456_MultiFrontWave2Audit.lean` | 55 | 0 |
 | `HodgeReduction/HCGapL4/R460_MultiFrontWave3Audit.lean` | 57 | 0 |
 | `HodgeReduction/HCGapL4/R465_MultiFrontWave4Audit.lean` | 58 | 0 |
 | `HodgeReduction/HCGapL4/R470_MultiFrontWave5Audit.lean` | 62 | 0 |
+| `HodgeReduction/HCGapL4/R476_MultiFrontWave6Audit.lean` | 43 | 0 |
 | `HodgeReduction/Infrastructure/Automorphic/VoganZuckerman.lean` | 19 | 0 |
 | `HodgeReduction/Infrastructure/Cohomology/Matsushima.lean` | 50 | 0 |
 | `HodgeReduction/Infrastructure/Cohomology/SheafCohomology.lean` | 48 | 0 |
@@ -536,7 +544,7 @@ five-way classification:
 | `HodgeReduction/Infrastructure/V56HodgeRank.lean` | 33 | 0 |
 | `HodgeReduction/MathlibCandidates.lean` | 123 | 0 |
 
-## On-disk-unloaded (247)
+## On-disk-unloaded (243)
 
 Files present in the source tree but NOT imported by the entry script.  Either wire them into the chain, mark them quarantine, or delete them.
 
@@ -670,18 +678,15 @@ Files present in the source tree but NOT imported by the entry script.  Either w
 - `HodgeReduction/HCGapL4/E7ShimuraToyReflexFieldSkeleton.lean`
 - `HodgeReduction/HCGapL4/EllipticCurveCohomologyRealizationAudit.lean`
 - `HodgeReduction/HCGapL4/EllipticCurveEnd0ActionBoundary.lean`
-- `HodgeReduction/HCGapL4/FrontB6_MaintenanceOnly.lean`
 - `HodgeReduction/HCGapL4/FrontC12_ClassicalCartanDerivation.lean`
 - `HodgeReduction/HCGapL4/FrontC13_E6CaseDerivation.lean`
 - `HodgeReduction/HCGapL4/FrontC14_CY3NonexistenceDerivation.lean`
 - `HodgeReduction/HCGapL4/FrontD10_Codim3AndGeneralStrategy.lean`
 - `HodgeReduction/HCGapL4/FrontD11_CMAbelianGaussianHC.lean`
-- `HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean`
 - `HodgeReduction/HCGapL4/FrontD7_Deligne1982ExpandedFragment.lean`
 - `HodgeReduction/HCGapL4/FrontD8_PerCodimDeligneWitness.lean`
 - `HodgeReduction/HCGapL4/FrontD9_Codim2NeronSeveri.lean`
 - `HodgeReduction/HCGapL4/FrontE10_HeadlineAssembly.lean`
-- `HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean`
 - `HodgeReduction/HCGapL4/FrontE7_ConditionalTransferFromConcrete.lean`
 - `HodgeReduction/HCGapL4/FrontE8_ConcreteProfileR405Bridge.lean`
 - `HodgeReduction/HCGapL4/FrontE9_MTCorrespondenceWitness.lean`
@@ -706,7 +711,6 @@ Files present in the source tree but NOT imported by the entry script.  Either w
 - `HodgeReduction/HCGapL4/ProductCycleFactoryProjectiveLineSelf.lean`
 - `HodgeReduction/HCGapL4/ProductCycleFactoryProjectiveLineToEllipticCurve.lean`
 - `HodgeReduction/HCGapL4/ProofBlueprint.lean`
-- `HodgeReduction/HCGapL4/R476_MultiFrontWave6Audit.lean`
 - `HodgeReduction/HCGapL4/R480_MultiFrontWave7Audit.lean`
 - `HodgeReduction/HCGapL4/R483_MultiFrontWave8Audit.lean`
 - `HodgeReduction/HCGapL4/R486_MultiFrontWave9Audit.lean`

@@ -93,8 +93,8 @@ DOES contain `canonicalE7ShimuraTor` in cone via `_from_canonical`,
 but proves the same conclusion. -/
 theorem VarietyHCAt_E7ShimuraToy_codim1_via_HCFrontierAfterAuthorizedRefactorDryRun :
     Infrastructure.HodgeStructure.VarietyHCAt
-      canonicalE7ShimuraTor.cohomologyOfUnderlying
-      canonicalE7ShimuraTor.algClassesOfUnderlying 1 :=
+      canonicalTargetCohomologyData
+      canonicalTargetAlgClassesData 1 :=
   hodgeConjectureReal_canonical 1
 
 /-! ## Section 4: HC final-goal markers (re-asserted) -/

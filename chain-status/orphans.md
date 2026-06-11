@@ -8,7 +8,7 @@ For each orphan, the user should either:
 
 
 * loaded-but-orphan: **254**
-* on-disk-but-unloaded: **247**
+* on-disk-but-unloaded: **243**
 
 
 ## Loaded-but-orphan (the env has them, no closure)
@@ -400,18 +400,15 @@ For each orphan, the user should either:
 - `HodgeReduction/HCGapL4/E7ShimuraToyReflexFieldSkeleton.lean`
 - `HodgeReduction/HCGapL4/EllipticCurveCohomologyRealizationAudit.lean`
 - `HodgeReduction/HCGapL4/EllipticCurveEnd0ActionBoundary.lean`
-- `HodgeReduction/HCGapL4/FrontB6_MaintenanceOnly.lean`
 - `HodgeReduction/HCGapL4/FrontC12_ClassicalCartanDerivation.lean`
 - `HodgeReduction/HCGapL4/FrontC13_E6CaseDerivation.lean`
 - `HodgeReduction/HCGapL4/FrontC14_CY3NonexistenceDerivation.lean`
 - `HodgeReduction/HCGapL4/FrontD10_Codim3AndGeneralStrategy.lean`
 - `HodgeReduction/HCGapL4/FrontD11_CMAbelianGaussianHC.lean`
-- `HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean`
 - `HodgeReduction/HCGapL4/FrontD7_Deligne1982ExpandedFragment.lean`
 - `HodgeReduction/HCGapL4/FrontD8_PerCodimDeligneWitness.lean`
 - `HodgeReduction/HCGapL4/FrontD9_Codim2NeronSeveri.lean`
 - `HodgeReduction/HCGapL4/FrontE10_HeadlineAssembly.lean`
-- `HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean`
 - `HodgeReduction/HCGapL4/FrontE7_ConditionalTransferFromConcrete.lean`
 - `HodgeReduction/HCGapL4/FrontE8_ConcreteProfileR405Bridge.lean`
 - `HodgeReduction/HCGapL4/FrontE9_MTCorrespondenceWitness.lean`
@@ -436,7 +433,6 @@ For each orphan, the user should either:
 - `HodgeReduction/HCGapL4/ProductCycleFactoryProjectiveLineSelf.lean`
 - `HodgeReduction/HCGapL4/ProductCycleFactoryProjectiveLineToEllipticCurve.lean`
 - `HodgeReduction/HCGapL4/ProofBlueprint.lean`
-- `HodgeReduction/HCGapL4/R476_MultiFrontWave6Audit.lean`
 - `HodgeReduction/HCGapL4/R480_MultiFrontWave7Audit.lean`
 - `HodgeReduction/HCGapL4/R483_MultiFrontWave8Audit.lean`
 - `HodgeReduction/HCGapL4/R486_MultiFrontWave9Audit.lean`

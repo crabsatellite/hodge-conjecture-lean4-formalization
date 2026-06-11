@@ -468,10 +468,13 @@ import HodgeReduction.HCGapL2.EllipticCurve
 -- import HodgeReduction.HCGapL4.FrontE5_HodgePolynomialFeedsProfileMatching -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.R470_MultiFrontWave5Audit -- temporarily disabled for build fix
 import HodgeReduction.HCGapL4.FrontC6_AllDegreeHodgeRankAdapter
--- import HodgeReduction.HCGapL4.FrontE6_FeedR405ConditionalTransfer -- temporarily disabled for build fix
--- import HodgeReduction.HCGapL4.FrontD6_Deligne1982MinimalFragment -- build fix pending
--- import HodgeReduction.HCGapL4.FrontB6_MaintenanceOnly -- temporarily disabled for build fix
--- import HodgeReduction.HCGapL4.R476_MultiFrontWave6Audit -- temporarily disabled for build fix
+import HodgeReduction.HCGapL4.FrontC6_AllDegreeRankAdapter
+import HodgeReduction.HCGapL4.FrontE6_FeedR405ConditionalTransfer
+import HodgeReduction.HCGapL4.FrontE6_DispatcherFeedsConditionalTransfer
+import HodgeReduction.HCGapL4.FrontD6_Deligne1982MinimalFragment
+import HodgeReduction.HCGapL4.FrontD6_Deligne1982MinimalFragment_FinalGoalCompat
+import HodgeReduction.HCGapL4.FrontB6_MaintenanceOnly
+import HodgeReduction.HCGapL4.R476_MultiFrontWave6Audit
 import HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance
 -- import HodgeReduction.HCGapL4.FrontE7_ConditionalTransferFromConcrete -- temporarily disabled for build fix
 -- import HodgeReduction.HCGapL4.FrontD7_Deligne1982ExpandedFragment -- temporarily disabled for build fix

@@ -27,8 +27,8 @@ to call it. The cone is UNCHANGED (still
 `{propext, Classical.choice, canonicalE7ShimuraTor, Quot.sound}`). -/
 theorem hodgeConjectureReal_canonical_compat_old_route :
     Infrastructure.HodgeStructure.VarietyHC
-      canonicalE7ShimuraTor.cohomologyOfUnderlying
-      canonicalE7ShimuraTor.algClassesOfUnderlying :=
+      canonicalTargetCohomologyData
+      canonicalTargetAlgClassesData :=
   hodgeConjectureReal_canonical
 
 /-! ## Section 2: future-route marker -/

@@ -2,7 +2,7 @@
 
 Audit-generated route map overlaid on the automatic endpoint-closure audit.  The infra output is the single research truth source: use this report to distinguish the main chain, active exploration branches, named gaps, and dead or quarantined routes.
 
-* research chains: **8**  *  named gaps: **10**  *  endpoint count: **8**  *  orphan debt files: **418**  *  taxonomy-labelled debt files: **12**  *  rule-labelled debt files: **409**  *  connectable debt files: **411**  *  build components: **28**  *  branch heads: **73**
+* research chains: **8**  *  named gaps: **10**  *  endpoint count: **8**  *  orphan debt files: **414**  *  taxonomy-labelled debt files: **9**  *  rule-labelled debt files: **407**  *  connectable debt files: **407**  *  build components: **29**  *  branch heads: **73**
 
 ## Decision Summary
 
@@ -94,7 +94,7 @@ graph TD
   chain_hcgap_l4_multifront_active --> gap_G_hcgap_l4_multifront
   chain_concrete_evii_toy --> chain_main_hc_axiom_relative
   chain_historical_cone_audits --> chain_main_hc_axiom_relative
-  debt_all["Orphan debt by actual imports\n418 files / 28 components / 73 heads"]:::debt
+  debt_all["Orphan debt by actual imports\n414 files / 29 components / 73 heads"]:::debt
   chain_hcgap_l4_multifront_active --> debt_all
 ```
 
@@ -111,7 +111,7 @@ graph TD
   classDef anchor fill:#eef,stroke:#557
   classDef ownerChain fill:#e8f3ff,stroke:#2670b8
   classDef ownerGap fill:#ffd,stroke:#a80
-  debt_root["All off-chain debt\n418 files / 73 heads"]:::debt
+  debt_root["All off-chain debt\n414 files / 73 heads"]:::debt
   anchor_on_chain["imports on-chain"]:::anchor
   anchor_cut["imports cut"]:::anchor
   anchor_quarantine["imports quarantine"]:::anchor
@@ -135,17 +135,15 @@ graph TD
   owner_gap_G_l4_mt_correspondence["gap:G-l4-mt-correspondence"]:::ownerGap
   owner_gap_G_main_hc["gap:G-main-hc"]:::ownerGap
   owner_gap_G_master_paper_import["gap:G-master-paper-import"]:::ownerGap
-  debt_C001["C001\n97 files\n2026-06-08 23:49\ncore-support"]:::debtTaxonomy
+  debt_C001["C001\n286 files\n2026-06-11 15:42\ncore-support"]:::debtTaxonomy
   debt_root --> debt_C001
   debt_C001 --> anchor_cut
-  debt_C001 --> anchor_infra
   debt_C001 --> anchor_on_chain
+  owner_chain_historical_cone_audits --> debt_C001
   owner_chain_concrete_evii_toy --> debt_C001
-  owner_gap_G_l4_cm_abelian_hc --> debt_C001
   owner_chain_full_hc_final_target --> debt_C001
   owner_chain_hcgap_l2_trivial_instances --> debt_C001
   owner_chain_hcgap_l4_multifront_active --> debt_C001
-  owner_chain_historical_cone_audits --> debt_C001
   owner_chain_main_hc_axiom_relative --> debt_C001
   owner_chain_master_paper_import_ledger --> debt_C001
   owner_chain_unconditional_classical --> debt_C001
@@ -155,44 +153,46 @@ graph TD
   owner_gap_G_l1_e7_shimura_tor --> debt_C001
   owner_gap_G_l2_cohomology_construction --> debt_C001
   owner_gap_G_l3_v56_mt_identification --> debt_C001
+  owner_gap_G_l4_cm_abelian_hc --> debt_C001
   owner_gap_G_l4_mt_correspondence --> debt_C001
   owner_gap_G_main_hc --> debt_C001
   owner_gap_G_master_paper_import --> debt_C001
-  debt_C002["C002\n1 files\n2026-05-29 09:22\ncore-support"]:::debtRule
+  debt_C002["C002\n97 files\n2026-06-11 15:38\ncore-support"]:::debtTaxonomy
   debt_root --> debt_C002
+  debt_C002 --> anchor_cut
+  debt_C002 --> anchor_infra
   debt_C002 --> anchor_on_chain
+  owner_chain_concrete_evii_toy --> debt_C002
+  owner_gap_G_l4_cm_abelian_hc --> debt_C002
+  owner_chain_full_hc_final_target --> debt_C002
   owner_chain_hcgap_l2_trivial_instances --> debt_C002
+  owner_chain_hcgap_l4_multifront_active --> debt_C002
+  owner_chain_historical_cone_audits --> debt_C002
   owner_chain_main_hc_axiom_relative --> debt_C002
+  owner_chain_master_paper_import_ledger --> debt_C002
+  owner_chain_unconditional_classical --> debt_C002
+  owner_gap_G_classical_mathlib_port --> debt_C002
+  owner_gap_G_full_hc --> debt_C002
+  owner_gap_G_hcgap_l4_multifront --> debt_C002
+  owner_gap_G_l1_e7_shimura_tor --> debt_C002
   owner_gap_G_l2_cohomology_construction --> debt_C002
-  debt_C003["C003\n3 files\n2026-05-29 08:04\ncore-support"]:::debtRule
+  owner_gap_G_l3_v56_mt_identification --> debt_C002
+  owner_gap_G_l4_mt_correspondence --> debt_C002
+  owner_gap_G_main_hc --> debt_C002
+  owner_gap_G_master_paper_import --> debt_C002
+  debt_C003["C003\n1 files\n2026-05-29 09:22\ncore-support"]:::debtRule
   debt_root --> debt_C003
   debt_C003 --> anchor_on_chain
   owner_chain_hcgap_l2_trivial_instances --> debt_C003
   owner_chain_main_hc_axiom_relative --> debt_C003
   owner_gap_G_l2_cohomology_construction --> debt_C003
-  owner_gap_G_main_hc --> debt_C003
-  debt_C004["C004\n291 files\n2026-05-29 05:45\ncore-support"]:::debtTaxonomy
+  debt_C004["C004\n3 files\n2026-05-29 08:04\ncore-support"]:::debtRule
   debt_root --> debt_C004
-  debt_C004 --> anchor_cut
   debt_C004 --> anchor_on_chain
-  owner_chain_hcgap_l4_multifront_active --> debt_C004
-  owner_chain_historical_cone_audits --> debt_C004
-  owner_gap_G_hcgap_l4_multifront --> debt_C004
-  owner_chain_concrete_evii_toy --> debt_C004
-  owner_chain_full_hc_final_target --> debt_C004
   owner_chain_hcgap_l2_trivial_instances --> debt_C004
   owner_chain_main_hc_axiom_relative --> debt_C004
-  owner_chain_master_paper_import_ledger --> debt_C004
-  owner_chain_unconditional_classical --> debt_C004
-  owner_gap_G_classical_mathlib_port --> debt_C004
-  owner_gap_G_full_hc --> debt_C004
-  owner_gap_G_l1_e7_shimura_tor --> debt_C004
   owner_gap_G_l2_cohomology_construction --> debt_C004
-  owner_gap_G_l3_v56_mt_identification --> debt_C004
-  owner_gap_G_l4_cm_abelian_hc --> debt_C004
-  owner_gap_G_l4_mt_correspondence --> debt_C004
   owner_gap_G_main_hc --> debt_C004
-  owner_gap_G_master_paper_import --> debt_C004
   debt_C005["C005\n1 files\n2026-05-29 02:11\ncore-support"]:::debtRule
   debt_root --> debt_C005
   debt_C005 --> anchor_cut
@@ -339,6 +339,21 @@ graph TD
   owner_gap_G_l4_mt_correspondence --> debt_C028
   owner_gap_G_main_hc --> debt_C028
   owner_gap_G_master_paper_import --> debt_C028
+  debt_C029["C029\n1 files\n2026-05-28 19:36\ncore-support"]:::debtTaxonomy
+  debt_root --> debt_C029
+  debt_C029 --> anchor_cut
+  owner_chain_historical_cone_audits --> debt_C029
+  owner_chain_full_hc_final_target --> debt_C029
+  owner_chain_hcgap_l4_multifront_active --> debt_C029
+  owner_chain_main_hc_axiom_relative --> debt_C029
+  owner_chain_master_paper_import_ledger --> debt_C029
+  owner_chain_unconditional_classical --> debt_C029
+  owner_gap_G_full_hc --> debt_C029
+  owner_gap_G_hcgap_l4_multifront --> debt_C029
+  owner_gap_G_l4_cm_abelian_hc --> debt_C029
+  owner_gap_G_l4_mt_correspondence --> debt_C029
+  owner_gap_G_main_hc --> debt_C029
+  owner_gap_G_master_paper_import --> debt_C029
 ```
 
 ## Chains
@@ -350,9 +365,9 @@ graph TD
 | `main-hc-axiom-relative` | milestone | conditional | `G-full-hc`, `G-main-hc`, `G-l1-e7-shimura-tor`, `G-l2-cohomology-construction`, `G-l3-v56-mt-identification`, `G-l4-cm-abelian-hc`, `G-l4-mt-correspondence` | cut: 2, infra: 1, on-chain: 2 |
 | `unconditional-classical` | support | closed-modulo-cy3-citation | `G-classical-mathlib-port` | cut: 1, on-chain: 1 |
 | `hcgap-l2-trivial-instances` | support | stable | `G-l2-cohomology-construction` | registered: 3 |
-| `hcgap-l4-multifront-active` | active | exploratory | `G-hcgap-l4-multifront` | on-disk-unloaded: 3, registered: 193 |
+| `hcgap-l4-multifront-active` | active | exploratory | `G-hcgap-l4-multifront` | registered: 199 |
 | `concrete-evii-toy` | support | closed-toy | - | on-disk-unloaded: 1 |
-| `historical-cone-audits` | infra | infra | - | on-disk-unloaded: 4 |
+| `historical-cone-audits` | infra | infra | - | infra: 1, on-disk-unloaded: 4 |
 
 ## Gaps
 
@@ -367,18 +382,18 @@ graph TD
 | `G-l4-cm-abelian-hc` | open | Layer 4-G2: Hodge conjecture for CM abelian varieties (Deligne 1982) | cut: 2, infra: 1, on-disk-unloaded: 2 |
 | `G-l4-mt-correspondence` | open | Layer 4-G3: per-codim Mumford--Tate correspondence package (E_7 -> CM abelian) | cut: 3, infra: 1, registered: 1 |
 | `G-classical-mathlib-port` | deferred | Classical published-literature axioms awaiting Mathlib port | cut: 3, on-chain: 2 |
-| `G-hcgap-l4-multifront` | active-open | HCGapL4 multi-front Layer-4 attack waves (R420 -- R776) | on-disk-unloaded: 3, registered: 216 |
+| `G-hcgap-l4-multifront` | active-open | HCGapL4 multi-front Layer-4 attack waves (R420 -- R776) | registered: 220 |
 
 ## Off-Chain Split
 
 Route-labelled off-chain files are assigned by the audit infra but are not consumed by an endpoint closure yet.  Unlabelled debt is grouped by actual Lean import connectivity in `orphan-debt.md`.
 
-* taxonomy-entry off-chain files: **12**
-* taxonomy-labelled debt files: **12**
-* rule-labelled debt files: **409**
+* taxonomy-entry off-chain files: **9**
+* taxonomy-labelled debt files: **9**
+* rule-labelled debt files: **407**
 * unconnected debt files: **7**
-* unlabelled off-chain debt files: **406**
-* build-connected debt components: **28**
+* unlabelled off-chain debt files: **405**
+* build-connected debt components: **29**
 
 | path | audit route labels | audit class |
 |------|----------------|-------------|
@@ -387,9 +402,6 @@ Route-labelled off-chain files are assigned by the audit infra but are not consu
 | `HodgeReduction/ConeAudits/R467_R470_ConeAudit.lean` | `chain:full-hc-final-target`, `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:master-paper-import-ledger`, `chain:unconditional-classical`, `gap:G-full-hc`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-l4-cm-abelian-hc`, `gap:G-l4-mt-correspondence`, `gap:G-main-hc`, +1 more | on-disk-unloaded |
 | `HodgeReduction/ConeAudits/R471_R476_ConeAudit.lean` | `chain:full-hc-final-target`, `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:master-paper-import-ledger`, `chain:unconditional-classical`, `gap:G-full-hc`, `gap:G-hcgap-l4-multifront`, `gap:G-l4-cm-abelian-hc`, `gap:G-l4-mt-correspondence`, `gap:G-main-hc`, `gap:G-master-paper-import` | on-disk-unloaded |
 | `HodgeReduction/ConeAudits/R477_R480_ConeAudit.lean` | `chain:concrete-evii-toy`, `chain:full-hc-final-target`, `chain:hcgap-l4-multifront-active`, `chain:historical-cone-audits`, `chain:main-hc-axiom-relative`, `chain:master-paper-import-ledger`, `chain:unconditional-classical`, `gap:G-full-hc`, `gap:G-hcgap-l4-multifront`, `gap:G-l3-v56-mt-identification`, `gap:G-l4-cm-abelian-hc`, `gap:G-l4-mt-correspondence`, +2 more | on-disk-unloaded |
-| `HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean` | `chain:full-hc-final-target`, `chain:hcgap-l4-multifront-active`, `chain:main-hc-axiom-relative`, `chain:master-paper-import-ledger`, `gap:G-full-hc`, `gap:G-hcgap-l4-multifront`, `gap:G-l1-e7-shimura-tor`, `gap:G-l4-cm-abelian-hc`, `gap:G-l4-mt-correspondence`, `gap:G-main-hc`, `gap:G-master-paper-import` | on-disk-unloaded |
-| `HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean` | `chain:hcgap-l4-multifront-active`, `gap:G-hcgap-l4-multifront` | on-disk-unloaded |
-| `HodgeReduction/HCGapL4/R476_MultiFrontWave6Audit.lean` | `chain:hcgap-l4-multifront-active`, `gap:G-hcgap-l4-multifront` | on-disk-unloaded |
 | `HodgeReduction/Infrastructure/AbelianVariety/CMType.lean` | `chain:concrete-evii-toy`, `chain:main-hc-axiom-relative`, `gap:G-l4-cm-abelian-hc` | on-disk-unloaded |
 | `HodgeReduction/Infrastructure/AbelianVariety/KugaSatake.lean` | `chain:concrete-evii-toy`, `chain:hcgap-l2-trivial-instances`, `chain:main-hc-axiom-relative`, `gap:G-l2-cohomology-construction`, `gap:G-l4-cm-abelian-hc` | on-disk-unloaded |
 | `HodgeReduction/Infrastructure/Shimura/ArithmeticGroup.lean` | `chain:main-hc-axiom-relative`, `gap:G-l1-e7-shimura-tor` | on-disk-unloaded |
@@ -955,6 +967,14 @@ Files:
 5 parallel attack fronts on the L4 cohomology-profile + connectedness pipeline.  Per-wave audits R451 / R456 / R460 / R465 / R470 / R476 enumerate substantive theorems per round.  R552 extends the FrontC numeric bridge through a buildable EVII compact-dual/V56/Shimura expected Betti profile: all degrees 0..8 are certified by known Hodge sums, with degree 3 explicitly routed through V56 rather than hidden in compact-dual odd cohomology.  R553 connects that finite V56 profile to the actual infrastructure `PureHodgeStructure V56 3`.  R554 proves the abstract Matsushima boundary composition: target invariants reduce to the cuspidal trivial-module part, and compact-dual image reduces to that part once concrete EVII source/target boundary equalities are provided.  R555 tightens the source-side obligation: Cartan's trivial-module H8 line rewrites to compact-dual H8, its classes are algebraic through `CompactDualData`, and the R554 source equality follows from `surjectivity_source = source_invariants`.  R556 converts the remaining boundary equalities into four concrete linear-algebra tasks; R557 shows target containment is forced by source containment; R558 transports target finrank from source finrank; R559 rewrites the remaining source obligations against compact-dual/Cartan data; R560 proves those obligations are not derivable from the current abstract interface alone; R561 replaces the three R559 obligations by the sharper compact-dual exact image target plus target-invariant exactness; R562 removes target-invariant exactness as an independent obligation by deriving it from exact image plus the compactDual/trivialModulePart rank bridge; R563 proves exact image is equivalent to the source equality `surjectivity_source = compactDual`; R564 closes the compact-dual H8 rank-one side and reduces the rank bridge to `compactDual = H8` plus `finrank trivialModulePart = 1`; R565 replaces that target rank-one obligation by exact Cartan image equality; R566 rewrites the remaining source and compact-dual carrier obligations to Cartan-line exactness; R567 blocks any attempt to derive those exactness statements from the current abstract interface alone; R568 turns exact Cartan image into the element-level scalar-preimage target `forall beta in trivialModulePart, exists r, j_q (r smul h^4) = beta`; R569 shows that even compactDual = Cartan does not force that scalar-surjectivity target; R570 proves that target rank-one plus compactDual = Cartan is enough for exact Cartan image; R571/R572 reduce the live target to source equality, source-invariants/H8, and expected Betti-8 target rank; R573 splits source-invariants/H8 into no-extra-source containment and `h^4` generator membership, with a source-rank-one alternate route; R574 rewrites that source-carrier split through `MatsushimaCompactDualData.compactDual`, leaving compactDual containment in H8 plus generator membership as the next concrete carrier targets; R575 rewrites those as the Cartan/compactDual containments `compactDual <= CartanH8` and `CartanH8 <= compactDual`; R576 rewrites source equality as source/Cartan two-sided containment and feeds the two source directions plus the two compactDual directions into the boundary package; R577 records that all four carrier directions still do not imply the target expected-Betti rank; R578 routes that target rank through the degree-8 compact-dual Hodge-sum profile; R579 derives the target Hodge-sum rank from exact Cartan image equality; R580 derives exact Cartan image from compactDual/Cartan two-sided containment plus scalar preimage surjectivity; R581 proves that target Hodge-sum rank and scalar-preimage surjectivity are equivalent once the four Cartan carrier directions are fixed; R582 rewrites the four Cartan carrier directions as source/compactDual H8 no-extra plus h^4 generator-membership splits; R583 collapses each H8 split to exact equality with H8; R584 translates those H8 equalities into Matsushima boundary language and proves target Hodge-sum rank is equivalent to `surjectivity_target = trivialModulePart`; R585 proves that, after `compactDual = H8`, this concrete boundary package is equivalent to the existing `MatsushimaV56BoundaryData`; R586 records a countermodel showing the H8 carrier equalities alone do not force the target boundary equality or boundary data; R587 isolates the remaining target boundary as the single reverse containment `trivialModulePart <= surjectivity_target`, and proves that this containment is also not forced by the abstract H8 carrier interface; R588 proves this reverse containment is exactly the element-level scalar-preimage statement `forall beta in trivialModulePart, exists r, j_q (r smul h^4) = beta` once `source = H8`, with no finite-dimensional rank hypothesis; R589 proves that, under the two H8 carrier equalities, target boundary/scalar preimages/boundary data/target Hodge-sum are all equivalent to `finrank trivialModulePart = 1`, and the rank-one target is not forced by the abstract H8 carrier interface.  R590 proves the target expected-Betti rank is equivalent to that rank-one theorem, identifies boundary data with expected-Betti rank under the H8 carriers, and records that the H8 carrier interface still does not force the expected-Betti target.  R591 names the exact residual package: prove the two H8 carrier equalities and target-invariant rank one; this package feeds the existing boundary bridge.  R592 proves this rank-one residual package is equivalent to the scalar-preimage residual package.  R593 packages the equivalent target-boundary residual package and records that the abstract H8 carrier interface still does not force it.  R594 packages the same residual target as `compactDual = H8` plus the existing `MatsushimaV56BoundaryData` bridge.  R595 rewrites that residual bridge as `compactDual = H8`, compact-dual exact image, and target-invariant exactness.  R596 replaces that target-invariant exactness by the equivalent rank-one target `finrank trivialModulePart = 1` once compact-dual exact image is fixed.  R597 proves that this exact-image rank-one package is equivalent to Cartan-line source/compact-dual equalities plus `finrank trivialModulePart = 1`, exposing the live residual as Cartan H8 carrier exactness and target rank.  R598 rewrites that same residual as `surjectivity_source = source_invariants`, `source_invariants = H8`, and `finrank target_invariants = 1`.  R599 proves the R598 source-invariant package is directly equivalent to the earlier R591 H8/rank-one residual package, recovers the expected Betti-8 target rank from it, and records that `source_invariants = H8` alone still does not force the full residual.  R600 replaces the target-rank spelling inside that package by the expected-Betti-8 equality `finrank target_invariants = shimuraEVIIExpectedBetti 8`, proves equivalence with R598, and keeps the same obstruction visible.  R601 splits the source-invariants/H8 equality into the equivalent source-carrier targets `source_invariants <= H8` plus `h^4` membership, packages that split against the R600 expected-Betti target, and keeps the obstruction visible.  R602 moves that same residual to the equivalent compact-dual carrier targets `compactDual <= H8` plus `h^4` membership in `compactDual`, using the existing compactDual/source-invariants comparison and preserving the obstruction.  R603 proves this R602 package is equivalent to the four Cartan containment directions together with the same target expected-Betti theorem, while preserving the R577 obstruction that carrier facts alone do not force target rank.  R604 splits the R603 residual into four carrier directions plus one target expected-Betti theorem and certifies primitive target count 5.  R605 proves that this fifth target can equivalently be attacked as scalar-preimage surjectivity under the same four carrier directions, so expected-Betti rank and scalar preimage are one target, not two.  R606 flattens the same residual into the five named paper-facing primitive targets and kernel-checks that expected-Betti rank and scalar preimage are not counted separately.  R607 proves that the five paper-facing primitive targets are equivalent to the three proof-work obligations `surjectivity_source = CartanH8`, `compactDual = CartanH8`, and scalar-preimage surjectivity.  R608 reconciles scalar-preimage surjectivity with the older `finrank trivialModulePart = 1` rank-one target under the two Cartan-line equalities, so those spellings are not separate gaps.  R609 proves that the two Cartan-line carrier equalities alone do not force the scalar/rank-one target in the current abstract interface.  R610 packages the exact live proof-work contract as those two equalities plus one scalar/rank-one target, proves it is equivalent to the R607/R608 residual ledgers, and records that the contract is not a closure claim.  R634 rewrites that same contract as the source-invariant scalar contract `surjectivity_source = source_invariants`, `source_invariants = H8`, plus scalar/rank-one target, without adding finite-dimensional rank conversion or closure claim.  R635 replaces the first R634 equality by the equivalent exact-image equation `Submodule.map j_q source_invariants = surjectivity_target`, using only the existing Matsushima image equation and injectivity.  R636 replaces the scalar/rank-one target by the equivalent reverse target containment `trivialModulePart <= surjectivity_target` once exact image and `source_invariants = H8` are fixed.  R637 records the matching obstruction: those exact-image carriers do not force the reverse target containment in the current abstract interface.  R638 rewrites that target theorem as exact Matsushima target-invariant image saturation: under exact image, the live target is `Submodule.map j_q source_invariants = target_invariants`, and the carrier countermodel still blocks deriving it abstractly.  R639 proves this saturation is equivalent to the finite-dimensional invariant-rank equality `finrank source_invariants = finrank target_invariants`, so the next target is a genuine EVII target-invariant rank computation.  R640 reconciles that target with the existing R600 expected-Betti residual, showing that under `source_invariants = H8` it is exactly `finrank target_invariants = shimuraEVIIExpectedBetti 8`.  R641 rewrites the target side as the vanishing of the target-invariant excess quotient by `Submodule.map j_q source_invariants`, equivalent to saturation and expected-Betti under `source_invariants = H8`.  R642 identifies the kernel of this quotient map as the source-invariant image inside `target_invariants`, proves range/kernel rank-nullity, and turns quotient vanishing into codimension zero for that internal subspace.  R643 makes the codimension target numerical: prove `finrank targetInvariantExcessQuotient = 0`, equivalently the R600/R640 expected-Betti target under `source_invariants = H8`.  R683 recasts the latest Cartan-image target as the boundary equality `surjectivity_target = trivialModulePart`, so the live proof-work route is `surjectivity_source = CartanH8`, `compactDual = CartanH8`, and `surjectivity_target = trivialModulePart`.  R684 compresses that three-equality route to the equivalent two-target contract `MatsushimaV56BoundaryData` plus `compactDual = CartanH8`, proving the target boundary equality is a consequence of boundary data.  R685 rewrites that carrier target as `source_invariants = H8` and proves the R684 route is equivalent to boundary data plus source-H8 or boundary data plus target-line equality.  R686 records that boundary data alone does not force source-H8 or compactDual/Cartan equality; the active route remains boundary data plus a separate source-H8 geometry theorem.  R687 refines that source-H8 target to a sufficient generator/multiplicity route: prove boundary data, prove `h^4 in source_invariants`, and prove finite-dimensional `finrank trivialModulePart <= 1`.  R688 derives the target boundary equality from source boundary, source generator membership, and multiplicity.  R689 reconnects that smaller route to R681/R682 Cartan-line exactness.  R690 makes the finite-dimensional witness explicit in the route contract instead of leaving it as an ambient typeclass.  R691 replaces the two explicit finite-multiplicity inputs by the generator-line containment under the same source generator membership, deriving line equality, finite-dimensionality, and `finrank <= 1` from `trivialModulePart <= span {j_q(h^4)}`.  R692 identifies the remaining source-boundary field with the concrete source-H8 statement `surjectivity_source = H8` under the same generator-line fields.  R693 records a countermodel showing `surjectivity_source = H8` plus target generator-line containment still does not force `h^4 in source_invariants`; generator membership remains a separate EVII source-carrier target.  R694 proves the positive boundary-data companion: `MatsushimaV56BoundaryData` plus `surjectivity_source = H8` derives `source_invariants = H8`, the `h^4` generator membership, and the target generator-line containment, reducing the preferred route to boundary data plus source-H8.  R695 records the matching countermodel: boundary data alone still does not force `surjectivity_source = H8`, so the R694 route genuinely has two remaining targets.  R696 shows source-H8, source-invariants-H8, and target-line equality are one non-boundary target under boundary data.  R697 rewrites that target as finite-dimensional `target_invariants` plus the EVII expected-Betti upper bound, R698 rewrites the bound to `finrank target_invariants <= 1`, R700 transports the target to finite-dimensional `trivialModulePart` plus `finrank trivialModulePart <= 1`, R701 proves this finite trivial-multiplicity contract is equivalent to the R690 explicit source-boundary/generator/multiplicity route and feeds the R687 consumer, R702 shows the R646 Cartan-image containment supplies both finite-dimensionality and the upper bound, R703 proves the Cartan-image, generator-line, and boundary-data/source-H8 route surfaces are equivalent, R704 rewrites the source-H8 half of that route as the compact-dual-H8 carrier theorem, R705 splits that compact-dual-H8 target into `compactDual <= H8` plus `h^4 in compactDual` while proving the split equivalent to R704 rather than a stronger premise, R706 records boundary-data countermodels for both R705 carrier facts, R707 recasts the no-extra compact-dual carrier fact as finite-dimensional compactDual plus a rank-one upper bound and generator membership, R708 proves that under finite-dimensionality and generator membership the remaining no-extra/equality target is exactly the rank bound while blocking attempts to drop either rank or generator membership, R709 transfers that finite-rank compact-dual carrier contract exactly to source_invariants using `compactDual = source_invariants`, R710 proves the same sharp rank-bound equivalence directly for source_invariants while blocking attempts to drop source rank or source generator membership, R711 reconnects the source finite-rank contract to R705, R712 guards explicit finite-dimensionality, R713 rewrites generator membership as `H8 <= source_invariants`, R714 feeds that finite-rank H8-containment contract to the boundary/source-H8 consumers, R715 reduces the preferred source route to boundary data plus the two containments `H8 <= source_invariants` and `source_invariants <= H8`, R716 packages those two containments as the single source-H8 equality target `source_invariants = H8`, R717 connects that source-H8 equality directly to the compact-dual-H8 geometry target `compactDual = H8`, and R718 reconnects the current route to the sharp compact-dual finite-rank attack surface: boundary data, `h^4 in compactDual`, finite-dimensional `compactDual`, and `finrank compactDual <= 1`.  R719 unfolds the boundary-data input into the primitive equalities `surjectivity_source = compactDual` and `surjectivity_target = trivialModulePart`, so the live finite-rank route has five explicit primitive targets.  R720 rewrites the generator target `h^4 in compactDual` as the geometric containment `H8 <= compactDual`, and finite rank plus that containment directly recovers `compactDual = H8`.  R721 collapses the finite-dimensionality and rank-bound fields to the opposite containment `compactDual <= H8`, so the live route now has four primitive targets: the two boundary equalities plus the two compact-dual containment directions.  R722 proves this four-target primitive route is exactly the two-target geometry route `MatsushimaV56BoundaryData` plus `compactDual = H8`; neither target is asserted.  R723 records that the two R722 targets are independent in the current abstract interface: boundary data alone does not force `compactDual = H8`, and `compactDual = H8` alone does not force boundary data or the R722 contract.  R724 shows that even adding the paper-facing GK/Borel-Wallach/BBW/Freudenthal carrier stack to the boundary countermodel still does not force `compactDual = H8` or the R722 contract, so the live non-boundary target is a genuine EVII Matsushima compact-dual comparison theorem.  R725 identifies the same latest target with `compactDual = CartanCompactDualIso.trivialModuleGK_H8` and shows the same carrier-stack countermodel refutes that Cartan/GK comparison, so the next proof must prove the compact-dual-to-Cartan comparison from genuine EVII Matsushima geometry.  R726 splits that target into the two Cartan containment directions and shows the paper-facing carrier stack forces neither `compactDual <= CartanH8` nor `CartanH8 <= compactDual` in the current abstract interface.  R727 selects the `CartanH8 <= compactDual` direction and kernel-checks that it is exactly the concrete generator-placement theorem `h^4 in MatsushimaCompactDualData.compactDual`; R728 then proves the current route is equivalent to `MatsushimaV56BoundaryData` plus `source_invariants = H8`; R729 opens that equality into boundary data plus two concrete line targets, `h^4 in source_invariants` and `trivialModulePart <= span {j_q(h^4)}`; R730 transports the generator field across `compactDual = source_invariants`, so the current equivalent route is boundary data, `h^4 in compactDual`, and the same target generator-line containment.  R731 replaces that line route by the direct compact-dual two-containment route: boundary data, `compactDual <= H8`, and `H8 <= compactDual`. R732 transports the R726 carrier-stack countermodels to this direct spelling: GK/Borel-Wallach/BBW/Freudenthal carriers plus boundary data still force neither `compactDual <= H8` nor `H8 <= compactDual`. R733 proves that, after boundary data and `H8 <= compactDual`, the no-extra target `compactDual <= H8` is equivalent to `trivialModulePart <= span {j_q(h^4)}`. R734 proves that, under the same `H8 <= compactDual`, that target-line theorem is equivalent to finite-dimensional `trivialModulePart` plus `finrank trivialModulePart <= 1`, with the finite-dimensional witness explicit. R735 records the matching guardrail: even adding paper-facing carriers and boundary data to `H8 <= compactDual` does not force that finite multiplicity, so the target remains genuine automorphic geometry. R736 reconnects that finite-multiplicity target to the older quotient/scalar-preimage surface: the current route is equivalently boundary data, `H8 <= compactDual`, `source_invariants = H8`, and `targetInvariantExcessQuotient = bot`, so finite multiplicity, line containment, scalar preimages, and quotient vanishing are one target-side gap. R737 proves the R736 H8-containment field is redundant once source-H8 is part of the quotient route: boundary data plus `source_invariants = H8` plus `targetInvariantExcessQuotient = bot` is equivalent to the R736 four-field route, and boundary data supplies the older R641 exact-image field. R738 proves the quotient field is itself forced by boundary data plus source-H8 via the R729 line theorem and R658 quotient/line equivalence, R739 rewrites the preferred two-target route as boundary data plus the target-invariant line equality `target_invariants = span {j_q(h^4)}`, and R740 splits that equality into `j_q(h^4) in target_invariants` plus `target_invariants <= span {j_q(h^4)}`. R741 transports the generator-membership half across boundary data to the compact-dual H8-containment target `H8 <= compactDual`, leaving no-extra target containment explicit. R742 rewrites that no-extra target-invariant containment as finite-dimensional `trivialModulePart` plus `finrank trivialModulePart <= 1` under `H8 <= compactDual`. R743 identifies that finite rank-one target, under the same H8-containment hypothesis, with the element-level Cartan scalar-preimage theorem for `trivialModulePart`. R744 rewrites that scalar target, under boundary data and H8 containment, as exact Cartan image `Submodule.map j_q CartanH8 = trivialModulePart`. R745 reduces that equality, under H8 containment, to the reverse Cartan-image containment `trivialModulePart <= Submodule.map j_q CartanH8`. R746 proves boundary data plus H8 containment plus that reverse containment is equivalent to boundary data plus `compactDual = CartanH8`, leaving exactly the boundary-data theorem and the Cartan/compact-dual carrier equality as the live proof-work targets. R747 proves that same latest route is equivalent to the sharp finite-rank compact-dual attack surface: boundary data, `h^4 in compactDual`, finite-dimensional `compactDual`, and `finrank compactDual <= 1`. R748 proves the finite-dimensionality plus rank-bound pair is equivalent, with generator membership, to exact `finrank compactDual = 1`, leaving three concrete proof-work targets. R749 collapses that exact rank-one generator surface back to boundary data plus compact-dual/H8, confirming exact rank one is an attack spelling rather than a stronger premise. R750 transports the existing carrier-stack countermodel to the rank-one generator spelling, so paper-facing carriers plus boundary data still do not force the R748 pair. R751 identifies the equivalent primitive frontier: `compactDual = H8`, `surjectivity_source = compactDual`, and `finrank trivialModulePart = 1`. R752 splits the rank-one target into finite witness, upper bound, and nonzero rank, exposing automorphic nonvanishing as a separate proof-work item. R753 then derives that nonvanishing from `compactDual = H8` plus finite-dimensional `trivialModulePart`, so the current equivalent route has four proof-work targets rather than five. R754 rewrites the finite/upper target-side pair as the single target-line containment `trivialModulePart <= span {j_q(h^4)}` under `compactDual = H8`, leaving a three-target equivalent route. R755 rewrites that line target as reverse Cartan-image containment, R756 proves those three fields rebuild boundary data, R757 records the matching guardrail, R758 gives the current pointwise consumer, and R759--R765 reduce the compact-dual/H8 side to target-line containment plus target nonvanishing under honest boundary data. R766 gives that target-line containment the constructive scalar-preimage certificate and proves that certificate plus target nonzero feeds target-line equality, target-generator membership, and compact-dual/H8. R767 identifies target nonvanishing with the existing R753 trivial-module nonzero witness, nonzero finrank, source generator membership, or compact generator membership surfaces. R768 proves exact image plus source-H8 plus the scalar certificate/nonzero package rebuilds boundary data, so the target boundary equality is now fed through the same target-line equality route. R769 proves source-H8 directly constructs the target-nonzero certificate, reducing the preferred scalar route to exact image, source-H8, and scalar certificate. R770 proves the scalar certificate plus source generator membership recovers source-H8, so the preferred scalar route is exact image, `h^4 in source_invariants`, and scalar certificate. R771 moves that source generator field to the geometric `CartanH8 <= compactDual` containment via the existing Cartan/compactDual equivalence, so the preferred scalar route is now exact image, Cartan-to-compactDual containment, and scalar certificate. R772 proves the Cartan containment plus scalar certificate already closes the compactDual/Cartan carrier equality and compactDual/H8 carrier equality; with exact image added back, the same three fields feed the R684 boundary-data-plus-Cartan contract. R773 records the matching guardrail: Cartan containment plus scalar certificate, even with the R772 carrier closure, still does not force exact image in the abstract interface. R774 replaces that Cartan containment field by the equivalent concrete compact-dual generator membership `h^4 in compactDual`, and proves exact image plus this membership plus the scalar certificate feed the same carrier and boundary-data consumers. R775 proves that, under this generator-membership field, scalar certificates are equivalent to exact target-line equality `target_invariants = span {j_q(h^4)}`, so the target-side proof can be attacked as that equality. R776 proves that the R775 compact-dual generator target-line contract is equivalent to the older source-H8 target-line contract, target-invariant excess quotient vanishing, and the bundled finite expected-Betti upper-bound contract, so those target-side spellings are one gap rather than parallel obligations. The route remains exploratory, not a closure claim.
 
 Entry declarations:
+- `HodgeReduction.HCGapL4.FrontC6_AllDegreeRankAdapter.rank_eq_hodgeSum_all_degrees`
+- `HodgeReduction.HCGapL4.FrontC6_AllDegreeRankAdapter.rank1_eq_two_mul_h10_from_allDegree`
+- `HodgeReduction.HCGapL4.FrontC6_AllDegreeRankAdapter.rank_odd_is_even`
+- `HodgeReduction.HCGapL4.FrontE6_DispatcherFeedsConditionalTransfer.AllCodimMatchingData_from_AllDegreeAdapter`
+- `HodgeReduction.HCGapL4.FrontE6_DispatcherFeedsConditionalTransfer.betti_target_discharged_all_k`
+- `HodgeReduction.HCGapL4.FrontE6_DispatcherFeedsConditionalTransfer.R405FeedPackage.transfers_to_realCanonical`
+- `HodgeReduction.HCGapL4.FrontD6_Deligne1982MinimalFragment.internal_elliptic_absoluteHodge_implies_algebraic_codim1`
+- `HodgeReduction.HCGapL4.FrontD6_Deligne1982MinimalFragment.Deligne1982_full_statement`
 - `HodgeReduction.HCGapL4.FrontC11_ShimuraBettiComputation.shimuraEVIIExpectedBettiKnownHodgeSumCertification_current`
 - `HodgeReduction.HCGapL4.FrontC11_ShimuraBettiComputation.shimura_expected_known_hodgeSum_total`
 - `HodgeReduction.HCGapL4.FrontC12_V56InfrastructureProfileBridge.v56InfrastructureProfileCertification_current`
@@ -3182,9 +3202,12 @@ Files:
 - `HodgeReduction/HCGapL4/FrontC209_H8ResidualCompactDualGeneratorScalarCarrierClosure.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontC210_H8ResidualCompactDualGeneratorTargetLineEquality.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontC211_H8ResidualCompactDualTargetLineUnifiedSurfaces.lean` -- registered
-- `HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean` -- on-disk-unloaded
-- `HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean` -- on-disk-unloaded
-- `HodgeReduction/HCGapL4/R476_MultiFrontWave6Audit.lean` -- on-disk-unloaded
+- `HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontE6_DispatcherFeedsConditionalTransfer.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment_FinalGoalCompat.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontB6_MaintenanceOnly.lean` -- registered
+- `HodgeReduction/HCGapL4/R476_MultiFrontWave6Audit.lean` -- registered
 
 ### `concrete-evii-toy` -- Concrete EVII sanity-check chain
 
@@ -3205,6 +3228,7 @@ Files:
 - `HodgeReduction/ConeAudits/R217_ConeAudit.lean` -- on-disk-unloaded
 - `HodgeReduction/ConeAudits/R467_R470_ConeAudit.lean` -- on-disk-unloaded
 - `HodgeReduction/ConeAudits/R471_R476_ConeAudit.lean` -- on-disk-unloaded
+- `HodgeReduction/ConeAudits/R472_R476_ConeAudit.lean` -- infra
 - `HodgeReduction/ConeAudits/R477_R480_ConeAudit.lean` -- on-disk-unloaded
 
 ## Gap Details
@@ -5912,6 +5936,7 @@ Files:
 - `HodgeReduction/HCGapL4/FrontD_E7ToCMChowCorrespondence.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontE_RealCarrierProfileMatching.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontC6_AllDegreeHodgeRankAdapter.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontC6_AllDegreeRankAdapter.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontC7_E7EVIIHodgeDiamondInstance.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontC8_V56MTBridge.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontC9_EVIIHodgeNumberComputation.lean` -- registered
@@ -6117,12 +6142,12 @@ Files:
 - `HodgeReduction/HCGapL4/FrontC209_H8ResidualCompactDualGeneratorScalarCarrierClosure.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontC210_H8ResidualCompactDualGeneratorTargetLineEquality.lean` -- registered
 - `HodgeReduction/HCGapL4/FrontC211_H8ResidualCompactDualTargetLineUnifiedSurfaces.lean` -- registered
-- `HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean` -- on-disk-unloaded
-- `HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean` -- on-disk-unloaded
+- `HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean` -- registered
+- `HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean` -- registered
 - `HodgeReduction/HCGapL4/R451_MultiFrontFrontierAudit.lean` -- registered
 - `HodgeReduction/HCGapL4/R456_MultiFrontWave2Audit.lean` -- registered
 - `HodgeReduction/HCGapL4/R460_MultiFrontWave3Audit.lean` -- registered
 - `HodgeReduction/HCGapL4/R465_MultiFrontWave4Audit.lean` -- registered
 - `HodgeReduction/HCGapL4/R470_MultiFrontWave5Audit.lean` -- registered
-- `HodgeReduction/HCGapL4/R476_MultiFrontWave6Audit.lean` -- on-disk-unloaded
+- `HodgeReduction/HCGapL4/R476_MultiFrontWave6Audit.lean` -- registered
 
