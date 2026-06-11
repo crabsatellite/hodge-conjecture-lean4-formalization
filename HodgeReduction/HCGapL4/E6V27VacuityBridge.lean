@@ -46,7 +46,7 @@ theorem e6_cominuscule_4_mark : e6DynkinMark 4 = 1 := e6_cominuscule_4
 theorem e6_cominuscule_count :
     ((List.finRange 6).filter (fun i => e6DynkinMark i = 1)).length = 2 := by
   simp [e6DynkinMark]
-  native_decide
+  decide
 
 /-- E6 is the ONLY exceptional type with cominuscule nodes.
     E7, E8, F4, G2 all have marks >= 2. KERNEL-PURE. -/
@@ -56,7 +56,7 @@ theorem e6_only_exceptional_with_cominuscule :
     SimpleLieAlgebraType.E8.hasCominusculeNode = false /\
     SimpleLieAlgebraType.F4.hasCominusculeNode = false /\
     SimpleLieAlgebraType.G2.hasCominusculeNode = false := by
-  native_decide
+  decide
 
 /-! ## Step 2: Weight-parity obstruction at weight 3 -/
 

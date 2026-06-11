@@ -65,7 +65,7 @@ def shimuraEVIIExpectedBetti (k : Nat) : Nat :=
     minuscule representation. KERNEL-PURE by reduction. -/
 theorem expected_betti3_equals_v56_dim :
     shimuraEVIIExpectedBetti 3 = 56 := by
-  native_decide
+  decide
 
 /-- **R493 substantive theorem (2/5)**: the expected total Betti sum
     for the Shimura variety is 1+0+1+56+1+0+1+0+1 = 61.
@@ -76,7 +76,7 @@ theorem expected_betti_sum :
     shimuraEVIIExpectedBetti 4 + shimuraEVIIExpectedBetti 5 +
     shimuraEVIIExpectedBetti 6 + shimuraEVIIExpectedBetti 7 +
     shimuraEVIIExpectedBetti 8 = 61 := by
-  native_decide
+  decide
 
 /-- **R493 substantive theorem (3/5)**: the compact dual Betti numbers
     are a subset of the Shimura Betti numbers (they match at even
@@ -90,7 +90,7 @@ theorem compact_dual_betti_subset_shimura :
     e7EVIICompactDualBetti 8 = shimuraEVIIExpectedBetti 8 /\
     e7EVIICompactDualBetti 3 = 0 /\
     shimuraEVIIExpectedBetti 3 = 56 := by
-  native_decide
+  decide
 
 /-! ## Section 2: Shimura Hodge diamond at weight 3 -/
 
@@ -106,7 +106,7 @@ theorem hodge_diamond_shimura_weight3 :
     v56Weight3HodgeNumber 2 1 = 27 /\
     v56Weight3HodgeNumber 3 0 = 1 /\
     (1 : Nat) + 27 + 27 + 1 = 56 := by
-  native_decide
+  decide
 
 /-! ## Section 3: Shimura Betti feeds bridge -/
 
@@ -116,7 +116,7 @@ theorem hodge_diamond_shimura_weight3 :
     matching dim V_56. KERNEL-PURE. -/
 theorem shimura_betti_feeds_bridge :
     shimuraEVIIExpectedBetti 3 = v56Weight3Betti 3 := by
-  native_decide
+  decide
 
 /-! ## Section 4: R552 known Hodge-sum certification for the Shimura profile -/
 
@@ -127,7 +127,7 @@ theorem shimura_expected_betti_eq_compactDual_hodgeSum_deg0 :
       hodgeSumAtDegree e7EVIICompactDualHodgeDiamond 0 := by
   calc
     shimuraEVIIExpectedBetti 0 = e7EVIICompactDualBetti 0 := by
-      native_decide
+      decide
     _ = hodgeSumAtDegree e7EVIICompactDualHodgeDiamond 0 :=
       evii_betti_eq_hodgeSum_deg0
 
@@ -138,7 +138,7 @@ theorem shimura_expected_betti_eq_compactDual_hodgeSum_deg1 :
       hodgeSumAtDegree e7EVIICompactDualHodgeDiamond 1 := by
   calc
     shimuraEVIIExpectedBetti 1 = e7EVIICompactDualBetti 1 := by
-      native_decide
+      decide
     _ = hodgeSumAtDegree e7EVIICompactDualHodgeDiamond 1 :=
       evii_betti_eq_hodgeSum_deg1
 
@@ -149,7 +149,7 @@ theorem shimura_expected_betti_eq_compactDual_hodgeSum_deg2 :
       hodgeSumAtDegree e7EVIICompactDualHodgeDiamond 2 := by
   calc
     shimuraEVIIExpectedBetti 2 = e7EVIICompactDualBetti 2 := by
-      native_decide
+      decide
     _ = hodgeSumAtDegree e7EVIICompactDualHodgeDiamond 2 :=
       evii_betti_eq_hodgeSum_deg2
 
@@ -171,7 +171,7 @@ theorem shimura_expected_betti_eq_compactDual_hodgeSum_deg4 :
       hodgeSumAtDegree e7EVIICompactDualHodgeDiamond 4 := by
   calc
     shimuraEVIIExpectedBetti 4 = e7EVIICompactDualBetti 4 := by
-      native_decide
+      decide
     _ = hodgeSumAtDegree e7EVIICompactDualHodgeDiamond 4 :=
       evii_betti_eq_hodgeSum_deg4
 
@@ -182,7 +182,7 @@ theorem shimura_expected_betti_eq_compactDual_hodgeSum_deg5 :
       hodgeSumAtDegree e7EVIICompactDualHodgeDiamond 5 := by
   calc
     shimuraEVIIExpectedBetti 5 = e7EVIICompactDualBetti 5 := by
-      native_decide
+      decide
     _ = hodgeSumAtDegree e7EVIICompactDualHodgeDiamond 5 :=
       evii_betti_eq_hodgeSum_deg5
 
@@ -193,7 +193,7 @@ theorem shimura_expected_betti_eq_compactDual_hodgeSum_deg6 :
       hodgeSumAtDegree e7EVIICompactDualHodgeDiamond 6 := by
   calc
     shimuraEVIIExpectedBetti 6 = e7EVIICompactDualBetti 6 := by
-      native_decide
+      decide
     _ = hodgeSumAtDegree e7EVIICompactDualHodgeDiamond 6 :=
       evii_betti_eq_hodgeSum_deg6
 
@@ -204,7 +204,7 @@ theorem shimura_expected_betti_eq_compactDual_hodgeSum_deg7 :
       hodgeSumAtDegree e7EVIICompactDualHodgeDiamond 7 := by
   calc
     shimuraEVIIExpectedBetti 7 = e7EVIICompactDualBetti 7 := by
-      native_decide
+      decide
     _ = hodgeSumAtDegree e7EVIICompactDualHodgeDiamond 7 :=
       evii_betti_eq_hodgeSum_deg7
 
@@ -215,7 +215,7 @@ theorem shimura_expected_betti_eq_compactDual_hodgeSum_deg8 :
       hodgeSumAtDegree e7EVIICompactDualHodgeDiamond 8 := by
   calc
     shimuraEVIIExpectedBetti 8 = e7EVIICompactDualBetti 8 := by
-      native_decide
+      decide
     _ = hodgeSumAtDegree e7EVIICompactDualHodgeDiamond 8 :=
       evii_betti_eq_hodgeSum_deg8
 

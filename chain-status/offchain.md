@@ -6,9 +6,9 @@ five-way classification:
 
 * quarantine: **0** (explicit failed-route list)
 * infra:      **5** (standalone tools, audit scripts)
-* registered: **254** (configured research route/gap files, off endpoint closure)
+* registered: **255** (configured research route/gap files, off endpoint closure)
 * orphan:     **254** (loaded but unreachable - investigate)
-* on-disk-unloaded: **243** (file exists but not imported by any chain)
+* on-disk-unloaded: **244** (file exists but not imported by any chain)
 
 
 ## Quarantine (0)
@@ -26,7 +26,7 @@ five-way classification:
 | `HodgeReduction/MainChain.lean` | 340 | 0 |
 | `HodgeReduction/PaperInventory.lean` | 677 | 0 |
 
-## Registered research routes/gaps (254)
+## Registered research routes/gaps (255)
 
 | file | decls | axioms |
 |------|------:|-------:|
@@ -257,6 +257,7 @@ five-way classification:
 | `HodgeReduction/HCGapL4/R465_MultiFrontWave4Audit.lean` | 58 | 0 |
 | `HodgeReduction/HCGapL4/R470_MultiFrontWave5Audit.lean` | 62 | 0 |
 | `HodgeReduction/HCGapL4/R476_MultiFrontWave6Audit.lean` | 43 | 0 |
+| `HodgeReduction/HCGapL4/R777_NativeDecideDetoxLedger.lean` | 34 | 0 |
 | `HodgeReduction/Infrastructure/Automorphic/VoganZuckerman.lean` | 19 | 0 |
 | `HodgeReduction/Infrastructure/Cohomology/Matsushima.lean` | 50 | 0 |
 | `HodgeReduction/Infrastructure/Cohomology/SheafCohomology.lean` | 48 | 0 |
@@ -544,7 +545,7 @@ five-way classification:
 | `HodgeReduction/Infrastructure/V56HodgeRank.lean` | 33 | 0 |
 | `HodgeReduction/MathlibCandidates.lean` | 123 | 0 |
 
-## On-disk-unloaded (243)
+## On-disk-unloaded (244)
 
 Files present in the source tree but NOT imported by the entry script.  Either wire them into the chain, mark them quarantine, or delete them.
 
@@ -635,6 +636,7 @@ Files present in the source tree but NOT imported by the entry script.  Either w
 - `HodgeReduction/ConeAudits/R467_R470_ConeAudit.lean`
 - `HodgeReduction/ConeAudits/R471_R476_ConeAudit.lean`
 - `HodgeReduction/ConeAudits/R477_R480_ConeAudit.lean`
+- `HodgeReduction/ConeAudits/R777_ConeAudit.lean`
 - `HodgeReduction/CrossRingArithmetic.lean`
 - `HodgeReduction/HCGapL2/AbelianSurface.lean`
 - `HodgeReduction/HCGapL2/EVIICohomologyModel.lean`

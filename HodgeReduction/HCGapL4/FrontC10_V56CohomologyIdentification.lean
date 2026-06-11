@@ -50,7 +50,7 @@ theorem v56_dim_not_from_compact_dual_betti :
     e7EVIICompactDualBetti 4 + e7EVIICompactDualBetti 6 +
     e7EVIICompactDualBetti 8 = 5 /\
     e7EVIICompactDualBetti 3 = 0 := by
-  native_decide
+  decide
 
 /-- **R491 substantive theorem (2/4)**: the V_56 Hodge diamond is
     compatible with the EVII compact dual cohomology at the level of
@@ -69,7 +69,7 @@ theorem v56_hodge_diamond_compatible_with_evii :
     e7EVIICompactDualHodgeNumber 2 2 = 1 /\
     e7EVIICompactDualHodgeNumber 3 3 = 1 /\
     e7EVIICompactDualHodgeNumber 4 4 = 1 := by
-  native_decide
+  decide
 
 /-! ## Section 2: Cohomology bridge structure -/
 

@@ -56,31 +56,31 @@ def e7EVIICompactDualHodgeDiamond : FiniteHodgeDiamondData where
   finiteSupportTarget := True
 
 theorem e7EVIICompactDual_betti0 : e7EVIICompactDualBetti 0 = 1 := by
-  native_decide
+  decide
 
 theorem e7EVIICompactDual_betti1 : e7EVIICompactDualBetti 1 = 0 := by
-  native_decide
+  decide
 
 theorem e7EVIICompactDual_betti2 : e7EVIICompactDualBetti 2 = 1 := by
-  native_decide
+  decide
 
 theorem e7EVIICompactDual_betti3 : e7EVIICompactDualBetti 3 = 0 := by
-  native_decide
+  decide
 
 theorem e7EVIICompactDual_betti4 : e7EVIICompactDualBetti 4 = 1 := by
-  native_decide
+  decide
 
 theorem e7EVIICompactDual_betti5 : e7EVIICompactDualBetti 5 = 0 := by
-  native_decide
+  decide
 
 theorem e7EVIICompactDual_betti6 : e7EVIICompactDualBetti 6 = 1 := by
-  native_decide
+  decide
 
 theorem e7EVIICompactDual_betti7 : e7EVIICompactDualBetti 7 = 0 := by
-  native_decide
+  decide
 
 theorem e7EVIICompactDual_betti8 : e7EVIICompactDualBetti 8 = 1 := by
-  native_decide
+  decide
 
 /-- Diagonal EVII Hodge-number simplification. -/
 theorem e7EVIICompactDual_diag_eq (p : Nat) :
@@ -91,19 +91,19 @@ theorem e7EVIICompactDual_diag_eq (p : Nat) :
 
 theorem e7EVIICompactDual_hodgeSum0 :
     hodgeSumAtDegree e7EVIICompactDualHodgeDiamond 0 = 1 := by
-  native_decide
+  decide
 
 theorem e7EVIICompactDual_hodgeSum2 :
     hodgeSumAtDegree e7EVIICompactDualHodgeDiamond 2 = 1 := by
-  native_decide
+  decide
 
 theorem e7EVIICompactDual_hodgeSum4 :
     hodgeSumAtDegree e7EVIICompactDualHodgeDiamond 4 = 1 := by
-  native_decide
+  decide
 
 theorem e7EVIICompactDual_hodgeSum8 :
     hodgeSumAtDegree e7EVIICompactDualHodgeDiamond 8 = 1 := by
-  native_decide
+  decide
 
 /-! ## V56 weight-3 profile -/
 
@@ -146,13 +146,13 @@ def v56Weight3HodgeDiamond : FiniteHodgeDiamondData where
 
 theorem v56Weight3_hodgeSum3 :
     hodgeSumAtDegree v56Weight3HodgeDiamond 3 = 56 := by
-  native_decide
+  decide
 
 theorem v56_dimension_identity : (1 : Nat) + 27 + 27 + 1 = 56 := by
-  native_decide
+  decide
 
 theorem v56Weight3_betti3 : v56Weight3Betti 3 = 56 := by
-  native_decide
+  decide
 
 theorem v56Weight3_betti_ne3 (k : Nat) (h : k = 3 -> False) :
     v56Weight3Betti k = 0 := by
@@ -176,17 +176,17 @@ def v56Weight3HodgeDiamond_correct : Prop :=
 
 theorem v56Weight3HodgeDiamond_correct_proof :
     v56Weight3HodgeDiamond_correct := by
-  refine ⟨by native_decide, by native_decide, by native_decide, by native_decide, ?_⟩
+  refine ⟨by decide, by decide, by decide, by decide, ?_⟩
   intro p q h
   rcases h with h03 | h12 | h21 | h30
   · rcases h03 with ⟨rfl, rfl⟩
-    native_decide
+    decide
   · rcases h12 with ⟨rfl, rfl⟩
-    native_decide
+    decide
   · rcases h21 with ⟨rfl, rfl⟩
-    native_decide
+    decide
   · rcases h30 with ⟨rfl, rfl⟩
-    native_decide
+    decide
 
 /-! ## Round-end report -/
 

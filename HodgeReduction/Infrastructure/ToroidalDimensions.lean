@@ -120,7 +120,7 @@ theorem e7_parabolic_dim_table :
     e7ParabolicUnipotentDim 4 = 40 /\
     e7ParabolicUnipotentDim 5 = 42 /\
     e7ParabolicUnipotentDim 6 = 27 := by
-  refine {andI ?_ ?_}.1 <;> rfl
+  exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
 
 /-- The Borel-Serre minimum codimension over all parabolics is 26.
     This is the minimal boundary codimension in the Baily-Borel
@@ -130,7 +130,7 @@ theorem bs_min_codim : e7ParabolicUnipotentDim 6 - 1 = 26 := e7_min_bs_codim
 
 /-! ## Section 6: AMRT construction dimension summary -/
 
-/-- The AMRT toroidal compactification S_Γ^tor is a smooth projective
+/- The AMRT toroidal compactification S_Γ^tor is a smooth projective
     variety of complex dimension 27, with:
     - Interior: Γ\EVII (arithmetic quotient of Hermitian symmetric domain)
     - Boundary: torus fibrations over Baily-Borel boundary components

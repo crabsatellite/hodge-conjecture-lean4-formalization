@@ -8,7 +8,7 @@ For each orphan, the user should either:
 
 
 * loaded-but-orphan: **254**
-* on-disk-but-unloaded: **243**
+* on-disk-but-unloaded: **244**
 
 
 ## Loaded-but-orphan (the env has them, no closure)
@@ -357,6 +357,7 @@ For each orphan, the user should either:
 - `HodgeReduction/ConeAudits/R467_R470_ConeAudit.lean`
 - `HodgeReduction/ConeAudits/R471_R476_ConeAudit.lean`
 - `HodgeReduction/ConeAudits/R477_R480_ConeAudit.lean`
+- `HodgeReduction/ConeAudits/R777_ConeAudit.lean`
 - `HodgeReduction/CrossRingArithmetic.lean`
 - `HodgeReduction/HCGapL2/AbelianSurface.lean`
 - `HodgeReduction/HCGapL2/EVIICohomologyModel.lean`

@@ -1,0 +1,32 @@
+/-
+# R777 cone audit driver.
+
+Representative detoxed declarations.  This file is an audit driver, not a
+main-chain proof dependency.
+-/
+
+import HodgeReduction.HCGapL4.R777_NativeDecideDetoxLedger
+import HodgeReduction.Infrastructure.SimpleLieAlgebraClassification
+import HodgeReduction.Infrastructure.DynkinMarks
+import HodgeReduction.HCGapL4.E6V27VacuityBridge
+import HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance
+import HodgeReduction.HCGapL4.FrontC8_V56MTBridge
+import HodgeReduction.HCGapL4.FrontC9_EVIIHodgeNumberComputation
+import HodgeReduction.HCGapL4.FrontC10_V56CohomologyIdentification
+import HodgeReduction.HCGapL4.FrontC11_ShimuraBettiComputation
+import HodgeReduction.HCGapL4.FrontC12_V56InfrastructureProfileBridge
+import HodgeReduction.HCGapL4.V56CohomologyRank
+
+#print axioms HodgeReduction.Infrastructure.SimpleLieAlgebraType.dim_A1
+#print axioms HodgeReduction.Infrastructure.e7_marks_sum
+#print axioms HodgeReduction.e6_cominuscule_count
+#print axioms HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance.e7EVIICompactDual_betti8
+#print axioms HodgeReduction.HCGapL4.FrontC7_E7EVIIHodgeDiamondInstance.v56Weight3HodgeDiamond_correct_proof
+#print axioms HodgeReduction.HCGapL4.FrontC8_V56MTBridge.evii_compact_dual_betti_sum
+#print axioms HodgeReduction.HCGapL4.FrontC9_EVIIHodgeNumberComputation.eviiCompactDual_hodgeSum6
+#print axioms HodgeReduction.HCGapL4.FrontC10_V56CohomologyIdentification.v56_dim_not_from_compact_dual_betti
+#print axioms HodgeReduction.HCGapL4.FrontC11_ShimuraBettiComputation.expected_betti_sum
+#print axioms HodgeReduction.HCGapL4.FrontC12_V56InfrastructureProfileBridge.finite_v56_profile_matches_infrastructure_3_0
+#print axioms HodgeReduction.evii_euler_sign
+
+#print axioms HodgeReduction.HCGapL4.R777_NativeDecideDetoxLedger.currentR777NativeDecideDetoxSnapshot_eq_texStatus

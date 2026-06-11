@@ -32,7 +32,7 @@ theorem e7_all_marks_geq_two (i : Fin 7) : e7DynkinMark i >= 2 := by
 
 /-- E7 marks sum = 27. KERNEL-PURE. -/
 theorem e7_marks_sum :
-    ((List.finRange 7).map e7DynkinMark).sum = 27 := by native_decide
+    ((List.finRange 7).map e7DynkinMark).sum = 27 := by decide
 
 def e8DynkinMark (i : Fin 8) : Int :=
   match i with
@@ -55,7 +55,7 @@ theorem e6_cominuscule_4 : e6DynkinMark 4 = 1 := rfl
 
 /-- E6 marks sum = 11. KERNEL-PURE. -/
 theorem e6_marks_sum :
-    ((List.finRange 6).map e6DynkinMark).sum = 11 := by native_decide
+    ((List.finRange 6).map e6DynkinMark).sum = 11 := by decide
 
 def g2DynkinMark (i : Fin 2) : Int :=
   match i with | 0 => 3 | 1 => 2

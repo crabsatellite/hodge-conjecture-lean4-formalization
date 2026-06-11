@@ -130,15 +130,15 @@ theorem SimpleLieAlgebraType.D_is_classical (n : Nat) (h : n >= 4) :
 /-! ## Section 3: Rank and dimension computations -/
 
 /-- A_1 = sl(2), rank 1, dim 2. KERNEL-PURE. -/
-theorem SimpleLieAlgebraType.dim_A1 : (SimpleLieAlgebraType.A 1 (by omega)).dim = 2 := by native_decide
+theorem SimpleLieAlgebraType.dim_A1 : (SimpleLieAlgebraType.A 1 (by omega)).dim = 2 := by decide
 /-- A_2 = sl(3), rank 2, dim 8. KERNEL-PURE. -/
-theorem SimpleLieAlgebraType.dim_A2 : (SimpleLieAlgebraType.A 2 (by omega)).dim = 6 := by native_decide
+theorem SimpleLieAlgebraType.dim_A2 : (SimpleLieAlgebraType.A 2 (by omega)).dim = 6 := by decide
 /-- B_2 = so(5), rank 2, dim 10. KERNEL-PURE. -/
-theorem SimpleLieAlgebraType.dim_B2 : (SimpleLieAlgebraType.B 2 (by omega)).dim = 10 := by native_decide
+theorem SimpleLieAlgebraType.dim_B2 : (SimpleLieAlgebraType.B 2 (by omega)).dim = 10 := by decide
 /-- C_3 = sp(6), rank 3, dim 21. KERNEL-PURE. -/
-theorem SimpleLieAlgebraType.dim_C3 : (SimpleLieAlgebraType.C 3 (by omega)).dim = 21 := by native_decide
+theorem SimpleLieAlgebraType.dim_C3 : (SimpleLieAlgebraType.C 3 (by omega)).dim = 21 := by decide
 /-- D_4 = so(8), rank 4, dim 28. KERNEL-PURE. -/
-theorem SimpleLieAlgebraType.dim_D4 : (SimpleLieAlgebraType.D 4 (by omega)).dim = 28 := by native_decide
+theorem SimpleLieAlgebraType.dim_D4 : (SimpleLieAlgebraType.D 4 (by omega)).dim = 28 := by decide
 
 /-- E6 has rank 6. KERNEL-PURE. -/
 theorem SimpleLieAlgebraType.rank_E6 : SimpleLieAlgebraType.E6.rank = 6 := rfl

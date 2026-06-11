@@ -75,7 +75,7 @@ theorem evii_compact_dual_betti_sum :
     e7EVIICompactDualBetti 0 + e7EVIICompactDualBetti 2 +
     e7EVIICompactDualBetti 4 + e7EVIICompactDualBetti 6 +
     e7EVIICompactDualBetti 8 = 5 := by
-  native_decide
+  decide
 
 /-! ## Section 3: V_56 correctness Prop -/
 
@@ -89,7 +89,7 @@ theorem v56_weight3_dimension_and_euler :
     v56Weight3HodgeNumber 3 0 = 1 /\
     (1 : Nat) + 27 + 27 + 1 = 56 /\
     (1 : Int) - 27 + 27 - 1 = 0 := by
-  native_decide
+  decide
 
 /-! ## Section 4: EVII compact dual Poincare polynomial -/
 

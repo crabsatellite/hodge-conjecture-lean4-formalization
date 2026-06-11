@@ -69,7 +69,7 @@ theorem evii_betti_eq_hodgeSum_deg4 :
     The only contributing term is h^{3,3} = 1. -/
 theorem eviiCompactDual_hodgeSum6 :
     hodgeSumAtDegree e7EVIICompactDualHodgeDiamond 6 = 1 := by
-  native_decide
+  decide
 
 /-- **R484 substantive theorem (4/5)**: at degree 6, the EVII compact
     dual Betti number equals the Hodge sum. betti 6 = 1 = h^{3,3}.
@@ -93,19 +93,19 @@ theorem evii_betti_eq_hodgeSum_deg8 :
     compact dual (no odd cohomology). KERNEL-PURE. -/
 theorem evii_betti_eq_hodgeSum_deg1 :
     e7EVIICompactDualBetti 1 = hodgeSumAtDegree e7EVIICompactDualHodgeDiamond 1 := by
-  native_decide
+  decide
 
 theorem evii_betti_eq_hodgeSum_deg3 :
     e7EVIICompactDualBetti 3 = hodgeSumAtDegree e7EVIICompactDualHodgeDiamond 3 := by
-  native_decide
+  decide
 
 theorem evii_betti_eq_hodgeSum_deg5 :
     e7EVIICompactDualBetti 5 = hodgeSumAtDegree e7EVIICompactDualHodgeDiamond 5 := by
-  native_decide
+  decide
 
 theorem evii_betti_eq_hodgeSum_deg7 :
     e7EVIICompactDualBetti 7 = hodgeSumAtDegree e7EVIICompactDualHodgeDiamond 7 := by
-  native_decide
+  decide
 
 /-! ## Section 7: Full certification structure -/
 
@@ -148,15 +148,15 @@ theorem v56_betti_eq_hodgeSum_deg3 :
 /-- V_56 Betti = 0 = hodgeSum at all degrees != 3. -/
 theorem v56_betti_eq_hodgeSum_deg0 :
     v56Weight3Betti 0 = hodgeSumAtDegree v56Weight3HodgeDiamond 0 := by
-  native_decide
+  decide
 
 theorem v56_betti_eq_hodgeSum_deg1 :
     v56Weight3Betti 1 = hodgeSumAtDegree v56Weight3HodgeDiamond 1 := by
-  native_decide
+  decide
 
 theorem v56_betti_eq_hodgeSum_deg2 :
     v56Weight3Betti 2 = hodgeSumAtDegree v56Weight3HodgeDiamond 2 := by
-  native_decide
+  decide
 
 /-! ## Section 9: Round-end report -/
 

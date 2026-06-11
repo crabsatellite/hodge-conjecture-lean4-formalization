@@ -78,7 +78,7 @@ theorem finite_v56_profile_matches_infrastructure_3_0 :
       PureHodgeStructure.hodgeNumber
         (V := HodgeReduction.Infrastructure.V56) (n := 3) v56Index30 := by
   rw [infrastructure_v56_hodgeNumber_3_0]
-  native_decide
+  decide
 
 /-- **R553 substantive theorem (2/7)**: the finite FrontC V56 table
 agrees with the infrastructure `V56` Hodge structure at `(2,1)`. -/
@@ -87,7 +87,7 @@ theorem finite_v56_profile_matches_infrastructure_2_1 :
       PureHodgeStructure.hodgeNumber
         (V := HodgeReduction.Infrastructure.V56) (n := 3) v56Index21 := by
   rw [infrastructure_v56_hodgeNumber_2_1]
-  native_decide
+  decide
 
 /-- **R553 substantive theorem (3/7)**: the finite FrontC V56 table
 agrees with the infrastructure `V56` Hodge structure at `(1,2)`. -/
@@ -96,7 +96,7 @@ theorem finite_v56_profile_matches_infrastructure_1_2 :
       PureHodgeStructure.hodgeNumber
         (V := HodgeReduction.Infrastructure.V56) (n := 3) v56Index12 := by
   rw [infrastructure_v56_hodgeNumber_1_2]
-  native_decide
+  decide
 
 /-- **R553 substantive theorem (4/7)**: the finite FrontC V56 table
 agrees with the infrastructure `V56` Hodge structure at `(0,3)`. -/
@@ -105,7 +105,7 @@ theorem finite_v56_profile_matches_infrastructure_0_3 :
       PureHodgeStructure.hodgeNumber
         (V := HodgeReduction.Infrastructure.V56) (n := 3) v56Index03 := by
   rw [infrastructure_v56_hodgeNumber_0_3]
-  native_decide
+  decide
 
 /-- **R553 substantive theorem (5/7)**: the infrastructure V56 Hodge
 numbers sum to `56`. -/

@@ -84,7 +84,7 @@ theorem canonical_poincare_dim : (27 : Int) * 2 = 54 := by omega
 
 /-- Under E6 x T1, V_56 branches as V_27 + V_27* + Q + Q.
     Verified in V56BranchingRules. KERNEL-PURE. -/
-theorem v56_e6_branching_restate : (27 : Int) + 27 + 1 + 1 = 56 := v56_e6_branching
+theorem v56_e6_branching_restate : (27 : Int) + 27 + 1 + 1 = 56 := by omega
 
 /-- Under A7, V_56 branches as the sum of standard representations.
     dim A7 = 63. The branching V_56 -> A7 follows from the
@@ -103,14 +103,14 @@ theorem v56_d6_branching_check : (32 : Int) + 12 + 12 = 56 := by omega
     By Hodge symmetry: chi = sum_{p+q even} (-1)^p * h^{p,q}.
     For EVII quotient: chi = 1 - 1 + 56 - ... + 1.
     KERNEL-PURE. -/
-theorem evii_euler_sign : (-1 : Int) ^ 3 = -1 := by native_decide
+theorem evii_euler_sign : (-1 : Int) ^ 3 = -1 := by decide
 
 /-- The Hirzebruch signature for a 27-dimensional variety:
     signature = sum_{p even} (-1)^{p/2} * b_{2p}.
     KERNEL-PURE. -/
 theorem signature_dim27 : (27 : Int) % 2 = 1 := by omega
 
-/-- **R520**: 16 kernel-pure theorems constraining the canonical
+/- **R520**: 16 kernel-pure theorems constraining the canonical
     Shimura variety. No new axioms. The remaining gap for
     canonicalE7ShimuraTor is the CONSTRUCTION of the variety
     (AMRT toroidal compactification), not the rank/dimension checks. -/
