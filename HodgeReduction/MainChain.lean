@@ -129,6 +129,7 @@ import HodgeReduction.HCGapL4.FrontC208_H8ResidualExactImageScalarIndependence
 import HodgeReduction.HCGapL4.FrontC209_H8ResidualCompactDualGeneratorScalarCarrierClosure
 import HodgeReduction.HCGapL4.FrontC210_H8ResidualCompactDualGeneratorTargetLineEquality
 import HodgeReduction.HCGapL4.FrontC211_H8ResidualCompactDualTargetLineUnifiedSurfaces
+import HodgeReduction.HCGapL4.FrontC212_H8ResidualExactImageFromTargetLine
 import HodgeReduction.HCGapL4.R777_NativeDecideDetoxLedger
 
 /-!
@@ -1032,7 +1033,7 @@ def config : ChainAudit.ProjectConfig := {
     },
     {
       id := "G-hcgap-l4-multifront"
-      title := "HCGapL4 multi-front Layer-4 attack waves (R420 -- R777)"
+      title := "HCGapL4 multi-front Layer-4 attack waves (R420 -- R778)"
       status := "active-open"
       summary :=
         "Active exploratory attack waves on the L4 / cohomology-profile / connectedness pipeline.  R707--R756 normalize the H8 residual down to the current three-field Cartan-image frontier: prove `compactDual = H8`, prove `surjectivity_source = compactDual`, and prove `trivialModulePart <= Submodule.map j_q CartanH8`.  R756 proves those three fields rebuild honest `MatsushimaV56BoundaryData`.  R757 transports the R723/R724 countermodels to this current frontier: boundary data alone, and the paper-facing GK/Borel--Wallach/BBW/Freudenthal carrier stack plus boundary data, still do not force the current Cartan-image contract.  R758 names the pointwise forward consumer from an actual boundary-data/compact-dual-H8 witness into the current Cartan-image contract and extracts the source and reverse-Cartan-image fields.  R759 proves that the visible compact-dual/H8 carrier gap is exactly the source-invariants/H8 carrier gap, and transports generator/rank-one spellings across that comparison.  R760 proves source-invariants/H8 is exactly the source generator plus exact source-rank-one package.  R761 records the matching guardrail: even boundary data plus exact source rank one does not force source generator membership or source-H8.  R762 proves that, once generator placement is fixed, exact source rank one is exactly the no-extra source containment `source_invariants <= H8`.  R763 records that boundary data plus either one-sided source containment still does not force the other.  R764 moves the source-containment pair to target-line geometry: target generator membership plus target line containment feed `source_invariants = H8` and `compactDual = H8` under boundary data.  R765 proves target-line containment plus a nonzero target class already gives the target generator, so the non-boundary target-line side can be attacked as line containment plus nonvanishing.  R766 gives the target-line containment a constructive scalar-preimage certificate and proves that this certificate plus a nonzero target class feeds target-line equality, target-generator membership, and the R765 compact-dual/H8 consumer.  R767 identifies the R766 target-nonzero certificate with the existing R753 trivial-module nonzero witness, nonzero finrank, and source/compact-generator nonvanishing surfaces.  R768 proves exact image plus source-H8 plus the scalar certificate/nonzero package rebuilds `MatsushimaV56BoundaryData`, exposing the target boundary equality through the same line-equality route.  R769 proves source-H8 directly constructs the target-nonzero certificate, reducing the preferred scalar route to exact image, source-H8, and scalar certificate.  R770 proves the scalar certificate plus source generator membership recovers source-H8, so the preferred scalar route is exact image, `h^4 in source_invariants`, and scalar certificate.  R771 moves that source generator field to the geometric `CartanH8 <= compactDual` containment via the existing Cartan/compactDual equivalence, so the preferred scalar route is now exact image, Cartan-to-compactDual containment, and scalar certificate.  R772 proves the Cartan containment plus scalar certificate already closes the compactDual/Cartan carrier equality and compactDual/H8 carrier equality; with exact image added back, the same three fields feed the R684 boundary-data-plus-Cartan contract.  R773 records the matching guardrail: Cartan containment plus scalar certificate, even with the R772 carrier closure, still does not force exact image in the abstract interface.  R774 replaces that Cartan containment field by the equivalent concrete compact-dual generator membership `h^4 in compactDual`, and proves exact image plus this membership plus the scalar certificate feed the same carrier and boundary-data consumers.  R775 proves that, under this generator-membership field, scalar certificates are equivalent to exact target-line equality `target_invariants = span {j_q(h^4)}`, so the target-side proof can be attacked as that equality.  R776 proves that the R775 compact-dual generator target-line contract is equivalent to the older source-H8 target-line contract, target-invariant excess quotient vanishing, and the bundled finite expected-Betti upper-bound contract, so those target-side spellings are one gap rather than parallel obligations.  The route remains exploratory, not a closure claim."
@@ -1249,6 +1250,7 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction/HCGapL4/FrontC209_H8ResidualCompactDualGeneratorScalarCarrierClosure.lean",
         "HodgeReduction/HCGapL4/FrontC210_H8ResidualCompactDualGeneratorTargetLineEquality.lean",
         "HodgeReduction/HCGapL4/FrontC211_H8ResidualCompactDualTargetLineUnifiedSurfaces.lean",
+        "HodgeReduction/HCGapL4/FrontC212_H8ResidualExactImageFromTargetLine.lean",
         "HodgeReduction/HCGapL4/R777_NativeDecideDetoxLedger.lean",
         "HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean",
         "HodgeReduction/HCGapL4/FrontD6_Deligne1982MinimalFragment.lean",
@@ -3293,6 +3295,19 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction.HCGapL4.FrontC211_H8ResidualCompactDualTargetLineUnifiedSurfaces.currentR776CompactDualTargetLineUnifiedSnapshot_eq_texStatus",
         "HodgeReduction.HCGapL4.FrontC211_H8ResidualCompactDualTargetLineUnifiedSurfaces.currentR776CompactDualTargetLineUnifiedTargetNames_eq_texStatus",
         "HodgeReduction.HCGapL4.FrontC211_H8ResidualCompactDualTargetLineUnifiedSurfaces.R776_substantiveTheoremCount",
+        "HodgeReduction.HCGapL4.FrontC212_H8ResidualExactImageFromTargetLine.cartanH8IsHpowFourLine",
+        "HodgeReduction.HCGapL4.FrontC212_H8ResidualExactImageFromTargetLine.r778_countermodel_h_pow_four_mem_compactDual",
+        "HodgeReduction.HCGapL4.FrontC212_H8ResidualExactImageFromTargetLine.r778_countermodel_target_invariants_eq_h_pow_four_line",
+        "HodgeReduction.HCGapL4.FrontC212_H8ResidualExactImageFromTargetLine.r778_countermodel_survives_cartan_h8_line",
+        "HodgeReduction.HCGapL4.FrontC212_H8ResidualExactImageFromTargetLine.r778_countermodel_surjectivity_target_ne_target_invariants",
+        "HodgeReduction.HCGapL4.FrontC212_H8ResidualExactImageFromTargetLine.r778_compactDual_targetLine_cartanLine_do_not_force_exactImage",
+        "HodgeReduction.HCGapL4.FrontC212_H8ResidualExactImageFromTargetLine.r778_exact_image_of_compactDual_targetLine_cartanLine_and_surjectivityTargetProjection",
+        "HodgeReduction.HCGapL4.FrontC212_H8ResidualExactImageFromTargetLine.currentR778ExactImageReductionTargetNames",
+        "HodgeReduction.HCGapL4.FrontC212_H8ResidualExactImageFromTargetLine.R778ExactImageReductionSnapshot",
+        "HodgeReduction.HCGapL4.FrontC212_H8ResidualExactImageFromTargetLine.currentR778ExactImageReductionSnapshot",
+        "HodgeReduction.HCGapL4.FrontC212_H8ResidualExactImageFromTargetLine.currentR778ExactImageReductionSnapshot_eq_texStatus",
+        "HodgeReduction.HCGapL4.FrontC212_H8ResidualExactImageFromTargetLine.currentR778ExactImageReductionTargetNames_eq_texStatus",
+        "HodgeReduction.HCGapL4.FrontC212_H8ResidualExactImageFromTargetLine.R778_substantiveTheoremCount",
         "HodgeReduction.HCGapL4.R777_NativeDecideDetoxLedger.R777_detoxedDeclCount",
         "HodgeReduction.HCGapL4.R777_NativeDecideDetoxLedger.R777_detoxedFileCount",
         "HodgeReduction.HCGapL4.R777_NativeDecideDetoxLedger.R777_heavyResidualDecls",
@@ -3900,7 +3915,7 @@ def config : ChainAudit.ProjectConfig := {
     },
     {
       id := "hcgap-l4-multifront-active"
-      title := "HCGapL4 multi-front attack waves (R420 -- R777)"
+      title := "HCGapL4 multi-front attack waves (R420 -- R778)"
       kind := "active"
       status := "exploratory"
       summary :=
@@ -4099,6 +4114,7 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction/HCGapL4/FrontC209_H8ResidualCompactDualGeneratorScalarCarrierClosure.lean",
         "HodgeReduction/HCGapL4/FrontC210_H8ResidualCompactDualGeneratorTargetLineEquality.lean",
         "HodgeReduction/HCGapL4/FrontC211_H8ResidualCompactDualTargetLineUnifiedSurfaces.lean",
+        "HodgeReduction/HCGapL4/FrontC212_H8ResidualExactImageFromTargetLine.lean",
         "HodgeReduction/HCGapL4/R777_NativeDecideDetoxLedger.lean",
         "HodgeReduction/HCGapL4/FrontE6_FeedR405ConditionalTransfer.lean",
         "HodgeReduction/HCGapL4/FrontE6_DispatcherFeedsConditionalTransfer.lean",
@@ -6144,6 +6160,19 @@ def config : ChainAudit.ProjectConfig := {
         "HodgeReduction.HCGapL4.FrontC211_H8ResidualCompactDualTargetLineUnifiedSurfaces.currentR776CompactDualTargetLineUnifiedSnapshot_eq_texStatus",
         "HodgeReduction.HCGapL4.FrontC211_H8ResidualCompactDualTargetLineUnifiedSurfaces.currentR776CompactDualTargetLineUnifiedTargetNames_eq_texStatus",
         "HodgeReduction.HCGapL4.FrontC211_H8ResidualCompactDualTargetLineUnifiedSurfaces.R776_substantiveTheoremCount",
+        "HodgeReduction.HCGapL4.FrontC212_H8ResidualExactImageFromTargetLine.cartanH8IsHpowFourLine",
+        "HodgeReduction.HCGapL4.FrontC212_H8ResidualExactImageFromTargetLine.r778_countermodel_h_pow_four_mem_compactDual",
+        "HodgeReduction.HCGapL4.FrontC212_H8ResidualExactImageFromTargetLine.r778_countermodel_target_invariants_eq_h_pow_four_line",
+        "HodgeReduction.HCGapL4.FrontC212_H8ResidualExactImageFromTargetLine.r778_countermodel_survives_cartan_h8_line",
+        "HodgeReduction.HCGapL4.FrontC212_H8ResidualExactImageFromTargetLine.r778_countermodel_surjectivity_target_ne_target_invariants",
+        "HodgeReduction.HCGapL4.FrontC212_H8ResidualExactImageFromTargetLine.r778_compactDual_targetLine_cartanLine_do_not_force_exactImage",
+        "HodgeReduction.HCGapL4.FrontC212_H8ResidualExactImageFromTargetLine.r778_exact_image_of_compactDual_targetLine_cartanLine_and_surjectivityTargetProjection",
+        "HodgeReduction.HCGapL4.FrontC212_H8ResidualExactImageFromTargetLine.currentR778ExactImageReductionTargetNames",
+        "HodgeReduction.HCGapL4.FrontC212_H8ResidualExactImageFromTargetLine.R778ExactImageReductionSnapshot",
+        "HodgeReduction.HCGapL4.FrontC212_H8ResidualExactImageFromTargetLine.currentR778ExactImageReductionSnapshot",
+        "HodgeReduction.HCGapL4.FrontC212_H8ResidualExactImageFromTargetLine.currentR778ExactImageReductionSnapshot_eq_texStatus",
+        "HodgeReduction.HCGapL4.FrontC212_H8ResidualExactImageFromTargetLine.currentR778ExactImageReductionTargetNames_eq_texStatus",
+        "HodgeReduction.HCGapL4.FrontC212_H8ResidualExactImageFromTargetLine.R778_substantiveTheoremCount",
         "HodgeReduction.HCGapL4.R777_NativeDecideDetoxLedger.R777_detoxedDeclCount",
         "HodgeReduction.HCGapL4.R777_NativeDecideDetoxLedger.R777_detoxedFileCount",
         "HodgeReduction.HCGapL4.R777_NativeDecideDetoxLedger.R777_heavyResidualDecls",
