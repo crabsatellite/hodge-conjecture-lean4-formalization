@@ -4,16 +4,16 @@
 
 ```mermaid
 flowchart LR
+  Evidence["evidence.json"] --> EvidenceAudit["audit_evidence.py"]
+  References["hash-pinned reference packets"] --> EvidenceAudit
+  Lean["Lean proof declarations"] --> EvidenceAudit
+  EvidenceAudit --> EvidenceStatus["generated evidence status"]
   Registry["registry.json + claim-reviews.json"] --> ResearchBuild["research-ledger/build.py"]
-  Master["canonical master TeX"] --> PaperAudit["paper-ledger audit"]
-  Ledger["paper ledger bindings"] --> PaperAudit
-  References["hash-pinned reference packets"] --> PaperAudit
-  Lean["canonical Lean proofs"] --> PaperAudit
-  PaperAudit --> PaperStatus["generated paper status"]
-  PaperStatus --> ResearchBuild
+  Tools["mechanisms.json + tools.json"] --> ResearchBuild
+  EvidenceStatus --> ResearchBuild
   GitHistory["pinned parent + nested Git history"] --> ResearchBuild
   ResearchBuild --> HumanViews["all project Markdown views"]
   ResearchBuild --> CombinedStatus["combined JSON status"]
 ```
 
-Only PaperAudit can derive claim evidence. ResearchBuild may display that evidence but cannot manufacture it.
+Only the evidence audit can derive claim closure. The research build may display that evidence but cannot manufacture it.

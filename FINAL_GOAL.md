@@ -2,13 +2,14 @@
 
 # Final goal
 
-Current machine value: `full_hodge_proved = false`.
+Current machine values: `full_hodge_target_registered = false`, `full_hodge_proved = false`.
 
-The final target is a kernel-checked proof of the rational Hodge Conjecture for a certified universe of genuine smooth projective complex varieties. The current formalization proves only logical consumers and one scalar-extension descent lemma.
+The final target is a kernel-checked proof of the rational Hodge Conjecture for a certified universe of genuine smooth projective complex varieties.
 
 Remaining typed fronts:
 
 - construct the genuine geometric universe and cycle-class interface;
-- construct an MT route package with actual coverage/projectors;
-- prove algebraicity of the explicit residual;
-- register an exact full-target proof binding.
+- construct genuine hyperplane-power certificates and remove the universal Lefschetz direction;
+- extract a nonzero algebraic class from Thomas nodal support or BFNP singularity data in every nonzero tail residual;
+- iterate the now-kernel-closed strict-complement step to exhaust each finite Hodge space;
+- register the fixed certified full-target declaration and exact proof binding.
